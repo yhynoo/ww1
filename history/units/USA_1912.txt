@@ -1,0 +1,95 @@
+division_template = {
+	name = "Infantry Division"
+	division_names_group = USA_INF_01
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+		infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+	}
+}
+division_template = {
+	name = "Motorized Brigade"
+	division_names_group = USA_MOT_01
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+	}
+	support = {
+		armored_car_recon = { x = 0 y = 0 }
+		logistics_company = { x = 0 y = 1 }
+	}
+}
+
+# units
+units = {
+	# mainland US
+    division = {
+		location = 3957
+		division_template = "Infantry Division"
+        start_experience_factor = 0.4
+		start_equipment_factor = 0.6
+    }
+	division = {
+		location = 10337
+		division_template = "Infantry Division"
+        start_experience_factor = 0.4
+		start_equipment_factor = 0.6
+    }
+	division = {
+		location = 9814
+		division_template = "Infantry Division"
+        start_experience_factor = 0.4
+		start_equipment_factor = 0.6
+    }
+	division = {
+		location = 6710
+		division_template = "Motorized Brigade"
+        start_experience_factor = 0.4
+		start_equipment_factor = 0.4
+    }
+
+	# pacific
+	division = {
+		location = 4180
+		division_template = "Infantry Division"
+        start_experience_factor = 0.4
+		start_equipment_factor = 0.6
+    }
+	division = {
+		location = 4180
+		division_template = "Infantry Division"
+        start_experience_factor = 0.4
+		start_equipment_factor = 0.6
+    }
+	division = {
+		location = 13052
+		division_template = "Infantry Division"
+        start_experience_factor = 0.4
+		start_equipment_factor = 0.6
+    }
+	division = {
+		location = 12140
+		division_template = "Infantry Division"
+        start_experience_factor = 0.4
+		start_equipment_factor = 0.6
+    }
+
+	# philippines
+	division = {
+		location = 10236
+		division_template = "Infantry Division"
+        start_experience_factor = 0.4
+		start_equipment_factor = 0.6
+    }
+	division = {
+		location = 10236
+		division_template = "Motorized Brigade"
+        start_experience_factor = 0.4
+		start_equipment_factor = 0.4
+    }
+}

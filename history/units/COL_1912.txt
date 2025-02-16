@@ -1,0 +1,74 @@
+division_template = {
+	name = "División de Infantería"
+	division_names_group = COL_INF_01
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 0 y = 2 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+		infantry = { x = 1 y = 2 }
+	}
+}
+division_template = {
+	name = "Brigada de Caballería"
+	division_names_group = COL_CAV_01
+    
+	regiments = {
+        cavalry = { x = 0 y = 0 }
+		cavalry = { x = 0 y = 1 }
+        cavalry = { x = 1 y = 0 }
+		cavalry = { x = 1 y = 1 }
+	}
+}
+
+# units
+units = {
+    # frontline
+    division = {
+		location = 10866
+		division_template = "División de Infantería"
+        start_experience_factor = 0.2
+    }
+	division = {
+		location = 10842
+		division_template = "División de Infantería"
+        start_experience_factor = 0.2
+    }
+	division = {
+		location = 4991
+		division_template = "División de Infantería"
+        start_experience_factor = 0.2
+    }
+	division = {
+		location = 10866
+		division_template = "Brigada de Caballería"
+        start_experience_factor = 0.4
+    }
+
+	# home
+	division = {
+		location = 13087
+		division_template = "División de Infantería"
+        start_experience_factor = 0.2
+		start_equipment_factor = 0.3
+    }
+	division = {
+		location = 8252
+		division_template = "División de Infantería"
+        start_experience_factor = 0.2
+		start_equipment_factor = 0.3
+    }
+	division = {
+		location = 8252
+		division_template = "Brigada de Caballería"
+        start_experience_factor = 0.2
+    }
+
+	division = {
+		location = 8113
+		division_template = "Brigada de Caballería"
+        start_experience_factor = 0.2
+    }
+}

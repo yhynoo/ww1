@@ -1,0 +1,122 @@
+division_template = {
+	name = "Infanterie-Division"
+	division_names_group = AUS_INF_01
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 0 y = 2 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+		infantry = { x = 1 y = 2 }
+        infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+		infantry = { x = 2 y = 2 }
+	}
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
+	priority = 1
+}
+division_template = {
+	name = "Kavallerie-Division"
+	division_names_group = AUS_CAV_01
+    
+	regiments = {
+		cavalry = { x = 0 y = 0 }
+		cavalry = { x = 0 y = 1 }
+		cavalry = { x = 0 y = 2 }
+        cavalry = { x = 1 y = 0 }
+		cavalry = { x = 1 y = 1 }
+		cavalry = { x = 1 y = 2 }
+	}
+	priority = 1
+}
+
+# units
+units = {
+    # Vienna
+    division = {
+		location = 11666
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 11666
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 11666
+		division_template = "Kavallerie-Division"
+        start_experience_factor = 0.3
+    }
+
+    # Tirol
+    division = {
+		location = 11598
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 673
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.3
+    }
+
+    # Galizien
+    division = {
+		location = 9427
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 11479
+		division_template = "Kavallerie-Division"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 11479
+		division_template = "Kavallerie-Division"
+        start_experience_factor = 0.3
+    }
+
+    # Bosnien
+    division = {
+		location = 11899
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 11899
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 9894
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.3
+    }
+
+    # Rumänien
+    division = {
+		location = 9606
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 6711
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 6711
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 619
+		division_template = "Kavallerie-Division"
+        start_experience_factor = 0.3
+    }
+}

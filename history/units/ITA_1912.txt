@@ -1,0 +1,90 @@
+division_template = {
+	name = "Divisione di Fanteria"
+	division_names_group = ITA_INF_01
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 0 y = 2 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+		infantry = { x = 1 y = 2 }
+	}
+}
+division_template = {
+	name = "Reggimento di Cavalleria"
+	division_names_group = ITA_CAV_01
+    
+	regiments = {
+        cavalry = { x = 0 y = 0 }
+		cavalry = { x = 0 y = 1 }
+        cavalry = { x = 1 y = 0 }
+		cavalry = { x = 1 y = 1 }
+	}
+}
+
+# units
+units = {
+    # Norte
+    division = {
+		location = 11584
+		division_template = "Divisione di Fanteria"
+        start_experience_factor = 0.2
+    }
+    division = {
+		location = 6780
+		division_template = "Divisione di Fanteria"
+        start_experience_factor = 0.2
+    }
+	division = {
+		location = 6780
+		division_template = "Divisione di Fanteria"
+        start_experience_factor = 0.2
+    }
+
+    # Roma
+    division = {
+		location = 9904
+		division_template = "Divisione di Fanteria"
+        start_experience_factor = 0.2
+    }
+	division = {
+		location = 9907
+		division_template = "Reggimento di Cavalleria"
+        start_experience_factor = 0.2
+    }
+	division = {
+		location = 9907
+		division_template = "Reggimento di Cavalleria"
+        start_experience_factor = 0.2
+    }
+
+	# Sud
+    division = {
+		location = 819
+		division_template = "Divisione di Fanteria"
+        start_experience_factor = 0.2
+    }
+	division = {
+		location = 819
+		division_template = "Reggimento di Cavalleria"
+        start_experience_factor = 0.2
+    }
+	division = {
+		location = 11837
+		division_template = "Divisione di Fanteria"
+        start_experience_factor = 0.2
+    }
+	division = {
+		location = 10074
+		division_template = "Reggimento di Cavalleria"
+        start_experience_factor = 0.2
+    }
+
+	# Sardegna
+	division = {
+		location = 11773
+		division_template = "Divisione di Fanteria"
+        start_experience_factor = 0.2
+    }
+}

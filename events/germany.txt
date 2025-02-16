@@ -1,0 +1,534 @@
+﻿# central_powers
+
+add_namespace = central_powers
+
+country_event = {
+	id = central_powers.1
+	title = "Germany Seeks to Formalize Our Alliance"
+	desc = ""
+
+	is_triggered_only = yes
+
+	option = {
+		name = "We need stronger co-operation."
+		news_event = {
+			id = central_powers.2
+			hours = 12
+			random_hours = 6
+		}
+		GER = {
+			create_faction = "Central Powers"
+			add_to_faction = AUS
+		}
+	}
+	option = {
+		name = "There is no need."
+		GER = {
+			add_opinion_modifier = {
+				target = AUS
+				modifier = medium_decrease
+			}
+		}
+	}
+}
+
+news_event = {
+	id = central_powers.2
+	title = "Germany and Austria-Hungary Form Central Powers"
+	desc = central_powers.2.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "Right."
+	}
+}
+
+news_event = {
+	id = central_powers.3
+	title = "Germany Announces Berlin-Baghdad Railway!"
+	desc = central_powers.3.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "Ok."
+	}
+}
+
+country_event = {
+	id = central_powers.4
+	title = "Germany Invites Us to Their Alliance"
+	desc = ""
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Together we are stronger."
+		news_event = { id = central_powers.5 hours = 12 random_hours = 6 }
+		GER = {
+			IF = {
+                limit = {
+                    NOT = { is_faction_leader = yes }
+                }
+                create_faction = "Central Powers"
+            }
+            add_to_faction = TUR
+		}
+	}
+	option = {
+		name = "There is no need."
+		GER = {
+			add_opinion_modifier = {
+				target = TUR
+				modifier = medium_decrease
+			}
+			remove_ideas = sww1_idea_berlin_baghdad_railway
+			news_event = { id = central_powers.6 hours = 12 random_hours = 6 }
+		}
+	}
+}
+
+news_event = {
+	id = central_powers.5
+	title = "Turkey Joins Central Powers"
+	desc = central_powers.5.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "Okay."
+	}
+}
+
+news_event = {
+	id = central_powers.6
+	title = "Turkey Declines Our Offer"
+	desc = central_powers.6.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "What a shame."
+	}
+}
+
+# a new opening
+
+add_namespace = germany_new_opening
+
+country_event = {
+	id = germany_new_opening.1
+	title = "Germany Offers Economic Help"
+	desc = germany_new_opening.1.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "They are very welcome."
+		news_event = { id = germany_new_opening.2 hours = 12 random_hours = 6 }
+		add_offsite_building = {
+			type = industrial_complex
+			level = 2
+		}
+		GER = {
+			add_ideas = sww1_idea_economic_mission_to_russia
+		}
+
+		IF = {
+			limit = { has_idea = sww1_idea_deep_economic_crisis }
+		}
+		swap_ideas = {
+			remove_idea = sww1_idea_deep_economic_crisis
+			add_idea = sww1_idea_economic_crisis
+		}
+	}
+	option = {
+		name = "We can manage on our own."
+		news_event = { id = germany_new_opening.3 hours = 12 random_hours = 6 }
+	}
+}
+
+news_event = {
+	id = germany_new_opening.2
+	title = "German Enterprises in Russia"
+	desc = germany_new_opening.2.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "Okay."
+	}
+}
+
+news_event = {
+	id = germany_new_opening.3
+	title = "Russia Declines Our Offer"
+	desc = germany_new_opening.3.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Okay."
+	}
+}
+
+country_event = {
+	id = germany_new_opening.4
+	title = "The Question of Baltic Germans"
+	desc = germany_new_opening.4.d
+
+	is_triggered_only = yes
+
+	option = {
+		trigger = {
+			NOT = { has_completed_focus = SOV_one_and_indivisible }
+		}
+		name = "This is a great idea."
+		news_event = { id = germany_new_opening.5 hours = 12 random_hours = 6 }
+		puppet = UBD
+		hidden_effect = {
+			12 = { transfer_state_to = UBD }
+			12 = { transfer_state_to = UBD }
+			13 = { transfer_state_to = UBD }
+			189 = { transfer_state_to = UBD }
+			190 = { transfer_state_to = UBD }
+			191 = { transfer_state_to = UBD }
+			808 = { transfer_state_to = UBD }
+			809 = { transfer_state_to = UBD }
+			810 = { transfer_state_to = UBD }
+			811 = { transfer_state_to = UBD }
+			812 = { transfer_state_to = UBD }
+			813 = { transfer_state_to = UBD }
+			815 = { transfer_state_to = UBD }
+			UBD = {
+				add_opinion_modifier = {
+					target = GER
+					modifier = huge_increase
+				}
+			}
+			GER = {
+				add_opinion_modifier = {
+					target = UBD
+					modifier = huge_increase
+				}
+			}
+		}
+	}
+	option = {
+		trigger = {
+			NOT = {
+				is_in_faction = SOV
+				is_in_faction = GER
+			}
+		}
+		name = "Let us establish an alliance instead, so everybody is protected."
+		GER = { country_event = { id = germany_new_opening.6 hours = 12 random_hours = 6 } }
+	}
+	option = {
+		name = "Our domains shall remain undivided."
+		GER = { news_event = { id = germany_new_opening.9 hours = 12 random_hours = 6 } }
+	}
+}
+
+news_event = {
+	id = germany_new_opening.5
+	title = "State of Baltic Germans Established!"
+	desc = germany_new_opening.5.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "Okay."
+	}
+}
+
+country_event = {
+	id_germany_new_opening.6
+	title = "Counter-Offer from Russia: Alliance?"
+	desc = germany_new_opening.6.d
+
+	is_triggered_only = yes
+	option = {
+		name = "This sounds acceptable."
+		news_event = { id = germany_new_opening.7 hours = 12 random_hours = 6 }
+		IF = {
+			limit = { NOT = { is_in_faction = yes } }
+			create_faction = "Russo-German Alliance"
+		}
+		add_to_faction = SOV
+	}
+	option = {
+		name = "This is not what we intended."
+		SOV = { news_event = { id = germany_new_opening.8 hours = 12 random_hours = 6 } }
+	}
+}
+
+news_event = {
+	id = germany_new_opening.7
+	title = "Russo-German Alliance Formed"
+	desc = germany_new_opening.7.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "Okay."
+	}
+}
+
+news_event = {
+	id = germany_new_opening.8
+	title = "Berlin Rejects the Alliance Offer"
+	desc = germany_new_opening.8.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Okay."
+	}
+}
+
+news_event = {
+	id = germany_new_opening.9
+	title = "Russia Won't Protect Baltic Germans"
+	desc = germany_new_opening.9.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "Okay."
+	}
+}
+
+## our place under the sun
+
+add_namespace = germany_sun
+
+country_event = {
+	id = germany_sun.1
+	title = "Germany Demands Angola!"
+	desc = ""
+
+	is_triggered_only = yes
+	hidden_effect = {
+			540 = { add_claim_to = GER }
+			891 = { add_claim_to = GER }
+			892 = { add_claim_to = GER }
+		}
+
+	option = {
+		name = "We must yield."
+		news_event = { id = germany_sun.2 hours = 12 random_hours = 6 }
+		hidden_effect = {
+			540 = { transfer_state_to = GER }
+			891 = { transfer_state_to = GER }
+			892 = { transfer_state_to = GER }
+		}
+	}
+	option = {
+		name = "Let us seek help!"
+		FRA = { country_event = { id = germany_sun.3 hours = 12 random_hours = 6 } }
+		GER = { country_event = { id = germany_sun.5 days = 6 random_hours = 6 }}
+	}
+	option = {
+		name = "We shall never agree to this."
+		GER = { country_event = { id = germany_sun.5 days = 3 random_hours = 6 }}
+	}
+}
+
+news_event = {
+	id = germany_sun.2
+	title = "Spain Yields to German Demands"
+	desc = germany_sun.2.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "Okay."
+	}
+}
+
+country_event = {
+	id = germany_sun.3
+	title = "Spain Seeks Our Help!"
+	desc = ""
+
+	is_triggered_only = yes
+
+	option = {
+		name = "We must not let the Germans do this!"
+		news_event = { id = germany_sun.4 hours = 12 random_hours = 6 }
+		give_guarantee = SPR
+	}
+	option = {
+		name = "It is not our business."
+		SPR = {
+			add_opinion_modifier = {
+				target = FRA
+				modifier = medium_decrease
+			}
+		}
+	}
+}
+
+news_event = {
+	id = germany_sun.4
+	title = "France Offers Spain Guarantees"
+	desc = germany_sun.4.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "Okay."
+	}
+}
+
+country_event = {
+	id = germany_sun.5
+	title = "Crisis Around Angola"
+	desc = germany_sun.5.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "This means war!"
+		declare_war_on = {
+			target = SPR
+			type = take_claimed_state
+		}
+		news_event = { id = germany_sun.6 hours = 12 random_hours = 6 }
+	}
+	option = {
+		name = "We shall wait for a better moment."
+		GER = {
+			create_wargoal = {
+				target = SPR
+				type = take_claimed_state
+			}
+		}
+	}
+}
+
+news_event = {
+	id = germany_sun.6
+	title = "Germany Declares War on Spain Over Angola"
+	desc = germany_sun.6.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "It's a tragedy."
+	}
+}
+
+country_event = {
+	id = germany_sun.7
+	title = "German Demands in South Africa"
+	desc = germany_sun.7.d
+
+	is_triggered_only = yes
+	hidden_effect = {
+			275 = { add_claim_to = GER }
+			542 = { add_claim_to = GER }
+			544 = { add_claim_to = GER }
+			545 = { add_claim_to = GER }
+			681 = { add_claim_to = GER }
+			719 = { add_claim_to = GER }
+			771 = { add_claim_to = GER }
+			896 = { add_claim_to = GER }
+			897 = { add_claim_to = GER }
+			981 = { add_claim_to = GER }
+		}
+
+	option = {
+		"Let them have it."
+		news_event = { id = germany_sun.8 hours = 12 random_hours = 6 }
+		hidden_effect = {
+			275 = { transfer_state_to = GER }
+			542 = { transfer_state_to = GER }
+			544 = { transfer_state_to = GER }
+			545 = { transfer_state_to = GER }
+			681 = { transfer_state_to = GER }
+			719 = { transfer_state_to = GER }
+			771 = { transfer_state_to = GER }
+			896 = { transfer_state_to = GER }
+			897 = { transfer_state_to = GER }
+			981 = { transfer_state_to = GER }
+		}
+	}
+	option = {
+		"This is ridiculous!"
+		country_event = { id = germany_sun.9 hours = 12 random_hours = 6 }
+	}
+	option = {
+		"How dare they even ask?!"
+		news_event = { id = germany_sun.10 hours = 12 random_hours = 6 }
+		declare_war_on = {
+			target = GER
+			type = annex_everything
+		}
+	}
+}
+
+news_event = {
+	id = germany_sun.8
+	title = "United Kingdom Yields to German Demands"
+	desc = germany_sun.8.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "Okay."
+	}
+}
+
+country_event = {
+	id = germany_sun.9
+	title = "United Kingdom Declines!"
+	desc = germany_sun.9.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "This means war!"
+		declare_war_on = {
+			target = ENG
+			type = take_claimed_state
+		}
+		news_event = { id = germany_sun.10 hours = 12 random_hours = 6 }
+	}
+	option = {
+		name = "We shall wait for a better moment."
+		GER = {
+			create_wargoal = {
+				target = SPR
+				type = take_claimed_state
+			}
+		}
+	}
+}
+
+news_event = {
+	id = germany_sun.10
+	title = "War Over South Africa!"
+	desc = germany_sun.10.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "Horrible."
+	}
+}

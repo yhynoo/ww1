@@ -1,0 +1,174 @@
+division_template = {
+	name = "Infantry Division"
+	division_names_group = ENG_INF_01
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 0 y = 2 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+		infantry = { x = 1 y = 2 }
+		infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+		infantry = { x = 2 y = 2 }
+	}
+	support = {
+		engineer = { x = 0 y = 0 }
+	}
+}
+division_template = {
+	name = "Colonial Garrison"
+	division_names_group = ENG_GAR_01
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+	}
+	priority = 0
+}
+division_template = {
+	name = "Cavalry Division"
+	division_names_group = ENG_CAV_01
+	regiments = {
+		cavalry = { x = 0 y = 0 }
+		cavalry = { x = 0 y = 1 }
+		cavalry = { x = 1 y = 0 }
+		cavalry = { x = 1 y = 1 }
+	}
+	support = {
+		recon = { x = 0 y = 0 }
+	}
+}
+
+# units
+units = {
+	# home islands
+    division = {
+		location = 6103
+		division_template = "Infantry Division"
+        start_experience_factor = 0.5
+    }
+	division = {
+		location = 6103
+		division_template = "Infantry Division"
+        start_experience_factor = 0.5
+    }
+	division = {
+		location = 3273
+		division_template = "Infantry Division"
+        start_experience_factor = 0.5
+    }
+	division = {
+		location = 11293
+		division_template = "Infantry Division"
+        start_experience_factor = 0.5
+    }
+	division = {
+		location = 11293
+		division_template = "Infantry Division"
+        start_experience_factor = 0.5
+    }
+	division = {
+		location = 332
+		division_template = "Cavalry Division"
+        start_experience_factor = 0.5
+    }
+	division = {
+		location = 540
+		division_template = "Cavalry Division"
+        start_experience_factor = 0.5
+    }
+
+	# canada
+	division = {
+		location = 7361
+		division_template = "Colonial Garrison"
+        start_experience_factor = 0.5
+    }
+	division = {
+		location = 1408
+		division_template = "Colonial Garrison"
+        start_experience_factor = 0.5
+    }
+
+	# south africa
+	division = {
+		location = 12589
+		division_template = "Colonial Garrison"
+        start_experience_factor = 0.5
+    }
+	division = {
+		location = 12589
+		division_template = "Colonial Garrison"
+        start_experience_factor = 0.5
+    }
+	division = {
+		location = 5199
+		division_template = "Colonial Garrison"
+        start_experience_factor = 0.5
+    }
+	division = {
+		location = 5199
+		division_template = "Colonial Garrison"
+        start_experience_factor = 0.5
+    }
+
+	# ethiopia
+	division = {
+		location = 12941
+		division_template = "Colonial Garrison"
+        start_experience_factor = 0.5
+    }
+	division = {
+		location = 5010
+		division_template = "Colonial Garrison"
+        start_experience_factor = 0.5
+    }
+	division = {
+		location = 13250
+		division_template = "Colonial Garrison"
+        start_experience_factor = 0.5
+    }
+
+	# arabia
+	division = {
+		location = 10760
+		division_template = "Colonial Garrison"
+        start_experience_factor = 0.5
+    }
+	division = {
+		location = 8085
+		division_template = "Colonial Garrison"
+        start_experience_factor = 0.5
+    }
+
+	# nigeria
+	division = {
+		location = 2050
+		division_template = "Infantry Division"
+        start_experience_factor = 0.5
+    }
+	division = {
+		location = 7959
+		division_template = "Infantry Division"
+        start_experience_factor = 0.5
+    }
+
+	# east asia
+	division = {
+		location = 12299
+		division_template = "Colonial Garrison"
+        start_experience_factor = 0.5
+    }
+	division = {
+		location = 7371
+		division_template = "Colonial Garrison"
+        start_experience_factor = 0.5
+    }
+	division = {
+		location = 10062
+		division_template = "Colonial Garrison"
+        start_experience_factor = 0.5
+    }
+}
