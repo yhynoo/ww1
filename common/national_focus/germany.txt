@@ -1,5 +1,5 @@
 focus_tree = {
-    id = GER_focus
+    id = ger_focus
     country = {
         factor = 0
         modifier = {
@@ -7,8 +7,6 @@ focus_tree = {
             tag = GER
         }
     }
-
-    continuous_focus_position = { x = 200 y = 1600 }
 
     ## military branch
     focus = {
@@ -350,7 +348,7 @@ focus_tree = {
 		}
     }
     focus = {
-        id = GER_develop_the_hochseeflotte
+        id = GER_high_seas
         icon = GFX_focus_generic_high_seas
 
         relative_position_id = GER_expand_dockyards
@@ -426,7 +424,7 @@ focus_tree = {
         id = GER_rule_the_waves
         icon = GFX_focus_generic_rule_the_waves
 
-        relative_position_id = GER_develop_the_hochseeflotte
+        relative_position_id = GER_high_seas
         x = 0
         y = 1
         cost = 10
@@ -449,25 +447,28 @@ focus_tree = {
         }
     }
 
-    # economic branch
-        focus = {
+    ## economic branch
+    focus = {
         id = GER_economic_development
         icon = GFX_focus_generic_improve_the_administration
 
-        x = 20
+        x = 21
         y = 0
         cost = 10
 
         completion_reward = {
-            add_stability = 0.1
+            swap_ideas = {
+                remove_idea = sww1_deep_economic_crisis
+                add_idea = sww1_idea_economic_crisis
+            }
         }
     }
     focus = {
-        id = GER_agrarian_reform
-        icon = GFX_focus_generic_agrarian_reform
+        id = GER_self_reliance
+        icon = GFX_focus_GER_self_reliance
 
         relative_position_id = GER_economic_development
-        x = -2
+        x = -3
         y = 1
 
         cost = 10
@@ -478,32 +479,46 @@ focus_tree = {
         }
     }
     focus = {
+        id = GER_land_reclamation
+        icon = GFX_focus_generic_land_reclamation
+
+        relative_position_id = GER_self_reliance
+        x = -2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = GER_self_reliance }
+        completion_reward = {
+        }
+    } 
+    focus = {
         id = GER_rationing
         icon = GFX_focus_generic_rationing
 
-        relative_position_id = GER_agrarian_reform
+        relative_position_id = GER_self_reliance
         x = 0
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = GER_agrarian_reform }
+        prerequisite = { focus = GER_self_reliance }
         completion_reward = {
             add_stability = -0.1
             add_ideas = sww1_idea_rationing
         }
     }
     focus = {
-        id = GER_fertilizers
-        icon = GFX_focus_generic_fertilizers
+        id = GER_ersatz
+        icon = GFX_focus_GER_ersatz
 
-        relative_position_id = GER_agrarian_reform
-        x = -2
+        relative_position_id = GER_self_reliance
+        x = 2
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = GER_agrarian_reform }
+        prerequisite = { focus = GER_self_reliance }
         completion_reward = {
         }
     }
@@ -534,7 +549,7 @@ focus_tree = {
         icon = GFX_focus_generic_infrastructure_effort
 
         relative_position_id = GER_economic_development
-        x = 2
+        x = 3
         y = 1
 
         cost = 10
@@ -615,8 +630,8 @@ focus_tree = {
 		}
     }
     focus = {
-        id = GER_construct_civilian
-        icon = GFX_focus_generic_construct_civilian
+        id = GER_chemical_industry
+        icon = GFX_focus_GER_chemical_industry
 
         relative_position_id = GER_infrastructure_effort
         x = -2
@@ -626,36 +641,34 @@ focus_tree = {
 
         prerequisite = { focus = GER_infrastructure_effort }
 		completion_reward = {
-			random_owned_controlled_state = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = yes
-					}
-					OR = {
-						is_in_home_area = yes
-						NOT = {
-							owner = {
-								any_owned_state = {
-									free_building_slots = {
-										building = industrial_complex
-										size > 0
-										include_locked = yes
-									}
-									is_in_home_area = yes
-								}
-							}
-						}
-					}
-				}
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = industrial_complex
-					level = 2
-					instant_build = yes
-				}
-			}
+		}
+    }
+    focus = {
+        id = GER_synthetic_oil
+        icon = GFX_focus_GER_synthetic_oil
+
+        relative_position_id = GER_chemical_industry
+        x = 0
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = GER_chemical_industry }
+		completion_reward = {
+		}
+    }
+    focus = {
+        id = GER_construct_civilian
+        icon = GFX_focus_generic_construct_civilian
+
+        relative_position_id = GER_infrastructure_effort
+        x = 0
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = GER_infrastructure_effort }
+		completion_reward = {
 		}
     }
     focus = {
@@ -663,77 +676,21 @@ focus_tree = {
         icon = GFX_focus_generic_construct_military
 
         relative_position_id = GER_infrastructure_effort
-        x = 0
-        y = 1
-
-        cost = 10
-
-        prerequisite = { focus = GER_infrastructure_effort }
-		completion_reward = {
-			random_owned_controlled_state = {
-				limit = {
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = yes
-					}
-					OR = {
-						is_in_home_area = yes
-						NOT = {
-							owner = {
-								any_owned_state = {
-									free_building_slots = {
-										building = arms_factory
-										size > 0
-										include_locked = yes
-									}
-									is_in_home_area = yes
-								}
-							}
-						}
-					}
-				}
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = arms_factory
-					level = 2
-					instant_build = yes
-				}
-			}
-		}
-    }
-    focus = {
-        id = GER_expand_mining
-        icon = GFX_focus_generic_expand_mining
-
-        relative_position_id = GER_infrastructure_effort
         x = 2
         y = 1
 
         cost = 10
 
         prerequisite = { focus = GER_infrastructure_effort }
-        completion_reward = {
-            random_owned_controlled_state = {
-                add_resource = {
-                    type = steel
-                    amount = 12
-                }
-            }
-            random_owned_controlled_state = {
-                add_resource = {
-                    type = aluminium
-                    amount = 4
-                }
-            }
-        }
+		completion_reward = {
+		}
     }
     focus = {
-        id = GER_steady_growth
-        icon = GFX_focus_generic_steady_growth
+        id = GER_german_engineering_schools
+        icon = GFX_focus_GER_german_engineering_schools
 
-        relative_position_id = GER_construct_military
-        x = 0
+        relative_position_id = GER_construct_civilian
+        x = 1
         y = 1
 
         cost = 10
@@ -741,21 +698,29 @@ focus_tree = {
         prerequisite = { 
             focus = GER_construct_civilian
             focus = GER_construct_military
-            focus = GER_expand_mining
-        }
-        completion_reward = {
-            add_ideas = sww1_idea_steady_growth
         }
     }
+    focus = {
+        id = GER_coordinated_materiel_offices
+        icon = GFX_focus_GER_coordinated_materiel_offices
 
-    # political branch
+        relative_position_id = GER_german_engineering_schools
+        x = 0
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = GER_german_engineering_schools }
+    }
+
+    ## political branch
     focus = {
         id = GER_political_ambitions
         icon = GFX_focus_generic_political_effort
 
         relative_position_id = GER_economic_development
-        x = 0
-        y = 6
+        x = -2
+        y = 5
         cost = 10
 
         completion_reward = {
@@ -763,268 +728,99 @@ focus_tree = {
         }
     }
     focus = {
-        id = GER_seek_a_new_opening
-        icon = GFX_focus_GER_seek_a_new_opening
+        id = GER_international_affairs
+        icon = GFX_focus_generic_interventionism
 
         relative_position_id = GER_political_ambitions
-        x = -15
+        x = -4
         y = 1
 
         cost = 10
-        mutually_exclusive = { focus = GER_reaffirm_alliance_with_austria }
         prerequisite = { focus = GER_political_ambitions }
         completion_reward = {
-            add_political_power = 150
         }
     }
+
+    ## international affairs
     focus = {
-        id = GER_economic_mission_to_russia
-        icon = GFX_focus_GER_acknowledge_the_royal_navy
+        id = GER_weltpolitik
+        icon = GFX_focus_generic_seek_alliances
 
-        relative_position_id = GER_seek_a_new_opening
-        x = -3
+        relative_position_id = GER_international_affairs
+        x = -2
         y = 1
-
-        available = {
-            NOT = { has_war_with = SOV }
-            SOV = { 
-                OR = {
-                    has_idea = sww1_idea_deep_economic_crisis
-                    has_idea = sww1_idea_economic_crisis 
-                }
-            } 
-        }
-
-        cost = 10
-        prerequisite = { focus = GER_seek_a_new_opening }
-        completion_reward = {
-            SOV = { country_event = {id = germany_new_opening.1 hours = 12 random_hours = 6 }}
-        }
-    }
-    focus = {
-        id = GER_protect_baltic_germans
-        icon = GFX_focus_GER_protect_baltic_germans
-
-        relative_position_id = GER_economic_mission_to_russia
-        x = 1
-        y = 1
-
-        available = {
-            NOT = { has_war_with = SOV }
-            has_idea = sww1_idea_economic_mission_to_russia
-        }
-
-        cost = 10
-        prerequisite = { focus = GER_economic_mission_to_russia }
-        completion_reward = {
-            SOV = { country_event = {id = germany_new_opening.4 hours = 12 random_hours = 6 }}
-        }
-    }
-    focus = {
-        id = GER_acknowledge_the_royal_navy
-        icon = GFX_focus_GER_acknowledge_the_royal_navy
-
-        relative_position_id = GER_seek_a_new_opening
-        x = 0
-        y = 1
-
         cost = 10
 
-        mutually_exclusive = { focus = GER_good_guy_germany }
-        prerequisite = { focus = GER_seek_a_new_opening }
+        prerequisite = { focus = GER_international_affairs}
         completion_reward = {
-            ENG = {
-                add_opinion_modifier = {
-                    target = GER
-                    modifier = medium_increase
-                }
-            }
-        }
-    }
-    focus = {
-        id = GER_allied_by_blood
-        icon = GFX_focus_GER_allied_by_blood
-
-        relative_position_id = GER_acknowledge_the_royal_navy
-        x = 0
-        y = 1
-
-        cost = 10
-        prerequisite = { focus = GER_acknowledge_the_royal_navy }
-        completion_reward = {
-            
         }
     }
     focus = {
         id = GER_good_guy_germany
         icon = GFX_focus_GER_good_guy_germany
 
-        relative_position_id = GER_seek_a_new_opening
+        available = {
+            OR = {
+                has_government = democratic
+                has_government = communism
+            }
+        }
+
+        relative_position_id = GER_weltpolitik
+        x = -3
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = GER_weltpolitik}
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = GER_allied_by_blood
+        icon = GFX_focus_GER_allied_by_blood
+
+        relative_position_id = GER_weltpolitik
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = GER_weltpolitik}
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = GER_sun
+        icon = GFX_focus_GER_sun
+
+        relative_position_id = GER_weltpolitik
         x = 3
         y = 1
-
         cost = 10
-        mutually_exclusive = { focus = GER_acknowledge_the_royal_navy }
-        prerequisite = { focus = GER_seek_a_new_opening }
+
+        prerequisite = { 
+            focus = GER_berlin_baghdad
+            focus = GER_weltpolitik
+        }
         completion_reward = {
         }
     }
     focus = {
-        id = GER_approach_australia
-        icon = GFX_focus_GER_approach_australia
+        id = GER_berlin_baghdad
+        icon = GFX_focus_GER_berlin_baghdad
 
-        relative_position_id = GER_good_guy_germany
-        x = -1
-        y = 1
-
-        available = {
-            AST = { is_subject_of = ENG }
-        }
-
-        cost = 10
-        prerequisite = { focus = GER_good_guy_germany }
-        completion_reward = {
-        }
-    }
-    focus = {
-        id = GER_approach_india
-        icon = GFX_focus_GER_approach_india
-
-        relative_position_id = GER_good_guy_germany
+        relative_position_id = GER_international_affairs
         x = 1
         y = 1
 
-        available = {
-            RAJ = { is_subject_of = RAJ }
-        }
-
         cost = 10
-        prerequisite = { focus = GER_good_guy_germany }
+        prerequisite = { focus = GER_international_affairs }
         completion_reward = {
         }
     }
 
+    ## monarchy
     focus = {
-        id = GER_reaffirm_alliance_with_austria
-        icon = GFX_focus_GER_reaffirm_alliance_with_austria
-
-        relative_position_id = GER_political_ambitions
-        x = -3
-        y = 1
-
-        cost = 10
-        mutually_exclusive = { focus = GER_seek_a_new_opening }
-        prerequisite = { focus = GER_political_ambitions }
-        completion_reward = {
-            AUS = { country_event = { id = central_powers.1 hours = 12 random_hours = 6 } }
-        }
-    }
-    focus = {
-        id = GER_berlin_baghdad_railway
-        icon = GFX_focus_GER_berlin_baghdad_railway
-
-        relative_position_id = GER_reaffirm_alliance_with_austria
-        x = 0
-        y = 1
-
-        available = {
-            NOT = { has_war_with = TUR }
-        }
-
-        cost = 10
-        prerequisite = { focus = GER_reaffirm_alliance_with_austria }
-        completion_reward = {
-            TUR = { 
-                news_event = { id = central_powers.3 hours = 12 random_hours = 6 }
-                add_opinion_modifier = {
-                    target = GER
-                    modifier = medium_increase
-                }
-            }
-            add_ideas = sww1_idea_berlin_baghdad_railway
-        }
-    }
-    focus = {
-        id = GER_alliance_with_turkey
-        icon = GFX_focus_alliance_with_turkey
-
-        relative_position_id = GER_berlin_baghdad_railway
-        x = 0
-        y = 1
-        cost = 10
-
-        prerequisite = { focus = GER_berlin_baghdad_railway }
-        completion_reward = {
-            TUR = { country_event = { id = central_powers.4 hours = 12 random_hours = 6 } }
-        }
-    }
-
-    focus = {
-        id = GER_our_place_under_the_sun
-        icon = GFX_focus_GER_our_place_under_the_sun
-
-        relative_position_id = GER_reaffirm_alliance_with_austria
-        x = -4
-        y = 1
-
-        cost = 10
-        prerequisite = { focus = GER_reaffirm_alliance_with_austria }
-        completion_reward = {
-        }
-    }
-    focus = {
-        id = GER_demand_angola_from_spain
-        icon = GFX_focus_GER_demand_angola_from_spain
-
-        relative_position_id = GER_our_place_under_the_sun
-        x = -2
-        y = 1
-
-        available = {
-            NOT = { has_war_with = SPR }
-        }
-
-        cost = 10
-        prerequisite = { focus = GER_our_place_under_the_sun }
-        completion_reward = {
-            SPR = { country_event = { id = germany_sun.1 hours = 12 random_hours = 6 } }
-        }
-    }
-    focus = {
-        id = GER_deutsch_sudafrika
-        icon = GFX_focus_GER_deutsch_sudafrika
-
-        relative_position_id = GER_our_place_under_the_sun
-        x = 0
-        y = 1
-
-        available = {
-            NOT = { has_war_with = ENG }
-        }
-
-        cost = 10
-        prerequisite = { focus = GER_our_place_under_the_sun }
-        completion_reward = {
-            ENG = { country_event = { id = germany_sun.7 hours = 12 random_hours = 6 } }
-        }
-    }
-    focus = {
-        id = GER_the_algier_crisis
-        icon = GFX_focus_GER_the_algier_crisis
-
-        relative_position_id = GER_our_place_under_the_sun
-        x = 2
-        y = 1
-
-        cost = 10
-        prerequisite = { focus = GER_our_place_under_the_sun }
-        completion_reward = {
-        }
-    }
-
-
-    focus = {
-        id = GER_kaisers_rule
+        id = GER_stabilize_monarchy
         icon = GFX_focus_generic_internal_stability
 
         relative_position_id = GER_political_ambitions
@@ -1032,67 +828,174 @@ focus_tree = {
         y = 1
 
         cost = 10
-        mutually_exclusive = { focus = GER_deep_reform }
+        mutually_exclusive = { focus = GER_dead_end }
         available = {
             has_government = monarchism
         }
         prerequisite = { focus = GER_political_ambitions }
         completion_reward = {
-            add_stability = 0.1
-            add_timed_idea = {
-                idea = sww1_idea_monarchism_tendencies
-                years = 1
-            }
+            add_stability = 0.2
         }
     }
     focus = {
         id = GER_heil_dir_im_siegerkranz
         icon = GFX_focus_GER_heil_dir_im_siegerkranz
 
-        relative_position_id = GER_kaisers_rule
+        relative_position_id = GER_stabilize_monarchy
         x = -1
         y = 1
 
         cost = 10
-        prerequisite = { focus = GER_kaisers_rule }
+        prerequisite = { focus = GER_stabilize_monarchy }
         completion_reward = {
+            add_stability = 0.05
+            add_timed_idea = { 
+                idea = sww1_idea_monarchism_tendencies
+                years = 1
+            }
         }
     }
     focus = {
-        id = GER_military_government
-        icon = GFX_focus_GER_military_government
+        id = GER_wacht_am_rhein
+        icon = GFX_focus_GER_wacht_am_rhein
 
-        relative_position_id = GER_kaisers_rule
+        relative_position_id = GER_stabilize_monarchy
         x = 1
         y = 1
 
         cost = 10
-        available = {
-            has_war = yes
+        prerequisite = { focus = GER_stabilize_monarchy }
+        completion_reward = {
         }
-        prerequisite = { focus = GER_kaisers_rule }
+    }
+    focus = {
+        id = GER_embrace_prussian_militarism
+        icon = GFX_focus_GER_embrace_prussian_militarism
+
+        relative_position_id = GER_heil_dir_im_siegerkranz
+        x = 1
+        y = 1
+
+        cost = 10
+        prerequisite = { 
+            focus = GER_heil_dir_im_siegerkranz
+            focus = GER_wacht_am_rhein
+        }
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = GER_deutschland_uber_alles
+        icon = GFX_focus_GER_deutschland_uber_alles
+
+        relative_position_id = GER_embrace_prussian_militarism
+        x = 0
+        y = 1
+
+        cost = 10
+        prerequisite = { focus = GER_embrace_prussian_militarism }
         completion_reward = {
         }
     }
 
+    ## reforms
     focus = {
-        id = GER_deep_reform
-        icon = GFX_focus_GER_deep_reform
+        id = GER_dead_end
+        icon = GFX_focus_GER_dead_end
 
         relative_position_id = GER_political_ambitions
         x = 4
         y = 1
 
         cost = 10
-        mutually_exclusive = { focus = GER_reform }
-
+        mutually_exclusive = { focus = GER_stabilize_monarchy }
         prerequisite = { focus = GER_political_ambitions }
         completion_reward = {
-            add_stability = -0.1
+            add_popularity = {
+                ideology = democratic
+                popularity = 0.1
+            }
             add_timed_idea = {
                 idea = sww1_idea_democratic_tendencies
                 years = 1
             }
+        }
+    }
+    focus = {
+        id = GER_empower_the_reichstag
+        icon = GFX_focus_GER_empower_the_reichstag
+
+        relative_position_id = GER_dead_end
+        x = -1
+        y = 1
+
+        cost = 10
+        prerequisite = { focus = GER_dead_end }
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = GER_abolish_monarchy
+        icon = GFX_focus_GER_abolish_monarchy
+
+        relative_position_id = GER_dead_end
+        x = 2
+        y = 1
+
+        cost = 10
+        prerequisite = { focus = GER_dead_end }
+        completion_reward = {
+            add_stability = 0.05
+            
+            remove_ideas = sww1_idea_democratic_tendencies
+            add_timed_idea = {
+                idea = sww1_idea_communism_tendencies
+                years = 2
+            }
+        }
+    }
+    focus = {
+        id = GER_weimar_constitution
+        icon = GFX_focus_GER_weimar_constitution
+
+        relative_position_id = GER_abolish_monarchy
+        x = -3
+        y = 1
+
+        cost = 10
+        prerequisite = { 
+            focus = GER_empower_the_reichstag
+            focus = GER_abolish_monarchy
+        }
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = GER_erfurt_program
+        icon = GFX_focus_generic_red_flags
+
+        relative_position_id = GER_abolish_monarchy
+        x = 0
+        y = 1
+
+        cost = 10
+        prerequisite = { focus = GER_abolish_monarchy }
+        completion_reward = {
+            add_research_slot = 1
+        }
+    }
+    focus = {
+        id = GER_zusammenbruch
+        icon = GFX_focus_revolution
+
+        relative_position_id = GER_abolish_monarchy
+        x = 3
+        y = 1
+
+        cost = 10
+        prerequisite = { focus = GER_abolish_monarchy }
+        completion_reward = {
+            add_research_slot = 1
         }
     }
 }

@@ -1,25 +1,20 @@
 division_template = {
 	name = "Division d'Infanterie"
 	division_names_group = FRA_INF_01
-
 	regiments = {
 		infantry = { x = 0 y = 0 }
 		infantry = { x = 0 y = 1 }
-		infantry = { x = 0 y = 2 }
         infantry = { x = 1 y = 0 }
 		infantry = { x = 1 y = 1 }
-		infantry = { x = 1 y = 2 }
         artillery_brigade = { x = 2 y = 0 }
-		artillery_brigade = { x = 2 y = 1 }
 	}
     support = {
-        engineer = { x = 0 y = 0 }
+        recon = { x = 0 y = 0 }
     }
 }
 division_template = {
 	name = "Brigade Coloniale"
 	division_names_group = FRA_GAR_01
-    
 	regiments = {
 		infantry = { x = 0 y = 0 }
 		infantry = { x = 0 y = 1 }
@@ -27,6 +22,21 @@ division_template = {
 		infantry = { x = 1 y = 1 }
 	}
 	priority = 0
+}
+division_template = {
+	name = "Division des Chasseurs"
+	division_names_group = FRA_CAV_01
+	regiments = {
+		cavalry = { x = 0 y = 0 }
+		cavalry = { x = 0 y = 1 }
+        cavalry = { x = 1 y = 0 }
+		cavalry = { x = 1 y = 1 }
+        cavalry = { x = 2 y = 0 }
+		cavalry = { x = 2 y = 1 }
+	}
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
 }
 
 # units
@@ -52,6 +62,11 @@ units = {
 		division_template = "Division d'Infanterie"
         start_experience_factor = 0.3
     }
+    division = {
+		location = 13011
+		division_template = "Division des Chasseurs"
+        start_experience_factor = 0.3
+    }
 
     # Burgundy
     division = {
@@ -67,6 +82,11 @@ units = {
     division = {
 		location = 11516
 		division_template = "Division d'Infanterie"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 11516
+		division_template = "Division des Chasseurs"
         start_experience_factor = 0.3
     }
 

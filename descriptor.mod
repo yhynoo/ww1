@@ -8,3 +8,6 @@ supported_version="1.15.4"
 
 replace_path = "common/decisions"
 replace_path = "events"
+
+replace_path = "history/units"
+replace_path = "history/countries"

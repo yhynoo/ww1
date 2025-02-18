@@ -1,32 +1,17 @@
 division_template = {
 	name = "División de Infantería"
 	division_names_group = MEX_INF_01
-
 	regiments = {
 		infantry = { x = 0 y = 0 }
 		infantry = { x = 0 y = 1 }
 		infantry = { x = 0 y = 2 }
         infantry = { x = 1 y = 0 }
-		infantry = { x = 1 y = 1 }
-		infantry = { x = 1 y = 2 }
-		artillery_brigade = { x = 2 y = 0 }
 	}
 	support = {
 		artillery = { x = 0 y = 0 }
 	}
 }
-division_template = {
-	name = "Brigada de Infantería"
-	division_names_group = MEX_INF_01
-    
-	regiments = {
-        infantry = { x = 0 y = 0 }
-		infantry = { x = 0 y = 1 }
-        infantry = { x = 1 y = 0 }
-		infantry = { x = 1 y = 1 }
-	}
-	priority = 0
-}
+
 
 # units
 units = {
@@ -57,7 +42,7 @@ units = {
 
 	division = {
 		location = 12835
-		division_template = "Brigada de Infantería"
+		division_template = "División de Infantería"
         start_experience_factor = 0.2
     }
 }

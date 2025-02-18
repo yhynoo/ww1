@@ -138,8 +138,8 @@
         }
     }
     focus = {
-        id = ITA_armor
-        icon = GFX_focus_generic_armor
+        id = ITA_alpini
+        icon = GFX_focus_ITA_alpini
 
         relative_position_id = ITA_equipment_effort
         x = 2
@@ -148,12 +148,6 @@
 
         prerequisite = { focus = ITA_equipment_effort }
         completion_reward = {
-            add_tech_bonus = {
-				name = armor_bonus
-				bonus = 1.0
-				uses = 2
-				category = armor
-			}
         }
     }
     focus = {
@@ -168,7 +162,7 @@
         prerequisite = { 
             focus = ITA_artillery
             focus = ITA_aircraft
-            focus = ITA_armor
+            focus = ITA_alpini
         }
         completion_reward = {
             army_experience = 100
@@ -494,8 +488,8 @@
         }
     }
     focus = {
-        id = ITA_fertilizers
-        icon = GFX_focus_generic_fertilizers
+        id = ITA_land_reclamation
+        icon = GFX_focus_generic_land_reclamation
 
         relative_position_id = ITA_agrarian_reform
         x = -2
@@ -754,7 +748,7 @@
         icon = GFX_focus_generic_political_effort
 
         relative_position_id = ITA_economic_development
-        x = 4
+        x = 0
         y = 5
         cost = 10
 
@@ -779,146 +773,42 @@
 
     ## international affairs
     focus = {
-        id = ITA_the_triple_alliance
+        id = ITA_seek_alliances
         icon = GFX_focus_generic_seek_alliances
 
         relative_position_id = ITA_international_affairs
-        x = -8
+        x = -2
         y = 1
         cost = 10
 
-        available = {
-            is_in_faction = no
-            GER = {
-                is_faction_leader = yes
-            }
-        }
-
-        mutually_exclusive = { focus = ITA_seek_alignment_with_the_uk }
-        prerequisite = { focus = ITA_international_affairs }
+        prerequisite = { focus = ITA_international_affairs}
         completion_reward = {
-            GER = { country_event = { id = italy_alliances.1 hours = 12 random_hours = 6 } }
-        }
-    }
-    focus = {
-        id = ITA_alpini
-        icon = GFX_focus_ITA_alpini
-
-        relative_position_id = ITA_the_triple_alliance
-        x = -1
-        y = 1
-        cost = 10
-
-        prerequisite = { focus = ITA_the_triple_alliance }
-        completion_reward = {
-        }
-    }
-    focus = {
-        id = ITA_south_tirol_for_loyalty
-        icon = GFX_focus_ITA_south_tirol_for_loyalty
-
-        relative_position_id = ITA_the_triple_alliance
-        x = 1
-        y = 1
-        cost = 10
-
-        prerequisite = { focus = ITA_the_triple_alliance }
-        completion_reward = {
-            AUS = {
-                country_event = { id = italy_tirol.2 hours = 12 random_hours = 6 }
-            }
         }
     }
     focus = {
         id = ITA_across_the_alps
         icon = GFX_focus_ITA_across_the_alps
 
-        relative_position_id = ITA_alpini
-        x = 1
+        relative_position_id = ITA_seek_alliances
+        x = -2
         y = 1
         cost = 10
 
-        available = {
-            NOT = {
-                is_ally_with = FRA
-            }
-        }
-
-        prerequisite = { 
-            focus = ITA_alpini
-            focus = ITA_south_tirol_for_loyalty
-        }
+        prerequisite = { focus = ITA_seek_alliances }
         completion_reward = {
-            735 = { add_claim_by = ROOT }
-            851 = { add_claim_by = ROOT }
-
-            create_wargoal = {
-                type = take_claimed_state
-                target = FRA
-            }
         }
     }
 
     focus = {
-        id = ITA_seek_alignment_with_the_uk
-        icon = GFX_focus_ITA_seek_alignment_with_the_uk
-
-        relative_position_id = ITA_international_affairs
-        x = -4
-        y = 1
-        cost = 10
-
-        mutually_exclusive = { focus = ITA_the_triple_alliance }
-        prerequisite = { focus = ITA_international_affairs }
-        completion_reward = {
-        }
-    }
-        focus = {
         id = ITA_mediterranean_naval_agreements
         icon = GFX_focus_ITA_mediterranean_naval_agreements
 
-        relative_position_id = ITA_seek_alignment_with_the_uk
-        x = -1
-        y = 1
-        cost = 10
-
-        prerequisite = { focus = ITA_seek_alignment_with_the_uk }
-        completion_reward = {
-        }
-    }
-    focus = {
-        id = ITA_mission_to_ethiopia
-        icon = GFX_focus_ITA_mission_to_ethiopia
-
-        relative_position_id = ITA_seek_alignment_with_the_uk
+        relative_position_id = ITA_seek_alliances
         x = 1
         y = 1
         cost = 10
 
-        prerequisite = { focus = ITA_seek_alignment_with_the_uk }
-        completion_reward = {
-        }
-    }
-    focus = {
-        id = ITA_join_the_entente
-        icon = GFX_focus_ITA_join_the_entente
-
-        relative_position_id = ITA_mediterranean_naval_agreements
-        x = 1
-        y = 1
-        cost = 10
-
-        available = {
-            OR = {
-                has_government = democratic
-                has_government = monarchism
-            }
-        }
-
-        prerequisite = { 
-            focus = ITA_mediterranean_naval_agreements
-            focus = ITA_mission_to_ethiopia
-        }
+        prerequisite = { focus = ITA_seek_alliances }
         completion_reward = {
         }
     }
@@ -928,7 +818,7 @@
         icon = GFX_focus_ITA_challenge_the_ottomans
 
         relative_position_id = ITA_international_affairs
-        x = 0
+        x = 1
         y = 1
         cost = 10
 
@@ -955,64 +845,7 @@
             }
         }
     }
-    focus = {
-        id = ITA_demands_in_africa
-        icon = GFX_focus_ITA_demands_in_africa
 
-        relative_position_id = ITA_challenge_the_ottomans
-        x = -1
-        y = 1
-        cost = 10
-
-        available = {
-            NOT = { has_war_with = TUR }
-        }
-
-        prerequisite = { focus = ITA_challenge_the_ottomans }
-        completion_reward = {
-            TUR = { country_event = { id = italy_expansion.1 hours = 12 random_hours = 6 } }
-        }
-    }
-    focus = {
-        id = ITA_demands_in_aegean
-        icon = GFX_focus_ITA_demands_in_aegean
-
-        available = {
-            NOT = { has_war_with = TUR }
-        }
-
-        relative_position_id = ITA_challenge_the_ottomans
-        x = 1
-        y = 1
-        cost = 10
-
-        prerequisite = { focus = ITA_challenge_the_ottomans }
-        completion_reward = {
-            TUR = { country_event = { id = italy_expansion.3 hours = 12 random_hours = 6 } }
-        }
-    }
-    focus = {
-        id = ITA_mare_nostrum
-        icon = GFX_focus_ITA_mare_nostrum
-
-        relative_position_id = ITA_demands_in_africa
-        x = 1
-        y = 1
-        cost = 10
-
-        available = {
-            NOT = { has_war_with = TUR }
-            num_of_controlled_states > 12
-        }
-
-        prerequisite = { 
-            focus = ITA_demands_in_aegean
-            focus = ITA_demands_in_africa
-        }
-        completion_reward = {
-            TUR = { country_event = { id = italy_expansion.5 hours = 12 random_hours = 6 } }
-        }
-    }
 
     ## monarchy
     focus = {
@@ -1122,7 +955,7 @@
         icon = GFX_focus_ITA_adriatic_expansion
 
         relative_position_id = ITA_italia_irredenta
-        x = 0
+        x = -1
         y = 1
 
         cost = 10
@@ -1136,7 +969,7 @@
         icon = GFX_focus_ITA_arditi
 
         relative_position_id = ITA_italia_irredenta
-        x = 2
+        x = 1
         y = 1
 
         cost = 10
@@ -1150,7 +983,7 @@
         icon = GFX_focus_ITA_romanita
 
         relative_position_id = ITA_italia_irredenta
-        x = 4
+        x = 3
         y = 1
 
         cost = 10

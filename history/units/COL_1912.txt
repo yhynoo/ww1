@@ -1,20 +1,16 @@
 division_template = {
 	name = "División de Infantería"
 	division_names_group = COL_INF_01
-
 	regiments = {
 		infantry = { x = 0 y = 0 }
 		infantry = { x = 0 y = 1 }
-		infantry = { x = 0 y = 2 }
-        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 0 }
 		infantry = { x = 1 y = 1 }
-		infantry = { x = 1 y = 2 }
 	}
 }
 division_template = {
-	name = "Brigada de Caballería"
+	name = "División de Caballería"
 	division_names_group = COL_CAV_01
-    
 	regiments = {
         cavalry = { x = 0 y = 0 }
 		cavalry = { x = 0 y = 1 }
@@ -27,7 +23,7 @@ division_template = {
 units = {
     # frontline
     division = {
-		location = 10866
+		location = 12865
 		division_template = "División de Infantería"
         start_experience_factor = 0.2
     }
@@ -42,8 +38,8 @@ units = {
         start_experience_factor = 0.2
     }
 	division = {
-		location = 10866
-		division_template = "Brigada de Caballería"
+		location = 12865
+		division_template = "División de Caballería"
         start_experience_factor = 0.4
     }
 
@@ -62,13 +58,13 @@ units = {
     }
 	division = {
 		location = 8252
-		division_template = "Brigada de Caballería"
+		division_template = "División de Caballería"
         start_experience_factor = 0.2
     }
 
 	division = {
 		location = 8113
-		division_template = "Brigada de Caballería"
+		division_template = "División de Caballería"
         start_experience_factor = 0.2
     }
 }

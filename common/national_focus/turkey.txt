@@ -1,5 +1,5 @@
 focus_tree = {
-    id = TUR_focus
+    id = tur_focus
     country = {
         factor = 0
         modifier = {
@@ -7,8 +7,6 @@ focus_tree = {
             tag = TUR
         }
     }
-
-    continuous_focus_position = { x = 200 y = 800 }
 
     ## military branch
     focus = {
@@ -454,20 +452,23 @@ focus_tree = {
         id = TUR_economic_development
         icon = GFX_focus_generic_improve_the_administration
 
-        x = 20
+        x = 21
         y = 0
         cost = 10
 
         completion_reward = {
-            add_stability = 0.1
+            swap_ideas = {
+                remove_idea = sww1_deep_economic_crisis
+                add_idea = sww1_idea_economic_crisis
+            }
         }
     }
     focus = {
         id = TUR_agrarian_reform
-        icon = GFX_focus_generic_agrarian_reform
+        icon = GFX_focus_TUR_agrarian_reform
 
         relative_position_id = TUR_economic_development
-        x = -2
+        x = -3
         y = 1
 
         cost = 10
@@ -475,6 +476,20 @@ focus_tree = {
         prerequisite = { focus = TUR_economic_development }
         completion_reward = {
             add_stability = 0.05
+        }
+    }
+    focus = {
+        id = TUR_land_reclamation
+        icon = GFX_focus_generic_land_reclamation
+
+        relative_position_id = TUR_agrarian_reform
+        x = -2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = TUR_agrarian_reform }
+        completion_reward = {
         }
     }
     focus = {
@@ -494,11 +509,11 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_fertilizers
-        icon = GFX_focus_generic_fertilizers
+        id = TUR_monopolize_coffee
+        icon = GFX_focus_TUR_monopolize_coffee
 
         relative_position_id = TUR_agrarian_reform
-        x = -2
+        x = 2
         y = 1
 
         cost = 10
@@ -534,7 +549,7 @@ focus_tree = {
         icon = GFX_focus_generic_infrastructure_effort
 
         relative_position_id = TUR_economic_development
-        x = 2
+        x = 3
         y = 1
 
         cost = 10
@@ -626,36 +641,6 @@ focus_tree = {
 
         prerequisite = { focus = TUR_infrastructure_effort }
 		completion_reward = {
-			random_owned_controlled_state = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = yes
-					}
-					OR = {
-						is_in_home_area = yes
-						NOT = {
-							owner = {
-								any_owned_state = {
-									free_building_slots = {
-										building = industrial_complex
-										size > 0
-										include_locked = yes
-									}
-									is_in_home_area = yes
-								}
-							}
-						}
-					}
-				}
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = industrial_complex
-					level = 2
-					instant_build = yes
-				}
-			}
 		}
     }
     focus = {
@@ -670,36 +655,6 @@ focus_tree = {
 
         prerequisite = { focus = TUR_infrastructure_effort }
 		completion_reward = {
-			random_owned_controlled_state = {
-				limit = {
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = yes
-					}
-					OR = {
-						is_in_home_area = yes
-						NOT = {
-							owner = {
-								any_owned_state = {
-									free_building_slots = {
-										building = arms_factory
-										size > 0
-										include_locked = yes
-									}
-									is_in_home_area = yes
-								}
-							}
-						}
-					}
-				}
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = arms_factory
-					level = 2
-					instant_build = yes
-				}
-			}
 		}
     }
     focus = {
@@ -717,20 +672,14 @@ focus_tree = {
             random_owned_controlled_state = {
                 add_resource = {
                     type = steel
-                    amount = 12
-                }
-            }
-            random_owned_controlled_state = {
-                add_resource = {
-                    type = aluminium
-                    amount = 4
+                    amount = 8
                 }
             }
         }
     }
     focus = {
         id = TUR_steady_growth
-        icon = GFX_focus_generic_steady_growth
+        icon = GFX_focus_TUR_steady_growth
 
         relative_position_id = TUR_construct_military
         x = 0
@@ -738,11 +687,10 @@ focus_tree = {
 
         cost = 10
 
-        prerequisite = { 
-            focus = TUR_construct_civilian
-            focus = TUR_construct_military
-            focus = TUR_expand_mining
-        }
+        prerequisite = { focus = TUR_construct_civilian }
+        prerequisite = { focus = TUR_construct_military }
+        prerequisite = { focus = TUR_expand_mining }
+
         completion_reward = {
             add_ideas = sww1_idea_steady_growth
         }
@@ -754,7 +702,7 @@ focus_tree = {
         icon = GFX_focus_generic_political_effort
 
         relative_position_id = TUR_economic_development
-        x = 2
+        x = -2
         y = 5
         cost = 10
 
@@ -763,121 +711,74 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_confront_russia
-        icon = GFX_focus_TUR_confront_russia
+        id = TUR_international_affairs
+        icon = GFX_focus_generic_interventionism
 
         relative_position_id = TUR_political_ambitions
-        x = -5
+        x = -4
         y = 1
 
         cost = 10
         prerequisite = { focus = TUR_political_ambitions }
         completion_reward = {
-            add_war_support = 0.1
-            SOV = {
-                add_opinion_modifier = {
-                    target = TUR
-                    modifier = medium_decrease
-                }
-            }
         }
     }
+
+    ## international affairs
     focus = {
-        id = TUR_romanian_question
-        icon = GFX_focus_TUR_romanian_question
+        id = TUR_seek_alliances
+        icon = GFX_focus_generic_seek_alliances
 
-        relative_position_id = TUR_confront_russia
-        x = -4
-        y = 1
-
-        cost = 10
-        prerequisite = { focus = TUR_confront_russia }
-        completion_reward = {
-            country_event = { id = romanian_question.1 hours = 12 random_hours = 6 }
-        }
-    }
-    focus = {
-        id = TUR_shche_ne_vmerla
-        icon = GFX_focus_TUR_shche_ne_vmerla
-
-        relative_position_id = TUR_romanian_question
+        relative_position_id = TUR_international_affairs
         x = -2
         y = 1
-
         cost = 10
-        prerequisite = { focus = TUR_romanian_question }
+
+        prerequisite = { focus = TUR_international_affairs}
         completion_reward = {
         }
     }
     focus = {
-        id = TUR_sarajevo_declaration
-        icon = GFX_focus_TUR_sarajevo_declaration
+        id = TUR_seek_alignment_with_uk
+        icon = GFX_focus_TUR_seek_alignment_with_uk
 
-        relative_position_id = TUR_romanian_question
-        x = 0
-        y = 1
-
-        available = {
-        }
-
-        cost = 10
-        prerequisite = { focus = TUR_romanian_question }
-        completion_reward = {
-        }
-    }
-    focus = {
-        id = TUR_panturkism
-        icon = GFX_focus_TUR_panturkism
-
-        relative_position_id = TUR_confront_russia
-        x = 0
-        y = 1
-
-        cost = 10
-        prerequisite = { focus = TUR_confront_russia }
-        completion_reward = {
-            country_event = { id = panturkism.1 hours = 12 random_hours = 6 }
-        }
-    }
-    focus = {
-        id = TUR_second_crimean_war
-        icon = GFX_focus_TUR_second_crimean_war
-
-        relative_position_id = TUR_panturkism
+        relative_position_id = TUR_seek_alliances
         x = -2
         y = 1
-
         cost = 10
-        prerequisite = { focus = TUR_panturkism }
+
+        prerequisite = { focus = TUR_seek_alliances}
         completion_reward = {
         }
     }
     focus = {
-        id = TUR_liberate_caucasus
-        icon = GFX_focus_TUR_liberate_caucasus
+        id = TUR_sarajevo_memorandum
+        icon = GFX_focus_TUR_sarajevo_memorandum
 
-        relative_position_id = TUR_panturkism
-        x = 0
+        relative_position_id = TUR_seek_alliances
+        x = 1
         y = 1
-
         cost = 10
-        prerequisite = { focus = TUR_panturkism }
+
+        prerequisite = { focus = TUR_seek_alliances}
         completion_reward = {
         }
     }
     focus = {
-        id = TUR_crescent_over_the_steppe
-        icon = GFX_focus_TUR_crescent_over_the_steppe
+        id = TUR_greek_question
+        icon = GFX_focus_TUR_greek_question
 
-        relative_position_id = TUR_panturkism
-        x = 2
+        relative_position_id = TUR_international_affairs
+        x = 1
         y = 1
 
         cost = 10
-        prerequisite = { focus = TUR_panturkism }
+        prerequisite = { focus = TUR_international_affairs }
         completion_reward = {
         }
     }
+
+    ## monarchy
     focus = {
         id = TUR_the_young_turks
         icon = GFX_focus_military_coup
@@ -973,12 +874,13 @@ focus_tree = {
         }
     }
 
+    ## reforms
     focus = {
         id = TUR_the_sublime_porte
         icon = GFX_focus_generic_internal_stability
 
         relative_position_id = TUR_political_ambitions
-        x = 5
+        x = 4
         y = 1
 
         cost = 10
@@ -1000,7 +902,7 @@ focus_tree = {
         icon = GFX_focus_TUR_islamic_legitimacy
 
         relative_position_id = TUR_the_sublime_porte
-        x = -2
+        x = -1
         y = 1
 
         cost = 10
@@ -1013,20 +915,6 @@ focus_tree = {
         icon = GFX_focus_TUR_repay_loans
 
         relative_position_id = TUR_the_sublime_porte
-        x = 0
-        y = 1
-
-        cost = 10
-        prerequisite = { focus = TUR_the_sublime_porte }
-        completion_reward = {
-            remove_ideas = sww1_idea_foreign_loans
-        }
-    }
-    focus = {
-        id = TUR_ally_with_old_elite
-        icon = GFX_focus_TUR_ally_with_old_elite
-
-        relative_position_id = TUR_the_sublime_porte
         x = 2
         y = 1
 
@@ -1036,32 +924,30 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_declare_jihad
-        icon = GFX_focus_generic_cultural_hegemony
-
-        relative_position_id = TUR_islamic_legitimacy
-        x = 0
-        y = 1
-
-        cost = 10
-        prerequisite = { focus = TUR_islamic_legitimacy }
-        completion_reward = {
-            add_ideas = sww1_idea_jihad
-            add_war_support = 0.05
-        }
-    }
-    focus = {
-        id = TUR_devlet_i_ebed_muddet
-        icon = GFX_focus_TUR_devlet_i_ebed_muddet
+        id = TUR_the_old_elite
+        icon = GFX_focus_TUR_the_old_elite
 
         relative_position_id = TUR_repay_loans
-        x = 0
+        x = -1
         y = 1
 
         cost = 10
         prerequisite = { focus = TUR_repay_loans }
-        prerequisite = { focus = TUR_ally_with_old_elite }
         completion_reward = {
+        }
+    }
+    focus = {
+        id = TUR_embrace_liberal_thought
+        icon = GFX_focus_generic_embrace_modernity
+
+        relative_position_id = TUR_repay_loans
+        x = 2
+        y = 1
+
+        cost = 10
+        prerequisite = { focus = TUR_repay_loans }
+        completion_reward = {
+            add_research_slot = 1
         }
     }
 }
