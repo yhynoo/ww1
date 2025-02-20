@@ -839,10 +839,10 @@
         cost = 10
         prerequisite = { focus = SOV_international_affairs }
         completion_reward = {
-            country_event = {
-                id = panslavism.1
-                hours = 12
-                random_hours = 6
+            news_event = { id = panslavism.1 hours = 12 random_hours = 6 }
+            hidden_effect = {
+                AUS = { add_ideas = sww1_idea_panslavic_unrest }
+                TUR = { add_ideas = sww1_idea_panslavic_unrest }
             }
         }
     }

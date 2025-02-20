@@ -1,0 +1,216 @@
+add_namespace = opium_smuggling
+
+news_event = {
+	id = opium_smuggling.0
+	title = "Opium Smuggling Scandal in Dutch Siam!"
+	desc = opium_smuggling.0.d
+
+	is_triggered_only = yes
+    major = yes
+
+	option = {
+		name = "Something needs to be done."
+	}
+}
+
+## TOGETHER
+
+country_event = {
+    id = opium_smuggling.2
+    title = "France Offers Britain a Stake in Dutch Siam"
+    desc = opium_smuggling.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Interesting idea."
+        # HOL and FRA get an event
+        HOL = { news_event = { id = opium_smuggling.3 hours = 12 random_hours = 6 } }
+        FRA = { news_event = { id = opium_smuggling.4 hours = 12 random_hours = 6 } }
+    }
+    option = {
+        name = "That is none of our business."
+        # FRA gets an event
+        FRA = { news_event = { id = opium_smuggling.5 hours = 12 random_hours = 6 } }
+    }
+    option = {
+        name = "They should not think they can do what they want."
+        give_guarantee = HOL
+        HOL = { news_event = { id = opium_smuggling.11 hours = 12 random_hours = 6 } }
+
+        # FRA gets an event
+        FRA = { 
+            news_event = { id = opium_smuggling.6 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = ENG
+                modifier = small_decrease
+            }
+        }
+    }
+}
+
+country_event = {
+    id = opium_smuggling.3
+    title = "Britain and France Demand Control of Dutch Siam!"
+    desc = opium_smuggling.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must accept."
+        289 = { transfer_state_to = FRA }
+        724 = { transfer_state_to = ENG }
+        868 = { transfer_state_to = FRA }
+        869 = { transfer_state_to = FRA }
+
+        # international news
+        FRA = { news_event = { id = opium_smuggling.7 hours = 12 random_hours = 6 } }
+    }
+    option = {
+        name = "They should not act so over the top about it."
+        # FRA and ENG get an event
+        ENG = { news_event = { id = opium_smuggling.8 hours = 12 random_hours = 6 } }
+        FRA = { news_event = { id = opium_smuggling.8 hours = 12 random_hours = 6 } }
+
+        hidden_effect = {
+            # opens the Siam minigame.
+        }
+    }
+}
+
+news_event = {
+	id = opium_smuggling.4
+	title = "Britain Backs Our Plan"
+	desc = opium_smuggling.4.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Very well."
+	}
+}
+
+country_event = {
+	id = opium_smuggling.5
+	title = "Britain Steps Back – France Must Act Alone!"
+	desc = opium_smuggling.5.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "We should push it anyway."
+        HOL = { news_event = { id = opium_smuggling.9 hours = 12 random_hours = 6 } }
+	}
+    option = {
+		name = "Let's forget it for now."
+	}
+}
+
+news_event = {
+	id = opium_smuggling.6
+	title = "Britain Rejects France’s Siam Gambit!"
+	desc = opium_smuggling.6.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "We should push it anyway."
+        HOL = { news_event = { id = opium_smuggling.9 hours = 12 random_hours = 6 } }
+	}
+    option = {
+		name = "Let's forget it for now."
+	}
+}
+
+news_event = {
+	id = opium_smuggling.7
+	title = "Britain and France Divide Siam!"
+	desc = opium_smuggling.7.d
+
+	is_triggered_only = yes
+    major = yes
+
+	option = {
+		name = "Right."
+	}
+}
+
+news_event = {
+	id = opium_smuggling.8
+	title = "Colonial Crisis! Dutch Rule in Siam Under Siege"
+	desc = opium_smuggling.8.d
+
+	is_triggered_only = yes
+    major = yes
+
+	option = {
+		name = "Right."
+        IF = {
+            limit = { 
+                OR = {
+                    tag = FRA
+                    tag = ENG
+                }
+            }
+            add_opinion_modifier = {
+                target = HOL
+                modifier = medium_decrease
+            }
+        }
+	}
+}
+
+## ALONE
+
+country_event = {
+    id = opium_smuggling.9
+    title = "French Ultimatum: Hand Over Siam!"
+    desc = opium_smuggling.9.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must accept."
+        289 = { transfer_state_to = FRA }
+        724 = { transfer_state_to = FRA }
+        868 = { transfer_state_to = FRA }
+        869 = { transfer_state_to = FRA }
+
+        # international news
+        FRA = { news_event = { id = opium_smuggling.10 hours = 12 random_hours = 6 } }
+    }
+    option = {
+        name = "That can not."
+        # FRA
+        FRA = { news_event = { id = opium_smuggling.8 hours = 12 random_hours = 6 } }
+
+        hidden_effect = {
+            # opens the Siam minigame.
+        }
+    }
+}
+
+news_event = {
+	id = opium_smuggling.10
+	title = "Dutch Siam Falls! France Claims Victory"
+	desc = opium_smuggling.10.d
+
+	is_triggered_only = yes
+    major = yes
+
+	option = {
+		name = Right."
+	}
+}
+
+news_event = {
+	id = opium_smuggling.11
+	title = "British Guarantees over Siam Dispute"
+	desc = opium_smuggling.11.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = This doesn't sound good."
+	}
+}

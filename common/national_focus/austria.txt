@@ -761,7 +761,10 @@ focus_tree = {
         y = 1
         cost = 10
 
-        mutually_exclusive = { focus = AUS_dual_alliance }
+        available = {
+            NOT = { is_in_faction = yes }
+        }
+
         prerequisite = { focus = AUS_expand_empire }
         completion_reward = {
         }
@@ -801,9 +804,20 @@ focus_tree = {
         y = 1
         cost = 10
 
-        mutually_exclusive = { focus = AUS_second_vienna_treaty }
+        available = {
+            GER = {
+                OR = {
+                    is_faction_leader = yes
+                    is_in_faction = no
+                }
+            }
+            NOT = { has_war_with = GER }
+            NOT = { is_in_faction = yes }
+        }
+
         prerequisite = { focus = AUS_expand_empire }
         completion_reward = {
+            GER = { country_event = {id = dual_alliance.1 hours = 12 random_hours = 6}}
         }
     }
     

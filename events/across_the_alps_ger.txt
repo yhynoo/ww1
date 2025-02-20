@@ -1,0 +1,54 @@
+add_namespace = across_the_alps
+
+country_event = {
+    id = across_the_alps.7
+    title = "Italy Looks to Berlin for an Alliance"
+    desc = across_the_alps.7.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let us welcome them!"
+        IF = {
+            limit = { NOT = { is_in_faction = yes } }
+            create_faction = "Central Powers"
+        }
+        add_to_faction = ITA
+        news_event = { id = across_the_alps.8 hours = 12 random_hours = 6 }
+    }
+    option = {
+        name = "No."
+        ITA = {
+            news_event = { id = across_the_alps.9 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = GER
+                modifier = small_decrease
+            }
+        }
+    }
+}
+
+news_event = {
+	id = across_the_alps.8
+	title = "Italy Joins the Central Powers!"
+	desc = across_the_alps.8.d
+
+	is_triggered_only = yes
+    major = yes
+
+	option = {
+		name = "Right."
+	}
+}
+
+news_event = {
+	id = across_the_alps.9
+	title = "Germany Rejects Us!"
+	desc = across_the_alps.9.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Right."
+	}
+}
