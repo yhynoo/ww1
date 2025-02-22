@@ -5,6 +5,13 @@ dc_across_the_alps = {
 
         available = {
             NOT = { has_war_with = AUS }
+            any_state = {
+                OR = {
+                    state = 39
+                    state = 850
+                }
+                is_owned_by = AUS
+            }
         }
 
         complete_effect = {

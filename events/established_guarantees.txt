@@ -1,0 +1,103 @@
+add_namespace = established_guarantees
+
+country_event = {
+    id = established_guarantees.1
+    title = "Russia Seeks to Formalize Alliance"
+    desc = established_guarantees.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A great idea."
+        IF = {
+            limit = { is_in_faction = no }
+            create_faction = "Franco-Russian Alliance"
+        }
+        add_to_faction = SOV
+        news_event = { id = established_guarantees.2 hours = 12 random_hours = 6 }
+    }
+    option = {
+        name = "We don't need this at the moment."
+        SOV = {
+            news_event = { id = established_guarantees.3 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = FRA
+                modifier = small_decrease
+            }
+        }
+    }
+}
+
+news_event = {
+	id = established_guarantees.2
+	title = "Franco-Russian Military Alliance Signed"
+	desc = established_guarantees.2.d
+
+	is_triggered_only = yes
+    major = yes
+
+	option = {
+		name = "Right."
+	}
+}
+
+news_event = {
+	id = established_guarantees.3
+	title = "France Rejects Russian Alliance"
+	desc = established_guarantees.3.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Right."
+	}
+}
+
+country_event = {
+    id = established_guarantees.4
+    title = "Russia Looks to Join the Entente!"
+    desc = established_guarantees.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A great idea."
+        add_to_faction = SOV
+        news_event = { id = established_guarantees.5 hours = 12 random_hours = 6 }
+    }
+    option = {
+        name = "We don't need this at the moment."
+        SOV = {
+            news_event = { id = established_guarantees.6 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = ENG
+                modifier = small_decrease
+            }
+        }
+    }
+}
+
+news_event = {
+	id = established_guarantees.5
+	title = "Russia Joins the Entente!"
+	desc = established_guarantees.5.d
+
+	is_triggered_only = yes
+    major = yes
+
+	option = {
+		name = "Right."
+	}
+}
+
+news_event = {
+	id = established_guarantees.6
+	title = "Britain Rejects Russian Overture!"
+	desc = established_guarantees.6.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Right."
+	}
+}

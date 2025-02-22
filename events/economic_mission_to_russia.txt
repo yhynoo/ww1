@@ -1,0 +1,226 @@
+add_namespace = economic_mission_to_russia
+
+country_event = {
+	id = economic_mission_to_russia.1
+	title = "Berlin Extends a Hand!"
+	desc = economic_mission_to_russia.1.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "This sounds great!"
+		GER = { add_ideas = sww1_idea_economic_mission_to_russia }
+		news_event = { id = economic_mission_to_russia.2 hours = 12 random_hours = 6 }
+
+		IF = {
+			limit = { has_idea = sww1_idea_deep_economic_crisis }
+			swap_ideas = {
+				remove_idea = sww1_idea_deep_economic_crisis
+				add_ideas = sww1_idea_economic_crisis
+			}
+		}
+	}
+	option = {
+		name = "We don't need that."
+		GER = { news_event = { id = economic_mission_to_russia.3 hours = 12 random_hours = 6 } }
+	}
+}
+
+news_event = {
+	id = economic_mission_to_russia.2
+	title = "Berlin Backs Russian Industry!"
+	desc = economic_mission_to_russia.2.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "Right."
+	}
+}
+
+news_event = {
+	id = economic_mission_to_russia.3
+	title = "St. Petersburg Rejects German Aid!"
+	desc = economic_mission_to_russia.3.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Their loss."
+	}
+}
+
+news_event = {
+	id = economic_mission_to_russia.4
+	title = "A Symbolic Investment?"
+	desc = economic_mission_to_russia.4.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "How generous."
+	}
+}
+
+news_event = {
+	id = economic_mission_to_russia.5
+	title = "Baltic Germans Gain Political Support"
+	desc = economic_mission_to_russia.5.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "Interesting."
+	}
+}
+
+country_event = {
+	id = economic_mission_to_russia.6
+	title = "Germany Proposes a Baltic Protectorate!"
+	desc = economic_mission_to_russia.6.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Why not?"
+
+		every_state = {
+			limit = {
+				is_owned_by = SOV
+				is_core_of = UBD
+			}
+			transfer_state_to = UBD
+		}
+		puppet = UBD
+		news_event = { id = economic_mission_to_russia.7 hours = 12 random_hours = 6}
+
+		GER = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = medium_increase
+			}
+			add_opinion_modifier = {
+				target = UBD
+				modifier = huge_increase
+			}
+		}
+		UBD = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = huge_increase
+			}
+			add_opinion_modifier = {
+				target = GER
+				modifier = huge_increase
+			}
+		}
+	}
+	option = {
+		trigger = {
+			is_in_faction = no
+		}
+		name = "Offer alliance instead."
+		GER = {
+			country_event = { id = economic_mission_to_russia.8 hours = 12 random_hours = 6 }
+		}
+	}
+	option = {
+		name = "This is too much."
+		GER = {
+			news_event = { id = economic_mission_to_russia.11 hours = 12 random_hours = 6 }
+			add_opinion_modifier = {
+				target = SOV
+				modifier = medium_decrease
+			}
+		}
+	}
+}
+
+news_event = {
+	id = economic_mission_to_russia.7
+	title = "Baltic Germans Under Russian Protection!"
+	desc = economic_mission_to_russia.7.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "Right."
+	}
+}
+
+country_event = {
+	id = economic_mission_to_russia.8
+	title = "A Military Pact Instead?"
+	desc = economic_mission_to_russia.8.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		trigger = {
+			OR = {
+				is_in_faction = no
+				is_faction_leader = yes
+			}
+		}
+		name = "Let's do this."
+
+		IF = {
+			limit = { is_in_faction = no }
+			create_faction = "Russo-German Alliance"
+		}
+		add_to_faction = SOV
+		news_event = { id = economic_mission_to_russia.9 hours = 12 random_hours = 6 }
+	}
+	option = {
+		name = "That's not what we wanted."
+		SOV = {
+			news_event = { id = economic_mission_to_russia.10 hours = 12 random_hours = 6 }
+			add_opinion_modifier = {
+				target = GER
+				modifier = medium_decrease
+			}
+		}
+	}
+}
+
+news_event = {
+	id = economic_mission_to_russia.9
+	title = "Russo-German Alliance! Historic Shift in Power"
+	desc = economic_mission_to_russia.9.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "Right."
+	}
+}
+
+news_event = {
+	id = economic_mission_to_russia.10
+	title = "Germany Rejects Alliance!"
+	desc = economic_mission_to_russia.10.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "They only wanted to use us."
+	}
+}
+
+news_event = {
+	id = economic_mission_to_russia.11
+	title = "Russia Rejects Baltic Protectorate!"
+	desc = economic_mission_to_russia.11.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "That was a bit too far-fetched."
+	}
+}

@@ -2,9 +2,18 @@ dc_opium_smuggling = {
     opium_smuggling_ask_british = {
         cost = 75
         visible = {
-            NOT = { has_country_flag = fra_belgian_crisis_alone }
+            NOT = { has_country_flag = fra_opium_alone }
         }
         available = {
+            any_state = {
+                OR = {
+                    state = 289
+                    state = 724
+                    state = 868
+                    state = 869
+                }
+                is_owned_by = HOL
+            }
             NOT = { 
                 has_war_with = ENG
                 has_war_with = HOL
@@ -13,16 +22,25 @@ dc_opium_smuggling = {
         fire_only_once = yes
 
         complete_effect = {
-            set_country_flag = flag_belgian_crisis_together
+            set_country_flag = flag_opium_together
             ENG = { country_event = { id = opium_smuggling.2 hours = 12 random_hours = 6 } }
         }
     }
     opium_smuggling_do_on_your_own = {
         cost = 150
         visible = {
-            NOT = { has_country_flag = flag_belgian_crisis_together }
+            NOT = { has_country_flag = flag_opium_together }
         }
         available = {
+            any_state = {
+                OR = {
+                    state = 289
+                    state = 724
+                    state = 868
+                    state = 869
+                }
+                is_owned_by = HOL
+            }
             NOT = {
                 has_war_with = HOL
             }
@@ -30,7 +48,7 @@ dc_opium_smuggling = {
         fire_only_once = yes
 
         complete_effect = {
-            set_country_flag = fra_belgian_crisis_alone
+            set_country_flag = fra_opium_alone
             HOL = { country_event = { id = opium_smuggling.9 hours = 12 random_hours = 6 } }
         }
     }

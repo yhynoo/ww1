@@ -457,10 +457,7 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            swap_ideas = {
-                remove_idea = sww1_deep_economic_crisis
-                add_idea = sww1_idea_economic_crisis
-            }
+            add_stability = 0.1
         }
     }
     focus = {
@@ -929,9 +926,19 @@ focus_tree = {
         x = -1
         y = 1
 
+        available = {
+            democratic > 0.5
+            has_stability > 0.3
+        }
+
         cost = 10
         prerequisite = { focus = GER_dead_end }
         completion_reward = {
+            set_politics = {
+                ruling_party = democratic
+                elections_allowed = yes
+                election_frequency = 48
+            }
         }
     }
     focus = {

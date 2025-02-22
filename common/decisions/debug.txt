@@ -1,0 +1,30 @@
+dc_debug = {
+    decision_1 = {
+        available = {
+            tag = SOV
+        }
+
+        complete_effect = {
+            every_state = {
+                limit = {
+                    OR = {
+                        state = 39
+                        state = 850
+                        state = 890
+                    }
+                    is_owned_by = AUS
+                }
+                THIS = { transfer_state_to = SOV }
+            }
+        }
+        
+    }
+    decision_2 = {
+        available = {
+            any_state = {
+                state = 890
+                is_owned_by = AUS
+            }
+        }
+    }
+}

@@ -1,5 +1,5 @@
 dc_war_cabinet = {
-    visibile = {
+    visible = {
         has_war = yes
     }
 }
@@ -32,6 +32,45 @@ dc_belgian_crisis = {
     }
 }
 
+dc_challenge_the_ottomans = {
+    allowed = {
+        original_tag = ITA
+    }
+
+    visible = {
+        has_completed_focus = ITA_challenge_the_ottomans
+    }
+}
+
+dc_economic_mission_to_russia = {
+    allowed = {
+        original_tag = GER
+    }
+
+    visible = {
+        has_completed_focus = GER_good_guy_germany
+    }
+}
+
+dc_established_guarantees = {
+    allowed = {
+        original_tag = SOV
+    }
+
+    visible = {
+        has_completed_focus = SOV_established_guarantees
+    }
+}
+
+dc_limited_self_determination = {
+    visible = {
+        OR = {
+            has_completed_focus = SOV_limited_self_determination
+            has_completed_focus = AUS_limited_self_determination
+        }
+    }
+}
+
 dc_opium_smuggling = {
     allowed = {
         original_tag = FRA
@@ -39,5 +78,15 @@ dc_opium_smuggling = {
 
     visible = {
         has_completed_focus = FRA_diplomatic_initiative
+    }
+}
+
+dc_panslavism = {
+    allowed = {
+        original_tag = SOV
+    }
+
+    visible = {
+        has_completed_focus = SOV_panslavism
     }
 }

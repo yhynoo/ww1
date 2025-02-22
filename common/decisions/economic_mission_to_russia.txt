@@ -1,0 +1,97 @@
+dc_economic_mission_to_russia = {
+    offer_economic_support = {
+        cost = 100
+        available = {
+            NOT = { has_war_with = SOV }
+            num_of_civilian_factories > 15  # to change later
+        }
+        fire_only_once = yes
+
+        complete_effect = {
+            SOV = { 
+                country_event = { id = economic_mission_to_russia.1 hours = 12 random_hours = 6 }
+                add_opinion_modifier = {
+                    target = GER
+                    modifier = small_increase
+                }
+            }
+        }
+    }
+    support_volga_germans = {
+        cost = 150
+        available = {
+            NOT = { has_war_with = SOV }
+            has_idea = sww1_idea_economic_mission_to_russia
+        }
+        fire_only_once = yes
+
+        complete_effect = {
+            news_event = { id = economic_mission_to_russia.4 hours = 12 random_hours = 6 }
+            SOV = {
+                every_owned_state = {
+                    limit = {
+                        OR = {
+                            state = 239
+                            state = 401
+                            state = 829
+                        }
+                    }
+                    add_building_construction = {
+                        type = industrial_complex
+                        level = 1
+                        instant_build = yes
+                    }
+                }
+                add_opinion_modifier = {
+                    target = GER
+                    modifier = medium_increase
+                }
+            }
+        }
+    }
+    support_baltic_development = {
+        cost = 150
+        available = {
+            NOT = { has_war_with = SOV }
+            has_idea = sww1_idea_economic_mission_to_russia
+        }
+        fire_only_once = yes
+
+        complete_effect = {
+            news_event = { id = economic_mission_to_russia.5 hours = 12 random_hours = 6}
+            add_ideas = sww1_idea_support_for_baltic_germans
+        }
+    }
+    push_for_baltic_protectorate = {
+        cost = 250
+        available = {
+            NOT = { has_war_with = SOV }
+            has_idea = sww1_idea_support_for_baltic_germans
+        }
+        fire_only_once = yes
+
+        complete_effect = {
+            SOV = { country_event = {id = economic_mission_to_russia.6 hours = 12 random_hours = 6} }
+        }
+    }
+    withdraw_the_mission = {
+        available = {
+            has_idea = sww1_idea_economic_mission_to_russia
+        }
+        fire_only_once = yes
+
+        complete_effect = {
+            remove_ideas = sww1_idea_economic_mission_to_russia
+        }
+    }
+    withdraw_support_for_baltic_germans = {
+        available = {
+            has_idea = sww1_idea_support_for_baltic_germans
+        }
+        fire_only_once = yes
+
+        complete_effect = {
+            remove_ideas = sww1_idea_support_for_baltic_germans
+        }
+    }
+}

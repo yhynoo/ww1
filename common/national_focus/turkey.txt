@@ -457,10 +457,7 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            swap_ideas = {
-                remove_idea = sww1_deep_economic_crisis
-                add_idea = sww1_idea_economic_crisis
-            }
+            add_stability = 0.1
         }
     }
     focus = {
@@ -739,16 +736,30 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_seek_alignment_with_uk
-        icon = GFX_focus_TUR_seek_alignment_with_uk
+        id = TUR_alafranga
+        icon = GFX_focus_TUR_alafranga
 
         relative_position_id = TUR_seek_alliances
         x = -2
         y = 1
         cost = 10
 
+        available = {
+            OR = {
+                has_government = democratic
+                has_government = monarchism
+            }
+            FRA = { exists = yes }
+        }
+
         prerequisite = { focus = TUR_seek_alliances}
         completion_reward = {
+            FRA = {
+                add_opinion_modifier = {
+                    target = TUR
+                    modifier = medium_increase
+                }
+            }
         }
     }
     focus = {
@@ -912,6 +923,7 @@ focus_tree = {
         cost = 10
         prerequisite = { focus = TUR_the_sublime_porte }
         completion_reward = {
+            add_ideas = sww1_idea_jihad
         }
     }
     focus = {
@@ -925,6 +937,7 @@ focus_tree = {
         cost = 10
         prerequisite = { focus = TUR_the_sublime_porte }
         completion_reward = {
+            remove_ideas = sww1_idea_foreign_loans
         }
     }
     focus = {

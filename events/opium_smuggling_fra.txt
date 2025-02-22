@@ -58,10 +58,25 @@ country_event = {
 
     option = {
         name = "We must accept."
-        289 = { transfer_state_to = FRA }
-        724 = { transfer_state_to = ENG }
-        868 = { transfer_state_to = FRA }
-        869 = { transfer_state_to = FRA }
+        every_state = {
+            limit = {
+                OR = {
+                    state = 289
+                    state = 724
+                    state = 868
+                    state = 869
+                }
+                is_owned_by = HOL
+            }
+
+            IF = {
+                limit = { state = 724 }
+                transfer_state_to = ENG
+            }
+            ELSE = {
+                transfer_state_to = FRA
+            }
+        }
 
         # international news
         FRA = { news_event = { id = opium_smuggling.7 hours = 12 random_hours = 6 } }
@@ -171,10 +186,18 @@ country_event = {
 
     option = {
         name = "We must accept."
-        289 = { transfer_state_to = FRA }
-        724 = { transfer_state_to = FRA }
-        868 = { transfer_state_to = FRA }
-        869 = { transfer_state_to = FRA }
+        every_state = {
+            limit = {
+                OR = {
+                    state = 289
+                    state = 724
+                    state = 868
+                    state = 869
+                }
+                is_owned_by = HOL
+            }
+            transfer_state_to = FRA
+        }
 
         # international news
         FRA = { news_event = { id = opium_smuggling.10 hours = 12 random_hours = 6 } }

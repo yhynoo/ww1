@@ -22,8 +22,16 @@ country_event = {
 
     option = {
         name = "Let them have it..."
-        39 = { transfer_state_to = ITA }
-        850 = { transfer_state_to = ITA }
+        every_state = {
+            limit = {
+                OR = {
+                    state = 39
+                    state = 850
+                }
+                is_owned_by = AUS
+            }
+            transfer_state_to = ITA
+        }
 
         news_event = { id = across_the_alps.2 hours = 12 random_hours = 6 }
     }
@@ -43,8 +51,6 @@ news_event = {
 	is_triggered_only = yes
     major = yes
 
-    fire_for_sender = no
-
 	option = {
 		name = "Right."
 	}
@@ -61,8 +67,16 @@ country_event = {
         name = "If so, let us not fight over it anymore."
         AUS = { news_event = { id = across_the_alps.4 hours = 12 random_hours = 6 } }
 
-        39 = { remove_claim_by = ITA }
-        850 = { remove_claim_by = ITA }
+        every_state = {
+            limit = {
+                OR = {
+                    state = 39
+                    state = 850
+                }
+                is_owned_by = AUS
+            }
+            remove_claim_by = ITA
+        }
     }
     option = {
         name = "We shall revisit this in the future."
@@ -107,7 +121,7 @@ news_event = {
 news_event = {
 	id = across_the_alps.5
 	title = "Italy Withdraws; For How Long?"
-	desc = across_the_alps.4.d
+	desc = across_the_alps.5.d
 
 	is_triggered_only = yes
 

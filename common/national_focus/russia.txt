@@ -817,7 +817,7 @@
     }
     focus = {
         id = SOV_established_guarantees
-        icon = GFX_focus_SOV_established_guarantees
+        icon = GFX_focus_TUR_alafranga
 
         relative_position_id = SOV_seek_alliances
         x = 1
@@ -839,10 +839,10 @@
         cost = 10
         prerequisite = { focus = SOV_international_affairs }
         completion_reward = {
-            news_event = { id = panslavism.1 hours = 12 random_hours = 6 }
+            news_event = { id = panslavism.0 hours = 12 random_hours = 6 }
             hidden_effect = {
-                AUS = { add_ideas = sww1_idea_panslavic_unrest }
-                TUR = { add_ideas = sww1_idea_panslavic_unrest }
+                AUS = { add_ideas = sww1_idea_panslavism }
+                TUR = { add_ideas = sww1_idea_panslavism }
             }
         }
     }
@@ -997,6 +997,7 @@
         cost = 10
         prerequisite = { focus = SOV_rehabilitate_duma }
         completion_reward = {
+            news_event = {id = limited_self_determination_rus.0 hours = 12 random_hours = 6}
         }
     }
     focus = {

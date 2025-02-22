@@ -1,0 +1,79 @@
+dc_limited_self_determination = {
+    support_sokol = {
+        visible = {
+            tag = SOV
+        }
+        cost = 100
+        available = {
+            every_state = {
+                OR = {
+                    state = 10
+                    state = 87
+                    state = 90
+                    state = 92
+                    state = 97
+                    state = 98
+                }
+                is_owned_by = SOV
+            }
+        }
+        fire_only_once = yes
+        complete_effect = {
+            news_event = { id = limited_self_determination_rus.1 hours = 12 random_hours = 6 }
+            add_ideas = sww1_idea_sokol
+        }
+    }
+    legalize_prosvita = {
+        visible = {
+            tag = SOV
+        }
+        cost = 75
+        available = {
+            every_state = {
+                OR = {
+                    is_core_of = UKR
+                }
+                is_owned_by = SOV
+            }
+        }
+        fire_only_once = yes
+        complete_effect = {
+            news_event = { id = limited_self_determination_rus.2 hours = 12 random_hours = 6 }
+            add_stability = 0.05
+            add_popularity = {
+                ideology = democratic
+                popularity = 0.05
+            }
+            add_ideas = sww1_idea_prosvita
+        }
+    }
+    encourage_local_languages_rus = {
+        visible = {
+            tag = SOV
+        }
+        cost = 75
+        fire_only_once = yes
+
+        complete_effect = {
+            news_event = { id = limited_self_determination_rus.3 hours = 12 random_hours = 6}
+            add_stability = 0.1
+        }
+    }
+    autonomy_for_the_caucasus = {
+        visible = {
+            tag = SOV
+        }
+        cost = 150
+        fire_only_once = yes
+
+        complete_effect = {
+            news_event = { id = limited_self_determination_rus.4 hours = 12 random_hours = 6 }
+            add_stability = 0.05
+
+            IF = {
+                limit = { has_idea = sww1_idea_panturkism }
+                remove_ideas = sww1_idea_panturkism
+            }
+        }
+    }
+}
