@@ -1,5 +1,9 @@
 dc_greek_question = {
     grant_greek_aegean = {
+        visible = {
+            tag = TUR
+        }
+
         available = {
             any_state = {
                 OR = {
@@ -16,6 +20,7 @@ dc_greek_question = {
 
         complete_effect = {
             news_event = { id = greek_question.1 hours = 12 random_hours = 6 }
+            add_stability = 0.05
             swap_ideas = {
                 remove_idea = sww1_idea_greek_unrest
                 add_idea = sww1_idea_greek_ambitions
@@ -33,9 +38,17 @@ dc_greek_question = {
                 add_core_of = GRE
             }
             puppet = GRE
+
+            remove_state_core = 164
+            remove_state_core = 182
+            remove_state_core = 187
         }
     }
     grant_greek_mainland = {
+        visible = {
+            tag = TUR
+        }
+
         available = {
             GRE = { exists = yes }
             any_state = {
@@ -52,6 +65,7 @@ dc_greek_question = {
 
         complete_effect = {
             news_event = { id = greek_question.2 hours = 12 random_hours = 6 }
+            add_stability = 0.10
             remove_ideas = sww1_idea_greek_ambitions
             every_state = {
                 limit = {
@@ -63,10 +77,17 @@ dc_greek_question = {
                 }
                 transfer_state_to = GRE
                 add_core_of = GRE
+
+                remove_state_core = 47
+                remove_state_core = 186
             }
         }
     }
     offer_greece_to_france = {
+        visible = {
+            tag = TUR
+        }
+
         available = {
             GRE = { 
                 exists = yes
@@ -81,6 +102,56 @@ dc_greek_question = {
         complete_effect = {
             FRA = { 
                 country_event = { id = greek_question.3 hours = 12 random_hours = 6 }
+            }
+        }
+    }
+    war_of_independence = {
+        visible = {
+            tag = GRE
+        }
+
+        available = {
+            is_puppet = yes
+        }
+
+        fire_only_once = yes
+        cost = 200
+
+        complete_effect = {
+            every_country = {
+                limit = {
+                    has_subject = GRE
+                }
+
+                news_event = { id = greek_question.6 hours = 12 random_hours = 6 }
+                end_puppet = GRE
+
+                GRE = {
+                    declare_war_on = {
+                        target = ROOT
+                        type = annex_everything
+                    }
+                }
+            }
+        }
+    }
+    demand_cyprus = {
+        visible = {
+            tag = GRE
+        }
+
+        available = {
+            183 = { not = { is_owned_by = GRE } }
+        }
+
+        cost = 150
+        fire_only_once = yes
+        complete_effect = {
+            every_country = {
+                limit = {
+                    owns_state = 183
+                }
+                country_event = { id = greek_question.7 hours = 12 random_hours = 6 }
             }
         }
     }

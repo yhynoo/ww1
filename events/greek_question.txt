@@ -53,7 +53,7 @@ country_event = {
 		puppet = GRE
 	}
 	option = {
-		name = "Sounds too good to be true.
+		name = "Sounds too good to be true."
 		TUR = { news_event = { id = greek_question.5 hours = 12 random_hours = 6 } }
 	}
 }
@@ -89,6 +89,52 @@ news_event = {
 	desc = greek_question.6.d
 
     major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = "Right."
+	}
+}
+
+country_event = {
+	id = greek_question.7
+	title = "[GRE.GetName] Asks for Cyprus"
+	desc = greek_question.7.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Let them have it."
+		
+		183 = { transfer_state_to = GRE }
+		remove_state_core = 183
+
+		news_event = { id = greek_question.8 hours = 12 random_hours = 6 }
+	}
+	option = {
+		name = "We see no reason for such concessions."
+		GRE = { news_event = { id = greek_question.9 hours = 12 random_hours = 6 } }
+	}
+}
+
+news_event = {
+	id = greek_question.8
+	title = "[ROOT.GetName] Cedes Cyprus to [GRE.GetName]"
+	desc = greek_question.8.d
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "That's not good."
+	}
+}
+
+news_event = {
+	id = greek_question.9
+	title = "Cyprus Stays in Foreign Hands"
+	desc = greek_question.9.d
+
 	is_triggered_only = yes
 
 	option = {

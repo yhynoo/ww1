@@ -1,18 +1,20 @@
 dc_panslavism = {
     support_serbian_independence = {
         available = {
-            has_opinion = {
-                target = TUR
-                value < -24
-            }
-            TUR = {
-                has_idea = sww1_idea_panslavism
-            }
+            SER = { exists = no }
         }
 
         cost = 150
         complete_effect = {
-            news_event = { id = panslavism.1 hours = 12 random_hours = 6}
+            news_event = { id = panslavism.1 hours = 12 random_hours = 6 }
+            
+            TUR = {
+                add_timed_idea = {
+                    idea = sww1_idea_panslavism
+                    years = 1
+                }
+            }
+
             every_state = { 
                 limit = {
                     OR = {
@@ -29,18 +31,19 @@ dc_panslavism = {
     support_poles_and_ukrainians_in_galicia = {
         available = {
             has_completed_focus = SOV_limited_self_determination
-            has_opinion = {
-                target = AUS
-                value < -24
-            }
-            AUS = {
-                has_idea = sww1_idea_panslavism
-            }
         }
 
         cost = 150
         complete_effect = {
             news_event = { id = panslavism.2 hours = 12 random_hours = 6}
+
+            AUS = { 
+                IF = {
+                    limit = { NOT = { has_completed_focus = AUS_austro_slavism } }
+                    add_ideas = sww1_idea_panslavism 
+                }
+            }
+
             every_state = {
                 limit = {
                     OR = {
@@ -53,6 +56,18 @@ dc_panslavism = {
                 }
                 add_claim_by = SOV
             }
+        }
+    }
+    offer_serbia_alliance = {
+        available = {
+            SER = { exists = yes }
+        }
+
+        cost = 75
+        fire_only_once = yes
+
+        complete_effect = {
+            SER = { country_event = { id = panslavism.4 hours = 12 random_hours = 6 } }
         }
     }
 }

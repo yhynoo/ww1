@@ -11,3 +11,5 @@ replace_path = "events"
 
 replace_path = "history/units"
 replace_path = "history/countries"
+
+replace_path = "common/countries"

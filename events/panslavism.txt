@@ -38,3 +38,68 @@ news_event = {
 		name = "Right."
 	}
 }
+
+country_event = {
+	id = panslavism.4
+	title = "[TUR.GetName] Offers Alliance"
+	desc = panslavism.4.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Our Slavic Brothers!"
+		news_event = { id = panslavism.5 hours = 12 random_hours = 6 }
+		SOV = {
+			if = {
+				limit = { is_in_faction = no }
+				create_faction = "Slavic Alliance"
+			}
+			add_to_faction = SER
+		}
+		TUR = {
+			add_opinion_modifier = {
+				target = SER
+				modifier = large_decrease
+			}
+			create_wargoal = {
+				target = SER
+				type = annex_everything
+			}
+		}
+	}
+	option = {
+		name = "We shall stay loyal to [TUR.GetNameDef]"
+		SOV = {
+			news_event = { id = panslavism.6 hours = 12 random_hours = 6 }
+			add_opinion_modifier = {
+				target = SER
+				modifier = large_decrease
+			}
+		}
+	}
+}
+
+news_event = {
+	id = panslavism.5
+	title = "[SER.GetName] and [SOV.GetName] Allied!"
+	desc = panslavism.5.d
+
+	is_triggered_only = yes
+    major = yes
+
+	option = {
+		name = "Right."
+	}
+}
+
+news_event = {
+	id = panslavism.6
+	title = "[SER.GetName] Declines Our Offer!"
+	desc = panslavism.6.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Right."
+	}
+}
