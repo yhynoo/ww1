@@ -1,0 +1,40 @@
+dc_war_cabinet = {
+    territorial_auxillaries = {
+        available = {
+            has_defensive_war = yes
+        }
+        cost = 50
+
+        remove_days = 60
+        modifier = {
+            supply_combat_penalties_on_core_factor = -0.5
+            army_core_defence_factor = 0.15
+        }
+    }
+    organize_bomb_shelters = {
+        available = {
+            num_of_civilian_factories > 1
+        }
+        cost = 50
+        remove_days = 60
+        
+        modifier = {
+            civilian_factory_use = 1
+            stability_weekly = 0.01
+            war_support_weekly = 0.01
+        }
+    }
+    confiscate_private_automobiles = {
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            has_tech = tech_trucks
+        }
+
+        complete_effect = {
+            add_stability = -0.05
+            # should add trucks to stockpile.
+        }
+    }
+}

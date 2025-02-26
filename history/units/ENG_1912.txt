@@ -8,8 +8,11 @@ division_template = {
 		infantry = { x = 1 y = 0 }
 		infantry = { x = 1 y = 1 }
 		infantry = { x = 1 y = 2 }
-		artillery_brigade = { x = 2 y = 0 }
-		artillery_brigade = { x = 2 y = 1 }
+		infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+		infantry = { x = 2 y = 2 }
+		artillery_brigade = { x = 3 y = 0 }
+		artillery_brigade = { x = 3 y = 1 }
 	}
 }
 division_template = {
@@ -18,7 +21,10 @@ division_template = {
 	regiments = {
 		infantry = { x = 0 y = 0 }
 		infantry = { x = 0 y = 1 }
-		infantry = { x = 0 y = 2 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+		infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
 	}
 	priority = 0
 }
@@ -44,37 +50,22 @@ units = {
     division = {
 		location = 6103
 		division_template = "Infantry Division"
-        start_experience_factor = 0.5
+        start_experience_factor = 0.8
     }
 	division = {
 		location = 6103
 		division_template = "Infantry Division"
-        start_experience_factor = 0.5
+        start_experience_factor = 0.8
     }
 	division = {
 		location = 3273
 		division_template = "Infantry Division"
-        start_experience_factor = 0.5
-    }
-	division = {
-		location = 11293
-		division_template = "Infantry Division"
-        start_experience_factor = 0.5
-    }
-	division = {
-		location = 11293
-		division_template = "Infantry Division"
-        start_experience_factor = 0.5
-    }
-	division = {
-		location = 332
-		division_template = "Cavalry Division"
-        start_experience_factor = 0.5
+        start_experience_factor = 0.8
     }
 	division = {
 		location = 540
 		division_template = "Cavalry Division"
-        start_experience_factor = 0.5
+        start_experience_factor = 0.8
     }
 
 	# canada
@@ -83,25 +74,10 @@ units = {
 		division_template = "Colonial Garrison"
         start_experience_factor = 0.5
     }
-	division = {
-		location = 1408
-		division_template = "Colonial Garrison"
-        start_experience_factor = 0.5
-    }
 
 	# south africa
 	division = {
 		location = 12589
-		division_template = "Colonial Garrison"
-        start_experience_factor = 0.5
-    }
-	division = {
-		location = 12589
-		division_template = "Colonial Garrison"
-        start_experience_factor = 0.5
-    }
-	division = {
-		location = 5199
 		division_template = "Colonial Garrison"
         start_experience_factor = 0.5
     }
@@ -118,11 +94,6 @@ units = {
         start_experience_factor = 0.5
     }
 	division = {
-		location = 5010
-		division_template = "Colonial Garrison"
-        start_experience_factor = 0.5
-    }
-	division = {
 		location = 13250
 		division_template = "Colonial Garrison"
         start_experience_factor = 0.5
@@ -134,21 +105,11 @@ units = {
 		division_template = "Colonial Garrison"
         start_experience_factor = 0.5
     }
-	division = {
-		location = 8085
-		division_template = "Colonial Garrison"
-        start_experience_factor = 0.5
-    }
 
 	# nigeria
 	division = {
 		location = 2050
-		division_template = "Infantry Division"
-        start_experience_factor = 0.5
-    }
-	division = {
-		location = 7959
-		division_template = "Infantry Division"
+		division_template = "Colonial Garrison"
         start_experience_factor = 0.5
     }
 
@@ -167,5 +128,14 @@ units = {
 		location = 10062
 		division_template = "Colonial Garrison"
         start_experience_factor = 0.5
+    }
+}
+
+air_wings = {
+	125 = {
+        fighter_equipment_0 = {
+            owner = "ENG"
+            amount = 16
+        }
     }
 }

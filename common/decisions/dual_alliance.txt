@@ -1,0 +1,30 @@
+dc_dual_alliance = {
+    offer_alliance_to_germany = {
+        available = {
+            is_in_faction = no
+            GER = {
+                OR = {
+                    is_in_faction = no
+                    is_faction_leader = yes
+                }
+            }
+        }
+        fire_only_once = yes
+
+        cost = 100
+        complete_effect = {
+            GER = { country_event = { id = dual_alliance.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    invite_german_instructors = {
+        available = {
+            is_ally_with = GER
+        }
+
+        cost = 50
+        complete_effect = {
+            army_experience = 50
+            news_event = { id = dual_alliance.4 hours = 12 random_hours = 6 }
+        }
+    }
+}

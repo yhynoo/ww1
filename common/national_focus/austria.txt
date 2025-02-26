@@ -70,6 +70,7 @@ focus_tree = {
 
         prerequisite = { focus = AUS_focus_army }
         completion_reward = {
+            remove_ideas = sww1_idea_archaic_army
             army_experience = 50
             add_doctrine_cost_reduction = {
 				name = land_doc_bonus
@@ -592,6 +593,7 @@ focus_tree = {
 					level = 1
 					instant_build = yes
 				}
+                remove_ideas = sww1_idea_disjointed_transport_system
 			}
 			random_owned_controlled_state = {
 				limit = {
@@ -812,12 +814,35 @@ focus_tree = {
                 }
             }
             NOT = { has_war_with = GER }
-            NOT = { is_in_faction = yes }
+            is_in_faction = no
+        }
+
+        bypass = {
+            is_ally_with = GER
         }
 
         prerequisite = { focus = AUS_expand_empire }
         completion_reward = {
-            GER = { country_event = {id = dual_alliance.1 hours = 12 random_hours = 6}}
+            GER = {
+                add_opinion_modifier = {
+                    target = AUS
+                    modifier = medium_increase
+                }
+            }
+            every_country = {
+                limit = {
+                    OR = {
+                        tag = ITA
+                        tag = SOV
+                        tag = TUR
+                    }
+                    NOT = { is_ally_with = GER }
+                }
+                add_opinion_modifier = {
+                    target = AUS
+                    modifier = small_decrease
+                }
+            }
         }
     }
     
@@ -834,20 +859,30 @@ focus_tree = {
         prerequisite = { focus = AUS_political_ambitions }
         completion_reward = {
             add_stability = 0.05
+            news_event = { id = ausgleich.0 hours = 12 random_hours = 6 }
         }
     }
     focus = {
-        id = AUS_diaspora_outreach
-        icon = GFX_focus_AUS_diaspora_outreach
+        id = AUS_karl_von_habsburg
+        icon = GFX_focus_AUS_karl_von_habsburg
 
         relative_position_id = AUS_ausgleich
         x = -2
         y = 1
         cost = 10
 
+        bypass = {
+            has_country_leader = AUS_karl_von_habsburg
+        }
+
         prerequisite = { focus = AUS_ausgleich }
         completion_reward = {
-            add_political_power = 150
+            retire_country_leader = yes
+            news_event = { id = karl_i.1 hours = 12 random_hours = 6 }
+            promote_character = {
+                character = AUS_karl_von_habsburg
+                ideology = moderatism
+            }
         }
     }
     focus = {
@@ -861,6 +896,7 @@ focus_tree = {
 
         prerequisite = { focus = AUS_ausgleich }
         completion_reward = {
+            news_event = { id = austria_other.1 hours = 12 random_hours = 6 }
             USA = {
                 add_opinion_modifier = {
                     target = AUS
@@ -870,8 +906,8 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_limited_self_determination
-        icon = GFX_focus_AUS_limited_self_determination
+        id = AUS_austro_slavism
+        icon = GFX_focus_AUS_austro_slavism
 
         relative_position_id = AUS_ausgleich
         x = 2
@@ -883,9 +919,10 @@ focus_tree = {
             focus = AUS_vienna_is_red
         }
         completion_reward = {
+            news_event = { id = austro_slavism.0 hours = 12 random_hours = 6 }
             IF = {
-                limit = { has_idea = sww1_idea_panslavic_unrest }
-                remove_ideas = sww1_idea_panslavic_unrest
+                limit = { has_idea = sww1_idea_panslavism }
+                remove_ideas = sww1_idea_panslavism
             }
         }
     }
@@ -902,9 +939,9 @@ focus_tree = {
             NOT = { has_war = yes }
         }
 
-        prerequisite = { focus = AUS_diaspora_outreach }
+        prerequisite = { focus = AUS_karl_von_habsburg }
         prerequisite = { focus = AUS_invite_wilson }
-        prerequisite = { focus = AUS_limited_self_determination }
+        prerequisite = { focus = AUS_austro_slavism }
         
         completion_reward = {
         }

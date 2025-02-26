@@ -1,5 +1,5 @@
 dc_belgian_crisis = {
-    demand_german_withdrawal = {
+    demand_german_withdrawal_from_belgium = {
         cost = 100
         available = {
             NOT = { has_war_with = GER }
@@ -43,14 +43,12 @@ dc_belgian_crisis = {
             HOL = { country_event = { id = belgian_crisis_hol.1 hours = 12 random_hours = 6 } }
         }
     }
-    create_belgian_protectorate = {
+    declare_belgium_demilitarized = {
         cost = 150
         visible = {
-            NOT = { has_country_flag = flag_belgian_crisis_independent }
+            NOT = { has_country_flag = flag_belgium_annexed }
         }
         available = {
-            has_stability > 0.7
-
             6 = { is_owned_by = FRA }
             34 = { is_owned_by = FRA }
             977 = { is_owned_by = FRA }
@@ -59,19 +57,37 @@ dc_belgian_crisis = {
         fire_only_once = yes
 
         complete_effect = {
+            6 = { set_demilitarized_zone = yes }
+            34 = { set_demilitarized_zone = yes }
+            977 = { set_demilitarized_zone = yes }
+            980 = { set_demilitarized_zone = yes }
+
             swap_ideas = {
                 remove_idea = sww1_idea_belgian_crisis
                 add_idea = sww1_idea_protector_of_belgium
             }
-            set_country_flag = flag_belgian_crisis_protectorate
+            set_country_flag = flag_belgium_demilitarized
             news_event = { id = belgian_crisis_bel.2 hours = 12 random_hours = 6 }
+        }
+    }
+    annex_belgium = {
+        cost = 250
+        visible = {
+            NOT = { has_country_flag = flag_belgian_crisis_independent }
+        }
+        available = {
+            has_stability > 0.8
+            6 = { is_owned_by = FRA }
+            34 = { is_owned_by = FRA }
+            977 = { is_owned_by = FRA }
+            980 = { is_owned_by = FRA }
+        }
+        fire_only_once = yes
 
-            6 = { transfer_state_to = BEL }
-            34 = { transfer_state_to = BEL }
-            977 = { transfer_state_to = BEL }
-            980 = { transfer_state_to = BEL }
-
-            puppet = BEL
+        complete_effect = {
+            remove_idea = sww1_idea_belgian_crisis
+            set_country_flag = flag_belgium_annexed
+            news_event = { id = belgian_crisis_bel.3 hours = 12 random_hours = 6 }
 
             GER = {
                 add_opinion_modifier = {
@@ -79,30 +95,18 @@ dc_belgian_crisis = {
                     modifier = medium_decrease
                 }
             }
-        }
-    }
-    restore_belgian_independence = {
-        cost = 150
-        visible = {
-            NOT = { has_country_flag = flag_belgian_crisis_protectorate }
-        }
-        available = {
-            6 = { is_owned_by = FRA }
-            34 = { is_owned_by = FRA }
-            977 = { is_owned_by = FRA }
-            980 = { is_owned_by = FRA }
-        }
-        fire_only_once = yes
-
-        complete_effect = {
-            remove_ideas = sww1_idea_belgian_crisis
-            set_country_flag = flag_belgian_crisis_independent
-            news_event = { id = belgian_crisis_bel.2 hours = 12 random_hours = 6 }
-
-            6 = { transfer_state_to = BEL }
-            34 = { transfer_state_to = BEL }
-            977 = { transfer_state_to = BEL }
-            980 = { transfer_state_to = BEL }
+            ENG = {
+                add_opinion_modifier = {
+                    target = FRA
+                    modifier = medium_decrease
+                }
+            }
+            USA = {
+                add_opinion_modifier = {
+                    target = FRA
+                    modifier = medium_decrease
+                }
+            }
         }
     }
 }

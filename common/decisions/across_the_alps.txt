@@ -34,6 +34,20 @@ dc_across_the_alps = {
 
         complete_effect = {
             GER = { country_event = { id = across_the_alps.7 hours = 12 random_hours = 6 } }
+            every_country = {
+                limit = {
+                    OR = {
+                        tag = AUS
+                        tag = FRA
+                        tag = TUR
+                    }
+                    NOT = { is_ally_with = GER }
+                }
+                add_opinion_modifier = {
+                    target = ITA
+                    modifier = small_decrease
+                }
+            }
         }
     }
 }

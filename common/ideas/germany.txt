@@ -5,15 +5,26 @@ ideas = {
                 civilian_factory_use = 2
             }
         }
+        sww1_idea_infra_dev_austria = {
+            modifier = {
+                civilian_factory_use = 1
+                political_power_gain = 0.05
+            }
+        }
+        sww1_idea_infra_dev_turkey = {
+            modifier = {
+                civilian_factory_use = 1
+                political_power_gain = 0.05
+            }
+        }
         sww1_idea_support_for_baltic_germans = {
             modifier = {
-                every_state = {
-                    limit = {
-                        is_core_of = UBD
-                    }
-                    state_production_speed_industrial_complex_factor = 0.25
+                SOV = {
+                    research_speed_factor = 0.05
+                    production_speed_buildings_factor = 0.05
                 }
-            }
+                political_power_gain = 0.05
+            }   
         }
     }
 }

@@ -5,8 +5,10 @@ division_template = {
 	regiments = {
 		infantry = { x = 0 y = 0 }
 		infantry = { x = 0 y = 1 }
+        infantry = { x = 0 y = 2 }
         infantry = { x = 1 y = 0 }
 		infantry = { x = 1 y = 1 }
+        infantry = { x = 1 y = 2 }
         artillery_brigade = { x = 2 y = 0 }
 		artillery_brigade = { x = 2 y = 1 }
 	}
@@ -18,10 +20,13 @@ division_template = {
 	regiments = {
 		cavalry = { x = 0 y = 0 }
 		cavalry = { x = 0 y = 1 }
+        cavalry = { x = 0 y = 2 }
         cavalry = { x = 1 y = 0 }
 		cavalry = { x = 1 y = 1 }
+        cavalry = { x = 1 y = 2 }
         cavalry = { x = 2 y = 0 }
 		cavalry = { x = 2 y = 1 }
+        cavalry = { x = 2 y = 2 }
 	}
 }
 
@@ -218,4 +223,19 @@ units = {
         start_equipment_factor = 0.5
     }
 
+}
+
+air_wings = {
+    137 = {
+        fighter_equipment_0 = {
+            owner = "SOV"
+            amount = 12
+        }
+    }
+    195 = {
+        fighter_equipment_0 = {
+            owner = "SOV"
+            amount = 24
+        }
+    }
 }

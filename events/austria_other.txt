@@ -1,0 +1,145 @@
+add_namespace = austria_other
+
+news_event = {
+	id = austria_other.1
+	title = "Woodrow Wilson Tours Austria-Hungary!"
+	desc = austria_other.1.d
+
+	is_triggered_only = yes
+    major = yes
+
+	option = {
+		name = "Right."
+	}
+}
+
+
+add_namespace = ausgleich
+
+news_event = {
+	id = ausgleich.0
+	title = "The Ausgleich of [GetYear]"
+	desc = ausgleich.0.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Let's get to it."
+	}
+}
+
+country_event = {
+	id = ausgleich.1
+	title = "Ausgleich: Military Spending"
+	desc = ausgleich.1.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Increase the military budget."
+		add_ideas = low_economic_mobilisation
+		add_war_support = 0.1
+	}
+	option = {
+		name = "Reduce spending."
+		add_stability = 0.1
+	}
+}
+
+country_event = {
+	id = ausgleich.2
+	title = "Ausgleich: Economic Policy"
+	desc = ausgleich.2.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Continue with protectionist policies."
+		add_stability = 0.1
+		add_popularity = {
+    		ideology = monarchism
+   		 	popularity = 0.1
+		}
+	}
+	option = {
+		name = "Embrace free trade."
+		add_political_power = 50
+		add_popularity = {
+    		ideology = democratic
+   		 	popularity = 0.1
+		}
+		add_ideas = free_trade
+	}
+}
+
+country_event = {
+	id = ausgleich.3
+	title = "Ausgleich: Magyarization"
+	desc = ausgleich.3.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Appease Hungarian nationalists."
+		add_stability = 0.1
+		43 = { add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+		154 = { add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+		155 = { add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+	}
+	option = {
+		name = "Go for equal development."
+		71 = { add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+		76 = { add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+		109 = { add_building_construction = { type = arms_factory level = 1 instant_build = yes } }
+		152 = { add_building_construction = { type = arms_factory level = 1 instant_build = yes } }
+	}
+}
+
+add_namespace = karl_i
+
+news_event = {
+	id = karl_i.1
+	title = "Emperor Franz Joseph Abdicates!"
+	desc = karl_i.1.d
+
+	is_triggered_only = yes
+
+	option = {
+		trigger = {
+			tag = AUS
+		}
+		name = "Long live the Emperor!"
+	}
+	option = {
+		trigger = {
+			NOT = { tag = AUS }
+		}
+		name = "Interesting."
+	}
+}
+
+add_namespace = austro_slavism
+
+news_event = {
+	id = austro_slavism.0
+	title = "Austro-Hungary Embraces Austro-Slavism"
+	desc = austro_slavism.0
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Right."
+	}
+}
+
+news_event = {
+	id = austro_slavism.1
+	title = "Autonomy for South Slavs!"
+	desc = austro_slavism.1
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Right."
+	}
+}

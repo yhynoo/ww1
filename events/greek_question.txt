@@ -1,0 +1,97 @@
+add_namespace = greek_question
+
+news_event = {
+	id = greek_question.0
+	title = "[TUR.GetName] Revisits the Greek Question"
+	desc = greek_question.0.d
+
+	is_triggered_only = yes
+    major = yes
+
+	option = {
+		name = "Right."
+	}
+}
+
+news_event = {
+	id = greek_question.1
+	title = "Greek State Formed in the Aegean!"
+	desc = greek_question.1.d
+
+	is_triggered_only = yes
+    major = yes
+
+	option = {
+		name = "Right."
+	}
+}
+
+news_event = {
+	id = greek_question.2
+	title = "[GRE.GetName] Controls the Mainland!"
+	desc = greek_question.2.d
+
+	is_triggered_only = yes
+    major = yes
+
+	option = {
+		name = "Right."
+	}
+}
+
+country_event = {
+	id = greek_question.3
+	title = "[TUR.GetName] Offers Custody of [GRE.GetName]!"
+	desc = greek_question.3.d
+
+	is_triggered_only = yes
+	option = {
+		name = "This sounds like a great deal."
+
+		news_event = { id = greek_question.4 hours = 12 random_hours = 6 }
+		give_guarantee = TUR
+		puppet = GRE
+	}
+	option = {
+		name = "Sounds too good to be true.
+		TUR = { news_event = { id = greek_question.5 hours = 12 random_hours = 6 } }
+	}
+}
+
+news_event = {
+	id = greek_question.4
+	title = "[FRA.GetName] Takes Custody over Greece!"
+	desc = greek_question.4.d
+
+	is_triggered_only = yes
+    major = yes
+
+	option = {
+		name = "Right."
+	}
+}
+
+news_event = {
+	id = greek_question.5
+	title = "[FRA.GetName] Declines Our Offer"
+	desc = greek_question.5.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "That's not good."
+	}
+}
+
+news_event = {
+	id = greek_question.6
+	title = "The Greek War of Independence Erupts!"
+	desc = greek_question.6.d
+
+    major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = "Right."
+	}
+}

@@ -757,10 +757,7 @@ focus_tree = {
         icon = GFX_focus_GER_good_guy_germany
 
         available = {
-            OR = {
-                has_government = democratic
-                has_government = communism
-            }
+            NOT = { has_government = authoritarianism }
         }
 
         relative_position_id = GER_weltpolitik
@@ -809,9 +806,14 @@ focus_tree = {
         x = 1
         y = 1
 
+        available = {
+            NOT = { has_government = authoritarianism }
+        }
+
         cost = 10
         prerequisite = { focus = GER_international_affairs }
         completion_reward = {
+            news_event = { id = berlin_baghdad.0 hours = 12 random_hours = 6 }
         }
     }
 
@@ -866,8 +868,8 @@ focus_tree = {
         }
     }
     focus = {
-        id = GER_embrace_prussian_militarism
-        icon = GFX_focus_GER_embrace_prussian_militarism
+        id = GER_burgfrieden
+        icon = GFX_focus_GER_burgfrieden
 
         relative_position_id = GER_heil_dir_im_siegerkranz
         x = 1

@@ -2,14 +2,17 @@ dc_war_cabinet = {
     visible = {
         has_war = yes
     }
+    priority = 5
 }
 
 dc_head_of_state_decisions = {
     visible_when_empty = yes
+    priority = 4
 }
 
 dc_economic_decisions = {
     visible_when_empty = yes
+    priority = 3
 }
 
 dc_across_the_alps = {
@@ -19,6 +22,16 @@ dc_across_the_alps = {
 
     visible = {
         has_completed_focus = ITA_across_the_alps
+    }
+}
+
+dc_ausgleich = {
+    allowed = {
+        original_tag = AUS
+    }
+
+    visible = {
+        has_completed_focus = AUS_ausgleich
     }
 }
 
@@ -32,6 +45,19 @@ dc_belgian_crisis = {
     }
 }
 
+dc_berlin_baghdad_railway = {
+    allowed = {
+        OR = {
+            original_tag = GER
+            original_tag = ENG
+        }
+    }
+
+    visible = {
+        GER = { has_completed_focus = GER_berlin_baghdad }
+    }
+}
+
 dc_challenge_the_ottomans = {
     allowed = {
         original_tag = ITA
@@ -39,6 +65,16 @@ dc_challenge_the_ottomans = {
 
     visible = {
         has_completed_focus = ITA_challenge_the_ottomans
+    }
+}
+
+dc_dual_alliance = {
+    allowed = {
+        original_tag = AUS
+    }
+
+    visible = {
+        has_completed_focus = AUS_dual_alliance
     }
 }
 
@@ -59,6 +95,12 @@ dc_established_guarantees = {
 
     visible = {
         has_completed_focus = SOV_established_guarantees
+    }
+}
+
+dc_greek_question = {
+    visible = {
+        has_completed_focus = TUR_greek_question
     }
 }
 

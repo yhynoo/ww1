@@ -5,8 +5,10 @@ division_template = {
 	regiments = {
 		infantry = { x = 0 y = 0 }
 		infantry = { x = 0 y = 1 }
+        infantry = { x = 0 y = 2 }
         infantry = { x = 1 y = 0 }
 		infantry = { x = 1 y = 1 }
+        infantry = { x = 1 y = 2 }
         artillery_brigade = { x = 2 y = 0 }
         artillery_brigade = { x = 2 y = 1 }
 	}
@@ -37,6 +39,9 @@ division_template = {
         cavalry = { x = 1 y = 0 }
 		cavalry = { x = 1 y = 1 }
 		cavalry = { x = 1 y = 2 }
+        cavalry = { x = 2 y = 0 }
+		cavalry = { x = 2 y = 1 }
+		cavalry = { x = 2 y = 2 }
 	}
     support = {
         artillery = { x = 0 y = 0}
@@ -206,5 +211,20 @@ units = {
 		location = 1951
 		division_template = "Koloniale Division"
         start_experience_factor = 0.3
+    }
+}
+
+air_wings = {
+    52 = {
+        fighter_equipment_0 = {
+            owner = "GER"
+            amount = 4
+        }
+    }
+    64 = {
+        fighter_equipment_0 = {
+            owner = "GER"
+            amount = 12
+        }
     }
 }

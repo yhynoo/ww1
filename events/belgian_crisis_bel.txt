@@ -6,6 +6,8 @@ news_event = {
 	desc = belgian_crisis_bel.1.d
 
     is_major = yes
+	is_triggered_only = yes
+
     trigger = {
         6 = { is_owned_by = FRA }
         34 = { is_owned_by = FRA }
@@ -16,21 +18,17 @@ news_event = {
                 has_war_with = GER
                 has_war_with = HOL
             }
-		NOT = { has_global_flag = flag_belgium_unified }
         }
     }
 
 	option = {
 		name = "Right."
-		hidden_effect = {
-			set_global_flag = flag_belgium_unified
-		}
 	}
 }
 
 news_event = {
 	id = belgian_crisis_bel.2
-	title = "France Declares a Protectorate Over Belgium!"
+	title = "France Declares Belgium a Demilitarized Zone!"
 	desc = belgian_crisis_bel.2.d
 
 	is_triggered_only = yes
@@ -43,7 +41,7 @@ news_event = {
 
 news_event = {
 	id = belgian_crisis_bel.3
-	title = "Belgium Restored! The Crisis Finally Ends"
+	title = "France Annexes Belgium!"
 	desc = belgian_crisis_bel.3.d
 
 	is_triggered_only = yes
@@ -53,3 +51,4 @@ news_event = {
 		name = "Right."
 	}
 }
+

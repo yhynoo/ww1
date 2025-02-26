@@ -5,7 +5,7 @@ dc_limited_self_determination = {
         }
         cost = 100
         available = {
-            every_state = {
+            any_state = {
                 OR = {
                     state = 10
                     state = 87
@@ -29,7 +29,7 @@ dc_limited_self_determination = {
         }
         cost = 75
         available = {
-            every_state = {
+            any_state = {
                 OR = {
                     is_core_of = UKR
                 }
@@ -74,6 +74,21 @@ dc_limited_self_determination = {
                 limit = { has_idea = sww1_idea_panturkism }
                 remove_ideas = sww1_idea_panturkism
             }
+        }
+    }
+
+    
+    multi_ethnic_units = {
+        visible = {
+            tag = AUS
+        }
+        cost = 100
+        fire_only_once = yes
+
+        complete_effect = {
+            remove_ideas = sww1_idea_multi_ethnic_army
+            add_stability = 0.05
+            news_event = { id = limited_self_determination_aus.2 hours = 12 random_hours = 6 }
         }
     }
 }

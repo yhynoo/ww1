@@ -1,0 +1,96 @@
+dc_head_of_state_decisions = {
+    imprison_the_extremists = {
+        icon = generic_civil_support
+        visible = {
+            OR = {
+                has_government = monarchism
+                has_government = democratic
+            }
+        }
+        fire_only_once = no
+        days_remove = 90
+        cost = 100
+
+        modifier = {
+            authoritarianism_drift = -0.1
+            communism_drift = -0.1
+        }
+    }
+    execute_the_extremists = {
+        icon = generic_civil_support
+        visible = {
+            OR = {
+                has_government = authoritarianism
+                has_government = communism
+            }
+        }
+        fire_only_once = no
+        days_remove = 90
+        cost = 100
+
+        modifier = {
+            authoritarianism_drift = -0.15
+            communism_drift = -0.15
+        }
+    }
+    expand_official_information_democratic = {
+        visible = {
+            has_government = democratic
+        }
+        days_remove = 90
+        cost = 150
+
+        modifier = {
+            stability_weekly = 0.01
+            democratic_drift = 0.05
+        }
+    }
+    expand_official_information_monarchist = {
+        visible = {
+            has_government = monarchism
+        }
+        days_remove = 90
+        cost = 150
+
+        modifier = {
+            stability_weekly = 0.01
+            monarchism_drift = 0.05
+        }
+    }
+    expand_official_information_communist = {
+        visible = {
+            has_government = communism
+        }
+        days_remove = 90
+        cost = 150
+
+        modifier = {
+            stability_weekly = 0.01
+            communism_drift = 0.05
+        }
+    }
+    expand_official_information_communist = {
+        visible = {
+            has_government = communism
+        }
+        days_remove = 90
+        cost = 150
+
+        modifier = {
+            stability_weekly = 0.01
+            communism_drift = 0.05
+        }
+    }
+    expand_official_information_authoritarian = {
+        visible = {
+            has_government = authoritarianism
+        }
+        days_remove = 90
+        cost = 150
+
+        modifier = {
+            stability_weekly = 0.01
+            authoritarianism_drift = 0.05
+        }
+    }
+}
