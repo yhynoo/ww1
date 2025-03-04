@@ -765,6 +765,13 @@ focus_tree = {
 
         available = {
             NOT = { is_in_faction = yes }
+            any_country = {
+                or = {
+                    tag = SPR
+                    tag = FRA
+                }
+                has_government = monarchism
+            }
         }
 
         prerequisite = { focus = AUS_expand_empire }

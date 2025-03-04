@@ -13,3 +13,5 @@ replace_path = "history/units"
 replace_path = "history/countries"
 
 replace_path = "common/countries"
+
+replace_path = "gfx/flags"

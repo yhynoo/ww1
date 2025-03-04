@@ -743,13 +743,13 @@
         id = SOV_kharkiv_technical_university
         icon = GFX_focus_generic_embrace_modernity
 
-        relative_position_id = SOV_early_industrialization
+        relative_position_id = SOV_industrialization
         x = 0
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = SOV_early_industrialization }
+        prerequisite = { focus = SOV_industrialization }
 
         completion_reward = {
             add_research_slot = 1
@@ -775,7 +775,7 @@
         icon = GFX_focus_generic_interventionism
 
         relative_position_id = SOV_political_ambitions
-        x = -5
+        x = -4
         y = 1
 
         cost = 10
@@ -930,10 +930,7 @@
             focus = SOV_chornaya_sotnya
         }
         completion_reward = {
-            swap_ideas = {
-                remove_idea = sww1_idea_aftermath_of_1905
-                add_idea = sww1_idea_one_and_indivisible
-            }
+            add_ideas = sww1_idea_one_and_indivisible
             add_popularity = {
                 ideology = authoritarianism
                 popularity = 0.05
@@ -962,7 +959,7 @@
         icon = GFX_focus_SOV_rehabilitate_duma
 
         relative_position_id = SOV_political_ambitions
-        x = 5
+        x = 4
         y = 1
 
         cost = 10
@@ -1009,7 +1006,7 @@
             remove_ideas = sww1_idea_democratic_tendencies
             add_timed_idea = {
                 idea = sww1_idea_communism_tendencies
-                years = 2
+                years = 1
             }
         }
     }
@@ -1024,10 +1021,7 @@
         cost = 10
         prerequisite = { focus = SOV_peasant_and_workers_rights }
         completion_reward = {
-            swap_ideas = {
-                remove_idea = sww1_idea_aftermath_of_1905
-                add_idea = sww1_idea_grazhdanstvo
-            }
+            add_ideas = sww1_idea_grazhdanstvo
         }
     }
     focus = {
