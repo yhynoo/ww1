@@ -1,0 +1,285 @@
+technologies = {
+
+    @1912 = 4
+    @1913 = 6
+    @1914 = 8
+    @1915 = 10
+    @1916 = 12
+    @1917 = 14
+    @1918 = 16
+    @1919 = 18
+    @1920 = 20
+
+    artillery_1904 = {
+        enable_equipments = { artillery_equipment_1 }
+        categories = { artillery }
+
+        research_cost = 1
+        start_year = 1904
+
+        path = {
+            leads_to_tech = artillery_1912
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = 0 }
+        }
+    }
+    artillery_1912 = {
+        enable_equipments = { artillery_equipment_2 }
+        categories = { artillery }
+
+        research_cost = 2
+        start_year = 1912
+
+        path = {
+            leads_to_tech = flash_spotting
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+    flash_spotting = {
+        categories = { artillery }
+
+        research_cost = 1
+        start_year = 1915
+
+        path = {
+            leads_to_tech = artillery_1916
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1915 }
+        }
+    }
+    artillery_1916 = {
+        enable_equipments = { artillery_equipment_3 }
+        categories = { artillery }
+
+        research_cost = 2
+        start_year = 1916
+
+        path = {
+            leads_to_tech = artillery_1918
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = aa_tech_1
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1916 }
+        }
+    }
+    artillery_1918 = {
+        enable_equipments = { artillery_equipment_4 }
+        categories = { artillery }
+
+        research_cost = 2
+        start_year = 1918
+
+        path = {
+            leads_to_tech = count_bat
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1918 }
+        }
+    }
+    count_bat = {
+        categories = { artillery }
+
+        research_cost = 1
+        start_year = 1920
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1920 }
+        }
+    }
+
+    ## AA
+    aa_tech_1 = {
+        enable_equipments = { anti_air_equipment_1 }
+        enable_subunits = {
+            anti_air
+            anti_air_brigade
+        }
+        categories = { artillery }
+
+        research_cost = 1.5
+        start_year = 1916
+
+        path = {
+            leads_to_tech = aa_tech_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 2 y = @1916 }
+        }
+    }
+    aa_tech_2 = {
+        enable_equipments = { anti_air_equipment_2 }
+        categories = { artillery }
+
+        research_cost = 1.5
+        start_year = 1918
+
+        path = {
+            leads_to_tech = aa_tech_3
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 2 y = @1918 }
+        }
+    }
+    aa_tech_3 = {
+        categories = { artillery }
+
+        research_cost = 1
+        start_year = 1920
+
+        folder = {
+            name = artillery_folder
+            position = { x = 2 y = @1920 }
+        }
+    }
+
+    ## Gas
+    gas_shells = {
+        categories = { artillery }
+
+        research_cost = 1
+        start_year = 1915
+
+        path = {
+            leads_to_tech = gas_shells_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1915 }
+        }
+    }
+    gas_shells_2 = {
+        categories = { artillery }
+
+        research_cost = 1
+        start_year = 1918
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1918 }
+        }
+    }
+
+    ## Mortars
+    petard = {
+        categories = { artillery }
+
+        research_cost = 1
+        start_year = 1912
+
+        path = {
+            leads_to_tech = mortar
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+    mortar = {
+        categories = { artillery }
+
+        research_cost = 2
+        start_year = 1914
+
+        path = {
+            leads_to_tech = heavy_mortar
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = trench_mortar
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+    heavy_mortar = {
+        categories = { artillery }
+
+        research_cost = 2
+        start_year = 1916
+
+        path = {
+            leads_to_tech = heavy_mortar_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1916 }
+        }
+    }
+    heavy_mortar_2 = {
+        categories = { artillery }
+
+        research_cost = 1
+        start_year = 1919
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1919 }
+        }
+    }
+
+    trench_mortar = {
+        categories = { artillery }
+
+        research_cost = 2
+        start_year = 1914
+
+        path = {
+            leads_to_tech = trench_mortar_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 2 y = @1914 }
+        }
+    }
+    trench_mortar_2 = {
+        categories = { artillery }
+
+        research_cost = 1
+        start_year = 1917
+
+        folder = {
+            name = artillery_folder
+            position = { x = 2 y = @1917 }
+        }
+    }
+}

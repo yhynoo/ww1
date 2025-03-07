@@ -140,34 +140,4 @@ dc_sarajevo_memorandum = {
             FROM = { country_event = { id = sarajevo_memorandum.4 hours = 12 random_hours = 6 }}
         }
     }
-    demand_bosnia = {
-        visible = {
-            tag = SER
-        }
-
-        available = {
-            every_state = {
-                OR = {
-                    state = 104
-                    state = 804
-                }
-                not = { is_owned_by = SER }
-            }
-        }
-
-        cost = 100
-        fire_only_once = yes
-        complete_effect = {
-            IF = {
-                limit = { 
-                    is_in_faction = yes
-                    not = { is_ally_with = AUS }
-                }
-                country_event = { id = sarajevo_memorandum.7 hours = 6 random_hours = 3 }
-            }
-            ELSE = {
-                AUS = { country_event = { id = sarajevo_memorandum.11 hours = 12 random_hours = 6 } }
-            }
-        }
-    }
 }

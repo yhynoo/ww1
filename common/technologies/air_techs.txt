@@ -1,0 +1,295 @@
+technologies = {
+
+    @1912 = 4
+    @1913 = 6
+    @1914 = 8
+    @1915 = 10
+    @1916 = 12
+    @1917 = 14
+    @1918 = 16
+    @1919 = 18
+    @1920 = 20
+
+    # fighters
+    early_aircraft = {
+        enable_equipments = { fighter_equipment_0 }
+        categories = { air_equipment }
+
+        research_cost = 2
+        start_year = 1904
+
+        path = {
+            leads_to_tech = air_camera
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 0 y = 0 }
+        }
+    }
+    air_camera = {
+        categories = { air_equipment }
+
+        research_cost = 1.5
+        start_year = 1912
+
+        path = {
+            leads_to_tech = fighter_1914
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+    fighter_1914 = {
+        enable_equipments = { fighter_equipment_1 }
+        categories = { air_equipment }
+
+        research_cost = 2
+        start_year = 1914
+
+        path = {
+            leads_to_tech = fighter_1916
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = air_synchronizer
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+    air_synchronizer = {
+        categories = { air_equipment }
+
+        research_cost = 1.5
+        start_year = 1914
+
+        path = {
+            leads_to_tech = trench_strafing
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 2 y = @1914 }
+        }
+    }
+    fighter_1916 = {
+        enable_equipments = { fighter_equipment_2 }
+        categories = { air_equipment }
+
+        research_cost = 2
+        start_year = 1916
+
+        path = {
+            leads_to_tech = metal_aircraft
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 0 y = @1916 }
+        }
+    }
+    trench_strafing = {
+        categories = { air_equipment }
+
+        research_cost = 1
+        start_year = 1916
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 2 y = @1916 }
+        }
+    }
+    metal_aircraft = {
+        categories = { air_equipment }
+
+        research_cost = 1
+        start_year = 1919
+
+        path = {
+            leads_to_tech = fighter_1920
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 0 y = 17 }
+        }
+    }
+    fighter_1920 = {
+        enable_equipments = { fighter_equipment_3 }
+        categories = { air_equipment }
+
+        research_cost = 2.5
+        start_year = 1920
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 0 y = @1920 }
+        }
+    }
+
+    air_bomb = {
+        categories = { air_equipment }
+
+        research_cost = 1
+        start_year = 1912
+
+        path = {
+            leads_to_tech = tac_bomber_1915
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+    tac_bomber_1915 = {
+        enable_equipments = { tac_bomber_equipment_0 }
+        categories = { air_equipment }
+
+        research_cost = 2
+        start_year = 1915
+
+        path = {
+            leads_to_tech = tac_bomber_1918
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = strat_bomber_1915
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 0 y = @1915 }
+        }
+    }
+    tac_bomber_1918 = {
+        enable_equipments = { tac_bomber_equipment_1 }
+        categories = { air_equipment }
+
+        research_cost = 2
+        start_year = 1918
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 0 y = @1918 }
+        }
+    }
+
+    strat_bomber_1915 = {
+        enable_equipments = { strat_bomber_equipment_1 }
+        categories = { air_equipment }
+
+        research_cost = 2
+        start_year = 1915
+
+        path = {
+            leads_to_tech = strat_bomber_1918
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 2 y = @1915 }
+        }
+    }
+    strat_bomber_1918 = {
+        enable_equipments = { strat_bomber_equipment_2 }
+        categories = { air_equipment }
+
+        research_cost = 2
+        start_year = 1918
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 2 y = @1918 }
+        }
+    }
+
+    seaplane_1912 = {
+        enable_equipments = { nav_bomber_equipment_1 }
+        categories = { air_equipment }
+
+        research_cost = 2
+        start_year = 1912
+
+        path = {
+            leads_to_tech = seaplane_1915
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+    seaplane_1915 = {
+        enable_equipments = { nav_bomber_equipment_2 }
+        categories = { air_equipment }
+
+        research_cost = 2
+        start_year = 1915
+
+        path = {
+            leads_to_tech = seaplane_1918
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 0 y = @1915 }
+        }
+    }
+    seaplane_1918 = {
+        enable_equipments = { nav_bomber_equipment_3 }
+        categories = { air_equipment }
+
+        research_cost = 2
+        start_year = 1918
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 0 y = @1918 }
+        }
+    }
+
+    early_sights = {
+        categories = { air_equipment }
+
+        research_cost = 1.5
+        start_year = 1915
+
+        path = {
+            leads_to_tech = tacho_sights
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 0 y = @1915 }
+        }
+    }
+    tacho_sights = {
+        categories = { air_equipment }
+
+        research_cost = 1.5
+        start_year = 1920
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 0 y = @1920 }
+        }
+    }
+}

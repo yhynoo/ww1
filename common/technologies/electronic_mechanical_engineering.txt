@@ -1,0 +1,385 @@
+technologies = {
+
+    @1912 = 4
+    @1913 = 6
+    @1914 = 8
+    @1915 = 10
+    @1916 = 12
+    @1917 = 14
+    @1918 = 16
+    @1919 = 18
+    @1920 = 20
+
+    # comms
+    telegraph = {
+        categories = { communications }
+
+        research_cost = 1
+        start_year = 1904
+
+        path = {
+            leads_to_tech = army_signals_corps
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = electronics_folder
+            position = { x = 0 y = 0 }
+        }
+    }
+
+    army_signals_corps = {
+        categories = { communications }
+
+        research_cost = 2
+        start_year = 1912
+
+        path = {
+            leads_to_tech = division_signals_corps
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = encryption_1
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = decryption_1
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = electronics_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+    encryption_1 = {
+        categories = { communications }
+
+        research_cost = 1.5
+        start_year = 1913
+
+        folder = {
+            name = electronics_folder
+            position = { x = 1 y = @1913 }
+        }
+    }
+    decryption_1 = {
+        categories = { communications }
+
+        research_cost = 1.5
+        start_year = 1913
+
+        folder = {
+            name = electronics_folder
+            position = { x = 3 y = @1913 }
+        }
+    }
+
+    division_signals_corps = {
+        categories = { communications }
+
+        research_cost = 2
+        start_year = 1915
+
+        path = {
+            leads_to_tech = regiment_signals_corps
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = encryption_2
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = decryption_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = electronics_folder
+            position = { x = 0 y = @1915 }
+        }
+    }
+    encryption_2 = {
+        categories = { communications }
+
+        research_cost = 1.5
+        start_year = 1913
+
+        folder = {
+            name = electronics_folder
+            position = { x = 1 y = @1916 }
+        }
+    }
+    decryption_2 = {
+        categories = { communications }
+
+        research_cost = 1.5
+        start_year = 1913
+
+        folder = {
+            name = electronics_folder
+            position = { x = 3 y = @1916 }
+        }
+    }
+
+    regiment_signals_corps = {
+        categories = { communications }
+
+        research_cost = 2
+        start_year = 1918
+
+        path = {
+            leads_to_tech = division_signals_corps
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = encryption_3
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = decryption_3
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = electronics_folder
+            position = { x = 0 y = @1918 }
+        }
+    }
+    encryption_3 = {
+        categories = { communications }
+
+        research_cost = 1.5
+        start_year = 1919
+
+        folder = {
+            name = electronics_folder
+            position = { x = 1 y = @1919 }
+        }
+    }
+    decryption_3 = {
+        categories = { communications }
+
+        research_cost = 1.5
+        start_year = 1919
+
+        folder = {
+            name = electronics_folder
+            position = { x = 3 y = @1919 }
+        }
+    }
+
+    ## SUPPLY
+    railways_1 = {
+        categories = { supply_tech }
+
+        research_cost = 1.5
+        start_year = 1912
+
+        path = {
+            leads_to_tech = railways_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = electronics_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+    railways_2 = {
+        categories = { supply_tech }
+
+        research_cost = 1.5
+        start_year = 1915
+
+        path = {
+            leads_to_tech = railways_3
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = electronics_folder
+            position = { x = 0 y = @1915 }
+        }
+    }
+    railways_3 = {
+        categories = { supply_tech }
+
+        research_cost = 1.5
+        start_year = 1918
+
+        folder = {
+            name = electronics_folder
+            position = { x = 0 y = @1918 }
+        }
+    }
+
+    army_supply_hubs = {
+        categories = { supply_tech }
+
+        research_cost = 1.5
+        start_year = 1912
+
+        path = {
+            leads_to_tech = division_supply_hubs
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = electronics_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+    division_supply_hubs = {
+        categories = { supply_tech }
+
+        research_cost = 1.5
+        start_year = 1915
+
+        path = {
+            leads_to_tech = regiment_supply_hubs
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = electronics_folder
+            position = { x = 0 y = @1915 }
+        }
+    }
+    regiment_supply_hubs = {
+        categories = { supply_tech }
+
+        research_cost = 1.5
+        start_year = 1918
+
+        folder = {
+            name = electronics_folder
+            position = { x = 0 y = @1918 }
+        }
+    }
+
+    ## field engineering and fortifications
+    trench_construction = {
+        categories = { field_engineering }
+
+        research_cost = 1
+        start_year = 1912
+
+        path = {
+            leads_to_tech = trench_1
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = electronics_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+
+    trench_1 = {
+        categories = { field_engineering }
+
+        research_cost = 2
+        start_year = 1914
+
+        path = {
+            leads_to_tech = trench_2
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = barbed_wire
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = duckboards
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = electronics_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+    barbed_wire = {
+        categories = { field_engineering }
+
+        research_cost = 1
+        start_year = 1915
+
+        folder = {
+            name = electronics_folder
+            position = { x = 1 y = @1915 }
+        }
+    }
+    duckboards = {
+        categories = { field_engineering }
+
+        research_cost = 1
+        start_year = 1915
+
+        folder = {
+            name = electronics_folder
+            position = { x = 3 y = @1915 }
+        }
+    }
+
+    trench_2 = {
+        categories = { field_engineering }
+
+        research_cost = 2
+        start_year = 1917
+
+        path = {
+            leads_to_tech = trench_3
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = listening_posts
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = miners_tunnels
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = electronics_folder
+            position = { x = 0 y = @1917 }
+        }
+    }
+    listening_posts = {
+        categories = { field_engineering }
+
+        research_cost = 1
+        start_year = 1918
+
+        folder = {
+            name = electronics_folder
+            position = { x = 1 y = @1918 }
+        }
+    }
+    miners_tunnels = {
+        categories = { field_engineering }
+
+        research_cost = 1
+        start_year = 1918
+
+        folder = {
+            name = electronics_folder
+            position = { x = 3 y = @1918 }
+        }
+    }
+
+    trench_3 = {
+        categories = { field_engineering }
+
+        research_cost = 2
+        start_year = 1920
+
+        folder = {
+            name = electronics_folder
+            position = { x = 0 y = @1920 }
+        }
+    }
+
+}

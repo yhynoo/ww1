@@ -1,0 +1,378 @@
+technologies = {
+
+    @1912 = 4
+    @1913 = 6
+    @1914 = 8
+    @1915 = 10
+    @1916 = 12
+    @1917 = 14
+    @1918 = 16
+    @1919 = 18
+    @1920 = 20
+
+    tech_support = {
+        enable_equipments = { support_equipment }
+
+        path = {
+			leads_to_tech = tech_engineers
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = tech_recon
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = tech_field_hospital
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = tech_logistics_company
+			research_cost_coeff = 1
+		}
+
+        research_cost = 1
+		start_year = 1904
+		folder = {
+			name = support_folder
+			position = { x = 0 y = 0 }
+		}
+
+		categories = {
+			support_tech
+		}
+    }
+
+    # engineers
+    tech_engineers = {
+        enable_subunits = {
+            engineers
+        }
+
+        path = {
+            leads_to_tech = tech_engineers2
+			research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        start_year = 1912
+
+        folder = {
+			name = support_folder
+			position = { x = 0 y = @1912 }
+		}
+
+		categories = {
+			support_tech
+			engineers_tech
+		}   
+    }
+    tech_engineers2 = {
+        path = {
+            leads_to_tech = tech_engineers3
+			research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        start_year = 1914
+
+        folder = {
+			name = support_folder
+			position = { x = 0 y = @1914 }
+		}
+
+		categories = {
+			support_tech
+			engineers_tech
+		}   
+    }
+    tech_engineers3 = {
+        path = {
+            leads_to_tech = tech_engineers4
+			research_cost_coeff = 1
+        }
+        research_cost = 1.5
+        start_year = 1916
+
+        folder = {
+			name = support_folder
+			position = { x = 0 y = @1916 }
+		}
+
+		categories = {
+			support_tech
+			engineers_tech
+		}   
+    }
+    tech_engineers4 = {
+        research_cost = 1.5
+        start_year = 1918
+
+        folder = {
+			name = support_folder
+			position = { x = 0 y = @1918 }
+		}
+
+		categories = {
+			support_tech
+			engineers_tech
+		}   
+    }
+
+    # recon
+    tech_recon = {
+        enable_subunits = {
+            recon
+            armored_car_recon
+        }
+
+        path = {
+            leads_to_tech = tech_recon2
+			research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        start_year = 1912
+
+        folder = {
+			name = support_folder
+			position = { x = 2 y = @1912 }
+		}
+
+		categories = {
+			support_tech
+			recon_tech
+		}   
+    }
+    tech_recon2 = {
+        path = {
+            leads_to_tech = tech_recon3
+			research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        start_year = 1914
+
+        folder = {
+			name = support_folder
+			position = { x = 2 y = @1914 }
+		}
+
+		categories = {
+			support_tech
+			recon_tech
+		}   
+    }
+    tech_recon3 = {
+        path = {
+            leads_to_tech = tech_recon4
+			research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        start_year = 1916
+
+        folder = {
+			name = support_folder
+			position = { x = 2 y = @1916 }
+		}
+
+		categories = {
+			support_tech
+			recon_tech
+		}   
+    }
+    tech_recon4 = {
+        research_cost = 1.5
+        start_year = 1918
+
+        folder = {
+			name = support_folder
+			position = { x = 2 y = @1918 }
+		}
+
+		categories = {
+			support_tech
+			recon_tech
+		}   
+    }
+
+    # hospitals
+    tech_field_hospital = {
+        enable_subunits = {
+            field_hospital
+        }
+
+        path = {
+            leads_to_tech = tech_field_hospital2
+			research_cost_coeff = 1
+        }
+
+        dependencies = {
+			early_trucks = 1
+		}
+
+        research_cost = 2
+        start_year = 1912
+
+        folder = {
+			name = support_folder
+			position = { x = 5 y = @1912 }
+		}
+
+		categories = {
+			support_tech
+			hospital_tech
+		}   
+    }
+    tech_field_hospital2 = {
+        path = {
+            leads_to_tech = tech_field_hospital3
+			research_cost_coeff = 1
+        }
+
+        research_cost = 2
+        start_year = 1914
+
+        folder = {
+			name = support_folder
+			position = { x = 5 y = @1914 }
+		}
+
+		categories = {
+			support_tech
+			hospital_tech
+		}   
+    }
+    tech_field_hospital3 = {
+        path = {
+            leads_to_tech = tech_field_hospital4
+			research_cost_coeff = 1
+        }
+
+        research_cost = 2
+        start_year = 1916
+
+        folder = {
+			name = support_folder
+			position = { x = 5 y = @1916 }
+		}
+
+		categories = {
+			support_tech
+			hospital_tech
+		}   
+    }
+    tech_field_hospital4 = {
+
+        research_cost = 2
+        start_year = 1918
+
+        folder = {
+			name = support_folder
+			position = { x = 5 y = @1918 }
+		}
+
+		categories = {
+			support_tech
+			hospital_tech
+		}   
+    }
+
+    # logistics
+    tech_logistics_company = {
+        enable_subunits = {
+            logistics_company
+        }
+
+        path = {
+            leads_to_tech = tech_logistics_company2
+			research_cost_coeff = 1
+        }
+
+        dependencies = {
+			early_trucks = 1
+		}
+
+        research_cost = 2
+        start_year = 1912
+
+        folder = {
+			name = support_folder
+			position = { x = 7 y = @1912 }
+		}
+
+		categories = {
+			support_tech
+			logistics_tech
+		}   
+    }
+    tech_logistics_company2 = {
+        path = {
+            leads_to_tech = tech_logistics_company3
+			research_cost_coeff = 1
+        }
+
+        research_cost = 2
+        start_year = 1914
+
+        folder = {
+			name = support_folder
+			position = { x = 7 y = @1914 }
+		}
+
+		categories = {
+			support_tech
+			logistics_tech
+		}   
+    }
+    tech_logistics_company3 = {
+        path = {
+            leads_to_tech = tech_logistics_company4
+			research_cost_coeff = 1
+        }
+
+        research_cost = 2
+        start_year = 1916
+
+        folder = {
+			name = support_folder
+			position = { x = 7 y = @1916 }
+		}
+
+		categories = {
+			support_tech
+			logistics_tech
+		}   
+    }
+    tech_logistics_company4 = {
+        research_cost = 2
+        start_year = 1918
+
+        folder = {
+			name = support_folder
+			position = { x = 7 y = @1918 }
+		}
+
+		categories = {
+			support_tech
+			logistics_tech
+		}   
+    }
+
+    # trains
+    basic_train = {
+        enable_equipments = { train_equipment_1 }
+
+        research_cost = 2
+        start_year = 1904
+
+        folder = {
+			name = support_folder
+			position = { x = 0 y = 0 }
+		}
+
+        categories = {
+			train_tech
+		}
+    }
+}
