@@ -37,12 +37,10 @@ country_event = {
 
         FRA = { news_event = { id = belgian_crisis.2 hours = 12 random_hours = 6 } }
         news_event = { id = belgian_crisis_bel.1 days = 7 random_hours = 6 }
-        ai_chance = { base = 1 }
     }
     option = {
         name = "Why would we care?"
         FRA = { news_event = { id = belgian_crisis.3 hours = 12 random_hours = 6 } }
-        ai_chance = { base = 2 }
     }
 }
 
@@ -85,9 +83,9 @@ country_event = {
             }
         }
         create_wargoal = {
-                target = GER
-                type = take_claimed_state
-            }
+            target = GER
+            type = take_claimed_state
+        }
     }
 }
 
@@ -114,5 +112,8 @@ news_event = {
 
 	option = {
 		name = "Right."
+        hidden_effect = {
+            set_country_flag = ger_france_humiliated
+        }
 	}
 }

@@ -567,6 +567,7 @@ focus_tree = {
 			}
 		}
 		completion_reward = {
+            remove_ideas = sww1_idea_disjointed_transport_system
 			random_owned_controlled_state = {
 				limit = {
 					free_building_slots = {
@@ -593,7 +594,6 @@ focus_tree = {
 					level = 1
 					instant_build = yes
 				}
-                remove_ideas = sww1_idea_disjointed_transport_system
 			}
 			random_owned_controlled_state = {
 				limit = {
@@ -752,6 +752,10 @@ focus_tree = {
         prerequisite = { focus = AUS_political_ambitions }
         completion_reward = {
             add_war_support = 0.1
+            add_timed_idea = {
+                idea = sww1_idea_prelude_to_the_great_war
+                years = 2
+            }
         }
     }
     focus = {
@@ -765,7 +769,10 @@ focus_tree = {
 
         available = {
             NOT = { is_in_faction = yes }
+            has_government = monarchism
+
             any_country = {
+                exists = yes
                 or = {
                     tag = SPR
                     tag = FRA
@@ -990,6 +997,10 @@ focus_tree = {
         mutually_exclusive = { focus = AUS_ausgleich }
         prerequisite = { focus = AUS_political_ambitions }
         completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_communism_tendencies
+                years = 2
+            }
         }
     }
     focus = {
@@ -1003,6 +1014,11 @@ focus_tree = {
 
         prerequisite = { focus = AUS_vienna_is_red }
         completion_reward = {
+            add_political_power = 150
+            add_popularity = {
+                ideology = communism
+                popularity = 0.1
+            }
         }
     }
     focus = {

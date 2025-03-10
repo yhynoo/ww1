@@ -774,7 +774,10 @@
         prerequisite = { focus = JAP_political_ambitions }
         completion_reward = {
             add_war_support = 0.1
-            add_ideas = sww1_idea_interventionism
+            add_timed_idea = {
+                idea = sww1_idea_prelude_to_the_great_war
+                years = 2
+            }
         }
     }
     focus = {
@@ -841,6 +844,7 @@
         mutually_exclusive = { focus = JAP_seek_alliances }
         prerequisite = { focus = JAP_interventionism }
         completion_reward = {
+            news_event = { id = asia_for_the_asians.0 hours = 12 random_hours = 6 }
         }
     }
     

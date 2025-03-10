@@ -5,6 +5,11 @@ dc_war_cabinet = {
         }
         cost = 50
 
+        ai_will_do = {
+            base = 10
+            modifier = { surrender_progress > 0.3 factor = 3 }
+        }
+
         remove_days = 60
         modifier = {
             supply_combat_penalties_on_core_factor = -0.5
@@ -17,6 +22,11 @@ dc_war_cabinet = {
         }
         cost = 50
         remove_days = 60
+
+        ai_will_do = {
+            base = 10
+            modifier = { has_war_support < 0.3 }
+        }
         
         modifier = {
             civilian_factory_use = 1
@@ -30,6 +40,10 @@ dc_war_cabinet = {
 
         available = {
             has_tech = tech_trucks
+        }
+
+        ai_will_do = {
+            base = 10
         }
 
         complete_effect = {

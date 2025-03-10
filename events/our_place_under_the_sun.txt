@@ -1,0 +1,579 @@
+add_namespace = our_place_under_the_sun
+
+## ANGOLA
+
+country_event = {
+    id = our_place_under_the_sun.1
+    title = "[GER.GetName] Demands Angola!"
+    desc = our_place_under_the_sun.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must accept this."
+        news_event = { id = our_place_under_the_sun.2 hours = 12 random_hours = 6 }
+
+        every_state = {
+            limit = {
+                OR = {
+                    state = 540
+                    state = 891
+                    state = 892
+                }
+                is_owned_by = SPR
+            }
+            transfer_state_to = GER
+        }
+    }
+
+    option = {
+        trigger = {
+            is_in_faction = no
+            has_opinion = {
+                target = FRA
+                value < 25
+            }
+        }
+
+        name = "How about working together instead?"
+        GER = { country_event = { id = our_place_under_the_sun.3 hours = 12 random_hours = 6 } }
+    }
+
+    option = {
+        trigger = {
+            has_opinion = {
+                target = FRA
+                value > 24
+            }
+        }
+        name = "Let us ask the French to help us!"
+        FRA = { country_event = { id = our_place_under_the_sun.6 hours = 12 random_hours = 6 } }
+    }
+
+    option = {
+        name = "No way!"
+        GER = {
+            country_event = { id = our_place_under_the_sun.9 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = SPR
+                type = take_claimed_state
+            }
+        }
+    }
+}
+
+news_event = {
+    id = our_place_under_the_sun.2
+    title = "[SPR.GetName] Cedes Angola!"
+    desc = our_place_under_the_sun.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Right."
+    }
+}
+
+country_event = {
+    id = our_place_under_the_sun.3
+    title = "[SPR.GetName] Offers Alliance Instead"
+    desc = our_place_under_the_sun.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Not a bad idea."
+
+        news_event = { id = our_place_under_the_sun.4 hours = 12 random_hours = 6 }
+        if = {
+            limit = { is_in_faction = not }
+            create_faction = "Central Powers"
+        }
+        add_to_faction = SPR
+    }
+    option = {
+        name = "That's not what we wanted."
+        SPR = { news_event = { id = our_place_under_the_sun.5 hours = 12 random_hours = 6 } }
+        create_wargoal = {
+            target = SPR
+            type = take_claimed_state
+        }
+    }
+}
+
+news_event = {
+    id = our_place_under_the_sun.4
+    title = "[SPR.GetName] Joins the Central Powers"
+    desc = our_place_under_the_sun.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Right."
+    }
+}
+
+news_event = {
+    id = our_place_under_the_sun.5
+    title = "Germany Declines Alliance!"
+    desc = our_place_under_the_sun.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Then we must fold."
+        news_event = { id = our_place_under_the_sun.2 hours = 12 random_hours = 6 }
+    }
+    option = {
+        name = "If so, we shall make them fight for it!"
+        GER = { country_event = { id = our_place_under_the_sun.9 hours = 12 random_hours = 6 } }
+    }
+}
+
+country_event = {
+    id = our_place_under_the_sun.6
+    title = "[SPR.GetName] Asks for Help"
+    desc = our_place_under_the_sun.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall help them indeed!"
+        news_event = { id = our_place_under_the_sun.7 hours = 12 random_hours = 6 }
+        give_guarantee = SPR
+    }
+    option = {
+        name = "We cannot risk another war."
+        SPR = { country_event = { id = our_place_under_the_sun.8 hours = 12 random_hours = 6 } }
+    }
+}
+
+news_event = {
+    id = our_place_under_the_sun.7
+    title = "French Guarantees for Spain"
+    desc = our_place_under_the_sun.7.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Right."
+        IF = {
+            limit = { tag = GER }
+            create_wargoal = {
+                target = SPR
+                type = take_claimed_state
+            }
+        }
+    }
+}
+
+country_event = {
+    id = our_place_under_the_sun.8
+    title = "France Won't Help Us!"
+    desc = our_place_under_the_sun.8.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must fold now."
+        news_event = { id = our_place_under_the_sun.2 hours = 12 random_hours = 6 }
+
+        every_state = {
+            limit = {
+                OR = {
+                    state = 540
+                    state = 891
+                    state = 892
+                }
+                is_owned_by = SPR
+            }
+            transfer_state_to = GER
+        }
+    }
+    option = {
+        name = "Let them take it if they want!"
+        GER = { country_event = { id = our_place_under_the_sun.9 hours = 12 random_hours = 6 } }
+    }
+}
+
+country_event = {
+    id = our_place_under_the_sun.9
+    title = "[SPR.GetName] Opposes Our Demands!"
+    desc = our_place_under_the_sun.9.d
+
+    is_triggered_only = yes
+
+    option = {
+        trigger = {
+            can_declare_war_on = SPR
+        }
+
+        name = "We shall take it ourselves!"
+        news_event = { id = our_place_under_the_sun.10 hours = 12 random_hours = 6 }
+        
+        declare_war_on = {
+            target = SPR
+            type = take_claimed_state
+        }
+    }
+    option = {
+        name = "Let them have it for now."
+        add_political_power = -50
+        add_stability = -0.05
+    }
+}
+
+news_event = {
+    id = our_place_under_the_sun.10
+    title = "War over Angola!"
+    desc = our_place_under_the_sun.10.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Awful."
+    }
+}
+
+## ALGERIA
+
+country_event = {
+    id = our_place_under_the_sun.11
+    title = "[GER.GetName] Demands Maghreb!"
+    desc = our_place_under_the_sun.11.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must accept this."
+        news_event = { id = our_place_under_the_sun.12 hours = 12 random_hours = 6 }
+
+        every_state = {
+            limit = {
+                OR = {
+                    state = 458
+                    state = 459
+                    state = 460
+                    state = 461
+                    state = 462
+                    state = 513
+                    state = 665
+                }
+                is_owned_by = FRA
+            }
+            transfer_state_to = GER
+        }
+    }
+
+    option = {
+        trigger = {
+            is_in_faction = no
+            not = { is_ally_with = ENG }
+
+            ENG = { is_faction_leader = yes }
+        }
+
+        name = "Let us seek to join the Entente!"
+        ENG = { country_event = { id = our_place_under_the_sun.13 hours = 12 random_hours = 6 } }
+    }
+
+    option = {
+        name = "Let them come if they want it!"
+        GER = {
+            country_event = { id = our_place_under_the_sun.16 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = FRA
+                type = take_claimed_state
+            }
+        }
+    }
+}
+
+news_event = {
+    id = our_place_under_the_sun.12
+    title = "[FRA.GetName] Cedes North Africa!"
+    desc = our_place_under_the_sun.12.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Right."
+    }
+}
+
+country_event = {
+    id = our_place_under_the_sun.13
+    title = "[FRA.GetName] Seeks Alliance"
+    desc = our_place_under_the_sun.13.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They are welcome!"
+        news_event = { id = our_place_under_the_sun.14 hours = 12 random_hours = 6 }
+        add_to_faction = FRA
+    }
+    option = {
+        name = "This is not in our interest"
+        FRA = { country_event = { id = our_place_under_the_sun.15 hours = 12 random_hours = 6 } }
+    }
+}
+
+news_event = {
+    id = our_place_under_the_sun.14
+    title = "France joins the Entente!"
+    desc = our_place_under_the_sun.14.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Right."
+        IF = {
+            limit = { tag = GER }
+            create_wargoal = {
+                target = FRA
+                type = take_claimed_state
+            }
+        }
+    }
+}
+
+country_event = {
+    id = our_place_under_the_sun.15
+    title = "England Dismisses Our Plea!"
+    desc = our_place_under_the_sun.15.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Then we must fold."
+        news_event = { id = our_place_under_the_sun.12 hours = 12 random_hours = 6 }
+
+        every_state = {
+            limit = {
+                OR = {
+                    state = 458
+                    state = 459
+                    state = 460
+                    state = 461
+                    state = 462
+                    state = 513
+                    state = 665
+                }
+                is_owned_by = FRA
+            }
+            transfer_state_to = GER
+        }
+    }
+    option = {
+        name = "So we shall fight alone!"
+        GER = { country_event = { id = our_place_under_the_sun.16 hours = 12 random_hours = 6 } }
+    }
+}
+
+country_event = {
+    id = our_place_under_the_sun.16
+    title = "[FRA.GetName] Opposes Our Demands!"
+    desc = our_place_under_the_sun.16.d
+
+    is_triggered_only = yes
+
+    option = {
+        trigger = {
+            can_declare_war_on = FRA
+        }
+
+        name = "We shall take it ourselves!"
+        news_event = { id = our_place_under_the_sun.17 hours = 12 random_hours = 6 }
+        
+        declare_war_on = {
+            target = FRA
+            type = take_claimed_state
+        }
+    }
+    option = {
+        name = "Let them have it for now."
+        add_political_power = -100
+        add_stability = -0.1
+    }
+}
+
+news_event = {
+    id = our_place_under_the_sun.17
+    title = "War over French North Africa!"
+    desc = our_place_under_the_sun.17.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Horrible."
+    }
+}
+
+country_event = {
+    id = our_place_under_the_sun.21
+    title = "[GER.GetName] Demands South Africa!"
+    desc = our_place_under_the_sun.21.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must accept this."
+        news_event = { id = our_place_under_the_sun.22 hours = 12 random_hours = 6 }
+
+        every_state = {
+            limit = {
+                OR = {
+                    state = 275
+                    state = 542
+                    state = 544
+                    state = 545
+                    state = 681
+                    state = 719
+                    state = 770
+                    state = 771
+                    state = 895
+                    state = 897
+                    state = 981
+                }
+                is_owned_by = ENG
+            }
+            transfer_state_to = GER
+        }
+    }
+
+    option = {
+        trigger = {
+            any_country = {
+                OR = {
+                    tag = FRA
+                    tag = SOV
+                    tag = JAP
+                }
+                can_declare_war_on = GER
+                is_in_faction = no
+            }
+        }
+
+        name = "Appeal to the international community!"
+        every_country = {
+            limit = {
+                OR = {
+                    tag = FRA
+                    tag = SOV
+                    tag = JAP
+                }
+                can_declare_war_on = GER
+                is_in_faction = no
+            }
+            country_event = { id = our_place_under_the_sun.23 hours = 12 random_hours = 6 }
+        }
+
+        GER = {
+            country_event = { id = our_place_under_the_sun.26 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = ENG
+                type = take_claimed_state
+            }
+        }
+    }
+
+    option = {
+        name = "Let them come if they want it!"
+        GER = {
+            country_event = { id = our_place_under_the_sun.25 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = ENG
+                type = take_claimed_state
+            }
+        }
+    }
+}
+
+news_event = {
+    id = our_place_under_the_sun.22
+    title = "[ENG.GetName] Cedes South Africa!"
+    desc = our_place_under_the_sun.22.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Right."
+    }
+}
+
+country_event = {
+    id = our_place_under_the_sun.23
+    title = "[ENG.GetName] Mobilizes the Entente"
+    desc = our_place_under_the_sun.23.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must stop the Hun together!"
+        news_event = { id = our_place_under_the_sun.24 hours = 12 random_hours = 6 }
+        ENG = { add_to_faction = ROOT }
+    }
+    option = {
+        name = "This is not our war."
+        ENG = { country_event = { id = our_place_under_the_sun.25 hours = 12 random_hours = 6 } }
+    }
+}
+
+news_event = {
+    id = our_place_under_the_sun.24
+    title = "[ROOT.GetName] joins the Entente!"
+    desc = our_place_under_the_sun.24.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Right."
+    }
+}
+
+country_event = {
+    id = our_place_under_the_sun.25
+    title = "[ENG.GetName] Opposes Our Demands!"
+    desc = our_place_under_the_sun.25.d
+
+    is_triggered_only = yes
+
+    option = {
+        trigger = {
+            can_declare_war_on = ENG
+        }
+
+        name = "Gott Strafe England!"
+        news_event = { id = our_place_under_the_sun.26 hours = 12 random_hours = 6 }
+        
+        declare_war_on = {
+            target = ENG
+            type = take_claimed_state
+        }
+    }
+    option = {
+        name = "We shall wait for the right time."
+        add_political_power = -100
+        add_stability = -0.1
+    }
+}
+
+news_event = {
+    id = our_place_under_the_sun.26
+    title = "War over South Africa!"
+    desc = our_place_under_the_sun.26.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A tragedy for the world."
+    }
+}

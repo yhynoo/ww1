@@ -1,0 +1,44 @@
+add_namespace = entente_cordiale
+
+country_event = {
+    id = entente_cordiale.1
+    title = "France Seeks Alliance"
+    desc = entente_cordiale.1:d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A great idea."
+        add_to_faction = FRA
+        news_event = { id = entente_cordiale.2 hours = 12 random_hours = 6 }
+    }
+    option = {
+        name = "We don't need a war in Europe."
+        FRA = { news_event = { id = entente_cordiale.2 hours = 12 random_hours = 6 } }
+    }
+}
+
+news_event = {
+    id = entente_cordiale.2
+    title = "France Allies with Britain"
+    desc = entente_cordiale.2:d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Right."
+    }
+}
+
+news_event = {
+    id = entente_cordiale.3
+    title = "France Allies with Britain"
+    desc = entente_cordiale.3:d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "What a shame."
+    }
+}

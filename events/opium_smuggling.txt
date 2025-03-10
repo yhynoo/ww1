@@ -83,13 +83,19 @@ country_event = {
     }
     option = {
         name = "They should not act so over the top about it."
+        set_national_flag = hol_threatened_by_france
+
         # FRA and ENG get an event
         ENG = { news_event = { id = opium_smuggling.8 hours = 12 random_hours = 6 } }
-        FRA = { news_event = { id = opium_smuggling.8 hours = 12 random_hours = 6 } }
-
-        hidden_effect = {
-            # opens the Siam minigame.
+        FRA = { 
+            news_event = { id = opium_smuggling.8 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = HOL
+                type = take_claimed_state
+            }
         }
+
+
     }
 }
 
@@ -199,16 +205,19 @@ country_event = {
             transfer_state_to = FRA
         }
 
-        # international news
-        FRA = { news_event = { id = opium_smuggling.10 hours = 12 random_hours = 6 } }
+        set_national_flag = hol_threatened_by_france
+        FRA = { 
+            news_event = { id = opium_smuggling.10 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = HOL
+                type = take_claimed_state
+            }
+        }
     }
     option = {
         name = "That can not."
-        # FRA
-        FRA = { news_event = { id = opium_smuggling.8 hours = 12 random_hours = 6 } }
-
-        hidden_effect = {
-            # opens the Siam minigame.
+        FRA = { 
+            news_event = { id = opium_smuggling.8 hours = 12 random_hours = 6 }
         }
     }
 }
@@ -235,5 +244,93 @@ news_event = {
 
 	option = {
 		name = This doesn't sound good."
+	}
+}
+
+country_event = {
+    id = opium_smuggling.12
+    title = "[HOL.GetName] Seeks Help"
+    desc = opium_smuggling.12.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall help them."
+
+        news_event = { id = opium_smuggling.13 hours = 12 random_hours = 6 }
+        give_guarantee = HOL
+    }
+    option = {
+        name = "This is of no interest to us."
+        HOL = { news_event = { id = opium_smuggling.14 hours = 12 random_hours = 6 } }
+    }
+}
+
+news_event = {
+	id = opium_smuggling.13
+	title = "German Guarantees for [HOL.GetNameDef]"
+	desc = opium_smuggling.13.d
+
+	is_triggered_only = yes
+    major = yes
+
+	option = {
+		name = "Right."
+	}
+}
+
+news_event = {
+	id = opium_smuggling.14
+	title = "Germany Won't Help Us"
+	desc = opium_smuggling.14.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Awful."
+	}
+}
+
+country_event = {
+    id = opium_smuggling.15
+    title = "[HOL.GetName] Seeks to Join Central Powers"
+    desc = opium_smuggling.15.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall welcome them."
+
+        news_event = { id = opium_smuggling.16 hours = 12 random_hours = 6 }
+        add_to_faction = HOL
+    }
+    option = {
+        name = "This is of no interest to us."
+        HOL = { news_event = { id = opium_smuggling.17 hours = 12 random_hours = 6 } }
+    }
+}
+
+news_event = {
+	id = opium_smuggling.16
+	title = "[HOL.GetName] Joins Central Powers!"
+	desc = opium_smuggling.16.d
+
+	is_triggered_only = yes
+    major = yes
+
+	option = {
+		name = "Interesting."
+	}
+}
+
+news_event = {
+	id = opium_smuggling.17
+	title = "[GER.GetName] Dismisses Our Offer"
+	desc = opium_smuggling.17.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Concerning."
 	}
 }

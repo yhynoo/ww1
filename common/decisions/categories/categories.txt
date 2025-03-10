@@ -15,6 +15,8 @@ dc_economic_decisions = {
     priority = 3
 }
 
+## SPECIFIC
+
 dc_across_the_alps = {
     allowed = {
         original_tag = ITA
@@ -22,6 +24,12 @@ dc_across_the_alps = {
 
     visible = {
         has_completed_focus = ITA_across_the_alps
+    }
+}
+
+dc_asia_for_the_asians = {
+    visible = {
+        has_completed_focus = JAP_asia_for_asians
     }
 }
 
@@ -119,8 +127,16 @@ dc_limited_self_determination = {
 
 dc_opium_smuggling = {
     visible = {
-        has_completed_focus = FRA_diplomatic_initiative
+        or = {
+            tag = FRA
+            tag = HOL
+        }
+        FRA = { has_completed_focus = FRA_diplomatic_initiative }
     }
+}
+
+dc_our_place_under_the_sun = {
+    visible = { has_completed_focus = GER_sun }
 }
 
 dc_panslavism = {
@@ -137,5 +153,22 @@ dc_sarajevo_memorandum = {
             tag = SER
         }
         TUR = { has_completed_focus = TUR_sarajevo_memorandum }
+    }
+}
+
+dc_second_vienna_treaty = {
+    visible = {
+        OR = {
+            AND = {
+                tag = AUS
+                has_completed_focus = AUS_second_vienna_treaty
+            }
+            AND = {
+                tag = FRA
+                has_completed_focus = FRA_second_vienna_treaty
+            }
+            tag = SPR
+        }
+        has_govenment = monarchism
     }
 }

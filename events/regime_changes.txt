@@ -1,0 +1,75 @@
+add_namespace = regime_change
+
+news_event = {
+    id = regime_change.0
+    title = "Communist Uprising!"
+    desc = regime_change.0.d
+
+    trigger = {
+        has_stability < 0.2
+        has_civil_war = no
+        communism > 0.4
+    }
+
+    immediate = {
+        start_civil_war = {
+            ideology = communism
+            size = party_popularity@communism
+        }
+    }
+
+    option = {
+        name = "We must end this nonsense!"
+        news_event = { id = regime_change.1 hours = 12 random_hours = 6 }
+    }
+}
+
+news_event = {
+    id = regime_change.1
+    title = "Communist Uprising in [ROOT.GetName]"
+    desc = regime_change.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Right."
+    }
+}
+
+news_event = {
+    id = regime_change.2
+    title = "Authoritarian Coup d'Etat!"
+    desc = regime_change.2.d
+
+    trigger = {
+        has_stability < 0.2
+        not = { has_government = authoritarianism }
+        authoritarianism > 0.4
+    }
+
+    immediate = {
+        set_politics = {
+            ruling_party = authoritarianism
+            elections_allowed = no
+        }
+    }
+
+    option = {
+        name = "There is nothing we can do anymore."
+        news_event = { id = regime_change.3 hours = 12 random_hours = 6 }
+    }
+}
+
+news_event = {
+    id = regime_change.3
+    title = "[ROOT.GetName] Goes Authoritarian!"
+    desc = regime_change.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Right."
+    }
+}

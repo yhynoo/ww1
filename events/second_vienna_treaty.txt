@@ -1,0 +1,95 @@
+add_namespace = second_vienna_treaty
+
+country_event = {
+	id = second_vienna_treaty.0
+	title = "[FROM.GetName] Offers Alliance!"
+	desc = second_vienna_treaty.0.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Great idea!"
+		FROM = {
+			IF = {
+				limit = { is_in_faction = no }
+				create_faction = "Second Vienna Treaty"
+			}
+			add_to_faction = ROOT
+			news_event = { id = second_vienna_treaty.1 hours = 12 random_hours = 6 }
+		}
+	}
+	option = {
+		name = "No need for another war in Europe."
+		FROM = {
+			news_event = { id = second_vienna_treaty.2 hours = 12 random_hours = 6 }
+		}
+	}
+}
+
+news_event = {
+	id = second_vienna_treaty.1
+	title = "[FROM.GetName] Joins the Second Vienna Treaty"
+	desc = second_vienna_treaty.0.d
+
+	is_triggered_only = yes
+    major = yes
+
+	option = {
+		name = "Wonderful!"
+	}
+}
+
+news_event = {
+	id = second_vienna_treaty.2
+	title = "[FROM.GetName] Declines!"
+	desc = second_vienna_treaty.0.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Disappointing."
+		add_opinion_modifier = {
+			target = FROM
+			type = medium_decrease
+		}
+	}
+}
+
+news_event = {
+	id = second_vienna_treaty.3
+	title = "Venetia Independent!"
+	desc = second_vienna_treaty.3.d
+
+	is_triggered_only = yes
+    major = yes
+
+	option = {
+		name = "Intriguing."
+	}
+}
+
+news_event = {
+	id = second_vienna_treaty.4
+	title = "Insurrection in Rome!"
+	desc = second_vienna_treaty.4.d
+
+	is_triggered_only = yes
+    major = yes
+
+	option = {
+		name = "Concerning."
+	}
+}
+
+news_event = {
+	id = second_vienna_treaty.5
+	title = "Bourbons Take Power in Two Sicilies!"
+	desc = second_vienna_treaty.5.d
+
+	is_triggered_only = yes
+    major = yes
+
+	option = {
+		name = "Interesting."
+	}
+}

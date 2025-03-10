@@ -1,5 +1,5 @@
 dc_opium_smuggling = {
-    opium_smuggling_ask_british = {
+    ask_british_for_backup = {
         cost = 75
         visible = {
             NOT = { has_country_flag = fra_opium_alone }
@@ -26,7 +26,7 @@ dc_opium_smuggling = {
             ENG = { country_event = { id = opium_smuggling.2 hours = 12 random_hours = 6 } }
         }
     }
-    opium_smuggling_do_on_your_own = {
+    do_on_your_own = {
         cost = 150
         visible = {
             NOT = { has_country_flag = flag_opium_together }
@@ -52,4 +52,30 @@ dc_opium_smuggling = {
             HOL = { country_event = { id = opium_smuggling.9 hours = 12 random_hours = 6 } }
         }
     }
+    ask_for_german_guarantees = {
+        cost = 150
+        visible = {
+            tag = HOL
+            has_national_flag = hol_threatened_by_france
+        }
+
+        fire_only_once = yes
+        complete_effect = {
+            GER = { country_event = { id = opium_smuggling.12 hours = 12 random_hours = 6 } }
+        }
+    }
+    seek_to_join_central_powers = {
+        cost = 250
+        visible = {
+            tag = HOL
+            has_national_flag = hol_threatened_by_france
+            GER = { is_faction_leader = yes }
+        }
+
+        fire_only_once = yes
+        complete_effect = {
+            GER = { country_event = { id = opium_smuggling.15 hours = 12 random_hours = 6 } }
+        }
+    }
+    
 }

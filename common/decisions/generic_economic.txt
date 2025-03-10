@@ -5,11 +5,15 @@ dc_economic_decisions = {
         }
 
         cost = 150
-        fire_only_once = yes
 
         icon = oil
         days_remove = 90
         fire_only_once = yes
+
+        ai_will_do = {
+            base = 10
+            modifier = { has_war = no factor = 2 }
+        }
 
         complete_effect = {
             capital_scope = {
@@ -29,6 +33,11 @@ dc_economic_decisions = {
 
         available = {
             num_of_civilian_factories > 2
+        }
+
+        ai_will_do = {
+            base = 10
+            modifier = { has_war = yes factor = 2 }
         }
 
         days_re_enable = 60
@@ -71,6 +80,10 @@ dc_economic_decisions = {
         icon = generic_research
         days_remove = 90
         cost = 50
+
+        ai_will_do = {
+            base = 10
+        }
 
         modifier = {
             research_speed_factor = 0.05

@@ -769,6 +769,10 @@
         prerequisite = { focus = FRA_political_ambitions }
         completion_reward = {
             add_political_power = 150
+            add_timed_idea = {
+                idea = sww1_idea_prelude_to_the_great_war
+                years = 2
+            }
         }
     }
     focus = {
@@ -952,10 +956,21 @@
         x = -1
         y = 1
 
+        available = {
+            has_stability > 0.5
+            monarchism > 0.5
+        }
+
         cost = 10
         prerequisite = { focus = FRA_house_bourbon }
         completion_reward = {
+            news_event = { id = ancien_regime.0 hours = 12 random_hours = 6 }
             remove_ideas = sww1_idea_a_headless_rooster
+
+            set_politics = {
+                ruling_party = monarchism
+                elections_allowed = no
+            }
         }
     }
     focus = {
@@ -966,14 +981,29 @@
         x = 1
         y = 1
 
-        cost = 1
+        cost = 10
         prerequisite = { focus = FRA_house_bourbon }
         completion_reward = {
+            SPR = { country_event = { id = ancien_regime.1 hours = 12 random_hours = 6 } }
         }
     }
-        focus = {
+    focus = {
         id = FRA_second_vienna_treaty
         icon = GFX_focus_FRA_second_vienna_treaty
+
+        available = {
+            NOT = { is_in_faction = yes }
+            has_government = monarchism
+
+            any_country = {
+                exists = yes
+                or = {
+                    tag = AUS
+                    tag = SPR
+                }
+                has_government = monarchism
+            }
+        }
 
         relative_position_id = FRA_restore_ancien_regime
         x = 1
@@ -1012,7 +1042,7 @@
         x = 3
         y = 1
 
-        cost = 1
+        cost = 10
         prerequisite = { focus = FRA_house_bourbon }
         completion_reward = {
         }

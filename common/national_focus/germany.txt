@@ -735,6 +735,10 @@ focus_tree = {
         cost = 10
         prerequisite = { focus = GER_political_ambitions }
         completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_prelude_to_the_great_war
+                years = 2
+            }
         }
     }
 
@@ -777,6 +781,10 @@ focus_tree = {
         x = 0
         y = 1
         cost = 10
+
+        available = {
+            has_government = monarchism
+        }
 
         prerequisite = { focus = GER_weltpolitik }
         completion_reward = {
@@ -971,12 +979,21 @@ focus_tree = {
         x = -3
         y = 1
 
+        available = {
+            has_stability > 0.5
+            democratic > 0.5
+        }
+
         cost = 10
         prerequisite = { 
             focus = GER_empower_the_reichstag
             focus = GER_abolish_monarchy
         }
         completion_reward = {
+            add_political_power = 150
+            add_ideas = {
+                sww1_idea_weimar_constitution
+            }
         }
     }
     focus = {
@@ -987,10 +1004,24 @@ focus_tree = {
         x = 0
         y = 1
 
+        available = {
+            has_stability > 0.5
+            communism > 0.5
+        }
+
         cost = 10
         prerequisite = { focus = GER_abolish_monarchy }
         completion_reward = {
-            add_research_slot = 1
+            add_ideas = {
+                sww1_idea_erfurt_program
+            }
+            if = {
+                limit = { not = { has_government = communism }}
+                set_politics = {
+                    ruling_party = communism
+                    elections_allowed = no
+                }
+            }
         }
     }
     focus = {
@@ -1001,10 +1032,14 @@ focus_tree = {
         x = 3
         y = 1
 
+        available = {
+            has_government = monarchism
+            communism > 0.3
+        }
+
         cost = 10
         prerequisite = { focus = GER_abolish_monarchy }
         completion_reward = {
-            add_research_slot = 1
         }
     }
 }

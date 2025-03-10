@@ -1,0 +1,166 @@
+dc_second_vienna_treaty = {
+    sign_second_vienna_treaty = {
+        visible = {
+            OR = {
+                tag = AUS
+                tag = FRA
+            }
+        }
+
+        cost = 100
+        fire_only_once = yes
+
+        targets = { AUS, FRA, SPR }
+        available = {
+            OR = {
+                is_in_faction = no
+                is_faction_leader = yes
+            }
+
+            FROM = {
+                NOT = { tag = ROOT }
+                has_government = monarchism
+                is_in_faction = no
+            }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = second_vienna_treaty.0 hours = 12 random_hours = 6}}
+        }
+    }
+
+    habsburg_venetia = {
+        visible = {
+            tag = AUS
+        }
+
+        available = {
+            any_state = {
+                OR = {
+                    state = 159
+                    state = 160
+                }
+                is_owned_by = ITA
+            }
+            ITA = { NOT = { has_completed_focus = ITA_venetian_trade_legacy } }
+            can_declare_war_on = ITA
+        }
+
+        cost = 150
+        fire_only_once = yes
+
+        days_remove = 120
+        ITA = { war_with_on_remove = LBV }
+
+        remove_effect = {
+            news_event = { id = second_vienna_treaty.3 hours = 12 random_hours = 6 }
+            every_state = {
+                limit = {
+                    OR = {
+                        state = 159
+                        state = 160
+                    }
+                    is_owned_by = ITA
+                }
+                transfer_state_to = LBV
+            }
+            give_guarantee = LBV
+
+            ITA = {
+                declare_war_on = {
+                    target = LBV
+                    type = take_claimed_state
+                }
+            }
+        }
+    }
+
+    establish_papal_states = {
+        visible = {
+            OR = {
+                tag = AUS
+                tag = FRA
+                tag = SPR
+            }
+        }
+
+        available = {
+            2 = { is_owned_by = ITA }
+            ITA = { NOT = { has_completed_focus = ITA_appease_the_pope } }
+            can_declare_war_on = ITA
+        }
+
+        cost = 150
+        fire_only_once = yes
+
+        days_remove = 120
+        ITA = { war_with_on_remove = PAP }
+
+        remove_effect = {
+            news_event = { id = second_vienna_treaty.4 hours = 12 random_hours = 6 }
+
+            2 = { transfer_state_to = PAP }
+            give_guarantee = PAP
+
+            ITA = {
+                declare_war_on = {
+                    target = PAP
+                    type = take_claimed_state
+                }
+            }
+        }
+    }
+
+    bourbon_two_sicilies = {
+        visible = {
+            OR = {
+                tag = FRA
+                tag = SPR
+            }
+        }
+
+        available = {
+            any_state = {
+                OR = {
+                    state = 115
+                    state = 117
+                    state = 156
+                    state = 849
+                }
+                is_owned_by = ITA
+            }
+            ITA = { NOT = { has_completed_focus = ITA_il_mezzogiorno } }
+            can_declare_war_on = ITA
+        }
+
+        cost = 150
+        fire_only_once = yes
+
+        days_remove = 120
+        ITA = { war_with_on_remove = TTS }
+
+        remove_effect = {
+            news_event = { id = second_vienna_treaty.5 hours = 12 random_hours = 6 }
+            every_state = {
+                limit = {
+                    OR = {
+                        state = 115
+                        state = 117
+                        state = 156
+                        state = 849
+                    }
+                    is_owned_by = ITA
+                }
+                transfer_state_to = TTS
+            }
+            give_guarantee = TTS
+
+            ITA = {
+                declare_war_on = {
+                    target = TTS
+                    type = take_claimed_state
+                }
+            }
+        }
+    }
+}

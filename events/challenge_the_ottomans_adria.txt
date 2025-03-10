@@ -44,14 +44,12 @@ country_event = {
 
         TUR = { set_country_flag = flag_tur_gave_it_all }
         news_event = { id = challenge_the_ottomans_adria.2 hours = 12 random_hours = 6 }
-        ai_chance = { base = 1 }
     }
     option = {
         name = "This is too much."
         ITA = {
             news_event = { id = challenge_the_ottomans_adria.7 hours = 12 random_hours = 6 }
         }
-        ai_chance = { base = 1 }
     }
     option = {
         name = "It can't be just us who have had enough!"
@@ -64,7 +62,6 @@ country_event = {
         news_event = { id = challenge_the_ottomans_adria.3 hours = 12 random_hours = 6 }
         news_event = { id = challenge_the_ottomans_adria.5 days = 7 random_hours = 6 }
         news_event = { id = challenge_the_ottomans_adria.6 days = 14 random_hours = 6 }
-        ai_chance = { base = 3 }
     }
     option = {
         name = "Enough is enough."
@@ -76,13 +73,6 @@ country_event = {
         declare_war_on = {
             target = TUR
             type = take_claimed_state
-        }
-        ai_chance = { 
-            base = 2
-            modifier = {
-                factor = 0.5
-                is_in_faction = yes
-            }
         }
     }
 }
@@ -144,19 +134,7 @@ country_event = {
             target = ITA
             modifier = medium_decrease
         }
-
         TUR = { set_country_flag = flag_tur_help_will_come }
-        
-        ai_chance = {
-            base = 1
-            modifier = {
-                factor = 0.5
-                has_opinion = {
-                    target = TUR
-                    value > 50
-                }
-            }
-        }
     }
 }
 
