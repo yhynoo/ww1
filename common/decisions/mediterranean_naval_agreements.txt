@@ -1,0 +1,46 @@
+dc_mediterranean_naval_agreements = {
+    suggest_naval_access_uk = {
+        cost = 75
+        fire_only_once = yes
+
+        complete_effect = {
+            ENG = {
+                country_event = { id = mediterranean_naval_agreements.1 hours = 12 random_hours = 6 }
+            }
+        }
+    }
+
+    ask_to_join_entente = {
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            is_in_faction = no
+            ENG = { is_faction_leader = yes }
+        }
+
+        complete_effect = {
+            ENG = {
+                country_event = { id = mediterranean_naval_agreements.4 hours = 12 random_hours = 6 }
+            }
+        }
+    }
+
+    invite_british_naval_instructors = {
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            is_ally_with = ENG
+        }
+
+        complete_effect = {
+            navy_experience = 50
+            add_doctrine_cost_reduction = {
+                cost_reduction = 0.5
+                uses = 1
+                category = naval_doctrine
+            }
+        }
+    }
+}

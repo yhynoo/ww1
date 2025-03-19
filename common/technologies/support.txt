@@ -11,7 +11,7 @@ technologies = {
     @1920 = 20
 
     tech_support = {
-        enable_equipments = { support_equipment }
+        enable_equipments = { support_equipment_1 }
 
         path = {
 			leads_to_tech = tech_engineers
@@ -123,6 +123,7 @@ technologies = {
         enable_subunits = {
             recon
             armored_car_recon
+            light_tank_recon
         }
 
         path = {
@@ -369,6 +370,46 @@ technologies = {
         folder = {
 			name = support_folder
 			position = { x = 0 y = 0 }
+		}
+
+        path = {
+            leads_to_tech = improved_train
+			research_cost_coeff = 1
+        }
+
+        categories = {
+			train_tech
+		}
+    }
+    improved_train = {
+        enable_equipments = { train_equipment_2 }
+
+        research_cost = 2
+        start_year = 1912
+
+        folder = {
+			name = support_folder
+			position = { x = 0 y = @1912 }
+		}
+
+        path = {
+            leads_to_tech = advanced_train
+			research_cost_coeff = 1
+        }
+
+        categories = {
+			train_tech
+		}
+    }
+    advanced_train = {
+        enable_equipments = { train_equipment_3 }
+
+        research_cost = 2
+        start_year = 1916
+
+        folder = {
+			name = support_folder
+			position = { x = 0 y = @1916 }
 		}
 
         categories = {

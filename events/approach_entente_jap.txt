@@ -1,0 +1,159 @@
+add_namespace = approach_entente_jap
+
+country_event = {
+    id = approach_entente_jap.1
+    title = "Japan Wants to Join the Entente"
+    desc = approach_entente_jap.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        news_event = { id = approach_entente_jap.2 hours = 12 random_hours = 6 }
+        name = "Welcome."
+        add_to_faction = JAP
+    }
+
+    option = {
+        JAP = { news_event = { id = approach_entente_jap.3 hours = 12 random_hours = 6 } }
+        name = "This is too much."
+    }
+}
+
+news_event = {
+    id = approach_entente_jap.2
+    title = "Japan Joins the Entente!"
+    desc = approach_entente_jap.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Right."
+    }
+}
+
+news_event = {
+    id = approach_entente_jap.3
+    title = "UK Denies Our Request"
+    desc = approach_entente_jap.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "That's a shame."
+    }
+}
+
+country_event = {
+    id = approach_entente_jap.4
+    title = "Japan Demands Tsingtao!"
+    desc = approach_entente_jap.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let them have it."
+
+        news_event = { id = approach_entente_jap.5 hours = 12 random_hours = 6 }
+        743 = { transfer_state_to = JAP }
+    }
+
+    option = {
+        name = "No way!"
+        
+        JAP = {
+            news_event = { id = approach_entente_jap.6 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = GER
+                type = take_claimed_state
+            }
+        }
+    }
+}
+
+news_event = {
+    id = approach_entente_jap.5
+    title = "Japan Takes Over Tsingtao"
+    desc = approach_entente_jap.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Right."
+    }
+}
+
+news_event = {
+    id = approach_entente_jap.6
+    title = "Germany Won't Hand Over Tsingtao"
+    desc = approach_entente_jap.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "That's not good."
+    }
+}
+
+country_event = {
+    id = approach_entente_jap.7
+    title = "Japan Demands the Pacific Islands!"
+    desc = approach_entente_jap.7.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let them have it."
+
+        news_event = { id = approach_entente_jap.8 hours = 12 random_hours = 6 }
+        every_state = {
+            limit = {
+                or = {
+                    or = {
+                        state = 633
+                        state = 684
+                    }
+                    is_owned_by = GER
+                }
+            }
+            transfer_state_to = JAP
+        }
+    }
+
+    option = {
+        name = "No way!"
+        JAP = {
+            news_event = { id = approach_entente_jap.9 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = GER
+                type = take_claimed_state
+            }
+        }
+    }
+}
+
+news_event = {
+    id = approach_entente_jap.8
+    title = "Japan Takes Over the German Pacific"
+    desc = approach_entente_jap.8.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Right."
+    }
+}
+
+news_event = {
+    id = approach_entente_jap.9
+    title = "Germany Won't Hand Over the Pacific Islands"
+    desc = approach_entente_jap.9.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "That's not good."
+    }
+}

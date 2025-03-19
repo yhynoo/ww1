@@ -1,0 +1,97 @@
+add_namespace = mediterranean_naval_agreements
+
+# Request for mutual naval access decision events
+country_event = {
+    id = mediterranean_naval_agreements.1
+    title = "Italy Proposes Naval Cooperation"
+    desc = mediterranean_naval_agreements.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This could be beneficial."
+        
+        give_military_access = ITA
+        navy_experience = 50
+
+        ITA = { 
+            give_military_access = ENG
+            news_event = { id = mediterranean_naval_agreements.2 hours = 12 random_hours = 6 }
+        }
+    }
+
+    option = {
+        ITA = { news_event = { id = mediterranean_naval_agreements.3 hours = 12 random_hours = 6 } }
+        name = "We have no need for this."
+    }
+}
+
+news_event = {
+    id = mediterranean_naval_agreements.2
+    title = "UK Accepts Naval Cooperation"
+    desc = mediterranean_naval_agreements.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a step forward."
+        navy_experience = 50
+    }
+}
+
+news_event = {
+    id = mediterranean_naval_agreements.3
+    title = "UK Rejects Naval Cooperation"
+    desc = mediterranean_naval_agreements.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A wasted opportunity."
+    }
+}
+
+# Request to Join Entente decision events
+country_event = {
+    id = mediterranean_naval_agreements.4
+    title = "Italy Seeks to Join the Entente"
+    desc = mediterranean_naval_agreements.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        news_event = { id = mediterranean_naval_agreements.5 hours = 12 random_hours = 6 }
+        name = "Welcome aboard!"
+        add_to_faction = ITA
+    }
+
+    option = {
+        ITA = { news_event = { id = mediterranean_naval_agreements.6 hours = 12 random_hours = 6 } }
+        name = "We must decline."
+    }
+}
+
+news_event = {
+    id = mediterranean_naval_agreements.5
+    title = "Italy Joins the Entente!"
+    desc = mediterranean_naval_agreements.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Good news for the alliance."
+    }
+}
+
+news_event = {
+    id = mediterranean_naval_agreements.6
+    title = "UK Rejects Italian Proposal"
+    desc = mediterranean_naval_agreements.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A disappointing outcome."
+    }
+}

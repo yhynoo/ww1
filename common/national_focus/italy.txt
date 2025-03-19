@@ -801,6 +801,12 @@
         prerequisite = { focus = ITA_seek_alliances }
         completion_reward = {
             news_event = { id = across_the_alps.0 hours = 12 random_hours = 6}
+            GER = {
+                add_opinion_modifier = {
+                    target = ITA
+                    modifier = medium_increase
+                }
+            }
         }
     }
 
@@ -815,6 +821,12 @@
 
         prerequisite = { focus = ITA_seek_alliances }
         completion_reward = {
+            ENG = {
+                add_opinion_modifier = {
+                    target = ITA
+                    modifier = medium_increase
+                }
+            }
         }
     }
 
@@ -856,7 +868,7 @@
     ## monarchy
     focus = {
         id = ITA_house_savoy
-        icon = GFX_focus_generic_internal_stability
+        icon = GFX_focus_generic_stabilize_monarchy
 
         relative_position_id = ITA_political_ambitions
         x = 0

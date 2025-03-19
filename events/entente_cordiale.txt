@@ -1,44 +1,47 @@
+# Event file for France seeking closer ties with the United Kingdom, under the 'entente_cordiale' namespace.
+
 add_namespace = entente_cordiale
 
 country_event = {
     id = entente_cordiale.1
-    title = "France Seeks Alliance"
-    desc = entente_cordiale.1:d
+    title = "France Seeks to Join the Entente"
+    desc = entente_cordiale.1.d
 
     is_triggered_only = yes
 
     option = {
-        name = "A great idea."
-        add_to_faction = FRA
+        name = "Welcome to the Entente!"
         news_event = { id = entente_cordiale.2 hours = 12 random_hours = 6 }
+        add_to_faction = FRA
     }
+
     option = {
-        name = "We don't need a war in Europe."
-        FRA = { news_event = { id = entente_cordiale.2 hours = 12 random_hours = 6 } }
+        name = "We cannot accept at this time."
+        FRA = { news_event = { id = entente_cordiale.3 hours = 12 random_hours = 6 } }
     }
 }
 
 news_event = {
     id = entente_cordiale.2
-    title = "France Allies with Britain"
-    desc = entente_cordiale.2:d
+    title = "[FRA.GetName] Joins the Entente!"
+    desc = entente_cordiale.2.d
 
     is_triggered_only = yes
     major = yes
 
     option = {
-        name = "Right."
+        name = "A new chapter begins."
     }
 }
 
 news_event = {
     id = entente_cordiale.3
-    title = "France Allies with Britain"
-    desc = entente_cordiale.3:d
+    title = "[ENG.GetName] Rejects Our Proposal"
+    desc = entente_cordiale.3.d
 
     is_triggered_only = yes
 
     option = {
-        name = "What a shame."
+        name = "This is unfortunate."
     }
 }

@@ -28,7 +28,7 @@ technologies = {
     }
     armored_car_1912 = {
         enable_subunits = { armored_car }
-        enable_equipments = { gw_armored_car_equipment }
+        enable_equipments = { armored_car_equipment_0 }
         categories = { mechanized }
 
         research_cost = 2
@@ -198,9 +198,26 @@ technologies = {
         research_cost = 3
         start_year = 1918
 
+        path = {
+            leads_to_tech = light_1920
+            research_cost_coeff = 1
+        }
+
         folder = {
             name = armour_folder
             position = { x = 2 y = @1918 }
+        }
+    }
+    light_1920 = {
+        enable_equipments = { light_tank_equipment_3 }
+        categories = { armor }
+
+        research_cost = 3
+        start_year = 1920
+
+        folder = {
+            name = armour_folder
+            position = { x = 2 y = @1920 }
         }
     }
 }

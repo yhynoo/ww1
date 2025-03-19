@@ -1,0 +1,121 @@
+# All equipment based on light tank chassis
+
+equipments = {
+
+	armored_car_equipment = {
+		year = 1912
+	
+		is_archetype = yes
+		is_buildable = no
+		is_convertable = yes
+		picture = archetype_armored_car_equipment			
+		type = motorized
+		group_by = archetype
+		
+		interface_category = interface_category_armor
+		
+		upgrades = {
+			tank_reliability_upgrade
+			ac_engine_upgrade
+			tank_armor_upgrade
+			tank_gun_upgrade
+		}
+
+		#Misc Abilities
+		maximum_speed 	= 5
+		reliability 	= 0.5
+
+		#Defensive Abilities
+		defense 		= 6
+		breakthrough 	= 4.5
+		hardness 		= 0.5
+		armor_value 	= 10
+
+		#Offensive Abilities
+		soft_attack 	= 6.6
+		hard_attack 	= 1.2
+		ap_attack 		= 2
+		air_attack 		= 0
+
+		#Space taken in convoy
+		lend_lease_cost = 10
+		
+		build_cost_ic 	= 6
+		resources = {
+			steel 		= 2
+		}
+
+		fuel_consumption 	= 1.8
+	}
+
+	# 1912 Armored Car
+	armored_car_equipment_0 = {
+		year = 1912
+	
+		archetype = armored_car_equipment
+		priority = 5
+		visual_level = 0
+	
+		#Misc Abilities
+		maximum_speed 	= 5
+		reliability 	= 0.65
+
+		#Defensive Abilities
+		defense 		= 8
+		breakthrough 	= 4.5
+		hardness 		= 0.5
+		armor_value 	= 10
+
+		#Offensive Abilities
+		soft_attack 	= 6.6
+		hard_attack 	= 1.2
+		ap_attack 		= 2
+		air_attack 		= 0
+
+		#Space taken in convoy
+		lend_lease_cost = 10
+		
+		build_cost_ic 	= 6
+		resources = {
+			steel 		= 2
+		}
+
+		fuel_consumption 	= 1.8
+	}
+
+	armored_car_equipment_1 = {
+		year = 1914
+		
+		archetype = armored_car_equipment
+		parent = armored_car_equipment_0
+		priority = 10
+		visual_level = 0
+		is_convertable = yes
+
+		#Misc Abilities
+		maximum_speed 	= 9.8
+		reliability 	= 0.75
+
+		#Defensive Abilities
+		defense 		= 7.2
+		breakthrough 	= 6.8
+		hardness 		= 0.6
+		armor_value 	= 10
+
+		#Offensive Abilities
+		soft_attack 	= 8.9
+		hard_attack 	= 2.3
+		ap_attack 		= 3.8
+		air_attack 		= 0
+
+		#Space taken in convoy
+		lend_lease_cost = 10
+		
+		build_cost_ic 	= 7.8
+		resources = {
+			steel 		= 2
+		}
+
+		fuel_consumption 	= 2
+	}
+}

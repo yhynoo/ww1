@@ -162,7 +162,7 @@
         prerequisite = { 
             focus = FRA_artillery
             focus = FRA_aircraft
-            focus = FRA_alpini
+            focus = FRA_armor
         }
         completion_reward = {
             army_experience = 100
@@ -779,12 +779,12 @@
         id = FRA_the_levant
         icon = GFX_focus_FRA_the_levant
 
-        relative_position_id = FRA_international_affairs
-        x = -3
+        relative_position_id = FRA_belgian_crisis
+        x = -1
         y = 1
 
         cost = 10
-        prerequisite = { focus = FRA_international_affairs }
+        prerequisite = { focus = FRA_belgian_crisis }
         completion_reward = {
         }
     }
@@ -793,42 +793,22 @@
         icon = GFX_focus_FRA_entente_cordiale
 
         relative_position_id = FRA_international_affairs
-        x = -1
+        x = -3
         y = 1
+
+        available = {
+            is_in_faction = no
+        }
 
         cost = 10
         prerequisite = { focus = FRA_international_affairs }
         completion_reward = {
-        }
-    }
-    focus = {
-        id = FRA_diplomatic_initiative
-        icon = GFX_focus_FRA_diplomatic_initiative
-
-        relative_position_id = FRA_entente_cordiale
-        x = 1
-        y = 1
-
-        cost = 10
-        prerequisite = { 
-            focus = FRA_entente_cordiale
-            focus = FRA_belgian_crisis
-        }
-        completion_reward = {
-            news_event = { id = opium_smuggling.0 hours = 12 random_hours = 6 }
-        }
-    }
-    focus = {
-        id = FRA_gloves_off
-        icon = GFX_focus_FRA_gloves_off
-
-        relative_position_id = FRA_diplomatic_initiative
-        x = 0
-        y = 1
-
-        cost = 10
-        prerequisite = { focus = FRA_diplomatic_initiative }
-        completion_reward = {
+            ENG = {
+                add_opinion_modifier = {
+                    target = FRA
+                    type = medium_increase
+                }
+            }
         }
     }
     focus = {
@@ -836,13 +816,30 @@
         icon = GFX_focus_FRA_belgian_crisis
 
         relative_position_id = FRA_international_affairs
-        x = 1
+        x = 0
         y = 1
 
         cost = 10
         prerequisite = { focus = FRA_international_affairs }
         completion_reward = {
             news_event = { id = belgian_crisis.0 hours = 12 random_hours = 6 }
+        }
+    }
+
+    focus = {
+        id = FRA_diplomatic_initiative
+        icon = GFX_focus_FRA_diplomatic_initiative
+
+        relative_position_id = FRA_belgian_crisis
+        x = 1
+        y = 1
+
+        cost = 10
+        prerequisite = {
+            focus = FRA_belgian_crisis
+        }
+        completion_reward = {
+            news_event = { id = opium_smuggling.0 hours = 12 random_hours = 6 }
         }
     }
 
@@ -861,8 +858,8 @@
         }
     }
     focus = {
-        id = FRA_appease_the_unions
-        icon = GFX_focus_FRA_appease_the_unions
+        id = FRA_legacy_of_paris_commune
+        icon = GFX_focus_generic_red_flags
 
         relative_position_id = FRA_democratic_reforms
         x = -1
@@ -871,11 +868,15 @@
         cost = 10
         prerequisite = { focus = FRA_democratic_reforms }
         completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_communism_tendencies
+                years = 1
+            }
         }
     }
     focus = {
-        id = FRA_petite_bourgeoisie
-        icon = GFX_focus_FRA_petite_bourgeoisie
+        id = FRA_republicanism
+        icon = GFX_focus_FRA_republicanism
 
         relative_position_id = FRA_democratic_reforms
         x = 1
@@ -884,37 +885,15 @@
         cost = 10
         prerequisite = { focus = FRA_democratic_reforms }
         completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_democratic_tendencies
+                years = 1
+            }
         }
     }
     focus = {
-        id = FRA_legacy_of_paris_commune
-        icon = GFX_focus_generic_red_flags
-
-        relative_position_id = FRA_appease_the_unions
-        x = 0
-        y = 1
-
-        cost = 10
-        prerequisite = { focus = FRA_appease_the_unions }
-        completion_reward = {
-        }
-    }
-    focus = {
-        id = FRA_republicanism
-        icon = GFX_focus_FRA_republicanism
-
-        relative_position_id = FRA_petite_bourgeoisie
-        x = 0
-        y = 1
-
-        cost = 10
-        prerequisite = { focus = FRA_petite_bourgeoisie }
-        completion_reward = {
-        }
-    }
-    focus = {
-        id = FRA_liberty_equality_fraternity
-        icon = GFX_focus_FRA_liberty_equality_fraternity
+        id = FRA_union_sacree
+        icon = GFX_focus_FRA_union_sacree
 
         relative_position_id = FRA_legacy_of_paris_commune
         x = 1
@@ -924,14 +903,35 @@
         prerequisite = { focus = FRA_legacy_of_paris_commune }
         prerequisite = { focus = FRA_republicanism }
         completion_reward = {
+            add_political_power = 150
             remove_ideas = sww1_idea_a_headless_rooster
+        }
+    }
+    focus = {
+        id = FRA_liberty_equality_fraternity
+        icon = GFX_focus_FRA_liberty_equality_fraternity
+
+        relative_position_id = FRA_union_sacree
+        x = 0
+        y = 1
+
+        cost = 10
+        prerequisite = { focus = FRA_union_sacree }
+        completion_reward = {
             add_stability = 0.1
+            every_state = {
+                limit = {
+                    is_owned_by = FRA
+                    not = { is_core_of = FRA }
+                }
+                add_core_of = FRA
+            }
         }
     }
 
     focus = {
         id = FRA_house_bourbon
-        icon = GFX_focus_generic_internal_stability
+        icon = GFX_focus_generic_stabilize_monarchy
 
         relative_position_id = FRA_political_ambitions
         x = 4
@@ -953,7 +953,7 @@
         icon = GFX_focus_generic_the_everlasting_spirit
 
         relative_position_id = FRA_house_bourbon
-        x = -1
+        x = 0
         y = 1
 
         available = {
@@ -977,12 +977,12 @@
         id = FRA_the_spanish_throne
         icon = GFX_focus_FRA_the_spanish_throne
 
-        relative_position_id = FRA_house_bourbon
-        x = 1
+        relative_position_id = FRA_restore_ancien_regime
+        x = -1
         y = 1
 
         cost = 10
-        prerequisite = { focus = FRA_house_bourbon }
+        prerequisite = { focus = FRA_restore_ancien_regime }
         completion_reward = {
             SPR = { country_event = { id = ancien_regime.1 hours = 12 random_hours = 6 } }
         }
@@ -1005,45 +1005,25 @@
             }
         }
 
-        relative_position_id = FRA_restore_ancien_regime
-        x = 1
-        y = 1
-
-        cost = 10
-        prerequisite = { 
-            focus = FRA_restore_ancien_regime
-            focus = FRA_the_spanish_throne
-        }
-        completion_reward = {
-        }
-    }
-    focus = {
-        id = FRA_catholic_league
-        icon = GFX_focus_ITA_appease_the_pope
-
-        relative_position_id = FRA_second_vienna_treaty
-        x = 0
-        y = 1
-
-        available = {
-            PAP = { exists = yes }
-        }
-
-        cost = 10
-        prerequisite = { focus = FRA_second_vienna_treaty }
-        completion_reward = {
-        }
-    }
-    focus = {
-        id = FRA_a_new_reconquista
-        icon = GFX_focus_FRA_a_new_reconquista
-
         relative_position_id = FRA_house_bourbon
         x = 3
         y = 1
 
         cost = 10
         prerequisite = { focus = FRA_house_bourbon }
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = FRA_across_the_atlantic
+        icon = GFX_focus_FRA_across_the_atlantic
+
+        relative_position_id = FRA_restore_ancien_regime
+        x = 1
+        y = 1
+
+        cost = 10
+        prerequisite = { focus = FRA_restore_ancien_regime }
         completion_reward = {
         }
     }

@@ -21,23 +21,18 @@ division_template = {
 	regiments = {
 		infantry = { x = 0 y = 0 }
 		infantry = { x = 0 y = 1 }
-		infantry = { x = 1 y = 0 }
-		infantry = { x = 1 y = 1 }
-		infantry = { x = 2 y = 0 }
-		infantry = { x = 2 y = 1 }
+		infantry = { x = 0 y = 2 }
 	}
 	priority = 0
 }
 division_template = {
-	name = "Cavalry Division"
-	division_names_group = ENG_CAV_01
+	name = "Cyclists Division"
+	division_names_group = ENG_INF_01
 	regiments = {
-		cavalry = { x = 0 y = 0 }
-		cavalry = { x = 0 y = 1 }
-		cavalry = { x = 1 y = 0 }
-		cavalry = { x = 1 y = 1 }
-		cavalry = { x = 2 y = 0 }
-		cavalry = { x = 2 y = 1 }
+		cyclist_infantry = { x = 0 y = 0 }
+		cyclist_infantry = { x = 0 y = 1 }
+		cyclist_infantry = { x = 1 y = 0 }
+		cyclist_infantry = { x = 1 y = 1 }
 	}
 	support = {
 		artillery = { x = 0 y = 0 }
@@ -64,7 +59,7 @@ units = {
     }
 	division = {
 		location = 540
-		division_template = "Cavalry Division"
+		division_template = "Cyclists Division"
         start_experience_factor = 0.8
     }
 

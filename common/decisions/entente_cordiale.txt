@@ -1,0 +1,54 @@
+dc_entente_cordiale = {
+
+    join_entente = {
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            is_in_faction = no
+            ENG = { is_faction_leader = yes }
+        }
+
+        complete_effect = {
+            ENG = {
+                country_event = { id = entente_cordiale.1 hours = 12 random_hours = 6 }
+            }
+        }
+    }
+
+    invite_british_naval_instructors = {
+        cost = 75
+        fire_only_once = yes
+
+        available = {
+            is_ally_with = ENG
+        }
+
+        complete_effect = {
+            naval_experience = 50
+            add_doctrine_cost_reduction = {
+                cost_reduction = 0.5
+                uses = 1
+                category = naval_doctrine
+            }
+        }
+    }
+
+    exchange_aircraft_development = {
+        cost = 75
+        fire_only_once = yes
+
+        available = {
+            is_ally_with = ENG
+        }
+
+        complete_effect = {
+            air_experience = 50
+            add_doctrine_cost_reduction = {
+                cost_reduction = 0.5
+                uses = 1
+                category = air_doctrine
+            }
+        }
+    }
+}

@@ -1,6 +1,6 @@
 dc_belgian_crisis = {
     demand_german_withdrawal_from_belgium = {
-        cost = 100
+        cost = 75
         available = {
             NOT = { has_war_with = GER }
             has_stability > 0.5
@@ -22,7 +22,7 @@ dc_belgian_crisis = {
         }
     }
     offer_flanders_takeover = {
-        cost = 100
+        cost = 75
         available = {
             NOT = { has_war_with = HOL }
             has_stability > 0.5
@@ -44,7 +44,7 @@ dc_belgian_crisis = {
         }
     }
     declare_belgium_demilitarized = {
-        cost = 150
+        cost = 100
         visible = {
             NOT = { has_country_flag = flag_belgium_annexed }
         }
@@ -71,7 +71,7 @@ dc_belgian_crisis = {
         }
     }
     annex_belgium = {
-        cost = 250
+        cost = 200
         visible = {
             NOT = { has_country_flag = flag_belgian_crisis_independent }
         }

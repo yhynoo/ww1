@@ -1,103 +1,80 @@
 on_actions = {
     on_startup = {
         effect = {
+            # assign dominion trees
+            every_country = {
+                limit = { is_subject = yes }
+                load_focus_tree = dominion_focus
+            }
+
             ENG = {
                 # titanic
-                news_event = { 
-                    id = vibeevents.1
-                    months = 3
-                    days = 12
-                }
+                news_event = { id = vibeevents.1 months = 3 days = 12 }
+
                 # movies
-                news_event = { 
-                    id = vibeevents.3
-                    months = 13
-                    random_days = 28
-                }
+                news_event = { id = vibeevents.3 months = 13 random_days = 28 }
+
                 # food on planes
-                news_event = { 
-                    id = vibeevents.6
-                    months = 24
-                    random_days = 28
-                }
+                news_event = { id = vibeevents.6 months = 24 random_days = 28 }
+
                 # airmail
-                news_event = { 
-                    id = vibeevents.14
-                    months = 61
-                    random_days = 8
-                }
+                news_event = { id = vibeevents.14 months = 61 random_days = 8 }
             }
             FRA = {
                 # neon
-                news_event = { 
-                    id = vibeevents.2
-                    months = 8
-                    days = 10
-                }
+                news_event = { id = vibeevents.2 months = 8 days = 10 }
+
                 # stravinsky
-                news_event = { 
-                    id = vibeevents.4
-                    months = 16
-                    days = 29
-                }
+                news_event = { id = vibeevents.4 months = 16 days = 29 }
+
                 # transfusion
-                news_event = { 
-                    id = vibeevents.7
-                    months = 27
-                    days = 5
-                }
+                news_event = { id = vibeevents.7 months = 27 days = 5 }
+
                 # sklodowska's nobel
-                news_event = { 
-                    id = vibeevents.11
-                    months = 51
-                    days = 20
-                }
+                news_event = { id = vibeevents.11 months = 51 days = 20 }
             }
             USA = {
                 # ford
-                news_event = {
-                    id = vibeevents.5
-                    months = 18
-                    days = 11
-                }
+                news_event = { id = vibeevents.5 months = 18 days = 11 }
+
                 # radio
-                news_event = {
-                    id = vibeevents.8
-                    months = 30
-                    random_days = 14
-                }
+                news_event = { id = vibeevents.8 months = 30 random_days = 14 }
+
                 # jazz
-                news_event = {
-                    id = vibeevents.9
-                    months = 41
-                    random_days = 30
-                }
+                news_event = { id = vibeevents.9 months = 41 random_days = 30 }
+
                 # ice cream
-                news_event = {
-                    id = vibeevents.12
-                    months = 60
-                    random_days = 30
-                }
+                news_event = { id = vibeevents.12 months = 60 random_days = 30 }
+
                 # washing machine
-                news_event = {
-                    id = vibeevents.13
-                    months = 61
-                    random_days = 28
-                }
+                news_event = { id = vibeevents.13 months = 61 random_days = 28 }
+
                 # hollywood
-                news_event = {
-                    id = vibeevents.15
-                    months = 77
-                    random_days = 28
-                }
+                news_event = { id = vibeevents.15 months = 77 random_days = 28 }
             }
             GER = {
                 # einstein
-                news_event = {
-                    id = vibeevents.10
-                    months = 44
-                    days = 23
+                news_event = { id = vibeevents.10 months = 44 days = 23 }
+            }
+        }
+    }
+
+    on_puppet = {
+        effect = {
+            ROOT = { load_focus_tree = dominion_focus keep_completed = yes }
+        }
+    }
+
+    on_state_control_changed = {
+        effect = {
+            if = {
+                limit = {
+                    ROOT = { 
+                        is_subject = yes
+                        not = { has_focus_tree = dominion_focus }
+                    }
                 }
+                ROOT = { load_focus_tree = dominion_focus keep_completed = yes }
             }
         }
     }

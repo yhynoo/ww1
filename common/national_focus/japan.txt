@@ -796,12 +796,16 @@
     }
     focus = {
         id = JAP_entente
-        icon = GFX_focus_JAP_entente
+        icon = GFX_focus_FRA_entente_cordiale
 
         relative_position_id = JAP_seek_alliances
         x = -2
         y = 1
         cost = 10
+
+        available = {
+            is_in_faction = no
+        }
 
         prerequisite = { focus = JAP_seek_alliances }
         completion_reward = {
@@ -822,9 +826,13 @@
         y = 1
         cost = 10
 
+        available = {
+            is_in_faction = no
+        }
+
         prerequisite = { focus = JAP_seek_alliances }
         completion_reward = {
-            ENG = { 
+            GER = { 
                 add_opinion_modifier = {
                     target = JAP
                     modifier = medium_increase
@@ -875,8 +883,17 @@
         y = 1
         cost = 10
 
+        available = {
+            democratic > 0.5
+        }
+
         prerequisite = { focus = JAP_taisho_era }
         completion_reward = {
+            add_ideas = sww1_idea_modern_democracy
+            set_politics = {
+                ruling_party = democratic
+                elections_allowed = yes
+            }
         }
     }
     focus = {
@@ -890,12 +907,21 @@
 
         prerequisite = { focus = JAP_taisho_era }
         completion_reward = {
+            add_political_power = 75
+            if = {
+                limit = { not = { has_idea = early_mobilization } }
+                add_ideas = early_mobilization
+            }
+            if = {
+                limit = { has_idea = early_mobilization }
+                add_ideas = partial_mobilization
+            }
         }
     }
 
     focus = {
         id = JAP_militarized_society
-        icon = GFX_focus_generic_military_coup
+        icon = GFX_focus_military_coup
 
         relative_position_id = JAP_political_ambitions
         x = 4
@@ -920,8 +946,15 @@
         y = 1
         cost = 10
 
+        available = {
+            authoritarianism > 0.5
+        }
+
         prerequisite = { focus = JAP_militarized_society }
         completion_reward = {
+            set_politics = {
+                ruling_party = authoritarianism
+            }
         }
     }
     focus = {
@@ -935,6 +968,8 @@
 
         prerequisite = { focus = JAP_militarized_society }
         completion_reward = {
+            add_stability = 0.1
+
         }
     }
     focus = {
@@ -948,6 +983,11 @@
 
         prerequisite = { focus = JAP_militarized_society }
         completion_reward = {
+            set_political_party = {
+                ideology = communism
+                popularity = 0
+            }
+            add_ideas = sww1_idea_anticommunism
         }
     }
 
@@ -978,6 +1018,11 @@
 
         prerequisite = { focus = JAP_constitutional_reform }
         completion_reward = {
+            add_stability = 0.1
+            promote_character = {
+                character = JAP_hirohito
+                ideology = absolutism
+            }
         }
     }
     

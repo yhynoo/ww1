@@ -133,45 +133,4 @@ dc_our_place_under_the_sun = {
             }
         }
     }
-
-    draft_askari_troops = {
-        available = {
-            any_state = {
-                or = {
-                    state = 546
-                    state = 768
-                    state = 769
-                }
-                is_controlled_by = GER
-            }
-            
-        }
-        fire_only_once = yes
-
-        cost = 75
-
-        complete_effect = {
-            random_state = {
-                limit = {
-                    or = {
-                        state = 546
-                        state = 768
-                        state = 769
-                    }
-                    is_controlled_by = GER
-                }
-                load_oob = GER_1912_Askari
-                create_unit = {
-                    division = "division_names_group = \"GER_GAR_01\" division_template = \"Askari Troops\" start_experience_factor = 0.2"
-                    owner = GER
-                    count = 2
-                }
-            }
-        }
-    }
-
-    form_deutsch_sudafrika = {
-        fire_only_once = yes
-        cost = 300
-    }
 }

@@ -781,6 +781,10 @@
         cost = 10
         prerequisite = { focus = SOV_political_ambitions }
         completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_prelude_to_the_great_war
+                years = 2
+            }
         }
     }
 
@@ -796,10 +800,6 @@
 
         prerequisite = { focus = SOV_international_affairs}
         completion_reward = {
-            add_timed_idea = {
-                idea = sww1_idea_prelude_to_the_great_war
-                years = 2
-            }
         }
     }
     focus = {
@@ -811,8 +811,18 @@
         y = 1
         cost = 10
 
+        available = {
+            is_in_faction = no
+        }
+
         prerequisite = { focus = SOV_seek_alliances}
         completion_reward = {
+            GER = { 
+                add_opinion_modifier = {
+                    target = SOV
+                    modifier = medium_increase
+                }
+            }
         }
     }
     focus = {
@@ -824,8 +834,18 @@
         y = 1
         cost = 10
 
+        available = {
+            is_in_faction = no
+        }
+
         prerequisite = { focus = SOV_seek_alliances}
         completion_reward = {
+            FRA = { 
+                add_opinion_modifier = {
+                    target = SOV
+                    modifier = medium_increase
+                }
+            }
         }
     }
     focus = {
@@ -847,7 +867,7 @@
     ## monarchy
     focus = {
         id = SOV_stabilize_monarchy
-        icon = GFX_focus_generic_internal_stability
+        icon = GFX_focus_generic_stabilize_monarchy
 
         relative_position_id = SOV_political_ambitions
         x = 0
@@ -883,7 +903,7 @@
     }
     focus = {
         id = SOV_chornaya_sotnya
-        icon = GFX_focus_SOV_chornaya_sotnya
+        icon = GFX_focus_military_coup
 
         relative_position_id = SOV_stabilize_monarchy
         x = 1
@@ -991,7 +1011,7 @@
         cost = 10
         prerequisite = { focus = SOV_rehabilitate_duma }
         completion_reward = {
-            news_event = {id = limited_self_determination_rus.0 hours = 12 random_hours = 6}
+            news_event = { id = limited_self_determination_rus.0 hours = 12 random_hours = 6 }
         }
     }
     focus = {
@@ -1005,18 +1025,16 @@
         cost = 10
         prerequisite = { focus = SOV_rehabilitate_duma }
         completion_reward = {
-            add_stability = 0.05
-            
-            remove_ideas = sww1_idea_democratic_tendencies
-            add_timed_idea = {
-                idea = sww1_idea_communism_tendencies
-                years = 1
+            add_stability = -0.05
+            swap_ideas = {
+                remove_idea = sww1_idea_looming_revolution
+                add_idea = sww1_idea_communism_tendencies
             }
         }
     }
     focus = {
-        id = SOV_grazhdanstvo
-        icon = GFX_focus_SOV_grazhdanstvo
+        id = SOV_socialist_education
+        icon = GFX_focus_SOV_socialist_education
 
         relative_position_id = SOV_peasant_and_workers_rights
         x = -1
@@ -1025,19 +1043,19 @@
         cost = 10
         prerequisite = { focus = SOV_peasant_and_workers_rights }
         completion_reward = {
-            add_ideas = sww1_idea_grazhdanstvo
+            add_ideas = sww1_idea_socialist_education
         }
     }
     focus = {
         id = SOV_kronstadt_uprising
-        icon = GFX_focus_revolution
+        icon = GFX_focus_SOV_kronstadt_uprising
 
         relative_position_id = SOV_peasant_and_workers_rights
         x = 2
         y = 1
 
         available = {
-            communist > 0.25
+            communism > 0.25
         }
 
         cost = 10

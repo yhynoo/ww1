@@ -33,6 +33,18 @@ dc_asia_for_the_asians = {
     }
 }
 
+dc_approach_entente_jap = {
+    visible = {
+        has_completed_focus = JAP_entente
+    }
+}
+
+approach_germany_jap = {
+    visible = {
+        has_completed_focus = JAP_approach_germany
+    }
+}
+
 dc_ausgleich = {
     allowed = {
         original_tag = AUS
@@ -96,11 +108,13 @@ dc_economic_mission_to_russia = {
     }
 }
 
-dc_established_guarantees = {
-    allowed = {
-        original_tag = SOV
+dc_entente_cordiale = {
+    visible = {
+        has_completed_focus = FRA_entente_cordiale
     }
+}
 
+dc_established_guarantees_rus = {
     visible = {
         has_completed_focus = SOV_established_guarantees
     }
@@ -125,6 +139,12 @@ dc_limited_self_determination = {
     }
 }
 
+dc_mediterranean_naval_agreements = {
+    visible = {
+        has_completed_focus = ITA_mediterranean_naval_agreements
+    }
+}
+
 dc_opium_smuggling = {
     visible = {
         or = {
@@ -142,6 +162,12 @@ dc_our_place_under_the_sun = {
 dc_panslavism = {
     visible = {
         has_completed_focus = SOV_panslavism
+    }
+}
+
+dc_realign_russia = {
+    visible = {
+        has_completed_focus = SOV_realignment
     }
 }
 
@@ -167,7 +193,6 @@ dc_second_vienna_treaty = {
                 tag = FRA
                 has_completed_focus = FRA_second_vienna_treaty
             }
-            tag = SPR
         }
         has_govenment = monarchism
     }

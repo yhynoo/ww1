@@ -765,26 +765,9 @@ focus_tree = {
         }
 
         relative_position_id = GER_weltpolitik
-        x = -3
+        x = -2
         y = 1
         cost = 10
-
-        prerequisite = { focus = GER_weltpolitik }
-        completion_reward = {
-        }
-    }
-    focus = {
-        id = GER_allied_by_blood
-        icon = GFX_focus_GER_allied_by_blood
-
-        relative_position_id = GER_weltpolitik
-        x = 0
-        y = 1
-        cost = 10
-
-        available = {
-            has_government = monarchism
-        }
 
         prerequisite = { focus = GER_weltpolitik }
         completion_reward = {
@@ -795,14 +778,11 @@ focus_tree = {
         icon = GFX_focus_GER_sun
 
         relative_position_id = GER_weltpolitik
-        x = 3
+        x = 1
         y = 1
         cost = 10
 
-        prerequisite = { 
-            focus = GER_berlin_baghdad
-            focus = GER_weltpolitik
-        }
+        prerequisite = { focus = GER_weltpolitik }
         completion_reward = {
         }
     }
@@ -828,7 +808,7 @@ focus_tree = {
     ## monarchy
     focus = {
         id = GER_stabilize_monarchy
-        icon = GFX_focus_generic_internal_stability
+        icon = GFX_focus_generic_stabilize_monarchy
 
         relative_position_id = GER_political_ambitions
         x = 0
@@ -863,8 +843,8 @@ focus_tree = {
         }
     }
     focus = {
-        id = GER_wacht_am_rhein
-        icon = GFX_focus_GER_wacht_am_rhein
+        id = GER_triumph_of_1870
+        icon = GFX_focus_GER_triumph_of_1870
 
         relative_position_id = GER_stabilize_monarchy
         x = 1
@@ -873,6 +853,7 @@ focus_tree = {
         cost = 10
         prerequisite = { focus = GER_stabilize_monarchy }
         completion_reward = {
+            add_war_support = 0.1
         }
     }
     focus = {
@@ -880,15 +861,40 @@ focus_tree = {
         icon = GFX_focus_GER_burgfrieden
 
         relative_position_id = GER_heil_dir_im_siegerkranz
-        x = 1
+        x = 0
         y = 1
 
         cost = 10
         prerequisite = { 
             focus = GER_heil_dir_im_siegerkranz
-            focus = GER_wacht_am_rhein
         }
+        available = {
+            has_war = yes
+        }
+
         completion_reward = {
+            add_stability = 0.05
+            add_timed_idea = {
+                idea = sww1_idea_burgfrieden
+                years = 2
+            }
+        }
+    }
+    focus = {
+        id = GER_wacht_am_rhein
+        icon = GFX_focus_GER_wacht_am_rhein
+
+        relative_position_id = GER_triumph_of_1870
+        x = 0
+        y = 1
+
+        cost = 10
+        prerequisite = { focus = GER_triumph_of_1870 }
+        completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_die_wacht_am_rhein
+                years = 2
+            }
         }
     }
     focus = {
@@ -896,19 +902,32 @@ focus_tree = {
         icon = GFX_focus_GER_deutschland_uber_alles
 
         relative_position_id = GER_burgfrieden
-        x = 0
+        x = 1
         y = 1
 
         cost = 10
         prerequisite = { focus = GER_burgfrieden }
+        prerequisite = { focus = GER_wacht_am_rhein }
+
         completion_reward = {
+            add_stability = 0.05
+            if = {
+                limit = { has_idea = sww1_idea_die_wacht_am_rhein}
+                swap_ideas = {
+                    remove_idea = sww1_idea_die_wacht_am_rhein
+                    add_idea = sww1_idea_germany_above_all
+                }
+            }
+            else = {
+                add_ideas = sww1_idea_germany_above_all
+            }
         }
     }
 
     ## reforms
     focus = {
-        id = GER_dead_end
-        icon = GFX_focus_GER_dead_end
+        id = GER_empower_the_reichstag
+        icon = GFX_focus_GER_empower_the_reichstag
 
         relative_position_id = GER_political_ambitions
         x = 4
@@ -929,38 +948,15 @@ focus_tree = {
         }
     }
     focus = {
-        id = GER_empower_the_reichstag
-        icon = GFX_focus_GER_empower_the_reichstag
-
-        relative_position_id = GER_dead_end
-        x = -1
-        y = 1
-
-        available = {
-            democratic > 0.5
-            has_stability > 0.3
-        }
-
-        cost = 10
-        prerequisite = { focus = GER_dead_end }
-        completion_reward = {
-            set_politics = {
-                ruling_party = democratic
-                elections_allowed = yes
-                election_frequency = 48
-            }
-        }
-    }
-    focus = {
         id = GER_abolish_monarchy
-        icon = GFX_focus_GER_abolish_monarchy
+        icon = GFX_focus_generic_abolish_monarchy
 
-        relative_position_id = GER_dead_end
+        relative_position_id = GER_empower_the_reichstag
         x = 2
         y = 1
 
         cost = 10
-        prerequisite = { focus = GER_dead_end }
+        prerequisite = { focus = GER_empower_the_reichstag }
         completion_reward = {
             add_stability = 0.05
             
@@ -975,19 +971,18 @@ focus_tree = {
         id = GER_weimar_constitution
         icon = GFX_focus_GER_weimar_constitution
 
-        relative_position_id = GER_abolish_monarchy
-        x = -3
+        relative_position_id = GER_empower_the_reichstag
+        x = -1
         y = 1
 
         available = {
             has_stability > 0.5
-            democratic > 0.5
+            monarchism < 0.5
         }
 
         cost = 10
         prerequisite = { 
             focus = GER_empower_the_reichstag
-            focus = GER_abolish_monarchy
         }
         completion_reward = {
             add_political_power = 150
@@ -1001,7 +996,7 @@ focus_tree = {
         icon = GFX_focus_generic_red_flags
 
         relative_position_id = GER_abolish_monarchy
-        x = 0
+        x = -1
         y = 1
 
         available = {
@@ -1029,7 +1024,7 @@ focus_tree = {
         icon = GFX_focus_revolution
 
         relative_position_id = GER_abolish_monarchy
-        x = 3
+        x = 2
         y = 1
 
         available = {

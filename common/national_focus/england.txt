@@ -754,7 +754,7 @@ focus_tree = {
         icon = GFX_focus_generic_political_effort
 
         relative_position_id = ENG_economic_development
-        x = -2
+        x = 0
         y = 5
         cost = 10
 
@@ -763,11 +763,11 @@ focus_tree = {
         }
     }
     focus = {
-        id = ENG_interventionism
+        id = ENG_international_affairs
         icon = GFX_focus_generic_interventionism
 
         relative_position_id = ENG_political_ambitions
-        x = -2
+        x = -5
         y = 1
         cost = 10
 
@@ -781,208 +781,297 @@ focus_tree = {
         }
     }
     focus = {
-        id = ENG_anyone_but_the_french
-        icon = GFX_focus_ENG_anyone_but_the_french
+        id = ENG_new_approach
+        icon = GFX_focus_ENG_new_approach
 
-        relative_position_id = ENG_interventionism
-        x = -4
-        y = 1
-        cost = 10
-
-        prerequisite = { focus = ENG_interventionism }
-        mutually_exclusive = { focus = ENG_reaffirm_the_entente }
-        completion_reward = {
-        }
-    }
-    focus = {
-        id = ENG_reaffirm_the_entente
-        icon = GFX_focus_generic_seek_alliances
-
-        relative_position_id = ENG_interventionism
+        relative_position_id = ENG_international_affairs
         x = -2
         y = 1
         cost = 10
 
-        prerequisite = { focus = ENG_interventionism }
-        mutually_exclusive = { focus = ENG_anyone_but_the_french }
+        prerequisite = { focus = ENG_international_affairs }
         completion_reward = {
-            # allows inviting FRA, ITA and RUS
-            # allows giving guarantees to DEN and HOL
+
         }
     }
     focus = {
-        id = ENG_focus_on_middle_east
-        icon = GFX_focus_ENG_focus_on_middle_east
+        id = ENG_approach_ottomans
+        icon = GFX_focus_ENG_approach_ottomans
 
-        relative_position_id = ENG_interventionism
-        x = 0
+        relative_position_id = ENG_new_approach
+        x = -2
         y = 1
         cost = 10
 
-        prerequisite = { focus = ENG_interventionism }
+        prerequisite = { focus = ENG_new_approach }
         completion_reward = {
+
         }
     }
     focus = {
-        id = ENG_confront_the_ottomans
-        icon = GFX_focus_ITA_challenge_the_ottomans
+        id = ENG_appease_germany
+        icon = GFX_focus_ENG_appease_germany
 
-        relative_position_id = ENG_focus_on_middle_east
-        x = -1
-        y = 1
-        cost = 10
-
-        mutually_exclusive = { focus = ENG_sway_the_ottomans }
-        prerequisite = { focus = ENG_focus_on_middle_east }
-        completion_reward = {
-        }
-    }
-    focus = {
-        id = ENG_sway_the_ottomans
-        icon = GFX_focus_GER_berlin_baghdad
-
-        relative_position_id = ENG_focus_on_middle_east
+        relative_position_id = ENG_new_approach
         x = 1
         y = 1
         cost = 10
 
-        mutually_exclusive = { focus = ENG_confront_the_ottomans }
-        prerequisite = { focus = ENG_focus_on_middle_east }
+        prerequisite = { focus = ENG_new_approach }
         completion_reward = {
+
         }
     }
-    
+
     focus = {
-        id = ENG_colonial_policy
-        icon = GFX_focus_ENG_colonial_policy
+        id = ENG_reaffirm_the_entente
+        icon = GFX_focus_ENG_reaffirm_the_entente
+
+        relative_position_id = ENG_international_affairs
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ENG_international_affairs }
+        completion_reward = {
+
+        }
+    }
+
+    focus = {
+        id = ENG_home_rule_crisis
+        icon = GFX_focus_ENG_home_rule_crisis
 
         relative_position_id = ENG_political_ambitions
-        x = 2
+        x = 0
         y = 1
         cost = 10
 
         prerequisite = { focus = ENG_political_ambitions }
         completion_reward = {
+            add_stability = -0.1
+            every_state = {
+                limit = {
+                    is_core_of = IRE
+                    is_owned_by = ENG
+                }
+                add_resistance = 10
+            }
         }
     }
     focus = {
-        id = ENG_sun_never_sets
-        icon = GFX_focus_ENG_sun_never_sets
+        id = ENG_government_of_ireland
+        icon = GFX_focus_ENG_government_of_ireland
 
-        relative_position_id = ENG_colonial_policy
-        x = 0
+        relative_position_id = ENG_home_rule_crisis
+        x = -2
         y = 1
         cost = 10
 
-        available = {
-            # requires UK to actually have colonies
-        }
+        prerequisite = { focus = ENG_home_rule_crisis }
+        mutually_exclusive = { focus = ENG_enforce_the_union }
 
-        prerequisite = { focus = ENG_colonial_policy }
-        mutually_exclusive = { focus = ENG_anti_colonialism }
         completion_reward = {
-            add_stability = 0.15
+            add_timed_idea = {
+                idea = sww1_idea_democratic_tendencies
+                years = 1
+            }
+            every_state = {
+                limit = {
+                    is_core_of = IRE
+                    is_owned_by = ENG
+                }
+                transfer_state_to = IRE
+            }
+            puppet = IRE
         }
     }
     focus = {
-        id = ENG_resource_extraction
-        icon = GFX_focus_ENG_resource_extraction
+        id = ENG_peoples_budget
+        icon = GFX_focus_ENG_peoples_budget
 
-        relative_position_id = ENG_sun_never_sets
-        x = -1
+        relative_position_id = ENG_government_of_ireland
+        x = -2
         y = 1
         cost = 10
 
-        prerequisite = { focus = ENG_sun_never_sets }
+        prerequisite = { focus = ENG_government_of_ireland }
         completion_reward = {
-            # add rubber in malaya
-            # add factories in india and australia
+            add_popularity = {
+                ideology = democratic
+                popularity = 0.05
+            }
+            add_ideas = sww1_idea_peoples_budget
         }
     }
     focus = {
-        id = ENG_manpower_extraction
-        icon = GFX_focus_ENG_manpower_extraction
+        id = ENG_overseas_representation
+        icon = GFX_focus_ENG_overseas_representation
 
-        relative_position_id = ENG_sun_never_sets
+        relative_position_id = ENG_government_of_ireland
         x = 1
         y = 1
         cost = 10
 
-        prerequisite = { focus = ENG_sun_never_sets }
+        prerequisite = { focus = ENG_government_of_ireland }
         completion_reward = {
+            add_political_power = 100
+            all_subject_countries = {
+                add_autonomy_score = {
+                    value = -200
+                }
+            }
         }
     }
 
     focus = {
-        id = ENG_anti_colonialism
-        icon = GFX_focus_USA_anticolonialism
+        id = ENG_enforce_the_union
+        icon = GFX_focus_ENG_enforce_the_union
 
-        relative_position_id = ENG_colonial_policy
-        x = 3
+        relative_position_id = ENG_home_rule_crisis
+        x = 2
         y = 1
         cost = 10
 
-        prerequisite = { focus = ENG_colonial_policy }
-        mutually_exclusive = { focus = ENG_sun_never_sets }
+        prerequisite = { focus = ENG_home_rule_crisis }
+        mutually_exclusive = { focus = ENG_government_of_ireland }
+
         completion_reward = {
-            add_stability = 0.15
+            add_stability = 0.05
+            add_timed_idea = {
+                idea = sww1_idea_monarchism_tendencies
+                years = 1
+            }
         }
     }
     focus = {
-        id = ENG_assisted_liberation
-        icon = GFX_focus_ENG_assisted_liberation
+        id = ENG_royal_authority
+        icon = GFX_focus_ENG_royal_authority
 
-        relative_position_id = ENG_anti_colonialism
-        x = 0
+        relative_position_id = ENG_enforce_the_union
+        x = -1
         y = 1
         cost = 10
 
-        prerequisite = { focus = ENG_anti_colonialism }
+        prerequisite = { focus = ENG_enforce_the_union }
         completion_reward = {
+            add_popularity = {
+                ideology = monarchism
+                popularity = 0.05
+            }
+            add_ideas = sww1_idea_king_george_v
         }
     }
     focus = {
-        id = ENG_united_nations_initiative
-        icon = GFX_focus_ENG_united_nations_initiative
+        id = ENG_god_save_the_king
+        icon = GFX_focus_ENG_god_save_the_king
 
-        relative_position_id = ENG_anti_colonialism
+        relative_position_id = ENG_enforce_the_union
         x = 2
         y = 1
         cost = 10
 
         available = {
-            or = {
-                is_faction_leader = yes
-                is_in_faction = no
-            }
+            monarchism > 0.5
         }
 
-        prerequisite = { focus = ENG_anti_colonialism }
+        prerequisite = { focus = ENG_enforce_the_union }
         completion_reward = {
-            if = {
-                limit = { is_faction_leader = yes }
-                dismantle_faction = yes
+            add_war_support = 0.1
+            set_politics = {
+                ruling_party = monarchism
+                elections_allowed = no
             }
-            if = {
-                limit = { USA = { is_faction_leader = no } }
-                create_faction = "United Nations Initiative"
-            }
-            # unlocks decisions to join the US faction if one exists, and to create wargoals on all colonial nations (FRA, GER, HOL, SPA, TUR)
         }
     }
-    focus = {
-        id = ENG_legacy_of_the_empire
-        icon = GFX_focus_ENG_legacy_of_the_empire
 
-        relative_position_id = ENG_manpower_extraction
+    focus = {
+        id = ENG_sun_never_sets
+        icon = GFX_focus_ENG_sun_never_sets
+
+        relative_position_id = ENG_overseas_representation
         x = 1
         y = 1
         cost = 10
 
         prerequisite = { 
-            focus = ENG_manpower_extraction
-            focus = ENG_assisted_liberation
+            focus = ENG_overseas_representation
+            focus = ENG_royal_authority
         }
+        completion_reward = {
+            add_ideas = sww1_idea_sun_never_sets
+        }
+    }
+
+    focus = {
+        id = ENG_free_the_dominions
+        icon = GFX_focus_ENG_free_the_dominions
+
+        relative_position_id = ENG_political_ambitions
+        x = 5
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ENG_political_ambitions }
+        completion_reward = {
+            all_subject_countries = {
+                add_autonomy_score = {
+                    value = 200
+                }
+            }
+        }
+    }
+    focus = {
+        id = ENG_reshape_the_commonwealth
+        icon = GFX_focus_ENG_reshape_the_commonwealth
+
+        relative_position_id = ENG_free_the_dominions
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ENG_free_the_dominions }
+        completion_reward = {
+
+        }
+    }
+    focus = {
+        id = ENG_statebuilding
+        icon = GFX_focus_ENG_statebuilding
+
+        relative_position_id = ENG_free_the_dominions
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ENG_free_the_dominions }
+        completion_reward = {
+
+        }
+    }
+    focus = {
+        id = ENG_free_india
+        icon = GFX_focus_ENG_free_india
+
+        relative_position_id = ENG_statebuilding
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ENG_statebuilding }
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = ENG_free_australia
+        icon = GFX_focus_ENG_free_india
+
+        relative_position_id = ENG_statebuilding
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ENG_statebuilding }
         completion_reward = {
         }
     }

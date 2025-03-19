@@ -1,95 +1,219 @@
 add_namespace = second_vienna_treaty
 
+news_event = {
+    id = second_vienna_treaty.0
+    title = "Austria-Hungary Reorients Foreign Politics"
+    desc = second_vienna_treaty.0.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+# INVITE TO ALLIANCE
+
 country_event = {
-	id = second_vienna_treaty.0
-	title = "[FROM.GetName] Offers Alliance!"
-	desc = second_vienna_treaty.0.d
+    id = second_vienna_treaty.1
+    title = "[FROM.GetName] Proposes an Alliance"
+    desc = second_vienna_treaty.1.d
 
-	is_triggered_only = yes
+    is_triggered_only = yes
 
-	option = {
-		name = "Great idea!"
-		FROM = {
-			IF = {
-				limit = { is_in_faction = no }
+    option = {
+        name = "This will strengthen us."
+        news_event = { id = second_vienna_treaty.2 hours = 12 random_hours = 6 }
+		if = {
+			limit = {
+				ROOT = { is_faction_leader = no }
 				create_faction = "Second Vienna Treaty"
 			}
-			add_to_faction = ROOT
-			news_event = { id = second_vienna_treaty.1 hours = 12 random_hours = 6 }
 		}
-	}
-	option = {
-		name = "No need for another war in Europe."
-		FROM = {
-			news_event = { id = second_vienna_treaty.2 hours = 12 random_hours = 6 }
+        add_to_faction = ROOT
+    }
+
+    option = {
+        name = "We must decline."
+        FROM = { news_event = { id = second_vienna_treaty.3 hours = 12 random_hours = 6 } }
+    }
+}
+
+news_event = {
+    id = second_vienna_treaty.2
+    title = "[FROM.GetName] Joins Our Alliance!"
+    desc = second_vienna_treaty.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A new order takes shape."
+    }
+}
+
+news_event = {
+    id = second_vienna_treaty.3
+    title = "[FROM.GetName] Refuses Our Offer"
+    desc = second_vienna_treaty.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A disappointing outcome."
+    }
+}
+
+# DEMAND VENETO
+
+country_event = {
+    id = second_vienna_treaty.4
+    title = "[AUS.GetName] Demands Veneto!"
+    desc = second_vienna_treaty.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must yield."
+        news_event = { id = second_vienna_treaty.5 hours = 12 random_hours = 6 }
+        every_state = {
+                limit = {
+                    or = {
+                        state = 159
+                        state = 160
+                    }
+                    is_owned_by = ITA
+                }
+                transfer_state_to = AUS
+            }
+    }
+
+    option = {
+        name = "Never!"
+        AUS = { 
+			news_event = { id = second_vienna_treaty.6 hours = 12 random_hours = 6 }
+			create_wargoal = {
+				target = ITA
+				type = take_claimed_state
+			}
 		}
-	}
+    }
 }
 
 news_event = {
-	id = second_vienna_treaty.1
-	title = "[FROM.GetName] Joins the Second Vienna Treaty"
-	desc = second_vienna_treaty.0.d
+    id = second_vienna_treaty.5
+    title = "Austria Takes Control of Veneto"
+    desc = second_vienna_treaty.5.d
 
-	is_triggered_only = yes
+    is_triggered_only = yes
     major = yes
 
-	option = {
-		name = "Wonderful!"
-	}
+    option = {
+        name = "A historical restoration."
+    }
 }
 
 news_event = {
-	id = second_vienna_treaty.2
-	title = "[FROM.GetName] Declines!"
-	desc = second_vienna_treaty.0.d
+    id = second_vienna_treaty.6
+    title = "Italy Refuses Austria's Demand!"
+    desc = second_vienna_treaty.6.d
 
-	is_triggered_only = yes
+    is_triggered_only = yes
 
-	option = {
-		name = "Disappointing."
-		add_opinion_modifier = {
-			target = FROM
-			type = medium_decrease
+    option = {
+        name = "This is an outrage!"
+    }
+}
+
+# QUESTION THE DUTCH THRONE
+news_event = {
+    id = second_vienna_treaty.7
+    title = "Habsburgs Revisit Claim on the Netherlands"
+    desc = second_vienna_treaty.7.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Concerning."
+    }
+}
+
+# RESTORE BOURBONS IN SICILY
+
+news_event = {
+    id = second_vienna_treaty.8
+    title = "France Aims to Restore the Bourbons in Sicily?"
+    desc = second_vienna_treaty.8.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Will the old order return?"
+    }
+}
+
+news_event = {
+    id = second_vienna_treaty.9
+    title = "[TTS.GetName] Declare Independence!"
+    desc = second_vienna_treaty.9.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "What a mess."
+    }
+}
+
+country_event = {
+    id = second_vienna_treaty.10
+    title = "[FRA.GetName] Demands Sardegna!"
+    desc = second_vienna_treaty.10.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We will cede it."
+        news_event = { id = second_vienna_treaty.11 hours = 12 random_hours = 6 }
+        114 = { transfer_state_to = FRA }
+    }
+
+    option = {
+        name = "We refuse!"
+        FRA = { 
+			news_event = { id = second_vienna_treaty.12 hours = 12 random_hours = 6 }
+			create_wargoal = {
+				target = ITA
+				type = take_claimed_state
+			}
 		}
-	}
+    }
 }
 
 news_event = {
-	id = second_vienna_treaty.3
-	title = "Venetia Independent!"
-	desc = second_vienna_treaty.3.d
+    id = second_vienna_treaty.11
+    title = "France Takes Control of Sardegna!"
+    desc = second_vienna_treaty.11.d
 
-	is_triggered_only = yes
+    is_triggered_only = yes
     major = yes
 
-	option = {
-		name = "Intriguing."
-	}
+    option = {
+        name = "A great success."
+    }
 }
 
 news_event = {
-	id = second_vienna_treaty.4
-	title = "Insurrection in Rome!"
-	desc = second_vienna_treaty.4.d
+    id = second_vienna_treaty.12
+    title = "Italy Rejects Our Demand!"
+    desc = second_vienna_treaty.12.d
 
-	is_triggered_only = yes
-    major = yes
+    is_triggered_only = yes
 
-	option = {
-		name = "Concerning."
-	}
-}
-
-news_event = {
-	id = second_vienna_treaty.5
-	title = "Bourbons Take Power in Two Sicilies!"
-	desc = second_vienna_treaty.5.d
-
-	is_triggered_only = yes
-    major = yes
-
-	option = {
-		name = "Interesting."
-	}
+    option = {
+        name = "An insult!"
+    }
 }

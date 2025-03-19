@@ -1,0 +1,60 @@
+dc_approach_central_powers_jap = {
+    join_central_powers_jap = {
+        cost = 100
+        fire_only_once = yes
+
+        complete_effect = {
+            GER = {
+                country_event = { id = approach_central_powers_jap.1 hours = 12 random_hours = 6 }
+            }
+        }
+    }
+
+    demand_hong_kong = {
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            326 = is_owned_by = ENG
+        }
+
+        complete_effect = {
+            326 = { add_claim_by = JAP }
+            ENG = {
+                country_event = { id = approach_central_powers_jap.4 hours = 12 random_hours = 6 }
+            }
+        }
+    }
+
+    demand_singapore_malaya = {
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            any_state = {
+                or = {
+                    state = 333
+                    state = 336
+                    state = 724
+                }
+                is_owned_by = ENG
+            }
+        }
+
+        complete_effect = {
+            333 = { add_claim_by = JAP }
+            336 = { add_claim_by = JAP }
+
+            if = {
+                limit = {
+                    724 = { is_owned_by = ENG }
+                }
+                724 = { add_claim_by = JAP }
+            }
+
+            ENG = {
+                country_event = { id = approach_central_powers_jap.7 hours = 12 random_hours = 6 }
+            }
+        }
+    }
+}

@@ -1,0 +1,537 @@
+focus_tree = {
+    id = dominion_focus
+    continuous_focus_position = { x = 200 y = 800 }
+
+    country = {
+        factor = 0
+    }
+
+    ## economic branch
+    focus = {
+        id = XXX_economic_development
+        icon = GFX_focus_generic_improve_the_administration
+
+        x = 13
+        y = 0
+        cost = 10
+
+        completion_reward = {
+            add_stability = 0.1
+        }
+    }
+    focus = {
+        id = XXX_agrarian_reform
+        icon = GFX_focus_generic_agrarian_reform
+
+        relative_position_id = XXX_economic_development
+        x = -2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = XXX_economic_development }
+        completion_reward = {
+            add_stability = 0.05
+        }
+    }
+    focus = {
+        id = XXX_rationing
+        icon = GFX_focus_generic_rationing
+
+        relative_position_id = XXX_agrarian_reform
+        x = 0
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = XXX_agrarian_reform }
+        completion_reward = {
+            add_stability = -0.1
+            add_ideas = sww1_idea_rationing
+        }
+    }
+    focus = {
+        id = XXX_land_reclamation
+        icon = GFX_focus_generic_land_reclamation
+
+        relative_position_id = XXX_agrarian_reform
+        x = -2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = XXX_agrarian_reform }
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = XXX_austerity_measures
+        icon = GFX_focus_generic_austerity_measures
+
+        relative_position_id = XXX_rationing
+        x = 0
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = XXX_rationing }
+        completion_reward = {
+            add_war_support = -0.1
+            add_stability = -0.2
+
+            swap_ideas = {
+                remove_idea = sww1_idea_rationing
+                add_idea = sww1_idea_austerity_measures
+            }
+        }
+    }
+
+    focus = {
+        id = XXX_infrastructure_effort
+        icon = GFX_focus_generic_infrastructure_effort
+
+        relative_position_id = XXX_economic_development
+        x = 2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = XXX_economic_development }
+        bypass = {
+			custom_trigger_tooltip = {
+				tooltip = infrastructure_effort_tt
+				all_owned_state = {			
+					free_building_slots = {
+						building = infrastructure
+						size < 1
+					}
+				}
+			}
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 0
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = infrastructure
+										size > 0
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 1
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = infrastructure
+										size > 1
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+            add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 1.0
+				uses = 2
+				category = industry
+			}
+		}
+    }
+    focus = {
+        id = XXX_construct_civilian
+        icon = GFX_focus_generic_construct_civilian
+
+        relative_position_id = XXX_infrastructure_effort
+        x = -2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = XXX_infrastructure_effort }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = industrial_complex
+										size > 0
+										include_locked = yes
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+    }
+    focus = {
+        id = XXX_construct_military
+        icon = GFX_focus_generic_construct_military
+
+        relative_position_id = XXX_infrastructure_effort
+        x = 0
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = XXX_infrastructure_effort }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = arms_factory
+										size > 0
+										include_locked = yes
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+    }
+    focus = {
+        id = XXX_expand_mining
+        icon = GFX_focus_generic_expand_mining
+
+        relative_position_id = XXX_infrastructure_effort
+        x = 2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = XXX_infrastructure_effort }
+        completion_reward = {
+            random_owned_controlled_state = {
+                add_resource = {
+                    type = steel
+                    amount = 12
+                }
+            }
+            random_owned_controlled_state = {
+                add_resource = {
+                    type = aluminium
+                    amount = 4
+                }
+            }
+        }
+    }
+    focus = {
+        id = XXX_steady_growth
+        icon = GFX_focus_generic_steady_growth
+
+        relative_position_id = XXX_construct_military
+        x = 0
+        y = 1
+
+        cost = 10
+
+        prerequisite = { 
+            focus = XXX_construct_civilian
+            focus = XXX_construct_military
+            focus = XXX_expand_mining
+        }
+        completion_reward = {
+            add_ideas = sww1_idea_steady_growth
+        }
+    }
+
+    ## political branch
+    focus = {
+        id = XXX_political_ambitions
+        icon = GFX_focus_generic_political_effort
+
+        x = 0
+        y = 0
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 150
+        }
+    }
+    focus = {
+        id = XXX_loyal_dominion
+        icon = GFX_focus_XXX_loyal_dominion
+
+        relative_position_id = XXX_political_ambitions
+        x = -2
+        y = 1
+        cost = 10
+
+        mutually_exclusive = { focus = XXX_independence_struggle }
+        prerequisite = { focus = XXX_political_ambitions }
+        completion_reward = {
+            add_opinion_modifier = {
+                overlord = {
+                    target = ROOT
+                    modifier = medium_increase
+                }
+            }
+        }
+    }
+    focus = {
+        id = XXX_deal_with_extremists
+        icon = GFX_focus_XXX_deal_with_extremists
+
+        relative_position_id = XXX_loyal_dominion
+        x = -4
+        y = 1
+        cost = 10
+
+        available = {
+            not = { has_government = democratic }
+        }
+
+        prerequisite = { focus = XXX_loyal_dominion }
+        completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_dominion_secret_armament
+                years = 1
+            }
+        }
+    }
+    focus = {
+        id = XXX_integrate_industry
+        icon = GFX_focus_XXX_integrate_industry
+
+        relative_position_id = XXX_loyal_dominion
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = XXX_loyal_dominion }
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = XXX_aux_troops
+        icon = GFX_focus_XXX_aux_troops
+
+        relative_position_id = XXX_loyal_dominion
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = XXX_loyal_dominion }
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = XXX_encourage_conscription
+        icon = GFX_focus_generic_cultural_hegemony
+
+        relative_position_id = XXX_aux_troops
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = XXX_aux_troops }
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = XXX_shared_war_effort
+        icon = GFX_focus_XXX_shared_war_effort
+
+        relative_position_id = XXX_aux_troops
+        x = 1
+        y = 1
+        cost = 10
+
+        available = {
+            has_war = yes
+        }
+
+        prerequisite = { focus = XXX_aux_troops }
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = XXX_brothers_in_arms
+        icon = GFX_focus_XXX_brothers_in_arms
+
+        relative_position_id = XXX_shared_war_effort
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = XXX_shared_war_effort }
+        completion_reward = {
+        }
+    }
+
+    focus = {
+        id = XXX_independence_struggle
+        icon = GFX_focus_XXX_independence_struggle
+
+        relative_position_id = XXX_political_ambitions
+        x = 2
+        y = 1
+        cost = 10
+
+        mutually_exclusive = { focus = XXX_loyal_dominion }
+        prerequisite = { focus = XXX_political_ambitions }
+        completion_reward = {
+            add_opinion_modifier = {
+                overlord = {
+                    target = ROOT
+                    modifier = medium_decrease
+                }
+            }
+        }
+    }
+        focus = {
+        id = XXX_deal_with_loyalists
+        icon = GFX_focus_XXX_deal_with_loyalists
+
+        relative_position_id = XXX_independence_struggle
+        x = 4
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = XXX_independence_struggle }
+        completion_reward = {
+
+        }
+    }
+
+    focus = {
+        id = XXX_weapon_caches
+        icon = GFX_focus_XXX_weapon_caches
+
+        relative_position_id = XXX_independence_struggle
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = XXX_independence_struggle }
+        completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_dominion_deal_with_extremists
+                years = 1
+            }
+        }
+    }
+    focus = {
+        id = XXX_secret_organizations
+        icon = GFX_focus_XXX_secret_organizations
+
+        relative_position_id = XXX_independence_struggle
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = XXX_independence_struggle }
+        completion_reward = {
+            add_political_power = 150
+        }
+    }
+    focus = {
+        id = XXX_sabotage_the_occupation
+        icon = GFX_focus_XXX_sabotage_the_occupation
+
+        relative_position_id = XXX_secret_organizations
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = XXX_secret_organizations }
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = XXX_seek_foreign_help
+        icon = GFX_focus_XXX_seek_foreign_help
+
+        relative_position_id = XXX_secret_organizations
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = XXX_secret_organizations }
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = XXX_war_of_independence
+        icon = GFX_focus_XXX_war_of_independence
+
+        relative_position_id = XXX_sabotage_the_occupation
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = XXX_sabotage_the_occupation }
+        completion_reward = {
+        }
+    }
+}
