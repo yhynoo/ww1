@@ -757,186 +757,249 @@ focus_tree = {
         }
     }
     focus = {
-        id = XXX_interventionism
-        icon = GFX_focus_generic_interventionism
+        id = XXX_expansionism
+        icon = GFX_focus_generic_expansionism
 
         relative_position_id = XXX_political_ambitions
-        x = -2
+        x = -4
         y = 1
         cost = 10
 
-        mutually_exclusive = { focus = XXX_internal_stability }
         prerequisite = { focus = XXX_political_ambitions }
         completion_reward = {
-            add_war_support = 0.1
-            add_ideas = sww1_idea_interventionism
+            add_timed_idea = {
+                idea = sww1_idea_expansionism
+                years = 2
+            }
         }
     }
     focus = {
-        id = XXX_seek_alliances
-        icon = GFX_focus_generic_seek_alliances
+        id = XXX_international_affairs
+        icon = GFX_focus_generic_international_affairs
 
-        relative_position_id = XXX_interventionism
+        relative_position_id = XXX_expansionism
         x = -2
         y = 1
         cost = 10
 
-        mutually_exclusive = { focus = XXX_on_our_own }
-        prerequisite = { focus = XXX_interventionism }
+        prerequisite = { focus = XXX_expansionism }
         completion_reward = {
+            add_political_power = 100
+            add_timed_idea = {
+                idea = sww1_idea_international_affairs
+                years = 1
+            }
         }
     }
     focus = {
-        id = XXX_on_our_own
-        icon = GFX_focus_generic_on_our_own
+        id = XXX_deterrence
+        icon = GFX_focus_generic_deterrence
 
-        relative_position_id = XXX_interventionism
+        relative_position_id = XXX_expansionism
         x = 1
         y = 1
         cost = 10
 
-        mutually_exclusive = { focus = XXX_seek_alliances }
-        prerequisite = { focus = XXX_interventionism }
+        prerequisite = { focus = XXX_expansionism }
         completion_reward = {
-            swap_ideas = {
-                remove_idea = sww1_idea_interventionism
-                add_idea = sww1_idea_on_our_own
+            add_timed_idea = {
+                idea = sww1_idea_deterrence
+                years = 1
             }
         }
     }
-    
+    focus = {
+        id = XXX_seek_alliances
+        icon = GFX_focus_generic_international_affairs
+
+        relative_position_id = XXX_international_affairs
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = XXX_international_affairs }
+        completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_seek_alliances
+                years = 1
+            }
+        }
+    }
+    focus = {
+        id = XXX_on_our_own
+        icon = GFX_focus_on_our_own
+
+        relative_position_id = XXX_international_affairs
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = XXX_international_affairs }
+        completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_on_our_own
+                years = 1
+            }
+        }
+    }
+
     focus = {
         id = XXX_internal_stability
         icon = GFX_focus_generic_internal_stability
 
         relative_position_id = XXX_political_ambitions
-        x = 2
+        x = 0
         y = 1
         cost = 10
 
-        mutually_exclusive = { focus = XXX_interventionism }
+        mutually_exclusive = { focus = XXX_adjust_the_government }
         prerequisite = { focus = XXX_political_ambitions }
         completion_reward = {
-            add_stability = 0.15
+            add_stability = 0.1
         }
     }
     focus = {
-        id = XXX_traditionalism
-        icon = GFX_focus_generic_traditionalism
+        id = XXX_invest_in_information_services
+        icon = GFX_focus_generic_invest_in_information_services
 
         relative_position_id = XXX_internal_stability
         x = -1
         y = 1
         cost = 10
 
-        mutually_exclusive = { focus = XXX_renewal }
         prerequisite = { focus = XXX_internal_stability }
         completion_reward = {
         }
     }
     focus = {
-        id = XXX_renewal
-        icon = GFX_focus_generic_renewal
+        id = XXX_mobilize_the_masses
+        icon = GFX_focus_generic_mobilize_the_masses
 
         relative_position_id = XXX_internal_stability
-        x = 2
+        x = 1
         y = 1
         cost = 10
 
-        mutually_exclusive = { focus = XXX_traditionalism }
         prerequisite = { focus = XXX_internal_stability }
         completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_mobilize_the_masses
+                years = 2
+            }
         }
     }
     focus = {
-        id = XXX_national_pride
-        icon = GFX_focus_generic_national_pride
+        id = XXX_strength_in_unity
+        icon = GFX_focus_strength_in_unity
 
-        relative_position_id = XXX_on_our_own
+        relative_position_id = XXX_invest_in_information_services
         x = 1
         y = 1
         cost = 10
 
         prerequisite = { 
-            focus = XXX_on_our_own 
-            focus = XXX_traditionalism
+            focus = XXX_invest_in_information_services
+            focus = XXX_mobilize_the_masses
         }
         completion_reward = {
-            add_ideas = sww1_idea_national_pride
+            add_timed_idea = {
+                idea = sww1_idea_strength_in_unity
+                years = 1
+            }
         }
     }
     focus = {
         id = XXX_the_everlasting_spirit
         icon = GFX_focus_generic_the_everlasting_spirit
 
-        relative_position_id = XXX_national_pride
+        relative_position_id = XXX_strength_in_unity
         x = 0
         y = 1
         cost = 10
 
-        prerequisite = { focus = XXX_national_pride }
+        prerequisite = { focus = XXX_strength_in_unity }
         completion_reward = {
-            swap_ideas = {
-                remove_idea = sww1_idea_national_pride
-                add_idea = sww1_idea_the_everlasting_spirit
+            add_ideas = sww1_idea_the_everlasting_spirit
+        }
+    }
+
+    focus = {
+        id = XXX_adjust_the_government
+        icon = GFX_focus_generic_adjust_the_government
+
+        relative_position_id = XXX_political_ambitions
+        x = 4
+        y = 1
+        cost = 10
+
+        mutually_exclusive = { focus = XXX_internal_stability }
+        prerequisite = { focus = XXX_political_ambitions }
+        completion_reward = {
+            add_popularity = {
+                ideology = democratic
+                popularity = 0.1
             }
         }
     }
     focus = {
-        id = XXX_better_world_for_all
-        icon = GFX_focus_generic_better_world_for_all
+        id = XXX_state_reform
+        icon = GFX_focus_generic_state_reform
 
-        relative_position_id = XXX_seek_alliances
-        x = 1
-        y = 1
-        cost = 10
-
-        prerequisite = { focus = XXX_seek_alliances }
-        completion_reward = {
-            # greatly lowers the limits for volunteer forces
-        }
-    }
-    focus = {
-        id = XXX_peace_through_strength
-        icon = GFX_focus_generic_peace_through_strength
-
-        relative_position_id = XXX_seek_alliances
-        x = -2
-        y = 1
-        cost = 10
-
-        prerequisite = { focus = XXX_seek_alliances }
-        completion_reward = {
-            add_ideas = sww1_idea_peace_through_strength
-        }
-    }
-    focus = {
-        id = XXX_embrace_modernity
-        icon = GFX_focus_generic_embrace_modernity
-
-        relative_position_id = XXX_renewal
-        x = -1
-        y = 1
-        cost = 10
-
-        prerequisite = { focus = XXX_renewal }
-        completion_reward = {
-            add_research_slot = 1
-        }
-    }
-    focus = {
-        id = XXX_cultural_hegemony
-        icon = GFX_focus_generic_cultural_hegemony
-
-        relative_position_id = XXX_renewal
+        relative_position_id = XXX_adjust_the_government
         x = 2
         y = 1
         cost = 10
 
-        prerequisite = { focus = XXX_renewal }
+        prerequisite = { focus = XXX_adjust_the_government }
         completion_reward = {
-            add_political_power = 150
-            add_ideas = sww1_idea_cultural_hegemony
+            add_timed_idea = {
+                idea = sww1_idea_state_reform
+                years = 1
+            }
+        }
+    }
+    focus = {
+        id = XXX_laissez_faire
+        icon = GFX_focus_generic_laissez_faire
+
+        relative_position_id = XXX_adjust_the_government
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = XXX_adjust_the_government }
+        completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_democratic_tendencies
+                year = 1
+            }
+        }
+    }
+    focus = {
+        id = XXX_over_the_edge
+        icon = GFX_focus_generic_over_the_edge
+
+        relative_position_id = XXX_state_reform
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = XXX_state_reform }
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = XXX_education
+        icon = GFX_focus_generic_education
+
+        relative_position_id = XXX_state_reform
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = XXX_state_reform }
+        completion_reward = {
+            add_research_slot = 1
         }
     }
 }
