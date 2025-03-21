@@ -1,0 +1,61 @@
+add_namespace = genericevent
+
+news_event = {
+	id = genericevent.1
+	title = "Military Parade in the Capital"
+	desc = genericevent.1.d
+
+	is_triggered_only = yes
+
+	option = {
+        add_war_support = 0.05
+		name = "A grand display of strength!"
+
+        hidden_effect = {
+            add_named_threat = {
+				threat = 1
+				name = "Military Parade in [ROOT.GetNameDef]"
+			}
+            news_event = { id = genericevent.2 days = 7 random_hours = 12 }
+        }
+	}
+}
+
+news_event = {
+	id = genericevent.2
+	title = "An Influx of Volunteers!"
+	desc = genericevent.2.d
+
+	is_triggered_only = yes
+
+	option = {
+        add_manpower = 2500
+		name = "The army swells with patriots!"
+	}
+}
+
+news_event = {
+	id = genericevent.3
+	title = "Patriotic Rallies Across the Country"
+	desc = genericevent.3.d
+
+	is_triggered_only = yes
+
+	option = {
+        add_war_support = 0.1
+		name = "The nation stands united!"
+	}
+}
+
+news_event = {
+	id = genericevent.4
+	title = "Government Reforms Expected"
+	desc = genericevent.4.d
+
+	is_triggered_only = yes
+
+	option = {
+        add_stability = 0.025
+		name = "A time of change and uncertainty."
+	}
+}

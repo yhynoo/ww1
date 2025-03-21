@@ -1,0 +1,18 @@
+germany_against_france = {
+    enable = {
+        original_tag = GER              # only Germany will do this
+
+        has_opinion = {
+            target = FRA
+            value < -25
+        }
+    }
+
+    abort_when_not_enabled = yes
+
+    ai_strategy = {
+        type = prepare_for_war
+        id = FRA
+        value = 50
+    }
+}

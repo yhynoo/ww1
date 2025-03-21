@@ -1,0 +1,35 @@
+france_against_germany = {
+    enable = {
+        has_completed_focus = FRA_belgian_crisis
+    }
+
+    abort = {
+        is_ally_with = GER
+    }
+
+    ai_strategy = {
+        type = prepare_for_war
+        id = GER
+        value = 100
+    }
+
+    ai_strategy = {
+        type = befriend
+        id = SOV
+        value = 150
+    }
+}
+
+france_and_the_entente = {
+    enable = {
+        has_government = democratic
+    }
+
+    abort_when_not_enabled = yes
+
+    ai_strategy = {
+        type = alliance
+        id = ENG
+        value = 100
+    }
+}

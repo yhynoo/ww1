@@ -215,6 +215,21 @@ buildings = {
 		}
 	}
 
+	radar_station = {
+		show_on_map = 1
+		base_cost = 3375
+		icon_frame = 11
+		radar = yes
+		damage_factor = 0.5
+		value = 4
+		centered = yes
+		allied_build = yes
+		infrastructure_construction_effect = yes
+		level_cap = {
+			state_max = 1
+		}
+	}
+
 	mega_gun_emplacement = {
 		dlc_allowed = { has_dlc = Gotterdammerung }
 		hide_if_missing_tech = yes
@@ -247,7 +262,7 @@ buildings = {
 		disabled_in_dmz = yes
 		spawn_point = rocket_site_spawn
 		level_cap = {
-			state_max = 3
+			state_max = 1
 			shares_slots = yes
 			exclusive_with = mega_gun_emplacement
 		}

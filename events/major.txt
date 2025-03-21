@@ -1,0 +1,171 @@
+add_namespace = majorevent
+
+news_event = {
+	id = majorevent.1
+	title = "Arson in Brussels: Political Motives?"
+	desc = majorevent.1.d
+
+    trigger = {
+        6 = { not = { is_owner = FRA } }
+    }
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		if = {
+			limit = { tag = FRA }
+			add_opinion_modifier = {
+				target = GER
+				modifier = medium_decrease
+			}
+		}
+		if = {
+			limit = { tag = GER }
+			add_opinion_modifier = {
+				target = FRA
+				modifier = small_decrease
+			}
+
+			hidden_effect = {
+				add_named_threat = {
+					threat = 5
+					name = "Arson of the French Embassy in Brussels"
+				}
+			}
+		}
+
+		name = "A troubling incident."
+	}
+}
+
+news_event = {
+	id = majorevent.2
+	title = "Franz Ferdinand Assassinated!"
+	desc = majorevent.2.d
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		if = {
+			limit = { tag = AUS }
+			hidden_effect = {
+				add_named_threat = {
+					threat = 5
+					name = "Assassination of Franz Ferdinand"
+				}
+			}
+
+			if = {
+				limit = { SER = { exists = yes } }
+				add_opinion_modifier = {
+					target = SER
+					modifier = medium_decrease
+				}
+			}
+			if = {
+				limit = { has_idea = sww1_idea_slavic_nationalism }
+				add_opinion_modifier = {
+					target = SOV
+					modifier = small_decrease
+				}
+			}
+		}
+		name = "A shocking act of violence!"
+	}
+}
+
+news_event = {
+	id = majorevent.3
+	title = "Emperor Franz Joseph Dies, Karl I Takes the Throne"
+	desc = majorevent.3.d
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+        trigger = {
+            not = { tag = AUS }
+        }
+		name = "A new era for Austria-Hungary."
+	}
+    option = {
+        trigger = {
+            tag = AUS
+        }
+        name = "Long live the Emperor!"
+        retire_character = AUS_franz_joseph
+        promote_character = AUS_karl_von_habsburg
+    }
+}
+
+news_event = {
+	id = majorevent.4
+	title = "Peasant Strikes in Ukraine"
+	desc = majorevent.4.d
+
+	major = yes
+	is_triggered_only = yes
+
+	trigger = {
+		not = {
+			SOV = { has_government = communism }
+		}
+	}
+
+	option = {
+		if = {
+			limit = { tag = SOV }
+
+			add_stability = -0.025
+			add_popularity = {
+				ideology = communism
+				popularity = 0.05
+			}
+
+			hidden_effect = {
+				add_named_threat = {
+					threat = 2
+					name = "Peasant Strikes in Ukraine"
+				}
+			}
+		}
+		name = "The countryside is in turmoil."
+	}
+}
+
+news_event = {
+	id = majorevent.5
+	title = "Massacre During Union Strike in Milan"
+	desc = majorevent.5.d
+
+	major = yes
+	is_triggered_only = yes
+
+	trigger = {
+		not = {
+			ITA = { has_government = communism }
+		}
+	}
+
+	option = {
+		if = {
+			limit = { tag = ITA }
+
+			add_stability = -0.025
+			add_popularity = {
+				ideology = communism
+				popularity = 0.05
+			}
+
+			hidden_effect = {
+				add_named_threat = {
+					threat = 3
+					name = "Massacre During Union Strike in Milan"
+				}
+			}
+		}
+		name = "A tragedy that fuels the fire."
+	}
+}

@@ -1,10 +1,12 @@
 on_actions = {
     on_startup = {
         effect = {
-            # assign dominion trees
-            every_country = {
-                limit = { is_subject = yes }
-                load_focus_tree = dominion_focus
+            AUS = {
+                # franz ferdinand killed
+                news_event = { id = majorevent.2 months = 29 days = 28 }
+
+                # franz joseph dies
+                news_event = { id = majorevent.3 months = 58 days = 21 }
             }
 
             ENG = {
@@ -20,9 +22,13 @@ on_actions = {
                 # airmail
                 news_event = { id = vibeevents.14 months = 61 random_days = 8 }
             }
+
             FRA = {
                 # neon
                 news_event = { id = vibeevents.2 months = 8 days = 10 }
+
+                # arson in brussels
+                news_event = { id = majorevent.1 months = 9 days = 12 }
 
                 # stravinsky
                 news_event = { id = vibeevents.4 months = 16 days = 29 }
@@ -33,6 +39,22 @@ on_actions = {
                 # sklodowska's nobel
                 news_event = { id = vibeevents.11 months = 51 days = 20 }
             }
+
+            GER = {
+                # einstein
+                news_event = { id = vibeevents.10 months = 44 days = 23 }
+            }
+
+            ITA = {
+                # milan massacre
+                news_event = { id = majorevent.5 months = 16 random_days = 15 }
+            }
+
+            SOV = {
+                # peasant strikes
+                news_event = { id = majorevent.4 months = 21 random_days = 15 }
+            }
+
             USA = {
                 # ford
                 news_event = { id = vibeevents.5 months = 18 days = 11 }
@@ -51,30 +73,6 @@ on_actions = {
 
                 # hollywood
                 news_event = { id = vibeevents.15 months = 77 random_days = 28 }
-            }
-            GER = {
-                # einstein
-                news_event = { id = vibeevents.10 months = 44 days = 23 }
-            }
-        }
-    }
-
-    on_puppet = {
-        effect = {
-            ROOT = { load_focus_tree = dominion_focus keep_completed = yes }
-        }
-    }
-
-    on_state_control_changed = {
-        effect = {
-            if = {
-                limit = {
-                    ROOT = { 
-                        is_subject = yes
-                        not = { has_focus_tree = dominion_focus }
-                    }
-                }
-                ROOT = { load_focus_tree = dominion_focus keep_completed = yes }
             }
         }
     }

@@ -1,0 +1,58 @@
+dc_public_support_decisions = {
+    industrial_effort = {
+        icon = generic_industry
+
+        days_remove = 90
+        cost = 100
+
+        ai_will_do = {
+            base = 5
+            modifier = { 
+                OR = {
+                    has_war = yes
+                } 
+                factor = 2
+            }
+        }
+
+        modifier = {
+            industrial_capacity_factory = 0.1
+        }
+    }
+    promote_national_unity = {
+        icon = generic_civil_support
+
+        days_remove = 90
+        cost = 100
+
+        ai_will_do = {
+            base = 10
+            modifier = { has_stability < 0.3 factor = 3 }
+        }
+
+        modifier = {
+            stability_weekly = 0.005
+            war_support_weekly = 0.005
+        }
+    }
+    desperate_defense = {
+        icon = generic_prepare_civil_war
+
+        available = {
+            has_defensive_war = yes
+            surrender_progress > 0.5
+        }
+
+        days_remove = 90
+        cost = 150
+
+        ai_will_do = {
+            base = 10
+        }
+
+        modifier = {
+            out_of_supply_factor = -0.1
+            army_core_defence_factor = 0.1
+        }
+    }
+}

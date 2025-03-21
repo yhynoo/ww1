@@ -1,0 +1,255 @@
+add_namespace = france_events
+
+## BELGIAN CRISIS
+
+country_event = {
+	id = france_events.1
+	title = "France Demands We Leave Belgium"
+	desc = france_events.1.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "We shall withdraw."
+		news_event = { id = france_events.2 hours = 12 random_hours = 6 }
+
+        every_state = {
+            limit = {
+                OR = {
+                    state = 6
+                    state = 34
+                    state = 977
+                    state = 980
+                }
+                is_owned_by = GER
+            }
+            transfer_state_to = FRA
+        }
+
+        ai_chance = { 
+            base = 1
+            modifier = {
+                strength_ratio = {
+                    tag = FRA
+                    ratio > 1
+                }
+                factor = 10
+            }
+            modifier = {
+                FRA = { 
+                    OR = {
+                        is_ally_with = SOV
+                        is_ally_with = AUS
+                    } 
+                }
+                factor = 3
+            }
+        }
+	}
+
+	option = {
+		name = "No, we will hold our ground."
+		FRA = { country_event = { id = france_events.3 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 5 }
+	}
+}
+
+news_event = {
+	id = france_events.2
+	title = "German Occupation of Belgium Ended!"
+	desc = france_events.2.d
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = "A diplomatic victory for France."
+	}
+}
+
+country_event = {
+	id = france_events.3
+	title = "Germans Decline!"
+	desc = france_events.3.d
+
+	is_triggered_only = yes
+
+    immediate = {
+        add_named_threat = {
+            threat = 3
+            name = "[GER.GetName] Stays in the Ardennes"
+        }
+    }
+
+	option = {
+		name = "This means war!"
+		news_event = { id = france_events.4 hours = 12 random_hours = 6 }
+
+        declare_war_on = {
+            target = GER
+            type = take_claimed_state
+        }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                OR = {
+                    is_ally_with = SOV
+                    is_ally_with = AUS
+                }
+                factor = 3
+            }
+        }
+
+        hidden_effect = {
+            add_named_threat = {
+                threat = 25
+                name = "[FRA.GetName] Goes to War!"
+            }
+        }
+	}
+
+	option = {
+        add_political_power = -50
+		name = "We must back down."
+
+		hidden_effect = {
+            GER = { country_event = { id = france_events.5 days = 7 random_days = 14 } }
+        }
+
+        ai_chance = { base = 3 }
+	}
+}
+
+news_event = {
+	id = france_events.4
+	title = "France Declares War on Germany!"
+	desc = france_events.4.d
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = "The war has begun."
+	}
+}
+
+country_event = {
+	id = france_events.5
+	title = "Shall We Strike?"
+	desc = france_events.5.d
+
+	trigger = {
+		has_war = no
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Yes, let us preemptively strike!"
+		news_event = { id = france_events.6 hours = 12 random_hours = 6 }
+
+        declare_war_on = {
+            target = FRA
+            type = annex_everything
+        }
+
+        ai_chance = { base = 5 }
+
+        hidden_effect = {
+            add_named_threat = {
+                threat = 30
+                name = "[GER.GetName] Invades France!"
+            }
+        }
+	}
+
+	option = {
+		name = "No, it is not worth it."
+        ai_chance = { base = 1 }
+	}
+}
+
+news_event = {
+	id = france_events.6
+	title = "Germany Declares War on France!"
+	desc = france_events.6.d
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = "Horrible."
+	}
+}
+
+news_event = {
+	id = france_events.7
+	title = "France Asks to Take Control of Flanders"
+	desc = france_events.7.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Gladly, let them have it."
+		news_event = { id = france_events.8 hours = 12 random_hours = 6 }
+
+        every_state = {
+            limit = {
+                OR = {
+                    state = 6
+                    state = 34
+                    state = 977
+                    state = 980
+                }
+                is_owned_by = HOL
+            }
+            transfer_state_to = FRA
+        }
+
+        ai_chance = { base = 5 }
+	}
+
+	option = {
+		name = "No, we will not hand it over."
+		news_event = { id = france_events.9 hours = 12 random_hours = 6 }
+
+        ai_chance = { 
+            base = 1
+            modifier = {
+                is_ally_with = GER
+                factor = 10
+            }
+        }
+	}
+}
+
+news_event = {
+	id = france_events.8
+	title = "France Takes Control of Flanders"
+	desc = france_events.8.d
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = "Stability returns to Belgium."
+	}
+}
+
+news_event = {
+	id = france_events.9
+	title = "The Dutch Decline!"
+	desc = france_events.9.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = "This is unacceptable!"
+		create_wargoal = {
+            target = HOL
+            type = take_claimed_state
+        }
+	}
+}

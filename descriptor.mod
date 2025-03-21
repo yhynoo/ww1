@@ -6,8 +6,12 @@ tags={
 name="Simplified WW1"
 supported_version="1.15.4"
 
+replace_path = "common/ai_focuses"
+replace_path = "common/ai_strategy_plans"
+replace_path = "common/bookmarks"
 replace_path = "common/countries"
 replace_path = "common/decisions"
+replace_path = "common/ideas"
 replace_path = "common/technologies"
 replace_path = "common/units"
 

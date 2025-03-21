@@ -1,0 +1,13 @@
+generic_deterrence_strategy = {
+    enable = {
+        has_completed_focus = XXX_deterrence
+    }
+
+    abort = {
+        has_war = yes
+        any_war_score > 20              # If we're at war and winning, we don't need to be so defensive.
+    }
+
+    ai_strategy = {
+    }
+} 

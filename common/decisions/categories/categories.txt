@@ -10,190 +10,24 @@ dc_head_of_state_decisions = {
     priority = 4
 }
 
-dc_economic_decisions = {
-    visible_when_empty = yes
+dc_public_support_decisions = {
+    visible = {
+        OR = {
+            has_completed_focus = XXX_public_support
+            has_completed_focus = FRA_on_ne_passe_pas
+        }
+    }
+    visible_when_empty = no
     priority = 3
 }
 
-## SPECIFIC
-
-dc_across_the_alps = {
-    allowed = {
-        original_tag = ITA
-    }
-
-    visible = {
-        has_completed_focus = ITA_across_the_alps
-    }
-}
-
-dc_asia_for_the_asians = {
-    visible = {
-        has_completed_focus = JAP_asia_for_asians
-    }
-}
-
-dc_approach_entente_jap = {
-    visible = {
-        has_completed_focus = JAP_entente
-    }
-}
-
-approach_germany_jap = {
-    visible = {
-        has_completed_focus = JAP_approach_germany
-    }
-}
-
-dc_ausgleich = {
-    allowed = {
-        original_tag = AUS
-    }
-
-    visible = {
-        has_completed_focus = AUS_ausgleich
-    }
+dc_economic_decisions = {
+    visible_when_empty = yes
+    priority = 2
 }
 
 dc_belgian_crisis = {
-    allowed = {
-        original_tag = FRA
-    }
-
     visible = {
         has_completed_focus = FRA_belgian_crisis
-    }
-}
-
-dc_berlin_baghdad_railway = {
-    allowed = {
-        OR = {
-            original_tag = GER
-            original_tag = ENG
-        }
-    }
-
-    visible = {
-        GER = { has_completed_focus = GER_berlin_baghdad }
-    }
-}
-
-dc_challenge_the_ottomans = {
-    allowed = {
-        original_tag = ITA
-    }
-
-    visible = {
-        has_completed_focus = ITA_challenge_the_ottomans
-    }
-}
-
-dc_dual_alliance = {
-    allowed = {
-        original_tag = AUS
-    }
-
-    visible = {
-        has_completed_focus = AUS_dual_alliance
-    }
-}
-
-dc_economic_mission_to_russia = {
-    allowed = {
-        original_tag = GER
-    }
-
-    visible = {
-        has_completed_focus = GER_good_guy_germany
-    }
-}
-
-dc_entente_cordiale = {
-    visible = {
-        has_completed_focus = FRA_entente_cordiale
-    }
-}
-
-dc_established_guarantees_rus = {
-    visible = {
-        has_completed_focus = SOV_established_guarantees
-    }
-}
-
-dc_greek_question = {
-    visible = {
-        OR = {
-            tag = TUR
-            tag = GRE
-        }
-        TUR = { has_completed_focus = TUR_greek_question }
-    }
-}
-
-dc_limited_self_determination = {
-    visible = {
-        OR = {
-            has_completed_focus = SOV_limited_self_determination
-            has_completed_focus = AUS_limited_self_determination
-        }
-    }
-}
-
-dc_mediterranean_naval_agreements = {
-    visible = {
-        has_completed_focus = ITA_mediterranean_naval_agreements
-    }
-}
-
-dc_opium_smuggling = {
-    visible = {
-        or = {
-            tag = FRA
-            tag = HOL
-        }
-        FRA = { has_completed_focus = FRA_diplomatic_initiative }
-    }
-}
-
-dc_our_place_under_the_sun = {
-    visible = { has_completed_focus = GER_sun }
-}
-
-dc_panslavism = {
-    visible = {
-        has_completed_focus = SOV_panslavism
-    }
-}
-
-dc_realign_russia = {
-    visible = {
-        has_completed_focus = SOV_realignment
-    }
-}
-
-dc_sarajevo_memorandum = {
-    visible = {
-        OR = {
-            tag = AUS
-            tag = TUR
-            tag = SER
-        }
-        TUR = { has_completed_focus = TUR_sarajevo_memorandum }
-    }
-}
-
-dc_second_vienna_treaty = {
-    visible = {
-        OR = {
-            AND = {
-                tag = AUS
-                has_completed_focus = AUS_second_vienna_treaty
-            }
-            AND = {
-                tag = FRA
-                has_completed_focus = FRA_second_vienna_treaty
-            }
-        }
-        has_govenment = monarchism
     }
 }

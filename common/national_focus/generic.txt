@@ -13,6 +13,14 @@ focus_tree = {
         y = 0
         cost = 10
 
+        ai_will_do = {
+            base = 3
+            modifier = {
+                has_war = yes
+                factor = 30
+            }
+        }
+
         completion_reward = {
             add_command_power = 25
         }
@@ -25,6 +33,18 @@ focus_tree = {
         x = -2
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 3
+            modifier = {
+                date > 1914.1.1
+                factor = 5
+            }
+            modifier = {
+                has_war = yes
+                factor = 15
+            }
+        }
 
         prerequisite = { focus = XXX_adjust_budget }
         completion_reward = {
@@ -39,6 +59,14 @@ focus_tree = {
         x = -4
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                has_war = yes
+                factor = 15
+            }
+        }
 
         prerequisite = { focus = XXX_focus_army }
         completion_reward = {
@@ -82,6 +110,18 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = {
+                has_war = yes
+                factor = 1.5
+            }
+            modifier = {
+                num_of_military_factories > 10
+                factor = 3
+            }
+        }
+
         prerequisite = { focus = XXX_focus_army }
         completion_reward = {
             add_tech_bonus = {
@@ -104,10 +144,9 @@ focus_tree = {
         prerequisite = { focus = XXX_equipment_effort }
         completion_reward = {
             add_tech_bonus = {
-				name = artillery_bonus
 				bonus = 1.0
 				uses = 1
-				category = artillery_weapons
+				category = artillery_tech
 			}
         }
     }
@@ -214,7 +253,7 @@ focus_tree = {
 				name = navy_doc_bonus
 				cost_reduction = 0.5
 				uses = 1
-				category = navy_doctrine
+				category = naval_doctrine
 			}
         }
     }
@@ -361,6 +400,12 @@ focus_tree = {
 
         prerequisite = { focus = XXX_expand_dockyards }
         completion_reward = {
+            add_tech_bonus = {
+				name = capital_ships_bonus
+				bonus = 1.0
+				uses = 1
+				category = ca_tech
+			}
         }
     }
     focus = {
@@ -411,8 +456,8 @@ focus_tree = {
 				name = special_forces_bonus
 				bonus = 1.0
 				uses = 1
-				technology = marines
-                technology = marines2
+				technology = marines_1
+                technology = marines_2
 			}
         }
     }
@@ -439,18 +484,26 @@ focus_tree = {
         }
         completion_reward = {
             navy_experience = 100
-            # adds a national spirit
+            add_ideas = sww1_idea_rule_the_waves
         }
     }
 
     ## economic branch
     focus = {
         id = XXX_economic_development
-        icon = GFX_focus_generic_improve_the_administration
+        icon = GFX_focus_generic_economic_development
 
         x = 20
         y = 0
         cost = 10
+
+        ai_will_do = {
+            base = 3
+            modifier = {
+                num_of_factories < 15
+                factor = 2
+            }
+        }
 
         completion_reward = {
             add_stability = 0.1
@@ -466,6 +519,14 @@ focus_tree = {
 
         cost = 10
 
+        ai_will_do = {
+            base = 2
+            modifier = {
+                date > 1913.7.1
+                factor = 5
+            }
+        }
+
         prerequisite = { focus = XXX_economic_development }
         completion_reward = {
             add_stability = 0.05
@@ -480,6 +541,21 @@ focus_tree = {
         y = 1
 
         cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = {
+                has_war = no
+                factor = 0
+            }
+            modifier = {
+                any_enemy_country = {
+                    ic_ratio = ROOT
+                    ratio > 0.25
+                }
+                factor = 5
+            }
+        }
 
         prerequisite = { focus = XXX_agrarian_reform }
         completion_reward = {
@@ -499,6 +575,15 @@ focus_tree = {
 
         prerequisite = { focus = XXX_agrarian_reform }
         completion_reward = {
+
+            random_owned_controlled_state = {
+                add_manpower = 1500
+                add_extra_state_shared_building_slots = 2
+            }
+            random_owned_controlled_state = {
+                add_manpower = 1500
+                add_extra_state_shared_building_slots = 2
+            }
         }
     }
     focus = {
@@ -510,6 +595,21 @@ focus_tree = {
         y = 1
 
         cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = {
+                has_war = no
+                factor = 0
+            }
+            modifier = {
+                any_enemy_country = {
+                    ic_ratio = ROOT
+                    ratio > 0.5
+                }
+                factor = 5
+            }
+        }
 
         prerequisite = { focus = XXX_rationing }
         completion_reward = {
@@ -532,6 +632,22 @@ focus_tree = {
         y = 1
 
         cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                has_war = no
+                factor = 1.5
+            }
+            modifier = {
+                num_of_factories < 15
+                factor = 2.5
+            }
+            modifier = {
+                date > 1913.7.1
+                factor = 5
+            }
+        }
 
         prerequisite = { focus = XXX_economic_development }
         bypass = {
@@ -618,6 +734,14 @@ focus_tree = {
 
         cost = 10
 
+        ai_will_do = {
+            base = 2
+            modifier = {
+                num_of_civilian_factories < 10
+                factor = 3
+            }
+        }
+
         prerequisite = { focus = XXX_infrastructure_effort }
 		completion_reward = {
 			random_owned_controlled_state = {
@@ -626,21 +750,6 @@ focus_tree = {
 						building = industrial_complex
 						size > 0
 						include_locked = yes
-					}
-					OR = {
-						is_in_home_area = yes
-						NOT = {
-							owner = {
-								any_owned_state = {
-									free_building_slots = {
-										building = industrial_complex
-										size > 0
-										include_locked = yes
-									}
-									is_in_home_area = yes
-								}
-							}
-						}
 					}
 				}
 				add_extra_state_shared_building_slots = 2
@@ -661,6 +770,25 @@ focus_tree = {
         y = 1
 
         cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                threat > 0.1
+                factor = 3
+            }
+            modifier = {
+                has_war = yes
+                factor = 10
+            }
+            modifier = {
+                any_enemy_country = {
+                    ic_ratio = ROOT
+                    ratio > 0.25
+                }
+                factor = 15
+            }
+        }
 
         prerequisite = { focus = XXX_infrastructure_effort }
 		completion_reward = {
@@ -745,48 +873,80 @@ focus_tree = {
     ## political branch
     focus = {
         id = XXX_political_ambitions
-        icon = GFX_focus_generic_political_effort
+        icon = GFX_focus_generic_political_ambitions
 
         relative_position_id = XXX_economic_development
         x = -1
         y = 5
         cost = 10
 
+        ai_will_do = {
+            base = 3
+            modifier = {
+                is_major = yes
+                factor = 2
+            }
+        }
+
         completion_reward = {
             add_political_power = 150
-        }
-    }
-    focus = {
-        id = XXX_expansionism
-        icon = GFX_focus_generic_expansionism
-
-        relative_position_id = XXX_political_ambitions
-        x = -4
-        y = 1
-        cost = 10
-
-        prerequisite = { focus = XXX_political_ambitions }
-        completion_reward = {
-            add_timed_idea = {
-                idea = sww1_idea_expansionism
-                years = 2
-            }
         }
     }
     focus = {
         id = XXX_international_affairs
         icon = GFX_focus_generic_international_affairs
 
-        relative_position_id = XXX_expansionism
+        relative_position_id = XXX_political_ambitions
+        x = -4
+        y = 1
+        cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = {
+                date > 1913.1.1
+                factor = 3
+            }
+            modifier = {
+                is_major = yes
+                factor = 2
+            }
+        }
+
+        prerequisite = { focus = XXX_political_ambitions }
+        completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_international_affairs
+                years = 2
+            }
+        }
+    }
+    focus = {
+        id = XXX_expansionism
+        icon = GFX_focus_generic_expansionism
+
+        relative_position_id = XXX_international_affairs
         x = -2
         y = 1
         cost = 10
 
-        prerequisite = { focus = XXX_expansionism }
+        ai_will_do = {
+            base = 1
+            modifier = {
+                is_major = yes
+                factor = 1.5
+            }
+            modifier = {
+                threat > 0.2
+                factor = 3
+            }
+        }
+
+        prerequisite = { focus = XXX_international_affairs }
         completion_reward = {
             add_political_power = 100
             add_timed_idea = {
-                idea = sww1_idea_international_affairs
+                idea = sww1_idea_expansionism
                 years = 1
             }
         }
@@ -795,13 +955,14 @@ focus_tree = {
         id = XXX_deterrence
         icon = GFX_focus_generic_deterrence
 
-        relative_position_id = XXX_expansionism
+        relative_position_id = XXX_international_affairs
         x = 1
         y = 1
         cost = 10
 
-        prerequisite = { focus = XXX_expansionism }
+        prerequisite = { focus = XXX_international_affairs }
         completion_reward = {
+            # bonus for generic states
             add_timed_idea = {
                 idea = sww1_idea_deterrence
                 years = 1
@@ -810,15 +971,28 @@ focus_tree = {
     }
     focus = {
         id = XXX_seek_alliances
-        icon = GFX_focus_generic_international_affairs
+        icon = GFX_focus_generic_seek_alliances
 
-        relative_position_id = XXX_international_affairs
+        relative_position_id = XXX_expansionism
         x = -2
         y = 1
         cost = 10
 
-        prerequisite = { focus = XXX_international_affairs }
+        ai_will_do = {
+            base = 1
+            modifier = {
+                date > 1916.1.1
+                factor = 3
+            }
+            modifier = {
+                is_major = no
+                factor = 2
+            }
+        }
+
+        prerequisite = { focus = XXX_expansionism }
         completion_reward = {
+            # bonus for generic states
             add_timed_idea = {
                 idea = sww1_idea_seek_alliances
                 years = 1
@@ -827,15 +1001,16 @@ focus_tree = {
     }
     focus = {
         id = XXX_on_our_own
-        icon = GFX_focus_on_our_own
+        icon = GFX_focus_generic_on_our_own
 
-        relative_position_id = XXX_international_affairs
+        relative_position_id = XXX_expansionism
         x = 1
         y = 1
         cost = 10
 
-        prerequisite = { focus = XXX_international_affairs }
+        prerequisite = { focus = XXX_expansionism }
         completion_reward = {
+            # bonus for generic states
             add_timed_idea = {
                 idea = sww1_idea_on_our_own
                 years = 1
@@ -852,23 +1027,45 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 2
+            modifier = {
+                has_war = yes
+                factor = 5
+            }
+            modifier = {
+                has_stability < 50
+                factor = 3
+            }
+        }
+
         mutually_exclusive = { focus = XXX_adjust_the_government }
         prerequisite = { focus = XXX_political_ambitions }
         completion_reward = {
             add_stability = 0.1
+            news_event = { id = genericevent.1 hours = 12 random_hours = 6 }
         }
     }
     focus = {
-        id = XXX_invest_in_information_services
-        icon = GFX_focus_generic_invest_in_information_services
+        id = XXX_public_support
+        icon = GFX_focus_generic_public_support
 
         relative_position_id = XXX_internal_stability
         x = -1
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = {
+                has_war = yes
+                factor = 5
+            }
+        }
+
         prerequisite = { focus = XXX_internal_stability }
         completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
         }
     }
     focus = {
@@ -886,19 +1083,23 @@ focus_tree = {
                 idea = sww1_idea_mobilize_the_masses
                 years = 2
             }
+
+            hidden_effect = {
+                news_event = { id = genericevent.3 hours = 12 random_hours = 6 }
+            }
         }
     }
     focus = {
         id = XXX_strength_in_unity
-        icon = GFX_focus_strength_in_unity
+        icon = GFX_focus_generic_strength_in_unity
 
-        relative_position_id = XXX_invest_in_information_services
+        relative_position_id = XXX_public_support
         x = 1
         y = 1
         cost = 10
 
         prerequisite = { 
-            focus = XXX_invest_in_information_services
+            focus = XXX_public_support
             focus = XXX_mobilize_the_masses
         }
         completion_reward = {
@@ -932,12 +1133,32 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 2
+            modifier = {
+                communism > 20
+                factor = 3
+            }
+            modifier = {
+                has_stability > 50
+                factor = 1
+            }
+        }
+
         mutually_exclusive = { focus = XXX_internal_stability }
         prerequisite = { focus = XXX_political_ambitions }
         completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_democratic_tendencies
+                years = 1
+            }
             add_popularity = {
                 ideology = democratic
                 popularity = 0.1
+            }
+
+            hidden_effect = {
+                news_event = { id = genericevent.4 hours = 12 random_hours = 6 }
             }
         }
     }
@@ -950,6 +1171,14 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = {
+                communism > 25
+                factor = 3
+            }
+        }
+
         prerequisite = { focus = XXX_adjust_the_government }
         completion_reward = {
             add_timed_idea = {
@@ -959,20 +1188,49 @@ focus_tree = {
         }
     }
     focus = {
-        id = XXX_laissez_faire
-        icon = GFX_focus_generic_laissez_faire
+        id = XXX_open_the_economy
+        icon = GFX_focus_generic_open_the_economy
 
         relative_position_id = XXX_adjust_the_government
         x = -1
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = {
+                has_war = no
+                factor = 1.5
+            }
+            modifier = {
+                num_of_civilian_factories < 15
+                factor = 1.5
+            }
+        }
+
         prerequisite = { focus = XXX_adjust_the_government }
         completion_reward = {
             add_timed_idea = {
-                idea = sww1_idea_democratic_tendencies
-                year = 1
+                idea = sww1_idea_open_the_economy
+                years = 1
             }
+
+            # bonus for generic states
+            random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
         }
     }
     focus = {
@@ -984,13 +1242,41 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = {
+                communism > 30
+                factor = 10
+            }
+            modifier  {
+                has_war = yes
+                factor = 0
+            }
+        }
+
         prerequisite = { focus = XXX_state_reform }
+        available = {
+            communism > 0.3
+        }
+        
         completion_reward = {
+            start_civil_war = {
+                ruling_party = communism
+                ideology = ROOT
+                size = 0.5
+            }
+
+            hidden_effect = {
+                set_popularity = {
+                    ideology = communism
+                    popularity = 1.0
+                }
+            }
         }
     }
     focus = {
-        id = XXX_education
-        icon = GFX_focus_generic_education
+        id = XXX_embrace_modernity
+        icon = GFX_focus_generic_embrace_modernity
 
         relative_position_id = XXX_state_reform
         x = -1

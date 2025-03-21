@@ -1,0 +1,30 @@
+generic_expansionist_plan = {
+    name = "This is what the generic countries will do when they join the alliance."
+
+    allowed = {
+        # here go limitations for other nations.
+    }
+
+    enable = {
+        # here goes the trigger that can launch the plan into action: our AI will try do be active if it's in a faction.
+        is_in_faction = yes
+    }
+
+    abort = {
+        # this is what would kill the plan: if it leaves the plan.
+        is_in_faction = no
+    }
+
+    ai_national_focuses = {
+        XXX_adjust_budget           # try to get the military in order.
+        XXX_focus_army
+        XXX_extend_conscription
+
+        XXX_equipment_effort
+        XXX_artillery
+
+        XXX_political_ambitions     # and if we can, do the stabilization program.
+        XXX_internal_stability      
+        XXX_mobilize_the_masses
+    }
+}

@@ -5,6 +5,14 @@ technologies = {
         research_cost = 1
         start_year = 1904
 
+        ai_will_do = {
+            base = 2
+            modifier = {
+                has_war = yes
+                factor = 0.5
+            }
+        }
+
         path = {
             leads_to_tech = electrification
             research_cost_coeff = 1
@@ -21,6 +29,14 @@ technologies = {
 
         research_cost = 1
         start_year = 1912
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                has_war = yes
+                factor = 0.5
+            }
+        }
 
         path = {
             leads_to_tech = assembly_line_1
@@ -156,6 +172,14 @@ technologies = {
         research_cost = 1.5
         start_year = 1912
 
+        ai_will_do = {
+            base = 1.5
+            modifier = {
+                num_of_factories < 15
+                factor = 2
+            }
+        }
+
         path = {
             leads_to_tech = modular_construction
             research_cost_coeff = 1
@@ -235,6 +259,14 @@ technologies = {
 
         research_cost = 2
         start_year = 1904
+
+        ai_will_do = {
+            base = 1
+            modifier = {
+                num_of_factories > 15
+                factor = 2
+            }
+        }
 
         path = {
             leads_to_tech = haber_process
