@@ -24,8 +24,15 @@ country_event = {
             }
             transfer_state_to = FRA
         }
-
         remove_ideas = sww1_idea_belgian_crisis
+
+        ai_chance = {
+            base = 5
+            modifier = {
+                is_ally_with = GER          # won't give up if they're allied with Germany
+                factor = 0
+            }
+        }
     }
 
     option = {
@@ -39,6 +46,10 @@ country_event = {
                 threat = 2
                 name = "The Dutch Won't Leave Belgium"
             }
+        }
+
+        ai_chance = {
+            base = 1
         }
     }
 }
@@ -99,6 +110,18 @@ country_event = {
                 name = "The Belgian Crisis is Over"
             }
         }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                FRA = { is_ally_with = ENG }
+                factor = 2
+            }
+            modifier = {
+                FRA = { is_ally_with = SOV }
+                factor = 2.5
+            }
+        }
     }
 
     option = {
@@ -113,6 +136,14 @@ country_event = {
 
         FRA = {
             country_event = { id = france_events.6 hours = 12 random_hours = 6 }
+        }
+
+        ai_chance = {
+            base = 4
+            modifier = {
+                is_ally_with = AUS
+                factor = 2.5
+            }
         }
     }
 }
@@ -153,6 +184,20 @@ country_event = {
         }
 
         news_event = { id = france_events.7 hours = 12 random_hours = 6 }
+        ai_chance = {
+            base = 2
+            modifier = {
+                is_ally_with = SOV
+                factor = 2
+            }
+            modifier = {
+                strength_ratio = {
+                    target = GER
+                    ratio > 1.2
+                }
+                factor = 4
+            }
+        }
     }
 
     option = {
@@ -162,6 +207,17 @@ country_event = {
         hidden_effect = {
             GER = {
                 country_event = { id = france_events.8 days = 7 random_days = 14 }
+            }
+        }
+
+        ai_chance = {
+            base = 4
+            modifier = {
+                strength_ratio = {
+                    target = GER
+                    ratio < 0.8
+                }
+                factor = 4
             }
         }
     }
@@ -202,10 +258,33 @@ country_event = {
                 name = "[GER.GetName] Invades France!"
             }
         }
+
+        ai_chance = {
+            base = 4
+            modifier = {
+                strength_ratio = {
+                    target = FRA
+                    ratio > 1.5
+                }
+                factor = 5
+            }
+            modifier = {
+                is_ally_with = AUS
+                factor = 2.5
+            }
+            modifier = {
+                or = { 
+                    FRA = { is_ally_with = SOV }
+                    FRA = { is_ally_with = AUS }
+                }
+                factor = 0.5
+            }
+        }
     }
 
     option = {
         name = "Let us give up for now."
+        ai_chance = { base = 2 }
     }
 }
 
@@ -288,6 +367,19 @@ country_event = {
                 country_event = { id = france_events.13 hours = 12 random_hours = 6 }
             }
         }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                MEX = {
+                    strength_ratio = {
+                        target = COL
+                        ratio > 1.5
+                    }
+                }
+                factor = 4
+            }
+        }
     }
 
     option = {
@@ -295,6 +387,19 @@ country_event = {
         hidden_effect = {
             COL = {
                 country_event = { id = france_events.13 hours = 12 random_hours = 6 }
+            }
+        }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                COL = {
+                    strength_ratio = {
+                        target = MEX
+                        ratio > 1.5
+                    }
+                }
+                factor = 4
             }
         }
     }
@@ -318,10 +423,13 @@ country_event = {
             add_to_faction = ROOT
         }
         news_event = { id = france_events.14 hours = 12 random_hours = 6 }
+        ai_chance = { base = 4 }
     }
 
     option = {
         name = "We must remain independent."
+        ai_chance = { base = 1 }
+
         FRA = {
             news_event = { id = france_events.15 hours = 12 random_hours = 6 }
         }
@@ -403,6 +511,21 @@ country_event = {
                 name = "Franco-Spanish Unification"
             }
         }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                has_opinion = {
+                    target = FRA
+                    value > 50
+                }
+                factor = 2
+            }
+            modifier = {
+                FRA = { is_ally_with = AUS }
+                factor = 5
+            }
+        }
     }
 
     option = {
@@ -413,6 +536,10 @@ country_event = {
                 target = SPR
                 type = medium_decrease
             }
+        }
+
+        ai_chance = {
+            base = 2
         }
     }
 }
@@ -468,10 +595,29 @@ country_event = {
                 modifier = medium_decrease
             }
         }
+
+        ai_chance = {
+            base = 2
+            modifier = {
+                has_government = democratic
+                factor = 2
+            }
+            modifier = {
+                has_war = no
+                factor = 4
+            }
+        }
     }
 
     option = {
         name = "The union is a fact."
+        ai_chance = {
+            base = 1
+            modifier = {
+                has_war = yes               # if there's a war, they won't bother.
+                factor = 25
+            }
+        }
     }
 }
 
