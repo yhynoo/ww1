@@ -1,0 +1,523 @@
+add_namespace = russia_events
+
+    ## Serbia
+
+news_event = {
+    id = russia_events.1
+    title = "Unrest in Southern Slavic Lands!"
+    desc = russia_events.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        if = {
+            limit = { tag = AUS }
+            add_opinion_modifier = {
+                target = SOV
+                modifier = medium_decrease
+            }
+        }
+        name = "Concerning."
+    }
+}
+
+country_event = {
+    id = russia_events.2
+    title = "[SOV.GetName] Offers Alliance!"
+    desc = russia_events.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They will guarantee our future!"
+        SOV = {
+            add_to_faction = SER
+        }
+
+        # generate the announcement in world news:
+        news_event = { id = russia_events.3 hours = 12 random_hours = 6 }
+
+        ai_chance = { 
+            base = 3
+            modifier = {
+                OR = {
+                    has_opinion = {
+                        target = AUS
+                        value < 0
+                    }
+                    has_opinion = {
+                        target = TUR
+                        value < 0
+                    }
+                }
+                factor = 3
+            }
+        }
+    }
+
+    option = {
+        name = "This may lead to a great war..."
+
+        # generate response event in russia:
+        SOV = { news_event = { id = russia_events.4 hours = 12 random_hours = 6 } }
+
+        ai_chance = { 
+            base = 1
+            modifier = {
+                has_opinion = {
+                    target = AUS
+                    value > 50
+                }
+                factor = 5
+            }
+        }
+    }
+}
+
+news_event = {
+    id = russia_events.3
+    title = "Serbia Allies with [SOV.GetNameDef]"
+    desc = russia_events.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Concerning."
+    }
+}
+
+news_event = {
+    id = russia_events.4
+    title = "Serbia Declines!"
+    desc = russia_events.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Such a shame."
+    }
+}
+
+    ## Far East
+
+news_event = {
+    id = russia_events.5
+    title = "Infiltration of Manchuria"
+    desc = russia_events.5.d
+
+    trigger = {
+        not = { has_war_with = MAN }
+        every_state = {
+            limit = {
+                OR = {
+                    state = 328
+                    state = 714
+                    state = 716
+                    state = 717
+                    state = 761
+                }
+            }
+            is_owned_by = MAN
+        }
+    }
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+
+        if = {
+            limit = { tag = SOV }
+            hidden_effect = {
+                add_named_threat = {
+                    threat = 1
+                    name = "Infiltration of Manchuria"
+                }
+            }
+        }
+    }
+}
+
+country_event = {
+    id = russia_events.6
+    title = "Manchuria or War!"
+    desc = russia_events.6.d
+
+    is_triggered_only = yes
+
+    immediate = {
+        SOV = {
+            add_named_threat = {
+                threat = 3
+                name = "Territorial Dispute over Manchuria"
+            }
+        }
+    }
+
+    option = {
+        name = "We must concede."
+        news_event = { id = russia_events.7 hours = 12 random_hours = 6 }
+
+        ## here goes the concession
+        every_state = {
+            limit = {
+                OR = {
+                    state = 328
+                    state = 714
+                    state = 716
+                    state = 717
+                    state = 761
+                }
+                is_owned_by = MAN
+            }
+            transfer_state_to = SOV
+        }
+        
+        ai_chance = { 
+            base = 1
+            modifier = {
+                strength_ratio = {
+                    target = SOV
+                    ratio < 1
+                }
+                factor = 2.5
+            }
+            modifier = {
+                strength_ratio = {
+                    target = SOV
+                    ratio < 0.5
+                }
+                factor = 5
+            }
+            modifier = {
+                has_war = yes           # if they're at war, they will just cede and forget about it.
+                factor = 100
+            }
+        }
+    }
+
+    option = {
+        name = "Prepare for war!"
+        news_event = { id = russia_events.8 hours = 12 random_hours = 6 }
+
+        SOV = { 
+            create_wargoal = {
+                target = MAN
+                type = take_claimed_state
+            }
+        }
+
+        ai_chance = { 
+            base = 1
+            modifier = {
+                strength_ratio = {
+                    target = SOV
+                    ratio > 0.5
+                }
+                factor = 2.5
+            }
+            modifier = {
+                strength_ratio = {
+                    target = SOV
+                    ratio > 1
+                }
+                factor = 5
+            }
+            modifier = {
+                is_in_faction = yes
+                factor = 2
+            }
+        }
+    }
+}
+
+news_event = {
+    id = russia_events.7
+    title = "Manchuria Ceded to Russia!"
+    desc = russia_events.7.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The balance shifts in the Far East."
+    }
+}
+
+news_event = {
+    id = russia_events.8
+    title = "War in the Far East!"
+    desc = russia_events.8.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Tensions erupt into conflict."
+
+        # manage war declaration
+        if = {
+            limit = { tag = SOV }
+            declare_war_on = {
+                target = MAN
+                type = take_claimed_state
+            }
+
+            hidden_effect = {
+                add_named_threat = {
+                    threat = 12
+                    name = "War in the Far East"
+                }
+            }
+        }
+    }
+}
+
+country_event = {
+    id = russia_events.9
+    title = "[SOV.GetNameDef] Demands Mongolian Independence"
+    desc = russia_events.9.d
+
+    is_triggered_only = yes
+
+    immediate = {
+        SOV = {
+            add_named_threat = {
+                threat = 3
+                name = "Demands for Mongolian Independence"
+            }
+        }
+    }
+
+    option = {
+        name = "Yes, Mongolia shall be free."
+
+        # create Mongolia
+        every_state = {
+            limit = { is_core_of = MON }
+            transfer_state_to = MON
+        }
+        SOV = { puppet = MON }
+
+        # and make announcement
+        news_event = { id = russia_events.10 hours = 12 random_hours = 6 }
+
+        ai_chance = {
+            base = 2
+            modifier = {
+                has_stability < 0.4
+                factor = 2.5
+            }
+            modifier = {
+                has_war = yes       # if they're at war, no time to deal with this stuff
+                factor = 100 
+            }
+        }
+    }
+
+    option = {
+        trigger = {
+            is_in_faction = no
+            SOV = {
+                OR = {
+                    is_faction_leader = yes
+                    is_in_faction = no
+                }
+            }
+        }
+
+        name = "Let us propose an alliance."
+        SOV = { country_event = { id = russia_events.11 hours = 12 random_hours = 6 } }
+
+        ai_chance = {
+            base = 2
+            modifier = {
+                has_opinion = {
+                    target = SOV
+                    value > 25
+                }
+                factor = 4
+            }
+            modifier = {
+                SOV = { is_in_faction = yes }
+                factor = 2
+            }
+        }
+    }
+
+    option = {
+        name = "Absolutely not!"
+        SOV = { news_event = { id = russia_events.14 hours = 12 random_hours = 6 } }
+
+        ai_chance = { 
+            base = 4
+            modifier = {
+                is_in_faction = yes         # if we're in a faction, we feel alright.
+                factor = 2.5
+            }
+        }
+    }
+}
+
+news_event = {
+    id = russia_events.10
+    title = "Mongolia Gains Independence!"
+    desc = russia_events.10.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A new nation is born."
+    }
+}
+
+country_event = {
+    id = russia_events.11
+    title = "Qing Offers Alliance Instead!"
+    desc = russia_events.11.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Yes, we accept."
+        
+        # manage the alliance
+        if = {
+            limit = { is_in_faction = no }
+            create_faction = "The Petersburg Accords"
+        }
+        add_to_faction = MAN
+
+        # add the world news
+        news_event = { id = russia_events.12 hours = 12 random_hours = 6 }
+
+        ai_chance = {
+            base = 2
+            modifier = {
+                date > 1916.1.1
+                factor = 2
+            }
+            modifier = {
+                strength_ratio = {
+                    target = MAN        # if Qing is strong enough - why not?
+                    ratio < 2
+                }
+                factor = 4
+            }
+        }
+    }
+
+    option = {
+        name = "This is not what we wanted."
+        MAN = { news_event = { id = russia_events.13 hours = 12 random_hours = 6 } }  # this is news only in Qing.
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                strength_ratio = {
+                    target = MAN        # but if not, then we'd rather fight them
+                    ratio > 2
+                }
+                factor = 8
+            }
+        }
+    }
+}
+
+country_event = {
+    id = russia_events.12
+    title = "[SOV.GetName] and [MAN.GetName] Allied!"
+    desc = russia_events.12.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Right."
+    }
+}
+
+country_event = {
+    id = russia_events.13
+    title = "[SOV.GetName] Refuses; Tensions Will Grow"
+    desc = russia_events.13.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must prepare."
+        SOV = {
+            add_opinion_modifier = {
+                target = MAN
+                modifier = medium_decrease
+            }
+        }
+
+        hidden_effect = {
+            add_named_threat = {
+                threat = 2
+                name = "Unresolved Tensions in Mongolia"
+            }
+        }
+    }
+}
+
+country_event = {
+    id = russia_events.14
+    title = "[MAN.GetName] Refuses Mongolian Independence!"
+    desc = russia_events.14.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We will get it anyway."
+        add_opinion_modifier = {
+            target = MAN
+            modifier = medium_decrease
+        }
+    }
+}
+
+country_event = {
+    id = russia_events.15
+    title = "[SOV.GetName] Asserts its Claims in East Asia"
+    desc = russia_events.15.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Concerning."
+    }
+}
+
+    ## Self Determination
+
+news_event = {
+    id = russia_events.16
+    title = "Russia Encourages the 'Sokół' Society"
+    desc = russia_events.16.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The youth take to arms!"
+    }
+}
+
+news_event = {
+    id = russia_events.17
+    title = "Russia Funds 'Prosvita' in Ukraine"
+    desc = russia_events.17.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A spark for cultural revival."
+    }
+}

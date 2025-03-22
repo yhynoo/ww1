@@ -1,0 +1,301 @@
+# Serbian Question
+
+dc_serbian_question = {
+    empower_south_slavic_insurgents = {
+        cost = 100
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 3
+            modifier = {
+                has_govenment = monarchism
+                factor = 2
+            }
+            modifier = {
+                date > 1913.7.1
+                factor = 2
+            }
+        }
+
+        complete_effect = {
+            country_event = { id = russia_events.1 hours = 12 random_hours = 6 }
+            AUS = {
+                add_timed_idea = {
+                    idea = sww1_idea_slavic_unrest
+                    years = 2
+                }
+            }
+        }
+    }
+
+    ally_with_serbia = {
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            OR = {
+                is_faction_leader = yes         # we can either offer alliance if we're the boss, or if we're not in any alliance yet.
+                is_in_faction = no
+            }
+            SER = { 
+                exists = yes
+                is_in_faction = no
+            }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = {
+                OR = {
+                    has_opinion = {
+                        target = AUS
+                        value < 0
+                    }
+                    has_opinion = {
+                        target = TUR
+                        value < 0
+                    }
+                }   
+                factor = 10
+            }
+        }
+
+        complete_effect = {
+            russia_events = {
+                country_event = { id = russia_events.2 hours = 12 random_hours = 6 }
+            }
+        }
+    }
+}
+
+# Far East
+
+dc_far_east = {
+    demand_manchuria = {
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            MAN = { exists = yes }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = {
+                has_govenment = authoritarianism
+                factor = 10
+            }
+            modifier = {
+                has_war = yes
+                factor = 0
+            }
+        }
+
+        remove_days = 90
+        war_with_on_remove = MAN
+        remove_effect = {
+            MAN = {
+                country_event = { id = russia_events.6 hours = 12 random_hours = 6 }
+            }
+
+            every_state = {
+                limit = {
+                    OR = {
+                        state = 328
+                        state = 714
+                        state = 716
+                        state = 717
+                        state = 761
+                    }
+                    is_owned_by = MAN
+                }
+                add_claim_by = SOV
+            }
+        }
+    }
+
+    demand_mongolian_independence = {
+        cost = 125
+        fire_only_once = yes
+
+        available = {
+            MON = { exists = no }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = {
+                date > 1916.1.1
+                factor = 5
+            }
+            modifier = {
+                has_war = yes
+                factor = 1.5
+            }
+        }
+
+        remove_days = 90
+        remove_effect = {
+            MAN = {
+                country_event = { id = russia_events.9 hours = 12 random_hours = 6 }
+            }
+        }
+    }
+
+    avenge_1905 = {
+        cost = 100
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 3
+            modifier = {
+                AND = {
+                    has_war = no
+                    date > 1916.1.1
+                }
+                factor = 5
+            }
+            modifier = {
+                has_war = yes
+                factor = 0
+            }
+        }
+
+        complete_effect = {
+            news_event = { id = russia_events.15 hours = 12 random_hours = 6 }
+
+            every_state = {
+                limit = {
+                    OR = {
+                        state = 525
+                        state = 537
+                        state = 555
+                        state = 527
+                        state = 745
+                    }
+                    not = { is_owned_by = SOV }
+                }
+                add_claim_by = SOV
+            }
+
+            hidden_effect = {
+                add_named_threat = {
+                    threat = 3
+                    name = "[SOV.GetName] Asserts its Claims in the Far East"
+                }
+            }
+        }
+    }
+}
+
+# Okhrana
+
+dc_okhrana = {
+    censor_the_press = {
+        icon = generic_civil_support
+        
+        cost = 75
+        remove_days = 90
+
+        ai_will_do = {
+            base = 5
+            modifier = {
+                AND = {
+                    has_govenment = monarchism
+                    monarchism < 60
+                }
+                factor = 3
+            }
+        }
+
+        modifier = {
+            stability_weekly = 0.01
+            monarchism_drift = 0.05
+        }
+    }
+
+    enforce_wartime_quota = {
+        icon = generic_civil_support
+
+        cost = 100
+        remove_days = 90
+
+        available = {
+            has_war_support = 50
+        }
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                AND = {
+                    has_stability = 50
+                    any_enemy_country = {
+                        ic_ratio = {
+                            tag = ROOT
+                            ratio < 0.5
+                        }
+                    }
+                }
+                factor = 5
+            }
+            
+        }
+
+        modifier = {
+            stability_weekly = -0.005
+            industrial_capacity_factory = 0.1
+        }
+    }
+
+    military_gendarmerie_troops = {
+        icon = generic_prepare_civil_war
+
+        cost = 100
+        remove_days = 90
+
+        available = {
+            has_war = yes
+        }
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                surrender_progress > 0.2
+                factor = 5
+            }
+        }
+
+        modifier = {
+            stability_weekly = -0.005
+            army_morale = 0.15
+        }
+    }
+}
+
+# Self Determination
+
+dc_self_determination = {
+    encourage_sokol_society = {
+        icon = generic_prepare_civil_war
+
+        cost = 100
+        fire_only_once = yes
+
+        complete_effect = {
+            add_ideas = sww1_idea_sokol_society
+            news_event = { id = russia_events.16 hours = 12 random_hours = 6 }
+        }
+    }
+
+    fund_prosvita_in_ukraine = {
+        icon = generic_research
+
+        cost = 100
+        fire_only_once
+
+        complete_effect = {
+            add_ideas = sww1_idea_prosvita
+            news_event = { id = russia_events.17 hours = 12 random_hours = 6 }
+        }
+    }
+}

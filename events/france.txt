@@ -1,203 +1,20 @@
 add_namespace = france_events
 
-## BELGIAN CRISIS
-
+# Ask the Dutch to Leave
 country_event = {
-	id = france_events.1
-	title = "France Demands We Leave Belgium"
-	desc = france_events.1.d
+    id = france_events.1
+    title = "[FRA.GetName] Asks the Dutch to Leave"
+    desc = france_events.1.d
 
-	is_triggered_only = yes
+    is_triggered_only = yes
 
-	option = {
-		name = "We shall withdraw."
-		news_event = { id = france_events.2 hours = 12 random_hours = 6 }
+    option = {
+        name = "Let them take over in Belgium."
 
+        news_event = { id = france_events.2 hours = 12 random_hours = 6 }
         every_state = {
             limit = {
-                OR = {
-                    state = 6
-                    state = 34
-                    state = 977
-                    state = 980
-                }
-                is_owned_by = GER
-            }
-            transfer_state_to = FRA
-        }
-
-        ai_chance = { 
-            base = 1
-            modifier = {
-                strength_ratio = {
-                    tag = FRA
-                    ratio > 1
-                }
-                factor = 10
-            }
-            modifier = {
-                FRA = { 
-                    OR = {
-                        is_ally_with = SOV
-                        is_ally_with = AUS
-                    } 
-                }
-                factor = 3
-            }
-        }
-	}
-
-	option = {
-		name = "No, we will hold our ground."
-		FRA = { country_event = { id = france_events.3 hours = 12 random_hours = 6 } }
-
-        ai_chance = { base = 5 }
-	}
-}
-
-news_event = {
-	id = france_events.2
-	title = "German Occupation of Belgium Ended!"
-	desc = france_events.2.d
-
-	major = yes
-	is_triggered_only = yes
-
-	option = {
-		name = "A diplomatic victory for France."
-	}
-}
-
-country_event = {
-	id = france_events.3
-	title = "Germans Decline!"
-	desc = france_events.3.d
-
-	is_triggered_only = yes
-
-    immediate = {
-        add_named_threat = {
-            threat = 3
-            name = "[GER.GetName] Stays in the Ardennes"
-        }
-    }
-
-	option = {
-		name = "This means war!"
-		news_event = { id = france_events.4 hours = 12 random_hours = 6 }
-
-        declare_war_on = {
-            target = GER
-            type = take_claimed_state
-        }
-
-        ai_chance = {
-            base = 1
-            modifier = {
-                OR = {
-                    is_ally_with = SOV
-                    is_ally_with = AUS
-                }
-                factor = 3
-            }
-        }
-
-        hidden_effect = {
-            add_named_threat = {
-                threat = 25
-                name = "[FRA.GetName] Goes to War!"
-            }
-        }
-	}
-
-	option = {
-        add_political_power = -50
-		name = "We must back down."
-
-		hidden_effect = {
-            GER = { country_event = { id = france_events.5 days = 7 random_days = 14 } }
-        }
-
-        ai_chance = { base = 3 }
-	}
-}
-
-news_event = {
-	id = france_events.4
-	title = "France Declares War on Germany!"
-	desc = france_events.4.d
-
-	major = yes
-	is_triggered_only = yes
-
-	option = {
-		name = "The war has begun."
-	}
-}
-
-country_event = {
-	id = france_events.5
-	title = "Shall We Strike?"
-	desc = france_events.5.d
-
-	trigger = {
-		has_war = no
-	}
-
-	is_triggered_only = yes
-
-	option = {
-		name = "Yes, let us preemptively strike!"
-		news_event = { id = france_events.6 hours = 12 random_hours = 6 }
-
-        declare_war_on = {
-            target = FRA
-            type = annex_everything
-        }
-
-        ai_chance = { base = 5 }
-
-        hidden_effect = {
-            add_named_threat = {
-                threat = 30
-                name = "[GER.GetName] Invades France!"
-            }
-        }
-	}
-
-	option = {
-		name = "No, it is not worth it."
-        ai_chance = { base = 1 }
-	}
-}
-
-news_event = {
-	id = france_events.6
-	title = "Germany Declares War on France!"
-	desc = france_events.6.d
-
-	major = yes
-	is_triggered_only = yes
-
-	option = {
-		name = "Horrible."
-	}
-}
-
-news_event = {
-	id = france_events.7
-	title = "France Asks to Take Control of Flanders"
-	desc = france_events.7.d
-
-	is_triggered_only = yes
-
-	option = {
-		name = "Gladly, let them have it."
-		news_event = { id = france_events.8 hours = 12 random_hours = 6 }
-
-        every_state = {
-            limit = {
-                OR = {
+                or = {
                     state = 6
                     state = 34
                     state = 977
@@ -208,48 +25,470 @@ news_event = {
             transfer_state_to = FRA
         }
 
-        ai_chance = { base = 5 }
-	}
+        remove_ideas = sww1_idea_belgian_crisis
+    }
 
-	option = {
-		name = "No, we will not hand it over."
-		news_event = { id = france_events.9 hours = 12 random_hours = 6 }
+    option = {
+        name = "We refuse to yield!"
+        FRA = {
+            news_event = { id = france_events.3 hours = 12 random_hours = 6 }
+        }
 
-        ai_chance = { 
-            base = 1
-            modifier = {
-                is_ally_with = GER
-                factor = 10
+        hidden_effect = {
+            add_named_threat = {
+                threat = 2
+                name = "The Dutch Won't Leave Belgium"
             }
         }
-	}
+    }
 }
 
 news_event = {
-	id = france_events.8
-	title = "France Takes Control of Flanders"
-	desc = france_events.8.d
+    id = france_events.2
+    title = "[HOL.GetName] Yields Belgium to France!"
+    desc = france_events.2.d
 
-	major = yes
-	is_triggered_only = yes
+    is_triggered_only = yes
+    major = yes
 
-	option = {
-		name = "Stability returns to Belgium."
-	}
+    option = {
+        name = "Wonderful."
+    }
 }
 
 news_event = {
-	id = france_events.9
-	title = "The Dutch Decline!"
-	desc = france_events.9.d
+    id = france_events.3
+    title = "[HOL.GetName] Refuses French Demands!"
+    desc = france_events.3.d
 
-	is_triggered_only = yes
+    is_triggered_only = yes
 
-	option = {
-		name = "This is unacceptable!"
-		create_wargoal = {
-            target = HOL
+    option = {
+        name = "A setback for France."
+    }
+}
+
+# Ultimatum to Germany
+country_event = {
+    id = france_events.4
+    title = "[FRA.GetName] Demands Germany End Occupation!"
+    desc = france_events.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We will leave Belgium."
+
+        news_event = { id = france_events.5 hours = 12 random_hours = 6 }
+        every_state = {
+            limit = {
+                or = {
+                    state = 6
+                    state = 34
+                    state = 977
+                    state = 980
+                }
+                is_owned_by = GER
+            }
+            transfer_state_to = FRA
+        }
+
+        hidden_effect = {
+            add_named_threat = {
+                threat = -10
+                name = "The Belgian Crisis is Over"
+            }
+        }
+    }
+
+    option = {
+        name = "We refuse to leave."
+
+        hidden_effect = {
+            add_named_threat = {
+                threat = 3
+                name = "Germans Stay in the Ardennes"
+            }
+        }
+
+        FRA = {
+            country_event = { id = france_events.6 hours = 12 random_hours = 6 }
+        }
+    }
+}
+
+news_event = {
+    id = france_events.5
+    title = "Germany Ends Occupation in Belgium!"
+    desc = france_events.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Phew."
+    }
+}
+
+country_event = {
+    id = france_events.6
+    title = "Germany Refuses!"
+    desc = france_events.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must go to war!"
+
+        declare_war_on = {
+            target = GER
             type = take_claimed_state
         }
-	}
+
+        hidden_effect = {
+            add_named_threat = {
+                threat = 25
+                name = "France Goes to War over Belgium!"
+            }
+        }
+
+        news_event = { id = france_events.7 hours = 12 random_hours = 6 }
+    }
+
+    option = {
+        name = "Let us back out for now."
+
+        add_political_power = -100
+        hidden_effect = {
+            GER = {
+                country_event = { id = france_events.8 days = 7 random_days = 14 }
+            }
+        }
+    }
+}
+
+news_event = {
+    id = france_events.7
+    title = "France Declares War on Germany!"
+    desc = france_events.7.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The conflict escalates in Europe."
+    }
+}
+
+country_event = {
+    id = france_events.8
+    title = "[GER.GetName] Ponders Next Move"
+    desc = france_events.8.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Strike now while they're weak!"
+
+        declare_war_on = {
+            target = FRA
+            type = annex_everything
+        }
+        news_event = { id = france_events.9 hours = 12 random_hours = 6 }
+
+        hidden_effect = {
+            add_named_threat = {
+                threat = 35
+                name = "[GER.GetName] Invades France!"
+            }
+        }
+    }
+
+    option = {
+        name = "Let us give up for now."
+    }
+}
+
+news_event = {
+    id = france_events.9
+    title = "Germany Declares War on France!"
+    desc = france_events.9.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Europe descends into chaos."
+    }
+}
+
+# Annex Belgium
+news_event = {
+    id = france_events.10
+    title = "France Annexes Belgium!"
+    desc = france_events.10.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Disappointment spreads globally."
+    }
+}
+
+news_event = {
+    id = france_events.11
+    title = "Belgian Crisis is Over"
+    desc = france_events.11.d
+
+    trigger = {
+        has_idea = sww1_idea_belgian_crisis
+        has_war = no
+
+        every_state = {
+            limit = {
+                or = {
+                    state = 6
+                    state = 34
+                    state = 977
+                    state = 980
+                }
+            }
+            is_owned_by = FRA
+        }
+    }
+
+    days = 7
+    random_days = 7
+
+    option = {
+        name = "Fantastic news."
+
+        if = {
+            limit = { tag = FRA }
+            remove_ideas = sww1_idea_belgian_crisis
+        }
+    }
+}
+
+# ACROSS THE ATLANTIC
+
+# Intervene in Central America
+country_event = {
+    id = france_events.12
+    title = "[FRA.GetName] Debates Central American Intervention"
+    desc = france_events.12.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Side with Mexico."
+        hidden_effect = {
+            MEX = {
+                country_event = { id = france_events.13 hours = 12 random_hours = 6 }
+            }
+        }
+    }
+
+    option = {
+        name = "Side with Colombia."
+        hidden_effect = {
+            COL = {
+                country_event = { id = france_events.13 hours = 12 random_hours = 6 }
+            }
+        }
+    }
+}
+
+country_event = {
+    id = france_events.13
+    title = "[FRA.GetName] Offers Military Alliance!"
+    desc = france_events.13.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We accept France's offer!"
+        FRA = {
+            if = {
+                limit = { is_in_faction = no }
+                create_faction = "The Versailles Pact"
+            }
+
+            add_to_faction = ROOT
+        }
+        news_event = { id = france_events.14 hours = 12 random_hours = 6 }
+    }
+
+    option = {
+        name = "We must remain independent."
+        FRA = {
+            news_event = { id = france_events.15 hours = 12 random_hours = 6 }
+        }
+    }
+}
+
+news_event = {
+    id = france_events.14
+    title = "[ROOT.GetName] Joins France's Military Alliance!"
+    desc = france_events.14.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = france_events.15
+    title = "[FROM.GetName] Refuses France's Alliance!"
+    desc = france_events.15.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A setback for French ambitions."
+    }
+}
+
+# Challenge the United States in the Caribbean
+news_event = {
+    id = france_events.16
+    title = "[FRA.GetName] Issues Claims in the Caribbean"
+    desc = france_events.16.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Tensions rise across the Atlantic."
+    }
+}
+
+# LET THEM EAT CAKE
+
+add_namespace = france_events
+
+# Seek Unification with the Kingdom of Spain
+country_event = {
+    id = france_events.17
+    title = "[FRA.GetName] Proposes Unification with [SPR.GetName]"
+    desc = france_events.17.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall unite with France!"
+
+        FRA = {
+            add_political_power = 100
+            annex_country = {
+                target = SPR
+                transfer_troops = yes
+            }
+        }
+
+        hidden_effect = {
+            ENG = {
+                country_event = { id = france_events.20 days = 7 random_hours = 6 }
+            }
+            USA = {
+                country_event = { id = france_events.20 days = 7 random_hours = 6 }
+            }
+
+            add_named_threat = {
+                threat = 3
+                name = "Franco-Spanish Unification"
+            }
+        }
+    }
+
+    option = {
+        name = "We must remain independent."
+        FRA = {
+            news_event = { id = france_events.19 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = SPR
+                type = medium_decrease
+            }
+        }
+    }
+}
+
+news_event = {
+    id = france_events.19
+    title = "Celebrations in Madrid!"
+    desc = france_events.19.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        trigger = { tag = FRA }
+        name = "Long live the Union!"
+    }
+    option = {
+        trigger = { not = { tag = FRA } }
+        name = "Right."
+    }
+}
+
+news_event = {
+    id = france_events.19
+    title = "[SPR.GetName] Rejects Franco-Spanish Union!"
+    desc = france_events.19.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A disappointing end to our proposal."
+    }
+}
+
+# Response Event for ENG and USA
+country_event = {
+    id = france_events.20
+    title = "Our Response to the Franco-Spanish Union"
+    desc = france_events.20.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must protest this!"
+        add_opinion_modifier = {
+            target = FRA
+            modifier = medium_decrease
+        }
+        FRA = {
+            news_event = { id = france_events.21 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = ROOT
+                modifier = medium_decrease
+            }
+        }
+    }
+
+    option = {
+        name = "The union is a fact."
+    }
+}
+
+news_event = {
+    id = france_events.21
+    title = "[FROM.GetName] Protests the Franco-Spanish Union!"
+    desc = france_events.21.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        trigger = { not = { tag = FRA } }
+        name = "They are right to be concerned."
+    }
+    option = {
+        trigger = { tag = FRA }
+        name = "Their concerns are noted."
+    }
 }

@@ -1,0 +1,89 @@
+russia_army_positions = {
+    allowed = {
+        original_tag = SOV
+    }
+
+    enable = {
+        has_war = no
+    }
+
+    # put troops in Europe, Caucasus and the Far East, ignore Central Asia and Siberia.
+
+    ai_strategy = {
+        type = area_priority
+        id = central_europe
+        value = 100
+    }
+
+    ai_strategy = {
+        type = area_priority
+        id = caucasus
+        value = 50
+    }
+
+    ai_strategy = {
+        type = area_priority
+        id = far_east
+        value = 15 
+    }
+
+    ai_strategy = {
+        type = area_priority
+        id = far_north
+        value = 5
+    }
+}
+
+russia_against_austria = {
+    allowed = {
+        original_tag = SOV
+    }
+
+    enable = {
+        OR = {
+            AUS = { is_ally_with = GER }
+            has_completed_focus = SOV_serbian_question
+        }
+    }
+
+    abort = {
+        has_war = yes
+    }
+
+    ai_strategy = {
+        type = prepare_for_war
+        id = AUS
+        value = 35
+    }
+}
+
+russia_against_germany = {
+    allowed = {
+        original_tag = SOV
+    }
+
+    enable = {
+        OR = {
+            is_ally_with = FRA
+            AUS = { is_ally_with = GER }
+        }
+    }
+
+    ai_strategy = {
+        type = equipment_production_factor
+        id = infantry_equipment
+        value = 50
+    }
+
+    ai_strategy = {
+        type = prepare_for_war
+        id = GER
+        value = 50
+    }
+
+    ai_strategy = {
+        type = alliance
+        id = FRA
+        value = 75
+    }
+}

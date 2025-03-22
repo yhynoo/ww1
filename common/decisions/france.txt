@@ -1,36 +1,276 @@
+# The Belgian Crisis
+
 dc_belgian_crisis = {
-    demand_germans_leave = {
-        cost = 100
+    ask_the_dutch_to_leave = {
+        cost = 75
         fire_only_once = yes
-        icon = generic_prepare_civil_war
+
+        available = {
+            any_state = {
+                or = {
+                    state = 6
+                    state = 34
+                    state = 977
+                    state = 980
+                }
+                is_owned_by = HOL
+            }
+        }
 
         ai_will_do = {
-            base = 5
+            base = 4
             modifier = {
-                date > 1914.9.1
-                factor = 3
+                date > 1914.4.1
+                factor = 5
             }
         }
 
         complete_effect = {
-            GER = { country_event = { id = france_events.1 hours = 12 random_hours = 6 } }
+            HOL = {
+                country_event = { id = france_events.1 hours = 12 random_hours = 6 }
+            }
         }
     }
-        take_control_of_flanders = {
+
+    ultimatum_to_germany = {
         cost = 100
         fire_only_once = yes
-        icon = generic_civil_support
+
+        available = {
+            any_state = {
+                or = {
+                    state = 6
+                    state = 34
+                    state = 977
+                    state = 980
+                }
+                is_owned_by = GER
+            }
+        }
 
         ai_will_do = {
-            base = 10
+            base = 4
             modifier = {
-                date > 1914.4.1
+                date > 1914.8.1
+                factor = 4
+            }
+            modifier = {
+                is_ally_with = SOV
+                factor = 8
+            }
+        }
+
+        complete_effect = {
+            GER = {
+                country_event = { id = france_events.4 hours = 12 random_hours = 6 }
+            }
+        }
+    }
+
+    annex_belgium = {
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            every_state = {
+                limit = {
+                    or = {
+                        state = 6
+                        state = 34
+                        state = 977
+                        state = 980
+                    }
+                }
+                is_owned_by = FRA
+            }
+        }
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                has_war = yes
+                factor = 2
+            }
+            modifier = {
+                or = {
+                    has_government = monarchism
+                    has_government = authoritarianism
+                }
+                factor = 4
+            }
+        }
+
+        complete_effect = {
+            news_event = { id = france_events.10 hours = 12 random_hours = 6 }
+
+            every_state = {
+                limit = {
+                    or = {
+                        state = 6
+                        state = 34
+                        state = 977
+                        state = 980
+                    }
+                }
+                add_core_of = FRA
+            }
+
+            if = {
+                limit = { has_idea = sww1_idea_belgian_crisis }
+                remove_ideas = sww1_idea_belgian_crisis
+            }
+
+            hidden_effect = {
+                add_named_threat = {
+                    threat = 5
+                    name = "The Annexation of Belgium"
+                }
+            }
+        }
+    }
+}
+
+# Across the Atlantic
+
+dc_across_the_atlantic = {
+    intervene_in_central_america = {
+        cost = 125
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                has_war = yes           # if we're at war, don't bother.
+                factor = 0
+            }
+            modifier = {
+                41 = { is_owned_by = FRA }          # do it after annexing spain
+                factor = 8
+            }
+        }
+
+        available = {
+            COL = { exists = yes }
+            MEX = { exists = yes }
+            or = {
+                is_in_faction = no
+                is_faction_leader = yes
+            }
+        }
+
+        complete_effect = {
+            country_event = { id = france_events.12 hours = 12 random_hours = 6 }
+        }
+    }
+
+    challenge_us_in_carribean = {
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            any_state = {
+                or = {
+                    state = 315
+                    state = 318
+                    state = 319
+                    state = 686
+                }
+                is_owned_by = USA
+            }
+        }
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                has_war = yes           # if we're at war, don't bother.
+                factor = 0
+            }
+            modifier = {
+                41 = { is_owned_by = FRA }          # do it after annexing spain
+                factor = 4
+            }
+            modifier = {
+                USA = { is_in_faction = no }
                 factor = 2
             }
         }
 
         complete_effect = {
-            HOL = { country_event = { id = france_events.7 hours = 12 random_hours = 6 } }
+            news_event = { id = france_events.16 hours = 12 random_hours = 6 }
+            USA = {
+                add_opinion_modifier = {
+                    target = FRA
+                    modifier = medium_decrease
+                }
+            }
+
+            every_state = {
+                limit = { 
+                    or = {
+                        state = 315
+                        state = 318
+                        state = 319
+                        state = 686
+                    }
+                    is_owned_by = USA
+                }
+                add_claims_by = FRA
+            }
+
+            hidden_effect = {
+                add_named_threat = {
+                    threat = 2
+                    name = "[FRA.GetName] Asserts Claims in the Carribean"
+                }
+            }
         }
     }
 }
+
+# They Shall Not Pass is generic
+
+dc_let_them_eat_cake = {
+    seek_unification_with_spain = {
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            has_government = monarchism
+            SPR = { 
+                exists = yes
+                has_government = monarchism
+            }
+        }
+
+        ai_will_do = {
+            base = 4
+            modifier = {
+                has_war = yes
+                factor = 2
+            }
+            modifier = {
+                or = {
+                    is_in_faction = no
+                    is_faction_leader = yes
+                }
+                factor = 1.5
+            }
+        }
+
+        complete_effect = {
+            SPR = {
+                country_event = { id = france_events.17 hours = 12 random_hours = 6 }
+            }
+        }
+    }
+
+    international_trade_missions = {
+        cost = 100
+        fire_only_once = yes
+
+        complete_effect = {
+            add_ideas = sww1_idea_international_trade_missions
+        }
+    }
+}
+

@@ -50,12 +50,10 @@ news_event = {
 	option = {
 		if = {
 			limit = { tag = AUS }
-			hidden_effect = {
-				add_named_threat = {
-					threat = 5
-					name = "Assassination of Franz Ferdinand"
+			add_opinion_modifier = {
+					target = SOV
+					modifier = small_decrease
 				}
-			}
 
 			if = {
 				limit = { SER = { exists = yes } }
@@ -65,10 +63,17 @@ news_event = {
 				}
 			}
 			if = {
-				limit = { has_idea = sww1_idea_slavic_nationalism }
-				add_opinion_modifier = {
+				limit = { has_idea = sww1_idea_slavic_unrest }
+				create_wargoal = {
 					target = SOV
-					modifier = small_decrease
+					type = annex_everything
+				}
+			}
+
+			hidden_effect = {
+				add_named_threat = {
+					threat = 12
+					name = "Assassination of Franz Ferdinand"
 				}
 			}
 		}
