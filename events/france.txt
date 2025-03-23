@@ -104,13 +104,6 @@ country_event = {
             transfer_state_to = FRA
         }
 
-        hidden_effect = {
-            add_named_threat = {
-                threat = -10
-                name = "The Belgian Crisis is Over"
-            }
-        }
-
         ai_chance = {
             base = 1
             modifier = {
@@ -192,7 +185,7 @@ country_event = {
             }
             modifier = {
                 strength_ratio = {
-                    target = GER
+                    tag = GER
                     ratio > 1.2
                 }
                 factor = 4
@@ -214,7 +207,7 @@ country_event = {
             base = 4
             modifier = {
                 strength_ratio = {
-                    target = GER
+                    tag = GER
                     ratio < 0.8
                 }
                 factor = 4
@@ -263,7 +256,7 @@ country_event = {
             base = 4
             modifier = {
                 strength_ratio = {
-                    target = FRA
+                    tag = FRA
                     ratio > 1.5
                 }
                 factor = 5
@@ -373,7 +366,7 @@ country_event = {
             modifier = {
                 MEX = {
                     strength_ratio = {
-                        target = COL
+                        tag = COL
                         ratio > 1.5
                     }
                 }
@@ -395,7 +388,7 @@ country_event = {
             modifier = {
                 COL = {
                     strength_ratio = {
-                        target = MEX
+                        tag = MEX
                         ratio > 1.5
                     }
                 }
@@ -477,8 +470,6 @@ news_event = {
 
 # LET THEM EAT CAKE
 
-add_namespace = france_events
-
 # Seek Unification with the Kingdom of Spain
 country_event = {
     id = france_events.17
@@ -489,6 +480,7 @@ country_event = {
 
     option = {
         name = "We shall unite with France!"
+        news_event = { id = france_events.18 hours = 12 random_hours = 6 }
 
         FRA = {
             add_political_power = 100
@@ -545,9 +537,9 @@ country_event = {
 }
 
 news_event = {
-    id = france_events.19
+    id = france_events.18
     title = "Celebrations in Madrid!"
-    desc = france_events.19.d
+    desc = france_events.18.d
 
     is_triggered_only = yes
     major = yes

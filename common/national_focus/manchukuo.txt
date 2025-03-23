@@ -1,1 +1,1042 @@
-﻿
+﻿focus_tree = {
+    id = MAN_focus
+    
+    country = {
+        factor = 0
+        modifier = {
+            add = 20
+            original_tag = MAN
+        }
+    }
+
+    continuous_focus_position = { x = 200 y = 800 }
+
+    ## military branch
+    focus = {
+        id = MAN_adjust_budget
+        icon = GFX_focus_generic_budget
+
+        x = 7
+        y = 0
+        cost = 10
+
+        completion_reward = {
+            add_command_power = 25
+        }
+    }
+    focus = {
+        id = MAN_focus_army
+        icon = GFX_focus_generic_army
+
+        relative_position_id = MAN_adjust_budget
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MAN_adjust_budget }
+        completion_reward = {
+            army_experience = 25
+        }
+    }
+    focus = {
+        id = MAN_extend_conscription
+        icon = GFX_focus_generic_extend_conscription
+
+        relative_position_id = MAN_focus_army
+        x = -4
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MAN_focus_army }
+        completion_reward = {
+            if = {
+                limit = {
+                    OR = {
+                        has_idea = disarmed_nation
+                        has_idea = volunteer_only
+                    }
+                }
+                add_ideas = limited_conscription
+            }
+        }
+    }
+    focus = {
+        id = MAN_army_maneuvers
+        icon = GFX_focus_generic_army_maneuvers
+
+        relative_position_id = MAN_focus_army
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MAN_focus_army }
+        completion_reward = {
+            army_experience = 50
+            add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+        }
+    }
+    focus = {
+        id = MAN_equipment_effort
+        icon = GFX_focus_generic_equipment_effort
+
+        relative_position_id = MAN_focus_army
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MAN_focus_army }
+        completion_reward = {
+            add_tech_bonus = {
+				name = infantry_bonus
+				bonus = 1.0
+				uses = 1
+				category = infantry_weapons
+			}
+        }
+    }
+    focus = {
+        id = MAN_artillery
+        icon = GFX_focus_generic_artillery
+
+        relative_position_id = MAN_equipment_effort
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MAN_equipment_effort }
+        completion_reward = {
+            add_tech_bonus = {
+				bonus = 1.0
+				uses = 1
+				category = artillery_tech
+			}
+        }
+    }
+    focus = {
+        id = MAN_aircraft
+        icon = GFX_focus_generic_aircraft
+
+        relative_position_id = MAN_equipment_effort
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MAN_equipment_effort }
+        completion_reward = {
+            air_experience = 25
+            add_tech_bonus = {
+				name = fighter_bonus
+				bonus = 1.0
+				uses = 1
+				category = light_fighter
+			}
+        }
+    }
+    focus = {
+        id = MAN_armor
+        icon = GFX_focus_generic_armor
+
+        relative_position_id = MAN_equipment_effort
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MAN_equipment_effort }
+        completion_reward = {
+            add_tech_bonus = {
+				name = armor_bonus
+				bonus = 1.0
+				uses = 2
+				category = armor
+			}
+        }
+    }
+    focus = {
+        id = MAN_modern_warfare
+        icon = GFX_focus_generic_modern_warfare
+
+        relative_position_id = MAN_aircraft
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { 
+            focus = MAN_artillery
+            focus = MAN_aircraft
+            focus = MAN_armor
+        }
+        completion_reward = {
+            army_experience = 100
+            add_ideas = sww1_idea_modern_warfare
+        }
+    }
+
+    focus = {
+        id = MAN_focus_navy
+        icon = GFX_focus_generic_navy
+
+        relative_position_id = MAN_adjust_budget
+        x = 2
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = MAN_adjust_budget }
+        completion_reward = {
+            navy_experience = 25
+        }
+    }
+    focus = {
+        id = MAN_naval_exercises
+        icon = GFX_focus_generic_naval_exercises
+
+        relative_position_id = MAN_focus_navy
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = MAN_focus_navy }
+        completion_reward = {
+            navy_experience = 50
+            add_doctrine_cost_reduction = {
+				name = navy_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
+        }
+    }
+    focus = {
+        id = MAN_expand_dockyards
+        icon = GFX_focus_generic_expand_dockyards
+
+        relative_position_id = MAN_focus_navy
+        x = 2
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = MAN_focus_navy }
+        complete_tooltip = {
+			navy_experience = 25
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type = dockyard
+				level = 3
+				instant_build = yes
+			}
+		}
+		
+		completion_reward = {
+			navy_experience = 25
+			if = {
+				limit = {
+					NOT = {
+						any_owned_state = {
+							dockyard > 0
+							free_building_slots = {
+								building = dockyard
+								size > 2
+								include_locked = yes
+							}
+						}
+					}
+					any_owned_state = {
+						is_coastal = yes
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						is_coastal = yes
+						free_building_slots = {
+							building = dockyard
+							size > 2
+							include_locked = yes
+						}
+					}
+					add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+						type = dockyard
+						level = 3
+						instant_build = yes
+					}
+				}
+				set_country_flag = naval_effort_built
+			}
+			if = {
+				limit = {
+					NOT = { has_country_flag = naval_effort_built }
+					any_owned_state = {
+						dockyard > 0
+						free_building_slots = {
+							building = dockyard
+							size > 2
+							include_locked = yes
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						dockyard > 0
+						free_building_slots = {
+							building = dockyard
+							size > 2
+							include_locked = yes
+						}
+					}
+					add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+						type = dockyard
+						level = 3
+						instant_build = yes
+					}
+				}
+				set_country_flag = naval_effort_built
+			}
+			if = {
+				limit = {
+					NOT = { has_country_flag = naval_effort_built }
+					NOT = {
+						any_owned_state = {
+							free_building_slots = {
+								building = dockyard
+								size > 2
+								include_locked = yes
+							}
+						}
+					}
+				}
+				random_state = {
+					limit = {
+						controller = { tag = ROOT }
+						free_building_slots = {
+							building = dockyard
+							size > 2
+							include_locked = yes
+						}
+					}
+					add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+						type = dockyard
+						level = 3
+						instant_build = yes
+					}
+				}
+			}			
+		}
+    }
+    focus = {
+        id = MAN_high_seas
+        icon = GFX_focus_generic_high_seas
+
+        relative_position_id = MAN_expand_dockyards
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = MAN_expand_dockyards }
+        completion_reward = {
+            add_tech_bonus = {
+				name = capital_ships_bonus
+				bonus = 1.0
+				uses = 1
+				category = ca_tech
+			}
+        }
+    }
+    focus = {
+        id = MAN_the_dark_deep
+        icon = GFX_focus_generic_the_dark_deep
+
+        relative_position_id = MAN_expand_dockyards
+        x = 2
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = MAN_expand_dockyards }
+        completion_reward = {
+            add_tech_bonus = {
+				name = ss_bonus
+				bonus = 1.0
+				uses = 1
+				category = ss_tech
+			}
+        }
+    }
+    focus = {
+        id = MAN_seaborne_operations
+        icon = GFX_focus_generic_seaborne_operations
+
+        relative_position_id = MAN_naval_exercises
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = MAN_naval_exercises }
+        completion_reward = {
+            add_tech_bonus = {
+				name = special_forces_bonus
+				bonus = 1.0
+				uses = 1
+				technology = marines_1
+                technology = marines_2
+			}
+        }
+    }
+    focus = {
+        id = MAN_rule_the_waves
+        icon = GFX_focus_generic_rule_the_waves
+
+        relative_position_id = MAN_high_seas
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { 
+            focus = MAN_seaborne_operations
+            focus = MAN_high_seas
+            focus = MAN_the_dark_deep
+        }
+        completion_reward = {
+            navy_experience = 100
+            add_ideas = sww1_idea_rule_the_waves
+        }
+    }
+
+    ## economic branch
+    focus = {
+        id = MAN_economic_development
+        icon = GFX_focus_generic_economic_development
+
+        x = 21
+        y = 0
+        cost = 10
+
+        completion_reward = {
+            add_stability = 0.1
+        }
+    }
+    focus = {
+        id = MAN_agrarian_reform
+        icon = GFX_focus_generic_agrarian_reform
+
+        relative_position_id = MAN_economic_development
+        x = -3
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = MAN_economic_development }
+        completion_reward = {
+            add_stability = 0.05
+        }
+    }
+    focus = {
+        id = MAN_rationing
+        icon = GFX_focus_generic_rationing
+
+        relative_position_id = MAN_agrarian_reform
+        x = 0
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = MAN_agrarian_reform }
+        completion_reward = {
+            add_stability = -0.1
+            add_ideas = sww1_idea_rationing
+        }
+    }
+    focus = {
+        id = MAN_land_reclamation
+        icon = GFX_focus_generic_land_reclamation
+
+        relative_position_id = MAN_agrarian_reform
+        x = -2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = MAN_agrarian_reform }
+        completion_reward = {
+
+            random_owned_controlled_state = {
+                add_manpower = 1500
+                add_extra_state_shared_building_slots = 2
+            }
+            random_owned_controlled_state = {
+                add_manpower = 1500
+                add_extra_state_shared_building_slots = 2
+            }
+        }
+    }
+    focus = {
+        id = MAN_labor_batallions
+        icon = GFX_focus_MAN_labor_batallions
+
+        relative_position_id = MAN_agrarian_reform
+        x = 2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = MAN_agrarian_reform }
+        completion_reward = {
+            add_ideas = sww1_idea_labor_batallions
+        }
+    }
+    focus = {
+        id = MAN_austerity_measures
+        icon = GFX_focus_generic_austerity_measures
+
+        relative_position_id = MAN_rationing
+        x = 0
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = MAN_rationing }
+        completion_reward = {
+            add_war_support = -0.1
+            add_stability = -0.2
+
+            swap_ideas = {
+                remove_idea = sww1_idea_rationing
+                add_idea = sww1_idea_austerity_measures
+            }
+        }
+    }
+
+    focus = {
+        id = MAN_infrastructure_effort
+        icon = GFX_focus_generic_infrastructure_effort
+
+        relative_position_id = MAN_economic_development
+        x = 3
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = MAN_economic_development }
+        bypass = {
+			custom_trigger_tooltip = {
+				tooltip = infrastructure_effort_tt
+				all_owned_state = {			
+					free_building_slots = {
+						building = infrastructure
+						size < 1
+					}
+				}
+			}
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 0
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = infrastructure
+										size > 0
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 1
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = infrastructure
+										size > 1
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+            add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 1.0
+				uses = 2
+				category = industry
+			}
+		}
+    }
+    focus = {
+        id = MAN_construct_civilian
+        icon = GFX_focus_generic_construct_civilian
+
+        relative_position_id = MAN_infrastructure_effort
+        x = -2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = MAN_infrastructure_effort }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+    }
+    focus = {
+        id = MAN_construct_military
+        icon = GFX_focus_generic_construct_military
+
+        relative_position_id = MAN_infrastructure_effort
+        x = 0
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = MAN_infrastructure_effort }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = arms_factory
+										size > 0
+										include_locked = yes
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+    }
+    focus = {
+        id = MAN_expand_mining
+        icon = GFX_focus_generic_expand_mining
+
+        relative_position_id = MAN_infrastructure_effort
+        x = 2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = MAN_infrastructure_effort }
+        completion_reward = {
+            random_owned_controlled_state = {
+                add_resource = {
+                    type = steel
+                    amount = 12
+                }
+            }
+            random_owned_controlled_state = {
+                add_resource = {
+                    type = aluminium
+                    amount = 4
+                }
+            }
+        }
+    }
+    focus = {
+        id = MAN_steady_growth
+        icon = GFX_focus_generic_steady_growth
+
+        relative_position_id = MAN_construct_military
+        x = 0
+        y = 1
+
+        cost = 10
+
+        prerequisite = { 
+            focus = MAN_construct_civilian
+            focus = MAN_construct_military
+            focus = MAN_expand_mining
+        }
+        completion_reward = {
+            add_ideas = sww1_idea_steady_growth
+        }
+    }
+
+
+
+## political branch
+    focus = {
+        id = MAN_political_ambitions
+        icon = GFX_focus_generic_political_ambitions
+
+        relative_position_id = MAN_economic_development
+        x = -1
+        y = 5
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 150
+        }
+    }
+    focus = {
+        id = MAN_international_affairs
+        icon = GFX_focus_generic_international_affairs
+
+        relative_position_id = MAN_political_ambitions
+        x = -4
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MAN_political_ambitions }
+        completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_international_affairs
+                years = 2
+            }
+        }
+    }
+    focus = {
+        id = MAN_expansionism
+        icon = GFX_focus_generic_expansionism
+
+        relative_position_id = MAN_international_affairs
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MAN_international_affairs }
+        completion_reward = {
+            add_political_power = 100
+            add_timed_idea = {
+                idea = sww1_idea_expansionism
+                years = 1
+            }
+        }
+    }
+    focus = {
+        id = MAN_the_opium_crisis
+        icon = GFX_focus_MAN_the_opium_crisis
+
+        relative_position_id = MAN_international_affairs
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MAN_international_affairs }
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+    focus = {
+        id = MAN_seek_alliances
+        icon = GFX_focus_generic_seek_alliances
+
+        relative_position_id = MAN_expansionism
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MAN_expansionism }
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+    focus = {
+        id = MAN_another_great_campaign
+        icon = GFX_focus_MAN_another_great_campaign
+
+        relative_position_id = MAN_expansionism
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MAN_expansionism }
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+
+    focus = {
+        id = MAN_the_great_qing
+        icon = GFX_focus_generic_internal_stability
+
+        relative_position_id = MAN_political_ambitions
+        x = 0
+        y = 1
+        cost = 10
+
+        mutually_exclusive = { focus = MAN_five_races_under_one_nation }
+        prerequisite = { focus = MAN_political_ambitions }
+        completion_reward = {
+            add_stability = 0.1
+            news_event = { id = genericevent.1 hours = 12 random_hours = 6 }
+        }
+    }
+    focus = {
+        id = MAN_rally_the_eight_banners
+        icon = GFX_focus_MAN_rally_the_eight_banners
+
+        relative_position_id = MAN_the_great_qing
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MAN_the_great_qing }
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+    focus = {
+        id = MAN_embrace_korean_volunteers
+        icon = GFX_focus_MAN_embrace_korean_volunteers
+
+        relative_position_id = MAN_the_great_qing
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MAN_the_great_qing }
+        completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_embrace_korean_volunteers
+                years = 2
+            }
+        }
+    }
+    focus = {
+        id = MAN_the_young_emperor
+        icon = GFX_focus_MAN_the_young_emperor
+
+        relative_position_id = MAN_rally_the_eight_banners
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { 
+            focus = MAN_rally_the_eight_banners
+            focus = MAN_embrace_korean_volunteers
+        }
+        completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_the_young_emperor
+                years = 1
+            }
+        }
+    }
+    focus = {
+        id = MAN_mandate_of_heaven
+        icon = GFX_focus_generic_the_everlasting_spirit
+
+        relative_position_id = MAN_the_young_emperor
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MAN_the_young_emperor }
+        completion_reward = {
+            add_ideas = sww1_idea_mandate_of_heaven
+        }
+    }
+
+    focus = {
+        id = MAN_five_races_under_one_nation
+        icon = GFX_focus_generic_five_races_under_one_nation
+
+        relative_position_id = MAN_political_ambitions
+        x = 4
+        y = 1
+        cost = 10
+
+        mutually_exclusive = { focus = MAN_the_great_qing }
+        prerequisite = { focus = MAN_political_ambitions }
+        completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_democratic_tendencies
+                years = 1
+            }
+            add_popularity = {
+                ideology = democratic
+                popularity = 0.1
+            }
+
+            hidden_effect = {
+                news_event = { id = genericevent.4 hours = 12 random_hours = 6 }
+            }
+        }
+    }
+    focus = {
+        id = MAN_yuan_shikais_clique
+        icon = GFX_focus_generic_yuan_shikais_clique
+
+        relative_position_id = MAN_five_races_under_one_nation
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MAN_five_races_under_one_nation }
+        completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_yuan_shikais_clique
+                years = 1
+            }
+        }
+    }
+    focus = {
+        id = MAN_encourage_urbanization
+        icon = GFX_focus_MAN_encourage_urbanization
+
+        relative_position_id = MAN_five_races_under_one_nation
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MAN_five_races_under_one_nation }
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+    focus = {
+        id = MAN_the_hongxian_emperor
+        icon = GFX_focus_generic_over_the_edge
+
+        relative_position_id = MAN_yuan_shikais_clique
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MAN_yuan_shikais_clique }
+        available = {
+            communism > 0.3
+        }
+        
+        completion_reward = {
+            start_civil_war = {
+                ruling_party = communism
+                ideology = ROOT
+                size = 0.5
+            }
+
+            hidden_effect = {
+                set_popularity = {
+                    ideology = communism
+                    popularity = 1.0
+                }
+            }
+        }
+    }
+    focus = {
+        id = MAN_manchu_military_academy
+        icon = GFX_focus_generic_embrace_modernity
+
+        relative_position_id = MAN_yuan_shikais_clique
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MAN_yuan_shikais_clique }
+        completion_reward = {
+            add_research_slot = 1
+        }
+    }
+}

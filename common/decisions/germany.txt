@@ -1,0 +1,325 @@
+dc_oriental_investments = {
+    establish_kaiserliche_eisenbahn = {
+        icon = decision_generic_trains
+
+        cost = 75
+        fire_only_once = yes
+
+        available = { 
+            TUR = { 
+                has_war = no
+            }
+        }
+
+        ai_will_do = {
+            base = 6
+            modifier = {
+                date > 1913.1.1
+                factor = 2
+            }
+        }
+
+        complete_effect = {
+            TUR = {
+                country_event = { id = germany_events.1 hours = 12 random_hours = 6 }
+            }
+        }
+    }
+
+    invest_arabian_oil = {
+        icon = oil
+
+        cost = 100
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                has_war = yes
+                factor = 10
+            }
+            modifier = {
+                has_country_flag = turkey_rejected_us
+                factor = 0.1
+            }
+        }
+
+        available = { 
+            TUR = {
+                291 = { is_owned_by = TUR }
+                has_opinion = {
+                    target = GER
+                    value > 50
+                }
+            }
+        }
+
+        complete_effect = {
+            TUR = {
+                country_event = { id = germany_events.8 hours = 12 random_hours = 6 }
+            }
+        }
+    }
+}
+
+dc_place_in_the_sun = {
+    alliance_with_austria = {
+        icon = decision_generic_political_discourse
+        
+        cost = 100
+        fire_only_once = yes
+
+        available = { 
+            or = {
+                is_faction_leader = yes
+                is_in_faction = no
+            }
+            AUS = {
+                exists = yes
+                is_in_faction = no
+                not = { has_war_with = GER }
+            }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = {
+                date > 1914.1.1
+                factor = 3
+            }
+            modifier = {
+                AUS = { has_idea = sww1_idea_slavic_unrest }
+                factor = 2
+            }
+            modifier = {
+                is_ally_with = SOV          # if we're already friends with Russia, we won't ally Austria.
+                factor = 0
+            }
+        }
+
+        complete_effect = {
+            AUS = {
+                country_event = { id = germany_events.11 hours = 12 random_hours = 6 }
+            }
+        }
+    }
+
+    askari_troops = {
+        cost = 150
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 3
+            modifier = {
+                casualties_k > 250
+                factor = 2
+            }
+        }
+
+        complete_effect = {
+            add_ideas = sww1_idea_askari_troops
+        }
+    }
+
+    demand_south_africa = {
+        icon = decision_generic_pickelhaube
+        
+        cost = 200
+        fire_only_once = yes
+
+        available = { 
+            not = { has_war_with = ENG }
+            any_state = {
+                or = {
+                    state = 770         # The northern part
+                    state = 771
+                    state = 896
+                    state = 896
+                    state = 981
+
+                    state = 544         # Rhodesia
+                    state = 545
+
+                    state = 275         # actual South Africa
+                    state = 681
+                    state = 719
+                }
+                is_owned_by = ENG
+            }
+        }
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                is_in_faction = yes
+                factor = 1.5
+            }
+            modifier = {
+                is_ally_with = ITA
+                factor = 1.5
+            }
+            modifier = {
+                not = { ENG = { is_ally_with = SOV } }
+                factor = 2
+            }
+        }
+
+        complete_effect = {
+            ENG = {
+                country_event = { id = germany_events.14 hours = 12 random_hours = 6 }
+                every_state = {
+                    limit = {
+                        or = {
+                            state = 770         # The northern part
+                            state = 771
+                            state = 896
+                            state = 896
+                            state = 981
+
+                            state = 544         # Rhodesia
+                            state = 545
+
+                            state = 275         # actual South Africa
+                            state = 681
+                            state = 719
+                        }
+                        is_owned_by = ENG
+                    }
+                    add_claim_by = GER
+                }
+            }
+        }
+    }
+}
+
+dc_look_to_the_east = {
+    mission_to_china = {
+        cost = 200
+        fire_only_once = yes
+
+        available = { 
+            MAN = {
+                not = { has_war_with = GER }
+                exists = yes 
+            }
+        }
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                743 = { is_owned_by = GER }
+                factor = 2.5
+            }
+            modifier = {
+                has_war = yes
+                factor = 2
+            }
+            modifier = {
+                has_country_flag = turkey_rejected_us
+                factor = 5
+            }
+        }
+
+        complete_effect = {
+            MAN = { country_event = { id = germany_events.21 hours = 12 random_hours = 6 } }
+        }
+    }
+
+    mission_to_india = {
+        cost = 250
+        fire_only_once = yes
+
+        available = { 
+            RAJ = { 
+                is_subject = yes
+                not = { is_subject_of = GER }
+            }
+        }
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                has_war_with = ENG
+                factor = 2.5
+            }
+            modifier = {
+                has_government = authoritarianism           # Esoteric nazis loved those things.
+                factor = 5
+            }
+        }
+
+        complete_effect = {
+            # TBD Effects
+        }
+    }
+}
+
+dc_heil_dir_im_siegerkranz = {
+    develop_ersatzprodukte = {
+        icon = generic_research
+        cost = 75
+
+        available = { has_completed_focus = GER_ersatz }
+
+        remove_days = 90
+        modifier = {
+            war_support_weekly = -0.01
+            consumer_goods_factor = -0.1
+        }
+    }
+
+    encourage_vocational_training = {
+        cost = 75
+        fire_only_once = yes
+
+        modifier = {
+            industrial_capacity_factory = 0.1
+        }
+    }
+
+    all_for_the_front = {
+        cost = 100
+
+        available = {
+            surrender_progress > 0.2
+            has_war_support > 0.5
+        }
+
+        remove_days = 90
+        modifier = {
+            stability_weekly = -0.01
+            fuel_gain_factor = 0.1
+            supply_factor = 0.1
+        }
+    }
+}
+
+dc_weimar_constitution = {
+    women_in_workforce = {
+        cost = 150
+        fire_only_once = yes
+
+        complete_effect = {
+            add_ideas = sww1_idea_women_in_the_workforce
+        }
+    }
+
+    integrate_minorities = {
+        cost = 150
+        fire_only_once = yes
+
+        complete_effect = {
+            add_ideas = sww1_idea_integrate_minorities
+        }
+    }
+
+    establish_afrika_amt = {
+        cost = 150
+        fire_only_once = yes
+
+        complete_effect = {
+            news_event = { id = germany_events.32 hours = 12 random_hours = 6 }
+            add_ideas = sww1_idea_afrika_amt
+        }
+    }
+}

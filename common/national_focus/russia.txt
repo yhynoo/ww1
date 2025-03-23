@@ -1069,10 +1069,18 @@
             }
         }
 
+        available = {
+            has_government = monarchism
+        }
+
         mutually_exclusive = { focus = SOV_duma }
         prerequisite = { focus = SOV_political_ambitions }
         completion_reward = {
-            add_stability = 0.1
+            add_stability = 0.05
+            add_popularity = {
+                ideology = monarchism
+                popularity = 0.05
+            }
         }
     }
     focus = {

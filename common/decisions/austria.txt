@@ -1,0 +1,282 @@
+dc_ties_to_the_diaspora = {
+    encourage_repatriation = {
+
+        cost = 50
+        days_remove = 60
+
+        ai_will_do = {
+            base = 2
+            modify = {
+                has_manpower < 100000
+                factor = 3
+            }
+        }
+
+        remove_effect = {
+            random_owned_controlled_state = {
+                add_manpower = 2500
+            }
+        }
+    }
+    invite_wilson = {
+
+        cost = 150
+        fire_only_once = yes
+        days_remove = 60
+
+        available = {
+            USA = { exists = yes }
+            not = { has_war_with = USA }
+        }
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                has_country_flag = we_rejected_germany
+                factor = 2
+            }
+            modifier = {
+                and = {
+                    has_war = no
+                    is_in_faction = no
+                    date > 1915.1.1
+                }
+                factor = 6
+            }
+        }
+
+        remove_effect = {
+            news_event = { id = austria_events.1 hours = 12 random_hours = 6 }                        # Wilson tours Austria-Hungary
+            USA = {
+                add_opinion_modifier = {
+                    target = AUS
+                    modifier = medium_increase
+                }
+            }
+        }
+    }
+}
+
+dc_second_vienna_treaty = {
+    invite_to_treaty = {
+        icon = decision_generic_political_discourse
+
+        cost = 100
+        fire_only_once = yes
+
+        targets = { FRA SPR TTS }
+        target_trigger = {
+            FROM = {
+                not = { has_war_with = ROOT }
+                has_government = monarchism
+                is_in_faction = no
+            }
+        }
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                has_war = yes
+                factor = 4
+            }
+            modifier = {
+                date > 1916.1.1
+                factor = 2
+            }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = austria_events.6 hours = 12 random_hours = 6 } }          # Austria-Hungary invites us ... (choice yes / no)
+        }
+    }
+    liberate_the_orthodox_christians = {
+        icon = generic_prepare_civil_war
+
+        cost = 150
+        fire_only_once = yes
+        days_remove = 90
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                date > 1914.1.1
+                add = 2
+            }
+            modifier = {
+                is_ally_with = FRA
+                factor = 4
+            }
+            modifier = {
+                TUR = { is_in_faction = no }
+                factor = 4
+            }
+        }
+
+        war_with_on_remove = TUR
+
+        complete_effect = {
+            news_event = { id = austria_events.9 hours = 12 random_hours = 6 }                        # Austria-Hungary vows to liberate Christians from Ottoman lands!
+
+            hidden_effect = {
+                add_named_threat = {
+                    name = "[AUS.GetName] Threatens [TUR.GetName]"
+                    threat = 5
+                }
+            }
+        }
+
+        remove_effect = {
+            create_wargoal = {
+                target = TUR
+                type = take_claimed_state
+            }
+        }
+    }
+}
+
+dc_austro-slavism = {
+    establish_the_kingdom_of_croatia = {
+
+        fire_only_once = yes
+        cost = 200
+
+        ai_will_do = {
+            base = 4
+            modifier = {
+                has_war = yes
+                factor = 2
+            }
+            modifier = {
+                has_stability < 0.5
+                factor = 0
+            }
+        }
+
+        complete_effect = {
+            news_event = { id = austria_events.10 hours = 12 random_hours = 6 }                        # Kingdom of Croatia established!
+
+            add_stability = -0.15                   # The Hungarians really hate it.
+            every_state = {
+                limit = {
+                    or = {
+                        state = 103         # Croatia
+                        state = 109
+                        state = 163
+
+                        state = 104         # Bosnia
+                        state = 804
+                    }
+                }
+                add_core_of = AUS
+            }
+        }
+    }
+    appease_the_church = {
+        cost = 75
+        days_remove = 90
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                has_war_support < 0.25
+                add = 6
+            }
+        }
+
+        modifier = {
+            war_support_weekly = 0.01
+        }
+    }
+    intensify_language_training = {
+        icon = generic_prepare_civil_war
+
+        cost = 100
+        days_remove = 90
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                has_completed_focus = AUS_army_maneuvers
+                add = 4
+            }
+        }
+
+        modifier = {
+            experience_gain_army_factor = 0.2
+            coordination_bonus = 0.1
+        }
+    }
+}
+
+dc_review_the_ausgleich_agreement = {
+    address_magyarization = {
+        icon = decision_generic_political_discourse
+
+        cost = 150
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 10
+        }
+
+        complete_effect = {             ## Choice event between prioritizing Hungary (+ 2 civs) or equal development (+ 1 civ, 1 mil, 1 airfield)
+            country_event = { id = austria_events.11 hours = 3 } 
+        }        
+    }
+    invest_in_tatra = {
+        icon = decision_generic_trucks
+
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            74 = { is_owned_and_controlled_by = AUS }
+        }
+
+        ai_will_do = {
+            base = 6
+        }
+
+        complete_effect = {
+            74 = {
+                add_building_construction = {
+                    type = arms_factory
+                    level = 1
+                    instant_build = yes
+                }
+            }
+        }
+    }
+    develop_galician_oil = {
+        icon = oil
+
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            89 = { is_owned_and_controlled_by = AUS }
+        }
+
+        ai_will_do = {
+            base = 6
+        }
+
+        complete_effect = {
+            add_resource = {
+                type = oil
+                amount = 24
+                state = 89
+            }
+            if = {
+                limit = { has_tech = synth_oil_0 }
+                89 = {
+                    add_building_construction = {
+                        type = oil_refinery
+                        level = 1
+                        instant_build = yes
+                    }
+                }
+            }
+        }
+    }
+}

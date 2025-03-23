@@ -1,0 +1,934 @@
+add_namespace = germany_events
+
+# ORIENTAL INVESTMENTS
+
+country_event = {
+    id = germany_events.1
+    title = "[GER.GetName] Proposes the Kaiserliche Eisenbahn-Gesellschaft"
+    desc = germany_events.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A great idea!"
+        news_event = { id = germany_events.2 hours = 12 random_hours = 6 }
+
+        107 = {
+            add_building_construction = {
+                type = infrastructure
+                level = 1
+                instant_build = yes
+            }
+        }
+        797 = {
+            add_building_construction = {
+                type = infrastructure
+                level = 1
+                instant_build = yes
+            }
+        }
+
+        hidden_effect = {
+            country_event = { id = germany_events.4 days = 7 random_hours = 6 }
+            set_country_flag = german_investments
+        }
+
+        ai_chance = { 
+            base = 4
+            modifier = {
+                GER = { is_ally_with = SOV }            # No friendship with Russians.
+                factor = 0
+            }
+        }
+    }
+
+    option = {
+        name = "We don't need this."
+        
+        GER = {
+            news_event = { id = germany_events.3 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = TUR
+                modifier = medium_decrease
+            }
+        }
+
+        hidden_effect = {
+            set_country_flag = we_rejected_germany
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = germany_events.2
+    title = "Kaiserliche Eisenbahn-Gesellschaft Established!"  # They will build a railroad from Munich to Istanbul through Vienna and Ottoman Belgrade.
+    desc = germany_events.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Marvelous."
+    }
+}
+
+news_event = {
+    id = germany_events.3
+    title = "[TUR.GetName] Rejects the KEG Proposal"
+    desc = germany_events.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is disappointing, but we will move forward."
+
+        hidden_effect = {
+            set_country_flag = turkey_rejected_us
+        }
+    }
+}
+
+country_event = {
+    id = germany_events.4
+    title = "Ask Germany for More Assistance?"
+    desc = germany_events.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We should ask Germany for guarantees."
+        GER = { country_event = { id = germany_events.5 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 4 }
+    }
+
+    option = {
+        name = "We do not need guarantees from Germany."
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = germany_events.5
+    title = "[TUR.GetName] Asks for Guarantees"
+    desc = germany_events.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall give Turkey guarantees."
+        give_guarantee = TUR
+
+        TUR = {
+            news_event = { id = germany_events.6 hours = 12 random_hours = 6 }
+        }
+
+        ai_chance = { 
+            base = 4
+            modifier = {
+                is_in_faction = yes             # If they're taken, why bother?
+                factor = 0
+            }
+        }
+    }
+
+    option = {
+        name = "This is too much."
+        
+        TUR = {
+            news_event = { id = germany_events.7 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = GER
+                modifier = small_decrease
+            }
+        }
+
+         ai_chance = { 
+            base = 1
+            modifier = {
+                SER = { exists = yes }
+                factor = 5
+            }
+        }
+    }
+}
+
+news_event = {
+    id = germany_events.6
+    title = "Germany Guarantees the Independence of [TUR.GetName]"
+    desc = germany_events.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A victory for Turkey!"
+    }
+}
+
+news_event = {
+    id = germany_events.7
+    title = "Germany Refuses to Guarantee [TUR.GetNameDef]'s Independence"
+    desc = germany_events.7.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is disappointing, but we will have to manage on our own."
+    }
+}
+
+country_event = {
+    id = germany_events.8
+    title = "[GER.GetName] Offers Investment in Arabian Oil"
+    desc = germany_events.8.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We agree to the investment."
+        news_event = { id = germany_events.9 hours = 12 random_hours = 6 }
+
+        291 = {
+            add_resource = {
+                type = oil
+                amount = 20
+            }
+        }
+        give_resource_rights = {
+            receiver = GER
+            state = 291
+            resources = { oil }
+        }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                has_opinion = {
+                    target = GER
+                    value > 80
+                }
+                factor = 2
+            }
+            modifier = {
+                surrender_progress > 0.2
+                factor = 4
+            }
+        }
+    }
+
+    option = {
+        name = "We disagree with the investment."
+        GER = { news_event = { id = germany_events.10 hours = 12 random_hours = 6 } }
+        
+        hidden_effect = {
+            GER = {
+                add_opinion_modifier = {
+                    target = TUR
+                    modifier = small_decrease
+                }
+            }
+        }
+
+        ai_chance = {
+            base = 2
+            modifier = {
+                and = {
+                    is_in_faction = yes 
+                    not = { is_ally_with = GER }
+                }
+                factor = 100                    # No deal with potential enemy.
+            }
+        }
+    }
+}
+
+news_event = {
+    id = germany_events.9
+    title = "Turkey Agrees to Arabian Oil Investment!"
+    desc = germany_events.9.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = germany_events.10
+    title = "Turkey Rejects Arabian Oil Investment"
+    desc = germany_events.10.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is unfortunate, but we must move on."
+    }
+}
+
+# A PLACE UNDER THE SUN
+
+country_event = {
+    id = germany_events.11
+    title = "[GER.GetName] Seeks Alliance with Austria-Hungary"             # This appears to Austria-Hungary.
+    desc = germany_events.11.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Yes, we should form an alliance."
+        country_event = { id = germany_events.12 hours = 12 random_hours = 6 }
+
+        GER = {
+            if = {
+                is_in_faction = no
+                create_faction = "Central Powers"
+            }
+            add_to_faction = AUS
+        }
+
+        ai_chance = {
+            base = 4
+            modifier = {
+                not = { GER = { has_government = monarchism } }
+                factor = 0.25
+            }
+            modifier = {
+                has_idea = sww1_idea_slavic_unrest
+                factor = 4
+            }
+        }
+    }
+
+    option = {
+        name = "No, an alliance is unnecessary."
+        country_event = { id = germany_events.13 hours = 12 random_hours = 6 }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                threat < 0.1
+                factor = 2
+            }
+        }
+
+        hidden_effect = {
+            set_country_flag = we_rejected_germany
+        }
+    }
+}
+
+country_event = {
+    id = germany_events.12
+    title = "Germany Allies with Austria-Hungary"
+    desc = germany_events.12.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Right."
+    }
+}
+
+country_event = {
+    id = germany_events.13
+    title = "No Alliance with Austria-Hungary"
+    desc = germany_events.13.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We will manage."
+        hidden_effect = {
+            set_country_flag = austria_rejected_us
+        }
+    }
+}
+
+country_event = {
+    id = germany_events.14
+    title = "Germany Demands South Africa!"
+    desc = germany_events.14.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let them have it."
+        news_event = { id = germany_events.15 hours = 12 random_hours = 6 }
+
+        every_state = {
+            limit = {
+                or = {
+                    state = 770         # The northern part
+                    state = 771
+                    state = 896
+                    state = 896
+                    state = 981
+
+                    state = 544         # Rhodesia
+                    state = 545
+
+                    state = 275         # actual South Africa
+                    state = 681
+                    state = 719
+                }
+                is_owned_by = ENG
+            }
+            transfer_state_to = GER
+        }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                is_ally_with = GER
+                factor = 10
+            }
+        }
+    }
+
+    option = {
+        name = "We shall rally the Entente for support."
+
+        trigger = {
+            is_faction_leader = yes
+            not = { is_ally_with = GER }
+
+            any_country = {
+                or = {
+                    tag = FRA
+                    tag = ITA
+                    tag = SOV
+                }
+                is_in_faction = no
+            }
+        }
+
+        every_country = {
+            limit = {
+                or = {
+                    tag = FRA
+                    tag = ITA
+                    tag = SOV
+                }
+                is_in_faction = no
+            }
+            country_event = { id = germany_events.16 hours = 12 random_hours = 6 }
+        }
+
+        hidden_effect = {
+            GER = { country_event = { id = germany_events.17 days = 2 random_hours = 6 } }
+        }
+
+        ai_chance = {
+            base = 4
+            modifier = {
+                any_country = {
+                    or = {
+                        tag = FRA
+                        tag = ITA
+                        tag = SOV
+                    }
+                    is_ally_with = ENG
+                }
+                factor = 10
+            }
+        }
+    }
+
+    option = {
+        name = "We decline Germany's demand."
+        GER = { country_event = { id = germany_events.17 hours = 12 random_hours = 6 } }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                any_country = {
+                    or = {
+                        tag = FRA
+                        tag = ITA
+                        tag = SOV
+                    }
+                    is_ally_with = ENG
+                }
+                factor = 10
+            }
+        }
+    }
+}
+
+news_event = {
+    id = germany_events.15
+    title = "The United Kingdom Yields to Germany's Demands!"
+    desc = germany_events.15.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        trigger = { 
+            or = {
+                tag = GER
+                is_ally_with = GER
+            }
+        }
+        name = "This is a significant victory!"
+    }
+    option = {
+        trigger = {
+            and = {
+                not = { tag = GER }
+                not = { is_ally_with = GER }
+            }
+        }
+        name = "Very concerning."
+    }
+}
+
+country_event = {
+    id = germany_events.16
+    title = "[ENG.NameDef] Asks for Support"            # This appears for the countries England asked for help.
+    desc = germany_events.16.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall help them!"
+        news_event = { id = germany_events.18 hours = 12 random_hours = 6 }
+
+        ENG = { add_to_faction = ROOT }
+
+        ai_chance = {
+            base = 2
+            modifier = {
+                has_war = yes
+                factor = 0.2
+            }
+            modifier = {
+                and = {
+                    tag = ITA
+                    date < 1916.1.1
+                }
+                factor = 0.4
+            }
+        }
+    }
+
+    option = {
+        name = "We don't need more wars right now."
+        ENG = { 
+            news_event = { id = germany_events.19 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = ROOT
+                modifier = large_decrease
+            }
+        }
+
+        ai_chance = {
+            base = 1
+        }
+    }
+}
+
+country_event = {
+    id = germany_events.17
+    title = "[ENG.NameDef] Refuses!"                # This appears for England.
+    desc = germany_events.17.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "War! We will fight for South Africa!"
+        news_event = { id = germany_events.20 hours = 12 random_hours = 6 }
+
+        declare_war_on = {
+            target = ENG
+            type = take_claimed_state
+        }
+
+        hidden_effect = {
+            add_named_threat = {
+                name = "Germany Goes to War over South Africa"
+                threat = 40
+            }
+        }
+
+        ai_chance = {
+            base = 4
+        }
+    }
+
+    option = {
+        name = "Let's avoid further escalation."
+        add_political_power = -100
+
+        ai_chance = {
+            base = 4
+        }
+    }
+}
+
+news_event = {
+    id = germany_events.18
+    title = "[ROOT.GetName] Joins the Entente!"             # This is a world news.
+    desc = germany_events.18.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The conflict escalates."
+    }
+}
+
+news_event = {
+    id = germany_events.19
+    title = "[FROM.GetName] Won't Support [ENG.GetNameDef]"
+    desc = germany_events.19.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must carry on."
+    }
+}
+
+news_event = {
+    id = germany_events.20
+    title = "[GER.GetName] Goes to War over South Africa!"
+    desc = germany_events.20.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A disaster."
+    }
+}
+
+# LOOK TO THE EAST
+
+country_event = {
+    id = germany_events.21
+    title = "Arrival of German Diplomats"       # Dear Qing, we help you modernize, you become a dominion.
+    desc = germany_events.21.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We need their protection."
+        news_event = { id = germany_events.22 hours = 12 random_hours = 6 }
+
+        add_research_slot = 1
+        add_to_tech_sharing_group = german_research_group
+        
+        # upgrades
+        random_owned_controlled_state = {
+            add_building_construction = {
+                type = infrastructure
+                level = 1
+                instant_build = yes
+            }
+        }
+        random_owned_controlled_state = {
+            add_building_construction = {
+                type = infrastructure
+                level = 1
+                instant_build = yes
+            }
+        }
+
+        GER = {
+            add_timed_idea = {
+                idea = sww1_idea_economic_mission_to_china
+                years = 2
+            }
+
+            set_autonomy = {
+                target = MAN
+                autonomous_state = dominion
+            }
+        }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                or = {
+                    SOV = { has_completed_focus = SOV_far_east_affairs }        # If we need help, we need help.
+                    JAP = { has_completed_focus = JAP_twenty_one_demands} 
+                }
+                factor = 5
+            }
+            modifier = {
+                has_war = yes                               # Same
+                factor = 4
+            }
+            modifier = {
+                date > 1917.1.1
+                factor = 2
+            }
+        }
+    }
+
+    option = {
+        name = "This is outrageous."
+
+        GER = {
+            news_event = { id = germany_events.23 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = MAN
+                modifier = medium_decrease
+            }
+        }
+
+        ai_chance = {
+            base = 1
+        }
+    }
+}
+
+news_event = {
+    id = germany_events.22
+    title = "[MAN.GetName] Accepts German Economic Help!"
+    desc = germany_events.22.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "This changes the balance of power in Asia."
+    }
+}
+
+news_event = {
+    id = germany_events.23
+    title = "[MAN.GetName] Declines"
+    desc = germany_events.23.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "It's their loss."
+    }
+}
+
+country_event = {
+    id = germany_events.24
+    title = "Arrival of German Diplomats"       # We should not be receiving them, but damn we hate being a British dominion...
+    desc = germany_events.24.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We might use their help."
+
+        add_timed_idea = {
+            idea = sww1_idea_german_economic_help
+            years = 2
+        }
+        
+        GER = {
+            news_event = { id = germany_events.25 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = RAJ
+                modifier = medium_increase
+            }
+            add_timed_idea = {
+                idea = sww1_idea_economic_mission_to_india
+                years = 2
+            }
+        }
+
+        hidden_effect = {
+            set_country_flag = accepted_german_help
+        }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                GER = { any_war_score > 20 }
+                factor = 2.5
+            }
+        }
+    }
+
+    option = {
+        name = "We are a loyal dominion."
+
+        GER = {
+            news_event = { id = germany_events.26 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = RAJ
+                modifier = medium_decrease
+            }
+        }
+
+        ai_chance = {
+            base = 2
+            modifier = {
+                ENG = { any_war_score > 20 }
+                factor = 2.5
+            }
+        }
+    }
+}
+
+news_event = {
+    id = germany_events.25
+    title = "India Accepts Our Offer!"
+    desc = germany_events.25.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let's get the English out of there together."
+    }
+}
+
+news_event = {
+    id = germany_events.26
+    title = "[RAJ.GetName] Declines"
+    desc = germany_events.26.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Then we might have to liberate them by force."
+    }
+}
+
+country_event = {
+    id = germany_events.27
+    title = "Invite India to Alliance?"         # Now that they are independent, we may want to use our diplomatic efforts from the past.
+    desc = germany_events.27.d
+
+    trigger = {
+        GER = {
+            or = {
+                is_faction_leader = yes
+                is_in_faction = no
+            }
+        }
+        RAJ = {
+            is_subject = no
+            is_in_faction = no
+            has_country_flag = accepted_german_help
+        }
+    }
+
+    option = {
+        name = "Let's do this."
+        RAJ = { country_event = { id = germany_events.28 hours = 12 random_hours = 6 } }
+        hidden_effect = {
+            RAJ = { clr_country_flag = accepted_german_help }
+        }
+    }
+
+    option = {
+        name = "There is no need."
+        hidden_effect = {
+            RAJ = { clr_country_flag = accepted_german_help }
+        }
+    }
+}
+
+country_event = {
+    id = germany_events.28
+    title = "[GER.GetName] Seeks Alliance"              # Cite our previous cooperation in ending British rule
+    desc = germany_events.28.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall stay allied forever."
+        country_event = { id = germany_events.29 hours = 12 random_hours = 6 }
+
+        GER = {
+            if = {
+                is_in_faction = no
+                create_faction = "Central Powers"
+            }
+            add_to_faction = RAJ
+        }
+
+        ai_chance = {
+            base = 5
+        }
+    }
+
+    option = {
+        name = "Lest now they try to govern us..."
+        country_event = { id = germany_events.30 hours = 12 random_hours = 6 }
+
+        ai_chance = {
+            base = 1
+        }
+    }
+}
+
+country_event = {
+    id = germany_events.29
+    title = "Germany Allies with [RAJ.GetName]"
+    desc = germany_events.29.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Right."
+    }
+}
+
+country_event = {
+    id = germany_events.30
+    title = "No Alliance with India"
+    desc = germany_events.30.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "All those efforts for nothing..."
+        add_opinion_modifier = {
+            target = RAJ
+            modifier = large_decrease
+        }
+    }
+}
+
+# HOHENZOLLERN
+
+news_event = {
+    id = germany_events.31
+    title = "Airship Parade Over Berlin"        # Children excited, women fainting, students taking notes.
+    desc = germany_events.31.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "What a sight!"
+        add_tech_bonus = {
+            name = fighter_bonus
+            bonus = 0.5
+            uses = 1
+            category = air_equipment
+        }
+    }
+}
+
+# WEIMAR CONSTITUTION
+
+news_event = {
+    id = germany_events.32
+    title = "[GER.GetName] Establishes the Afrika-Amt"
+    desc = germany_events.32.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+
