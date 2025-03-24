@@ -9,11 +9,14 @@ division_template = {
         infantry = { x = 1 y = 0 }
 		infantry = { x = 1 y = 1 }
         infantry = { x = 1 y = 2 }
+        infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+        infantry = { x = 2 y = 2 }
         artillery_brigade = { x = 2 y = 0 }
 		artillery_brigade = { x = 2 y = 1 }
 	}
     support = {
-        recon = { x = 0 y = 0 }
+        artillery = { x = 0 y = 0 }
     }
 }
 division_template = {
@@ -25,36 +28,37 @@ division_template = {
 		cyclist_infantry = { x = 0 y = 1 }
         cyclist_infantry = { x = 1 y = 0 }
         cyclist_infantry = { x = 1 y = 1 }
+        cyclist_infantry = { x = 1 y = 0 }
+        cyclist_infantry = { x = 1 y = 1 }
 	}
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
 }
 
 # units
 units = {
-    # GALIZIEN (7 divs)
+    # GALIZIEN (76 divs)
 
-    ## I K.u.K. Korps (Krakau)
     division = {
 		location = 9427
 		division_template = "Infanterie-Division"
         start_experience_factor = 0.2
+        start_equipment_factor = 0.8
     }
     division = {
 		location = 9427
 		division_template = "Infanterie-Division"
         start_experience_factor = 0.2
+        start_equipment_factor = 0.8
     }
     division = {
 		location = 9427
 		division_template = "Fahrrad-Division"
         start_experience_factor = 0.2
+        start_equipment_factor = 0.8
     }
 
-    ## II K.u.K. Korps (Lemberg)
-    division = {
-		location = 11479
-		division_template = "Infanterie-Division"
-        start_experience_factor = 0.2
-    }
     division = {
 		location = 11479
 		division_template = "Infanterie-Division"
@@ -71,48 +75,39 @@ units = {
         start_experience_factor = 0.2
     }
     
-    # TIROL (5 divs.)
+    # TIROL (3 divs.)
 
-    ## III K.u.K. Korps (Bozen)
     division = {
-		location = 11598
+		location = 9598
 		division_template = "Infanterie-Division"
-        start_experience_factor = 0.2
+        start_experience_factor = 0.5
     }
     division = {
-		location = 11598
+		location = 9598
 		division_template = "Infanterie-Division"
-        start_experience_factor = 0.2
-    }
-    division = {
-		location = 11598
-		division_template = "Infanterie-Division"
-        start_experience_factor = 0.2
+        start_experience_factor = 0.5
     }
 
-    ## IV K.u.K. Korps (Triest)
     division = {
 		location = 6626
 		division_template = "Infanterie-Division"
         start_experience_factor = 0.2
+        start_equipment_factor = 0.6
     }
-    division = {
-		location = 6626
-		division_template = "Fahrrad-Division"
-        start_experience_factor = 0.2
-    }
+
 
     # BOSNIEN (2 divs)
 
-    ## V K.u.K. Korps (Sarajevo)
     division = {
-		location = 11899
+		location = 3924
 		division_template = "Infanterie-Division"
         start_experience_factor = 0.2
+        start_equipment_factor = 0.6
     }
     division = {
-		location = 11899
+		location = 3924
 		division_template = "Fahrrad-Division"
         start_experience_factor = 0.2
+        start_equipment_factor = 0.6
     }
 }

@@ -5,9 +5,13 @@ dc_ties_to_the_diaspora = {
         days_remove = 60
 
         ai_will_do = {
-            base = 2
-            modify = {
+            base = 5
+            modifier = {
                 has_manpower < 100000
+                factor = 3
+            }
+            modifier = {
+                has_war = yes
                 factor = 3
             }
         }
@@ -30,14 +34,13 @@ dc_ties_to_the_diaspora = {
         }
 
         ai_will_do = {
-            base = 2
+            base = 3
             modifier = {
                 has_country_flag = we_rejected_germany
-                factor = 2
+                factor = 5
             }
             modifier = {
                 and = {
-                    has_war = no
                     is_in_faction = no
                     date > 1915.1.1
                 }
@@ -46,7 +49,7 @@ dc_ties_to_the_diaspora = {
         }
 
         remove_effect = {
-            news_event = { id = austria_events.1 hours = 12 random_hours = 6 }                        # Wilson tours Austria-Hungary
+            news_event = { id = austria_events.1 hours = 12 random_hours = 6 }   # Wilson tours Austria-Hungary
             USA = {
                 add_opinion_modifier = {
                     target = AUS
@@ -74,14 +77,20 @@ dc_second_vienna_treaty = {
         }
 
         ai_will_do = {
-            base = 2
+            base = 3
             modifier = {
-                has_war = yes
-                factor = 4
+                strength_ratio = {          # Invite the weaker countries first
+                    tag = FROM
+                    ratio < 1
+                }
+                factor = 5
             }
             modifier = {
-                date > 1916.1.1
-                factor = 2
+                and = {
+                    is_in_faction = no
+                    date > 1915.1.1
+                }
+                factor = 3
             }
         }
 
@@ -97,18 +106,21 @@ dc_second_vienna_treaty = {
         days_remove = 90
 
         ai_will_do = {
-            base = 0
+            base = 3                    # Unlikely, unless we have our faction together and there is no war.
             modifier = {
-                date > 1914.1.1
-                add = 2
+                num_faction_members > 1
+                factor = 2
             }
             modifier = {
-                is_ally_with = FRA
-                factor = 4
+                and = {
+                    has_war = no
+                    date > 1916.1.1
+                }
+                factor = 5
             }
             modifier = {
-                TUR = { is_in_faction = no }
-                factor = 4
+                not = { can_declare_war_on = TUR }      # Duh.
+                factor = 0 
             }
         }
 
@@ -141,11 +153,7 @@ dc_austro-slavism = {
         cost = 200
 
         ai_will_do = {
-            base = 4
-            modifier = {
-                has_war = yes
-                factor = 2
-            }
+            base = 6
             modifier = {
                 has_stability < 0.5
                 factor = 0
@@ -171,22 +179,6 @@ dc_austro-slavism = {
             }
         }
     }
-    appease_the_church = {
-        cost = 75
-        days_remove = 90
-
-        ai_will_do = {
-            base = 0
-            modifier = {
-                has_war_support < 0.25
-                add = 6
-            }
-        }
-
-        modifier = {
-            war_support_weekly = 0.01
-        }
-    }
     intensify_language_training = {
         icon = generic_prepare_civil_war
 
@@ -197,13 +189,29 @@ dc_austro-slavism = {
             base = 0
             modifier = {
                 has_completed_focus = AUS_army_maneuvers
-                add = 4
+                add = 6
             }
         }
 
         modifier = {
             experience_gain_army_factor = 0.2
             coordination_bonus = 0.1
+        }
+    }
+    appease_the_church = {
+        cost = 75
+        days_remove = 90
+
+        ai_will_do = {
+            base = 3
+            modifier = {
+                has_war_support < 0.25
+                factor = 3
+            }
+        }
+
+        modifier = {
+            war_support_weekly = 0.01
         }
     }
 }
@@ -216,7 +224,7 @@ dc_review_the_ausgleich_agreement = {
         fire_only_once = yes
 
         ai_will_do = {
-            base = 10
+            base = 15
         }
 
         complete_effect = {             ## Choice event between prioritizing Hungary (+ 2 civs) or equal development (+ 1 civ, 1 mil, 1 airfield)
@@ -234,7 +242,7 @@ dc_review_the_ausgleich_agreement = {
         }
 
         ai_will_do = {
-            base = 6
+            base = 10
         }
 
         complete_effect = {
@@ -258,7 +266,7 @@ dc_review_the_ausgleich_agreement = {
         }
 
         ai_will_do = {
-            base = 6
+            base = 10
         }
 
         complete_effect = {

@@ -20,6 +20,10 @@ focus_tree = {
         y = 0
         cost = 10
 
+        ai_will_do = {
+            base = 2
+        }
+
         completion_reward = {
             add_command_power = 25
         }
@@ -32,6 +36,14 @@ focus_tree = {
         x = -2
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                has_war = yes
+                factor = 3
+            }
+        }
 
         prerequisite = { focus = TUR_adjust_budget }
         completion_reward = {
@@ -69,15 +81,14 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 3
+        }
+
         prerequisite = { focus = TUR_focus_army }
         completion_reward = {
-            army_experience = 50
-            add_doctrine_cost_reduction = {
-				name = land_doc_bonus
-				cost_reduction = 0.5
-				uses = 1
-				category = land_doctrine
-			}
+            army_experience = 25
+            remove_ideas = sww1_idea_sick_man_of_europe
         }
     }
     focus = {
@@ -108,6 +119,10 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 2
+        }
+
         prerequisite = { focus = TUR_equipment_effort }
         completion_reward = {
             add_tech_bonus = {
@@ -126,14 +141,18 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 6
+        }
+
         prerequisite = { focus = TUR_equipment_effort }
         completion_reward = {
             air_experience = 25
             add_tech_bonus = {
 				name = fighter_bonus
 				bonus = 1.0
-				uses = 1
-				category = light_fighter
+				uses = 2
+				category = air_equipment
 			}
         }
     }
@@ -464,6 +483,14 @@ focus_tree = {
         y = 0
         cost = 10
 
+        ai_will_do = {
+            base = 2
+            modifier = {
+                date > 1913.7.1
+                factor = 3
+            }
+        }
+
         completion_reward = {
             add_stability = 0.1
         }
@@ -477,6 +504,10 @@ focus_tree = {
         y = 1
 
         cost = 10
+
+        ai_will_do = {
+            base = 2
+        }
 
         prerequisite = { focus = TUR_economic_development }
         completion_reward = {
@@ -492,6 +523,14 @@ focus_tree = {
         y = 1
 
         cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                has_war = no
+                factor = 0
+            }
+        }
 
         prerequisite = { focus = TUR_agrarian_reform }
         completion_reward = {
@@ -546,6 +585,14 @@ focus_tree = {
         y = 1
 
         cost = 10
+
+        ai_will_do = {
+            base = 3
+            modifier = {
+                has_stability < 0.5
+                factor = 0
+            }
+        }
 
         prerequisite = { focus = TUR_rationing }
         completion_reward = {
@@ -773,8 +820,38 @@ focus_tree = {
         y = 5
         cost = 10
 
+        ai_will_do = {
+            base = 1                                    # There is a chance we go early...
+            modifier = {                                # But if we don't, we won't do anything until the Germans guarantee us, or we reject them.
+                and = {
+                    date > 1912.6.1
+                    not = { 
+                        or = {
+                            is_guaranteed_by = GER
+                            has_country_flag = we_do_our_thing
+                        }
+                    }
+                }
+                factor = 0
+            }
+            modifier = {
+                or = {
+                    is_guaranteed_by = GER                  # When they do, we can do internal stuff.
+                    has_country_flag = we_do_our_thing      # Or, if we rejected them.
+                }
+                factor = 3
+            }
+        }
+
         completion_reward = {
             add_political_power = 150
+
+            hidden_effect = {                           # If we go early, set a flag for the future.
+                if = {
+                    limit = { date < 1912.6.1 }
+                    set_country_flag = we_do_our_thing
+                }
+            }
         }
     }
     focus = {
@@ -785,6 +862,14 @@ focus_tree = {
         x = -4
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = {
+                has_country_flag = we_do_our_thing
+                factor = 6
+            }
+        }
 
         prerequisite = { focus = TUR_political_ambitions }
         completion_reward = {
@@ -802,6 +887,14 @@ focus_tree = {
         x = -2
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = {
+                has_country_flag = we_do_our_thing
+                factor = 6
+            }
+        }
 
         prerequisite = { focus = TUR_international_affairs }
         completion_reward = {
@@ -821,6 +914,14 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 0                                    # Unless we're doing our thing, we will never do this.
+            modifier = {
+                has_country_flag = we_do_our_thing
+                add = 6
+            }
+        }
+
         prerequisite = { focus = TUR_international_affairs }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -834,6 +935,10 @@ focus_tree = {
         x = -2
         y = 1
         cost = 10
+
+        available = {
+            is_in_faction = no
+        }
 
         prerequisite = { focus = TUR_expansionism }
         completion_reward = {
@@ -849,6 +954,21 @@ focus_tree = {
         y = 1
         cost = 10
 
+        available = {
+            FRA = {
+                exists = yes
+                not = { has_war_with = TUR }
+            }
+        }
+
+        ai_will_do = {
+            base = 1                                    # Unlikely if we're with Germans, but likely on our own.
+            modifier = {
+                has_country_flag = we_do_our_thing
+                factor = 3
+            }
+        }
+
         prerequisite = { focus = TUR_expansionism }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -863,6 +983,21 @@ focus_tree = {
         x = 0
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = {
+                and = {
+                    date > 1913.1.1
+                    has_country_flag = we_do_our_thing
+                }
+                factor = 2
+            }
+            modifier = {
+                has_war = yes
+                factor = 2
+            }
+        }
 
         mutually_exclusive = { focus = TUR_the_young_turks }
         prerequisite = { focus = TUR_political_ambitions }
@@ -939,27 +1074,31 @@ focus_tree = {
 
     focus = {
         id = TUR_the_young_turks
-        icon = GFX_focus_generic_the_young_turks
+        icon = GFX_focus_TUR_the_young_turks
 
         relative_position_id = TUR_political_ambitions
         x = 4
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 1                    # We won't do this early, but later -- most likely.
+            modifier = {
+                date > 1914.1.1
+                factor = 5
+            }
+        }
+
         mutually_exclusive = { focus = TUR_the_sublime_porte }
         prerequisite = { focus = TUR_political_ambitions }
         completion_reward = {
             add_timed_idea = {
-                idea = sww1_idea_democratic_tendencies
+                idea = sww1_idea_authoritarianism_tendencies
                 years = 1
             }
             add_popularity = {
-                ideology = democratic
+                ideology = authoritarianism
                 popularity = 0.1
-            }
-
-            hidden_effect = {
-                news_event = { id = genericevent.4 hours = 12 random_hours = 6 }
             }
         }
     }
@@ -982,7 +1121,7 @@ focus_tree = {
     }
     focus = {
         id = TUR_default_on_the_debt
-        icon = GFX_focus_TUR_default_on_the_debt
+        icon = GFX_focus_generic_open_the_economy
 
         relative_position_id = TUR_the_young_turks
         x = -1
@@ -991,12 +1130,13 @@ focus_tree = {
 
         prerequisite = { focus = TUR_the_young_turks }
         completion_reward = {
+            add_stability = 0.05
             custom_effect_tooltip = decision_effect_tooltip
         }
     }
     focus = {
         id = TUR_declare_the_ethnic_state
-        icon = GFX_focus_generic_over_the_edge
+        icon = GFX_focus_TUR_declare_the_ethnic_state
 
         relative_position_id = TUR_state_reform
         x = 2
@@ -1005,36 +1145,39 @@ focus_tree = {
 
         prerequisite = { focus = TUR_state_reform }
         available = {
-            communism > 0.3
+            authoritarianism > 0.5
         }
         
         completion_reward = {
-            start_civil_war = {
-                ruling_party = communism
-                ideology = ROOT
-                size = 0.5
-            }
-
-            hidden_effect = {
-                set_popularity = {
-                    ideology = communism
-                    popularity = 1.0
+            add_ideas = sww1_idea_turkish_ethnic_state
+            if = {
+                limit = {
+                    not = { has_government = authoritarianism }
+                    set_politics = {
+                        ruling_party = authoritarianism
+                        elections_allowed = no
+                    }
                 }
             }
         }
     }
     focus = {
-        id = TUR_address_arab_insurgencies_
-        icon = GFX_focus_generic_embrace_modernity
+        id = TUR_address_arab_insurgencies
+        icon = GFX_focus_TUR_address_arab_insurgencies
 
         relative_position_id = TUR_state_reform
         x = -1
         y = 1
         cost = 10
 
+        available = {
+            has_idea = sww1_idea_looming_arab_revolt
+        }
+
         prerequisite = { focus = TUR_state_reform }
         completion_reward = {
-            add_research_slot = 1
+            add_political_power = 100
+            remove_ideas = sww1_idea_looming_arab_revolt
         }
     }
 }

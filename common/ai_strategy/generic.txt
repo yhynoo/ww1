@@ -1,6 +1,35 @@
+army_priorities = {
+    enable = {
+        always = yes
+    }
+
+    ai_strategy = {
+        type = role_ratio
+        id = infantry
+        value = 40
+    }
+
+    ai_strategy = {
+        type = role_ratio
+        id =  cyclist
+        value = 10
+    }
+}
+
+adjust_garrisoning = {
+    enable = {
+        threat > 0.1
+    }
+
+    ai_strategy = {
+        type = garrison
+        value = -25
+    }
+}
+
 area_priorities = {
     enable = {
-        not = { original_tag = SOV }
+        always = yes
     }
 
     ai_strategy = {
@@ -11,31 +40,13 @@ area_priorities = {
 
     ai_strategy = {
         type = area_priority
-        id = middle_east
-        value = 60
-    }
-
-    ai_strategy = {
-        type = area_priority
         id = asia
-        value = 40
-    }
-
-    ai_strategy = {
-        type = area_priority
-        id = north_america
-        value = 30
+        value = -50
     }
 
     ai_strategy = {
         type = area_priority
         id = africa
-        value = 20
-    }
-
-    ai_strategy = {
-        type = area_priority
-        id = south_america
-        value = 10
+        value = -100
     }
 }

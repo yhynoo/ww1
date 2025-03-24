@@ -30,11 +30,10 @@ country_event = {
 
         hidden_effect = {
             country_event = { id = germany_events.4 days = 7 random_hours = 6 }
-            set_country_flag = german_investments
         }
 
         ai_chance = { 
-            base = 4
+            base = 6
             modifier = {
                 GER = { is_ally_with = SOV }            # No friendship with Russians.
                 factor = 0
@@ -54,7 +53,10 @@ country_event = {
         }
 
         hidden_effect = {
-            set_country_flag = we_rejected_germany
+            if = {
+                limit = { not = { has_country_flag = we_do_our_thing } }        # If we haven't decided yet, we're doing our thing from now on.
+                set_country_flag = we_do_our_thing
+            }
         }
 
         ai_chance = { base = 1 }
@@ -97,6 +99,15 @@ country_event = {
 
     is_triggered_only = yes
 
+    trigger = {
+        not = {
+            and = {
+                is_ai = yes
+                has_country_flag = we_do_our_thing
+            }
+        }
+    }
+
     option = {
         name = "We should ask Germany for guarantees."
         GER = { country_event = { id = germany_events.5 hours = 12 random_hours = 6 } }
@@ -107,6 +118,13 @@ country_event = {
     option = {
         name = "We do not need guarantees from Germany."
         ai_chance = { base = 1 }
+
+        hidden_effect = {
+            if = {
+                limit = { not = { has_country_flag = we_do_our_thing } }        # If we haven't decided yet, we're doing our thing from now on.
+                set_country_flag = we_do_our_thing
+            }
+        }
     }
 }
 

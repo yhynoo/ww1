@@ -5,146 +5,90 @@ division_template = {
 	regiments = {
 		infantry = { x = 0 y = 0 }
 		infantry = { x = 0 y = 1 }
-        infantry = { x = 1 y = 0 }
+        infantry = { x = 0 y = 1 }
+		infantry = { x = 1 y = 0 }
 		infantry = { x = 1 y = 1 }
+		infantry = { x = 1 y = 2 }
 		infantry = { x = 2 y = 0 }
 		infantry = { x = 2 y = 1 }
+		infantry = { x = 2 y = 2 }
+		infantry = { x = 3 y = 0 }
+		infantry = { x = 3 y = 1 }
+		infantry = { x = 3 y = 2 }
+	}
+	support = {
+		artillery = { x = 0 y = 0 }
 	}
 }
 division_template = {
 	name = "Süvari Fırkası"
 	division_names_group = TUR_INF_01
 	regiments = {
-        cyclist_infantry = { x = 0 y = 0 }
+		cyclist_infantry = { x = 0 y = 0 }
 		cyclist_infantry = { x = 0 y = 1 }
-		cyclist_infantry = { x = 1 y = 0 }
-		cyclist_infantry = { x = 1 y = 1 }
+        cyclist_infantry = { x = 1 y = 2 }
+        cyclist_infantry = { x = 1 y = 0 }
+        cyclist_infantry = { x = 1 y = 1 }
+        cyclist_infantry = { x = 1 y = 2 }
+        cyclist_infantry = { x = 2 y = 0 }
+        cyclist_infantry = { x = 2 y = 1 }
+        cyclist_infantry = { x = 2 y = 2 }
 	}
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
 }
 
 # units
 units = {
-    # Romania
+
+	## BALKANS (4 divs.)
     division = {
-		location = 9617
+		location = 11586
 		division_template = "Piyade Fırkası"
         start_experience_factor = 0.2
 		start_equipment_factor = 0.5
     }
 	division = {
-		location = 9617
+		location = 11586
 		division_template = "Piyade Fırkası"
         start_experience_factor = 0.2
 		start_equipment_factor = 0.5
     }
+
 	division = {
 		location = 657
 		division_template = "Piyade Fırkası"
         start_experience_factor = 0.2
 		start_equipment_factor = 0.5
     }
-
-	# Serbia
 	division = {
-		location = 11586
-		division_template = "Piyade Fırkası"
-        start_experience_factor = 0.2
-		start_equipment_factor = 0.5
-    }
-	division = {
-		location = 11586
+		location = 657
 		division_template = "Süvari Fırkası"
         start_experience_factor = 0.2
 		start_equipment_factor = 0.5
     }
 
-	division = {
-		location = 9821
-		division_template = "Piyade Fırkası"
-        start_experience_factor = 0.2
-		start_equipment_factor = 0.5
-    }
-	division = {
-		location = 9849
-		division_template = "Piyade Fırkası"
-        start_experience_factor = 0.2
-		start_equipment_factor = 0.5
-    }
-	division = {
-		location = 9602
-		division_template = "Süvari Fırkası"
-        start_experience_factor = 0.2
-		start_equipment_factor = 0.5
-    }
+	## MIDDLE EAST
 
-	# Greece + Anatolia
-	division = {
-		location = 4109
-		division_template = "Piyade Fırkası"
-        start_experience_factor = 0.2
-		start_equipment_factor = 0.5
-    }
-	division = {
-		location = 9833
-		division_template = "Piyade Fırkası"
-        start_experience_factor = 0.2
-		start_equipment_factor = 0.5
-    }
-	division = {
-		location = 1005
-		division_template = "Piyade Fırkası"
-        start_experience_factor = 0.2
-		start_equipment_factor = 0.5
-    }
-	division = {
-		location = 1005
-		division_template = "Piyade Fırkası"
-        start_experience_factor = 0.2
-		start_equipment_factor = 0.5
-    }
-
-	# Levant + Africa
-	division = {
-		location = 1086
-		division_template = "Süvari Fırkası"
-        start_experience_factor = 0.2
-		start_equipment_factor = 0.5
-    }
-	division = {
-		location = 4111
-		division_template = "Süvari Fırkası"
-        start_experience_factor = 0.2
-		start_equipment_factor = 0.5
-    }
-	division = {
-		location = 4076
-		division_template = "Süvari Fırkası"
-        start_experience_factor = 0.2
-		start_equipment_factor = 0.5
-    }
-	division = {
-		location = 7011
-		division_template = "Süvari Fırkası"
-        start_experience_factor = 0.2
-		start_equipment_factor = 0.5
-    }
-
-	# Armenia
-	division = {
-		location = 9932
-		division_template = "Piyade Fırkası"
-        start_experience_factor = 0.2
-		start_equipment_factor = 0.5
-    }
-	division = {
-		location = 9932
-		division_template = "Piyade Fırkası"
-        start_experience_factor = 0.2
-		start_equipment_factor = 0.5
-    }
 	division = {
 		location = 10472
 		division_template = "Piyade Fırkası"
+        start_experience_factor = 0.2
+		start_equipment_factor = 0.5
+    }
+	division = {
+		location = 2097
+		division_template = "Piyade Fırkası"
+        start_experience_factor = 0.2
+		start_equipment_factor = 0.5
+    }
+
+	## AFRICA
+
+	division = {
+		location = 4076
+		division_template = "Süvari Fırkası"
         start_experience_factor = 0.2
 		start_equipment_factor = 0.5
     }

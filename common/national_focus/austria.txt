@@ -21,10 +21,10 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 2
+            base = 3
             modifier = {
-                has_war = yes
-                factor = 4
+                has_war = no            # Austrian army was shit: don't do anything unless at war.
+                factor = 0
             }
         }
 
@@ -40,6 +40,10 @@ focus_tree = {
         x = -2
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 3                # Rather do army than navy.
+        }
 
         prerequisite = { focus = AUS_adjust_budget }
         completion_reward = {
@@ -78,7 +82,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 4
+            base = 2
         }
 
         prerequisite = { focus = AUS_focus_army }
@@ -471,6 +475,10 @@ focus_tree = {
         y = 0
         cost = 10
 
+        ai_will_do = {
+            base = 3                # We can do this first, or internal politics.
+        }
+
         completion_reward = {
             add_stability = 0.1
         }
@@ -567,18 +575,13 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1
+            base = 2
             modifier = {
-                surrender_progress > 0.3
-                factor = 4
-            }
-            modifier = {
-                has_stability < 0.5
-                factor = 0
-            }
-            modifier = {
-                has_war = no
-                factor = 0
+                and = {
+                    has_stability > 0.5
+                    surrender_progress > 0.25
+                }
+                factor = 2
             }
         }
 
@@ -606,6 +609,10 @@ focus_tree = {
 
         ai_will_do = {
             base = 2
+            modifier = {
+                has_war = yes
+                factor = 3
+            }
         }
 
         prerequisite = { focus = AUS_economic_development }
@@ -668,7 +675,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 4
+            base = 3
         }
 
         prerequisite = { focus = AUS_infrastructure_effort }
@@ -701,7 +708,11 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 2
+            base = 1
+            modifier = {
+                has_war = yes
+                factor = 3
+            }
         }
 
         prerequisite = { focus = AUS_infrastructure_effort }
@@ -747,6 +758,10 @@ focus_tree = {
         y = 1
 
         cost = 10
+
+        ai_will_do = {
+            base = 2
+        }
 
         prerequisite = { focus = AUS_infrastructure_effort }
         completion_reward = {
@@ -796,7 +811,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1
+            base = 2                    # We can also do this early.
             modifier = {
                 date > 1913.1.1
                 factor = 3
@@ -817,10 +832,10 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1
+            base = 1                 # Unlikely we do this unless we've rejected Germany.
             modifier = {
                 has_country_flag = we_rejected_germany
-                factor = 5
+                factor = 3
             }
         }
 
@@ -842,14 +857,10 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 2
+            base = 0                 # Definitely won't do this unless we've rejected Germany.
             modifier = {
-                date > 1914.1.1
-                factor = 2
-            }
-            modifier = {
-                has_idea = sww1_idea_slavic_unrest
-                factor = 4
+                has_country_flag = we_rejected_germany
+                factor = 6
             }
         }
 
@@ -870,6 +881,14 @@ focus_tree = {
         x = 1
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 1                 # Unlikely we do this unless we've rejected Germany.
+            modifier = {
+                has_country_flag = we_rejected_germany
+                factor = 3
+            }
+        }
 
         prerequisite = { focus = AUS_international_affairs }
         completion_reward = {
@@ -900,11 +919,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 0
-            modifier = {
-                has_country_flag = we_rejected_germany
-                add = 5
-            }
+            base = 3
         }
 
         prerequisite = { focus = AUS_expansionism }
@@ -928,10 +943,13 @@ focus_tree = {
         }
 
         ai_will_do = {
-            base = 1
+            base = 3
             modifier = {
-                has_war = yes
-                factor = 8
+                and = {
+                    has_war = yes
+                    has_country_flag = we_rejected_germany
+                }
+                factor = 2
             }
         }
 
@@ -958,7 +976,7 @@ focus_tree = {
             base = 1
             modifier = {
                 has_war = yes
-                factor = 4
+                factor = 3
             }
         }
 
@@ -980,7 +998,7 @@ focus_tree = {
             base = 1
             modifier = {
                 has_war = yes
-                factor = 4
+                factor = 3
             }
         }
 
@@ -1037,10 +1055,13 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1
+            base = 3
             modifier = {
-                has_war = yes
-                factor = 4
+                and = {
+                    has_war = no
+                    date > 1915.1.1
+                }
+                factor = 2
             }
         }
 
@@ -1088,11 +1109,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 5
-            modifier = {
-                has_war = yes
-                factor = 2
-            }
+            base = 3
         }
 
         prerequisite = { focus = AUS_adjust_the_government }
@@ -1126,9 +1143,8 @@ focus_tree = {
             }
 
             hidden_effect = {
-                set_popularity = {
-                    ideology = communism
-                    popularity = 1.0
+                set_popularities = {
+                    communism = 100
                 }
             }
         }
@@ -1141,6 +1157,10 @@ focus_tree = {
         x = -1
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 3
+        }
 
         prerequisite = { focus = AUS_state_reform }
         completion_reward = {

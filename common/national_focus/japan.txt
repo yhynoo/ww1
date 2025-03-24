@@ -20,6 +20,10 @@
         y = 0
         cost = 10
 
+        ai_will_do = {
+            base = 2
+        }
+
         completion_reward = {
             add_command_power = 25
         }
@@ -185,6 +189,18 @@
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = {
+                date > 1913.1.1
+                factor = 2
+            }
+            modifier = {
+                has_completed_focus = JAP_expansionism
+                factor = 3
+            }
+        }
+
         available = {
 			any_state = {
 				is_coastal = yes
@@ -213,6 +229,14 @@
 			}
 		}
 
+        ai_will_do = {
+            base = 2
+            modifier = {
+                has_completed_focus = JAP_expansionism
+                factor = 3
+            }
+        }
+
         prerequisite = { focus = JAP_focus_navy }
         completion_reward = {
             navy_experience = 50
@@ -232,6 +256,10 @@
         x = 2
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 2
+        }
 
         available = {
 			any_state = {
@@ -365,6 +393,17 @@
 			}
 		}
 
+        ai_will_do = {
+            base = 2
+            modifier = {
+                or = {
+                    has_war_with = GER
+                    has_war_with = ENG
+                }
+                factor = 3
+            }
+        }
+
         prerequisite = { focus = JAP_expand_dockyards }
         completion_reward = {
             add_tech_bonus = {
@@ -391,6 +430,17 @@
 			}
 		}
 
+        ai_will_do = {
+            base = 1
+            modifier = {
+                or = {
+                    has_war_with = GER
+                    has_war_with = ENG
+                }
+                factor = 3
+            }
+        }
+
         prerequisite = { focus = JAP_expand_dockyards }
         completion_reward = {
             add_tech_bonus = {
@@ -409,6 +459,14 @@
         x = 0
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 2                # We need to do naval invasions.
+            modifier = {
+                has_completed_focus = JAP_hong_kong_appeal
+                factor = 3
+            }
+        }
 
         available = {
 			any_state = {
@@ -464,6 +522,14 @@
         y = 0
         cost = 10
 
+        ai_will_do = {
+            base = 3                    # We really need this first.
+            modifier = {
+                date > 1913.1.1
+                factor = 3
+            }
+        }
+
         completion_reward = {
             add_stability = 0.1
         }
@@ -492,6 +558,14 @@
         y = 1
 
         cost = 10
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                has_war = yes
+                add = 2
+            }
+        }
 
         prerequisite = { focus = JAP_agrarian_reform }
         completion_reward = {
@@ -547,6 +621,17 @@
 
         cost = 10
 
+        ai_will_do = {
+            base = 2
+            modifier = {
+                and = {
+                    has_stability > 0.5
+                    surrender_progress > 0.25
+                }
+                factor = 2
+            }
+        }
+
         prerequisite = { focus = JAP_rationing }
         completion_reward = {
             add_war_support = -0.1
@@ -568,6 +653,10 @@
         y = 1
 
         cost = 10
+
+        ai_will_do = {
+            base = 3
+        }
 
         prerequisite = { focus = JAP_economic_development }
         bypass = {
@@ -727,6 +816,10 @@
 
         cost = 10
 
+        ai_will_do = {
+            base = 6            # Japan really needs resources!
+        }
+
         prerequisite = { focus = JAP_infrastructure_effort }
         completion_reward = {
             random_owned_controlled_state = {
@@ -774,6 +867,14 @@
         y = 5
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = {
+                threat > 0.2            # this becomes important when Europe fights
+                factor = 3
+            }
+        }
+
         completion_reward = {
             add_political_power = 150
         }
@@ -786,6 +887,14 @@
         x = -4
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                threat > 0.2
+                factor = 3
+            }
+        }
 
         prerequisite = { focus = JAP_political_ambitions }
         completion_reward = {
@@ -804,6 +913,17 @@
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 1.5
+            modifier = {
+                or = {
+                    has_war = GER
+                    SOV = { has_completed_focus = SOV_far_east_affairs }
+                }
+                factor = 3
+            }
+        }
+
         prerequisite = { focus = JAP_international_affairs }
         completion_reward = {
             add_political_power = 100
@@ -821,6 +941,10 @@
         x = 1
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 3
+        }
 
         prerequisite = { focus = JAP_international_affairs }
         completion_reward = {
@@ -850,6 +974,21 @@
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 2
+            modifier = {
+                MAN = { exists = no }       # If there is no Qing, there's no point.
+                factor = 0
+            }
+            modifier = {
+                or = {
+                    has_war = GER
+                    SOV = { has_completed_focus = SOV_far_east_affairs }
+                }
+                factor = 3
+            }
+        }
+
         prerequisite = { focus = JAP_expansionism }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -865,6 +1004,22 @@
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = {
+                date > 1916.1.1
+                factor = 3
+            }
+            modifier = {
+                has_war = yes
+                factor = 3
+            }
+            modifier = {
+                not = { has_completed_focus = JAP_expansionism }
+                factor = 0
+            }
+        }
+
         mutually_exclusive = { focus = JAP_sideline_the_emperor }
         prerequisite = { focus = JAP_political_ambitions }
         completion_reward = {
@@ -873,8 +1028,8 @@
         }
     }
     focus = {
-        id = JAP_state_shintoism
-        icon = GFX_focus_JAP_state_shintoism
+        id = JAP_anti-communist_outlook
+        icon = GFX_focus_JAP_anti-communist_outlook
 
         relative_position_id = JAP_internal_stability
         x = -1
@@ -904,21 +1059,21 @@
         }
     }
     focus = {
-        id = JAP_anti-communist_outlook
-        icon = GFX_focus_JAP_anti-communist_outlook
+        id = JAP_state_shintoism
+        icon = GFX_focus_JAP_state_shintoism
 
-        relative_position_id = JAP_state_shintoism
+        relative_position_id = JAP_anti-communist_outlook
         x = 1
         y = 1
         cost = 10
 
         prerequisite = { 
-            focus = JAP_state_shintoism
+            focus = JAP_anti-communist_outlook
             focus = JAP_ethics_of_honor
         }
         completion_reward = {
             add_timed_idea = {
-                idea = sww1_idea_anti-communist_outlook
+                idea = sww1_idea_state_shintoism
                 years = 1
             }
         }
@@ -927,12 +1082,12 @@
         id = JAP_tenno_heika_banzai
         icon = GFX_focus_generic_the_everlasting_spirit
 
-        relative_position_id = JAP_anti-communist_outlook
+        relative_position_id = JAP_state_shintoism
         x = 0
         y = 1
         cost = 10
 
-        prerequisite = { focus = JAP_anti-communist_outlook }
+        prerequisite = { focus = JAP_state_shintoism }
         completion_reward = {
             add_ideas = sww1_idea_tenno_heika_banzai
         }
@@ -940,44 +1095,60 @@
 
     focus = {
         id = JAP_sideline_the_emperor
-        icon = GFX_focus_generic_sideline_the_emperor
+        icon = GFX_focus_JAP_sideline_the_emperor
 
         relative_position_id = JAP_political_ambitions
         x = 4
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = {
+                date > 1916.1.1
+                factor = 3
+            }
+            modifier = {
+                not = { has_completed_focus = JAP_expansionism }
+                factor = 0
+            }
+        }
+
         mutually_exclusive = { focus = JAP_internal_stability }
         prerequisite = { focus = JAP_political_ambitions }
         completion_reward = {
             add_timed_idea = {
-                idea = sww1_idea_democratic_tendencies
+                idea = sww1_idea_authoritarianism_tendencies
                 years = 1
             }
             add_popularity = {
-                ideology = democratic
+                ideology = authoritarianism
                 popularity = 0.1
-            }
-
-            hidden_effect = {
-                news_event = { id = genericevent.4 hours = 12 random_hours = 6 }
             }
         }
     }
     focus = {
         id = JAP_militarize_the_government
-        icon = GFX_focus_generic_militarize_the_government
+        icon = GFX_focus_JAP_militarize_the_government
 
         relative_position_id = JAP_sideline_the_emperor
         x = 2
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 3
+        }
+
+        available = {
+            authoritarianism > 0.4
+        }
+
         prerequisite = { focus = JAP_sideline_the_emperor }
         completion_reward = {
-            add_timed_idea = {
-                idea = sww1_idea_militarize_the_government
-                years = 1
+            set_politics = {
+                ruling_party = authoritarianism
+                elections_allowed = no
             }
         }
     }
@@ -990,6 +1161,10 @@
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 2
+        }
+
         prerequisite = { focus = JAP_sideline_the_emperor }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -997,31 +1172,20 @@
     }
     focus = {
         id = JAP_kempeitai
-        icon = GFX_focus_generic_over_the_edge
+        icon = GFX_focus_JAP_kempeitai
 
         relative_position_id = JAP_militarize_the_government
         x = 2
         y = 1
         cost = 10
 
-        prerequisite = { focus = JAP_militarize_the_government }
-        available = {
-            communism > 0.3
+        ai_will_do = {
+            base = 2
         }
-        
-        completion_reward = {
-            start_civil_war = {
-                ruling_party = communism
-                ideology = ROOT
-                size = 0.5
-            }
 
-            hidden_effect = {
-                set_popularity = {
-                    ideology = communism
-                    popularity = 1.0
-                }
-            }
+        prerequisite = { focus = JAP_militarize_the_government }
+        completion_reward = {
+            add_ideas = sww1_idea_kempeitai
         }
     }
     focus = {
@@ -1032,6 +1196,10 @@
         x = -1
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 3
+        }
 
         prerequisite = { focus = JAP_militarize_the_government }
         completion_reward = {

@@ -1,0 +1,235 @@
+add_namespace = ottoman_events
+
+### 1. Sarajevo Memorandum
+
+news_event = {
+    id = ottoman_events.1
+    title = "[TUR.GetName] Withdraws from Serbia"
+    desc = ottoman_events.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A shift towards the Muslim world."
+    }
+}
+
+news_event = {
+    id = ottoman_events.2
+    title = "[TUR.GetName] Empire Calls for Liberation of Crimea and Caucasus"
+    desc = ottoman_events.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A declaration of intent against Russia."
+        if = {
+            limit = { tag = SOV }
+            add_opinion_modifier = {
+                target = TUR
+                modifier = large_decrease
+            }
+        }
+    }
+}
+
+country_event = {
+    id = ottoman_events.3
+    title = "[TUR.GetName] Seeks British Support"
+    desc = ottoman_events.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Support the Ottomans."
+        news_event = { id = ottoman_events.4 hours = 12 random_hours = 6 }
+        
+        ENG = {
+            add_to_faction = TUR        # Turkey joins the Entente.
+        }
+    }
+
+    option = {
+        name = "Deny their request."
+        TUR = { news_event = { id = ottoman_events.5 hours = 12 random_hours = 6 } }
+    }
+}
+
+news_event = {
+    id = ottoman_events.4
+    title = "[TUR.GetName] Joins the Entente!"
+    desc = ottoman_events.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The Entente grows stronger."
+    }
+}
+
+news_event = {
+    id = ottoman_events.5
+    title = "United Kingdom Refuses Ottoman Request"
+    desc = ottoman_events.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A diplomatic setback."
+    }
+}
+
+### 2. Alafranga
+
+country_event = {
+    id = ottoman_events.6
+    title = "[TUR.GetName] Seeks French Guarantees"
+    desc = ottoman_events.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Grant the Ottoman request."
+        news_event = { id = ottoman_events.7 hours = 12 random_hours = 6 }
+        give_guarantee = TUR
+    }
+
+    option = {
+        name = "Refuse to guarantee them."
+        TUR = { 
+            news_event = { id = ottoman_events.8 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = FRA
+                modifier = medium_decrease
+            }
+        }
+    }
+}
+
+news_event = {
+    id = ottoman_events.7
+    title = "France Agrees to Protect the Ottoman Empire"
+    desc = ottoman_events.7.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A French-backed future."
+    }
+}
+
+news_event = {
+    id = ottoman_events.8
+    title = "France Declines Ottoman Request for Protection"
+    desc = ottoman_events.8.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A rejection from Europe."
+    }
+}
+
+### 3. Default on the Debt
+
+country_event = {
+    id = ottoman_events.9
+    title = "[TUR.GetName] Offers Egypt to the United Kingdom"
+    desc = ottoman_events.9.d
+
+    is_triggered_only = yes
+
+    available = {
+        owns_state = 447
+        owns_state = 452
+        owns_state = 456
+        owns_state = 457
+        owns_state = 551
+        owns_state = 552
+        owns_state = 767
+        owns_state = 907
+    }
+
+    option = {
+        name = "Accept the offer."
+        news_event = { id = ottoman_events.10 hours = 12 random_hours = 6 }
+        
+        every_state = {
+            limit = {
+                or = {
+                    state = 447
+                    state = 452
+                    state = 456
+                    state = 457
+                    state = 551
+                    state = 552
+                    state = 767
+                    state = 907
+                }
+            }
+            transfer_state_to = ENG
+        }
+
+        TUR = {
+            if = {
+                limit = { has_idea = sww1_idea_amassed_foreign_debt }
+                remove_ideas = sww1_idea_amassed_foreign_debt
+            }
+            if = {
+                limit = { has_idea = sww1_idea_significant_foreign_debt }
+                remove_ideas = sww1_idea_significant_foreign_debt
+            }
+        }
+
+        hidden_effect = {
+            447 = { remove_claim_by = TUR }
+            452 = { remove_claim_by = TUR }
+            456 = { remove_claim_by = TUR }
+            457 = { remove_claim_by = TUR }
+            551 = { remove_claim_by = TUR }
+            552 = { remove_claim_by = TUR }
+            767 = { remove_claim_by = TUR }
+            907 = { remove_claim_by = TUR }
+        }
+    }
+
+    option = {
+        name = "Reject the proposal."
+        TUR = { 
+            news_event = { id = ottoman_events.11 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = ENG
+                modifier = small_decrease
+            }
+        }
+    }
+}
+
+news_event = {
+    id = ottoman_events.10
+    title = "United Kingdom Acquires Egypt from the Ottomans"
+    desc = ottoman_events.10.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A strategic acquisition."
+    }
+}
+
+news_event = {
+    id = ottoman_events.11
+    title = "United Kingdom Refuses Ottoman Offer of Egypt"
+    desc = ottoman_events.11.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A deal that never was."
+    }
+}

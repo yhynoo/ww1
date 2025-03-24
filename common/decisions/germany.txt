@@ -92,6 +92,10 @@ dc_place_in_the_sun = {
                 factor = 2
             }
             modifier = {
+                is_in_faction_with = MAN    # if we're already friends with Qing, it's less important.
+                factor = 0.2
+            }
+            modifier = {
                 is_ally_with = SOV          # if we're already friends with Russia, we won't ally Austria.
                 factor = 0
             }
@@ -221,6 +225,7 @@ dc_look_to_the_east = {
         }
 
         complete_effect = {
+            custom_effect_tooltip = "We will dedicate a part of our industry (2 civilian factories) to modernize the Qing state. In exchange for loyalty, of course."
             MAN = { country_event = { id = germany_events.21 hours = 12 random_hours = 6 } }
         }
     }
@@ -249,7 +254,8 @@ dc_look_to_the_east = {
         }
 
         complete_effect = {
-            # TBD Effects
+            custom_effect_tooltip = "By providing India with some economic help (2 civilian factories), we will try to help them get out of English hands."
+            MAN = { country_event = { id = germany_events.24 hours = 12 random_hours = 6 } }
         }
     }
 }
@@ -299,6 +305,14 @@ dc_weimar_constitution = {
         cost = 150
         fire_only_once = yes
 
+        ai_will_do = {
+            base = 10
+            modifier = {
+                has_war = yes
+                factor = 3
+            }
+        }
+
         complete_effect = {
             add_ideas = sww1_idea_women_in_the_workforce
         }
@@ -308,6 +322,10 @@ dc_weimar_constitution = {
         cost = 150
         fire_only_once = yes
 
+        ai_will_do = {
+            base = 5
+        }
+
         complete_effect = {
             add_ideas = sww1_idea_integrate_minorities
         }
@@ -316,6 +334,14 @@ dc_weimar_constitution = {
     establish_afrika_amt = {
         cost = 150
         fire_only_once = yes
+
+        ai_will_do = {
+            base = 3
+            modifier = {
+                has_war = no
+                factor = 10
+            }
+        }
 
         complete_effect = {
             news_event = { id = germany_events.32 hours = 12 random_hours = 6 }

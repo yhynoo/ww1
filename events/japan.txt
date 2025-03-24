@@ -1,0 +1,319 @@
+add_namespace = japan_events
+
+### 1. Hong Kong Appeal
+
+country_event = {
+    id = japan_events.1
+    title = "Japan Demands Tsingtao"
+    desc = japan_events.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Yes, cede Tsingtao."
+        news_event = { id = japan_events.2 hours = 12 random_hours = 6 }
+
+        743 = { transfer_state_to = JAP }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                has_war = yes
+                factor = 2
+            }
+        }
+    }
+
+    option = {
+        name = "No, refuse their demand."
+        
+        JAP = {
+            news_event = { id = japan_events.3 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = GER
+                type = take_claimed_state
+            }
+        }
+
+        ai_chance = {
+            base = 2
+            modifier = {
+                or = {
+                    is_ally_with = SOV
+                    is_in_faction_with = MAN
+                }
+                factor = 20
+            }
+        }
+    }
+}
+
+news_event = {
+    id = japan_events.2
+    title = "Germany Cedes Tsingtao to Japan"
+    desc = japan_events.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A new possession for Japan."
+    }
+}
+
+news_event = {
+    id = japan_events.3
+    title = "Germany Rejects Japanese Demands"
+    desc = japan_events.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "An unfortunate rejection."
+    }
+}
+
+country_event = {
+    id = japan_events.4
+    title = "Japan Issues an Ultimatum Over Indochina"
+    desc = japan_events.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall concede to Japan."
+        news_event = { id = japan_events.5 hours = 12 random_hours = 6 }
+
+        670 = { transfer_state_to = JAP }
+        741 = { transfer_state_to = JAP }
+        671 = { transfer_state_to = JAP }
+        286 = { transfer_state_to = JAP }
+
+        hidden_effect = {
+            add_named_threat = {
+                name = "Japan Takes Over Indochina"
+                threat = 3
+            }
+        }
+
+        ai_chance = {
+            base = 1
+            modifier = {
+                has_war = yes
+                factor = 4
+            }
+        }
+    }
+
+    option = {
+        name = "This is not the way to talk!"
+        news_event = { id = japan_events.6 hours = 12 random_hours = 6 }
+
+        JAP = {
+            declare_war_on = {
+                target = FRA
+                type = take_claimed_state
+            }
+        }
+
+        hidden_effect = {
+            add_named_threat = {
+                name = "War in Indochina"
+                threat = 10
+            }
+        }
+
+        ai_chance = {
+            base = 4
+        }
+    }
+}
+
+news_event = {
+    id = japan_events.5
+    title = "France Concedes to Japanese Pressure"
+    desc = japan_events.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Japan expands its influence."
+    }
+}
+
+news_event = {
+    id = japan_events.6
+    title = "War in Indochina!"
+    desc = japan_events.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Awful."
+    }
+}
+
+### 2. Twenty-One Demands
+
+news_event = {
+    id = japan_events.7
+    title = "Japan Declares Its Interests in Manchuria"
+    desc = japan_events.7.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A firm stance."
+        if = {
+            limit = { tag = MAN }
+            add_opinion_modifier = {
+                target = JAP
+                modifier = medium_decrease
+            }
+        }
+    }
+}
+
+country_event = {
+    id = japan_events.8
+    title = "Japan Demands Payment in Resources for Debt"
+    desc = japan_events.8.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Agree to the settlement."
+        news_event = { id = japan_events.9 hours = 12 random_hours = 6 }
+
+        give_resource_rights = { receiver = JAP state = 592 }
+        give_resource_rights = { receiver = JAP state = 593 }
+        give_resource_rights = { receiver = JAP state = 594 }
+
+        ai_chance = {
+            base = 3
+            modifier = {
+                is_in_faction = yes             # if we got backup, we will fight.
+                factor = 0
+            }
+        }
+    }
+
+    option = {
+        name = "We will fight."
+        news_event = { id = japan_events.10 hours = 12 random_hours = 6 }
+
+        JAP = {
+            declare_war_on = {
+                target = MAN
+                type = annex_everything
+            }
+        }
+
+        hidden_effect = {
+            add_named_threat = {
+                name = "War in Indochina"
+                threat = 10
+            }
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = japan_events.9
+    title = "Qing Grants Resource Rights to Japan"
+    desc = japan_events.9.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Japan secures vital resources."
+    }
+}
+
+news_event = {
+    id = japan_events.10
+    title = "Japan Goes to War over Qing Debt"
+    desc = japan_events.10.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Concerning."
+    }
+}
+
+country_event = {
+    id = japan_events.11
+    title = "Japan Proposes to 'Advise' the Qing Court"
+    desc = japan_events.11.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Accept Japanese advisors."
+        news_event = { id = japan_events.12 hours = 12 random_hours = 6 }
+
+        JAP = {
+            set_autonomy = {
+                target = MAN
+                autonomous_state = dominion
+            }
+        }
+
+        ai_chance = { 
+            base = 2
+            modifier = {
+                date > 1916.1.1
+                factor = 2
+            }
+            modifier = {
+                SOV = { has_completed_focus = SOV_far_east_affairs }
+                factor = 3
+            }
+        }
+    }
+
+    option = {
+        name = "Decline Japanese influence."
+        JAP = { 
+            news_event = { id = japan_events.13 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = MAN
+                type = puppet_wargoal_focus
+            }
+        }
+
+        ai_chance = { base = 3 }
+    }
+}
+
+news_event = {
+    id = japan_events.12
+    title = "Qing Empire Becomes a Japanese Dominion"
+    desc = japan_events.12.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A new order in China."
+    }
+}
+
+news_event = {
+    id = japan_events.13
+    title = "Qing Retains Its Independence"
+    desc = japan_events.13.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A rejection of Japanese influence."
+    }
+}
