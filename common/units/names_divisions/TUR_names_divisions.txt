@@ -1,0 +1,144 @@
+﻿TUR_INF_01 =  {
+	name = "Infantry Divisions"
+
+	for_countries = { TUR }
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+	fallback_name = "%d. Piyade Tümeni"
+
+	ordered = {
+		1 = { "%d. Piyade Tümeni" }
+		2 = { "%d. Piyade Tümeni" }
+		3 = { "%d. Piyade Tümeni" }
+		4 = { "%d. Piyade Tümeni" }
+		5 = { "%d. Piyade Tümeni" }
+		6 = { "%d. Piyade Tümeni" }
+	}
+}
+
+TUR_INF_02 =  {
+	name = "Infantry Brigades"
+
+	for_countries = { TUR }
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+	fallback_name = "%d. Piyade Tugayı"
+
+	ordered = {
+		1 = { "%d. Piyade Tugayı" }
+		2 = { "%d. Piyade Tugayı" }
+		3 = { "%d. Piyade Tugayı" }
+		4 = { "%d. Piyade Tugayı" }
+		5 = { "%d. Piyade Tugayı" }
+		6 = { "%d. Piyade Tugayı" }
+	}
+}
+
+TUR_CAV_01 = 
+{
+	name = "Cyclist Brigades"
+
+	for_countries = { TUR }
+	can_use = { always = yes }
+
+	division_types = { "cyclist" }
+	fallback_name = "%d. Süvari Tugayı"
+
+	ordered = {
+		1 = { "%d. Süvari Tugayı" }
+		2 = { "%d. Süvari Tugayı" }
+		3 = { "%d. Süvari Tugayı" }
+		5 = { "%d. Süvari Tugayı" }
+		6 = { "%d. Süvari Tugayı" }
+		7 = { "%d. Süvari Tugayı" }
+	}
+}
+
+TUR_MOT_01 = 
+{
+	name = "Motorised Divisions"
+
+	for_countries = { TUR }
+	can_use = { always = yes }
+
+	division_types = { "motorized" "mechanized" }
+	link_numbering_with = { TUR_INF_01 }
+
+	fallback_name = "%d. Motorize Tümeni"
+
+	ordered =
+	{
+		1 = { "%d. Motorize Tümeni" }
+		2 = { "%d. Motorize Tümeni" }
+		4 = { "%d. Motorize Tümeni" }
+		6 = { "%d. Motorize Tümeni" }
+		7 = { "%d. Motorize Tümeni" }
+		10 = { "%d. Motorize Tümeni" }
+
+	}
+}
+
+TUR_ARM_01 = 
+{
+	name = "Armoured Divisions"
+
+	for_countries = { TUR }
+	can_use = { always = yes }
+
+	division_types = { "light_armor" "medium_armor" "heavy_armor" "modern_armor" }
+	fallback_name = "%d. Zirhli Tümeni"
+
+	ordered = {
+		1 = { "%d. Zirhli Tümeni" }
+		2 = { "%d. Zirhli Tümeni" }
+		4 = { "%d. Zirhli Tümeni" }
+		7 = { "%d. Zirhli Tümeni" }
+		8 = { "%d. Zirhli Tümeni" }
+		10 = { "%d. Zirhli Tümeni" }
+
+	}
+}
+
+TUR_MAR_01 = 
+{
+	name = "Marine Divisions"
+
+	for_countries = { TUR }
+	can_use = { always = yes }
+
+	division_types = { "marine" }
+	fallback_name = "%d. Dz. Piyade Tümeni"
+
+	ordered =
+	{
+		1 = { "%d. Dz. Piyade Tümeni" }
+		2 = { "%d. Dz. Piyade Tümeni" }
+		3 = { "%d. Dz. Piyade Tümeni" }
+		4 = { "%d. Dz. Piyade Tümeni" }
+		5 = { "%d. Dz. Piyade Tümeni" }
+		6 = { "%d. Dz. Piyade Tümeni" }
+
+	}
+}
+
+TUR_MTN_01 = 
+{
+	name = "Mountain Divisions"
+
+	for_countries = { TUR }
+	can_use = { always = yes }
+
+	division_types = { "mountaineers" }
+	fallback_name = "%d. Dag Tugayi"
+
+	ordered =	{
+		1 = { "%d. Dag Tugayi" }
+		2 = { "Kirklareli Dag Tugayi" }
+		3 = { "Antalya Dag Tugayi" }
+		4 = { "%d. Dag Tugayi" }
+		5 = { "%d. Dag Tugayi" }
+		6 = { "%d. Dag Tugayi" }
+	}
+}

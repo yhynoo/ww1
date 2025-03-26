@@ -1,0 +1,45 @@
+turkey_really_hates_russia = {
+    allowed = {
+        original_tag = TUR
+    }
+
+    enable = {
+        always = yes
+    }
+
+    ai_strategy = {
+        type = antagonize
+        id = SOV
+        value = 100
+    }
+}
+
+## turkey also has a lot of land to cover, and little equipment - so they don't mind small, cheap units.
+
+tur_army_priorities = {
+    allowed = {
+        original_tag = TUR
+    }
+
+    enable = {
+        always = yes
+    }
+
+    ai_strategy = { 
+        type = role_ratio
+        id = infantry
+        value = 35
+    }
+
+    ai_strategy = { 
+        type = role_ratio
+        id = colonial
+        value = 20
+    }
+
+    ai_strategy = {
+        type = role_ratio
+        id =  cyclist
+        value = 5
+    }
+}

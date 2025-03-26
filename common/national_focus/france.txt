@@ -513,7 +513,7 @@
         }
 
         completion_reward = {
-            add_stability = 0.1
+            add_stability = 0.05
         }
     }
     focus = {
@@ -1070,7 +1070,11 @@
         mutually_exclusive = { focus = FRA_ancien_regime }
         prerequisite = { focus = FRA_political_ambitions }
         completion_reward = {
-            add_stability = 0.1
+            add_stability = 0.05
+            add_popularity = {
+                ideology = democratic
+                popularity = 0.05
+            }
         }
     }
     focus = {

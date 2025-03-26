@@ -1,0 +1,382 @@
+dc_challenge_the_ottomans = {
+    demand_libya = {
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            can_declare_war_on = TUR
+            any_state = {
+                or = {
+                    state = 448
+                    state = 449
+                    state = 450
+                    state = 451
+
+                    state = 661
+                    state = 662
+                    state = 663
+
+                    state = 273
+                }
+                is_owned_by = TUR
+            }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = {
+                has_country_flag = aggressive_italy
+                factor = 8
+            }
+            modifier = {
+                any_country = {
+                    and = {
+                        is_major = yes
+                        has_guaranteed = TUR
+                    }
+                }
+                factor = 0.2
+            }
+        }
+
+        complete_effect = {
+            TUR = { country_event = { id = italy_events.1 hours = 12 random_hours = 6 } }
+            every_state = {
+                limit = {
+                    or = {
+                        state = 448
+                        state = 449
+                        state = 450
+                        state = 451
+
+                        state = 661
+                        state = 662
+                        state = 663
+
+                        state = 273
+                    }
+                    is_owned_by = TUR
+                }
+                add_claim_by = ITA
+            }
+
+            hidden_effect = {
+                add_named_threat = {
+                    name = "Italian Demands in Libya"
+                    threat = 2
+                }
+            }
+        }
+    }
+    demand_aegean = {
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            can_declare_war_on = TUR
+            any_state = {
+                or = {
+                    state = 182
+                    state = 164
+                    state = 187
+                }
+                is_owned_by = TUR
+            }
+        }
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                has_country_flag = aggressive_italy
+                factor = 10
+            }
+            modifier = {
+                any_country = {
+                    and = {
+                        is_major = yes
+                        has_guaranteed = TUR
+                    }
+                }
+                factor = 0.2
+            }
+            modifier = {
+                is_in_faction = yes
+                factor = 5
+            }
+        }
+
+        complete_effect = {
+            TUR = { country_event = { id = italy_events.5 hours = 12 random_hours = 6 } }
+            every_state = {
+                limit = {
+                    or = {
+                        state = 182
+                        state = 164
+                        state = 187
+                    }
+                    is_owned_by = TUR
+                }
+                add_claim_by = ITA
+            }
+            hidden_effect = {
+                add_named_threat = {
+                    name = "Italian Demands in the Aegean"
+                    threat = 3
+                }
+            }
+        }
+    }
+    demand_albania = {
+        cost = 200
+        fire_only_once = yes
+
+        available = {
+            can_declare_war_on = TUR
+            any_state = {
+                or = {
+                    state = 105
+                    state = 107
+                    state = 108
+
+                    state = 802
+                    state = 934
+                    state = 970
+                    state = 44
+                    state = 805
+
+                    state = 185
+                }
+                is_owned_by = TUR
+            }
+        }
+
+        ai_will_do = {
+            base = 1.5
+            modifier = {
+                has_country_flag = aggressive_italy
+                factor = 6
+            }
+            modifier = {
+                any_country = {
+                    and = {
+                        is_major = yes
+                        has_guaranteed = TUR
+                    }
+                }
+                factor = 0.3
+            }
+            modifier = {
+                is_in_faction = yes
+                factor = 3
+            }
+        }
+
+        complete_effect = {
+            TUR = { country_event = { id = italy_events.9 hours = 12 random_hours = 6 } }
+            every_state = {
+                limit = {
+                    or = {
+                        state = 105
+                        state = 107
+                        state = 108
+
+                        state = 802
+                        state = 934
+                        state = 970
+                        state = 44
+                        state = 805
+
+                        state = 185
+                    }
+                    is_owned_by = TUR
+                }
+                add_claim_by = ITA
+            }
+
+            hidden_effect = {
+                add_named_threat = {
+                    name = "Italian Demands in Albania"
+                    threat = 5
+                }
+            }
+        }
+    }
+}
+
+dc_demands_in_the_adriatic = {
+    south_tirol_question = {
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            can_declare_war_on = TUR
+            AUS = {
+                owns_state = 39
+                owns_state = 850
+            }
+        }
+
+        ai_will_do = {
+            base = 5
+            modifier = {
+                is_in_faction = 3
+            }
+        }
+
+        complete_effect = {
+            AUS = { country_event = { id = italy_events.9 hours = 12 random_hours = 6 } }
+            hidden_effect = {
+                add_named_threat = {
+                    name = "Italian Demands in South Tirol"
+                    threat = 2
+                }
+            }
+        }
+    }
+    assert_claims_in_dalmatia = {
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            any_state = {
+                or = {
+                    state = 736
+                    state = 852
+                    
+                    state = 103
+                    state = 104
+                    state = 163
+                    state = 804
+                }
+                not = { is_owned_by = ITA }
+            }
+        }
+
+        ai_will_do = {
+            base = 9
+        }
+
+        complete_effect = {
+            news_event = { id = italy_events.20 hours = 12 random_hours = 6 }
+            every_state = {
+                limit = {
+                    or = {
+                        state = 736
+                        state = 852
+                        
+                        state = 103
+                        state = 104
+                        state = 163
+                        state = 804
+                    }
+                    not = { is_owned_by = ITA }
+                }
+                add_claim_by = ITA
+            }
+
+            hidden_effect = {
+                add_named_threat = {
+                    name = "[ITA.GetName] Asserts Claims in Dalmatia"
+                    threat = 3
+                }
+            }
+        }
+    }
+}
+
+dc_il_mezzogiorno = {
+    expand_southern_industry = {
+        cost = 150
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 10
+        }
+
+        complete_effect = {
+            117 = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 1
+                    instant_build = yes
+                }
+            }
+            849 = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+                    type = arms_factory
+                    level = 1
+                    instant_build = yes
+                }
+            }
+        }
+    }
+    use_church_influence = {
+        cost = 75
+        remove_days = 90
+
+        ai_will_do = {
+            base = 3
+            modifier = {
+                and = {
+                    has_war = yes
+                    has_manpower < 100000
+                }
+                factor = 3
+            }
+        }
+
+        modifier = {
+            mobilization_speed = 0.05
+            conscription = 0.01
+        }
+    }
+}
+
+dc_deal_with_the_unions = {
+    introduce_corporatism = {
+        cost = 150
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 12
+        }
+
+        complete_effect = {
+            add_ideas = sww1_idea_corporatist_economy
+        }
+    }
+    ban_communism = {
+        icon = generic_civil_support
+
+        cost = 100
+        fire_only_once = yes
+        days_remove = -1
+
+        available = {
+			communism < 0.2
+        }
+
+        modifier = {
+			communism_drift = -0.05
+		}
+
+        ai_will_do = {
+            base = 3
+            modifier = {
+                communism > 0.1
+                factor = 5
+            }
+        }
+
+        complete_effect = {
+            hidden_effect = {
+                set_popularity = {
+                    ideology = communism
+                    popularity = 0
+                }
+            }
+        }
+    }
+}

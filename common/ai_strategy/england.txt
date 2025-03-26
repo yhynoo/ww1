@@ -1,0 +1,22 @@
+british_expeditionary_force = {
+    allowed = {
+        original_tag = ENG
+    }
+
+    enable = {
+        has_war_with = GER                  # If the UK is allied with France against Germany, and France is on defense
+        is_in_faction_with = FRA
+
+        FRA = { surrender_progress > 0.05 }
+    }
+
+    abort_when_not_enabled = yes
+
+    # Send the boys
+
+    ai_strategy = {
+        type = area_priority
+        id = northern_france
+        value = 600
+    }
+}

@@ -258,7 +258,7 @@ technologies = {
         categories = { naval_equipment }
 
         research_cost = 1
-        start_year = 1914
+        start_year = 1912
 
         path = {
             leads_to_tech = landing_craft_2
@@ -267,7 +267,7 @@ technologies = {
 
         folder = {
             name = naval_folder
-            position = { x = 0 y = @1914 }
+            position = { x = 0 y = @1912 }
         }
     }
     landing_craft_2 = {
@@ -275,7 +275,24 @@ technologies = {
         categories = { naval_equipment }
 
         research_cost = 1
-        start_year = 1920
+        start_year = 1914
+
+        path = {
+            leads_to_tech = landing_craft_3
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = naval_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+    landing_craft_3 = {
+        naval_invasion_capacity = 20
+        categories = { naval_equipment }
+
+        research_cost = 1
+        start_year = 1918
 
         folder = {
             name = naval_folder

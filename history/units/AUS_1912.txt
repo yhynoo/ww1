@@ -5,20 +5,31 @@ division_template = {
 	regiments = {
 		infantry = { x = 0 y = 0 }
 		infantry = { x = 0 y = 1 }
-        infantry = { x = 0 y = 2 }
         infantry = { x = 1 y = 0 }
 		infantry = { x = 1 y = 1 }
-        infantry = { x = 1 y = 2 }
         infantry = { x = 2 y = 0 }
 		infantry = { x = 2 y = 1 }
-        infantry = { x = 2 y = 2 }
-        artillery_brigade = { x = 2 y = 0 }
-		artillery_brigade = { x = 2 y = 1 }
+        artillery_brigade = { x = 3 y = 0 }
 	}
     support = {
         artillery = { x = 0 y = 0 }
     }
 }
+
+division_template = {
+	name = "Honvéd-Division"
+	division_names_group = AUS_INF_02
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+        infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+	}
+}
+
 division_template = {
 	name = "Fahrrad-Division"
 	division_names_group = AUS_CAV_01
@@ -28,8 +39,21 @@ division_template = {
 		cyclist_infantry = { x = 0 y = 1 }
         cyclist_infantry = { x = 1 y = 0 }
         cyclist_infantry = { x = 1 y = 1 }
-        cyclist_infantry = { x = 1 y = 0 }
-        cyclist_infantry = { x = 1 y = 1 }
+	}
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
+}
+
+division_template = {
+	name = "Kaiserjäger-Division"
+	division_names_group = AUS_MNT_01
+	regiments = {
+		mountaineers = { x = 0 y = 0 }
+		mountaineers = { x = 0 y = 1 }
+        mountaineers = { x = 1 y = 0 }
+        mountaineers = { x = 1 y = 1 }
+        artillery_brigade = { x = 2 y = 0 }
 	}
     support = {
         artillery = { x = 0 y = 0 }
@@ -38,7 +62,7 @@ division_template = {
 
 # units
 units = {
-    # GALIZIEN (76 divs)
+    # GALIZIEN (8 divs)
 
     division = {
 		location = 9427
@@ -64,28 +88,40 @@ units = {
 		division_template = "Infanterie-Division"
         start_experience_factor = 0.2
     }
-    division = {
-		location = 11479
-		division_template = "Infanterie-Division"
+
+     division = {
+		location = 9660
+		division_template = "Honvéd-Division"       # Honvéd
         start_experience_factor = 0.2
     }
     division = {
-		location = 11479
-		division_template = "Infanterie-Division"
+		location = 9660
+		division_template = "Honvéd-Division"       # Honvéd
         start_experience_factor = 0.2
+    }
+
+    division = {
+		location = 3548
+		division_template = "Honvéd-Division"       # Honvéd
+        start_experience_factor = 0.2
+    }
+    division = {
+		location = 693
+		division_template = "Kaiserjäger-Division"
+        start_experience_factor = 0.5
     }
     
     # TIROL (3 divs.)
 
     division = {
 		location = 9598
-		division_template = "Infanterie-Division"
-        start_experience_factor = 0.5
+		division_template = "Kaiserjäger-Division"
+        start_experience_factor = 0.8
     }
     division = {
 		location = 9598
-		division_template = "Infanterie-Division"
-        start_experience_factor = 0.5
+		division_template = "Kaiserjäger-Division"
+        start_experience_factor = 0.8
     }
 
     division = {
@@ -96,7 +132,7 @@ units = {
     }
 
 
-    # BOSNIEN (2 divs)
+    # BOSNIEN (3 divs)
 
     division = {
 		location = 3924
@@ -106,8 +142,13 @@ units = {
     }
     division = {
 		location = 3924
-		division_template = "Fahrrad-Division"
+		division_template = "Honvéd-Division"
         start_experience_factor = 0.2
-        start_equipment_factor = 0.6
+    }
+
+    division = {
+		location = 11899
+		division_template = "Honvéd-Division"       # Honvéd
+        start_experience_factor = 0.2
     }
 }

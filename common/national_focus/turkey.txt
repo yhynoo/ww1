@@ -1128,6 +1128,10 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 10           # If we already get here, it's an absolute priority.
+        }
+
         prerequisite = { focus = TUR_the_young_turks }
         completion_reward = {
             add_stability = 0.05
@@ -1172,6 +1176,14 @@ focus_tree = {
 
         available = {
             has_idea = sww1_idea_looming_arab_revolt
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = {
+                is_in_faction_with = ENG
+                factor = 0.5
+            }
         }
 
         prerequisite = { focus = TUR_state_reform }

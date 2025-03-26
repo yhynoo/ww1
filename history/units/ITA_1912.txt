@@ -4,19 +4,16 @@ division_template = {
 	regiments = {
 		infantry = { x = 0 y = 0 }
 		infantry = { x = 0 y = 1 }
-		infantry = { x = 0 y = 2 }
         infantry = { x = 1 y = 0 }
 		infantry = { x = 1 y = 1 }
-		infantry = { x = 1 y = 2 }
 		infantry = { x = 2 y = 0 }
 		infantry = { x = 2 y = 1 }
-		artillery_brigade = { x = 3 y = 0 }
-        artillery_brigade = { x = 3 y = 1 }
 	}
     support = {
         artillery = { x = 0 y = 0 }
     }
 }
+
 division_template = {
 	name = "Reggimento Veloce"
 	division_names_group = ITA_INF_01
@@ -25,12 +22,24 @@ division_template = {
 		cyclist_infantry = { x = 0 y = 1 }
         cyclist_infantry = { x = 1 y = 0 }
 		cyclist_infantry = { x = 1 y = 1 }
-		cyclist_infantry = { x = 2 y = 0 }
-		cyclist_infantry = { x = 2 y = 1 }
 	}
 	support = {
 		artillery = { x = 0 y = 0 }
 	}
+}
+
+division_template = {
+	name = "Alpini"
+	division_names_group = ITA_MNT_01
+	regiments = {
+		mountaineers = { x = 0 y = 0 }
+		mountaineers = { x = 0 y = 1 }
+        mountaineers = { x = 1 y = 0 }
+        mountaineers = { x = 1 y = 1 }
+	}
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
 }
 
 # units
@@ -53,12 +62,30 @@ units = {
     }
 
 	division = {
+		location = 11587
+		division_template = "Alpini"
+        start_experience_factor = 0.8
+    }
+
+	division = {
+		location = 6780
+		division_template = "Alpini"
+        start_experience_factor = 0.8
+    }
+    division = {
 		location = 6780
 		division_template = "Divisione di Fanteria"
         start_experience_factor = 0.2
     }
-    division = {
-		location = 6780
+
+	division = {
+		location = 3657
+		division_template = "Divisione di Fanteria"
+        start_experience_factor = 0.2
+    }
+
+	division = {
+		location = 6606
 		division_template = "Divisione di Fanteria"
         start_experience_factor = 0.2
     }
@@ -70,8 +97,8 @@ units = {
     }
 	division = {
 		location = 11584
-		division_template = "Reggimento Veloce"
-        start_experience_factor = 0.2
+		division_template = "Alpini"
+        start_experience_factor = 0.8
     }
 
     # Roma

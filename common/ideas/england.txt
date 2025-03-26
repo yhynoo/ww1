@@ -1,26 +1,68 @@
+# country ideas
+ideas = {
+    country = {
+        sww1_idea_irish_home_rule = {
+            modifier = {
+                conscription = -0.005
+                stability_weekly = -0.005
+            }
+        }
+    }
+}
 
 # focus tree ideas
 ideas = {
     country = {
+        sww1_idea_air_defense = {
+            modifier = {
+                production_speed_anti_air_building_factor = 0.5   
+            }
+        }
+
         # stability
         sww1_idea_integrate_colonial_troops = {
             modifier = {
+                non_core_manpower = 0.1
+                army_org_factor = 0.1
             }
         }
 
         sww1_idea_god_save_the_king = {
             modifier = {
+                mobilization_speed = 0.15
+                initiative_factor = 0.2
             }
         }
 
         sww1_idea_the_sun_never_sets = {
             modifier = {
+                political_power_gain = 0.1
+                out_of_supply_factor = -0.2
             }
         }
 
         # reform
         sww1_idea_draft_the_constitution = {
             modifier = {
+                political_power_gain = 0.05
+                political_advisor_cost_factor = -0.5
+            }
+        }
+    }
+}
+
+# bonus ideas
+ideas = {
+    country = {
+        sww1_idea_derby_scheme = {
+            modifier = {
+                mobilization_speed = 0.2
+                training_time_factor = -0.1
+            }
+        }
+        sww1_idea_ministry_of_munitions = {
+            modifier = {
+                industrial_capacity_factory = 0.1
             }
         }
     }

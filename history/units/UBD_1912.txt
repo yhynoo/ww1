@@ -1,0 +1,27 @@
+division_template = {
+	name = "Freiwilliger-Division"
+	division_names_group = UBD_GAR_01
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+        infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+	}
+    priority = 0
+}
+
+units = {
+    division = {
+		location = 9340
+		division_template = "Freiwilliger-Division"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 9221
+		division_template = "Freiwilliger-Division"
+        start_experience_factor = 0.3
+    }
+}

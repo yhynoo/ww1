@@ -210,3 +210,20 @@ news_event = {
 		name = "It is almost magic."
 	}
 }
+
+news_event = {
+    id = vibeevents.16
+    title = "Tel Aviv Reaches 100 Hectares!"
+    desc = "What started as a small Jewish settlement on the Mediterranean coast has now expanded to cover an impressive 100 hectares. Tel Aviv’s rapid growth is a testament to its thriving community, innovative urban planning, and the aspirations of its founders.\n\nAs new streets and buildings rise, the city cements its place as a modern hub of culture and development in the region."
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+		if = {
+			limit = { tag = ENG }
+			set_global_flag = tel_aviv_is_growing
+		}
+    }
+}

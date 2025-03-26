@@ -23,17 +23,7 @@ dc_sarajevo_memorandum = {
 
         complete_effect = {
             news_event = { id = ottoman_events.1 hours = 12 random_hours = 6 }
-
-            every_state = {
-                limit = {
-                    or = {
-                        state = 105
-                        state = 107
-                        state = 108
-                    }
-                }
-                transfer_state_to = SER
-            }
+            release = SER
 
             104 = { remove_claim_by = TUR }
             804 = { remove_claim_by = TUR }
@@ -42,9 +32,7 @@ dc_sarajevo_memorandum = {
                 802 = { add_claim_by = SER }
                 803 = { add_claim_by = SER }
 
-                105 = { remove_claim_by = TUR }
-                107 = { remove_claim_by = TUR }
-                108 = { remove_claim_by = TUR }
+                SER = { load_oob = "SER_1912"}
             }
         }
     }
@@ -90,7 +78,7 @@ dc_sarajevo_memorandum = {
         }
     }
     seek_uk_support = {
-        cost = 100
+        cost = 200
         fire_only_once = yes
 
         available = {
@@ -110,6 +98,15 @@ dc_sarajevo_memorandum = {
         }
 
         complete_effect = {
+            if = {
+                limit = {
+                    or = {
+                        ENG = { is_in_faction_with = SOV }
+                        ENG = { has_guaranteed = SOV }
+                    }
+                }
+                custom_effect_tooltip = "This request, if granted, will lead to [SOV.GetNameDef] having a wargoal on us."
+            }
             ENG = { country_event = { id = ottoman_events.3 hours = 12 random_hours = 6 } }
         }
     }

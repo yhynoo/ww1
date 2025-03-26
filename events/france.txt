@@ -129,6 +129,10 @@ country_event = {
 
         FRA = {
             country_event = { id = france_events.6 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = GER
+                type = take_claimed_state
+            }
         }
 
         ai_chance = {
@@ -314,24 +318,21 @@ news_event = {
     desc = france_events.11.d
 
     trigger = {
-        has_idea = sww1_idea_belgian_crisis
-        has_war = no
+        FRA = {
+            has_idea = sww1_idea_belgian_crisis
+            has_war = no
 
-        every_state = {
-            limit = {
-                or = {
-                    state = 6
-                    state = 34
-                    state = 977
-                    state = 980
-                }
-            }
-            is_owned_by = FRA
+            onws_state = 6
+            onws_state = 34
+            owns_state = 977
+            owns_state = 980
         }
     }
 
-    days = 7
-    random_days = 7
+    mean_time_to_happen = {
+        days = 7
+        random_days = 7
+    }
 
     option = {
         name = "Fantastic news."

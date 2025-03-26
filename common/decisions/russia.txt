@@ -46,14 +46,19 @@ dc_serbian_question = {
         ai_will_do = {
             base = 3
             modifier = {
-                OR = {
-                    has_opinion = {
-                        target = AUS
-                        value < 0
+                TUR = {
+                    or = {
+                        has_idea = sww1_idea_jihand
+                        is_in_faction = yes
                     }
-                    has_opinion = {
-                        target = TUR
-                        value < 0
+                }   
+                factor = 5
+            }
+            modifier = {
+                AUS = {
+                    or = {
+                        has_idea = sww1_idea_slavic_unrest
+                        is_ally_with = GER
                     }
                 }   
                 factor = 10

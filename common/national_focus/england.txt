@@ -20,6 +20,14 @@ focus_tree = {
         y = 0
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = {
+                has_war = yes
+                factor = 3
+            }
+        }
+
         completion_reward = {
             add_command_power = 25
         }
@@ -126,6 +134,10 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 2
+        }
+
         prerequisite = { focus = ENG_equipment_effort }
         completion_reward = {
             air_experience = 25
@@ -146,6 +158,10 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {                      # UK really wants tanks!
+            base = 3
+        }
+
         prerequisite = { focus = ENG_equipment_effort }
         completion_reward = {
             add_tech_bonus = {
@@ -164,6 +180,10 @@ focus_tree = {
         x = 0
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 3
+        }
 
         prerequisite = { 
             focus = ENG_artillery
@@ -184,6 +204,10 @@ focus_tree = {
         x = 2
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 2
+        }
 
         available = {
 			any_state = {
@@ -358,6 +382,10 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 2
+        }
+
         available = {
 			any_state = {
 				is_coastal = yes
@@ -444,6 +472,10 @@ focus_tree = {
 			}
 		}
 
+        ai_will_do = {
+            base = 3
+        }
+
         prerequisite = { 
             focus = ENG_seaborne_operations
             focus = ENG_high_seas
@@ -464,8 +496,16 @@ focus_tree = {
         y = 0
         cost = 10
 
+        ai_will_do = {
+            base = 2
+            modifier = {
+                date > 1913.1.1
+                factor = 3
+            }
+        }
+
         completion_reward = {
-            add_stability = 0.1
+            add_stability = 0.05
         }
     }
     focus = {
@@ -492,6 +532,14 @@ focus_tree = {
         y = 1
 
         cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                has_war = no
+                factor = 0
+            }
+        }
 
         prerequisite = { focus = ENG_agrarian_reform }
         completion_reward = {
@@ -532,9 +580,24 @@ focus_tree = {
 
         cost = 10
 
+        ai_will_do = {
+            base = 0
+            modifier = {
+                has_war_with = GER
+                add = 3
+            }
+
+        }
+
         prerequisite = { focus = ENG_agrarian_reform }
         completion_reward = {
             add_ideas = sww1_idea_air_defense
+            add_tech_bonus = {
+				name = air_defense_bonus
+				bonus = 1.0
+				uses = 1
+				category = anti_air_artillery
+			}
         }
     }
     focus = {
@@ -546,6 +609,17 @@ focus_tree = {
         y = 1
 
         cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                or = {
+                    has_stability < 0.5
+                    has_war_support < 0.5
+                }
+                factor = 0
+            }
+        }
 
         prerequisite = { focus = ENG_rationing }
         completion_reward = {
@@ -568,6 +642,10 @@ focus_tree = {
         y = 1
 
         cost = 10
+
+        ai_will_do = {
+            base = 2
+        }
 
         prerequisite = { focus = ENG_economic_development }
         bypass = {
@@ -653,6 +731,10 @@ focus_tree = {
         y = 1
 
         cost = 10
+
+        ai_will_do = {
+            base = 3
+        }
 
         prerequisite = { focus = ENG_infrastructure_effort }
 		completion_reward = {
@@ -774,6 +856,10 @@ focus_tree = {
         y = 5
         cost = 10
 
+        ai_will_do = {
+            base = 2
+        }
+
         completion_reward = {
             add_political_power = 150
         }
@@ -786,6 +872,14 @@ focus_tree = {
         x = -4
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                date > 1913.1.1
+                factor = 3
+            }
+        }
 
         prerequisite = { focus = ENG_political_ambitions }
         completion_reward = {
@@ -803,6 +897,14 @@ focus_tree = {
         x = -2
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 3
+            modifier = {
+                date > 1913.6.1
+                factor = 3
+            }
+        }
 
         prerequisite = { focus = ENG_international_affairs }
         completion_reward = {
@@ -822,6 +924,14 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = {
+                has_stability < 0.6
+                factor = 3
+            }
+        }
+
         prerequisite = { focus = ENG_international_affairs }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -829,12 +939,23 @@ focus_tree = {
     }
     focus = {
         id = ENG_affirm_the_entente
-        icon = GFX_focus_generic_affirm_the_entente
+        icon = GFX_focus_ENG_affirm_the_entente
 
         relative_position_id = ENG_expansionism
         x = -2
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 5
+            modifier = {
+                or = {
+                    communism > 0.3
+                    has_completed_focus = ENG_expand_the_peoples_budget
+                }
+                factor = 0.2
+            }
+        }
 
         prerequisite = { focus = ENG_expansionism }
         completion_reward = {
@@ -849,6 +970,10 @@ focus_tree = {
         x = 1
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 3
+        }
 
         prerequisite = { focus = ENG_expansionism }
         completion_reward = {
@@ -865,11 +990,22 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 3
+            modifier = {
+                has_war = no
+                factor = 0.2
+            }
+        }
+
         mutually_exclusive = { focus = ENG_abolish_the_house_of_lords }
         prerequisite = { focus = ENG_political_ambitions }
         completion_reward = {
-            add_stability = 0.1
-            news_event = { id = genericevent.1 hours = 12 random_hours = 6 }
+            add_stability = 0.05
+            add_popularity = {
+                ideology = monarchism
+                popularity = 0.05
+            }
         }
     }
     focus = {
@@ -880,6 +1016,10 @@ focus_tree = {
         x = -1
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 5
+        }
 
         prerequisite = { focus = ENG_internal_stability }
         completion_reward = {
@@ -940,33 +1080,44 @@ focus_tree = {
 
     focus = {
         id = ENG_abolish_the_house_of_lords
-        icon = GFX_focus_generic_abolish_the_house_of_lords
+        icon = GFX_focus_ENG_abolish_the_house_of_lords
 
         relative_position_id = ENG_political_ambitions
         x = 4
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 2
+            modifier = {
+                or = {
+                    has_completed_focus = ENG_international_affairs         # if we went for international affairs before deciding to be communist, make the chance smaller.
+                    date > 1912.9.1
+                }
+                factor = 0.5
+            }
+            modifier = {
+                threat > 0.1
+                factor = 0
+            }
+        }
+
         mutually_exclusive = { focus = ENG_internal_stability }
         prerequisite = { focus = ENG_political_ambitions }
         completion_reward = {
             add_timed_idea = {
-                idea = sww1_idea_democratic_tendencies
+                idea = sww1_idea_communism_tendencies
                 years = 1
             }
             add_popularity = {
-                ideology = democratic
+                ideology = communism
                 popularity = 0.1
-            }
-
-            hidden_effect = {
-                news_event = { id = genericevent.4 hours = 12 random_hours = 6 }
             }
         }
     }
     focus = {
         id = ENG_draft_the_constitution
-        icon = GFX_focus_generic_draft_the_constitution
+        icon = GFX_focus_ENG_draft_the_constitution
 
         relative_position_id = ENG_abolish_the_house_of_lords
         x = 2
@@ -982,13 +1133,17 @@ focus_tree = {
         }
     }
     focus = {
-        id = ENG_expand_the_people's_budget
-        icon = GFX_focus_ENG_expand_the_people's_budget
+        id = ENG_expand_the_peoples_budget
+        icon = GFX_focus_ENG_expand_the_peoples_budget
 
         relative_position_id = ENG_abolish_the_house_of_lords
         x = -1
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 5                # if we're already here, let's really do that.
+        }
 
         prerequisite = { focus = ENG_abolish_the_house_of_lords }
         completion_reward = {
@@ -1008,6 +1163,14 @@ focus_tree = {
         available = {
             communism > 0.3
         }
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                has_war = no
+                factor = 3
+            }
+        }
         
         completion_reward = {
             start_civil_war = {
@@ -1026,12 +1189,16 @@ focus_tree = {
     }
     focus = {
         id = ENG_london_common_academy
-        icon = GFX_focus_generic_embrace_modernity
+        icon = GFX_focus_ENG_london_common_academy
 
         relative_position_id = ENG_draft_the_constitution
         x = -1
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 5
+        }
 
         prerequisite = { focus = ENG_draft_the_constitution }
         completion_reward = {

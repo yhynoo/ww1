@@ -12,14 +12,26 @@ division_template = {
         infantry = { x = 2 y = 0 }
 		infantry = { x = 2 y = 1 }
         infantry = { x = 2 y = 2 }
-        infantry = { x = 3 y = 0 }
-		infantry = { x = 3 y = 1 }
-        infantry = { x = 3 y = 2 }
 	}
     support = {
         artillery = { x = 0 y = 0 }
     }
 }
+
+division_template = {
+	name = "Pekhotnaya Brigada"
+	division_names_group = SOV_GAR_01
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+        infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+	}
+}
+
 division_template = {
 	name = "Velosipednaya Diviziya"
 	division_names_group = SOV_INF_01
@@ -27,25 +39,19 @@ division_template = {
 	regiments = {
 		cyclist_infantry = { x = 0 y = 0 }
 		cyclist_infantry = { x = 0 y = 1 }
-        cyclist_infantry = { x = 1 y = 2 }
         cyclist_infantry = { x = 1 y = 0 }
         cyclist_infantry = { x = 1 y = 1 }
-        cyclist_infantry = { x = 1 y = 2 }
         cyclist_infantry = { x = 2 y = 0 }
         cyclist_infantry = { x = 2 y = 1 }
-        cyclist_infantry = { x = 2 y = 2 }
-	}
-    support = {
-        artillery = { x = 0 y = 0 }
     }
 }
 
 # units
 units = {
-    # BALTICS (7 divs)
+    # BALTICS (9 divs)
 
     division = {
-		location = 11105
+		location = 3083
 		division_template = "Pekhotnaya Diviziya"
         start_experience_factor = 0.2
         start_equipment_factor = 0.8
@@ -76,6 +82,20 @@ units = {
     }
 
     division = {
+		location = 3152
+		division_template = "Pekhotnaya Diviziya"
+        start_experience_factor = 0.2
+        start_equipment_factor = 0.8
+    }
+
+    division = {
+		location = 306
+		division_template = "Pekhotnaya Diviziya"
+        start_experience_factor = 0.2
+        start_equipment_factor = 0.8
+    }
+
+    division = {
 		location = 6314
 		division_template = "Pekhotnaya Diviziya"
         start_experience_factor = 0.2
@@ -88,7 +108,7 @@ units = {
         start_equipment_factor = 0.8
     }
 
-    # POLAND (19 divs)
+    # POLAND (22 divs)
 
     division = {
 		location = 6296
@@ -107,6 +127,17 @@ units = {
     }
 
     division = {
+		location = 11329
+		division_template = "Velosipednaya Diviziya"
+        start_experience_factor = 0.3
+    }
+
+    division = {
+		location = 3254
+		division_template = "Pekhotnaya Diviziya"
+        start_experience_factor = 0.3
+    }
+    division = {
 		location = 3254
 		division_template = "Pekhotnaya Diviziya"
         start_experience_factor = 0.3
@@ -116,8 +147,9 @@ units = {
 		division_template = "Pekhotnaya Diviziya"
         start_experience_factor = 0.3
     }
+
     division = {
-		location = 3254
+		location = 9439
 		division_template = "Pekhotnaya Diviziya"
         start_experience_factor = 0.3
     }
@@ -172,6 +204,12 @@ units = {
     }
     division = {
 		location = 3230
+		division_template = "Velosipednaya Diviziya"
+        start_experience_factor = 0.3
+    }
+
+    division = {
+		location = 476
 		division_template = "Velosipednaya Diviziya"
         start_experience_factor = 0.3
     }
@@ -194,7 +232,7 @@ units = {
         start_equipment_factor = 0.8
     }
 
-    ## UKRAINE + CAUCASUS (5 divs)
+    ## UKRAINE + CAUCASUS (8 divs)
     division = {
 		location = 3686
 		division_template = "Pekhotnaya Diviziya"
@@ -219,6 +257,27 @@ units = {
     }
     division = {
 		location = 3653
+		division_template = "Pekhotnaya Diviziya"
+        start_experience_factor = 0.2
+        start_equipment_factor = 0.8
+    }
+
+    division = {
+		location = 11437
+		division_template = "Pekhotnaya Diviziya"
+        start_experience_factor = 0.2
+        start_equipment_factor = 0.8
+    }
+
+    division = {
+		location = 9417
+		division_template = "Pekhotnaya Diviziya"
+        start_experience_factor = 0.2
+        start_equipment_factor = 0.8
+    }
+
+    division = {
+		location = 7661
 		division_template = "Pekhotnaya Diviziya"
         start_experience_factor = 0.2
         start_equipment_factor = 0.8
@@ -250,6 +309,47 @@ units = {
         start_experience_factor = 0.2
         start_equipment_factor = 0.5
     }
+
+    ## Additional brigades
+    division = {
+		location = 3135                             # Murmansk
+		division_template = "Pekhotnaya Brigada"
+        start_equipment_factor = 0.5
+    }
+    division = {
+		location = 3338                             # Arkhangelsk
+		division_template = "Pekhotnaya Brigada"
+        start_equipment_factor = 0.5
+    }
+
+    division = {
+		location = 6380                             # Moskva
+		division_template = "Pekhotnaya Brigada"
+        start_equipment_factor = 0.5
+    }
+
+    division = {
+		location = 1459                             # Tashkent
+		division_template = "Pekhotnaya Brigada"
+        start_equipment_factor = 0.5
+    }
+    division = {
+		location = 4797                             # Irkutsk
+		division_template = "Pekhotnaya Brigada"
+        start_equipment_factor = 0.5
+    }
+    division = {
+		location = 10696                            # Omsk
+		division_template = "Pekhotnaya Brigada"
+        start_equipment_factor = 0.5
+    }
+
+    division = {
+		location = 12189                            # Khabarovka
+		division_template = "Pekhotnaya Brigada"
+        start_equipment_factor = 0.5
+    }
+
 }
 
 air_wings = {

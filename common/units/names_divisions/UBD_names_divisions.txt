@@ -1,0 +1,55 @@
+UBD_INF_01 = {
+	name = "Infantry Division"
+
+	for_countries = { UBD }
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+	#link_numbering_with = { UBD_INF_01 }
+
+	fallback_name = "%d. Division"
+
+	ordered = {
+		1 = { "%d. Division" }
+		2 = { "%d. Division" }
+		3 = { "%d. Division" }
+		4 = { "%d. Division" }
+		5 = { "%d. Division" }
+		6 = { "%d. Division" }
+	}
+}
+
+UBD_GAR_01 = {
+	name = "Volunteer Divisions"
+	for_countries = { UBD }
+
+	can_use = { always = yes }
+	division_types = { "infantry" }
+	fallback_name = "%d. Balt. Freiwilliger-Division"
+
+	ordered = {
+		1 = { "%d. Freiwilliger-Division 'Riga'" }
+		2 = { "%d. Freiwilliger-Division 'Dorpat'" }
+		3 = { "%d. Balt. Freiwilliger-Division" }
+		4 = { "%d. Freiwilliger-Division 'Pernau'"  }
+		6 = { "%d. Freiwilliger-Division 'Dünaburg'" }
+		9 = { "%d. Freiwilliger-Division 'Memel'" }
+	}
+}
+
+UBD_ARM_01 = {
+	name = "Armored Divisions"
+	for_countries = { UBD }
+
+	division_types = { "light_armor" "heavy_armor" "mechanized" }
+	fallback_name = "%d. Panzer-Division"
+
+	ordered = {
+		1 = { "%d. Panzer-Division" }
+		2 = { "%d. Panzer-Division" }
+		3 = { "%d. Panzer-Division" }
+		4 = { "%d. Panzer-Division" }
+		5 = { "%d. Panzer-Division" }
+		6 = { "%d. Panzer-Division" }
+	}
+}

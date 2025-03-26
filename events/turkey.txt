@@ -46,27 +46,88 @@ country_event = {
         name = "Support the Ottomans."
         news_event = { id = ottoman_events.4 hours = 12 random_hours = 6 }
         
+        ai_chance = {
+            base = 1
+            modifier = {
+                and = {
+                    or = {
+                        is_in_faction_with = FRA
+                        has_guaranteed = FRA
+                    }
+                    TUR = { has_completed_focus = TUR_alafranga }
+                }
+                factor = 3
+            }
+            modifier = {
+                has_country_flag = turkey_gave_egypt
+                factor = 3
+            }
+            modifier = {
+                GER = { is_ally_with = SOV }            # If the Germans are friends with Russians, we really need the Turks.
+                factor = 20
+            }
+        }
+
         ENG = {
-            add_to_faction = TUR        # Turkey joins the Entente.
+            if = {
+                limit = { is_in_faction_with = SOV }
+                remove_from_faction = SOV
+            }
+            if = {
+                limit = { has_guaranteed = SOV }
+                remove_from_faction = SOV
+            }
+            give_guarantee = TUR        # Turkey replaces Russia in the Entente.
+
+            hidden_effect = {
+                if = {
+                    limit = { not = { SOV = { has_country_flag = treacherous_albion } } }
+                    set_country_flag = treacherous_albion
+                }
+            }
         }
     }
 
     option = {
         name = "Deny their request."
         TUR = { news_event = { id = ottoman_events.5 hours = 12 random_hours = 6 } }
+
+        ai_chance = { 
+            base = 1
+
+            modifier = {
+                has_guaranteed = SOV          
+                factor = 2
+            }
+            modifier = {
+                is_ally_with = SOV           # If they are allies, it's much likely than just a guarantee.
+                factor = 3
+            }
+        }
     }
 }
 
 news_event = {
     id = ottoman_events.4
-    title = "[TUR.GetName] Joins the Entente!"
+    title = "Shift in the Alliances in the East!"
     desc = ottoman_events.4.d
 
     is_triggered_only = yes
     major = yes
 
     option = {
-        name = "The Entente grows stronger."
+        name = "Interesting."
+        if = {
+            limit = { tag = SOV }
+            add_opinion_modifier = {
+                target = ENG
+                type = large_decrease
+            }
+            create_wargoal = {
+                target = TUR
+                type = puppet_wargoal_focus
+            }
+        }
     }
 }
 
@@ -174,6 +235,8 @@ country_event = {
             transfer_state_to = ENG
         }
 
+        ai_chance = { base = 3 }
+
         TUR = {
             if = {
                 limit = { has_idea = sww1_idea_amassed_foreign_debt }
@@ -185,7 +248,9 @@ country_event = {
             }
         }
 
-        hidden_effect = {
+        hidden_effect = {                                       # Sets the flag used in event about kicking Russia.
+            set_country_flag = turkey_gave_egypt
+
             447 = { remove_claim_by = TUR }
             452 = { remove_claim_by = TUR }
             456 = { remove_claim_by = TUR }
@@ -206,6 +271,8 @@ country_event = {
                 modifier = small_decrease
             }
         }
+
+        ai_chance = { base = 1 }
     }
 }
 

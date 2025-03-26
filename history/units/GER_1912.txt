@@ -5,14 +5,11 @@ division_template = {
 	regiments = {
 		infantry = { x = 0 y = 0 }
 		infantry = { x = 0 y = 1 }
-        infantry = { x = 0 y = 2 }
         infantry = { x = 1 y = 0 }
 		infantry = { x = 1 y = 1 }
-        infantry = { x = 1 y = 2 }
         infantry = { x = 2 y = 0 }
 		infantry = { x = 2 y = 1 }
         artillery_brigade = { x = 3 y = 0 }
-        artillery_brigade = { x = 3 y = 1 }
 	}
     support = {
         artillery = { x = 0 y = 0 }
@@ -28,8 +25,6 @@ division_template = {
 		infantry = { x = 0 y = 1 }
         infantry = { x = 1 y = 0 }
 		infantry = { x = 1 y = 1 }
-        infantry = { x = 2 y = 0 }
-		infantry = { x = 2 y = 1 }
 	}
     priority = 0
 }
@@ -43,8 +38,6 @@ division_template = {
 		cyclist_infantry = { x = 0 y = 1 }
         cyclist_infantry = { x = 1 y = 0 }
 		cyclist_infantry = { x = 1 y = 1 }
-        cyclist_infantry = { x = 2 y = 0 }
-		cyclist_infantry = { x = 2 y = 1 }
 	}
     support = {
         artillery = { x = 0 y = 0}
@@ -78,7 +71,7 @@ units = {
         start_experience_factor = 0.3
     }
 
-    # West (13 divs.)
+    # West (15 divs.)
 
     division = {
 		location = 587
@@ -90,8 +83,14 @@ units = {
 		division_template = "Infanterie-Division"
         start_experience_factor = 0.3
     }
+
     division = {
-		location = 587
+		location = 9575
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 9575
 		division_template = "Fahrrad-Division"
         start_experience_factor = 0.3
     }
@@ -122,11 +121,18 @@ units = {
 		division_template = "Infanterie-Division"
         start_experience_factor = 0.3
     }
+
     division = {
-		location = 9559
+		location = 9503
 		division_template = "Infanterie-Division"
         start_experience_factor = 0.3
     }   
+
+    division = {
+		location = 9517
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.3
+    }  
 
     division = {
 		location = 1346
@@ -150,8 +156,14 @@ units = {
         start_experience_factor = 0.3
     }  
 
-    ## RESERVE (2 divs.)
+    ## RESERVE (3 divs.)
 
+    division = {
+		location = 9347
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.3
+    }
+    
     division = {
 		location = 6521
 		division_template = "Infanterie-Division"

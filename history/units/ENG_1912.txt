@@ -14,6 +14,9 @@ division_template = {
 		artillery_brigade = { x = 3 y = 0 }
 		artillery_brigade = { x = 3 y = 1 }
 	}
+	support = {
+		artillery = { x = 0 y = 0 }
+	}
 }
 division_template = {
 	name = "Colonial Garrison"
@@ -21,45 +24,35 @@ division_template = {
 	regiments = {
 		infantry = { x = 0 y = 0 }
 		infantry = { x = 0 y = 1 }
-		infantry = { x = 0 y = 2 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
 	}
 	priority = 0
-}
-division_template = {
-	name = "Cyclists Division"
-	division_names_group = ENG_INF_01
-	regiments = {
-		cyclist_infantry = { x = 0 y = 0 }
-		cyclist_infantry = { x = 0 y = 1 }
-		cyclist_infantry = { x = 1 y = 0 }
-		cyclist_infantry = { x = 1 y = 1 }
-	}
-	support = {
-		artillery = { x = 0 y = 0 }
-	}
 }
 
 # units
 units = {
-	# home islands
+	# britain
     division = {
 		location = 6103
 		division_template = "Infantry Division"
         start_experience_factor = 0.8
     }
 	division = {
-		location = 6103
-		division_template = "Infantry Division"
-        start_experience_factor = 0.8
-    }
-	division = {
-		location = 3273
-		division_template = "Infantry Division"
-        start_experience_factor = 0.8
-    }
-	division = {
 		location = 540
-		division_template = "Cyclists Division"
+		division_template = "Infantry Division"
+        start_experience_factor = 0.8
+    }
+	division = {
+		location = 3501
+		division_template = "Infantry Division"
+        start_experience_factor = 0.8
+    }
+
+	# ireland
+	division = {
+		location = 3379
+		division_template = "Infantry Division"
         start_experience_factor = 0.8
     }
 
@@ -76,23 +69,6 @@ units = {
 		division_template = "Colonial Garrison"
         start_experience_factor = 0.5
     }
-	division = {
-		location = 5199
-		division_template = "Colonial Garrison"
-        start_experience_factor = 0.5
-    }
-
-	# ethiopia
-	division = {
-		location = 12941
-		division_template = "Colonial Garrison"
-        start_experience_factor = 0.5
-    }
-	division = {
-		location = 13250
-		division_template = "Colonial Garrison"
-        start_experience_factor = 0.5
-    }
 
 	# arabia
 	division = {
@@ -101,26 +77,9 @@ units = {
         start_experience_factor = 0.5
     }
 
-	# nigeria
-	division = {
-		location = 2050
-		division_template = "Colonial Garrison"
-        start_experience_factor = 0.5
-    }
-
 	# east asia
 	division = {
 		location = 12299
-		division_template = "Colonial Garrison"
-        start_experience_factor = 0.5
-    }
-	division = {
-		location = 7371
-		division_template = "Colonial Garrison"
-        start_experience_factor = 0.5
-    }
-	division = {
-		location = 10062
 		division_template = "Colonial Garrison"
         start_experience_factor = 0.5
     }

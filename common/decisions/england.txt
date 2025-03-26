@@ -1,0 +1,415 @@
+dc_irish_home_rule = {
+    grant_independence_to_ireland = {
+        cost = 200
+        fire_only_once = yes
+
+        available = {
+            IRE = { exists = no }
+        }
+
+        ai_will_do = {
+            base = 5
+            modifier = {
+                not = { has_completed_focus = ENG_abolish_the_house_of_lords }      # unless we're communists, no way.
+                factor = 0
+            }
+            modifier = {
+                has_stability < 0.5
+                factor = 2
+            }
+            modifier = {
+                has_stability < 0.3
+                factor = 3
+            }
+        }
+
+        complete_effect = {
+            add_stability = 0.05
+            news_event = { id = england_events.1 hours = 12 random_hours = 6 }
+            
+            remove_ideas = sww1_idea_irish_home_rule
+            release = IRE
+
+            every_country = {
+                limit = { is_subject_of = ENG }
+                add_autonomy_score = 100
+            }
+        }
+    }
+    thwart_the_movement = {
+        cost = 100
+        days_remove = 90
+
+        ai_will_do = {
+            base = 5
+            modifier = {
+                has_stability < 0.6
+                factor = 2
+            }
+        }
+
+        complete_effect = {
+            news_event = { id = england_events.2 hours = 12 random_hours = 6 }
+            every_state = {
+                limit = { is_core_of = IRL }
+                add_resistance = -0.05
+            }
+        }
+    }
+}
+
+dc_affirm_the_entente = {
+    improve_the_mediterranean_naval_infrastructure = {
+        cost = 150
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 3
+            modifier = {
+                or = {
+                    has_war_with = ITA
+                    has_war_with = TUR
+                }
+                factor = 3
+            }
+        }
+
+        complete_effect = {
+            116 = {
+                add_building_construction = {
+                    type = naval_base
+                    level = 3
+                    instant_build = yes
+                }
+            }
+            183 = {
+                add_building_construction = {
+                    type = naval_base
+                    level = 3
+                    instant_build = yes
+                }
+            }
+        }
+    }
+    invite_to_entente = {
+        icon = generic_prepare_civil_war
+
+        cost = 100
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 6
+            modifier = {
+                has_government = communism                  # if we're commies, we don't care
+                factor = 0
+            }
+
+            # NEGATIVE MODIFIERS
+            modifier = {
+                not = { has_country_flag = announced_containment }
+                factor = 0.5
+            }
+            modifier = {
+                or = {
+                    authoritarianism > 0.25                 # we're not working with fascists and commies.
+                    communism > 0.25
+                }
+            }
+            modifier = {
+                and = {
+                    FROM = { tag = FRA }                    # or Bourbons...
+                    has_government = monarchism             
+                }
+                factor = 0.5
+            }
+            modifier = {
+                has_war_with = TUR                          # or anyone fighting against the Turks.
+                factor = 0.2
+            }
+
+            # POSITIVE MODIFIERS
+            modifier = {
+                has_government = democratic                 # we like democracies
+                factor = 2
+            }
+            modifier = {
+                FROM = { tag = JAP }                        # and we really want the Japanese on our side
+                factor = 3
+            }
+            modifier = {
+                has_war = yes                               # and if we're at war - we like everyone.
+                factor = 3
+            }
+        }
+
+        targets = { FRA ITA JAP SOV TUR }
+        target_trigger = {
+            FROM = {
+                is_in_faction = no
+                is_guaranteed_by = ROOT
+                not = { has_war_with = ROOT }
+            }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = england_events.5 hours = 12 random_hours = 6 } }
+        }      
+    }
+    announce_containment_policies = {
+        icon = decision_generic_political_discourse
+
+        cost = 50
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 6
+            modifier = {
+                or = {
+                    threat > 0.1
+                    GER = { is_ally_with = AUS }
+                }
+                factor = 2
+            }
+        }
+
+        complete_effect = {
+            news_event = { id = england_events.4 hours = 12 random_hours = 6 }
+
+            hidden_effect = {
+                set_country_flag = announced_containment
+                add_named_threat = {
+                    name = [ENG.GetName] Announces Containment
+                    threat = 2
+                }
+            }
+        }
+    }
+}
+
+dc_expand_the_colonial_empire = {
+    challenge_france_in_africa = {
+        icon = generic_prepare_civil_war
+
+        cost = 200
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 6
+            modifier = {
+                or = {
+                    not = { has_government = communism }
+                    not = { is_ally_with = GER }
+                }
+                factor = 0
+            }
+        }
+
+        complete_effect = {
+            FRA = { country_event = { id = england_events.8 hours = 12 random_hours = 6 } }
+
+            every_state = {
+                limit = {
+                    or = {
+                        state = 295
+                        state = 538
+                        state = 539
+                        state = 660
+                        state = 718
+                        state = 772
+                        state = 774
+                        state = 888
+                        state = 889
+                        state = 890
+                    }
+                    is_owned_by = FRA
+                }
+                add_claim_by = ENG
+            }
+
+            hidden_effect = {
+                add_named_threat = {
+                    name = [ENG.GetName] Asserts Claims in Africa
+                    threat = 2
+                }
+            }
+        }
+    }
+    encourage_second_aliyah = {
+        cost = 100
+        fire_only_once = yes
+
+        visible = {
+            has_global_flag = tel_aviv_is_growing
+        }
+
+        ai_will_do = {
+            base = 5
+            modifier = {
+                has_war_with = TUR
+                factor = 2
+            }
+            modifier = {
+                date > 1917.1.1
+                factor = 2
+            }
+        }
+
+        complete_effect = {
+            news_event = { id = england_events.11 hours = 12 random_hours = 6 }
+        }
+    }
+    dismantle_the_entente = {
+        fire_only_once = yes
+
+        available = {
+            is_faction_leader = yes
+        }
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                and = {
+                    date > 1916.1.1                 # If there is no need...
+                    num_faction_members < 4
+                }
+                factor = 3
+            }
+            modifier = {
+                has_government = communism
+                factor = 5
+            }
+        }
+
+        complete_effect = {
+            dismantle_faction = yes
+            if = {
+                GER = { not = { has_government = democratic } }
+                add_opinion_modifier = {
+                    target = ENG
+                    type = large_increase
+                }
+            }
+        }
+    }
+}
+
+dc_your_country_needs_you = {
+    derby_scheme = {
+        cost = 150
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 6
+        }
+
+        complete_effect = {
+            add_ideas = sww1_idea_derby_scheme
+        }
+    }
+    establish_ministry_of_munitions = {
+        icon = generic_industry
+
+        cost = 150
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 6
+            modifier = {
+                date > 1915.1.1
+                factor = 1.5
+            }
+        }
+
+        complete_effect = {
+            add_ideas = sww1_idea_ministry_of_munitions
+        }
+    }
+    dilution_of_labor = {
+        icon = generic_industry
+        
+        cost = 75
+        days_remove = 90
+
+        ai_will_do = {
+            base = 6
+        }
+
+        modifier = {
+            production_speed_industrial_complex_factor = 0.1
+            production_speed_arms_factory_factor = 0.1
+        }
+    }
+}
+
+dc_expand_the_peoples_budget = {
+    affirm_independence_of_dominions = {
+        icon = generic_civil_support
+
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            any_country = {
+                is_subject_of = ENG
+            }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = {
+                has_government = communism
+                factor = 6
+            }
+        }
+
+        complete_effect = {
+            every_country = {
+                limit = { is_subject_of = ENG }
+
+                set_autonomy = {
+                    target = ROOT
+                    autonomous_state = autonomy_free
+                    end_wars = yes
+                }
+            }
+        }
+    }
+    appease_the_unions = {
+        cost = 75
+        fire_only_once = yes
+
+        available = {
+            communism > 0.45
+        }
+
+        ai_will_do = {
+            base = 10
+        }
+
+        complete_effect = {
+            add_stability = 0.1
+            hidden_effect = {
+                 news_event = { id = england_events.12 days = 14 random_hours = 6 }
+            }
+        }
+    }
+    fight_malnutrition = {
+        cost = 50
+        days_remove = 90
+
+        ai_will_do = {
+            base = 5
+            modifier = {
+                has_war = yes
+                factor = 2
+            }
+        }
+
+        modifier = {
+            civilian_factory_use = 1
+            
+            stability_weekly = 0.005
+            conscription = 0.01
+        }
+    }
+}
