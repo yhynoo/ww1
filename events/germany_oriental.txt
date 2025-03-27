@@ -1,0 +1,207 @@
+add_namespace = germany_oriental
+
+### 1. Germany Proposes the Kaiserliche Eisenbahn
+country_event = {
+    id = germany_oriental.1
+    title = "German Proposal: The Kaiserliche Eisenbahn"
+    desc = germany_oriental.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Accept the German railway investment."
+        GER = { news_event = { id = germany_oriental.2 hours = 12 random_hours = 6 } }
+
+        hidden_effect = {
+            country_event = { id = germany_oriental.4 days = 2 random_hours = 6 }
+            107 = {
+                add_building_construction = {
+                    type = infrastructure
+                    level = 1
+                    instant_build = yes
+                }
+            }
+            737 = {
+                add_building_construction = {
+                    type = infrastructure
+                    level = 1
+                    instant_build = yes
+                }
+            }
+        }
+
+        ai_chance = { base = 6 }
+    }
+
+    option = {
+        name = "Deny German involvement in our railways."
+        GER = { news_event = { id = germany_oriental.3 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+### 2. News: Ottomans Accept German Investment
+news_event = {
+    id = germany_oriental.2
+    title = "Ottoman Empire Accepts German Investment"
+    desc = germany_oriental.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The Germans expand their influence."
+    }
+}
+
+### 3. News: Ottomans Reject German Investment
+news_event = {
+    id = germany_oriental.3
+    title = "Ottoman Empire Rejects German Investment"
+    desc = germany_oriental.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "The project will not move forward."
+    }
+}
+
+### 4. Ottomans Deliberate Asking for Guarantees
+country_event = {
+    id = germany_oriental.4
+    title = "Shall We Request German Guarantees?"
+    desc = germany_oriental.4.d
+
+    is_triggered_only = yes
+
+    # if we decided to do our thing, we don't do this.
+    trigger = { not = { has_completed_focus = TUR_sarajevo_memorandum } }
+
+    option = {
+        name = "Yes, we need Germany's protection."
+        GER = { country_event = { id = germany_oriental.5 hours = 24 random_hours = 12 } }
+
+        ai_chance = { base = 3 }
+    }
+
+    option = {
+        name = "No, we can stand on our own."
+        ai_chance = { 
+            base = 1
+            modifier = { has_completed_focus = TUR_sarajevo_memorandum factor = 12 }
+        }
+    }
+}
+
+### 5. Ottoman Request for German Guarantees
+country_event = {
+    id = germany_oriental.5
+    title = "The Ottoman Empire Seeks German Guarantees"
+    desc = germany_oriental.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Yes, we shall protect the Ottomans."
+        news_event = { id = germany_oriental.6 hours = 12 random_hours = 6 }
+
+        give_guarantee = TUR
+
+        ai_chance = { base = 3 }
+    }
+
+    option = {
+        name = "No, their fate is not our concern."
+        TUR = { news_event = { id = germany_oriental.7 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+### 6. News: Germany Guarantees the Ottoman Empire
+news_event = {
+    id = germany_oriental.6
+    title = "Germany Guarantees the Ottoman Empire!"
+    desc = germany_oriental.6.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A major shift in European diplomacy."
+    }
+}
+
+### 7. News: Germany Refuses to Guarantee the Ottomans
+news_event = {
+    id = germany_oriental.7
+    title = "Germany Declines to Guarantee the Ottoman Empire"
+    desc = germany_oriental.7.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "The Ottomans stand alone."
+    }
+}
+
+### 8. Germany Proposes Arabian Oil Investment
+country_event = {
+    id = germany_oriental.8
+    title = "German Proposal: Arabian Oil Investment"
+    desc = germany_oriental.8.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Allow German oil drilling."
+        GER = { news_event = { id = germany_oriental.9 hours = 12 random_hours = 6 } }
+
+        ai_chance = { 
+            base = 1
+            modifier = {
+                or = {
+                    is_in_faction_with = GER
+                    is_guaranteed_by = GER
+                }
+                factor = 6
+            }
+        }
+    }
+
+    option = {
+        name = "Deny German access to our oil fields."
+        GER = { news_event = { id = germany_oriental.10 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 3 }
+    }
+}
+
+### 9. News: Ottomans Accept German Oil Investments
+news_event = {
+    id = germany_oriental.9
+    title = "Ottoman Empire Allows German Oil Investment!"
+    desc = germany_oriental.9.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A major economic development in the Middle East."
+    }
+}
+
+### 10. News: Ottomans Reject German Oil Investment
+news_event = {
+    id = germany_oriental.10
+    title = "Ottoman Empire Rejects German Oil Drilling"
+    desc = germany_oriental.10.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "The Germans are denied access to Middle Eastern oil."
+    }
+}

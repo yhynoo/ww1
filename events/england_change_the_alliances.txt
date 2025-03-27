@@ -1,0 +1,77 @@
+add_namespace = britain_change_the_alliances
+
+### 1. News: Britain Invites Germany to Discuss the Far East
+news_event = {
+    id = britain_change_the_alliances.1
+    title = "Britain Invites Germany to Discuss the Far East"
+    desc = britain_change_the_alliances.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A potential shift in colonial policy."
+    }
+}
+
+### 2. Country Event: Britain Proposes a Shift in Alliances
+country_event = {
+    id = britain_change_the_alliances.2
+    title = "Britain Proposes a Shift in Alliances"
+    desc = britain_change_the_alliances.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Embrace closer ties with Britain."
+        ENG = { news_event = { id = britain_change_the_alliances.3 hours = 12 random_hours = 6 } }
+
+        if = {
+            limit = { is_in_faction = no }
+            create_faction = "Anglo-German Alliance"
+        }
+        add_to_faction = ENG
+
+        ai_chance = {
+            base = 2
+            modifier = { 
+                or = { AUS = { is_ally_with = FRA } has_war = yes }
+                factor = 3
+            }
+        }
+    }
+
+    option = {
+        name = "Reject the proposal."
+        ENG = { news_event = { id = britain_change_the_alliances.4 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+### 3. News: Germany Aligns with Britain
+news_event = {
+    id = britain_change_the_alliances.3
+    title = "Germany Aligns with Britain"
+    desc = britain_change_the_alliances.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A historic realignment."
+    }
+}
+
+### 4. News: Germany Rejects Britain's Offer
+news_event = {
+    id = britain_change_the_alliances.4
+    title = "Germany Rejects Britain's Offer"
+    desc = britain_change_the_alliances.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "The old alliances remain."
+    }
+}

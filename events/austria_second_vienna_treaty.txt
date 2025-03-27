@@ -1,0 +1,69 @@
+add_namespace = austria_second_vienna_treaty
+
+news_event = {
+    id = austria_second_vienna_treaty.1
+    title = "Austria-Hungary Vows to Liberate Orthodox Christians!"
+    desc = austria_second_vienna_treaty.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Another religious war?"
+    }
+}
+
+news_event = {
+    id = austria_second_vienna_treaty.2
+    title = "Insurgency in Southern Italy!"
+    desc = austria_second_vienna_treaty.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This looks like a Habsburg job..."
+    }
+}
+
+## Alliance with France
+
+country_event = {
+    id = austria_second_vienna_treaty.3
+    title = "Austria-Hungary Offers an Alliance"
+    desc = austria_second_vienna_treaty.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Accept the alliance offer."
+        FRA = { news_event = { id = austria_second_vienna_treaty.4 } }
+    }
+
+    option = {
+        name = "Reject the alliance offer."
+        FRA = { news_event = { id = austria_second_vienna_treaty.5 } }
+    }
+}
+
+news_event = {
+    id = austria_second_vienna_treaty.4
+    title = "France Joins the Second Vienna Treaty!"
+    desc = austria_second_vienna_treaty.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "The balance of power shifts in Europe."
+    }
+}
+
+news_event = {
+    id = austria_second_vienna_treaty.5
+    title = "France Rejects the Our Offer"
+    desc = austria_second_vienna_treaty.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A missed opportunity for closer ties with France."
+    }
+}

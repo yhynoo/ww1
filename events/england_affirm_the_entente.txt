@@ -1,0 +1,71 @@
+add_namespace = britain_affirm_the_entente
+
+### 1. News: Britain Announces Containment Policies
+news_event = {
+    id = britain_affirm_the_entente.1
+    title = "Britain Announces Containment Policies"
+    desc = britain_affirm_the_entente.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Britain takes a stand."
+    }
+}
+
+### 2. Country Event: Britain Invites [FROM.GetName] to the Entente
+country_event = {
+    id = britain_affirm_the_entente.2
+    title = "Britain Invites [From.GetName] to the Entente"
+    desc = britain_affirm_the_entente.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Join the Entente."
+        ENG = { news_event = { id = britain_affirm_the_entente.3 hours = 12 random_hours = 6 } }
+
+        ai_chance = { 
+            base = 2
+            modifier = { or = { threat > 0.1 GER = { is_in_faction = yes } } factor = 3 }
+        }
+    }
+
+    option = {
+        name = "Decline the invitation."
+        ENG = { news_event = { id = britain_affirm_the_entente.4 hours = 12 random_hours = 6 } }
+
+        ai_chance = { 
+            base = 1
+            modifier = { has_completed_focus = FRA_ancien_regime factor = 12 }
+        }
+    }
+}
+
+### 3. News: [FROM.GetName] Joins the Entente
+news_event = {
+    id = britain_affirm_the_entente.3
+    title = "[FROM.GetName] Joins the Entente"
+    desc = britain_affirm_the_entente.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The Entente is strengthened."
+    }
+}
+
+### 4. News: [FROM.GetName] Rejects Britain's Offer
+news_event = {
+    id = britain_affirm_the_entente.4
+    title = "[FROM.GetName] Rejects Britain's Offer"
+    desc = britain_affirm_the_entente.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A disappointing setback."
+    }
+}

@@ -4,65 +4,63 @@ dc_oriental_investments = {
 
         cost = 75
         fire_only_once = yes
+        available = { TUR = { has_war = no } }
 
-        available = { 
-            TUR = { 
-                has_war = no
-            }
-        }
-
-        ai_will_do = {
-            base = 6
-            modifier = {
-                date > 1913.1.1
-                factor = 2
-            }
-        }
+        ai_will_do = { base = 12 }
 
         complete_effect = {
-            TUR = {
-                country_event = { id = germany_events.1 hours = 12 random_hours = 6 }
-            }
+            TUR = { country_event = { id = germany_oriental.1 hours = 12 random_hours = 6 } }        }
         }
-    }
 
     invest_arabian_oil = {
         icon = oil
 
         cost = 100
         fire_only_once = yes
+        available = { 291 = { is_owned_by = TUR } }
 
-        ai_will_do = {
-            base = 2
-            modifier = {
-                has_war = yes
-                factor = 10
-            }
-            modifier = {
-                has_country_flag = turkey_rejected_us
-                factor = 0.1
-            }
-        }
-
-        available = { 
-            TUR = {
-                291 = { is_owned_by = TUR }
-                has_opinion = {
-                    target = GER
-                    value > 50
-                }
-            }
+        ai_will_do = { 
+            base = 3
+            modifier = { has_war = yes factor = 3 }
         }
 
         complete_effect = {
-            TUR = {
-                country_event = { id = germany_events.8 hours = 12 random_hours = 6 }
-            }
+            TUR = { country_event = { id = germany_oriental.8 hours = 12 random_hours = 6 } }
         }
     }
 }
 
 dc_place_in_the_sun = {
+    demand_south_africa = {
+        icon = decision_generic_pickelhaube
+        
+        cost = 200
+        fire_only_once = yes
+
+        available = { 
+            not = { has_war_with = ENG }
+            ENG = {
+                owns_state = 542        # Bechuanaland
+
+                owns_state = 275        # actual South Africa
+                owns_state = 681
+                owns_state = 719
+            }
+        }
+
+        ai_will_do = { 
+            base = 3
+            modifier = { 
+                or = { is_ally_with = AUS is_ally_with = MAN }
+                factor = 3 
+            }
+        }
+
+        complete_effect = {
+            country_event = { id = germany_place_in_the_sun.1 hours = 2 }
+        }
+    }
+
     alliance_with_austria = {
         icon = decision_generic_political_discourse
         
@@ -81,188 +79,88 @@ dc_place_in_the_sun = {
             }
         }
 
-        ai_will_do = {
-            base = 3
-            modifier = {
-                date > 1914.1.1
-                factor = 3
-            }
-            modifier = {
-                AUS = { has_idea = sww1_idea_slavic_unrest }
-                factor = 2
-            }
-            modifier = {
-                is_in_faction_with = MAN    # if we're already friends with Qing, it's less important.
-                factor = 0.2
-            }
-            modifier = {
-                is_ally_with = SOV          # if we're already friends with Russia, we won't ally Austria because they hate each other.
-                factor = 0
-            }
-        }
+        ai_will_do = { base = 12 }
 
         complete_effect = {
-            AUS = {
-                country_event = { id = germany_events.11 hours = 12 random_hours = 6 }
-            }
+            AUS = { country_event = { id = germany_place_in_the_sun.9 hours = 12 random_hours = 6 } }
         }
     }
 
     askari_troops = {
-        cost = 150
+        cost = 100
         fire_only_once = yes
 
-        ai_will_do = {
-            base = 3
-            modifier = {
-                casualties_k > 250
-                factor = 2
-            }
-        }
+        ai_will_do = { base = 6 }
 
         complete_effect = {
+            # no event.
             add_ideas = sww1_idea_askari_troops
-        }
-    }
-
-    demand_south_africa = {
-        icon = decision_generic_pickelhaube
-        
-        cost = 200
-        fire_only_once = yes
-
-        available = { 
-            not = { has_war_with = ENG }
-            any_state = {
-                or = {
-                    state = 770         # The northern part
-                    state = 771
-                    state = 896
-                    state = 896
-                    state = 981
-
-                    state = 544         # Rhodesia
-                    state = 545
-
-                    state = 275         # actual South Africa
-                    state = 681
-                    state = 719
-                }
-                is_owned_by = ENG
-            }
-        }
-
-        ai_will_do = {
-            base = 2
-            modifier = {
-                is_in_faction = yes
-                factor = 3
-            }
-            modifier = {
-                is_ally_with = ITA
-                factor = 1.5
-            }
-            modifier = {
-                not = { ENG = { is_ally_with = SOV } }
-                factor = 2
-            }
-            modifier = {
-                and = {
-                    has_war = no
-                    date > 1914.9.1
-                }
-                factor = 1.5
-            }
-        }
-
-        complete_effect = {
-            ENG = {
-                country_event = { id = germany_events.14 hours = 12 random_hours = 6 }
-                every_state = {
-                    limit = {
-                        or = {
-                            state = 770         # The northern part
-                            state = 771
-                            state = 896
-                            state = 896
-                            state = 981
-
-                            state = 544         # Rhodesia
-                            state = 545
-
-                            state = 275         # actual South Africa
-                            state = 681
-                            state = 719
-                        }
-                        is_owned_by = ENG
-                    }
-                    add_claim_by = GER
-                }
-            }
         }
     }
 }
 
 dc_look_to_the_east = {
-    mission_to_china = {
-        cost = 200
-        fire_only_once = yes
+    offer_qing_alliance = {
+        icon = generic_prepare_civil_war
+        cost = 150
 
-        available = { 
-            MAN = {
-                not = { has_war_with = GER }
-                exists = yes 
+        available = {
+            or = {
+                is_in_faction = no
+                is_faction_leader = yes
             }
+            MAN = { is_in_faction = no }
         }
 
-        ai_will_do = {
-            base = 2
-            modifier = {
-                743 = { is_owned_by = GER }
-                factor = 2.5
-            }
-            modifier = {
-                has_war = yes
-                factor = 2
-            }
-            modifier = {
-                has_country_flag = turkey_rejected_us
-                factor = 5
-            }
+        ai_will_do = { 
+            base = 3
+            modifier = { has_war = yes factor = 6 }
         }
 
         complete_effect = {
-            custom_effect_tooltip = "We will dedicate a part of our industry (2 civilian factories) to modernize the Qing state. In exchange for loyalty, of course."
-            MAN = { country_event = { id = germany_events.21 hours = 12 random_hours = 6 } }
+            MAN = { country_event = { id = germany_look_to_the_east.1 hours = 12 random_hours = 6 } }
         }
     }
+    invite_qing_to_share_research = {
+        icon = generic_research
+        cost = 100
 
-    mission_to_india = {
-        cost = 250
-        fire_only_once = yes
-
-        available = { 
-            RAJ = { 
-                is_subject = yes
-                not = { is_subject_of = GER }
-            }
+        available = {
+            MAN = { exists = yes }
         }
 
-        ai_will_do = {
-            base = 2
-            modifier = {
-                has_war_with = ENG
-                factor = 2.5
-            }
-            modifier = {
-                has_government = authoritarianism           # Esoteric nazis loved those things.
-                factor = 5
-            }
-        }
+        ai_will_do = { base = 12 }
 
         complete_effect = {
-            custom_effect_tooltip = "By providing India with some economic help (2 civilian factories), we will try to help them get out of English hands."
-            MAN = { country_event = { id = germany_events.24 hours = 12 random_hours = 6 } }
+            news_event = { id = germany_look_to_the_east.4 hours = 12 random_hours = 6 }
+            add_to_tech_sharing_group = german_research_group
+        }
+    }
+    develop_industry_in_east_asia = {
+        icon = generic_construction
+        cost = 75
+
+        ai_will_do = { 
+            base = 1
+            modifier = { is_ally_with = MAN factor = 6 }
+        }
+
+        remove_days = 120
+        modifier = {
+            civilian_factory_use = 2
+        }
+
+        remove_effect = {
+            MAN = {
+                random_owned_controlled_state = {
+                    add_extra_state_shared_building_slots = 1
+                    add_building_construction = {
+                        type = industrial_complex
+                        level = 1
+                        instant_build = yes
+                    }
+                }
+            }
         }
     }
 }
@@ -273,6 +171,7 @@ dc_heil_dir_im_siegerkranz = {
         cost = 75
 
         available = { has_completed_focus = GER_ersatz }
+        ai_will_do = { base = 6 }
 
         remove_days = 90
         modifier = {
@@ -284,6 +183,7 @@ dc_heil_dir_im_siegerkranz = {
     encourage_vocational_training = {
         cost = 75
         fire_only_once = yes
+        ai_will_do = { base = 6 }
 
         modifier = {
             industrial_capacity_factory = 0.1
@@ -299,6 +199,8 @@ dc_heil_dir_im_siegerkranz = {
         }
 
         remove_days = 90
+        ai_will_do = { base = 12 }
+
         modifier = {
             stability_weekly = -0.01
             fuel_gain_factor = 0.1
@@ -312,29 +214,9 @@ dc_weimar_constitution = {
         cost = 150
         fire_only_once = yes
 
-        ai_will_do = {
-            base = 10
-            modifier = {
-                has_war = yes
-                factor = 3
-            }
-        }
-
+        ai_will_do = { base = 12 }
         complete_effect = {
             add_ideas = sww1_idea_women_in_the_workforce
-        }
-    }
-
-    integrate_minorities = {
-        cost = 150
-        fire_only_once = yes
-
-        ai_will_do = {
-            base = 5
-        }
-
-        complete_effect = {
-            add_ideas = sww1_idea_integrate_minorities
         }
     }
 
@@ -342,16 +224,9 @@ dc_weimar_constitution = {
         cost = 150
         fire_only_once = yes
 
-        ai_will_do = {
-            base = 3
-            modifier = {
-                has_war = no
-                factor = 10
-            }
-        }
-
+        ai_will_do = { base = 9 }
         complete_effect = {
-            news_event = { id = germany_events.32 hours = 12 random_hours = 6 }
+            news_event = { id = afrika_amt.1 hours = 12 random_hours = 6 }
             add_ideas = sww1_idea_afrika_amt
         }
     }

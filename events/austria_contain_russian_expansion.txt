@@ -1,0 +1,79 @@
+add_namespace = austria_contain_russian_expansion
+
+### 1. Austria-Hungary Offers an Alliance to Afghanistan
+country_event = {
+    id = austria_contain_russian_expansion.1
+    title = "Austria-Hungary Offers an Alliance to Afghanistan"
+    desc = austria_contain_russian_expansion.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Accept the alliance offer."
+        AFG = { country_event = { id = austria_contain_russian_expansion.2 hours = 12 random_hours = 6 } }
+
+        if = {
+            limit = { is_in_faction = no }
+            create_faction = "Austro-Afghan Alliance"
+        }
+        faction_leader = { add_to_faction = AFG }
+    }
+
+    option = {
+        name = "Reject the alliance offer."
+        AFG = { country_event = { id = austria_contain_russian_expansion.3 hours = 12 random_hours = 6 } }
+    }
+}
+
+### 2. News: Austria and Afghanistan Form an Alliance
+news_event = {
+    id = austria_contain_russian_expansion.2
+    title = "Austria-Hungary and Afghanistan Form an Alliance"
+    desc = austria_contain_russian_expansion.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A new alliance in Central Asia."
+    }
+}
+
+### 3. News: Afghanistan Rejects Austrian Alliance Offer
+news_event = {
+    id = austria_contain_russian_expansion.3
+    title = "Afghanistan Rejects Austria-Hungary's Alliance Offer"
+    desc = austria_contain_russian_expansion.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Afghanistan remains neutral."
+    }
+}
+
+### 4. News: Austria Supports Polish Independence
+news_event = {
+    id = austria_contain_russian_expansion.4
+    title = "Austria-Hungary Sides with Polish Independence"
+    desc = austria_contain_russian_expansion.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Austria claims the moral high ground."
+    }
+}
+
+### 5. News: Austria Supports Ukrainian Independence
+news_event = {
+    id = austria_contain_russian_expansion.5
+    title = "Austria-Hungary Sides with Ukrainian Independence"
+    desc = austria_contain_russian_expansion.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Austria extends its influence over Ukraine."
+    }
+}

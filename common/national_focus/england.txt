@@ -20,13 +20,7 @@ focus_tree = {
         y = 0
         cost = 10
 
-        ai_will_do = {
-            base = 1
-            modifier = {
-                has_war = yes
-                factor = 3
-            }
-        }
+        ai_will_do = { base = 2 }
 
         completion_reward = {
             add_command_power = 25
@@ -134,10 +128,6 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 2
-        }
-
         prerequisite = { focus = ENG_equipment_effort }
         completion_reward = {
             air_experience = 25
@@ -158,9 +148,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {                      # UK really wants tanks!
-            base = 3
-        }
+        ai_will_do = { base = 3 }
 
         prerequisite = { focus = ENG_equipment_effort }
         completion_reward = {
@@ -181,9 +169,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 3
-        }
+        ai_will_do = { base = 3 }
 
         prerequisite = { 
             focus = ENG_artillery
@@ -204,10 +190,6 @@ focus_tree = {
         x = 2
         y = 1
         cost = 10
-
-        ai_will_do = {
-            base = 2
-        }
 
         available = {
 			any_state = {
@@ -382,9 +364,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 2
-        }
+        ai_will_do = { base = 2 }
 
         available = {
 			any_state = {
@@ -472,9 +452,7 @@ focus_tree = {
 			}
 		}
 
-        ai_will_do = {
-            base = 3
-        }
+        ai_will_do = { base = 3 }
 
         prerequisite = { 
             focus = ENG_seaborne_operations
@@ -497,11 +475,8 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 2
-            modifier = {
-                date > 1913.1.1
-                factor = 3
-            }
+            base = 1
+            modifier = { date > 1913.1.1 factor = 3 }
         }
 
         completion_reward = {
@@ -534,11 +509,8 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 2
-            modifier = {
-                has_war = no
-                factor = 0
-            }
+            base = 1 
+            modifier = { has_war = no factor = 0 }
         }
 
         prerequisite = { focus = ENG_agrarian_reform }
@@ -580,15 +552,6 @@ focus_tree = {
 
         cost = 10
 
-        ai_will_do = {
-            base = 0
-            modifier = {
-                has_war_with = GER
-                add = 3
-            }
-
-        }
-
         prerequisite = { focus = ENG_agrarian_reform }
         completion_reward = {
             add_ideas = sww1_idea_air_defense
@@ -611,14 +574,8 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 2
-            modifier = {
-                or = {
-                    has_stability < 0.5
-                    has_war_support < 0.5
-                }
-                factor = 0
-            }
+            base = 1 
+            modifier = { has_war = no factor = 0 }
         }
 
         prerequisite = { focus = ENG_rationing }
@@ -643,9 +600,7 @@ focus_tree = {
 
         cost = 10
 
-        ai_will_do = {
-            base = 2
-        }
+        ai_will_do = { base = 2 }
 
         prerequisite = { focus = ENG_economic_development }
         bypass = {
@@ -731,10 +686,6 @@ focus_tree = {
         y = 1
 
         cost = 10
-
-        ai_will_do = {
-            base = 3
-        }
 
         prerequisite = { focus = ENG_infrastructure_effort }
 		completion_reward = {
@@ -857,7 +808,8 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 2
+            base = 1
+            modifier = { date > 1913.7.1 factor = 2 }
         }
 
         completion_reward = {
@@ -873,13 +825,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 2
-            modifier = {
-                date > 1913.1.1
-                factor = 3
-            }
-        }
+        ai_will_do = { base = 3 }
 
         prerequisite = { focus = ENG_political_ambitions }
         completion_reward = {
@@ -898,12 +844,9 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 3
-            modifier = {
-                date > 1913.6.1
-                factor = 3
-            }
+        ai_will_do = { 
+            base = 2
+            modifier = { date > 1913.7.1 factor = 2 }
         }
 
         prerequisite = { focus = ENG_international_affairs }
@@ -916,21 +859,15 @@ focus_tree = {
         }
     }
     focus = {
-        id = ENG_irish_home_rule
-        icon = GFX_focus_ENG_irish_home_rule
+        id = ENG_dominate_the_mediterranean
+        icon = GFX_focus_ENG_dominate_the_mediterranean
 
         relative_position_id = ENG_international_affairs
         x = 1
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 1
-            modifier = {
-                has_stability < 0.6
-                factor = 3
-            }
-        }
+        ai_will_do = { base = 2 }
 
         prerequisite = { focus = ENG_international_affairs }
         completion_reward = {
@@ -946,15 +883,9 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 5
-            modifier = {
-                or = {
-                    communism > 0.3
-                    has_completed_focus = ENG_expand_the_peoples_budget
-                }
-                factor = 0.2
-            }
+        ai_will_do = { 
+            base = 3
+            modifier = { has_completed_focus = ENG_announce_the_commons_act factor = 0 }
         }
 
         prerequisite = { focus = ENG_expansionism }
@@ -963,8 +894,8 @@ focus_tree = {
         }
     }
     focus = {
-        id = ENG_expand_the_colonial_empire
-        icon = GFX_focus_ENG_expand_the_colonial_empire
+        id = ENG_change_the_alliances
+        icon = GFX_focus_ENG_change_the_alliances
 
         relative_position_id = ENG_expansionism
         x = 1
@@ -973,6 +904,11 @@ focus_tree = {
 
         ai_will_do = {
             base = 3
+            modifier = {
+                or = { is_ally_with = FRA is_ally_with = SOV }
+                factor = 0
+            }
+            modifier = { date < 1914.7.1 factor = 0 }
         }
 
         prerequisite = { focus = ENG_expansionism }
@@ -991,11 +927,8 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 3
-            modifier = {
-                has_war = no
-                factor = 0.2
-            }
+            base = 1
+            modifier = { has_war = yes factor = 3 }
         }
 
         mutually_exclusive = { focus = ENG_abolish_the_house_of_lords }
@@ -1017,9 +950,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 5
-        }
+        ai_will_do = { base = 3 }
 
         prerequisite = { focus = ENG_internal_stability }
         completion_reward = {
@@ -1087,21 +1018,6 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 2
-            modifier = {
-                or = {
-                    has_completed_focus = ENG_international_affairs         # if we went for international affairs before deciding to be communist, make the chance smaller.
-                    date > 1912.9.1
-                }
-                factor = 0.5
-            }
-            modifier = {
-                threat > 0.1
-                factor = 0
-            }
-        }
-
         mutually_exclusive = { focus = ENG_internal_stability }
         prerequisite = { focus = ENG_political_ambitions }
         completion_reward = {
@@ -1133,17 +1049,15 @@ focus_tree = {
         }
     }
     focus = {
-        id = ENG_expand_the_peoples_budget
-        icon = GFX_focus_ENG_expand_the_peoples_budget
+        id = ENG_announce_the_commons_act
+        icon = GFX_focus_ENG_announce_the_commons_act
 
         relative_position_id = ENG_abolish_the_house_of_lords
         x = -1
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 5                # if we're already here, let's really do that.
-        }
+        ai_will_do = { base = 3 }
 
         prerequisite = { focus = ENG_abolish_the_house_of_lords }
         completion_reward = {
@@ -1164,14 +1078,6 @@ focus_tree = {
             communism > 0.3
         }
 
-        ai_will_do = {
-            base = 2
-            modifier = {
-                has_war = no
-                factor = 3
-            }
-        }
-        
         completion_reward = {
             start_civil_war = {
                 ruling_party = communism
@@ -1196,9 +1102,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 5
-        }
+        ai_will_do = { base = 2 }
 
         prerequisite = { focus = ENG_draft_the_constitution }
         completion_reward = {

@@ -1,0 +1,78 @@
+add_namespace = germany_look_to_the_east
+
+### 1. Germany Proposes an Alliance to the Qing Empire
+country_event = {
+    id = germany_look_to_the_east.1
+    title = "Germany Proposes an Alliance"
+    desc = germany_look_to_the_east.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Accept the alliance offer."
+
+        GER = { 
+            news_event = { id = germany_look_to_the_east.2 hours = 12 random_hours = 6 }
+            if = {
+                limit = { is_in_faction = no }
+                create_faction = "Central Powers"
+            }
+            add_to_faction = MAN
+        }
+
+        ai_chance = { 
+            base = 2
+            modifier = {
+                JAP = { is_in_faction = yes }
+                factor = 6
+            }
+        }
+    }
+
+    option = {
+        name = "Reject the alliance offer."
+        GER = { news_event = { id = germany_look_to_the_east.3 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+### 2. News: Qing Empire Joins the German Alliance
+news_event = {
+    id = germany_look_to_the_east.2
+    title = "The Qing Empire Joins Germany's Alliance"
+    desc = germany_look_to_the_east.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The Central Powers now have a new ally in Asia."
+    }
+}
+
+### 3. News: Qing Empire Rejects Germany's Alliance Offer
+news_event = {
+    id = germany_look_to_the_east.3
+    title = "The Qing Empire Rejects Our Offer"
+    desc = germany_look_to_the_east.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A missed opportunity for Germany in Asia."
+    }
+}
+
+### 4. Research Agreement
+country_event = {
+    id = germany_look_to_the_east.4
+    title = "Germany and the Qing Empire to Share Research"
+    desc = germany_look_to_the_east.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Interesting."
+    }
+}

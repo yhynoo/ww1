@@ -21,7 +21,11 @@
         cost = 10
 
         ai_will_do = {
-            base = 2
+            base = 1
+            modifier = {
+                date > 1913.1.1
+                factor = 3
+            }
         }
 
         completion_reward = {
@@ -155,7 +159,7 @@
             add_tech_bonus = {
 				name = armor_bonus
 				bonus = 1.0
-				uses = 2
+				uses = 1
 				category = armor
 			}
         }
@@ -195,10 +199,6 @@
                 date > 1913.1.1
                 factor = 2
             }
-            modifier = {
-                has_completed_focus = JAP_expansionism
-                factor = 3
-            }
         }
 
         available = {
@@ -229,14 +229,6 @@
 			}
 		}
 
-        ai_will_do = {
-            base = 2
-            modifier = {
-                has_completed_focus = JAP_expansionism
-                factor = 3
-            }
-        }
-
         prerequisite = { focus = JAP_focus_navy }
         completion_reward = {
             navy_experience = 50
@@ -256,10 +248,6 @@
         x = 2
         y = 1
         cost = 10
-
-        ai_will_do = {
-            base = 2
-        }
 
         available = {
 			any_state = {
@@ -394,14 +382,7 @@
 		}
 
         ai_will_do = {
-            base = 2
-            modifier = {
-                or = {
-                    has_war_with = GER
-                    has_war_with = ENG
-                }
-                factor = 3
-            }
+            base = 3
         }
 
         prerequisite = { focus = JAP_expand_dockyards }
@@ -430,17 +411,6 @@
 			}
 		}
 
-        ai_will_do = {
-            base = 1
-            modifier = {
-                or = {
-                    has_war_with = GER
-                    has_war_with = ENG
-                }
-                factor = 3
-            }
-        }
-
         prerequisite = { focus = JAP_expand_dockyards }
         completion_reward = {
             add_tech_bonus = {
@@ -461,7 +431,7 @@
         cost = 10
 
         ai_will_do = {
-            base = 2                # We need to do naval invasions.
+            base = 2                        # We need to do naval invasions.
             modifier = {
                 has_completed_focus = JAP_hong_kong_appeal
                 factor = 3
@@ -524,10 +494,6 @@
 
         ai_will_do = {
             base = 3                    # We really need this first.
-            modifier = {
-                date > 1913.1.1
-                factor = 3
-            }
         }
 
         completion_reward = {
@@ -655,7 +621,7 @@
         cost = 10
 
         ai_will_do = {
-            base = 3
+            base = 2
         }
 
         prerequisite = { focus = JAP_economic_development }
@@ -817,7 +783,7 @@
         cost = 10
 
         ai_will_do = {
-            base = 6            # Japan really needs resources!
+            base = 3            # Japan really needs resources!
         }
 
         prerequisite = { focus = JAP_infrastructure_effort }
@@ -870,7 +836,7 @@
         ai_will_do = {
             base = 1
             modifier = {
-                threat > 0.2            # this becomes important when Europe fights
+                threat > 0.05
                 factor = 3
             }
         }
@@ -889,11 +855,7 @@
         cost = 10
 
         ai_will_do = {
-            base = 2
-            modifier = {
-                threat > 0.2
-                factor = 3
-            }
+            base = 3
         }
 
         prerequisite = { focus = JAP_political_ambitions }
@@ -914,13 +876,10 @@
         cost = 10
 
         ai_will_do = {
-            base = 1.5
+            base = 2
             modifier = {
-                or = {
-                    has_war = GER
-                    SOV = { has_completed_focus = SOV_far_east_affairs }
-                }
-                factor = 3
+                date < 1913.1.1
+                factor = 1.5
             }
         }
 
@@ -944,6 +903,10 @@
 
         ai_will_do = {
             base = 3
+            modifier = {
+                date < 1913.1.1
+                factor = 3
+            }
         }
 
         prerequisite = { focus = JAP_international_affairs }
@@ -1007,16 +970,12 @@
         ai_will_do = {
             base = 1
             modifier = {
-                date > 1916.1.1
-                factor = 3
+                is_ally_with = ENG
+                factor = 2
             }
             modifier = {
                 has_war = yes
                 factor = 3
-            }
-            modifier = {
-                not = { has_completed_focus = JAP_expansionism }
-                factor = 0
             }
         }
 
@@ -1028,8 +987,8 @@
         }
     }
     focus = {
-        id = JAP_anti-communist_outlook
-        icon = GFX_focus_JAP_anti-communist_outlook
+        id = JAP_embrace_american_industrialism
+        icon = GFX_focus_JAP_embrace_american_industrialism
 
         relative_position_id = JAP_internal_stability
         x = -1
@@ -1062,13 +1021,13 @@
         id = JAP_state_shintoism
         icon = GFX_focus_JAP_state_shintoism
 
-        relative_position_id = JAP_anti-communist_outlook
+        relative_position_id = JAP_embrace_american_industrialism
         x = 1
         y = 1
         cost = 10
 
         prerequisite = { 
-            focus = JAP_anti-communist_outlook
+            focus = JAP_embrace_american_industrialism
             focus = JAP_ethics_of_honor
         }
         completion_reward = {
@@ -1105,12 +1064,8 @@
         ai_will_do = {
             base = 1
             modifier = {
-                date > 1916.1.1
+                has_country_flag = england_rejected_us
                 factor = 3
-            }
-            modifier = {
-                not = { has_completed_focus = JAP_expansionism }
-                factor = 0
             }
         }
 
@@ -1137,7 +1092,7 @@
         cost = 10
 
         ai_will_do = {
-            base = 3
+            base = 2
         }
 
         available = {
@@ -1162,7 +1117,7 @@
         cost = 10
 
         ai_will_do = {
-            base = 2
+            base = 3
         }
 
         prerequisite = { focus = JAP_sideline_the_emperor }

@@ -1,0 +1,70 @@
+add_namespace = austria_review_ausgleich_agreement
+
+### 1. Address Magyarization
+country_event = {
+    id = austria_review_ausgleich_agreement.1
+    title = "Address Magyarization"
+    desc = austria_review_ausgleich_agreement.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Prioritize Hungary's development."
+
+        if = {
+            limit = { 43 = { is_owned_and_controlled_by = AUS } }
+            43 = {
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 1
+                    instant_build = yes
+                }
+            }
+        }
+        if = {
+            limit = { 76 = { is_owned_and_controlled_by = AUS } }
+            76 = {
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 1
+                    instant_build = yes
+                }
+            }
+        }
+    }
+
+    option = {
+        name = "Pursue equal development across all regions."
+
+        if = {
+            limit = { 9 = { is_owned_and_controlled_by = AUS } }
+            9 = {
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 1
+                    instant_build = yes
+                }
+            }
+        }
+        if = {
+            limit = { 91 = { is_owned_and_controlled_by = AUS } }
+            91 = {
+                add_building_construction = {
+                    type = arms_factory
+                    level = 1
+                    instant_build = yes
+                }
+            }
+        }
+        if = {
+            limit = { 736 = { is_owned_and_controlled_by = AUS } }
+            736 = {
+                add_building_construction = {
+                    type = air_base
+                    level = 1
+                    instant_build = yes
+                }
+            }
+        }
+    }
+}

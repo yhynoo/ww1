@@ -1,103 +1,59 @@
-dc_ties_to_the_diaspora = {
-    encourage_repatriation = {
-
-        cost = 50
-        days_remove = 60
-
-        ai_will_do = {
-            base = 5
-            modifier = {
-                has_manpower < 100000
-                factor = 3
-            }
-            modifier = {
-                has_war = yes
-                factor = 3
-            }
-        }
-
-        remove_effect = {
-            random_owned_controlled_state = {
-                add_manpower = 2500
-            }
-        }
-    }
-    invite_wilson = {
-
+dc_contain_russian_expansion = {
+    mountain_alliance = {
         cost = 150
         fire_only_once = yes
-        days_remove = 60
 
         available = {
-            USA = { exists = yes }
-            not = { has_war_with = USA }
+            AFG = { is_subject = no is_in_faction = no }
         }
 
-        ai_will_do = {
-            base = 3
-            modifier = {
-                has_country_flag = we_rejected_germany
-                factor = 5
-            }
-            modifier = {
-                and = {
-                    is_in_faction = no
-                    date > 1915.1.1
-                }
-                factor = 6
-            }
+        ai_will_do = { 
+            base = 1
+            modifier = { has_idea = sww1_idea_slavic_unrest factor = 3 }
+            modifier = { or = { has_country_flag = we_rejected_germany has_war = yes } factor = 5 }
         }
 
-        remove_effect = {
-            news_event = { id = austria_events.1 hours = 12 random_hours = 6 }   # Wilson tours Austria-Hungary
-            USA = {
-                add_opinion_modifier = {
-                    target = AUS
-                    modifier = medium_increase
-                }
-            }
+        complete_effect = {
+            AFG = { country_event = { id = austria_contain_russian_expansion.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    declare_support_poland = {
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            POL = { exists = no }
+        } 
+
+        ai_will_do = { 
+            base = 2
+            modifier = { has_war_with = SOV factor = 3 }
+        }
+
+        complete_effect = {
+            news_event = { id = austria_contain_russian_expansion.4 hours = 12 random_hours = 6 }
+        }
+    }
+    declare_support_ukraine = {
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            UKR = { exists = no }
+        }
+
+        ai_will_do = { 
+            base = 2
+            modifier = { has_war_with = SOV factor = 3 }
+        }
+
+        complete_effect = {
+            news_event = { id = austria_contain_russian_expansion.5 hours = 12 random_hours = 6 }
         }
     }
 }
 
 dc_second_vienna_treaty = {
-    invite_to_treaty = {
-        icon = decision_generic_political_discourse
-
-        cost = 100
-        fire_only_once = yes
-
-        targets = { FRA SPR TTS }
-        target_trigger = {
-            FROM = {
-                not = { has_war_with = ROOT }
-                has_government = monarchism
-                is_in_faction = no
-            }
-        }
-
-        ai_will_do = {
-            base = 3
-            modifier = {
-                strength_ratio = {          # Invite the weaker countries first
-                    tag = FROM
-                    ratio < 1
-                }
-                factor = 5
-            }
-            modifier = {
-                and = {
-                    is_in_faction = no
-                    date > 1915.1.1
-                }
-                factor = 3
-            }
-        }
-
-        complete_effect = {
-            FROM = { country_event = { id = austria_events.6 hours = 12 random_hours = 6 } }          # Austria-Hungary invites us ... (choice yes / no)
-        }
-    }
     liberate_the_orthodox_christians = {
         icon = generic_prepare_civil_war
 
@@ -105,35 +61,17 @@ dc_second_vienna_treaty = {
         fire_only_once = yes
         days_remove = 90
 
-        ai_will_do = {
-            base = 3                    # Unlikely, unless we have our faction together and there is no war.
-            modifier = {
-                num_faction_members > 1
-                factor = 2
-            }
-            modifier = {
-                and = {
-                    has_war = no
-                    date > 1916.1.1
-                }
-                factor = 5
-            }
-            modifier = {
-                not = { can_declare_war_on = TUR }      # Duh.
-                factor = 0 
-            }
-        }
-
         war_with_on_remove = TUR
 
         complete_effect = {
-            news_event = { id = austria_events.9 hours = 12 random_hours = 6 }                        # Austria-Hungary vows to liberate Christians from Ottoman lands!
+            news_event = { id = austria_second_vienna_treaty.1 hours = 12 random_hours = 6 }
+        }
 
-            hidden_effect = {
-                add_named_threat = {
-                    name = "[AUS.GetName] Threatens [TUR.GetName]"
-                    threat = 5
-                }
+        ai_will_do = {
+            base = 3
+            modifier = { 
+                and = { date > 1915.1.1 has_war = no }
+                factor = 3
             }
         }
 
@@ -144,24 +82,75 @@ dc_second_vienna_treaty = {
             }
         }
     }
+    sponsor_bourbons = {
+        icon = generic_prepare_civil_war
+
+        cost = 150
+        fire_only_once = yes
+        days_remove = 120
+
+        available = {
+            any_state = { is_core_of = TTS is_owned_by = ITA }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = { 
+                and = { date > 1915.1.1 has_war = no not = { has_decision = liberate_the_orthodox_christians } }
+                factor = 3
+            }
+        }
+
+        war_with_on_remove = ITA
+
+        remove_effect = {
+            hidden_effect = {
+                ITA = {
+                    release = TTS
+                    transfer_units_fraction = {
+                        target = TTS
+                        size = 0.2
+                    }
+                }
+            }
+
+            news_event = { id = austria_second_vienna_treaty.2 hours = 12 random_hours = 6 }
+            give_guarantee = TTS
+            ITA = {
+                declare_war_on = {
+                    target = TTS
+                    type = annex_everything
+                }
+            }
+        }
+    }
+    invite_france = {
+        icon = decision_generic_political_discourse
+
+        cost = 100
+        fire_only_once = yes
+        available = { FRA = { has_government = monarchism is_in_faction = no } }
+
+        ai_will_do = {
+            base = 6
+            modifier = { has_war = yes factor = 3 }
+        }
+
+        complete_effect = {
+            FRA = { country_event = { id = austria_second_vienna_treaty.3 hours = 12 random_hours = 6 } }
+        }
+    }
 }
 
 dc_austro-slavism = {
     establish_the_kingdom_of_croatia = {
-
-        fire_only_once = yes
         cost = 200
+        fire_only_once = yes
 
-        ai_will_do = {
-            base = 6
-            modifier = {
-                has_stability < 0.5
-                factor = 0
-            }
-        }
+        ai_will_do = { base = 6 }
 
         complete_effect = {
-            news_event = { id = austria_events.10 hours = 12 random_hours = 6 }                        # Kingdom of Croatia established!
+            news_event = { id = austria_austro_slavism.1 hours = 12 random_hours = 6 }
 
             add_stability = -0.15                   # The Hungarians really hate it.
             every_state = {
@@ -185,13 +174,7 @@ dc_austro-slavism = {
         cost = 100
         days_remove = 90
 
-        ai_will_do = {
-            base = 0
-            modifier = {
-                has_completed_focus = AUS_army_maneuvers
-                add = 6
-            }
-        }
+        ai_will_do = { base = 6 }
 
         modifier = {
             experience_gain_army_factor = 0.2
@@ -202,17 +185,12 @@ dc_austro-slavism = {
         cost = 75
         days_remove = 90
 
-        ai_will_do = {
+        ai_will_do = { 
             base = 3
-            modifier = {
-                has_war_support < 0.25
-                factor = 3
-            }
+            modifier = { has_war_support < 0.3 factor = 3 }
         }
 
-        modifier = {
-            war_support_weekly = 0.01
-        }
+        modifier = { war_support_weekly = 0.01 }
     }
 }
 
@@ -223,12 +201,10 @@ dc_review_the_ausgleich_agreement = {
         cost = 150
         fire_only_once = yes
 
-        ai_will_do = {
-            base = 15
-        }
+        ai_will_do = { base = 6 }
 
-        complete_effect = {             ## Choice event between prioritizing Hungary (+ 2 civs) or equal development (+ 1 civ, 1 mil, 1 airfield)
-            country_event = { id = austria_events.11 hours = 3 } 
+        complete_effect = {             ## prioritize Hungary (+ 2 civs) or equal development (+ 1 civ, 1 mil, 1 airfield)
+            country_event = { id = austria_review_ausgleich_agreement.1 hours = 2 }
         }        
     }
     invest_in_tatra = {
@@ -236,14 +212,9 @@ dc_review_the_ausgleich_agreement = {
 
         cost = 100
         fire_only_once = yes
+        available = { 74 = { is_owned_and_controlled_by = AUS } }
 
-        available = {
-            74 = { is_owned_and_controlled_by = AUS }
-        }
-
-        ai_will_do = {
-            base = 10
-        }
+        ai_will_do = { base = 6 }
 
         complete_effect = {
             74 = {
@@ -260,14 +231,9 @@ dc_review_the_ausgleich_agreement = {
 
         cost = 100
         fire_only_once = yes
+        available = { 89 = { is_owned_and_controlled_by = AUS } }
 
-        available = {
-            89 = { is_owned_and_controlled_by = AUS }
-        }
-
-        ai_will_do = {
-            base = 10
-        }
+        ai_will_do = { base = 6 }
 
         complete_effect = {
             add_resource = {

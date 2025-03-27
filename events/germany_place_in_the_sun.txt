@@ -1,0 +1,287 @@
+add_namespace = germany_place_in_the_sun
+
+### 1. Germany Demands South Africa: Choice with Dutch or Alone
+country_event = {
+    id = germany_place_in_the_sun.1
+    title = "Germany Demands South Africa"
+    desc = germany_place_in_the_sun.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Involve the Dutch in the matter."
+        HOL = { country_event = { id = germany_place_in_the_sun.2 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+    }
+
+    option = {
+        name = "Go alone."
+        ENG = { news_event = { id = germany_place_in_the_sun.5 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 2 }
+    }
+}
+
+### 2. Netherlands' Response to South Africa
+country_event = {
+    id = germany_place_in_the_sun.2
+    title = "Shall We Get Involved?"
+    desc = germany_place_in_the_sun.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "No, we stay neutral."
+        GER = { country_event = { id = germany_place_in_the_sun.3 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 3 }
+    }
+
+    option = {
+        name = "Yes, we will help Germany."
+        ENG = { country_event = { id = germany_place_in_the_sun.4 hours = 12 random_hours = 6 } }
+
+        ai_chance = { 
+            base = 1
+            modifier = {
+                owns_state = 6          # If they haven't yet ceded Belgium, they might be more eager to do stuff.
+                factor = 3
+            }
+        }
+
+        ## Add the Netherlands to the alliance
+        GER = {
+            if = {
+                limit = { is_in_faction = no }
+                create_faction = "Central Powers"
+            }
+            add_to_faction = AUS
+        }
+    }
+}
+
+### 3. Germany Gets Informed of Dutch Decline
+country_event = {
+    id = germany_place_in_the_sun.3
+    title = "The Dutch Refuse to Get Involved"
+    desc = germany_place_in_the_sun.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Go alone."
+        ENG = { country_event = { id = germany_place_in_the_sun.5 hours = 12 random_hours = 6 } }
+
+        ai_chance = { 
+            base = 2
+            modifier = {
+                strength_ratio = {
+                    tag = ENG
+                    ratio > 1
+                }
+                factor = 3
+            }
+        }
+    }
+
+    option = {
+        name = "Give up the demand."
+
+        ai_chance = { base = 1 }
+    }
+}
+
+### 4. England Responds to German Request with Dutch Involvement
+country_event = {
+    id = germany_place_in_the_sun.4
+    title = "Germany Demands South Africa and Bechuanaland"
+    desc = germany_place_in_the_sun.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Agree to the German demands."
+        news_event = { id = germany_place_in_the_sun.6 hours = 12 random_hours = 6 }
+
+        # create South Africa and make it a German puppet
+        hidden_effect = {
+            275 = { add_core_of = SAF }
+            681 = { add_core_of = SAF }
+            719 = { add_core_of = SAF }
+        }
+
+        release = SAF
+        GER = { puppet = SAF }
+
+        # transfer Bechuanaland
+        542 = { transfer_state_to = GER }
+
+        ai_chance = { base = 1 }
+    }
+
+    option = {
+        name = "Decline Germany's demands."
+        GER = { 
+            news_event = { id = germany_place_in_the_sun.8 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = ENG
+                type = take_claimed_state
+            }
+        }
+
+        # add claims
+        hidden_effect = {
+            542 = { add_claim_by = GER }
+            275 = { add_claim_by = GER }
+            681 = { add_claim_by = GER }
+            719 = { add_claim_by = GER }
+        }
+
+        ai_chance = { base = 3 }
+    }
+}
+
+### 5. England Responds to Germany's Demand (Alone)
+country_event = {
+    id = germany_place_in_the_sun.5
+    title = "Germany Demands South Africa and Bechuanaland!"
+    desc = germany_place_in_the_sun.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Agree to the German demands."
+        news_event = { id = germany_place_in_the_sun.8 hours = 12 random_hours = 6 }
+
+        ## Transfer states to GER
+        542 = { transfer_state_to = GER }
+        275 = { transfer_state_to = GER }
+        681 = { transfer_state_to = GER }
+        719 = { transfer_state_to = GER }
+
+        ai_chance = { base = 1 }
+    }
+
+    option = {
+        name = "Decline Germany's demands."
+        GER = { 
+            news_event = { id = germany_place_in_the_sun.8 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = ENG
+                type = take_claimed_state
+            }
+        }
+
+        # add claims
+        hidden_effect = {
+            542 = { add_claim_by = GER }
+            275 = { add_claim_by = GER }
+            681 = { add_claim_by = GER }
+            719 = { add_claim_by = GER }
+        }
+
+        ai_chance = { base = 6 }
+    }
+}
+
+### 6. News: Agreement with German Demands
+news_event = {
+    id = germany_place_in_the_sun.7
+    title = "Germany's South African Demands Accepted"
+    desc = germany_place_in_the_sun.7.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The transfer of territories begins."
+    }
+}
+
+### 7. News: Agreement with Germany's South African Demands (Alone)
+news_event = {
+    id = germany_place_in_the_sun.7
+    title = "England Refuses Germany's Demands"
+    desc = germany_place_in_the_sun.7.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "The British Empire stands firm."
+    }
+}
+
+### 8. News: England Rejects the German Demand
+news_event = {
+    id = germany_place_in_the_sun.8
+    title = "England Refuses Germany's Demands"
+    desc = germany_place_in_the_sun.8.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A diplomatic crisis looms."
+    }
+}
+
+### 9. Germany Offers an Alliance to Austria-Hungary
+country_event = {
+    id = germany_place_in_the_sun.9
+    title = "Germany Proposes an Alliance"
+    desc = germany_place_in_the_sun.9.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Accept the offer."
+        GER = { 
+            news_event = { id = germany_place_in_the_sun.10 hours = 12 random_hours = 6 }
+            if = {
+                limit = { is_in_faction = no }
+                create_faction = "Central Powers"
+            }
+            add_to_faction = AUS
+        }
+
+        ai_chance = { 
+            base = 3
+            modifier = { has_idea = sww1_idea_slavic_unrest factor = 6 }
+        }
+    }
+
+    option = {
+        name = "We don't need it."
+        GER = { news_event = { id = germany_place_in_the_sun.11 hours = 12 random_hours = 6 } }
+
+        set_country_flag = we_rejected_germany
+        ai_chance = { base = 1 }
+    }
+}
+
+### 10. Austria-Hungary Accepts Germany's Alliance Offer
+news_event = {
+    id = germany_place_in_the_sun.10
+    title = "Austria-Hungary Joins Germany's Alliance"
+    desc = germany_place_in_the_sun.10.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A powerful new alliance is forged."
+    }
+}
+
+### 11. Austria-Hungary Rejects Germany's Alliance Offer
+news_event = {
+    id = germany_place_in_the_sun.11
+    title = "Austria-Hungary Rejects Germany's Alliance Offer"
+    desc = germany_place_in_the_sun.11.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "The partnership is not to be."
+    }
+}

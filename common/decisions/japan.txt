@@ -1,153 +1,89 @@
 dc_hong_kong_appeal = {
-    demand_tsingtao = {
-        cost = 150
+    invite_naval_advisors_from_uk = {
+        cost = 50
         fire_only_once = yes
 
         available = {
-            GER = { owns_state = 743 }
-        }
-
-        ai_will_do = {
-            base = 5
-            modifier = {
-                GER = { has_war = yes }
-                factor = 3
-            }
-            modifier = {
-                and = {
-                    has_tech = landing_craft
-                    has_army_size = {
-                        size > 3
-                        type = marine
-                    }
-                }
-                factor = 1.5
-            }
-            modifier = {
-                has_war = yes
-                factor = 0
-            }
-        }
-
-        complete_effect = {
-            GER = {
-                country_event = { id = japan_events.1 hours = 12 random_hours = 6 }
-            }
-        }
-    }
-    ultimatum_indochina = {
-        cost = 150
-        fire_only_once = yes
-
-        available = {
-            FRA = {
-                owns_state = 670        # Laos
-                owns_state = 741        # Cambodia
-                owns_state = 671        # Vietnam
-                owns_state = 286
+            ENG = { exists = yes }
+            or = {
+                is_guaranteed_by = ENG
+                is_ally_with = ENG
             }
         }
 
         ai_will_do = {
             base = 3
-            modifier = {
-                FRA = { has_war = yes }
-                factor = 10
-            }
-            modifier = {
-                and = {
-                    has_tech = landing_craft
-                    has_army_size = {
-                        size > 5
-                        type = marine
-                    }
+            modifier = { has_completed_focus = JAP_navy factor = 3 }
+        }
+
+        complete_effect = {
+            navy_experience = 100
+            ENG = {
+                add_opinion_modifier = {
+                    target = JAP
+                    modifier = medium_increase
                 }
-                factor = 1.5
             }
+        }
+    }
+    ask_to_join_the_entente = {
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            ENG = { is_faction_leader = yes }
+        }
+
+        ai_will_do = {
+            base = 3 
+            modifier = { threat > 0.1 factor = 3 }
+        }
+
+        complete_effect = {
+            ENG = { country_event = { id = japan_events.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    demand_tsingtao = {
+        cost = 150
+        fire_only_once = yes
+
+        available = { GER = { owns_state = 743 } }
+
+        ai_will_do = {
+            base = 2
+            modifier = { is_ally_with = ENG factor = 6 }
             modifier = {
-                has_army_size = {
-                    size > 30
-                }
+                and = { date > 1915.7.1 has_war = no }
                 factor = 3
-            }
-            modifier = {
-                has_war = yes
-                factor = 0
             }
         }
 
         complete_effect = {
-            custom_effect_tooltip = "It is an ultimatum: if rejected, we go to war."
-            FRA = { country_event = { id = japan_events.4 hours = 12 random_hours = 6 } }
-
-            670 = { add_claim_by = JAP }
-            741 = { add_claim_by = JAP }
-            671 = { add_claim_by = JAP }
-            286 = { add_claim_by = JAP }
+            GER = { country_event = { id = japan_events.4 hours = 12 random_hou rs = 6 } }
         }
     }
 }
 
 dc_twenty-one_demands = {
-    assert_manchuria = {
+    manchu_debt = {
         cost = 100
         fire_only_once = yes
 
-        # add the availability and effects!
-
-        ai_will_do = {
-            base = 6
-            modifier = {
-                SOV = { has_completed_focus = SOV_far_east_affairs }
-                factor = 3
-            }
-            modifier = {
-                date < 1914.1.1
-                factor = 3
-            }
-            modifier = {
-                MAN = { is_subject = yes }
-                factor = 0
-            }
-        }
-
-        complete_effect = {
-            news_event = { id = japan_events.7 hours = 12 random_hours = 6 }
-        }
-    }
-    manchu_debt = {
-        cost = 150
-        fire_only_once = yes
-
         available = {
-            MAN = { 
-                exists = yes
-                not = { is_ally_with = JAP }
-            }
+            can_declare_war_on = MAN
         }
 
         ai_will_do = {
-            base = 5
+            base = 2
+            modifier = { is_ally_with = ENG factor = 3 }
             modifier = {
-                MAN = { is_in_faction = yes }
-                factor = 0.5
-            }
-            modifier = {
-                strength_ratio = {          # if we're so strong, we should dominate.
-                    tag = MAN
-                    ratio > 2
-                }
-                factor = 10
-            }
-            modifier = {
-                has_war = yes
-                factor = 0
+                and = { date > 1914.7.1 has_war = no }
+                factor = 3
             }
         }
 
         complete_effect = {
-            custom_effect_tooltip = "It is an ultimatum: if rejected, we go to war."
-            MAN = { country_event = { id = japan_events.8 hours = 12 random_hours = 6 } }
+            MAN = { country_event = { id = japan_events.7 hours = 12 random_hours = 6 } }
         }
     }
     advisors_to_qing = {
@@ -155,93 +91,64 @@ dc_twenty-one_demands = {
         fire_only_once = yes
 
         available = {
-            MAN = {
-                is_subject = no
-            }
+            MAN = { is_subject = no }
         }
 
         ai_will_do = {
-            base = 10
+            base = 2
             modifier = {
-                MAN = { is_in_faction = yes }
-                factor = 0.5
-            }
-            modifier = {
-                date > 1915.1.1
+                and = {
+                    date > 1914.7.1
+                    has_war = no
+                }
                 factor = 3
             }
-        }
-
-        complete_effect = {
-            MAN = { country_event = { id = japan_events.11 hours = 12 random_hours = 6 } }
-        }
-    }
-}
-
-dc_anti-communist_outlook = {
-    ban_communism = {
-        icon = generic_civil_support
-
-        cost = 100
-        fire_only_once = yes
-        days_remove = -1
-
-        available = {
-			communism < 0.2
-        }
-
-        modifier = {
-			communism_drift = -0.05
-		}
-
-        ai_will_do = {
-            base = 3
             modifier = {
-                communism > 0.1
+                strength_ratio = {
+                    tag = MAN
+                    ratio > 1
+                }
                 factor = 5
             }
         }
 
         complete_effect = {
-            hidden_effect = {
-                set_popularity = {
-                    ideology = communism
-                    popularity = 0
-                }
-            }
+            MAN = { country_event = { id = japan_events.10 hours = 12 random_hours = 6 } }
         }
     }
-    anti-communist_intervene_in = {
-        icon = prepare_civil_war
+}
 
-        target_array = every_country
-        target_trigger = {
-            FROM = { has_government = communism }
+dc_embrace_american_industrialism = {
+    open_experimental_facilities = {
+        icon = generic_research
+
+        cost = 100
+        fire_only_once = yes
+
+        complete_effect = {
+            add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 1.0
+				uses = 2
+				category = industry
+			}
         }
+    }
+    increase_trade_exchange = {
+        cost = 75
+        days_remove = 90
 
-        days_remove = 60
-        war_with_target_on_remove = yes
-
-        ai_will_do = {
-            base = 5
-            modifier = {
-                strength_ratio = {          # if we're so strong, we should dominate.
-                    tag = FROM
-                    ratio > 2
-                }
-                factor = 20
-            }
-            modifier = {
-                has_war = yes               # though if we're in a way already, we might be less eager.
-                factor = 0.2
-            }
+        modifier = {
+            trade_opinion_factor = 0.5
         }
+    }
+    challenge_the_syndicates = {
+        cost = 75
+        days_remove = 90
 
-        remove_effect = {
-            create_wargoal = {
-                target = FROM
-                type = topple_government
-            }
+        modifier = {
+            production_speed_infrastructure_factor = 0.15
+            production_speed_industrial_complex_factor = 0.15
         }
     }
 }

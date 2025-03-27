@@ -22,14 +22,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 1
-            modifier = {
-                date > 1914.1.1
-                factor = 3
-            }
-            modifier = {
-                threat > 0.1
-                factor = 2
-            }
+            modifier = { date > 1913.1.1 factor = 2 }
         }
 
         completion_reward = {
@@ -47,10 +40,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 1
-            modifier = {
-                threat > 0.1
-                factor = 3
-            }
+            modifier = { date > 1913.1.1 factor = 3 }
         }
 
         prerequisite = { focus = GER_adjust_budget }
@@ -171,7 +161,7 @@ focus_tree = {
             add_tech_bonus = {
 				name = armor_bonus
 				bonus = 1.0
-				uses = 2
+				uses = 1
 				category = armor
 			}
         }
@@ -214,14 +204,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 1
-            modifier = {
-                has_completed_focus = GER_a_place_in_the_sun
-                factor = 3
-            }
-            modifier = {
-                has_war_with = ENG
-                factor = 4
-            }
+            modifier = { has_completed_focus = GER_a_place_in_the_sun factor = 3 }
         }
 
         prerequisite = { focus = GER_adjust_budget }
@@ -271,14 +254,6 @@ focus_tree = {
 				is_controlled_by = ROOT
 			}
 		}
-
-        ai_will_do = {
-            base = 1
-            modifier = {
-                has_war_with = ENG
-                factor = 3
-            }
-        }
 
         prerequisite = { focus = GER_focus_navy }
         complete_tooltip = {
@@ -432,17 +407,8 @@ focus_tree = {
 		}
 
         ai_will_do = {
-            base = 2
-            modifier = {
-                has_war_with = ENG
-                factor = 3
-            }
-            modifier = {
-                has_navy_size = {
-                    size < 15
-                }
-                factor = 2.5
-            }
+            base = 1
+            modifier = { has_completed_focus = GER_a_place_in_the_sun factor = 3 }
         }
 
         prerequisite = { focus = GER_expand_dockyards }
@@ -520,10 +486,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 2
-            modifier = {
-                date > 1913.1.1
-                factor = 4
-            }
+            modifier = { date > 1913.1.1 factor = 3 }
         }
 
         completion_reward = {
@@ -537,18 +500,6 @@ focus_tree = {
         relative_position_id = GER_economic_development
         x = -3
         y = 1
-
-        ai_will_do = {
-            base = 1.5
-            modifier = {
-                date > 1913.1.1
-                factor = 2
-            }
-            modifier = {
-                has_stability > 0.6
-                factor = 0.2
-            }
-        }
 
         cost = 10
 
@@ -567,10 +518,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 2
-            modifier = {
-                has_war = no
-                factor = 0
-            }
+            modifier = { has_war = no factor = 0 }
         }
 
         cost = 10
@@ -612,6 +560,11 @@ focus_tree = {
         x = 2
         y = 1
 
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
+
         cost = 10
 
         prerequisite = { focus = GER_agrarian_reform }
@@ -630,20 +583,8 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1
-            modifier = {
-                any_enemy_country = {
-                    ic_ratio = {
-                        tag = ROOT
-                        ratio < 1
-                    }
-                }
-                factor = 3
-            }
-            modifier = {
-                has_war = no
-                factor = 0
-            }
+            base = 2
+            modifier = { has_war = no factor = 0 }
         }
 
         prerequisite = { focus = GER_rationing }
@@ -670,10 +611,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 2
-            modifier = {
-                date > 1913.1.1
-                factor = 2
-            }
+            modifier = { date > 1913.1.1 factor = 3 }
         }
 
         prerequisite = { focus = GER_economic_development }
@@ -761,13 +699,7 @@ focus_tree = {
 
         cost = 10
 
-        ai_will_do = {
-            base = 3
-            modifier = {
-                date > 1913.1.1
-                factor = 2
-            }
-        }
+        ai_will_do = { base = 2 }
 
         prerequisite = { focus = GER_infrastructure_effort }
 		completion_reward = {
@@ -798,13 +730,7 @@ focus_tree = {
 
         cost = 10
 
-        ai_will_do = {
-            base = 3
-            modifier = {
-                date > 1913.1.1
-                factor = 2
-            }
-        }
+        ai_will_do = { base = 2 }
 
         prerequisite = { focus = GER_infrastructure_effort }
 		completion_reward = {
@@ -876,6 +802,8 @@ focus_tree = {
 
         cost = 10
 
+        ai_will_do = { base = 2 }
+
         prerequisite = { 
             focus = GER_construct_civilian
             focus = GER_construct_military
@@ -896,13 +824,7 @@ focus_tree = {
         y = 5
         cost = 10
 
-        ai_will_do = {
-            base = 3
-            modifier = {
-                date > 1912.4.1
-                factor = 3
-            }
-        }
+        ai_will_do = { base = 3 }
 
         completion_reward = {
             add_political_power = 150
@@ -918,11 +840,8 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 2
-            modifier = {
-                date > 1912.6.1
-                factor = 2
-            }
+            base = 2 
+            modifier = { date > 1913.1.1 factor = 3 }
         }
 
         prerequisite = { focus = GER_political_ambitions }
@@ -943,15 +862,8 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1
-            modifier = {
-                date > 1913.1.1
-                factor = 4
-            }
-            modifier = {
-                is_in_faction = yes
-                factor = 2
-            }
+            base = 2 
+            modifier = { date > 1913.1.1 factor = 3 }
         }
 
         prerequisite = { focus = GER_international_affairs }
@@ -972,13 +884,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 2
-            modifier = {
-                date > 1912.6.1
-                factor = 4
-            }
-        }
+        ai_will_do = { base = 5 }
 
         prerequisite = { focus = GER_international_affairs }
         completion_reward = {
@@ -995,15 +901,8 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 2
-            modifier = {
-                date > 1913.1.1
-                factor = 2
-            }
-            modifier = {
-                is_ally_with = SOV
-                factor = 4
-            }
+            base = 1
+            modifier = { date > 1914.1.1 factor = 6 }
         }
 
         prerequisite = { focus = GER_expansionism }
@@ -1022,20 +921,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 1
-            modifier = {
-                or = {
-                    has_country_flag = turkey_rejected_us
-                    has_country_flag = austria_rejected_us
-                }
-                factor = 5
-            }
-            modifier = {
-                and = {
-                    date > 1915.7.1
-                    has_war = no
-                }
-                factor = 2.5
-            }
+            modifier = { date > 1914.1.1 factor = 2 }
         }
 
         prerequisite = { focus = GER_expansionism }
@@ -1055,14 +941,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 1
-            modifier = {
-                date < 1914.1.1
-                factor = 0
-            }
-            modifier = {
-                has_war = yes
-                factor = 3
-            }
+            modifier = { has_war = yes factor = 3 }
         }
 
         available = {
@@ -1077,7 +956,6 @@ focus_tree = {
                 ideology = monarchism
                 popularity = 0.05
             }
-            news_event = { id = germany_events.31 hours = 12 random_hours = 6 }
         }
     }
     focus = {
@@ -1157,16 +1035,9 @@ focus_tree = {
 
         ai_will_do = {
             base = 1
-            modifier = {
-                date < 1914.1.1
-                factor = 0
-            }
-            modifier = {
-                and = {
-                    has_war = no
-                    date > 1915.7.1
-                }
-                factor = 2
+            modifier = { 
+                and = { date > 1915.1.1 has_war = no }
+                factor = 6
             }
         }
 
@@ -1180,10 +1051,6 @@ focus_tree = {
             add_popularity = {
                 ideology = democratic
                 popularity = 0.1
-            }
-
-            hidden_effect = {
-                news_event = { id = genericevent.4 hours = 12 random_hours = 6 }
             }
         }
     }
@@ -1212,6 +1079,8 @@ focus_tree = {
         x = -1
         y = 1
         cost = 10
+
+        ai_will_do = { base = 3 }
 
         prerequisite = { focus = GER_empower_the_reichstag }
         completion_reward = {
@@ -1254,6 +1123,8 @@ focus_tree = {
         x = -1
         y = 1
         cost = 10
+
+        ai_will_do = { base = 3 }
 
         prerequisite = { focus = GER_state_reform }
         completion_reward = {
