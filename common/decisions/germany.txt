@@ -38,7 +38,7 @@ dc_place_in_the_sun = {
         fire_only_once = yes
 
         available = { 
-            not = { has_war_with = ENG }
+            can_declare_war_on = ENG
             ENG = {
                 owns_state = 542        # Bechuanaland
 
@@ -102,15 +102,8 @@ dc_place_in_the_sun = {
 dc_look_to_the_east = {
     offer_qing_alliance = {
         icon = generic_prepare_civil_war
-        cost = 150
-
-        available = {
-            or = {
-                is_in_faction = no
-                is_faction_leader = yes
-            }
-            MAN = { is_in_faction = no }
-        }
+        cost = 150 
+        available = { MAN = { is_in_faction = no } }
 
         ai_will_do = { 
             base = 3

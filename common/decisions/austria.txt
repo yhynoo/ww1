@@ -32,23 +32,7 @@ dc_contain_russian_expansion = {
 
         complete_effect = {
             news_event = { id = austria_contain_russian_expansion.4 hours = 12 random_hours = 6 }
-        }
-    }
-    declare_support_ukraine = {
-        cost = 100
-        fire_only_once = yes
-
-        available = {
-            UKR = { exists = no }
-        }
-
-        ai_will_do = { 
-            base = 2
-            modifier = { has_war_with = SOV factor = 3 }
-        }
-
-        complete_effect = {
-            news_event = { id = austria_contain_russian_expansion.5 hours = 12 random_hours = 6 }
+            set_country_flag = austria_likes_poland
         }
     }
 }

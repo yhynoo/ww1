@@ -18,6 +18,8 @@ technologies = {
         research_cost = 1
         start_year = 1904
 
+        coordination_bonus = 0.05
+
         path = {
             leads_to_tech = army_signals_corps
             research_cost_coeff = 1
@@ -34,6 +36,9 @@ technologies = {
 
         research_cost = 2
         start_year = 1912
+
+        army_org_factor = 0.05
+        coordination_bonus = 0.05
 
         path = {
             leads_to_tech = division_signals_corps
@@ -56,6 +61,8 @@ technologies = {
     encryption_1 = {
         categories = { communications }
 
+        encryption = 1
+
         research_cost = 1.5
         start_year = 1913
 
@@ -66,6 +73,8 @@ technologies = {
     }
     decryption_1 = {
         categories = { communications }
+
+        decryption = 1
 
         research_cost = 1.5
         start_year = 1913
@@ -81,6 +90,9 @@ technologies = {
 
         research_cost = 2
         start_year = 1915
+
+        army_org_factor = 0.05
+        coordination_bonus = 0.05
 
         path = {
             leads_to_tech = regiment_signals_corps
@@ -103,8 +115,10 @@ technologies = {
     encryption_2 = {
         categories = { communications }
 
+        encryption = 1
+
         research_cost = 1.5
-        start_year = 1913
+        start_year = 1916
 
         folder = {
             name = electronics_folder
@@ -114,8 +128,10 @@ technologies = {
     decryption_2 = {
         categories = { communications }
 
+        decryption = 1
+
         research_cost = 1.5
-        start_year = 1913
+        start_year = 1916
 
         folder = {
             name = electronics_folder
@@ -128,6 +144,9 @@ technologies = {
 
         research_cost = 2
         start_year = 1918
+
+        army_org_factor = 0.05
+        coordination_bonus = 0.05
 
         path = {
             leads_to_tech = division_signals_corps
@@ -150,6 +169,8 @@ technologies = {
     encryption_3 = {
         categories = { communications }
 
+        encryption = 1
+
         research_cost = 1.5
         start_year = 1919
 
@@ -160,6 +181,8 @@ technologies = {
     }
     decryption_3 = {
         categories = { communications }
+
+        decryption = 1
 
         research_cost = 1.5
         start_year = 1919
@@ -177,6 +200,9 @@ technologies = {
         research_cost = 1.5
         start_year = 1912
 
+        production_speed_rail_way_factor = 0.15
+        repair_speed_rail_way_factor = 0.15
+
         path = {
             leads_to_tech = railways_2
             research_cost_coeff = 1
@@ -189,6 +215,9 @@ technologies = {
     }
     railways_2 = {
         categories = { supply_tech }
+
+        production_speed_rail_way_factor = 0.1
+        repair_speed_rail_way_factor = 0.1
 
         research_cost = 1.5
         start_year = 1915
@@ -206,6 +235,9 @@ technologies = {
     railways_3 = {
         categories = { supply_tech }
 
+        production_speed_rail_way_factor = 0.05
+        repair_speed_rail_way_factor = 0.05
+
         research_cost = 1.5
         start_year = 1918
 
@@ -217,6 +249,9 @@ technologies = {
 
     army_supply_hubs = {
         categories = { supply_tech }
+
+        production_speed_supply_node_factor = 0.15
+        supply_node_range = 0.1
 
         research_cost = 1.5
         start_year = 1912
@@ -234,6 +269,9 @@ technologies = {
     division_supply_hubs = {
         categories = { supply_tech }
 
+        production_speed_supply_node_factor = 0.1
+        supply_node_range = 0.1
+
         research_cost = 1.5
         start_year = 1915
 
@@ -250,6 +288,9 @@ technologies = {
     regiment_supply_hubs = {
         categories = { supply_tech }
 
+        production_speed_supply_node_factor = 0.05
+        supply_node_range = 0.1
+
         research_cost = 1.5
         start_year = 1918
 
@@ -262,6 +303,10 @@ technologies = {
     ## field engineering and fortifications
     trench_construction = {
         categories = { field_engineering }
+
+        max_dig_in_factor = 0.2
+        dig_in_speed_factor = 0.1
+
 
         research_cost = 1
         start_year = 1910
@@ -282,6 +327,9 @@ technologies = {
 
         research_cost = 2
         start_year = 1913
+
+        max_dig_in_factor = 0.15
+        dig_in_speed_factor = 0.1
 
         path = {
             leads_to_tech = trench_2
@@ -307,6 +355,8 @@ technologies = {
         research_cost = 1
         start_year = 1914
 
+        land_bunker_effectiveness_factor = 0.1
+
         folder = {
             name = electronics_folder
             position = { x = 0 y = @1914 }
@@ -317,6 +367,8 @@ technologies = {
 
         research_cost = 1
         start_year = 1914
+
+        army_defence_factor = 0.1
 
         folder = {
             name = electronics_folder
@@ -329,6 +381,9 @@ technologies = {
 
         research_cost = 2
         start_year = 1916
+
+        max_dig_in_factor = 0.1
+        dig_in_speed_factor = 0.1
 
         path = {
             leads_to_tech = trench_3
@@ -354,6 +409,8 @@ technologies = {
         research_cost = 1
         start_year = 1917
 
+        recon_factor_while_entrenched = 0.2
+
         folder = {
             name = electronics_folder
             position = { x = 0 y = @1917 }
@@ -363,7 +420,10 @@ technologies = {
         categories = { field_engineering }
 
         research_cost = 1
-        start_year = 1918
+        start_year = 1917
+
+        land_bunker_effectiveness_factor = 0.05
+        initiative_factor = 0.1
 
         folder = {
             name = electronics_folder
@@ -377,6 +437,9 @@ technologies = {
         research_cost = 2
         start_year = 1919
 
+        max_dig_in_factor = 0.05
+        dig_in_speed_factor = 0.1
+
         folder = {
             name = electronics_folder
             position = { x = 1 y = @1919 }
@@ -385,7 +448,16 @@ technologies = {
 
     # hidden rocket & radar tech
     hidden_rocket_and_radar_tech = {
-        enable_buildings = { radar_station rocket_site }
+        enable_building = {
+            building = radar_station
+            level = 1
+        }
+
+        enable_building = {
+            building = rocket_site
+            level = 1
+        }
+
         allow = {
             always = no
         }

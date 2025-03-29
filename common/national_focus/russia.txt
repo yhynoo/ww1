@@ -177,7 +177,7 @@
 				name = fighter_bonus
 				bonus = 1.0
 				uses = 1
-				category = light_fighter
+				category = air_equipment
 			}
         }
     }
@@ -415,7 +415,7 @@
 				name = capital_ships_bonus
 				bonus = 1.0
 				uses = 1
-				category = ca_tech
+				category = capital_ship_tech
 			}
         }
     }
@@ -441,7 +441,7 @@
 				name = ss_bonus
 				bonus = 1.0
 				uses = 1
-				category = ss_tech
+				category = submarines_tech
 			}
         }
     }
@@ -554,18 +554,8 @@
         cost = 10
 
         ai_will_do = {
-            base = 1
-            modifier = {
-                has_war = no
-                factor = 0
-            }
-            modifier = {
-                any_enemy_country = {
-                    ic_ratio = ROOT
-                    ratio > 0.25
-                }
-                factor = 5
-            }
+            base = 2
+            modifier = { has_war = no factor = 0 }
         }
 
         prerequisite = { focus = SOV_agrarian_reform }
@@ -608,18 +598,8 @@
         cost = 10
 
         ai_will_do = {
-            base = 1
-            modifier = {
-                has_war = no
-                factor = 0
-            }
-            modifier = {
-                any_enemy_country = {
-                    ic_ratio = ROOT
-                    ratio > 0.5
-                }
-                factor = 5
-            }
+            base = 2
+            modifier = { has_war = no factor = 0 }
         }
 
         prerequisite = { focus = SOV_rationing }
@@ -794,22 +774,8 @@
         cost = 10
 
         ai_will_do = {
-            base = 3
-            modifier = {
-                threat > 0.1
-                factor = 5
-            }
-            modifier = {
-                has_war = yes
-                factor = 10
-            }
-            modifier = {
-                any_enemy_country = {
-                    ic_ratio = ROOT
-                    ratio > 0.25
-                }
-                factor = 15
-            }
+            base = 2
+            modifier = { has_war = no factor = 0 }
         }
 
         prerequisite = { focus = SOV_infrastructure_effort }
@@ -1102,6 +1068,7 @@
 
         prerequisite = { focus = SOV_monarchy }
         completion_reward = {
+            remove_ideas = sww1_idea_looming_revolution
             custom_effect_tooltip = decision_effect_tooltip
         }
     }
@@ -1136,7 +1103,6 @@
             focus = SOV_chornaya_sotnya
         }
         completion_reward = {
-            remove_ideas = sww1_idea_looming_revolution
             add_timed_idea = {
                 idea = sww1_idea_one_and_indivisible
                 years = 1

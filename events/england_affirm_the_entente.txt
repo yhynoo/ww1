@@ -3,7 +3,7 @@ add_namespace = britain_affirm_the_entente
 ### 1. News: Britain Announces Containment Policies
 news_event = {
     id = britain_affirm_the_entente.1
-    title = "Britain Announces Containment Policies"
+    title = "[ENG.GetName] Announces Containment Policies"
     desc = britain_affirm_the_entente.1.d
 
     is_triggered_only = yes
@@ -17,14 +17,17 @@ news_event = {
 ### 2. Country Event: Britain Invites [FROM.GetName] to the Entente
 country_event = {
     id = britain_affirm_the_entente.2
-    title = "Britain Invites [From.GetName] to the Entente"
+    title = "United Kingom Invites [ROOT.GetName] to the Entente"
     desc = britain_affirm_the_entente.2.d
 
     is_triggered_only = yes
 
     option = {
         name = "Join the Entente."
-        ENG = { news_event = { id = britain_affirm_the_entente.3 hours = 12 random_hours = 6 } }
+        ENG = { 
+            news_event = { id = britain_affirm_the_entente.3 hours = 12 random_hours = 6 }
+            add_to_faction = ROOT
+        }
 
         ai_chance = { 
             base = 2
@@ -60,7 +63,7 @@ news_event = {
 ### 4. News: [FROM.GetName] Rejects Britain's Offer
 news_event = {
     id = britain_affirm_the_entente.4
-    title = "[FROM.GetName] Rejects Britain's Offer"
+    title = "[FROM.GetName] Rejects Our Offer"
     desc = britain_affirm_the_entente.4.d
 
     is_triggered_only = yes

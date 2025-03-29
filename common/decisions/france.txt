@@ -2,7 +2,7 @@
 
 dc_belgian_crisis = {
     ask_the_dutch_to_leave = {
-        cost = 75
+        cost = 100
         fire_only_once = yes
 
         available = {
@@ -18,10 +18,10 @@ dc_belgian_crisis = {
         }
 
         ai_will_do = {
-            base = 4
+            base = 6
             modifier = {
-                date > 1914.4.1
-                factor = 5
+                date > 1914.1.1
+                factor = 3
             }
         }
 
@@ -37,6 +37,7 @@ dc_belgian_crisis = {
         fire_only_once = yes
 
         available = {
+            can_declare_war_on = GER
             any_state = {
                 or = {
                     state = 6
@@ -49,15 +50,9 @@ dc_belgian_crisis = {
         }
 
         ai_will_do = {
-            base = 4
-            modifier = {
-                date > 1914.8.1
-                factor = 4
-            }
-            modifier = {
-                is_ally_with = SOV
-                factor = 8
-            }
+            base = 6
+            modifier = { date > 1914.3.1 factor = 2 }
+            modifier = { is_ally_with = SOV factor = 3 }
         }
 
         complete_effect = {
@@ -78,20 +73,7 @@ dc_belgian_crisis = {
             980 = { is_owned_by = FRA }
         }
 
-        ai_will_do = {
-            base = 2
-            modifier = {
-                has_war = yes
-                factor = 2
-            }
-            modifier = {
-                or = {
-                    has_government = monarchism
-                    has_government = authoritarianism
-                }
-                factor = 4
-            }
-        }
+        ai_will_do = { base = 9 }
 
         complete_effect = {
             news_event = { id = france_events.10 hours = 12 random_hours = 6 }
@@ -138,7 +120,7 @@ dc_across_the_atlantic = {
             }
             modifier = {
                 41 = { is_owned_by = FRA }          # do it after annexing spain
-                factor = 8
+                factor = 9
             }
         }
 

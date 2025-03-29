@@ -173,7 +173,7 @@
 				name = fighter_bonus
 				bonus = 1.0
 				uses = 1
-				category = light_fighter
+				category = air_equipment
 			}
         }
     }
@@ -411,7 +411,7 @@
 				name = capital_ships_bonus
 				bonus = 1.0
 				uses = 1
-				category = ca_tech
+				category = capital_ship_tech
 			}
         }
     }
@@ -437,7 +437,7 @@
 				name = ss_bonus
 				bonus = 1.0
 				uses = 1
-				category = ss_tech
+				category = submarines_tech
 			}
         }
     }
@@ -550,18 +550,8 @@
         cost = 10
 
         ai_will_do = {
-            base = 1
-            modifier = {
-                has_war = no
-                factor = 0
-            }
-            modifier = {
-                any_enemy_country = {
-                    ic_ratio = ROOT
-                    ratio > 0.25
-                }
-                factor = 5
-            }
+            base = 2
+            modifier = { has_war = no factor = 0 }
         }
 
         prerequisite = { focus = FRA_agrarian_reform }
@@ -604,18 +594,8 @@
         cost = 10
 
         ai_will_do = {
-            base = 1
-            modifier = {
-                has_war = no
-                factor = 0
-            }
-            modifier = {
-                any_enemy_country = {
-                    ic_ratio = ROOT
-                    ratio > 0.5
-                }
-                factor = 5
-            }
+            base = 2
+            modifier = { has_war = no factor = 0 }
         }
 
         prerequisite = { focus = FRA_rationing }
@@ -803,21 +783,7 @@
 
         ai_will_do = {
             base = 2
-            modifier = {
-                threat > 0.1
-                factor = 3
-            }
-            modifier = {
-                has_war = yes
-                factor = 10
-            }
-            modifier = {
-                any_enemy_country = {
-                    ic_ratio = ROOT
-                    ratio > 0.25
-                }
-                factor = 15
-            }
+            modifier = { threat > 0.1 factor = 3 }
         }
 
         prerequisite = { focus = FRA_infrastructure_effort }

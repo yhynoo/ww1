@@ -10,18 +10,20 @@ country_event = {
 
     option = {
         name = "Accept the alliance offer."
-        AFG = { country_event = { id = austria_contain_russian_expansion.2 hours = 12 random_hours = 6 } }
+        AFG = { news_event = { id = austria_contain_russian_expansion.2 hours = 12 random_hours = 6 } }
 
-        if = {
-            limit = { is_in_faction = no }
-            create_faction = "Austro-Afghan Alliance"
+        AUS = {
+            if = {
+                limit = { is_in_faction = no }
+                create_faction = "Austro-Afghan Alliance"
+            }
+            faction_leader = { add_to_faction = AFG }
         }
-        faction_leader = { add_to_faction = AFG }
     }
 
     option = {
         name = "Reject the alliance offer."
-        AFG = { country_event = { id = austria_contain_russian_expansion.3 hours = 12 random_hours = 6 } }
+        AUS = { news_event = { id = austria_contain_russian_expansion.3 hours = 12 random_hours = 6 } }
     }
 }
 
@@ -62,18 +64,5 @@ news_event = {
 
     option = {
         name = "Austria claims the moral high ground."
-    }
-}
-
-### 5. News: Austria Supports Ukrainian Independence
-news_event = {
-    id = austria_contain_russian_expansion.5
-    title = "Austria-Hungary Sides with Ukrainian Independence"
-    desc = austria_contain_russian_expansion.5.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Austria extends its influence over Ukraine."
     }
 }

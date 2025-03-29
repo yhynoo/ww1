@@ -166,7 +166,7 @@ focus_tree = {
 				name = fighter_bonus
 				bonus = 1.0
 				uses = 1
-				category = light_fighter
+				category = air_equipment
 			}
         }
     }
@@ -404,7 +404,7 @@ focus_tree = {
 				name = capital_ships_bonus
 				bonus = 1.0
 				uses = 1
-				category = ca_tech
+				category = capital_ship_tech
 			}
         }
     }
@@ -430,7 +430,7 @@ focus_tree = {
 				name = ss_bonus
 				bonus = 1.0
 				uses = 1
-				category = ss_tech
+				category = submarines_tech
 			}
         }
     }
@@ -543,18 +543,8 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1
-            modifier = {
-                has_war = no
-                factor = 0
-            }
-            modifier = {
-                any_enemy_country = {
-                    ic_ratio = ROOT
-                    ratio > 0.25
-                }
-                factor = 5
-            }
+            base = 2
+            modifier = { has_war = no factor = 0 }
         }
 
         prerequisite = { focus = XXX_agrarian_reform }
@@ -597,18 +587,8 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1
-            modifier = {
-                has_war = no
-                factor = 0
-            }
-            modifier = {
-                any_enemy_country = {
-                    ic_ratio = ROOT
-                    ratio > 0.5
-                }
-                factor = 5
-            }
+            base = 2
+            modifier = { has_war = no factor = 0 }
         }
 
         prerequisite = { focus = XXX_rationing }
@@ -773,21 +753,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 2
-            modifier = {
-                threat > 0.1
-                factor = 3
-            }
-            modifier = {
-                has_war = yes
-                factor = 10
-            }
-            modifier = {
-                any_enemy_country = {
-                    ic_ratio = ROOT
-                    ratio > 0.25
-                }
-                factor = 15
-            }
+            modifier = { threat > 0.1 factor = 3 }
         }
 
         prerequisite = { focus = XXX_infrastructure_effort }
@@ -1043,7 +1009,7 @@ focus_tree = {
         prerequisite = { focus = XXX_political_ambitions }
         completion_reward = {
             add_stability = 0.05
-            news_event = { id = genericevent.1 hours = 12 random_hours = 6 }
+            news_event = { id = generic_focus_tree_event.1 hours = 12 random_hours = 6 }
         }
     }
     focus = {
@@ -1085,7 +1051,7 @@ focus_tree = {
             }
 
             hidden_effect = {
-                news_event = { id = genericevent.3 hours = 12 random_hours = 6 }
+                news_event = { id = generic_focus_tree_event.3 hours = 12 random_hours = 6 }
             }
         }
     }
@@ -1158,7 +1124,7 @@ focus_tree = {
             }
 
             hidden_effect = {
-                news_event = { id = genericevent.4 hours = 12 random_hours = 6 }
+                news_event = { id = generic_focus_tree_event.4 hours = 12 random_hours = 6 }
             }
         }
     }

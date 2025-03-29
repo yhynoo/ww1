@@ -45,7 +45,7 @@ technologies = {
     # engineers
     tech_engineers = {
         enable_subunits = {
-            engineers
+            engineer
         }
 
         path = {
@@ -63,7 +63,6 @@ technologies = {
 
 		categories = {
 			support_tech
-			engineers_tech
 		}   
     }
     tech_engineers2 = {
@@ -71,6 +70,14 @@ technologies = {
             leads_to_tech = tech_engineers3
 			research_cost_coeff = 1
         }
+
+        engineer = {
+			entrenchment = 0.5
+			fort = {
+				defence = 0.1
+				attack = 0.1
+			}
+		}
 
         research_cost = 1.5
         start_year = 1914
@@ -82,7 +89,6 @@ technologies = {
 
 		categories = {
 			support_tech
-			engineers_tech
 		}   
     }
     tech_engineers3 = {
@@ -90,6 +96,15 @@ technologies = {
             leads_to_tech = tech_engineers4
 			research_cost_coeff = 1
         }
+
+        engineer = {
+			entrenchment = 0.5
+			mountain = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+
         research_cost = 1.5
         start_year = 1916
 
@@ -100,7 +115,6 @@ technologies = {
 
 		categories = {
 			support_tech
-			engineers_tech
 		}   
     }
     tech_engineers4 = {
@@ -112,9 +126,16 @@ technologies = {
 			position = { x = 0 y = @1918 }
 		}
 
+        engineer = {
+			entrenchment = 0.5
+			urban = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+
 		categories = {
 			support_tech
-			engineers_tech
 		}   
     }
 
@@ -141,7 +162,6 @@ technologies = {
 
 		categories = {
 			support_tech
-			recon_tech
 		}   
     }
     tech_recon2 = {
@@ -149,6 +169,10 @@ technologies = {
             leads_to_tech = tech_recon3
 			research_cost_coeff = 1
         }
+
+        category_recon = {
+			recon = 2
+		}
 
         research_cost = 1.5
         start_year = 1914
@@ -160,7 +184,6 @@ technologies = {
 
 		categories = {
 			support_tech
-			recon_tech
 		}   
     }
     tech_recon3 = {
@@ -168,6 +191,10 @@ technologies = {
             leads_to_tech = tech_recon4
 			research_cost_coeff = 1
         }
+
+        category_recon = {
+			recon = 2
+		}
 
         research_cost = 1.5
         start_year = 1916
@@ -179,12 +206,15 @@ technologies = {
 
 		categories = {
 			support_tech
-			recon_tech
 		}   
     }
     tech_recon4 = {
         research_cost = 1.5
         start_year = 1918
+
+        category_recon = {
+			recon = 2
+		}
 
         folder = {
 			name = support_folder
@@ -193,7 +223,6 @@ technologies = {
 
 		categories = {
 			support_tech
-			recon_tech
 		}   
     }
 
@@ -222,7 +251,6 @@ technologies = {
 
 		categories = {
 			support_tech
-			hospital_tech
 		}   
     }
     tech_field_hospital2 = {
@@ -230,6 +258,11 @@ technologies = {
             leads_to_tech = tech_field_hospital3
 			research_cost_coeff = 1
         }
+
+        field_hospital = {
+			casualty_trickleback = 0.1
+			experience_loss_factor = -0.1
+		}
 
         research_cost = 2
         start_year = 1914
@@ -241,7 +274,6 @@ technologies = {
 
 		categories = {
 			support_tech
-			hospital_tech
 		}   
     }
     tech_field_hospital3 = {
@@ -249,6 +281,11 @@ technologies = {
             leads_to_tech = tech_field_hospital4
 			research_cost_coeff = 1
         }
+
+        field_hospital = {
+			casualty_trickleback = 0.1
+			experience_loss_factor = -0.1
+		}
 
         research_cost = 2
         start_year = 1916
@@ -260,13 +297,16 @@ technologies = {
 
 		categories = {
 			support_tech
-			hospital_tech
 		}   
     }
     tech_field_hospital4 = {
-
         research_cost = 2
         start_year = 1918
+
+        field_hospital = {
+			casualty_trickleback = 0.1
+			experience_loss_factor = -0.1
+		}
 
         folder = {
 			name = support_folder
@@ -275,7 +315,6 @@ technologies = {
 
 		categories = {
 			support_tech
-			hospital_tech
 		}   
     }
 
@@ -304,7 +343,6 @@ technologies = {
 
 		categories = {
 			support_tech
-			logistics_tech
 		}   
     }
     tech_logistics_company2 = {
@@ -312,6 +350,11 @@ technologies = {
             leads_to_tech = tech_logistics_company3
 			research_cost_coeff = 1
         }
+
+        logistics_company = {
+			supply_consumption_factor = -0.1
+			fuel_consumption_factor = -0.05
+		}
 
         research_cost = 2
         start_year = 1914
@@ -323,7 +366,6 @@ technologies = {
 
 		categories = {
 			support_tech
-			logistics_tech
 		}   
     }
     tech_logistics_company3 = {
@@ -331,6 +373,11 @@ technologies = {
             leads_to_tech = tech_logistics_company4
 			research_cost_coeff = 1
         }
+
+        logistics_company = {
+			supply_consumption_factor = -0.1
+			fuel_consumption_factor = -0.05
+		}
 
         research_cost = 2
         start_year = 1916
@@ -342,7 +389,6 @@ technologies = {
 
 		categories = {
 			support_tech
-			logistics_tech
 		}   
     }
     tech_logistics_company4 = {
@@ -354,9 +400,13 @@ technologies = {
 			position = { x = 7 y = @1918 }
 		}
 
+        logistics_company = {
+			supply_consumption_factor = -0.1
+			fuel_consumption_factor = -0.05
+		}
+
 		categories = {
 			support_tech
-			logistics_tech
 		}   
     }
 
@@ -377,19 +427,17 @@ technologies = {
 			research_cost_coeff = 1
         }
 
-        categories = {
-			train_tech
-		}
+        categories = { }
     }
     improved_train = {
         enable_equipments = { train_equipment_2 }
 
         research_cost = 2
-        start_year = 1912
+        start_year = 1914
 
         folder = {
 			name = support_folder
-			position = { x = 0 y = @1912 }
+			position = { x = 0 y = @1914 }
 		}
 
         path = {
@@ -397,23 +445,19 @@ technologies = {
 			research_cost_coeff = 1
         }
 
-        categories = {
-			train_tech
-		}
+        categories = { }
     }
     advanced_train = {
         enable_equipments = { train_equipment_3 }
 
         research_cost = 2
-        start_year = 1916
+        start_year = 1918
 
         folder = {
 			name = support_folder
-			position = { x = 0 y = @1916 }
+			position = { x = 0 y = @1918 }
 		}
 
-        categories = {
-			train_tech
-		}
+        categories = { }
     }
 }

@@ -20,8 +20,6 @@ focus_tree = {
         y = 0
         cost = 10
 
-        ai_will_do = { base = 2 }
-
         completion_reward = {
             add_command_power = 25
         }
@@ -135,7 +133,7 @@ focus_tree = {
 				name = fighter_bonus
 				bonus = 1.0
 				uses = 1
-				category = light_fighter
+				category = air_equipment
 			}
         }
     }
@@ -379,7 +377,7 @@ focus_tree = {
 				name = capital_ships_bonus
 				bonus = 1.0
 				uses = 1
-				category = ca_tech
+				category = capital_ship_tech
 			}
         }
     }
@@ -405,7 +403,7 @@ focus_tree = {
 				name = ss_bonus
 				bonus = 1.0
 				uses = 1
-				category = ss_tech
+				category = submarines_tech
 			}
         }
     }
@@ -809,7 +807,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 1
-            modifier = { date > 1913.7.1 factor = 2 }
+            modifier = { date > 1913.1.1 factor = 3 }
         }
 
         completion_reward = {
@@ -905,7 +903,7 @@ focus_tree = {
         ai_will_do = {
             base = 3
             modifier = {
-                or = { is_ally_with = FRA is_ally_with = SOV }
+                or = { is_ally_with = FRA is_ally_with = ITA is_ally_with = JAP is_ally_with = SOV }
                 factor = 0
             }
             modifier = { date < 1914.7.1 factor = 0 }
@@ -950,7 +948,10 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = { base = 3 }
+        ai_will_do = { 
+            base = 3
+            modifier = { has_war = no factor = 0 }
+        }
 
         prerequisite = { focus = ENG_internal_stability }
         completion_reward = {
@@ -1075,6 +1076,7 @@ focus_tree = {
 
         prerequisite = { focus = ENG_draft_the_constitution }
         available = {
+            not = { has_government = communism }
             communism > 0.3
         }
 
@@ -1086,9 +1088,9 @@ focus_tree = {
             }
 
             hidden_effect = {
-                set_popularity = {
+                add_popularity = {
                     ideology = communism
-                    popularity = 1.0
+                    popularity = 0.25
                 }
             }
         }

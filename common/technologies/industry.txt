@@ -5,13 +5,7 @@ technologies = {
         research_cost = 1
         start_year = 1904
 
-        ai_will_do = {
-            base = 2
-            modifier = {
-                has_war = yes
-                factor = 0.5
-            }
-        }
+        production_factory_max_efficiency_factor = 0.05
 
         path = {
             leads_to_tech = electrification
@@ -30,13 +24,7 @@ technologies = {
         research_cost = 1
         start_year = 1912
 
-        ai_will_do = {
-            base = 2
-            modifier = {
-                has_war = yes
-                factor = 0.5
-            }
-        }
+        production_factory_max_efficiency_factor = 0.05
 
         path = {
             leads_to_tech = assembly_line_1
@@ -58,6 +46,9 @@ technologies = {
         research_cost = 1
         start_year = 1914
 
+        production_factory_max_efficiency_factor = 0.1
+        production_factory_efficiency_gain_factor = 0.1
+
         path = {
             leads_to_tech = assembly_line_2
             research_cost_coeff = 1
@@ -74,6 +65,9 @@ technologies = {
         research_cost = 1
         start_year = 1916
 
+        production_factory_max_efficiency_factor = 0.1
+        production_factory_efficiency_gain_factor = 0.1
+
         path = {
             leads_to_tech = assembly_line_3
             research_cost_coeff = 1
@@ -89,6 +83,9 @@ technologies = {
 
         research_cost = 1
         start_year = 1918
+
+        production_factory_max_efficiency_factor = 0.1
+        production_factory_efficiency_gain_factor = 0.1
 
         path = {
             leads_to_tech = mechanization_of_production
@@ -112,6 +109,9 @@ technologies = {
             research_cost_coeff = 1
         }
 
+        industrial_capacity_factory = 0.1
+		industrial_capacity_dockyard = 0.1
+
         folder = {
             name = industry_folder
             position = { x = 2 y = 4 }
@@ -122,6 +122,9 @@ technologies = {
 
         research_cost = 1
         start_year = 1916
+
+        industrial_capacity_factory = 0.1
+		industrial_capacity_dockyard = 0.1
 
         path = {
             leads_to_tech = automation_2
@@ -139,6 +142,9 @@ technologies = {
         research_cost = 1
         start_year = 1918
 
+        industrial_capacity_factory = 0.1
+		industrial_capacity_dockyard = 0.1
+
         path = {
             leads_to_tech = mechanization_of_production
             research_cost_coeff = 1
@@ -149,11 +155,14 @@ technologies = {
             position = { x = 2 y = 8 }
         }
     }
-        mechanization_of_production = {
+    mechanization_of_production = {
         categories = { industry }
 
         research_cost = 1
         start_year = 1920
+
+        production_factory_max_efficiency_factor = 0.1
+        equipment_conversion_speed = 0.2
 
         folder = {
             name = industry_folder
@@ -162,8 +171,6 @@ technologies = {
     }
 
     reinforced_concrete = {
-        production_speed_buildings_factor = 0.05
-
         categories = { 
             industry 
             construction_tech
@@ -172,13 +179,8 @@ technologies = {
         research_cost = 1.5
         start_year = 1912
 
-        ai_will_do = {
-            base = 1.5
-            modifier = {
-                num_of_factories < 15
-                factor = 2
-            }
-        }
+        production_speed_buildings_factor = 0.05
+		industry_repair_factor = 0.05
 
         path = {
             leads_to_tech = modular_construction
@@ -191,8 +193,6 @@ technologies = {
         }
     }
     modular_construction = {
-        production_speed_buildings_factor = 0.05
-
         categories = { 
             industry 
             construction_tech
@@ -200,6 +200,9 @@ technologies = {
 
         research_cost = 1.5
         start_year = 1914
+
+        production_speed_buildings_factor = 0.05
+		industry_repair_factor = 0.05
 
         path = {
             leads_to_tech = pre_stressed_concrete
@@ -212,9 +215,6 @@ technologies = {
         }
     }
     pre_stressed_concrete = {
-        production_speed_buildings_factor = 0.1
-		industry_repair_factor = 0.05
-
         categories = { 
             industry 
             construction_tech
@@ -222,6 +222,9 @@ technologies = {
 
         research_cost = 1.5
         start_year = 1916
+
+        production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.05
 
         path = {
             leads_to_tech = advanced_construction
@@ -234,9 +237,6 @@ technologies = {
         }
     }
     advanced_construction = {
-        production_speed_buildings_factor = 0.1
-		industry_repair_factor = 0.05
-
         categories = { 
             industry 
             construction_tech
@@ -244,6 +244,9 @@ technologies = {
 
         research_cost = 1.5
         start_year = 1918
+
+        production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.05
 
         folder = {
             name = industry_folder
@@ -260,13 +263,8 @@ technologies = {
         research_cost = 2
         start_year = 1904
 
-        ai_will_do = {
-            base = 1
-            modifier = {
-                num_of_factories > 15
-                factor = 2
-            }
-        }
+        production_lack_of_resource_penalty_factor = -0.1
+        consumer_goods_factor = -0.05
 
         path = {
             leads_to_tech = haber_process
@@ -287,6 +285,8 @@ technologies = {
             industry
             synth_resources
         }
+
+        production_lack_of_resource_penalty_factor = -0.2
 
         research_cost = 2
         start_year = 1912
@@ -339,6 +339,8 @@ technologies = {
             synth_resources
         }
 
+        production_oil_factor = 0.5
+
         research_cost = 3
         start_year = 1916
 
@@ -358,6 +360,8 @@ technologies = {
             synth_resources
         }
 
+        production_oil_factor = 0.5
+
         research_cost = 3
         start_year = 1918
 
@@ -371,6 +375,14 @@ technologies = {
             industry
             synth_resources
         }
+
+        on_research_complete = {
+			modify_building_resources = {
+				building = synthetic_refinery
+				resource = rubber
+				amount = 1
+			}
+		}
 
         research_cost = 3
         start_year = 1916
@@ -391,6 +403,14 @@ technologies = {
             synth_resources
         }
 
+        on_research_complete = {
+			modify_building_resources = {
+				building = synthetic_refinery
+				resource = rubber
+				amount = 1
+			}
+		}
+
         research_cost = 3
         start_year = 1918
 
@@ -401,10 +421,17 @@ technologies = {
     }
 
     early_plastics = {
+        path = {
+            leads_to_tech = improved_plastics
+            research_cost_coeff = 1
+        }
+
         categories = { 
             industry
             synth_resources
         }
+
+        consumer_goods_factor = -0.05
 
         research_cost = 2
         start_year = 1912
@@ -414,14 +441,28 @@ technologies = {
             position = { x = 3 y = 2 }
         }
     }
+    improved_plastics = {
+        categories = { 
+            industry
+            synth_resources
+        }
+
+        consumer_goods_factor = -0.05
+
+        research_cost = 2
+        start_year = 1914
+
+        folder = {
+            name = industry_folder
+            position = { x = 3 y = 4 }
+        }
+    }
 
     extraction_0 = {
         local_resources_factor = 0.1
-        fuel_gain_factor = 0.1
 
         categories = { 
             industry
-            excavation_tech
         }
 
         research_cost = 2
@@ -439,11 +480,9 @@ technologies = {
     }
     extraction_1 = {
         local_resources_factor = 0.1
-        fuel_gain_factor = 0.15
 
         categories = { 
-            industry 
-            excavation_tech
+            industry
         }
 
         research_cost = 2
@@ -456,16 +495,14 @@ technologies = {
 
         folder = {
             name = industry_folder
-            position = { x = 0 y = 10 }
+            position = { x = 0 y = 6 }
         }
     }
     extraction_2 = {
         local_resources_factor = 0.1
-        fuel_gain_factor = 0.15
 
         categories = { 
-            industry 
-            excavation_tech
+            industry
         }
 
         research_cost = 2
@@ -473,7 +510,7 @@ technologies = {
 
         folder = {
             name = industry_folder
-            position = { x = 0 y = 6 }
+            position = { x = 0 y = 10 }
         }
     }
 }

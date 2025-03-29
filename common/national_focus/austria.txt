@@ -132,7 +132,7 @@ focus_tree = {
 				name = fighter_bonus
 				bonus = 1.0
 				uses = 1
-				category = light_fighter
+				category = air_equipment
 			}
         }
     }
@@ -153,7 +153,7 @@ focus_tree = {
 				name = mountain_bonus
 				bonus = 1.0
 				uses = 1
-				category = mountaineers
+				category = mountaineer_upgrades
 			}
         }
     }
@@ -169,7 +169,7 @@ focus_tree = {
         prerequisite = { 
             focus = AUS_artillery
             focus = AUS_aircraft
-            focus = AUS_armor
+            focus = AUS_kaiserjager
         }
         completion_reward = {
             army_experience = 100
@@ -372,7 +372,7 @@ focus_tree = {
 				name = capital_ships_bonus
 				bonus = 1.0
 				uses = 1
-				category = ca_tech
+				category = capital_ship_tech
 			}
         }
     }
@@ -398,7 +398,7 @@ focus_tree = {
 				name = ss_bonus
 				bonus = 1.0
 				uses = 1
-				category = ss_tech
+				category = submarines_tech
 			}
         }
     }
@@ -865,6 +865,10 @@ focus_tree = {
         y = 1
         cost = 10
 
+        available = {
+            is_in_faction = no
+        }
+
         ai_will_do = {
             base = 1
             modifier = { has_country_flag = we_rejected_germany factor = 6 }
@@ -1002,7 +1006,7 @@ focus_tree = {
             }
 
             hidden_effect = {
-                news_event = { id = genericevent.4 hours = 12 random_hours = 6 }
+                news_event = { id = generic_focus_tree_event.4 hours = 12 random_hours = 6 }
             }
         }
     }

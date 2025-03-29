@@ -50,6 +50,10 @@ technologies = {
         research_cost = 1
         start_year = 1915
 
+        category_artillery = {
+            initiative = 0.05
+        }
+
         path = {
             leads_to_tech = artillery_1916
             research_cost_coeff = 1
@@ -103,6 +107,10 @@ technologies = {
 
         research_cost = 1
         start_year = 1920
+
+        category_artillery = {
+            initiative = 0.1
+        }
 
         folder = {
             name = artillery_folder
@@ -160,6 +168,9 @@ technologies = {
         research_cost = 1
         start_year = 1920
 
+        static_anti_air_damage_factor = 0.1
+        static_anti_air_hit_chance_factor = 0.2
+
         folder = {
             name = artillery_folder
             position = { x = 2 y = @1920 }
@@ -178,6 +189,11 @@ technologies = {
             research_cost_coeff = 1
         }
 
+        category_artillery = {
+            soft_attack = 0.05
+            breakthrough = 0.05
+        }
+
         folder = {
             name = artillery_folder
             position = { x = 0 y = @1915 }
@@ -188,6 +204,11 @@ technologies = {
 
         research_cost = 1
         start_year = 1918
+
+        category_artillery = {
+            soft_attack = 0.05
+            breakthrough = 0.05
+        }
 
         folder = {
             name = artillery_folder
@@ -201,6 +222,11 @@ technologies = {
 
         research_cost = 1
         start_year = 1912
+
+        category_infantry_and_bicycle = {
+            soft_attack = 0.05
+            defense = 0.1
+        }
 
         path = {
             leads_to_tech = mortar
@@ -217,6 +243,11 @@ technologies = {
 
         research_cost = 2
         start_year = 1914
+
+        category_infantry_and_bicycle = {
+            soft_attack = 0.05
+            defense = 0.1
+        }
 
         path = {
             leads_to_tech = heavy_mortar
@@ -238,6 +269,11 @@ technologies = {
         research_cost = 2
         start_year = 1916
 
+        category_artillery = {
+            soft_attack = 0.1
+            defense = 0.1
+        }
+
         path = {
             leads_to_tech = heavy_mortar_2
             research_cost_coeff = 1
@@ -254,6 +290,10 @@ technologies = {
         research_cost = 1
         start_year = 1919
 
+        category_artillery = {
+            breakthrough = 0.1
+        }
+
         folder = {
             name = artillery_folder
             position = { x = 0 y = @1919 }
@@ -265,6 +305,11 @@ technologies = {
 
         research_cost = 2
         start_year = 1914
+
+        category_infantry_and_bicycle = {
+            soft_attack = 0.05
+            defense = 0.1
+        }
 
         path = {
             leads_to_tech = trench_mortar_2
@@ -278,6 +323,10 @@ technologies = {
     }
     trench_mortar_2 = {
         categories = { mortar_tech }
+
+        category_infantry_and_bicycle = {
+            breakthrough = 0.1
+        }
 
         research_cost = 1
         start_year = 1917

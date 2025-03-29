@@ -1,0 +1,93 @@
+add_namespace = italy_expansion
+
+# Libya
+
+country_event = {
+    id = italy_expansion.1
+    title = "Italy Demands Libya"
+    desc = italy_expansion.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Cede Libya to Italy."
+        ITA = { news_event = { id = italy_expansion.2 hours = 12 random_hours = 6 } }
+    }
+
+    option = {
+        name = "Refuse the demand."
+        ITA = { 
+            news_event = { id = italy_expansion.3 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = TUR
+                type = take_claimed_state
+            }
+        }
+    }
+}
+
+news_event = {
+    id = italy_expansion.2
+    title = "Turkey Yields Libya to Italy"
+    desc = italy_expansion.2.d
+
+    is_triggered_only = yes
+
+    option = { name = "Italy's empire grows." }
+}
+
+news_event = {
+    id = italy_expansion.3
+    title = "Turkey Refuses to Surrender Libya"
+    desc = italy_expansion.3.d
+
+    is_triggered_only = yes
+
+    option = { name = "Italy must decide its next move." }
+}
+
+# Aegean
+
+country_event = {
+    id = italy_expansion.4
+    title = "Italy Demands the Aegean Islands"
+    desc = italy_expansion.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Cede the islands to Italy."
+        ITA = { news_event = { id = italy_expansion.5 hours = 12 random_hours = 6 } }
+    }
+
+    option = {
+        name = "Refuse the demand."
+        ITA = { 
+            news_event = { id = italy_expansion.6 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = TUR
+                type = take_claimed_state
+            }
+        }
+    }
+}
+
+news_event = {
+    id = italy_expansion.5
+    title = "Turkey Transfers the Aegean Islands to Italy"
+    desc = italy_expansion.5.d
+
+    is_triggered_only = yes
+
+    option = { name = "Italy expands its Mediterranean holdings." }
+}
+
+news_event = {
+    id = italy_expansion.6
+    title = "Turkey Rejects Italy's Demand for the Aegean Islands"
+    desc = italy_expansion.6.d
+
+    is_triggered_only = yes
+
+    option = { name = "Diplomacy has failed." }
+}

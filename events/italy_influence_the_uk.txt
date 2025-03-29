@@ -1,0 +1,165 @@
+add_namespace = italy_influence_the_uk
+
+## Mediate South Tirol
+
+country_event = {
+    id = italy_influence_the_uk.1
+    title = "Italy Requests British Mediation on South Tirol"
+    desc = italy_influence_the_uk.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Mediate the dispute with Austria."
+        AUS = { country_event = { id = italy_influence_the_uk.2 hours = 12 random_hours = 6 } }
+    }
+
+    option = {
+        trigger = { not = { is_ally_with = ITA } }
+
+        name = "Offer Italy a guarantee instead."
+        ITA = { news_event = { id = italy_influence_the_uk.5 hours = 12 random_hours = 6 } }
+
+        give_guarantee = ITA
+    }
+
+    option = {
+        trigger = { is_ally_with = ITA }
+
+        name = "We won't intervene in this matter."
+        ITA = { news_event = { id = italy_influence_the_uk.6 hours = 12 random_hours = 6 } }
+    }
+}
+
+country_event = {
+    id = italy_influence_the_uk.2
+    title = "Settlement Over South Tirol?"
+    desc = italy_influence_the_uk.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Accept and cede South Tirol to Italy."
+        ITA = { news_event = { id = italy_influence_the_uk.3 hours = 12 random_hours = 6 } }
+
+        39 = { transfer_state_to = ITA }        
+        850 = { transfer_state_to = ITA }
+
+        ai_chance = {
+            base = 1
+            modifier = { ITA = { is_ally_with = ENG } factor = 3 }
+            modifier = { ITA = { has_country_flag = invited_naval_experts } add = 1 }
+        }
+    }
+
+    option = {
+        name = "Refuse British mediation."
+        ITA = { 
+            news_event = { id = italy_influence_the_uk.4 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = AUS
+                type = take_claimed_state
+            }
+        }
+
+        ai_chance = {
+            base = 2
+            modifier = { AUS = { or = { is_ally_with = GER is_ally_with = FRA } } factor = 3 }
+        }
+    }
+}
+
+news_event = {
+    id = italy_influence_the_uk.3
+    title = "Austria Yields South Tirol to Italy"
+    desc = italy_influence_the_uk.3d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = { name = "A peaceful resolution." }
+}
+
+news_event = {
+    id = italy_influence_the_uk.4
+    title = "Austria Rejects British Mediation"
+    desc = italy_influence_the_uk.4.d
+
+    is_triggered_only = yes
+
+    option = { name = "Tensions remain high." }
+}
+
+news_event = {
+    id = italy_influence_the_uk.5
+    title = "United Kingdom Offers Guarantees Instead"
+    desc = italy_influence_the_uk.5.d
+
+    is_triggered_only = yes
+
+    option = { name = "At least something." }
+}
+
+news_event = {
+    id = italy_influence_the_uk.6
+    title = "United Kingdom Won't Intervene"
+    desc = italy_influence_the_uk.6.d
+
+    is_triggered_only = yes
+
+    option = { name = "What great allies we chose..." }
+}
+
+## Alliance with the UK
+
+country_event = {
+    id = italy_influence_the_uk.7
+    title = "Italy Proposes an Alliance"
+    desc = italy_influence_the_uk.7.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Accept the alliance offer."
+        ITA = { news_event = { id = italy_influence_the_uk.8 hours = 12 random_hours = 6 } }
+        add_to_faction = ITA
+
+        ai_chance = { 
+            base = 1
+            modifier = { has_war = yes factor = 3 }
+            modifier = { not = { is_ally_with = FRA } factor = 3 }
+            modifier = { ITA = { has_country_flag = invited_naval_experts } add = 1 }
+        }
+    }
+
+    option = {
+        name = "Decline the alliance."
+        ITA = { news_event = { id = italy_influence_the_uk.9 hours = 12 random_hours = 6 } }
+
+        ai_chance = {
+            base = 1
+            modifier = { has_government = authoritarianism factor = 3 }
+        }
+    }
+}
+
+news_event = {
+    id = italy_influence_the_uk.8
+    title = "Britain and Italy Form an Alliance"
+    desc = italy_influence_the_uk.8.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = { name = "A new era of cooperation." }
+}
+
+news_event = {
+    id = italy_influence_the_uk.9
+    title = "Britain Rejects Italy's Alliance Offer"
+    desc = italy_influence_the_uk.9.d
+
+    is_triggered_only = yes
+
+    option = { name = "Italy must stand alone." }
+}

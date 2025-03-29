@@ -35,14 +35,13 @@ dc_dominate_the_mediterranean = {
         }
 
         complete_effect = {
-            ## news event
+            news_event = { id = england_dominate_the_mediterranean.1 hours = 12 random_hours = 6 }
             TUR = {
                 add_opinion_modifier = {
                     target = ENG
                     modifier = medium_decrease
                 }
             }
-
             hidden_effect = { TUR = { add_ideas = sww1_idea_looming_arab_revolt } }
         }
     }
@@ -61,7 +60,7 @@ dc_affirm_the_entente = {
         }
 
         complete_effect = {
-            ## news event
+            news_event = { id = britain_affirm_the_entente.1 hours = 12 random_hours = 6 }
             hidden_effect = { set_country_flag = announced_containment }
         }
     }
@@ -70,7 +69,7 @@ dc_affirm_the_entente = {
         fire_only_once = yes
 
         targets = { FRA JAP }
-        target_trigger = { is_in_faction = no }
+        target_trigger = { FROM = { is_in_faction = no } }
 
         ai_will_do = { 
             base = 6
@@ -82,7 +81,7 @@ dc_affirm_the_entente = {
         }
 
         complete_effect = {
-            ## country event in the recipient country (yes / no)
+            FROM = { country_event = { id = britain_affirm_the_entente.2 hours = 12 random_hours = 6 } }
         }
     }
 }
@@ -96,8 +95,7 @@ dc_change_the_alliances = {
         ai_will_do = { base = 12 }
 
         complete_effect = {
-            ## news event: UK invites Germany to discuss the Far East
-
+            news_event = { id = britain_change_the_alliances.1 hours = 12 random_hours = 6 }
             if = {
                 limit = { is_ai = yes }
                 dismantle_faction = yes
@@ -115,7 +113,7 @@ dc_change_the_alliances = {
         }
 
         complete_effect = {
-            ## country event in Germany: shift in global alliances?
+            GER = { country_event = { id = britain_change_the_alliances.2 hours = 12 random_hours = 6 } }
         }
     }
 }
@@ -197,7 +195,7 @@ dc_announce_the_commons_act = {
         complete_effect = {
             add_stability = 0.1
             hidden_effect = {
-                ## delayed news event about demonstrations in London; choice: "all power to the councils!" (news: communists take over the uk) vs "disperse the demonstration" (news: 49 dead, civil war erupts)
+                country_event = { id = britain_commons_act.1 days = 7 random_days = 7 }
             }
         }
     }

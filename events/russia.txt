@@ -109,15 +109,13 @@ news_event = {
 
     trigger = {
         not = { has_war_with = MAN }
-        every_state = {
-            limit = {
-                OR = {
-                    state = 328
-                    state = 714
-                    state = 716
-                    state = 717
-                    state = 761
-                }
+        any_state = {
+            or = {
+                state = 328
+                state = 714
+                state = 716
+                state = 717
+                state = 761
             }
             is_owned_by = MAN
         }
