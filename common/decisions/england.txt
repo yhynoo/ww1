@@ -42,7 +42,25 @@ dc_dominate_the_mediterranean = {
                     modifier = medium_decrease
                 }
             }
-            hidden_effect = { TUR = { add_ideas = sww1_idea_looming_arab_revolt } }
+            hidden_effect = { 
+                TUR = { 
+                    if = {
+                        limit = {
+                            not = {
+                                has_completed_focus = TUR_address_arab_insurgencies
+                                has_idea = sww1_idea_looming_arab_revolt
+                                has_country_flag = arab_revolt_happened
+                            }
+                        }
+                        add_ideas = sww1_idea_looming_arab_revolt
+
+                        hidden_effect = {
+                            news_event = { id = arab_revolt.2 days = 60 random_days = 14 }
+                            news_event = { id = arab_revolt.3 days = 120 random_days = 14 }
+                        }
+                    }
+                }
+            }
         }
     }
 }

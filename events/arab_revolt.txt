@@ -1,0 +1,25 @@
+add_namespace = arab_revolt
+
+## 1. Internal Ottoman Instability Triggers Revolt
+news_event = {
+    id = arab_revolt.1
+    title = "Arab Dissent Grows"
+    desc = arab_revolt.1.d
+
+    trigger = {
+        tag = TUR
+
+        #has_stability < 0.2
+        #date > 1915.6.1
+        not = {
+            has_completed_focus = TUR_address_arab_insurgencies
+            has_idea = sww1_idea_looming_arab_revolt
+            has_country_flag = arab_revolt_happened
+        }
+    }
+
+    option = { 
+        name = "The empire trembles."
+        add_idea = sww1_idea_looming_arab_revolt
+    }
+}

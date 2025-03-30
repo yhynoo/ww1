@@ -21,7 +21,7 @@ replace_path="common/ideologies"
 replace_path="common/national_focus"
 replace_path="common/on_actions"
 replace_path="common/technologies"
-replace_path="common/units"
+#replace_path="common/units"				# commented out because it crashed the russian civil war somehow.
 
 replace_path="events"
 replace_path="history/units"

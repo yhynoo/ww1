@@ -1,0 +1,30 @@
+SOV_army_composition = {
+	allowed = {
+		original_tag = SOV
+	}
+
+	enable = {
+		always = yes
+	}
+
+	abort_when_not_enabled = yes
+
+	## Land troops
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 55
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = garrison
+		value = 30
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = cyclist
+		value = 5
+	}
+}

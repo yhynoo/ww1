@@ -1,0 +1,30 @@
+FRA_army_composition = {
+	allowed = {
+		original_tag = FRA
+	}
+
+	enable = {
+		always = yes
+	}
+
+	abort_when_not_enabled = yes
+
+	## Land troops
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 50
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = garrison
+		value = 15
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = cyclists
+		value = 10
+	}
+}
