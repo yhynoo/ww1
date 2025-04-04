@@ -1,0 +1,64 @@
+add_namespace = manchukuo_another_great_campaign
+
+country_event = {
+    id = manchukuo_another_great_campaign.1
+    title = "[MAN.GetName] Demands Korea!"
+    desc = manchukuo_another_great_campaign.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let them have it."
+        news_event = { id = manchukuo_another_great_campaign.2 hours = 12 random_hours = 6 }
+
+        525 = { transfer_state_to = MAN }
+        527 = { transfer_state_to = MAN }
+
+        ai_chance = { 
+            base = 1
+            modifier = { strength_ratio = { tag = MAN ratio < 0.8 } factor = 3 }
+        }
+    }
+
+    option = {
+        name = "No way!"
+
+        MAN = {
+            news_event = { id = manchukuo_another_great_campaign.3 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = JAP
+                type = take_claimed_state
+            }
+        }
+
+        ai_chance = {
+            base = 6
+            modifier = { is_in_faction = yes factor = 3 }
+        }
+    }
+}
+
+news_event = {
+    id = manchukuo_another_great_campaign.2
+    title = "Japan Withdraws from Korea!"
+    desc = manchukuo_another_great_campaign.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "An interesting development."
+    }
+}
+
+news_event = {
+    id = manchukuo_another_great_campaign.3
+    title = "Japan Won't Yield"
+    desc = manchukuo_another_great_campaign.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We will see about it..."
+    }
+}

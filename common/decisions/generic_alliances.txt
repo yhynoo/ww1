@@ -1,0 +1,108 @@
+dc_seek_alliances = {
+    seek_alliances_austria = { visible = { always = no } }
+
+    seek_alliances_england = {
+        visible = {
+            or = { tag = TUR tag = SOV }
+        }
+
+        cost = 150
+        fire_only_once = yes
+
+        ai_will_do = { 
+            base = 3
+            modifier = { threat > 0.1 factor = 3 }
+
+            modifier = {
+                and = { 
+                    tag = TUR
+                    or = {
+                        ENG = { is_ally_with = SOV }
+                        is_guaranteed_by = GER
+                    }
+                }
+                factor = 0
+            }
+
+            modifier = {
+                and = { 
+                    tag = SOV
+                    ENG = { is_ally_with = TUR }
+                }
+                factor = 0
+            }
+        }
+
+        complete_effect = {
+            ENG = { country_event = { id = seek_alliances.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    seek_alliances_france = {
+        visible = {
+            or = { tag = AUS tag = SOV }
+        }
+
+        cost = 150
+        fire_only_once = yes
+
+        ai_will_do = { 
+            base = 3
+            modifier = { threat > 0.1 factor = 3 }
+
+            modifier = {
+                and = { 
+                    tag = AUS
+                    FRA = { is_ally_with = SOV }
+                }
+                factor = 0
+            }
+
+            modifier = {
+                and = { 
+                    tag = SOV
+                    FRA = { is_ally_with = AUS }
+                }
+                factor = 0
+            }
+        }
+
+        complete_effect = {
+            FRA = { country_event = { id = seek_alliances.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    seek_alliances_germany = {
+        visible = {
+            or = { tag = AUS tag = TUR }
+        }
+
+        cost = 150
+        fire_only_once = yes
+
+        ai_will_do = { 
+            base = 3
+            modifier = { threat > 0.1 factor = 3 }
+
+            modifier = {
+                and = { 
+                    or = { tag = AUS tag = TUR }
+                    GER = { is_ally_with = SOV }
+                }
+                factor = 0
+            }
+            modifier = {
+                and = {
+                    tag = TUR
+                    is_guaranteed_by = GER
+                }
+                factor = 3
+            }
+        }
+
+        complete_effect = {
+            GER = { country_event = { id = seek_alliances.1 hours = 12 random_hours = 6 } }
+        }
+    }
+
+    seek_alliances_russia = { visible = { always = no } }
+    seek_alliances_usa = { visible = { always = no } }
+}

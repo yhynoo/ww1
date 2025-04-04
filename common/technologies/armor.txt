@@ -11,14 +11,12 @@ technologies = {
     @1920 = 20
 
     early_armored_car = {
-	allow = {
-            always = no
-        }
-
         categories = { mechanized }
 
         research_cost = 1
         start_year = 1904
+
+        experience_gain_army = 0.1
 
         path = {
             leads_to_tech = armored_car_1912
@@ -32,7 +30,7 @@ technologies = {
     }
     armored_car_1912 = {
         enable_subunits = { armored_car }
-        enable_equipments = { armored_car_equipment_0 }
+        enable_equipments = { gw_armored_car_equipment }
         categories = { mechanized }
 
         research_cost = 2
@@ -114,6 +112,7 @@ technologies = {
         }
     }
     mech_inf = {
+        enable_subunits = { mechanized }
         enable_equipments = { mechanized_equipment_1 }
         categories = { mechanized }
 
@@ -128,14 +127,12 @@ technologies = {
 
     ## tanks
     tank_experiments = {
-	allow = {
-            always = no
-        }
-
         categories = { armor }
 
         research_cost = 3
         start_year = 1914
+
+        experience_gain_army = 0.1
 
         path = {
             leads_to_tech = heavy_1916

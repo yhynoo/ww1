@@ -1,0 +1,285 @@
+add_namespace = manchukuo_the_opium_crisis
+
+country_event = {
+    id = manchukuo_the_opium_crisis.1
+    title = "Seek English Support?"
+    desc = manchukuo_the_opium_crisis.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They should be interested too."
+        ENG = { country_event = { id = manchukuo_the_opium_crisis.2 hours = 12 random_hours = 6 } }
+
+        ai_chance = { 
+            base = 2
+            modifier = { is_ally_with = ENG factor = 6 }
+        }
+    }
+
+    option = {
+        name = "We can manage alone."
+
+        if = {
+            limit = { not = { has_war_with = FRA }}
+            FRA = { country_event = { id = manchukuo_the_opium_crisis.4 hours = 12 random_hours = 6 } }
+        }
+
+        if = {
+            limit = { not = { has_war_with = HOL }}
+            HOL = { country_event = { id = manchukuo_the_opium_crisis.4 hours = 12 random_hours = 6 } }
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = manchukuo_the_opium_crisis.2
+    title = "[MAN.GetName] Seeks Our Support in Indochina"
+    desc = manchukuo_the_opium_crisis.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Ignore them."
+        MAN = { 
+            country_event = { id = manchukuo_the_opium_crisis.3 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = ENG
+                modifier = medium_decrease
+            }
+        }
+
+        ai_chance = { 
+            base = 2
+            modifier = { or = { is_ally_with = FRA is_ally_with = HOL } factor = 3 }
+        }
+    }
+
+    option = {
+        name = "This is a good opportunity."
+
+        if = {
+            limit = { not = { has_war_with = FRA }}
+            FRA = { country_event = { id = manchukuo_the_opium_crisis.5 hours = 12 random_hours = 6 } }
+        }
+
+        if = {
+            limit = { not = { has_war_with = HOL }}
+            HOL = { country_event = { id = manchukuo_the_opium_crisis.5 hours = 12 random_hours = 6 } }
+        }
+
+        if = {
+            limit = { is_in_faction = no }
+            create_faction = "Anglo-Chinese Alliance"
+        }
+        faction_leader = { add_to_faction = MAN }
+
+        ai_chance = { 
+            base = 1
+            modifier = { or = { is_ally_with = GER is_in_faction = no } factor = 3 }
+        }
+    }
+}
+
+country_event = {
+    id = manchukuo_the_opium_crisis.3
+    title = "[ENG.GetName] Ignores Our Offer"
+    desc = manchukuo_the_opium_crisis.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We should pursue this matter anyway."
+
+        if = {
+            limit = { not = { has_war_with = FRA }}
+            FRA = { country_event = { id = manchukuo_the_opium_crisis.4 hours = 12 random_hours = 6 } }
+        }
+
+        if = {
+            limit = { not = { has_war_with = HOL }}
+            HOL = { country_event = { id = manchukuo_the_opium_crisis.4 hours = 12 random_hours = 6 } }
+        }
+
+        ai_chance = { base = 3 }
+    }
+
+    option = {
+        name = "Let's leave it for now."
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = manchukuo_the_opium_crisis.4
+    title = "[MAN.GetName] Demands Our Land in Indochina!"
+    desc = manchukuo_the_opium_crisis.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We don't need it anyway."
+        news_event = { id = manchukuo_the_opium_crisis.6 hours = 12 random_hours = 6 }
+
+        every_state = {
+            limit = {
+                or = {
+                    state = 286     # North
+                    state = 670
+                    state = 671
+                    state = 869
+
+                    state = 289     # South
+                    state = 724
+                    state = 741
+                    state = 868
+                }
+                is_owned_by = ROOT
+            }
+            transfer_state_to = MAN
+        }
+
+        ai_chance = {
+            base = 1
+            modifier = { has_war = yes factor = 3 }
+        }
+    }
+
+    option = {
+        name = "Who do they think they are?"
+        MAN = {
+            news_event = { id = manchukuo_the_opium_crisis.7 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = take_claimed_state
+            }
+        }
+
+        ai_chance = { base = 3 }
+    }
+}
+
+country_event = {
+    id = manchukuo_the_opium_crisis.5
+    title = "[MAN.GetName] and [ENG.GetName] Demand Indochina!"
+    desc = manchukuo_the_opium_crisis.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We don't need it anyway."
+        news_event = { id = manchukuo_the_opium_crisis.6 hours = 12 random_hours = 6 }
+
+        every_state = {
+            limit = {
+                or = {
+                    state = 286
+                    state = 670
+                    state = 671
+                    state = 869
+                }
+                is_owned_by = ROOT
+            }
+            transfer_state_to = MAN
+        }
+
+        every_state = {
+            limit = {
+                or = {
+                    state = 289
+                    state = 724
+                    state = 741
+                    state = 868
+                }
+                is_owned_by = ROOT
+            }
+            transfer_state_to = ENG
+        }
+
+        ai_chance = {
+            base = 1
+            modifier = { has_war = yes factor = 3 }
+        }
+    }
+
+    option = {
+        name = "Who do they think they are?"
+        MAN = {
+            news_event = { id = manchukuo_the_opium_crisis.7 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = take_claimed_state
+            }
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = manchukuo_the_opium_crisis.6
+    title = "[ROOT.GetName] Withdraws from Indochina!"
+    desc = manchukuo_the_opium_crisis.6.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = manchukuo_the_opium_crisis.7
+    title = "[FROM.GetName] Declines!"
+    desc = manchukuo_the_opium_crisis.7.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "So we shall go to war!"
+    }
+}
+
+news_event = {
+    id = manchukuo_the_opium_crisis.8
+    title = "Opium Crisis Averted!"
+    desc = manchukuo_the_opium_crisis.8.d
+
+    trigger = {
+        or = {
+            has_idea = sww1_idea_severe_opium_crisis
+            has_idea = sww1_idea_limited_opium_crisis
+        }
+        all_state = {
+            or = {
+                state = 286
+                state = 670
+                state = 671
+                state = 869
+                state = 289
+                state = 724
+                state = 741
+                state = 868
+            }
+            not = { is_owned_by = HOL }
+            not = { is_owned_by = FRA }
+        }
+    }
+
+    option = {
+        name = "Wonderful."
+        
+        if = {
+            limit = { has_idea = sww1_idea_severe_opium_crisis }
+            remove_ideas = sww1_idea_severe_opium_crisis
+        }
+
+        if = {
+            limit = { has_idea = sww1_idea_limited_opium_crisis }
+            remove_ideas = sww1_idea_limited_opium_crisis
+        }
+    }
+}

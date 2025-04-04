@@ -2,12 +2,51 @@ cyclist_generic = {
     role = cyclist
 
     early_cyclist = {
+        upgrade_prio = { base = 2 }
+
         target_template = {
             support = {
                 artillery = 1
             }
             regiments = {
-                cyclist_infantry = 6
+                bicycle_battalion = 6
+            }
+        }
+    }
+
+    improved_cyclist = {
+        enable = { has_tech = armored_car_1912 }
+        upgrade_prio = { base = 1.5 }
+        
+        target_template = {
+            support = {
+                artillery = 1
+                recon = 1
+            }
+            regiments = {
+                bicycle_battalion = 6
+                armored_car = 2
+            }
+        }
+    }
+    
+    late_cyclist = {
+        enable = { has_tech = mech_inf }
+        upgrade_prio = { 
+            base = 1
+            modifier = { and { num_of_military_factories > 25 date > 1916.1.1 } factor = 1.5 }
+        }
+
+        target_template = {
+            support = {
+                artillery = 1
+                recon = 1
+                logistics_company = 1
+            }
+            regiments = {
+                bicycle_battalion = 6
+                armored_car = 2
+                mechanized = 2
             }
         }
     }

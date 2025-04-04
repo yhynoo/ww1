@@ -4,7 +4,7 @@ oob = "MAN_1912"
 set_naval_oob = "MAN_naval_1912"
 
 set_research_slots = 2
-set_stability = 0.1
+set_stability = 0.45
 set_war_support = 0.3
 
 recruit_character = MAN_chen_duxiu
@@ -14,7 +14,10 @@ recruit_character = MAN_yuan_shikai
 
 recruit_character = MAN_duan_qirui
 
-add_ideas = { }
+add_ideas = {
+    sww1_idea_severe_opium_crisis
+    sww1_idea_enthusiasm_for_democracy
+}
 
 set_technology = {
     infantry_1904 = 1
@@ -30,14 +33,14 @@ set_technology = {
 }
 
 set_popularities = {
-    authoritarianism = 15
-    democratic = 35
-    monarchism = 50
+    communism = 10
+    democratic = 75
+    monarchism = 15
 }
 
 set_politics = {
-    ruling_party = monarchism
+    ruling_party = democratic
     last_election = "1910.1.12"
     election_frequency = 48
-    elections_allowed = no
+    elections_allowed = yes
 }

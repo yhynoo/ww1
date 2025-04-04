@@ -54,11 +54,65 @@ news_event = {
     }
 }
 
-### 4. News: Austria Supports Polish Independence
-news_event = {
+### 4. Austria-Hungary Offers an Alliance to Turkey
+country_event = {
     id = austria_contain_russian_expansion.4
-    title = "Austria-Hungary Sides with Polish Independence"
+    title = "Austria-Hungary Offers an Alliance to Turkey"
     desc = austria_contain_russian_expansion.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall stop [SOV.GetNameDef] together."
+        TUR = { news_event = { id = austria_contain_russian_expansion.5 hours = 12 random_hours = 6 } }
+
+        AUS = {
+            if = {
+                limit = { is_in_faction = no }
+                create_faction = "Austro-Turkish Alliance"
+            }
+            faction_leader = { add_to_faction = TUR }
+        }
+    }
+
+    option = {
+        name = "Reject the alliance offer."
+        AUS = { news_event = { id = austria_contain_russian_expansion.6 hours = 12 random_hours = 6 } }
+    }
+}
+
+### 5. News: Austria and Turkey Form an Alliance
+news_event = {
+    id = austria_contain_russian_expansion.5
+    title = "Austria-Hungary and Turkey Form an Alliance"
+    desc = austria_contain_russian_expansion.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A tought nut to crack for the Russians."
+    }
+}
+
+### 6. News: Turkey Rejects Austrian Alliance Offer
+news_event = {
+    id = austria_contain_russian_expansion.6
+    title = "Afghanistan Rejects Austria-Hungary's Alliance Offer"
+    desc = austria_contain_russian_expansion.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This will hurt both of us."
+    }
+}
+
+### 7. News: Austria Supports Polish Independence
+news_event = {
+    id = austria_contain_russian_expansion.7
+    title = "Austria-Hungary Sides with Polish Independence"
+    desc = austria_contain_russian_expansion.7.d
 
     is_triggered_only = yes
 

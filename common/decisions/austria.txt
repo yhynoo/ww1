@@ -4,7 +4,10 @@ dc_contain_russian_expansion = {
         fire_only_once = yes
 
         available = {
-            AFG = { is_subject = no is_in_faction = no }
+            AFG = { 
+                is_subject = no 
+                is_in_faction = no
+            }
         }
 
         ai_will_do = { 
@@ -15,6 +18,27 @@ dc_contain_russian_expansion = {
 
         complete_effect = {
             AFG = { country_event = { id = austria_contain_russian_expansion.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    invite_turkey = {
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            has_idea = sww1_idea_slavic_unrest
+            TUR = { 
+                is_in_faction = no
+                has_completed_focus = TUR_sarajevo_memorandum
+            }
+        }
+
+        ai_will_do = {
+            base = 6
+            modifier = { threat > 0.1 factor = 3 }
+        }
+
+        complete_effect = {
+            TUR = { country_event = { id = austria_contain_russian_expansion.4 hours = 12 random_hours = 6 } }
         }
     }
     declare_support_poland = {
@@ -31,7 +55,7 @@ dc_contain_russian_expansion = {
         }
 
         complete_effect = {
-            news_event = { id = austria_contain_russian_expansion.4 hours = 12 random_hours = 6 }
+            news_event = { id = austria_contain_russian_expansion.7 hours = 12 random_hours = 6 }
             set_country_flag = austria_likes_poland
         }
     }

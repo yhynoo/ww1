@@ -8,7 +8,7 @@ dc_serbian_question = {
         ai_will_do = {
             base = 3
             modifier = {
-                has_govenment = monarchism
+                has_government = monarchism
                 factor = 2
             }
             modifier = {
@@ -87,7 +87,7 @@ dc_far_east = {
         ai_will_do = {
             base = 3
             modifier = {
-                has_govenment = authoritarianism
+                has_government = authoritarianism
                 factor = 10
             }
             modifier = {
@@ -96,7 +96,7 @@ dc_far_east = {
             }
         }
 
-        remove_days = 90
+        days_remove = 90
         war_with_on_remove = MAN
         remove_effect = {
             MAN = {
@@ -139,7 +139,7 @@ dc_far_east = {
             }
         }
 
-        remove_days = 90
+        days_remove = 90
         remove_effect = {
             MAN = {
                 country_event = { id = russia_events.9 hours = 12 random_hours = 6 }
@@ -200,13 +200,13 @@ dc_okhrana = {
         icon = generic_civil_support
         
         cost = 75
-        remove_days = 90
+        days_remove = 90
 
         ai_will_do = {
             base = 5
             modifier = {
                 AND = {
-                    has_govenment = monarchism
+                    has_government = monarchism
                     monarchism < 60
                 }
                 factor = 3
@@ -223,10 +223,10 @@ dc_okhrana = {
         icon = generic_civil_support
 
         cost = 100
-        remove_days = 90
+        days_remove = 90
 
         available = {
-            has_war_support = 50
+            has_war_support > 50
         }
 
         ai_will_do = {
@@ -248,7 +248,7 @@ dc_okhrana = {
         icon = generic_prepare_civil_war
 
         cost = 100
-        remove_days = 90
+        days_remove = 90
 
         available = {
             has_war = yes
@@ -288,7 +288,7 @@ dc_self_determination = {
         icon = generic_research
 
         cost = 100
-        fire_only_once
+        fire_only_once = yes
 
         complete_effect = {
             add_ideas = sww1_idea_prosvita

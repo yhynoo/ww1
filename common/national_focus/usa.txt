@@ -1006,20 +1006,19 @@ focus_tree = {
 
         prerequisite = { focus = USA_state_reform }
         available = {
-            communism > 0.3
+            authoritarianism > 0.3
         }
         
         completion_reward = {
             start_civil_war = {
-                ruling_party = communism
+                ruling_party = authoritarianism
                 ideology = ROOT
                 size = 0.5
             }
 
             hidden_effect = {
-                set_popularity = {
-                    ideology = communism
-                    popularity = 1.0
+                set_popularities = {
+                    authoritarianism = 100
                 }
             }
         }

@@ -375,7 +375,7 @@ news_event = {
 
 country_event = {
     id = russia_events.11
-    title = "Qing Offers Alliance Instead!"
+    title = "[MAN.GetName] Offers Alliance Instead!"
     desc = russia_events.11.d
 
     is_triggered_only = yes
@@ -401,7 +401,7 @@ country_event = {
             }
             modifier = {
                 strength_ratio = {
-                    tag = MAN        # if Qing is strong enough - why not?
+                    tag = MAN        # if China is strong enough - why not?
                     ratio < 2
                 }
                 factor = 4
@@ -411,7 +411,7 @@ country_event = {
 
     option = {
         name = "This is not what we wanted."
-        MAN = { news_event = { id = russia_events.13 hours = 12 random_hours = 6 } }  # this is news only in Qing.
+        MAN = { news_event = { id = russia_events.13 hours = 12 random_hours = 6 } }  # this is news only in China.
 
         ai_chance = {
             base = 1

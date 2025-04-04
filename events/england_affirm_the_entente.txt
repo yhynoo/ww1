@@ -30,8 +30,9 @@ country_event = {
         }
 
         ai_chance = { 
-            base = 2
-            modifier = { or = { threat > 0.1 GER = { is_in_faction = yes } } factor = 3 }
+            base = 6
+            modifier = { tag = JAP factor = 2 }
+            modifier = { has_completed_focus = FRA_ancien_regime factor factor = 0 }
         }
     }
 
@@ -41,7 +42,6 @@ country_event = {
 
         ai_chance = { 
             base = 1
-            modifier = { has_completed_focus = FRA_ancien_regime factor = 12 }
         }
     }
 }

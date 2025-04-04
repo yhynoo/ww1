@@ -1,0 +1,85 @@
+add_namespace = seek_alliances
+
+country_event = {
+    id = seek_alliances.1
+    title = "[FROM.GetName] Offers an Alliance"
+    desc = seek_alliances.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Accept the offer."
+        FROM = { news_event = { id = seek_alliances.2 hours = 12 random_hours = 6 } }
+
+        if = {
+            limit = { is_in_faction = no }
+            if = {
+                limit = { tag = ENG }
+                create_faction = "Entente"
+            }
+            if = {
+                limit = { tag = FRA }
+                if = {
+                    limit = { and = { tag = AUS has_completed_focus = AUS_second_vienna_treaty } }
+                    create_faction = "Second Vienna Treaty"
+                }
+                else = { create_faction = "The Versailles Accords" }
+            }
+            if = {
+                limit = { tag = GER }
+                create_faction = "Central Powers"
+            }
+        }
+        faction_leader = { add_to_faction = FROM }
+
+        ## a massive calculator for chances comes here:
+        ai_chance = {
+            base = 1
+            modifier = { has_war = yes factor = 1.5 }                   # if we're at war, we probably want allies
+            modifier = { has_guaranteed = FROM factor = 3 }             # if we already guarantee them, it's nice to become allies too
+
+            if = {
+                limit = { tag = FRA }           
+                modifier = { is_in_faction = no factor = 2 }                                    # France really looks for friends if they are alone.
+                modifier = { has_government = ROOT factor = 3 }                                 # They also like being of the same government
+            }
+
+            if = {
+                limit = { tag = GER }
+                modifier = { has_completed_focus = GER_a_place_in_the_sun factor = 3 }          # Germany needs friends for war, so they are not left alone.
+            }
+        }
+    }
+
+    option = {
+        name = "Reject the offer."
+        FROM = { news_event = { id = seek_alliances.3 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 3 }
+    }
+}
+
+news_event = {
+    id = seek_alliances.2
+    title = "New Alliance Treaty Signed!"
+    desc = seek_alliances.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = seek_alliances.3
+    title = "[FROM.GetName] Rejects Our Alliance Offer"
+    desc = seek_alliances.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "That's a shame."
+    }
+}

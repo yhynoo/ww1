@@ -7,7 +7,7 @@ too_early_for_tanks = {
 
     abort_when_not_enabled = yes
 
-    add_ai_strategy = {
+    ai_strategy = {
         type = role_ratio
         id = armor
         value = -300
@@ -21,7 +21,7 @@ too_early_for_mountaineers = {
 
     abort_when_not_enabled = yes
 
-    add_ai_strategy = {
+    ai_strategy = {
         type = role_ratio
         id = mountaineers
         value = -300
@@ -35,7 +35,7 @@ too_early_for_marines = {
 
     abort_when_not_enabled = yes
 
-    add_ai_strategy = {
+    ai_strategy = {
         type = role_ratio
         id = marines
         value = -300
@@ -49,22 +49,23 @@ other_limits = {
     enable = {
         always = yes
     }
+    abort = { always = no }
 
-    add_ai_strategy = {
+    ai_strategy = {
         type = role_ratio
         id = paratroopers
-        value = -300
+        value = -1000
     }
 
-    add_ai_strategy = {
+    ai_strategy = {
         type = role_ratio
         id = suppression
-        value = -300
+        value = -1000
     }
 
-    add_ai_strategy = {
+    ai_strategy = {
         type = role_ratio
         id = anti_armor
-        value = -300
+        value = -1000
     }
 }

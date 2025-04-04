@@ -1,8 +1,7 @@
 ### infantry
 
     generic_infantry = {
-        blocked_for = { ENG ITA SOV TUR }
-
+        blocked_for = { ENG ITA MAN SOV TUR }
         role = infantry
 
         early_infantry = {
@@ -21,10 +20,9 @@
 
     ENG_infantry = {
         available_for = { ENG }
-
         role = infantry
 
-        early_infantry = {
+        ENG_early_infantry = {
             target_template = {
                 support = {
                     artillery = 1
@@ -40,10 +38,9 @@
 
     ITA_infantry = {
         available_for = { ITA }
-
         role = infantry
 
-        early_infantry = {
+        ITA_early_infantry = {
             target_template = {
                 support = {
                     artillery = 1
@@ -56,12 +53,11 @@
         }
     }
 
-    TUR_SOV_infantry = {
-        available_for = { TUR SOV }
-
+    MAN_infantry = {
+        available_for = { MAN TUR SOV }
         role = infantry
 
-        early_infantry = {
+        MAN_early_infantry = {
             target_template = {
                 support = {
                     artillery = 1
@@ -79,11 +75,8 @@
     generic_mountaineers = {
         role = mountaineers
 
-        enable = {
-            has_tech = mountaineers_1
-        }
-
         early_mountaineers = {
+            enable = { has_tech = mountaineers_1 }
             target_template = {
                 support = {
                     artillery = 1
@@ -102,11 +95,9 @@
     generic_marines = {
         role = marines
 
-        enable = {
-            has_tech = marines_1
-        }
-
         early_marines = {
+            enable = { has_tech = marines_1 }
+
             target_template = {
                 regiments = {
                     marine = 6
@@ -123,7 +114,7 @@
         early_garrison = {
             target_template = {
                 regiments = {
-                    infantry = 6
+                    infantry = 4
                 }
             }
         }

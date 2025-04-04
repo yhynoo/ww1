@@ -995,7 +995,7 @@
             modifier = {
                 AND = {
                     date > 1916.1.1
-                    has_govenrment = monarchism
+                    has_government = monarchism
                 }
                 factor = 3
             }
@@ -1068,7 +1068,6 @@
 
         prerequisite = { focus = SOV_monarchy }
         completion_reward = {
-            remove_ideas = sww1_idea_looming_revolution
             custom_effect_tooltip = decision_effect_tooltip
         }
     }
@@ -1106,6 +1105,11 @@
             add_timed_idea = {
                 idea = sww1_idea_one_and_indivisible
                 years = 1
+            }
+
+            if = {
+                limit = { has_idea = sww1_idea_looming_revolution }
+                remove_ideas = sww1_idea_looming_revolution
             }
         }
     }
@@ -1211,7 +1215,7 @@
                 communism > 30
                 factor = 5
             }
-            modifier  {
+            modifier = {
                 surrender_progress > 0.3
                 factor = 2.5
             }
@@ -1230,6 +1234,11 @@
             }
 
             hidden_effect = {
+                if = {
+                    limit = { has_idea = sww1_idea_looming_revolution }
+                    remove_ideas = sww1_idea_looming_revolution
+                }
+
                 set_popularities = {
                     communism = 100
                 }

@@ -20,6 +20,11 @@
         y = 0
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = { has_completed_focus = MAN_the_beiyang_army factor = 3 }
+        }
+
         completion_reward = {
             add_command_power = 25
         }
@@ -32,6 +37,8 @@
         x = -2
         y = 1
         cost = 10
+
+        ai_will_do = { base = 2 }
 
         prerequisite = { focus = MAN_adjust_budget }
         completion_reward = {
@@ -464,6 +471,11 @@
         y = 0
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = { has_completed_focus = MAN_the_opium_crisis factor = 3 }
+        }
+
         completion_reward = {
             add_stability = 0.1
         }
@@ -492,6 +504,11 @@
         y = 1
 
         cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
 
         prerequisite = { focus = MAN_agrarian_reform }
         completion_reward = {
@@ -546,6 +563,11 @@
         y = 1
 
         cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
 
         prerequisite = { focus = MAN_rationing }
         completion_reward = {
@@ -654,6 +676,8 @@
 
         cost = 10
 
+        ai_will_do = { base = 2 }
+
         prerequisite = { focus = MAN_infrastructure_effort }
 		completion_reward = {
 			random_owned_controlled_state = {
@@ -682,6 +706,8 @@
         y = 1
 
         cost = 10
+
+        ai_will_do = { base = 2 }
 
         prerequisite = { focus = MAN_infrastructure_effort }
 		completion_reward = {
@@ -753,6 +779,8 @@
 
         cost = 10
 
+        ai_will_do = { base = 3 }
+
         prerequisite = { 
             focus = MAN_construct_civilian
             focus = MAN_construct_military
@@ -775,6 +803,12 @@
         y = 5
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = { has_stability < 0.3 factor = 2 }
+            modifier = { not = { has_completed_focus = MAN_the_opium_crisis } factor = 3 }
+        }
+
         completion_reward = {
             add_political_power = 150
         }
@@ -787,6 +821,11 @@
         x = -4
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_stability < 0.25 factor = 3 }
+        }
 
         prerequisite = { focus = MAN_political_ambitions }
         completion_reward = {
@@ -823,6 +862,13 @@
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 2
+            modifier = { has_stability < 0.25 factor = 3 }
+        }
+
+        available = { has_idea = sww1_idea_severe_opium_crisis }
+
         prerequisite = { focus = MAN_international_affairs }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -858,31 +904,34 @@
     }
 
     focus = {
-        id = MAN_the_great_qing
-        icon = GFX_focus_generic_internal_stability
+        id = MAN_the_three_principles
+        icon = GFX_focus_MAN_the_three_principles
 
         relative_position_id = MAN_political_ambitions
         x = 0
         y = 1
         cost = 10
 
-        mutually_exclusive = { focus = MAN_five_races_under_one_nation }
+        mutually_exclusive = { focus = MAN_the_beiyang_army }
         prerequisite = { focus = MAN_political_ambitions }
         completion_reward = {
-            add_stability = 0.1
-            news_event = { id = generic_focus_tree_event.1 hours = 12 random_hours = 6 }
+            add_stability = 0.05
+            add_popularity = {
+                ideology = democratic
+                popularity = 0.05
+            }
         }
     }
     focus = {
-        id = MAN_rally_the_eight_banners
-        icon = GFX_focus_MAN_rally_the_eight_banners
+        id = MAN_modernization
+        icon = GFX_focus_MAN_modernization
 
-        relative_position_id = MAN_the_great_qing
+        relative_position_id = MAN_the_three_principles
         x = -1
         y = 1
         cost = 10
 
-        prerequisite = { focus = MAN_the_great_qing }
+        prerequisite = { focus = MAN_the_three_principles }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }
@@ -891,12 +940,12 @@
         id = MAN_embrace_korean_volunteers
         icon = GFX_focus_MAN_embrace_korean_volunteers
 
-        relative_position_id = MAN_the_great_qing
+        relative_position_id = MAN_the_three_principles
         x = 1
         y = 1
         cost = 10
 
-        prerequisite = { focus = MAN_the_great_qing }
+        prerequisite = { focus = MAN_the_three_principles }
         completion_reward = {
             add_timed_idea = {
                 idea = sww1_idea_embrace_korean_volunteers
@@ -905,76 +954,73 @@
         }
     }
     focus = {
-        id = MAN_the_young_emperor
-        icon = GFX_focus_MAN_the_young_emperor
+        id = MAN_father_of_the_people
+        icon = GFX_focus_MAN_father_of_the_people
 
-        relative_position_id = MAN_rally_the_eight_banners
+        relative_position_id = MAN_modernization
         x = 1
         y = 1
         cost = 10
 
         prerequisite = { 
-            focus = MAN_rally_the_eight_banners
+            focus = MAN_modernization
             focus = MAN_embrace_korean_volunteers
         }
         completion_reward = {
             add_timed_idea = {
-                idea = sww1_idea_the_young_emperor
+                idea = sww1_idea_father_of_the_people
                 years = 1
             }
         }
     }
     focus = {
-        id = MAN_mandate_of_heaven
+        id = MAN_five_races_one_nation
         icon = GFX_focus_generic_the_everlasting_spirit
 
-        relative_position_id = MAN_the_young_emperor
+        relative_position_id = MAN_father_of_the_people
         x = 0
         y = 1
         cost = 10
 
-        prerequisite = { focus = MAN_the_young_emperor }
+        prerequisite = { focus = MAN_father_of_the_people }
         completion_reward = {
-            add_ideas = sww1_idea_mandate_of_heaven
+            add_ideas = sww1_idea_five_races_one_nation
         }
     }
 
     focus = {
-        id = MAN_five_races_under_one_nation
-        icon = GFX_focus_generic_five_races_under_one_nation
+        id = MAN_the_beiyang_army
+        icon = GFX_focus_MAN_the_beiyang_army
 
         relative_position_id = MAN_political_ambitions
         x = 4
         y = 1
         cost = 10
 
-        mutually_exclusive = { focus = MAN_the_great_qing }
+        mutually_exclusive = { focus = MAN_the_three_principles }
         prerequisite = { focus = MAN_political_ambitions }
         completion_reward = {
+            remove_ideas = sww1_idea_enthusiasm_for_democracy
             add_timed_idea = {
-                idea = sww1_idea_democratic_tendencies
+                idea = sww1_idea_monarchism_tendencies
                 years = 1
             }
             add_popularity = {
-                ideology = democratic
-                popularity = 0.1
-            }
-
-            hidden_effect = {
-                news_event = { id = generic_focus_tree_event.4 hours = 12 random_hours = 6 }
+                ideology = monarchism
+                popularity = 0.05
             }
         }
     }
     focus = {
         id = MAN_yuan_shikais_clique
-        icon = GFX_focus_generic_yuan_shikais_clique
+        icon = GFX_focus_MAN_yuan_shikais_clique
 
-        relative_position_id = MAN_five_races_under_one_nation
+        relative_position_id = MAN_the_beiyang_army
         x = 2
         y = 1
         cost = 10
 
-        prerequisite = { focus = MAN_five_races_under_one_nation }
+        prerequisite = { focus = MAN_the_beiyang_army }
         completion_reward = {
             add_timed_idea = {
                 idea = sww1_idea_yuan_shikais_clique
@@ -983,22 +1029,22 @@
         }
     }
     focus = {
-        id = MAN_encourage_urbanization
-        icon = GFX_focus_MAN_encourage_urbanization
+        id = MAN_the_boxer_legacy
+        icon = GFX_focus_MAN_the_boxer_legacy
 
-        relative_position_id = MAN_five_races_under_one_nation
+        relative_position_id = MAN_the_beiyang_army
         x = -1
         y = 1
         cost = 10
 
-        prerequisite = { focus = MAN_five_races_under_one_nation }
+        prerequisite = { focus = MAN_the_beiyang_army }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }
     }
     focus = {
         id = MAN_the_hongxian_emperor
-        icon = GFX_focus_generic_over_the_edge
+        icon = GFX_focus_MAN_the_hongxian_emperor
 
         relative_position_id = MAN_yuan_shikais_clique
         x = 2
@@ -1007,27 +1053,19 @@
 
         prerequisite = { focus = MAN_yuan_shikais_clique }
         available = {
-            communism > 0.3
+            monarchism > 0.5
         }
         
         completion_reward = {
-            start_civil_war = {
-                ruling_party = communism
-                ideology = ROOT
-                size = 0.5
-            }
-
-            hidden_effect = {
-                set_popularity = {
-                    ideology = communism
-                    popularity = 1.0
-                }
+            set_politics = {
+                ruling_party = monarchism
+                elections_allowed = no
             }
         }
     }
     focus = {
-        id = MAN_manchu_military_academy
-        icon = GFX_focus_generic_embrace_modernity
+        id = MAN_appease_the_warlords
+        icon = GFX_focus_MAN_appease_the_warlords
 
         relative_position_id = MAN_yuan_shikais_clique
         x = -1
@@ -1036,7 +1074,6 @@
 
         prerequisite = { focus = MAN_yuan_shikais_clique }
         completion_reward = {
-            add_research_slot = 1
         }
     }
 }

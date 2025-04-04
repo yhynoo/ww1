@@ -835,6 +835,10 @@ focus_tree = {
                 factor = 0
             }
             modifier = {
+                date > 1914.1.1                         # Though if it gets late, we'll go for it.
+                add = 2
+            }
+            modifier = {
                 or = {
                     is_guaranteed_by = GER                  # When they do, we can do internal stuff.
                     has_country_flag = we_do_our_thing      # Or, if we rejected them.
@@ -936,8 +940,10 @@ focus_tree = {
         y = 1
         cost = 10
 
-        available = {
-            is_in_faction = no
+        available = { is_in_faction = no }
+        ai_will_do = {
+            base = 3
+            modifier = { date > 1914.1.1 factor = 2 }
         }
 
         prerequisite = { focus = TUR_expansionism }
@@ -1155,12 +1161,10 @@ focus_tree = {
         completion_reward = {
             add_ideas = sww1_idea_turkish_ethnic_state
             if = {
-                limit = {
-                    not = { has_government = authoritarianism }
-                    set_politics = {
-                        ruling_party = authoritarianism
-                        elections_allowed = no
-                    }
+                limit = { not = { has_government = authoritarianism } }
+                set_politics = {
+                    ruling_party = authoritarianism
+                    elections_allowed = no
                 }
             }
         }

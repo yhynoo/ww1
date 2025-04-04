@@ -71,30 +71,6 @@ dc_head_of_state_decisions = {
             communism_drift = 0.05
         }
     }
-    expand_official_information_communist = {
-        visible = {
-            has_government = communism
-        }
-        days_remove = 90
-        cost = 150
-
-        ai_will_do = {
-            base = 3
-            modifier = {
-                has_stability < 0.3 
-                factor = 3
-            }
-            modifier = {
-                has_stability < 0.2 
-                factor = 5
-            }
-        }
-
-        modifier = {
-            stability_weekly = 0.01
-            communism_drift = 0.05
-        }
-    }
     expand_official_information_authoritarian = {
         visible = {
             has_government = authoritarianism

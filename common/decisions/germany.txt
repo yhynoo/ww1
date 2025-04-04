@@ -138,7 +138,7 @@ dc_look_to_the_east = {
             modifier = { is_ally_with = MAN factor = 6 }
         }
 
-        remove_days = 120
+        days_remove = 120
         modifier = {
             civilian_factory_use = 2
         }
@@ -166,7 +166,7 @@ dc_heil_dir_im_siegerkranz = {
         available = { has_completed_focus = GER_ersatz }
         ai_will_do = { base = 6 }
 
-        remove_days = 90
+        days_remove = 90
         modifier = {
             war_support_weekly = -0.01
             consumer_goods_factor = -0.1
@@ -175,7 +175,8 @@ dc_heil_dir_im_siegerkranz = {
 
     encourage_vocational_training = {
         cost = 75
-        fire_only_once = yes
+        days_remove = 90
+        
         ai_will_do = { base = 6 }
 
         modifier = {
@@ -191,7 +192,7 @@ dc_heil_dir_im_siegerkranz = {
             has_war_support > 0.5
         }
 
-        remove_days = 90
+        days_remove = 90
         ai_will_do = { base = 12 }
 
         modifier = {

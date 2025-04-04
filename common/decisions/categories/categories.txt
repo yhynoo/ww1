@@ -27,6 +27,17 @@ dc_economic_decisions = {
     priority = 2
 }
 
+dc_seek_alliances = {
+    visible = {
+        is_in_faction = no
+        or = {
+            has_completed_focus = AUS_seek_alliances
+            has_completed_focus = SOV_established_guarantees
+            has_completed_focus = TUR_seek_alliances
+        }
+    }
+}
+
 # Austria-Hungary
 dc_contain_russian_expansion = {
     visible = {
@@ -181,6 +192,35 @@ dc_embrace_american_industrialism = {
 dc_constitution = {
     visible = {
         has_completed_focus = JAP_constitution
+    }
+}
+
+# Manchukuo
+dc_the_opium_crisis = {
+    visible = {
+        has_completed_focus = MAN_the_opium_crisis
+        or = {
+            has_idea = sww1_idea_severe_opium_crisis
+            has_idea = sww1_idea_limited_opium_crisis
+        }
+    }
+}
+
+dc_another_great_campaign = {
+    visible = {
+        has_completed_focus = MAN_another_great_campaign
+    }
+}
+
+dc_modernization = {
+    visible = {
+        has_completed_focus = MAN_modernization
+    }
+}
+
+dc_the_boxer_legacy = {
+    visible = {
+        has_completed_focus = MAN_the_boxer_legacy
     }
 }
 

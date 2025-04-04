@@ -1,0 +1,227 @@
+dc_the_opium_crisis = {
+    war_on_opium = {
+        cost = 100
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 3
+            modifier = { not = { has_completed_focus = MAN_the_beiyang_army } factor = 3 }
+        }
+
+        complete_effect = {
+            if = {
+                limit = { has_idea = sww1_idea_severe_opium_crisis }
+                swap_ideas = {
+                    remove_idea = sww1_idea_severe_opium_crisis
+                    add_idea = sww1_idea_limited_opium_crisis
+                }
+            }
+            else = {
+                remove_ideas = sww1_idea_limited_opium_crisis
+            }
+        }
+    }
+
+    state_controlled_imports = {
+        cost = 100
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 3
+            modifier = { not = { has_completed_focus = MAN_the_beiyang_army } factor = 3 }
+        }
+
+        complete_effect = {
+            add_stability = 0.05
+            if = {
+                limit = { has_idea = sww1_idea_severe_opium_crisis }
+                swap_ideas = {
+                    remove_idea = sww1_idea_severe_opium_crisis
+                    add_idea = sww1_idea_limited_opium_crisis
+                }
+            }
+            else = {
+                remove_ideas = sww1_idea_limited_opium_crisis
+            }
+
+            FRA = {
+                add_opinion_modifier = {
+                    target = MAN
+                    modifier = small_decrease
+                }
+            }
+            HOL = {
+                add_opinion_modifier = {
+                    target = MAN
+                    modifier = small_decrease
+                }
+            }
+        }
+    }
+    confront_the_europeans = {
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            or = {
+                not = { has_war_with = FRA }
+                not = { has_war_with = HOL }
+            }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = { has_completed_focus = MAN_the_beiyang_army factor = 3 }
+        }
+
+        complete_effect = {
+            if = {
+                limit = { not = { has_war_with = ENG }}
+                country_event = { id = manchukuo_the_opium_crisis.1 hours = 12 random_hours = 6 }
+            }
+            else = {
+                if = {
+                    limit = { not = { has_war_with = FRA }}
+                    FRA = { country_event = { id = manchukuo_the_opium_crisis.5 hours = 12 random_hours = 6 } }
+                }
+
+                if = {
+                    limit = { not = { has_war_with = HOL }}
+                    HOL = { country_event = { id = manchukuo_the_opium_crisis.5 hours = 12 random_hours = 6 } }
+                }
+            }
+        }
+    }
+}
+
+dc_another_great_campaign = {
+    himalayan_offensive = {
+        icon = generic_prepare_civil_war
+
+        cost = 150
+        days_remove = 120
+        fire_only_once = yes
+
+        available = {
+            not = { has_government = democratic }
+            can_declare_war_on = RAJ
+        }
+
+        ai_will_do = {
+            base = 2
+            modifier = { ENG = { has_war = yes } factor = 3 }
+        }
+
+        war_with_on_remove = RAJ
+
+        remove_effect = {
+            create_wargoal = {
+                target = RAJ
+                type = annex_everything
+            }
+        }
+    }
+    demand_korea = {
+        icon = generic_prepare_civil_war
+
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            can_declare_war_on = JAP
+            525 = { is_owned_by = JAP }
+            527 = { is_owned_by = JAP }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = { or = { is_ally_with = GER is_ally_with = SOV } factor = 3 }
+        }
+
+        complete_effect = {
+            JAP = { country_event = { id = manchukuo_another_great_campaign.1 hours = 12 random_hours = 6 } }
+        }
+    }
+}
+
+dc_modernization = {
+    chinese_american_railway = {
+        cost = 125
+        fire_only_once = yes
+
+        available = {
+            USA = { 
+                exists = yes
+                not = { has_war_with = MAN }
+            }
+        }
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            USA = { country_event = { id = manchukuo_modernization.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    expand_universities = {
+        cost = 100
+        fire_only_once = yes
+
+        ai_will_do = { base = 12 }
+
+        complete_effect = {
+            add_research_slot = 1
+        }
+    }
+}
+
+dc_the_boxer_legacy = {
+    grant_autonomy_to_local_leaders = {
+        cost = 50
+        days_remove = 90
+
+        ai_will_do = { 
+            base = 3
+            modifier = { has_war = yes factor = 2.5 }
+        }
+
+        modifier = {
+            training_time_factor = 0.2
+        }
+    }
+    expel_the_foreigners = {
+        cost = 75
+        days_remove = 90
+
+        ai_will_do = { 
+            base = 3
+            modifier = { has_stability < 0.3 factor = 3 }
+        }
+
+        modifier = {
+            stability_weekly = 0.005
+        }
+    }
+    settlements_in_xinjiang = {
+        cost = 100
+        fire_only_once = yes
+
+        ai_will_do = { base = 12 }
+
+        complete_effect = {
+            287 = {
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 1
+                    instant_build = yes
+                }
+            }
+            617 = {
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 1
+                    instant_build = yes
+                }
+            }
+        }
+    }
+}

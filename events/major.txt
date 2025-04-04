@@ -114,8 +114,9 @@ news_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		not = {
-			SOV = { has_government = communism }
+		SOV = {
+			not = { has_government = communism }
+			not = { has_completed_focus = SOV_one_and_indivisible }
 		}
 	}
 
@@ -124,10 +125,7 @@ news_event = {
 			limit = { tag = SOV }
 
 			add_stability = -0.025
-			add_popularity = {
-				ideology = communism
-				popularity = 0.05
-			}
+			add_ideas = sww1_idea_looming_revolution
 
 			hidden_effect = {
 				add_named_threat = {

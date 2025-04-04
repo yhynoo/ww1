@@ -940,12 +940,12 @@
         ai_will_do = {
             base = 2
             modifier = {
-                MAN = { exists = no }       # If there is no Qing, there's no point.
+                MAN = { exists = no }       # If there is no China, there's no point.
                 factor = 0
             }
             modifier = {
                 or = {
-                    has_war = GER
+                    GER = { has_war = yes }
                     SOV = { has_completed_focus = SOV_far_east_affairs }
                 }
                 factor = 3
