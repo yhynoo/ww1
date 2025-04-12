@@ -33,14 +33,7 @@ dc_serbian_question = {
         fire_only_once = yes
 
         available = {
-            OR = {
-                is_faction_leader = yes         # we can either offer alliance if we're the boss, or if we're not in any alliance yet.
-                is_in_faction = no
-            }
-            SER = { 
-                exists = yes
-                is_in_faction = no
-            }
+            SER = { exists = yes is_in_faction = no }
         }
 
         ai_will_do = {
@@ -48,7 +41,7 @@ dc_serbian_question = {
             modifier = {
                 TUR = {
                     or = {
-                        has_idea = sww1_idea_jihand
+                        has_idea = sww1_idea_jihad
                         is_in_faction = yes
                     }
                 }   
@@ -66,9 +59,7 @@ dc_serbian_question = {
         }
 
         complete_effect = {
-            russia_events = {
-                country_event = { id = russia_events.2 hours = 12 random_hours = 6 }
-            }
+            SER = { country_event = { id = russia_events.2 hours = 12 random_hours = 6 } }
         }
     }
 }

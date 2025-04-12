@@ -1,0 +1,48 @@
+add_namespace = south_africa_events
+
+news_event = {
+    id = south_africa_events.1
+    title = "Unrest in Transvaal"
+    desc = south_africa_events.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    trigger = { SAF = { exists = no } }
+
+    option = {
+        name = "Concerning."
+
+        if = {
+            limit = { tag = ENG }
+            add_political_power = -50
+        }
+    }
+}
+
+news_event = {
+    id = south_africa_events.2
+    title = "Anti-Socialist Uprising in Transvaal!"
+    desc = south_africa_events.2.d
+
+    trigger = { SAF = { exists = no } }
+    is_triggered_only = yes
+
+    option = {
+        name = "The Third Boer War has started."
+
+        if = {
+            limit = { tag = ENG }
+
+            hidden_effect = {
+                275 = { transfer_state_to = SAF }
+                SAF = { load_oob = "SAF_uprising" }
+            }
+            
+            declare_war_on = {
+                target = SAF
+                type = annex_everything
+            }
+        }
+    }
+}

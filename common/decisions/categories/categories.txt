@@ -32,6 +32,8 @@ dc_seek_alliances = {
         is_in_faction = no
         or = {
             has_completed_focus = AUS_seek_alliances
+            has_completed_focus = ITA_seek_alliances
+            has_completed_focus = JAP_seek_alliances
             has_completed_focus = SOV_established_guarantees
             has_completed_focus = TUR_seek_alliances
         }
@@ -95,10 +97,20 @@ dc_announce_the_commons_act = {
     }
 }
 
+dc_end_imperialism = {
+    visible = {
+        has_civil_war = no
+        has_completed_focus = ENG_end_imperialism
+    }
+}
+
 # France
 dc_belgian_crisis = {
     visible = {
-        has_completed_focus = FRA_belgian_crisis
+        or = {
+            and = { tag = HOL has_idea = sww1_idea_accommodate_belgian_refugees }
+            and = { tag = FRA has_completed_focus = FRA_belgian_crisis }
+        }
     }
 }
 
@@ -265,5 +277,37 @@ dc_alafranga = {
 dc_default_on_the_debt = {
     visible = {
         has_completed_focus = TUR_default_on_the_debt
+    }
+}
+
+# USA
+
+dc_monroe_doctrine = {
+    visible = {
+        has_completed_focus = USA_monroe_doctrine
+    }
+}
+
+dc_support_the_entente = {
+    visible = {
+        has_completed_focus = USA_support_the_entente
+    }
+}
+
+dc_wilsons_fourteen_points = {
+    visible = {
+        has_completed_focus = USA_wilsons_fourteen_points
+    }
+}
+
+dc_cultural_hegemony = {
+    visible = {
+        has_completed_focus = USA_cultural_hegemony
+    }
+}
+
+dc_automotive_industries = {
+    visible = {
+        has_completed_focus = USA_automotive_industries
     }
 }

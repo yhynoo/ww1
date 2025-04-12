@@ -1,0 +1,41 @@
+add_namespace = japan_taisho_emperor
+
+news_event = {
+    id = japan_taisho_emperor.1
+    title = "Maritime Festival in Osaka"
+    desc = japan_taisho_emperor.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "What a sight!"
+        add_popularity = {
+            ideology = monarchism
+            popularity = 0.025
+        }
+
+        hidden_effect = {
+            news_event = { id = japan_taisho_emperor.2 days = 56 random_days = 7 }
+        }
+    }
+}
+
+news_event = {
+    id = japan_taisho_emperor.2
+    title = "His Majesty's Visit to Taiwan"
+    desc = japan_taisho_emperor.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Tenno Henka Banzai!"
+        524 = { add_core_of = JAP }
+
+        MAN = {
+            add_opinion_modifier = {
+                target = JAP
+                modifier = small_decrease
+            }
+        }
+    }
+}

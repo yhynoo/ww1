@@ -126,6 +126,8 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = { base = 2 }
+
         prerequisite = { focus = USA_equipment_effort }
         completion_reward = {
             air_experience = 25
@@ -152,7 +154,7 @@ focus_tree = {
 				name = armor_bonus
 				bonus = 1.0
 				uses = 2
-				category = armor
+				category = armor_tech
 			}
         }
     }
@@ -184,6 +186,8 @@ focus_tree = {
         x = 2
         y = 1
         cost = 10
+
+        ai_will_do = { base = 2 }
 
         available = {
 			any_state = {
@@ -417,6 +421,8 @@ focus_tree = {
 			}
 		}
 
+        ai_will_do = { base = 3 }
+
         prerequisite = { focus = USA_naval_exercises }
         completion_reward = {
             add_tech_bonus = {
@@ -464,6 +470,8 @@ focus_tree = {
         y = 0
         cost = 10
 
+        ai_will_do = { base = 2 }
+
         completion_reward = {
             add_stability = 0.05
         }
@@ -492,6 +500,11 @@ focus_tree = {
         y = 1
 
         cost = 10
+
+        ai_will_do = { 
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
 
         prerequisite = { focus = USA_agrarian_reform }
         completion_reward = {
@@ -532,6 +545,11 @@ focus_tree = {
 
         cost = 10
 
+        ai_will_do = { 
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
+
         prerequisite = { focus = USA_agrarian_reform }
         completion_reward = {
             add_ideas = sww1_idea_liberty_bonds
@@ -546,6 +564,11 @@ focus_tree = {
         y = 1
 
         cost = 10
+        
+        ai_will_do = { 
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
 
         prerequisite = { focus = USA_rationing }
         completion_reward = {
@@ -774,6 +797,11 @@ focus_tree = {
         y = 5
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = { date > 1914.1.1 factor = 3 }
+        }
+
         completion_reward = {
             add_political_power = 150
         }
@@ -797,7 +825,7 @@ focus_tree = {
     }
     focus = {
         id = USA_interventionism
-        icon = GFX_focus_generic_interventionism
+        icon = GFX_focus_generic_expansionism
 
         relative_position_id = USA_international_affairs
         x = -2
@@ -807,6 +835,8 @@ focus_tree = {
         prerequisite = { focus = USA_international_affairs }
         completion_reward = {
             add_political_power = 100
+
+            remove_ideas = sww1_idea_pacifist_society
             add_timed_idea = {
                 idea = sww1_idea_interventionism
                 years = 1
@@ -822,19 +852,32 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = { has_completed_focus = USA_interventionism factor = 6 }
+        }
+
         prerequisite = { focus = USA_international_affairs }
         completion_reward = {
+            add_war_support = 0.05
             custom_effect_tooltip = decision_effect_tooltip
         }
     }
     focus = {
         id = USA_support_the_entente
-        icon = GFX_focus_generic_support_the_entente
+        icon = GFX_focus_USA_support_the_entente
 
         relative_position_id = USA_interventionism
         x = -2
         y = 1
         cost = 10
+
+        available = { has_war_support > 0.3 }
+
+        ai_will_do = { 
+            base = 2
+            modifier = { has_completed_focus = USA_not_our_war factor = 0 }
+        }
 
         prerequisite = { focus = USA_interventionism }
         completion_reward = {
@@ -858,17 +901,22 @@ focus_tree = {
 
     focus = {
         id = USA_the_arsenal_of_liberty
-        icon = GFX_focus_generic_internal_stability
+        icon = GFX_focus_USA_the_arsenal_of_liberty
 
         relative_position_id = USA_political_ambitions
         x = 0
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 0
+            modifier = { ENG = { has_war_with = GER } add = 3 }
+        }
+
         mutually_exclusive = { focus = USA_not_our_war }
         prerequisite = { focus = USA_political_ambitions }
         completion_reward = {
-            add_stability = 0.1
+            add_war_support = 0.05
             news_event = { id = generic_focus_tree_event.1 hours = 12 random_hours = 6 }
         }
     }
@@ -940,28 +988,26 @@ focus_tree = {
 
     focus = {
         id = USA_not_our_war
-        icon = GFX_focus_generic_not_our_war
+        icon = GFX_focus_USA_not_our_war
 
         relative_position_id = USA_political_ambitions
         x = 4
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 0
+            modifier = { ENG = { has_war_with = GER } add = 3 }
+        }
+
         mutually_exclusive = { focus = USA_the_arsenal_of_liberty }
         prerequisite = { focus = USA_political_ambitions }
         completion_reward = {
             add_timed_idea = {
-                idea = sww1_idea_democratic_tendencies
+                idea = sww1_idea_authoritarianism_tendencies
                 years = 1
             }
-            add_popularity = {
-                ideology = democratic
-                popularity = 0.1
-            }
-
-            hidden_effect = {
-                news_event = { id = generic_focus_tree_event.4 hours = 12 random_hours = 6 }
-            }
+            add_war_support = -0.05
         }
     }
     focus = {
@@ -997,7 +1043,7 @@ focus_tree = {
     }
     focus = {
         id = USA_america_first
-        icon = GFX_focus_generic_over_the_edge
+        icon = GFX_focus_USA_america_first
 
         relative_position_id = USA_state_reform
         x = 2
@@ -1006,6 +1052,9 @@ focus_tree = {
 
         prerequisite = { focus = USA_state_reform }
         available = {
+            has_civil_war = no
+            not = { has_government = authoritarianism }
+
             authoritarianism > 0.3
         }
         
@@ -1017,8 +1066,9 @@ focus_tree = {
             }
 
             hidden_effect = {
-                set_popularities = {
-                    authoritarianism = 100
+                add_popularity = {
+                    ideology = authoritarianism
+                    popularity = 0.25
                 }
             }
         }

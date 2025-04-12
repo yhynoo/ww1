@@ -1,0 +1,68 @@
+add_namespace = germany_weimar_constitution
+
+country_event = {
+    id = germany_weimar_constitution.1
+    title = "Germany Seeks to Join Our Alliance"
+    desc = germany_weimar_constitution.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They are welcome."
+        GER = { news_event = germany_weimar_constitution.2 hours = 12 random_hours = 6 }
+
+        add_to_faction = GER
+    }
+    option = {
+        name = "We don't know if we can trust them."
+        GER = { 
+            news_event = germany_weimar_constitution.2 hours = 12 random_hours = 6
+            add_opinion_modifier = {
+                target = USA
+                modifier = medium_decrease
+            }
+        }
+    }
+}
+
+news_event = {
+    id = germany_weimar_constitution.2
+    title = "Germany Joins the League of Free Nations"
+    desc = germany_weimar_constitution.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A big step towards world peace."
+    }
+}
+
+news_event = {
+    id = germany_weimar_constitution.3
+    title = "USA Declines Our Offer!"
+    desc = germany_weimar_constitution.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A diplomatic failure."
+        add_popularity = {
+            ideology = democratic
+            popularity = -0.05
+        }
+    }
+}
+
+news_event = {
+    id = germany_weimar_constitution.4
+    title = "Afrika-Amt Established"
+    desc = germany_weimar_constitution.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}

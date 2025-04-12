@@ -38,6 +38,11 @@ country_event = {
         GER = { news_event = { id = germany_oriental.3 hours = 12 random_hours = 6 } }
 
         ai_chance = { base = 1 }
+
+        if = {
+            limit = { not = { has_country_flag = we_do_our_thing } }
+            set_country_flag = we_do_our_thing
+        }
     }
 }
 
@@ -83,14 +88,19 @@ country_event = {
         name = "Yes, we need Germany's protection."
         GER = { country_event = { id = germany_oriental.5 hours = 24 random_hours = 12 } }
 
-        ai_chance = { base = 3 }
+        ai_chance = { 
+            base = 6
+            modifier = { has_country_flag = we_do_our_thing factor = 0 }
+        }
     }
 
     option = {
         name = "No, we can stand on our own."
-        ai_chance = { 
-            base = 1
-            modifier = { has_completed_focus = TUR_sarajevo_memorandum factor = 12 }
+        ai_chance = { base = 1 }
+
+        if = {
+            limit = { not = { has_country_flag = we_do_our_thing } }
+            set_country_flag = we_do_our_thing
         }
     }
 }
@@ -104,12 +114,11 @@ country_event = {
     is_triggered_only = yes
 
     option = {
-        name = "Yes, we shall protect the Ottomans."
+        name = "Yes, we shall protect [TUR.GetNameDef]."
         news_event = { id = germany_oriental.6 hours = 12 random_hours = 6 }
-
         give_guarantee = TUR
 
-        ai_chance = { base = 3 }
+        ai_chance = { base = 6 }
     }
 
     option = {
@@ -123,7 +132,7 @@ country_event = {
 ### 6. News: Germany Guarantees the Ottoman Empire
 news_event = {
     id = germany_oriental.6
-    title = "Germany Guarantees the Ottoman Empire!"
+    title = "Germany Guarantees [TUR.GetNameDef]!"
     desc = germany_oriental.6.d
 
     is_triggered_only = yes
@@ -137,13 +146,20 @@ news_event = {
 ### 7. News: Germany Refuses to Guarantee the Ottomans
 news_event = {
     id = germany_oriental.7
-    title = "Germany Declines to Guarantee the Ottoman Empire"
+    title = "Germany Declines to Guarantee [TUR.GetNameDef]"
     desc = germany_oriental.7.d
 
     is_triggered_only = yes
 
     option = {
-        name = "The Ottomans stand alone."
+        name = "We stand alone."
+
+        hidden_effect = {
+            if = {
+                limit = { not = { has_country_flag = we_do_our_thing } }
+                set_country_flag = we_do_our_thing
+            }
+        }
     }
 }
 
@@ -162,10 +178,7 @@ country_event = {
         ai_chance = { 
             base = 1
             modifier = {
-                or = {
-                    is_in_faction_with = GER
-                    is_guaranteed_by = GER
-                }
+                or = { is_in_faction_with = GER is_guaranteed_by = GER }
                 factor = 6
             }
         }

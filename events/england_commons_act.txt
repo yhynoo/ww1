@@ -1,13 +1,12 @@
 add_namespace = britain_commons_act
 
 ### 1. News: Mass Demonstrations in London
-news_event = {
+country_event = {
     id = britain_commons_act.1
     title = "Mass Demonstrations in London"
     desc = britain_commons_act.1.d
 
     is_triggered_only = yes
-    major = yes
 
     option = {
         name = "All power to the councils!"
@@ -23,6 +22,8 @@ news_event = {
                 ideology = communism
                 popularity = 0.1
             }
+
+            news_event = { id = south_africa_events.2 days = 30 random_days = 30 }
         }
     }
 

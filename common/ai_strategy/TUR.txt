@@ -13,18 +13,38 @@ TUR_army_composition = {
 	ai_strategy = {
 		type = role_ratio
 		id = infantry
-		value = 60
+		value = 45
 	}
 
 	ai_strategy = {
 		type = role_ratio
 		id = garrison
-		value = 25
+		value = 60
 	}
 
 	ai_strategy = {
 		type = role_ratio
 		id = cyclist
 		value = 5
+	}
+}
+
+TUR_likes_GER = {
+	allowed = { original_tag = TUR }
+	enable = { not = { has_country_flag = we_do_our_thing } }
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = diplo_action_acceptance
+		id = GER
+		value = 300
+		target = join_ally
+	}
+
+	ai_strategy = {
+		type = befriend
+		id = GER
+		value = 60
 	}
 }

@@ -1,12 +1,7 @@
 AUS_army_composition = {
-	allowed = {
-		original_tag = AUS
-	}
-
-	enable = {
-		always = yes
-	}
-
+	allowed = { original_tag = AUS }
+	
+	enable = { always = yes }
 	abort_when_not_enabled = yes
 
 	## Land troops
@@ -31,7 +26,7 @@ AUS_army_composition = {
 
 # don't work for Germans, they will manage
 AUS_stay_at_home = {
-	allowed = { tag = AUS }
+	allowed = { original_tag = AUS }
 
 	enable = { always = yes }
 	abort_when_not_enabled = yes

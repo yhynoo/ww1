@@ -160,7 +160,7 @@
 				name = armor_bonus
 				bonus = 1.0
 				uses = 1
-				category = armor
+				category = armor_tech
 			}
         }
     }
@@ -969,21 +969,15 @@
 
         ai_will_do = {
             base = 1
-            modifier = {
-                is_ally_with = ENG
-                factor = 2
-            }
-            modifier = {
-                has_war = yes
-                factor = 3
-            }
+            modifier = { is_ally_with = ENG factor = 2 }
+            modifier = { has_war = yes factor = 3 }
         }
 
         mutually_exclusive = { focus = JAP_sideline_the_emperor }
         prerequisite = { focus = JAP_political_ambitions }
         completion_reward = {
             add_stability = 0.1
-            news_event = { id = generic_focus_tree_event.1 hours = 12 random_hours = 6 }
+            news_event = { id = japan_taisho_emperor.1 days = 7 random_hours = 6 }
         }
     }
     focus = {
@@ -1095,7 +1089,10 @@
             base = 2
         }
 
+        bypass = { has_government = authoritarianism }
+
         available = {
+            has_civil_war = no
             authoritarianism > 0.4
         }
 

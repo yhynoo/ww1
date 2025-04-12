@@ -86,6 +86,10 @@ dc_affirm_the_entente = {
         cost = 100
         fire_only_once = yes
 
+        available = { 
+            or = { is_faction_leader = yes is_in_faction = no }
+        }
+
         targets = { FRA JAP }
         target_trigger = { FROM = { is_in_faction = no } }
 
@@ -110,7 +114,16 @@ dc_change_the_alliances = {
         fire_only_once = yes
         available = { not = { has_war_with = GER } }
 
-        ai_will_do = { base = 12 }
+        ai_will_do = { 
+            base = 3
+            modifier = { 
+                or = { 
+                    FRA = { is_faction_leader = yes } 
+                    AUS = { is_faction_leader = yes }
+                } 
+                factor = 3
+            }
+        }
 
         complete_effect = {
             news_event = { id = britain_change_the_alliances.1 hours = 12 random_hours = 6 }
@@ -123,7 +136,10 @@ dc_change_the_alliances = {
     allied_by_blood = {
         cost = 200
         fire_only_once = yes
-        available = { is_in_faction = no not = { has_war_with = GER } }
+        available = { 
+            is_in_faction = no
+            GER = { not = { has_war_with = ENG } }
+        }
 
         ai_will_do = {
             base = 9
@@ -217,4 +233,70 @@ dc_announce_the_commons_act = {
             }
         }
     }
+}
+
+dc_end_imperialism = {
+    grant_india_independence = {
+        visible = {
+            RAJ = { is_subject_of = ENG }
+        }
+
+        cost = 200
+        fire_only_once = yes
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            news_event = { id = england_end_imperialism.1 hours = 12 random_hours = 6 }
+            set_autonomy = {
+                target = RAJ
+                autonomous_state = autonomy_free
+            }
+
+            hidden_effect = {
+                RAJ = { drop_cosmetic_tag = yes }
+            }
+        }
+    }
+    grant_australia_independence = {
+        visible = {
+            AST = { is_subject_of = ENG }
+        }
+
+        cost = 150
+        fire_only_once = yes
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            news_event = { id = england_end_imperialism.2 hours = 12 random_hours = 6 }
+            set_autonomy = {
+                target = AST
+                autonomous_state = autonomy_free
+            }
+
+            hidden_effect = {
+                AST = { drop_cosmetic_tag = yes }
+            }
+        }
+    }
+    grant_south_africa_independence = {
+        visible = {
+            SAF = { exists = no }
+            any_state = {
+                is_owned_by = ENG
+                is_core_of = SAF
+            }
+        }
+
+        cost = 100
+        fire_only_once = yes
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            news_event = { id = england_end_imperialism.3 hours = 12 random_hours = 6 }
+            release = SAF
+        }
+    } 
 }

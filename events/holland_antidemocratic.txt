@@ -1,0 +1,104 @@
+add_namespace = holland_antidemocratic_movements
+
+news_event = {
+    id = holland_antidemocratic_movements.1
+    title = "Anti-Democratic Movements in the Army"
+    desc = holland_antidemocratic_movements.1.d
+
+    is_triggered_only = yes
+    trigger = { has_idea = sww1_idea_accommodate_belgian_refugees }
+
+    option = {
+        name = "We must do something about it."
+
+        add_popularity = {
+            ideology = monarchism
+            popularity = 0.05
+        }
+        add_timed_idea = {
+            idea = sww1_idea_monarchism_tendencies
+            years = 1
+        }
+    }
+}
+
+country_event = {
+    id = holland_antidemocratic_movements.2
+    title = "The Army Demands Government Dissolution!"
+    desc = holland_antidemocratic_movements.2.d
+
+    trigger = {
+        original_tag = HOL
+        has_government = democratic
+        has_civil_war = no
+
+        not = { has_country_flag = dutch_monarchists_declined }
+        democratic < 0.5
+        monarchism > 0.3
+    }
+
+    option = {
+        name = "Let Wilhelmina make sense of this."
+        news_event = { id = holland_antidemocratic_movements.3 hours = 12 random_hours = 6 }
+
+        add_stability = 0.1
+        set_politics = {
+            ruling_party = monarchism
+            elections_allowed = no
+        }
+
+        hidden_effect = {
+            add_popularity = {
+                ideology = democratic
+                popularity = -0.25
+            }
+        }
+
+        ai_chance = { base = 3 }
+    }
+    option = {
+        name = "We must protect our democracy!"
+        news_event = { id = holland_antidemocratic_movements.4 hours = 12 random_hours = 6 }
+
+        start_civil_war = {
+            ideology = authoritarianism
+            size = 0.4
+        }
+
+        hidden_effect = {
+            set_country_flag = dutch_monarchists_declined
+
+            add_popularity = {
+                ideology = monarchism
+                popularity = -0.25
+            }
+        }
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = holland_antidemocratic_movements.3
+    title = "Government Dissolved in [HOL.GetNameDef]!"
+    desc = holland_antidemocratic_movements.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = holland_antidemocratic_movements.4
+    title = "Army Mutinies in the Netherlands!"         ## Civil war breaks out.
+    desc = holland_antidemocratic_movements.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Awful."
+    }
+}

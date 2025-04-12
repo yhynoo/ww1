@@ -39,6 +39,8 @@ dc_place_in_the_sun = {
 
         available = { 
             can_declare_war_on = ENG
+            SAF = { exists = no }
+            
             ENG = {
                 owns_state = 542        # Bechuanaland
 
@@ -51,38 +53,43 @@ dc_place_in_the_sun = {
         ai_will_do = { 
             base = 3
             modifier = { 
-                or = { is_ally_with = AUS is_ally_with = MAN }
+                or = { is_ally_with = AUS is_ally_with = MAN is_ally_with = HOL }
                 factor = 3 
             }
         }
 
         complete_effect = {
-            country_event = { id = germany_place_in_the_sun.1 hours = 2 }
+            if = {
+                limit = { is_ally_with = HOL }
+                ENG = { country_event = { id = germany_place_in_the_sun.4 hours = 12 random_hours = 6 } }
+            }
+            else = {
+                country_event = { id = germany_place_in_the_sun.1 hours = 2 }
+            }
         }
     }
 
-    alliance_with_austria = {
+    form_central_powers = {
         icon = decision_generic_political_discourse
         
-        cost = 100
+        cost = 150
         fire_only_once = yes
 
         available = { 
-            or = {
-                is_faction_leader = yes
-                is_in_faction = no
-            }
-            AUS = {
-                exists = yes
-                is_in_faction = no
-                not = { has_war_with = GER }
-            }
+            or = { is_faction_leader = yes is_in_faction = no }
         }
 
-        ai_will_do = { base = 12 }
+        targets = { AUS ITA TUR }
+        target_trigger = { FROM = { is_in_faction = no } }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { has_guaranteed = FROM factor = 3 }
+            modifier = { has_war = yes factor = 2 }
+        }
 
         complete_effect = {
-            AUS = { country_event = { id = germany_place_in_the_sun.9 hours = 12 random_hours = 6 } }
+            FROM = { country_event = { id = germany_place_in_the_sun.9 hours = 12 random_hours = 6 } }
         }
     }
 
@@ -102,36 +109,24 @@ dc_place_in_the_sun = {
 dc_look_to_the_east = {
     offer_qing_alliance = {
         icon = generic_prepare_civil_war
+
         cost = 150 
         available = { MAN = { is_in_faction = no } }
+        fire_only_once = yes
 
         ai_will_do = { 
-            base = 3
-            modifier = { has_war = yes factor = 6 }
+            base = 5
+            modifier = { has_guaranteed = MAN factor = 3 }
+            modifier = { has_war = yes factor = 2 }
         }
 
         complete_effect = {
             MAN = { country_event = { id = germany_look_to_the_east.1 hours = 12 random_hours = 6 } }
         }
     }
-    invite_qing_to_share_research = {
-        icon = generic_research
-        cost = 100
-
-        available = {
-            MAN = { exists = yes }
-        }
-
-        ai_will_do = { base = 12 }
-
-        complete_effect = {
-            news_event = { id = germany_look_to_the_east.4 hours = 12 random_hours = 6 }
-            add_to_tech_sharing_group = german_research_group
-        }
-    }
     develop_industry_in_east_asia = {
         icon = generic_construction
-        cost = 75
+        cost = 100
 
         ai_will_do = { 
             base = 1
@@ -140,7 +135,7 @@ dc_look_to_the_east = {
 
         days_remove = 120
         modifier = {
-            civilian_factory_use = 2
+            civilian_factory_use = 1
         }
 
         remove_effect = {
@@ -155,6 +150,36 @@ dc_look_to_the_east = {
                 }
             }
         }
+    }
+    ger_support_independence_of_dominions = {
+        cost = 100
+        days_remove = 90
+
+        available = {
+            has_government = democratic
+            or = { RAJ = { is_subject = yes } AST = { is_subject = yes } }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = { date > 1917.1.1 factor = 6 }
+        }
+
+        complete_effect = {
+            if = {
+                limit = { not = { has_country_flag = we_annoyed_england } }
+
+                news_event = { id = germany_look_to_the_east.4 hours = 12 random_hours = 6 }
+                set_country_flag = we_annoyed_england
+            }
+        }
+
+        modifier = { 
+            ENG = { 
+                stability_weekly = -0.005
+                subjects_autonomy_gain = 0.5
+            }
+        }    
     }
 }
 
@@ -204,6 +229,22 @@ dc_heil_dir_im_siegerkranz = {
 }
 
 dc_weimar_constitution = {
+    join_free_nations = {
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            USA = { is_faction_leader = yes }
+
+            has_offensive_war = no
+            has_government = democratic
+        }
+
+        ai_will_do = { base = 9 }
+        complete_effect = {
+            USA = { country_event =  germany_weimar_constitution.1 hours = 12 random_hours = 6 }
+        }
+    }
     women_in_workforce = {
         cost = 150
         fire_only_once = yes
@@ -220,7 +261,7 @@ dc_weimar_constitution = {
 
         ai_will_do = { base = 9 }
         complete_effect = {
-            news_event = { id = afrika_amt.1 hours = 12 random_hours = 6 }
+            news_event = { id = germany_weimar_constitution.4 hours = 12 random_hours = 6 }
             add_ideas = sww1_idea_afrika_amt
         }
     }

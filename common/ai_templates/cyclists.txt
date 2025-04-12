@@ -1,5 +1,6 @@
 cyclist_generic = {
     role = cyclist
+    upgrade_prio = { base = 2 }
 
     early_cyclist = {
         upgrade_prio = { base = 2 }
@@ -16,7 +17,7 @@ cyclist_generic = {
 
     improved_cyclist = {
         enable = { has_tech = armored_car_1912 }
-        upgrade_prio = { base = 1.5 }
+        upgrade_prio = { base = 3 }
         
         target_template = {
             support = {
@@ -33,8 +34,8 @@ cyclist_generic = {
     late_cyclist = {
         enable = { has_tech = mech_inf }
         upgrade_prio = { 
-            base = 1
-            modifier = { and { num_of_military_factories > 25 date > 1916.1.1 } factor = 1.5 }
+            base = 3
+            modifier = { and { num_of_military_factories > 25 date > 1916.1.1 } factor = 2 }
         }
 
         target_template = {

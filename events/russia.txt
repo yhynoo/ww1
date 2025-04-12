@@ -32,7 +32,11 @@ country_event = {
     option = {
         name = "They will guarantee our future!"
         SOV = {
-            add_to_faction = SER
+            if = {
+                limit = { is_in_faction = no }
+                create_faction = "Belgrade Pact"
+            }
+            faction_leader = { add_to_faction = SER }
         }
 
         # generate the announcement in world news:

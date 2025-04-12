@@ -1,0 +1,181 @@
+add_namespace = usa_monroe_doctrine
+
+country_event = {
+    id = usa_monroe_doctrine.1
+    title = "[USA.GetName] Offers Assistance"           # Ask for military access to defend against the aggression of authoritarian Gran Colombia.
+    desc = usa_monroe_doctrine.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They are most welcome."
+        give_military_access = USA
+        
+        USA = {
+            news_event = { id = usa_monroe_doctrine.2 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = MEX
+                modifier = medium_increase
+            }
+        }
+
+        ai_chance = { base = 6 }
+    }
+
+    option = {
+        name = "We can manage."
+        news_event = { id = usa_monroe_doctrine.3 hours = 12 random_hours = 6 }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = usa_monroe_doctrine.2
+    title = "[USA.GetName] To Intervene in Mexico"
+    desc = usa_monroe_doctrine.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+
+        if = {
+            limit = { original_tag = USA }
+            declare_war_on = {
+                target = COL
+                type = topple_government
+            }
+        }
+    }
+}
+
+news_event = {
+    id = usa_monroe_doctrine.3
+    title = "[MEX.GetName] Rejects Our Help"
+    desc = usa_monroe_doctrine.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A shame."
+    }
+}
+
+news_event = {
+    id = usa_monroe_doctrine.4
+    title = "American Guarantees in the Western Hemisphere"
+    desc = usa_monroe_doctrine.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A welcome gesture towards peace."
+    }
+}
+
+news_event = {
+    id = usa_monroe_doctrine.5
+    title = "American Claims over Greenland"
+    desc = usa_monroe_doctrine.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A troubling development."
+    }
+}
+
+country_event = {
+    id = usa_monroe_doctrine.6
+    title = "[USA.GetName] Demands Canada!"
+    desc = usa_monroe_doctrine.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is outrageous!"
+        USA = {
+            news_event = { id = usa_monroe_doctrine.7 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = ENG
+                type = take_claimed_state
+            }
+        }
+        ai_chance = { base = 6 }
+    }
+
+    option = {
+        name = "We must yield."
+        USA = news_event = { id = usa_monroe_doctrine.8 hours = 12 random_hours = 6 }
+
+        ai_chance = { base = 1 }
+
+        every_state = {
+            limit = {
+                or = {
+                    state = 276
+
+                    state = 331
+                    state = 332
+
+                    state = 464
+                    state = 465
+                    state = 466
+                    state = 467
+                    state = 468
+                    state = 469
+                    state = 470
+                    state = 471
+                    state = 472
+                    state = 473
+
+                    state = 682
+                    state = 683
+
+                    state = 739
+                    state = 740
+
+                    state = 860
+                    state = 861
+                    state = 862
+                    state = 863
+                    state = 864
+                    state = 865
+                    state = 866
+                    state = 867
+                }
+                is_owned_by = ENG
+            }
+            transfer_state_to = USA
+        }
+    }
+}
+
+news_event = {
+    id = usa_monroe_doctrine.7
+    title = "[ENG.GetName] Says No"
+    desc = usa_monroe_doctrine.7.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall do it our way then."
+    }
+}
+
+news_event = {
+    id = usa_monroe_doctrine.8
+    title = "[ENG.GetName] Yields Canada!"
+    desc = usa_monroe_doctrine.8.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}

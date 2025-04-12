@@ -16,14 +16,8 @@ country_event = {
         news_event = { id = japan_events.2 hours = 12 random_hours = 6 }
         ai_chance = {
             base = 3
-            modifier = {
-                threat > 0.1
-                factor = 2
-            }
-            modifier = {
-                has_war = yes
-                factor = 3
-            }
+            modifier = { has_war = yes factor = 3 }
+            modifier = { has_completed_focus = ENG_change_the_alliances factor = 0 }
         }
     }
 

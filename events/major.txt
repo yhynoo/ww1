@@ -6,7 +6,7 @@ news_event = {
 	desc = majorevent.1.d
 
     trigger = {
-        not = { FRA = { owns_state = 6 } }
+        HOL = { owns_state = 6 }
     }
 
 	major = yes
@@ -19,6 +19,10 @@ news_event = {
 				target = GER
 				modifier = medium_decrease
 			}
+		}
+		if = {
+			limit = { tag = HOL }
+			add_stability = -0.05
 		}
 		if = {
 			limit = { tag = GER }
@@ -46,6 +50,10 @@ news_event = {
 
 	major = yes
 	is_triggered_only = yes
+
+	trigger = {
+		AUS = { has_government = monarchism }
+	}
 
 	option = {
 		if = {
@@ -88,6 +96,10 @@ news_event = {
 
 	major = yes
 	is_triggered_only = yes
+
+	trigger = {
+		AUS = { has_government = monarchism }
+	}
 
 	option = {
         trigger = {

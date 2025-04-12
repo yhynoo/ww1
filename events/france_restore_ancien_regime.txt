@@ -1,0 +1,130 @@
+add_namespace = france_restore_ancien_regime
+
+news_event = {
+    id = france_restore_ancien_regime.1
+    title = "Anti-Democratic Protests Across the Country"
+    desc = france_restore_ancien_regime.1.d
+
+    is_triggered_only = yes
+    immediate = { hidden_effect = { add_stability = -0.05 } }
+
+    option = {
+        name = "The people demand change."
+        add_popularity = {
+            ideology = communism
+            popularity = 0.05
+        }
+        add_popularity = {
+            ideology = monarchism
+            popularity = 0.05
+        }
+
+        hidden_effect = {
+            country_event = { id = france_restore_ancien_regime.2 days = 28 random_days = 7 }
+        }
+    }
+}
+
+country_event = {
+    id = france_restore_ancien_regime.2         # anti-government protest of communists
+    title = "Riot in Marseille!"
+    desc = france_restore_ancien_regime.2.d
+
+    is_triggered_only = yes
+    immediate = { hidden_effect = { add_stability = -0.05 } }
+
+    option = {
+        name = "They are not wrong."
+        if = {
+            limit = { has_idea = sww1_idea_monarchism_tendencies }
+            remove_ideas = sww1_idea_monarchism_tendencies
+        }
+        add_timed_idea = {
+            idea = sww1_idea_communism_tendencies
+            years = 1
+        }
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "We need a serious government to deal with this."
+        add_popularity = {
+            ideology = monarchism
+            popularity = 0.05
+        }
+
+        hidden_effect = { set_country_flag = ready_for_civil_war }
+        ai_chance = { base = 3 }
+    }
+}
+
+country_event = {
+    id = france_restore_ancien_regime.3
+    title = "Undo the French Revolution?"
+    desc = france_restore_ancien_regime.3.d
+
+    trigger = {
+        tag = FRA
+        monarchism > 0.5
+        has_country_flag = france_ready_for_bourbons
+    }
+
+    option = {
+        name = "This experiment has not served us well."
+        news_event = { id = france_restore_ancien_regime.4 hours = 12 random_hours = 6 }
+
+        set_politics = {
+            ruling_party = monarchism
+            elections_allowed = no
+        }
+
+        hidden_effect = { clr_country_flag = ready_for_civil_war }
+
+        ai_chance = { base = 6 }
+    }
+    option = {
+        name = "We must preserve our democracy!"
+        start_civil_war = {
+            ideology = monarchism
+            size = 0.5
+        }
+
+        hidden_effect = {
+            news_event = { id = france_restore_ancien_regime.5 hours = 12 random_hours = 6 }
+            add_popularity = {
+                ideology = monarchism
+                popularity = -0.4
+            }
+
+            hidden_effect = { clr_country_flag = ready_for_civil_war }
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = france_restore_ancien_regime.4
+    title = "France Restores Bourbon Monarchy!"
+    desc = france_restore_ancien_regime.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "There goes liberty, equality and fraternity."
+    }
+}
+
+news_event = {
+    id = france_restore_ancien_regime.5
+    title = "Civil War in France!"
+    desc = france_restore_ancien_regime.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "They haven't sorted this out yet?"
+    }
+}

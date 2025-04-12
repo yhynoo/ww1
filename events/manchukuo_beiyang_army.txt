@@ -1,0 +1,207 @@
+add_namespace = manchukuo_beiyang_army
+
+country_event = {
+    id = manchukuo_beiyang_army.1
+    title = "Administration Offices Vandalized!"
+    desc = manchukuo_beiyang_army.1.d
+
+    is_triggered_only = yes
+
+    immediate = { hidden_effect = { add_stability = -0.05 } }
+
+    option = {
+        name = "Demand respect for the authorities."
+        add_popularity = {
+            ideology = monarchism
+            popularity = 0.05
+        }
+
+        hidden_effect = { news_event = { id = manchukuo_beiyang_army.2 days = 28 random_days = 14 } }
+
+        ai_chance = { base = 3 }
+    }
+    option = {
+        name = "Organize punitive expeditions."
+        add_political_power = -50
+
+        hidden_effect = { news_event = { id = manchukuo_beiyang_army.4 days = 28 random_days = 14 } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = manchukuo_beiyang_army.2
+    title = "Warlords Conscript Peasants"
+    desc = manchukuo_beiyang_army.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This must not continue."
+        add_ideas = sww1_idea_warlord_states
+
+        hidden_effect = { 
+            set_country_flag = ready_for_civil_war
+        }
+    }
+}
+  
+country_event = {
+    id = manchukuo_beiyang_army.3
+    title = "Uprising in Mongolia, Monarchists Threaten War!"
+    desc = manchukuo_beiyang_army.3.d
+
+    trigger = {
+        tag = MAN
+        has_country_flag = ready_for_civil_war
+        monarchism > 0.4
+    }
+
+    immediate = {
+        hidden_effect = {
+            every_state = {
+                limit = {
+                    or = {
+                        state = 330
+                        state = 819
+                        state = 820
+                    }
+                    is_owned_by = MAN
+                }
+                transfer_state_to = MON
+            }
+
+            MON = { load_oob = "MON_uprising" }
+            declare_war_on = {
+                target = MON
+                type = annex_everything
+            }
+        }
+    }
+
+    option = {
+        name = "We must acknowledge our failure."
+        set_politics = {
+            ruling_party = monarchism
+            elections_allowed = no
+        }
+
+        hidden_effect = { clr_country_flag = ready_for_civil_war }
+
+        ai_choice = { base = 2 }
+    }
+    option = {
+        name = "We must defend our democracy!"
+        start_civil_war = {
+            ideology = monarchism
+            size = 0.5
+        }
+
+        hidden_effect = { 
+            add_popularity = {
+                ideology = monarchism
+                popularity = -0.4
+            }
+            random_country = {
+                limit = { original_tag = MAN has_government = monarchism }
+                set_cosmetic_tag = MAM
+
+                declare_war_on = {
+                    target = MON
+                    type = annex_everything
+                }
+            }
+            
+            clr_country_flag = ready_for_civil_war
+        }
+
+        ai_choice = { base = 1 }
+    }
+}
+
+news_event = {
+    id = manchukuo_beiyang_army.4
+    title = "Qing Restoration War in China!"
+    desc = manchukuo_beiyang_army.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Awful."
+    }
+}
+
+country_event = {
+    id = manchukuo_beiyang_army.5
+    title = "Workers Strikes in Southern Provinces!"
+    desc = manchukuo_beiyang_army.5.d
+
+    is_triggered_only = yes
+
+    immediate = {
+        hidden_effect = {
+            add_popularity = {
+                ideology = communism
+                popularity = 0.05
+            }
+        }
+    }
+
+    option = {
+        name = "They may be right."
+        add_ideas = sww1_idea_communism_tendencies
+
+        ai_choice = { base = 1 }
+    }
+
+    option = {
+        name = "We must end this nonsense."
+        add_stability = 0.05
+
+        hidden_effect = {
+            news_event = { id = manchukuo_beiyang_army.6 days = 7 random_days = 14 }
+        }
+
+        ai_choice = { base = 3 }
+    }
+}
+
+news_event = {
+    id = manchukuo_beiyang_army.6
+    title = "Workers Uprising In China!"
+    desc = manchukuo_beiyang_army.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Restore order before this sickness spreads."
+
+        start_civil_war = {
+            ideology = communism
+            size = 0.2
+        }
+
+        hidden_effect = {
+            news_event = { id = manchukuo_beiyang_army hours = 12 random_hours = 6 }
+            random_country = {
+                limit = { original_tag = MAN has_government = communism }
+                set_cosmetic_tag = MAC
+            }
+        }
+    }
+}
+
+news_event = {
+    id = manchukuo_beiyang_army.7
+    title = "Communists Start Civil War in China!"
+    desc = manchukuo_beiyang_army.7.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Degenerates."
+    }
+}

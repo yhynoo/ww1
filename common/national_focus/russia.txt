@@ -196,7 +196,7 @@
 				name = armor_bonus
 				bonus = 1.0
 				uses = 1
-				category = armor
+				category = armor_tech
 			}
         }
     }
@@ -970,10 +970,7 @@
 
         ai_will_do = {
             base = 2
-            modifier = {
-                date > 1913.1.1
-                factor = 3
-            }
+            modifier = { date > 1913.1.1 factor = 3 }
         }
 
         prerequisite = { focus = SOV_expansionism }
@@ -1101,6 +1098,12 @@
             focus = SOV_okhrana
             focus = SOV_chornaya_sotnya
         }
+
+        ai_will_do = {
+            base = 1
+            modifier = { has_idea = sww1_idea_looming_revolution factor = 6 }
+        }
+
         completion_reward = {
             add_timed_idea = {
                 idea = sww1_idea_one_and_indivisible
@@ -1223,6 +1226,9 @@
 
         prerequisite = { focus = SOV_state_reform }
         available = {
+            has_civil_war = no
+            not = { has_government = communism }
+            
             communism > 0.3
         }
         
@@ -1230,17 +1236,21 @@
             start_civil_war = {
                 ruling_party = communism
                 ideology = ROOT
-                size = 0.5
+
+                size = 0.8
+                army_ratio = 0.3
+                navy_ratio = 0
             }
 
             hidden_effect = {
-                if = {
-                    limit = { has_idea = sww1_idea_looming_revolution }
-                    remove_ideas = sww1_idea_looming_revolution
+                SOV = { 
+                    set_cosmetic_tag = SOC
+                    set_popularities = { communism = 100 }
                 }
 
-                set_popularities = {
-                    communism = 100
+                random_country = {
+                    limit = { original_tag = SOV not = { has_government = communism } }
+                    set_cosmetic_tag = SOO
                 }
             }
         } 

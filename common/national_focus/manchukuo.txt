@@ -159,7 +159,7 @@
 				name = armor_bonus
 				bonus = 1.0
 				uses = 2
-				category = armor
+				category = armor_tech
 			}
         }
     }
@@ -947,6 +947,14 @@
 
         prerequisite = { focus = MAN_the_three_principles }
         completion_reward = {
+            army_experience = 75
+            add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+            
             add_timed_idea = {
                 idea = sww1_idea_embrace_korean_volunteers
                 years = 2
@@ -1009,6 +1017,10 @@
                 ideology = monarchism
                 popularity = 0.05
             }
+
+            hidden_effect = {
+                country_event = { id = manchukuo_beiyang_army.1 days = 14 random_days = 7 }
+            }
         }
     }
     focus = {
@@ -1037,6 +1049,8 @@
         y = 1
         cost = 10
 
+        available = { has_government = monarchism }
+
         prerequisite = { focus = MAN_the_beiyang_army }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -1052,9 +1066,9 @@
         cost = 10
 
         prerequisite = { focus = MAN_yuan_shikais_clique }
-        available = {
-            monarchism > 0.5
-        }
+        
+        bypass = { has_government = monarchism }
+        available = { monarchism > 0.5 }
         
         completion_reward = {
             set_politics = {
@@ -1074,6 +1088,11 @@
 
         prerequisite = { focus = MAN_yuan_shikais_clique }
         completion_reward = {
+            if = {
+                limit = { has_idea = sww1_idea_warlord_states }
+                remove_ideas = sww1_idea_warlord_states
+            }
+            add_ideas = sww1_idea_warlords_appeased
         }
     }
 }

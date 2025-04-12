@@ -1,0 +1,232 @@
+add_namespace = france_versailles_accords
+
+country_event = {
+    id = france_versailles_accords.1
+    title = "Affirm Our Alliance with [SOV.GetNameDef]?"
+    desc = france_versailles_accords.1.d
+
+    trigger = {
+        tag = FRA
+        has_war_with = GER
+
+        is_in_faction = no
+        SOV = { is_in_faction = no }
+
+        not = { has_country_flag = no_alliance_with_russia }
+        SOV = { or = { has_government = monarchism has_government = democratic } }
+    }
+
+    option = {
+        name = "This will be useful."
+        SOV = { country_event = { id = france_versailles_accords.2 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 6 }
+    }
+
+    option = {
+        name = "We don't need this."
+        set_country_flag = no_alliance_with_russia
+
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = france_versailles_accords.2
+    title = "[FRA.GetName] Offers Alliance"
+    desc = france_versailles_accords.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let's do this!"
+        FRA = {
+            news_event = { id = france_versailles_accords.3 hours = 12 random_hours = 6 }
+            create_faction = "Versailles Accords"
+            add_to_faction = SOV
+        }
+
+        hidden_effect = {
+            FRA = { country_event = { id = france_versailles_accords.5 days = 7 random_hours = 6 } }
+            FRA = { country_event = { id = france_versailles_accords.9 days = 14 random_hours = 6 } }
+        }
+
+        ai_chance = { base = 6 }
+    }
+    option = {
+        name = "This is not necessary."
+        FRA = { news_event = { id = france_versailles_accords.4 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+        hidden_effect = { FRA = { set_country_flag = no_alliance_with_russia } }
+    }
+}
+
+news_event = {
+    id = france_versailles_accords.3
+    title = "Versailles Accords Signed!"
+    desc = france_versailles_accords.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = france_versailles_accords.4
+    title = "[SOV.GetName] Declines!"
+    desc = france_versailles_accords.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A real shame."
+    }
+}
+
+country_event = {
+    id = france_versailles_accords.5
+    title = "Invite [ITA.GetNameDef]?"
+    desc = france_versailles_accords.5.d
+
+    is_triggered_only = yes
+    trigger = { 
+        not = { has_war_with = ITA }
+        ITA = { is_in_faction = no }
+    }
+
+    option = {
+        name = "They will help us greatly."
+        ITA = { country_event = { id = france_versailles_accords.6 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 6 }
+    }
+
+    option = {
+        name = "They won't be needed."
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = france_versailles_accords.6
+    title = "[FRA.GetName] Offers Alliance!"
+    desc = france_versailles_accords.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "It is an opportunity for us!"
+        FRA = { 
+            news_event = france_versailles_accords.7 hours = 12 random_hours = 6
+            add_to_faction = ITA
+        }
+
+        ai_chance = { 
+            base = 2
+            modifier = { has_war_with = AUS factor = 3 }
+        }
+    }
+    option = {
+        name = "We are not interested."
+        FRA = { news_event = france_versailles_accords.8 hours = 12 random_hours = 6 }
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = france_versailles_accords.7
+    title = "[ITA.GetName] and [FRA.GetName] Allied!"
+    desc = france_versailles_accords.7.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Italy joins the war."
+    }
+}
+
+news_event = {
+    id = france_versailles_accords.8
+    title = "[ITA.GetName] Declines!"
+    desc = france_versailles_accords.8.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We cannot trust them anymore."
+    }
+}
+
+country_event = {
+    id = france_versailles_accords.9
+    title = "How About [SPR.GetNameDef]?"
+    desc = france_versailles_accords.9.d
+
+    is_triggered_only = yes
+    trigger = { 
+        not = { has_war_with = SPR }
+        SPR = { is_in_faction = no } 
+    }
+
+    option = {
+        name = "We need all help."
+        SPR = { country_event = { id = france_versailles_accords.10 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 3 }
+    }
+
+    option = {
+        name = "We will manage without them."
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = france_versailles_accords.10
+    title = "[FRA.GetName] Offers Alliance!"
+    desc = france_versailles_accords.10.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall help them."
+        FRA = { 
+            news_event = france_versailles_accords.11 hours = 12 random_hours = 6
+            add_to_faction = SPR
+        }
+    }
+    option = {
+        name = "We are not interested."
+        FRA = { news_event = france_versailles_accords.12 hours = 12 random_hours = 6 }
+    }
+}
+
+news_event = {
+    id = france_versailles_accords.11
+    title = "[SPR.GetName] Joins the Versailles Accords!"
+    desc = france_versailles_accords.11.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Spain joins the war."
+    }
+}
+
+news_event = {
+    id = france_versailles_accords.12
+    title = "[ITA.GetName] Declines!"
+    desc = france_versailles_accords.12.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We thought better of them."
+    }
+}

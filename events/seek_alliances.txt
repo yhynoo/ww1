@@ -14,20 +14,24 @@ country_event = {
         if = {
             limit = { is_in_faction = no }
             if = {
+                limit = { and = { tag = AUS FROM = TUR } }
+                create_faction = "Sarajevo Memorandum"
+            }
+            if = {
                 limit = { tag = ENG }
                 create_faction = "Entente"
             }
             if = {
                 limit = { tag = FRA }
-                if = {
-                    limit = { and = { tag = AUS has_completed_focus = AUS_second_vienna_treaty } }
-                    create_faction = "Second Vienna Treaty"
-                }
-                else = { create_faction = "The Versailles Accords" }
+                create_faction = "Versailles Accords"
             }
             if = {
                 limit = { tag = GER }
                 create_faction = "Central Powers"
+            }
+            if = {
+                limit = { and = { tag = SOV } }
+                create_faction = "The South-East Alliance"
             }
         }
         faction_leader = { add_to_faction = FROM }
@@ -48,6 +52,8 @@ country_event = {
                 limit = { tag = GER }
                 modifier = { has_completed_focus = GER_a_place_in_the_sun factor = 3 }          # Germany needs friends for war, so they are not left alone.
             }
+
+            modifier = { or = { tag = AUS tag = USA } factor = 6 }
         }
     }
 

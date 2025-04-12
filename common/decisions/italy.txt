@@ -1,5 +1,9 @@
 dc_influence_the_uk = {
     mediate_south_tirol = {
+        visible = {
+            not = { is_ally_with = AUS }
+        }
+
         cost = 150
         fire_only_once = yes
 
@@ -15,7 +19,7 @@ dc_influence_the_uk = {
 
         ai_will_do = {
             base = 3
-            modifier = { is_ally_with = ITA factor = 3 }
+            modifier = { is_ally_with = ENG factor = 3 }
             modifier = { AUS = { has_war = yes } factor = 3 }
         }
 

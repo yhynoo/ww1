@@ -171,7 +171,7 @@ focus_tree = {
 				name = armor_bonus
 				bonus = 1.0
 				uses = 1
-				category = armor
+				category = armor_tech
 			}
         }
     }
@@ -822,29 +822,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 1                                    # There is a chance we go early...
-            modifier = {                                # But if we don't, we won't do anything until the Germans guarantee us, or we reject them.
-                and = {
-                    date > 1912.6.1
-                    not = { 
-                        or = {
-                            is_guaranteed_by = GER
-                            has_country_flag = we_do_our_thing
-                        }
-                    }
-                }
-                factor = 0
-            }
-            modifier = {
-                date > 1914.1.1                         # Though if it gets late, we'll go for it.
-                add = 2
-            }
-            modifier = {
-                or = {
-                    is_guaranteed_by = GER                  # When they do, we can do internal stuff.
-                    has_country_flag = we_do_our_thing      # Or, if we rejected them.
-                }
-                factor = 3
-            }
+            modifier = { or = { has_country_flag = we_do_our_thing date > 1914.1.1 } factor = 3 }
         }
 
         completion_reward = {
@@ -852,7 +830,7 @@ focus_tree = {
 
             hidden_effect = {                           # If we go early, set a flag for the future.
                 if = {
-                    limit = { date < 1912.6.1 }
+                    limit = { date < 1912.7.1 }
                     set_country_flag = we_do_our_thing
                 }
             }
@@ -869,10 +847,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 1
-            modifier = {
-                has_country_flag = we_do_our_thing
-                factor = 6
-            }
+            modifier = { has_country_flag = we_do_our_thing factor = 6 }
         }
 
         prerequisite = { focus = TUR_political_ambitions }
@@ -894,10 +869,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 1
-            modifier = {
-                has_country_flag = we_do_our_thing
-                factor = 6
-            }
+            modifier = { has_country_flag = we_do_our_thing factor = 6 }
         }
 
         prerequisite = { focus = TUR_international_affairs }
@@ -920,10 +892,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 0                                    # Unless we're doing our thing, we will never do this.
-            modifier = {
-                has_country_flag = we_do_our_thing
-                add = 6
-            }
+            modifier = { has_country_flag = we_do_our_thing add = 3 }
         }
 
         prerequisite = { focus = TUR_international_affairs }
@@ -969,10 +938,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 1                                    # Unlikely if we're with Germans, but likely on our own.
-            modifier = {
-                has_country_flag = we_do_our_thing
-                factor = 3
-            }
+            modifier = { has_country_flag = we_do_our_thing factor = 3 }
         }
 
         prerequisite = { focus = TUR_expansionism }

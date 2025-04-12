@@ -9,7 +9,7 @@ default_unit_production = {
 				original_tag = GER				# done
 				original_tag = ITA				# done
 				original_tag = JAP				# done
-				original_tag = TUR
+				original_tag = TUR				# done
 			}
 		}
 	}
@@ -33,6 +33,13 @@ default_unit_production = {
 		id = cyclist
 		value = 10
 	}
+
+	# Convoys
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = convoy
+		value = 1
+	}
 }
 
 default_area_priority = {
@@ -42,13 +49,19 @@ default_area_priority = {
 	ai_strategy = {
 		type = area_priority
 		id = mainland_europe
-		value = 100
+		value = 300
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = middle_east
+		value = 10
 	}
 
 	ai_strategy = {
 		type = area_priority
 		id = asia
-		value = -15
+		value = -30
 	}
 
 	ai_strategy = {

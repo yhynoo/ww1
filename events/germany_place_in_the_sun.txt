@@ -3,7 +3,7 @@ add_namespace = germany_place_in_the_sun
 ### 1. Germany Demands South Africa: Choice with Dutch or Alone
 country_event = {
     id = germany_place_in_the_sun.1
-    title = "Germany Demands South Africa"
+    title = "Tensions over South Africa"
     desc = germany_place_in_the_sun.1.d
 
     is_triggered_only = yes
@@ -12,14 +12,17 @@ country_event = {
         name = "Involve the Dutch in the matter."
         HOL = { country_event = { id = germany_place_in_the_sun.2 hours = 12 random_hours = 6 } }
 
-        ai_chance = { base = 1 }
+        ai_chance = { 
+            base = 1
+            modifier = { HOL = { owns_state = 6 } }
+        }
     }
 
     option = {
         name = "Go alone."
         ENG = { news_event = { id = germany_place_in_the_sun.5 hours = 12 random_hours = 6 } }
 
-        ai_chance = { base = 2 }
+        ai_chance = { base = 3 }
     }
 }
 
@@ -44,10 +47,7 @@ country_event = {
 
         ai_chance = { 
             base = 1
-            modifier = {
-                owns_state = 6          # If they haven't yet ceded Belgium, they might be more eager to do stuff.
-                factor = 3
-            }
+            modifier = { owns_state = 6 factor = 3 }
         }
 
         ## Add the Netherlands to the alliance
@@ -56,7 +56,7 @@ country_event = {
                 limit = { is_in_faction = no }
                 create_faction = "Central Powers"
             }
-            add_to_faction = AUS
+            add_to_faction = HOL
         }
     }
 }
@@ -74,12 +74,9 @@ country_event = {
         ENG = { country_event = { id = germany_place_in_the_sun.5 hours = 12 random_hours = 6 } }
 
         ai_chance = { 
-            base = 2
+            base = 3
             modifier = {
-                strength_ratio = {
-                    tag = ENG
-                    ratio > 1
-                }
+                strength_ratio = { tag = ENG ratio > 1 }
                 factor = 3
             }
         }
@@ -103,13 +100,6 @@ country_event = {
     option = {
         name = "Agree to the German demands."
         news_event = { id = germany_place_in_the_sun.6 hours = 12 random_hours = 6 }
-
-        # create South Africa and make it a German puppet
-        hidden_effect = {
-            275 = { add_core_of = SAF }
-            681 = { add_core_of = SAF }
-            719 = { add_core_of = SAF }
-        }
 
         release = SAF
         GER = { puppet = SAF }
@@ -225,28 +215,38 @@ news_event = {
     }
 }
 
-### 9. Germany Offers an Alliance to Austria-Hungary
+### 9. Germany Offers an Alliance
 country_event = {
     id = germany_place_in_the_sun.9
-    title = "Germany Proposes an Alliance"
+    title = "Germany Proposes Alliance"
     desc = germany_place_in_the_sun.9.d
 
     is_triggered_only = yes
 
     option = {
         name = "Accept the offer."
+        news_event = { id = germany_place_in_the_sun.10 hours = 12 random_hours = 6 }
+
         GER = { 
-            news_event = { id = germany_place_in_the_sun.10 hours = 12 random_hours = 6 }
             if = {
                 limit = { is_in_faction = no }
                 create_faction = "Central Powers"
             }
-            add_to_faction = AUS
+            add_to_faction = ROOT
         }
 
         ai_chance = { 
             base = 3
             modifier = { has_idea = sww1_idea_slavic_unrest factor = 6 }
+            modifier = { has_completed_focus = TUR_sarajevo_memorandum factor = 0 }
+
+            modifier = {
+                or = {
+                    and = { tag = ITA GER = { is_ally_with = TUR } }
+                    and = { tag = TUR GER = { is_ally_with = ITA } }
+                }
+                factor = 0
+            }
         }
     }
 
@@ -259,10 +259,10 @@ country_event = {
     }
 }
 
-### 10. Austria-Hungary Accepts Germany's Alliance Offer
+### 10. AUS or TUR Accepts Germany's Alliance Offer
 news_event = {
     id = germany_place_in_the_sun.10
-    title = "Austria-Hungary Joins Germany's Alliance"
+    title = "[ROOT.GetName] Joins Germany's Alliance"
     desc = germany_place_in_the_sun.10.d
 
     is_triggered_only = yes
@@ -273,15 +273,15 @@ news_event = {
     }
 }
 
-### 11. Austria-Hungary Rejects Germany's Alliance Offer
+### 11. AUS or TUR Rejects Germany's Alliance Offer
 news_event = {
     id = germany_place_in_the_sun.11
-    title = "Austria-Hungary Rejects Germany's Alliance Offer"
+    title = "[FROM.GetName] Rejects Germany's Alliance Offer"
     desc = germany_place_in_the_sun.11.d
 
     is_triggered_only = yes
 
     option = {
-        name = "The partnership is not to be."
+        name = "A waste of time."
     }
 }

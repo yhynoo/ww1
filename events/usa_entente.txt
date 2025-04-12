@@ -1,0 +1,53 @@
+add_namespace = usa_entente
+
+country_event = {
+    id = usa_entente.1
+    title = "[USA.GetName] Offers Alliance"
+    desc = usa_entente.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Welcome on board!"
+
+        USA = { news_event = { id = usa_entente.2 hours = 12 random_hours = 6 } }
+        add_to_faction = USA
+
+        ai_chance = { 
+            base = 6
+            modifier = { USA = { has_government = democratic } factor = 3 }
+        }
+    }
+
+    option = {
+        name = "We can handle this alone."
+        USA = { news_event = { id = usa_entente.3 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = usa_entente.2
+    title = "[USA.GetName] Joins the Entente"
+    desc = usa_entente.2
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Right."
+    }
+}
+
+news_event = {
+    id = usa_entente.3
+    title = "[ENG.GetName] Declines"
+    desc = usa_entente.3
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We will figure it out on our own."
+    }
+}

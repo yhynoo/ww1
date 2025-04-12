@@ -1,0 +1,156 @@
+add_namespace = france_let_them_eat_cake
+
+# Seek Unification with the Kingdom of Spain
+country_event = {
+    id = france_let_them_eat_cake.1
+    title = "[FRA.GetName] Proposes Unification with [SPR.GetName]"
+    desc = france_let_them_eat_cake.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall unite with France!"
+        news_event = { id = france_let_them_eat_cake.2 hours = 12 random_hours = 6 }
+
+        FRA = {
+            add_political_power = 100
+            annex_country = {
+                target = SPR
+                transfer_troops = yes
+            }
+        }
+
+        hidden_effect = {
+            ENG = { country_event = { id = france_let_them_eat_cake.4 days = 7 random_hours = 6 } }
+            USA = { country_event = { id = france_let_them_eat_cake.4 days = 7 random_hours = 6 } }
+
+            add_named_threat = {
+                threat = 3
+                name = "Franco-Spanish Unification"
+            }
+        }
+
+        ai_chance = {
+            base = 1
+            modifier = { FRA = { is_ally_with = AUS } factor = 6 }
+        }
+    }
+
+    option = {
+        name = "We must remain independent."
+        FRA = {
+            news_event = { id = france_let_them_eat_cake.3 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = SPR
+                modifier = medium_decrease
+            }
+            if = {
+                limit = can_declare_war_on = SPR
+                create_wargoal = {
+                    target = SPR
+                    type = puppet_wargoal_focus
+                }
+            }
+        }
+
+        ai_chance = { base = 2 }
+    }
+}
+
+news_event = {
+    id = france_let_them_eat_cake.2
+    title = "Celebrations in Madrid!"
+    desc = france_let_them_eat_cake.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        trigger = { tag = FRA }
+        name = "Long live the Union!"
+    }
+    option = {
+        trigger = { 
+            not = { tag = ENG }
+            not = { tag = FRA }
+            not = { tag = USA }
+        }
+        name = "Right."
+    }
+}
+
+news_event = {
+    id = france_let_them_eat_cake.3
+    title = "[SPR.GetName] Rejects Franco-Spanish Union!"
+    desc = france_let_them_eat_cake.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A disappointing end to our proposal."
+    }
+}
+
+# Response Event for ENG and USA
+country_event = {
+    id = france_let_them_eat_cake.4
+    title = "Our Response to the Franco-Spanish Union"
+    desc = france_let_them_eat_cake.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must protest this!"
+        add_opinion_modifier = {
+            target = FRA
+            modifier = medium_decrease
+        }
+        FRA = {
+            news_event = { id = france_let_them_eat_cake.5 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = ROOT
+                modifier = medium_decrease
+            }
+        }
+
+        ai_chance = { 
+            base = 1
+            modifier = { has_government = democratic factor = 3 }
+        }
+    }
+
+    option = {
+        name = "The union is a fact."
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = france_let_them_eat_cake.5
+    title = "[FROM.GetName] Protests the Franco-Spanish Union!"
+    desc = france_events.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        trigger = { not = { tag = FRA } }
+        name = "They are right to be concerned."
+    }
+    option = {
+        trigger = { tag = FRA }
+        name = "Their concerns are noted."
+    }
+}
+
+news_event = {
+    id = france_let_them_eat_cake.6
+    title = "Insurgency in Southern Italy!"
+    desc = france_let_them_eat_cake.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This looks like a Bourbon job..."
+    }
+}

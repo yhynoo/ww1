@@ -1,21 +1,58 @@
+# scenario ideas
+ideas = {
+    country = {
+        sww1_idea_jim_crow_laws = {
+            modifier = {
+                stability_factor = -0.1
+            }
+        }
+        sww1_idea_pacifist_society = {
+            modifier = {
+                production_speed_arms_factory_factor = -0.5
+                production_speed_dockyard_factor = -0.5
+            }
+        }
+    }
+}
 
 # focus tree ideas
 ideas = {
     country = {
         sww1_idea_interventionism = {
             modifier = {
+                guarantee_tension = -0.25
+                lend_lease_tension = -0.4
             }
         }
 
-        # stability
         sww1_idea_uncle_sam = {
             modifier = {
+                war_stability_factor = 0.2
+                training_time_factor = -0.1
             }
         }
 
         sww1_idea_freedom_for_all = {
             modifier = {
+                political_power_factor = 0.1
+                opinion_gain_monthly_factor = 0.2
             }
+        }
+    }
+}
+
+# decision ideas
+ideas = {
+    country = {
+        sww1_idea_american_volunteers = {
+            send_volunteer_divisions_required = -0.25
+            send_volunteer_factor = 0.5
+        }
+
+        sww1_idea_isolationist_economy = {
+            trade_opinion_factor = -0.4
+            industrial_capacity_dockyard = 0.2
+            industrial_capacity_factory = 0.2
         }
     }
 }

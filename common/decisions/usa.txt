@@ -1,0 +1,344 @@
+
+dc_monroe_doctrine = {
+    intervene_in_mexico = {
+        cost = 150
+        fire_only_once = yes
+
+        available = { 
+            has_war_support > 0.25
+            MEX = { has_war = yes }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = { MEX = { surrender_progress > 0.2 } factor = 3 }
+        }
+
+        remove_days = 90
+        remove_effect = {
+            MEX = { country_event = { id = usa_monroe_doctrine.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    guarantees_for_latin_america = {
+        cost = 150
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 6
+            modifier = { threat > 0.2 factor = 2 }
+            modifier = { FRA = { has_government = monarchism } factor = 2 }
+        }
+
+        complete_effect = {
+            news_event = { id = usa_monroe_doctrine.4 hours = 12 random_hours = 6 }
+
+            give_guarantee = ARG
+            give_guarantee = BRA
+            give_guarantee = MEX
+            give_guarantee = PRU
+        }
+    }
+    claim_greenland = {
+        visible = { has_completed_focus = USA_america_first }
+
+        cost = 100
+        fire_only_once = yes
+
+        ai_will_do = { base = 12 }
+
+        complete_effect = {
+            news_event = { id = usa_monroe_doctrine.5 hours = 12 random_hours = 6 }
+            101 = { add_claim_by = USA }
+        }
+    }
+    demand_canada = {
+        visible = { has_completed_focus = USA_america_first }
+
+        cost = 200
+        fire_only_once = yes
+
+        available = {
+            any_state = {
+                or = {
+                    state = 276
+
+                    state = 331
+                    state = 332
+
+                    state = 464
+                    state = 465
+                    state = 466
+                    state = 467
+                    state = 468
+                    state = 469
+                    state = 470
+                    state = 471
+                    state = 472
+                    state = 473
+
+                    state = 682
+                    state = 683
+
+                    state = 739
+                    state = 740
+
+                    state = 860
+                    state = 861
+                    state = 862
+                    state = 863
+                    state = 864
+                    state = 865
+                    state = 866
+                    state = 867
+                }
+                is_owned_by = ENG
+            }
+        }
+
+        ai_will_do = { 
+            base = 3
+            modifier = { strength_ratio = { tag = ENG ratio > 1.0 } factor = 3 }
+        }
+
+        complete_effect = {
+            every_state = {
+                limit = {
+                    or = {
+                        state = 276
+
+                        state = 331
+                        state = 332
+
+                        state = 464
+                        state = 465
+                        state = 466
+                        state = 467
+                        state = 468
+                        state = 469
+                        state = 470
+                        state = 471
+                        state = 472
+                        state = 473
+
+                        state = 682
+                        state = 683
+
+                        state = 739
+                        state = 740
+
+                        state = 860
+                        state = 861
+                        state = 862
+                        state = 863
+                        state = 864
+                        state = 865
+                        state = 866
+                        state = 867
+                    }
+                    is_owned_by = ENG
+                }
+                add_claim_by = USA
+            }
+            ENG = { country_event = { id = usa_monroe_doctrine.6 hours = 12 random_hours = 6 } }
+        }
+    }
+}
+
+dc_support_the_entente = {
+    intervene_in_europe = {
+        cost = 200
+        fire_only_once = yes
+
+        available = {
+            is_in_faction = no
+            ENG = { is_faction_leader = yes has_war = yes }
+        }
+
+        ai_will_do = {
+            base = 1
+            modifier = { threat > 0.5 factor = 3 }
+            modifier = { date > 1916.4.1 factor = 6 }
+        }
+
+        complete_effect = {
+            ENG = { country_event = { id = usa_entente.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    enlist_volunteers = {
+        cost = 100
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 1
+            modifier = { ENG = { has_war_with = GER } factor = 6 }
+            modifier = { authoritarianism < 0.2 factor = 3 }
+        }
+
+        complete_effect = {
+            add_ideas = sww1_idea_american_volunteers
+        }
+    }
+    expand_military_industry = {
+        cost = 100
+        days_remove = 90
+
+        ai_will_do = {
+            base = 1
+            modifier = { num_of_military_factories < 60 factor = 3 }
+            modifier = { has_war = yes factor = 6 }
+        }
+
+        modifier = {
+            production_speed_industrial_complex_factor = 0.1
+            conversion_cost_civ_to_mil_factor = -0.25
+        }
+    }
+}
+
+dc_wilsons_fourteen_points = {
+    encourage_decolonization = {
+        cost = 150
+        fire_only_once = yes
+
+        available = { is_in_faction = no }
+
+        ai_will_do = {
+            base = 3
+            modifier = { and = { date > 1917.1.1 is_in_faction = no } factor = 3 }
+        }
+
+        complete_effect = {
+            news_event = { id = usa_wilson.1 hours = 12 random_hours = 6 }
+            create_faction = "League of Free Nations"
+        }
+    }
+    support_independence = {
+        cost = 100
+        days_remove = 90
+
+        available = {
+            has_government = democratic
+            or = { RAJ = { is_subject = yes } AST = { is_subject = yes } }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = { and = { date > 1917.1.1 is_faction_leader = yes } factor = 3 }
+        }
+
+        complete_effect = {
+            if = {
+                limit = { not = { has_country_flag = we_annoyed_england } }
+
+                news_event = { id = usa_wilson.2 hours = 12 random_hours = 6 }
+                set_country_flag = we_annoyed_england
+            }
+        }
+
+        modifier = { 
+            ENG = { 
+                stability_weekly = -0.005
+                subjects_autonomy_gain = 0.5
+            }
+        }
+    }
+}
+
+dc_cultural_hegemony = {
+    established_shared_research = {
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            or = {
+                is_ally_with = ENG
+                is_ally_with = FRA
+                is_ally_with = JAP
+            }
+        }
+
+        ai_will_do = { base = 12 }
+
+        complete_effect = {
+            every_country = {
+                limit = {
+                    or = {
+                        tag = ENG
+                        tag = FRA
+                        tag = JAP
+                    }
+                    is_ally_with = USA
+                }
+                country_event = { usa_cultural_hegemony.1 hours = 12 random_hours = 6 }
+            }
+        }
+    }
+    invest_in_entertainment = {
+        cost = 75
+        days_remove = 90
+
+        ai_will_do = { 
+            base = 3
+            modifier = { has_stability < 0.5 factor = 3 }
+        }
+
+        modifier = {
+            opinion_gain_monthly_factor = 0.5
+            stability_weekly = 0.005
+        }
+    }
+}
+
+dc_automotive_industries = {
+    introduce_tariffs = {
+        cost = 100
+        fire_only_once = yes
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            add_ideas = sww1_idea_isolationist_economy
+        }
+    }
+    campaign_against_unemployment = {
+        cost = 75
+        days_remove = 90
+
+        ai_will_do = { base = 6 }
+
+        modifier = {
+            production_speed_buildings_factor = 0.1
+            stability_weekly = 0.005
+        }
+    }
+    encourage_racial_integration = {
+        cost = 75
+        days_remove = 90
+
+        ai_will_do = { 
+            base = 6
+            modifier = { has_completed_focus = USA_america_first factor = 0 }
+        }
+
+        modifier = {
+            democratic_drift = 0.025
+        }
+
+        complete_effect = {
+            remove_ideas = sww1_idea_jim_crow_laws
+            hidden_effect = {
+                country_event = { id = usa_automotive_industries.1 days = 14 random_days = 28 }
+            }
+        }
+
+        remove_effect = {
+            random_owned_controlled_state = {
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 2
+                    instant_build = yes
+                }
+            }
+        }
+    }
+}

@@ -153,7 +153,7 @@ focus_tree = {
 				name = mountain_bonus
 				bonus = 1.0
 				uses = 1
-				category = mountaineer_upgrades
+				category = mountaineers_tech
 			}
         }
     }
@@ -815,6 +815,7 @@ focus_tree = {
         ai_will_do = {
             base = 1
             modifier = { has_country_flag = we_rejected_germany factor = 3 }
+            modifier = { has_war = yes factor = 6 }
         }
 
         prerequisite = { focus = AUS_international_affairs }
@@ -851,6 +852,11 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = { is_in_faction = yes factor = 0 }
+        }
+
         prerequisite = { focus = AUS_expansionism }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -867,6 +873,7 @@ focus_tree = {
 
         available = {
             is_in_faction = no
+            has_government = monarchism
         }
 
         ai_will_do = {
@@ -990,8 +997,6 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = { base = 2 }
-
         mutually_exclusive = { focus = AUS_house_habsburg }
         prerequisite = { focus = AUS_political_ambitions }
         completion_reward = {
@@ -1001,7 +1006,7 @@ focus_tree = {
             }
             add_popularity = {
                 ideology = democratic
-                popularity = 0.1
+                popularity = 0.05
             }
 
             hidden_effect = {
@@ -1057,6 +1062,9 @@ focus_tree = {
 
         prerequisite = { focus = AUS_state_reform }
         available = {
+            has_civil_war = no
+            not = { has_government = communism }
+            
             communism > 0.3
         }
         

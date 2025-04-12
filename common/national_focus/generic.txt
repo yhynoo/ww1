@@ -185,7 +185,7 @@ focus_tree = {
 				name = armor_bonus
 				bonus = 1.0
 				uses = 1
-				category = armor
+				category = armor_tech
 			}
         }
     }
@@ -1222,6 +1222,9 @@ focus_tree = {
 
         prerequisite = { focus = XXX_state_reform }
         available = {
+            has_civil_war = no
+            not = { has_government = communism }
+            
             communism > 0.3
         }
         

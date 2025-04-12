@@ -2,6 +2,8 @@
 
 dc_belgian_crisis = {
     ask_the_dutch_to_leave = {
+        visible = { tag = FRA }
+
         cost = 100
         fire_only_once = yes
 
@@ -19,20 +21,17 @@ dc_belgian_crisis = {
 
         ai_will_do = {
             base = 6
-            modifier = {
-                date > 1914.1.1
-                factor = 3
-            }
+            modifier = { date > 1914.1.1 factor = 3 }
         }
 
         complete_effect = {
-            HOL = {
-                country_event = { id = france_events.1 hours = 12 random_hours = 6 }
-            }
+            HOL = { country_event = { id = france_events.1 hours = 12 random_hours = 6 } }
         }
     }
 
     ultimatum_to_germany = {
+        visible = { tag = FRA }
+
         cost = 100
         fire_only_once = yes
 
@@ -52,17 +51,17 @@ dc_belgian_crisis = {
         ai_will_do = {
             base = 6
             modifier = { date > 1914.3.1 factor = 2 }
-            modifier = { is_ally_with = SOV factor = 3 }
+            modifier = { is_in_faction = yes factor = 1.5 }
         }
 
         complete_effect = {
-            GER = {
-                country_event = { id = france_events.4 hours = 12 random_hours = 6 }
-            }
+            GER = { country_event = { id = france_events.4 hours = 12 random_hours = 6 } }
         }
     }
 
     annex_belgium = {
+        visible = { tag = FRA }
+        
         cost = 150
         fire_only_once = yes
 
@@ -113,28 +112,24 @@ dc_across_the_atlantic = {
         fire_only_once = yes
 
         ai_will_do = {
-            base = 2
-            modifier = {
-                has_war = yes           # if we're at war, don't bother.
-                factor = 0
-            }
-            modifier = {
-                41 = { is_owned_by = FRA }          # do it after annexing spain
-                factor = 9
-            }
+            base = 3
+            modifier = { has_war = yes factor = 0 }
+            modifier = { or = { 41 = { is_owned_by = FRA } is_ally_with = SPR } factor = 6 }        # if we have Spain, go for it.
         }
 
         available = {
-            COL = { exists = yes }
-            MEX = { exists = yes }
-            or = {
-                is_in_faction = no
-                is_faction_leader = yes
-            }
+            COL = { has_war_with = MEX }
         }
 
         complete_effect = {
-            country_event = { id = france_events.12 hours = 12 random_hours = 6 }
+            if = { 
+                limit = { or = { has_government = monarchism has_government = authoritarianism } }
+                COL = { country_event = { id = france_across_the_atlantic.1 hours = 12 random_hours = 6 } }
+            }
+            if = { 
+                limit = { has_government = democratic }
+                MEX = { country_event = { id = france_across_the_atlantic.4 hours = 12 random_hours = 6 } }
+            }
         }
     }
 
@@ -156,22 +151,13 @@ dc_across_the_atlantic = {
 
         ai_will_do = {
             base = 2
-            modifier = {
-                has_war = yes           # if we're at war, don't bother.
-                factor = 0
-            }
-            modifier = {
-                41 = { is_owned_by = FRA }          # do it after annexing spain
-                factor = 4
-            }
-            modifier = {
-                USA = { is_in_faction = no }
-                factor = 2
-            }
+            
+            modifier = { USA = { not = { has_government = FRA } } factor = 2 }                      # we will do it if they have different government than we do
+            modifier = { or = { 41 = { is_owned_by = FRA } is_ally_with = SPR } factor = 3 }        # if we have Spain, go for it.
         }
 
         complete_effect = {
-            news_event = { id = france_events.16 hours = 12 random_hours = 6 }
+            news_event = { id = france_across_the_atlantic.7 hours = 12 random_hours = 6 }
             USA = {
                 add_opinion_modifier = {
                     target = FRA
@@ -211,41 +197,69 @@ dc_let_them_eat_cake = {
 
         available = {
             has_government = monarchism
-            SPR = { 
-                exists = yes
-                has_government = monarchism
-            }
+            SPR = { exists = yes has_government = monarchism }
         }
 
         ai_will_do = {
-            base = 4
+            base = 3
+            modifier = { has_war = yes factor = 3 }
             modifier = {
-                has_war = yes
-                factor = 2
-            }
-            modifier = {
-                or = {
-                    is_in_faction = no
-                    is_faction_leader = yes
-                }
+                or = { is_in_faction = no is_faction_leader = yes }
                 factor = 1.5
             }
         }
 
         complete_effect = {
-            SPR = {
-                country_event = { id = france_events.17 hours = 12 random_hours = 6 }
+            SPR = { country_event = { id = france_let_them_eat_cake.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    sponsor_bourbons_in_sicily = {
+        icon = generic_prepare_civil_war
+
+        cost = 150
+        fire_only_once = yes
+        days_remove = 120
+
+        available = {
+            any_state = { is_core_of = TTS is_owned_by = ITA }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = { 
+                and = { date > 1915.1.1 has_war = no not = { has_decision = liberate_the_orthodox_christians } }
+                factor = 3
+            }
+        }
+
+        war_with_on_remove = ITA
+
+        remove_effect = {
+            hidden_effect = {
+                ITA = {
+                    release = TTS
+                    transfer_units_fraction = {
+                        target = TTS
+                        size = 0.2
+                    }
+                }
+            }
+
+            news_event = { id = austria_second_vienna_treaty.2 hours = 12 random_hours = 6 }
+            give_guarantee = TTS
+            ITA = {
+                declare_war_on = {
+                    target = TTS
+                    type = annex_everything
+                }
             }
         }
     }
-
     international_trade_missions = {
         cost = 100
         fire_only_once = yes
 
-        complete_effect = {
-            add_ideas = sww1_idea_international_trade_missions
-        }
+        complete_effect = { add_ideas = sww1_idea_international_trade_missions }
     }
 }
 

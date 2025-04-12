@@ -619,8 +619,9 @@
 
         cost = 10
 
-        available = {
+        available = { 
             has_war = yes
+            surrender_progress > 0.05
         }
 
         prerequisite = { focus = FRA_agrarian_reform }
@@ -877,11 +878,8 @@
         cost = 10
 
         ai_will_do = {
-            base = 3
-            modifier = {
-                is_major = yes
-                factor = 2
-            }
+            base = 2
+            modifier = { date > 1913.1.1 factor = 3 }
         }
 
         completion_reward = {
@@ -899,10 +897,7 @@
 
         ai_will_do = {
             base = 1
-            modifier = {
-                date > 1913.1.1
-                factor = 5
-            }
+            modifier = { has_idea = sww1_idea_belgian_crisis factor = 6 }
         }
 
         prerequisite = { focus = FRA_political_ambitions }
@@ -924,14 +919,7 @@
 
         ai_will_do = {
             base = 1
-            modifier = {
-                is_major = yes
-                factor = 1.5
-            }
-            modifier = {
-                threat > 0.2
-                factor = 3
-            }
+            modifier = { date > 1913.1.1 factor = 3 }
         }
 
         prerequisite = { focus = FRA_international_affairs }
@@ -953,11 +941,8 @@
         cost = 10
 
         ai_will_do = {
-            base = 2
-            modifier = {
-                date > 1913.6.1
-                factor = 10
-            }
+            base = 1
+            modifier = { has_idea = sww1_idea_belgian_crisis factor = 6 }
         }
 
         prerequisite = { focus = FRA_international_affairs }
@@ -981,15 +966,8 @@
         cost = 10
 
         ai_will_do = {
-            base = 1
-            modifier = {
-                date > 1916.1.1
-                factor = 3
-            }
-            modifier = {
-                is_major = no
-                factor = 2
-            }
+            base = 2
+            modifier = { is_in_faction = yes factor = 0 }
         }
 
         prerequisite = { focus = FRA_expansionism }
@@ -1008,10 +986,7 @@
 
         ai_will_do = {
             base = 1
-            modifier = {
-                has_government = monarchism
-                factor = 2
-            }
+            modifier = { has_completed_focus = FRA_ancien_regime factor = 3 }
         }
 
         prerequisite = { focus = FRA_expansionism }
@@ -1022,7 +997,7 @@
 
     focus = {
         id = FRA_republicanism
-        icon = GFX_focus_generic_internal_stability
+        icon = GFX_focus_FRA_republicanism
 
         relative_position_id = FRA_political_ambitions
         x = 0
@@ -1030,7 +1005,8 @@
         cost = 10
 
         ai_will_do = {
-            base = 2
+            base = 1
+            modifier = { has_war = yes factor = 3 }
         }
 
         mutually_exclusive = { focus = FRA_ancien_regime }
@@ -1054,10 +1030,7 @@
 
         ai_will_do = {
             base = 1
-            modifier = {
-                has_war = yes
-                factor = 5
-            }
+            modifier = { has_war = yes factor = 3 }
         }
 
         prerequisite = { focus = FRA_republicanism }
@@ -1095,6 +1068,9 @@
             focus = FRA_on_ne_passe_pas
             focus = FRA_pieds_noirs
         }
+
+        ai_will_do = { base = 6 }
+
         completion_reward = {
             remove_ideas = sww1_idea_a_headless_rooster
             add_timed_idea = {
@@ -1129,6 +1105,8 @@
 
         ai_will_do = {
             base = 1
+            modifier = { is_ally_with = ENG factor = 0 }
+            modifier = { and = { date > 1915.1.1 is_in_faction = no } factor = 6 }
         }
 
         mutually_exclusive = { focus = FRA_republicanism }
@@ -1140,7 +1118,11 @@
             }
             add_popularity = {
                 ideology = monarchism
-                popularity = 0.1
+                popularity = 0.05
+            }
+
+            hidden_effect = {
+                news_event = { id = france_restore_ancien_regime.1 days = 7 random_hours = 12 }
             }
         }
     }
@@ -1153,13 +1135,7 @@
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 1
-            modifier = {
-                communism > 25
-                factor = 3
-            }
-        }
+        ai_will_do = { base = 3 }
 
         prerequisite = { focus = FRA_ancien_regime }
         completion_reward = {
@@ -1179,17 +1155,8 @@
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 1
-            modifier = {
-                has_war = no
-                factor = 1.5
-            }
-            modifier = {
-                num_of_civilian_factories < 15
-                factor = 1.5
-            }
-        }
+        available = { has_government = monarchism }
+        ai_will_do = { base = 3 }
 
         prerequisite = { focus = FRA_ancien_regime }
         completion_reward = {
@@ -1209,15 +1176,8 @@
         cost = 10
 
         ai_will_do = {
-            base = 1
-            modifier = {
-                communism > 30
-                factor = 10
-            }
-            modifier = {
-                has_war = yes
-                factor = 0
-            }
+            base = 3
+            modifier = { has_war = yes factor = 0 }
         }
 
         prerequisite = { focus = FRA_state_reform }
@@ -1247,6 +1207,8 @@
         x = -1
         y = 1
         cost = 10
+
+        ai_will_do = { base = 3 }
 
         prerequisite = { focus = FRA_state_reform }
         completion_reward = {

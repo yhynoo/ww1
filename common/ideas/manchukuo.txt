@@ -3,14 +3,14 @@ ideas = {
     country = {
         sww1_idea_severe_opium_crisis = {
             modifier = {
-                stability_weekly = -0.01
+                stability_factor = -0.3
                 conscription = -0.01
             }
         }
 
         sww1_idea_limited_opium_crisis = {
             modifier = {
-                stability_weekly = -0.005
+                stability_factor = -0.15
                 conscription = -0.005
             }
         }
@@ -30,22 +30,42 @@ ideas = {
         # stability
         sww1_idea_embrace_korean_volunteers = {
             modifier = {
+                conscription = 0.01
             }
         }
 
         sww1_idea_father_of_the_people = {
             modifier = {
+                political_power_factor = 0.1
             }
         }
 
         sww1_idea_five_races_one_nation = {
             modifier = {
+                resistance_growth_on_our_occupied_states = 0.2
+                army_core_defence_factor = 0.15
             }
         }
 
         # reform
         sww1_idea_yuan_shikais_clique = {
             modifier = {
+                experience_gain_army_factor = 0.2
+                army_core_attack_factor = 0.1
+            }
+        }
+
+        sww1_idea_warlord_states = {
+            modifier = {
+                political_power_factor = -0.25
+                monarchism_drift = 0.05
+            }
+        }
+
+        sww1_idea_warlords_appeased = {
+            modifier = {
+                consumer_goods_factor = 0.1
+                training_time_factor = -0.25
             }
         }
     }

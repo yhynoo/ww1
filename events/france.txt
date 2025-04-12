@@ -9,25 +9,18 @@ country_event = {
     is_triggered_only = yes
 
     option = {
-        name = "Let them take over in Belgium."
+        name = "Let them take over."
 
         news_event = { id = france_events.2 hours = 12 random_hours = 6 }
         every_state = {
-            limit = {
-                or = {
-                    state = 6
-                    state = 34
-                    state = 977
-                    state = 980
-                }
-                is_owned_by = HOL
-            }
+            limit = { is_claimed_by = FRA is_owned_by = HOL }
             transfer_state_to = FRA
         }
-        remove_ideas = sww1_idea_belgian_crisis
+
+        remove_ideas = sww1_idea_accommodate_belgian_refugees
 
         ai_chance = {
-            base = 5
+            base = 3
             modifier = {
                 is_ally_with = GER          # won't give up if they're allied with Germany
                 factor = 0
@@ -36,9 +29,13 @@ country_event = {
     }
 
     option = {
-        name = "We refuse to yield!"
+        name = "We shall stay in Flanders!"
         FRA = {
             news_event = { id = france_events.3 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = HOL
+                type = take_claimed_state
+            }
         }
 
         hidden_effect = {
@@ -46,11 +43,14 @@ country_event = {
                 threat = 2
                 name = "The Dutch Won't Leave Belgium"
             }
+
+            HOL = { 
+                set_country_flag = we_stay_in_flanders
+                country_event = { holland_belgian_crisis.4 days = 3 random_hours = 12 }
+            }
         }
 
-        ai_chance = {
-            base = 1
-        }
+        ai_chance = { base = 1 }
     }
 }
 
@@ -338,293 +338,5 @@ news_event = {
             limit = { tag = FRA }
             remove_ideas = sww1_idea_belgian_crisis
         }
-    }
-}
-
-# ACROSS THE ATLANTIC
-
-# Intervene in Central America
-country_event = {
-    id = france_events.12
-    title = "[FRA.GetName] Debates Central American Intervention"
-    desc = france_events.12.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Side with Mexico."
-        hidden_effect = {
-            MEX = {
-                country_event = { id = france_events.13 hours = 12 random_hours = 6 }
-            }
-        }
-
-        ai_chance = {
-            base = 1
-            modifier = {
-                MEX = {
-                    strength_ratio = {
-                        tag = COL
-                        ratio > 1.5
-                    }
-                }
-                factor = 4
-            }
-        }
-    }
-
-    option = {
-        name = "Side with Colombia."
-        hidden_effect = {
-            COL = {
-                country_event = { id = france_events.13 hours = 12 random_hours = 6 }
-            }
-        }
-
-        ai_chance = {
-            base = 1
-            modifier = {
-                COL = {
-                    strength_ratio = {
-                        tag = MEX
-                        ratio > 1.5
-                    }
-                }
-                factor = 4
-            }
-        }
-    }
-}
-
-country_event = {
-    id = france_events.13
-    title = "[FRA.GetName] Offers Military Alliance!"
-    desc = france_events.13.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "We accept France's offer!"
-        FRA = {
-            if = {
-                limit = { is_in_faction = no }
-                create_faction = "The Versailles Pact"
-            }
-
-            add_to_faction = ROOT
-        }
-        news_event = { id = france_events.14 hours = 12 random_hours = 6 }
-        ai_chance = { base = 4 }
-    }
-
-    option = {
-        name = "We must remain independent."
-        ai_chance = { base = 1 }
-
-        FRA = {
-            news_event = { id = france_events.15 hours = 12 random_hours = 6 }
-        }
-    }
-}
-
-news_event = {
-    id = france_events.14
-    title = "[ROOT.GetName] Joins France's Military Alliance!"
-    desc = france_events.14.d
-
-    is_triggered_only = yes
-    major = yes
-
-    option = {
-        name = "Interesting."
-    }
-}
-
-news_event = {
-    id = france_events.15
-    title = "[FROM.GetName] Refuses France's Alliance!"
-    desc = france_events.15.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "A setback for French ambitions."
-    }
-}
-
-# Challenge the United States in the Caribbean
-news_event = {
-    id = france_events.16
-    title = "[FRA.GetName] Issues Claims in the Caribbean"
-    desc = france_events.16.d
-
-    is_triggered_only = yes
-    major = yes
-
-    option = {
-        name = "Tensions rise across the Atlantic."
-    }
-}
-
-# LET THEM EAT CAKE
-
-# Seek Unification with the Kingdom of Spain
-country_event = {
-    id = france_events.17
-    title = "[FRA.GetName] Proposes Unification with [SPR.GetName]"
-    desc = france_events.17.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "We shall unite with France!"
-        news_event = { id = france_events.18 hours = 12 random_hours = 6 }
-
-        FRA = {
-            add_political_power = 100
-            annex_country = {
-                target = SPR
-                transfer_troops = yes
-            }
-        }
-
-        hidden_effect = {
-            ENG = {
-                country_event = { id = france_events.20 days = 7 random_hours = 6 }
-            }
-            USA = {
-                country_event = { id = france_events.20 days = 7 random_hours = 6 }
-            }
-
-            add_named_threat = {
-                threat = 3
-                name = "Franco-Spanish Unification"
-            }
-        }
-
-        ai_chance = {
-            base = 1
-            modifier = {
-                has_opinion = {
-                    target = FRA
-                    value > 50
-                }
-                factor = 2
-            }
-            modifier = {
-                FRA = { is_ally_with = AUS }
-                factor = 5
-            }
-        }
-    }
-
-    option = {
-        name = "We must remain independent."
-        FRA = {
-            news_event = { id = france_events.19 hours = 12 random_hours = 6 }
-            add_opinion_modifier = {
-                target = SPR
-                modifier = medium_decrease
-            }
-        }
-
-        ai_chance = {
-            base = 2
-        }
-    }
-}
-
-news_event = {
-    id = france_events.18
-    title = "Celebrations in Madrid!"
-    desc = france_events.18.d
-
-    is_triggered_only = yes
-    major = yes
-
-    option = {
-        trigger = { tag = FRA }
-        name = "Long live the Union!"
-    }
-    option = {
-        trigger = { not = { tag = FRA } }
-        name = "Right."
-    }
-}
-
-news_event = {
-    id = france_events.19
-    title = "[SPR.GetName] Rejects Franco-Spanish Union!"
-    desc = france_events.19.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "A disappointing end to our proposal."
-    }
-}
-
-# Response Event for ENG and USA
-country_event = {
-    id = france_events.20
-    title = "Our Response to the Franco-Spanish Union"
-    desc = france_events.20.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "We must protest this!"
-        add_opinion_modifier = {
-            target = FRA
-            modifier = medium_decrease
-        }
-        FRA = {
-            news_event = { id = france_events.21 hours = 12 random_hours = 6 }
-            add_opinion_modifier = {
-                target = ROOT
-                modifier = medium_decrease
-            }
-        }
-
-        ai_chance = {
-            base = 2
-            modifier = {
-                has_government = democratic
-                factor = 2
-            }
-            modifier = {
-                has_war = no
-                factor = 4
-            }
-        }
-    }
-
-    option = {
-        name = "The union is a fact."
-        ai_chance = {
-            base = 1
-            modifier = {
-                has_war = yes               # if there's a war, they won't bother.
-                factor = 25
-            }
-        }
-    }
-}
-
-news_event = {
-    id = france_events.21
-    title = "[FROM.GetName] Protests the Franco-Spanish Union!"
-    desc = france_events.21.d
-
-    is_triggered_only = yes
-    major = yes
-
-    option = {
-        trigger = { not = { tag = FRA } }
-        name = "They are right to be concerned."
-    }
-    option = {
-        trigger = { tag = FRA }
-        name = "Their concerns are noted."
     }
 }

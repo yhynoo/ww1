@@ -90,46 +90,36 @@ dc_second_vienna_treaty = {
             }
         }
     }
-    sponsor_bourbons = {
-        icon = generic_prepare_civil_war
-
-        cost = 150
+    assert_claims_in_veneto = {
+        cost = 100
         fire_only_once = yes
-        days_remove = 120
 
         available = {
-            any_state = { is_core_of = TTS is_owned_by = ITA }
+            any_state = {
+                or = {
+                    state = 159
+                    state = 160
+                }
+                is_owned_by = ITA
+            }
         }
 
         ai_will_do = {
             base = 3
-            modifier = { 
-                and = { date > 1915.1.1 has_war = no not = { has_decision = liberate_the_orthodox_christians } }
-                factor = 3
-            }
+            modifier = { or = { is_ally_with = FRA TTS = { exists = yes } } factor = 3 }    
         }
 
-        war_with_on_remove = ITA
-
-        remove_effect = {
-            hidden_effect = {
-                ITA = {
-                    release = TTS
-                    transfer_units_fraction = {
-                        target = TTS
-                        size = 0.2
-                    }
-                }
-            }
-
-            news_event = { id = austria_second_vienna_treaty.2 hours = 12 random_hours = 6 }
-            give_guarantee = TTS
+        complete_effect = {
+            news_event = { austria_second_vienna_treaty.2 hours = 12 random_hours = 6 }
             ITA = {
-                declare_war_on = {
-                    target = TTS
-                    type = annex_everything
+                add_opinion_modifier = {
+                    target = AUS
+                    modifier = medium_decrease
                 }
             }
+
+            159 = { add_claim_by = AUS }
+            160 = { add_claim_by = AUS }
         }
     }
     invite_france = {
@@ -146,6 +136,22 @@ dc_second_vienna_treaty = {
 
         complete_effect = {
             FRA = { country_event = { id = austria_second_vienna_treaty.3 hours = 12 random_hours = 6 } }
+        }
+    }
+    invite_spain = {
+        icon = decision_generic_political_discourse
+
+        cost = 100
+        fire_only_once = yes
+        available = { SPR = { has_government = monarchism is_in_faction = no } }
+
+        ai_will_do = {
+            base = 5
+            modifier = { has_war = yes factor = 3 }
+        }
+
+        complete_effect = {
+            SPR = { country_event = { id = austria_second_vienna_treaty.6 hours = 12 random_hours = 6 } }
         }
     }
 }

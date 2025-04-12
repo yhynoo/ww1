@@ -154,7 +154,7 @@ focus_tree = {
 				name = armor_bonus
 				bonus = 1.0
 				uses = 2
-				category = armor
+				category = armor_tech
 			}
         }
     }
@@ -1066,8 +1066,8 @@ focus_tree = {
         }
     }
     focus = {
-        id = ENG_union_strike
-        icon = GFX_focus_generic_over_the_edge
+        id = ENG_end_imperialism
+        icon = GFX_focus_ENG_end_imperialism
 
         relative_position_id = ENG_draft_the_constitution
         x = 2
@@ -1076,23 +1076,11 @@ focus_tree = {
 
         prerequisite = { focus = ENG_draft_the_constitution }
         available = {
-            not = { has_government = communism }
-            communism > 0.3
+            has_government = communism
         }
 
         completion_reward = {
-            start_civil_war = {
-                ruling_party = communism
-                ideology = ROOT
-                size = 0.5
-            }
-
-            hidden_effect = {
-                add_popularity = {
-                    ideology = communism
-                    popularity = 0.25
-                }
-            }
+            custom_effect_tooltip = decision_effect_tooltip
         }
     }
     focus = {
