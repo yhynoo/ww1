@@ -1,0 +1,53 @@
+add_namespace = baltic_civil_war
+
+news_event = {
+    id = baltic_civil_war.1
+    title = "Baltic Nations to Expel the Russians!"     # germans, lithuanians, latvians, and estonians
+    desc = baltic_civil_war.1.d
+
+    trigger = { UBD = { exists = no } }
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Down with the occupiers!"
+
+        if = { 
+            limit = { original_tag = SOV }
+            hidden_effect = {
+                every_owned_state = {
+                    limit = {
+                        or = { state = 808 state = 12 state = 811 state = 812 state = 191 }
+                    }
+                    transfer_state_to = UBD
+                }
+
+                declare_war_on = {
+                    target = UBD
+                    type = annex_everything
+                }
+            }
+        }
+
+        if = {
+            limit = { tag = SOV }
+            hidden_effect = { UBD = { news_event = { id = baltic_civil_war.2 hours = 6 } } }
+        }
+    }
+}
+
+news_event = {
+    id = baltic_civil_war.2
+    title = "Volunteers Take Up Arms!"
+    desc = baltic_civil_war.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        hidden_effect = {
+            load_oob = "UBD_uprising"
+        }
+    }
+}

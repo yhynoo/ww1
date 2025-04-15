@@ -17,14 +17,11 @@ country_event = {
             transfer_state_to = FRA
         }
 
-        remove_ideas = sww1_idea_accommodate_belgian_refugees
+        remove_ideas = sww1_idea_the_aftermath_in_flanders
 
         ai_chance = {
-            base = 3
-            modifier = {
-                is_ally_with = GER          # won't give up if they're allied with Germany
-                factor = 0
-            }
+            base = 2
+            modifier = { has_completed_focus = HOL_thorbeckes_legacy factor = 3 }
         }
     }
 
@@ -46,11 +43,14 @@ country_event = {
 
             HOL = { 
                 set_country_flag = we_stay_in_flanders
-                country_event = { holland_belgian_crisis.4 days = 3 random_hours = 12 }
             }
         }
 
-        ai_chance = { base = 1 }
+        ai_chance = { 
+            base = 1
+            modifier = { has_country_flag = france_made_us_wait factor = 3 }
+            modifier = { has_completed_focus = HOL_thorbeckes_legacy factor = 0 }
+        }
     }
 }
 

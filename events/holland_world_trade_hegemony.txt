@@ -1,0 +1,181 @@
+add_namespace = holland_world_trade_hegemony
+
+news_event = {
+    id = holland_world_trade_hegemony.1
+    title = "[HOL.GetName] Expresses Solidarity with the Boers"     # after recent investments in Cape Town
+    desc = holland_world_trade_hegemony.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Another Boer war...?"
+    }
+}
+
+country_event = {
+    id = holland_world_trade_hegemony.2
+    title = "Shell Demands Drilling Rights"     # it's from Persia's perspective
+    desc = holland_world_trade_hegemony.2.d
+
+    is_triggered_only = yes
+    
+    option = {
+        name = "They are welcome."
+
+        give_resource_rights = { receiver = HOL state = 412 }
+        give_resource_rights = { receiver = HOL state = 413 }
+
+        ai_chance = { 
+            base = 1
+            modifier = { HOL = { is_ally_with = TUR } factor = 6 }
+        }
+    }
+
+    option = {
+        name = "No way!"
+
+        HOL = {
+            create_wargoal = {
+                target = PER
+                type = puppet_wargoal_focus
+            }
+        }
+
+        ai_chance = { base = 2 }
+    }
+}
+
+news_event = {
+    id = holland_world_trade_hegemony.3
+    title = "Dutch Shell Active in the Gulf"
+    desc = holland_world_trade_hegemony.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = holland_world_trade_hegemony.4
+    title = "[PER.GetName] Refuses to Cooperate with Shell!"
+    desc = holland_world_trade_hegemony.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "We might need to intervene."
+    }
+}
+
+# Suez
+
+country_event = {
+    id = holland_world_trade_hegemony.5
+    title = "[HOL.GetName]: Suez Canal for Debt Erasure"            # UK will hate it
+    desc = holland_world_trade_hegemony.5.d
+
+    is_triggered_only = yes
+    
+    option = {
+        name = "That's a good deal!"
+
+        HOL = { news_event = { id = holland_world_trade_hegemony.6 hours = 12 random_hours = 6 } }
+        446 = { transfer_state_to = HOL }
+        453 = { transfer_state_to = HOL }
+
+        if = {
+            limit = { has_idea = sww1_idea_amassed_foreign_debt }
+            remove_ideas = sww1_idea_amassed_foreign_debt
+        }
+        if = {
+            limit = { has_idea = sww1_idea_significant_foreign_debt }
+            remove_ideas = sww1_idea_significant_foreign_debt
+        }
+
+        ai_chance = { 
+            base = 1
+            modifier = { has_idea = sww1_idea_amassed_foreign_debt factor = 2 }
+        }
+    }
+
+    option = {
+        name = "This is too high a price."
+
+        HOL = {
+            news_event = { id = holland_world_trade_hegemony.7 hours = 12 random_hours = 6 }
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = holland_world_trade_hegemony.6
+    title = "[HOL.GetName] Takes Control of the Suez Canal!"
+    desc = holland_world_trade_hegemony.6.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A major shift of economic power."
+    }
+}
+
+news_event = {
+    id = holland_world_trade_hegemony.7
+    title = "The Turks Refuse"
+    desc = holland_world_trade_hegemony.7.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Such a shame."
+    }
+}
+
+country_event = {
+    id = holland_world_trade_hegemony.8
+    title = "Oppose the Dutch Takeover?"
+    desc = holland_world_trade_hegemony.8.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Who do they think they are?!"
+        HOL = { news_event = { holland_world_trade_hegemony.9 hours = 12 random_hours = 6 } }
+
+        446 = { add_claim_by = ENG }
+        453 = { add_claim_by = ENG }
+
+        create_wargoal = {
+            target = HOL
+            type = take_claimed_state
+        }
+
+        ai_chance = { base = 3 }
+    }
+
+    option = {
+        name = "Turkish debt is now Dutch."
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = holland_world_trade_hegemony.9
+    title = "[ENG.GetName] Opposes Our Suez Investments"
+    desc = holland_world_trade_hegemony.9.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a dangerous situation."
+    }
+}

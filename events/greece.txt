@@ -1,0 +1,44 @@
+add_namespace = greece_events
+
+news_event = {
+    id = greece_events.1
+    title = "Greek War of Independence!"
+    desc = greece_events.1.d
+
+    trigger = {
+        tag = TUR
+        GRE = { exists = no }
+
+        surrender_progress > 0.2
+        any_controlled_state = {
+            or = { state = 185 state = 186 state = 187 }
+        }
+    }
+
+    major = yes
+
+    option = {
+        name = "It has begun."
+
+        if = {
+            limit = { tag = TUR }
+
+            hidden_effect = {
+                every_state = {
+                    limit = {
+                        or = { state = 185 state = 186 state = 187 }
+                        is_controlled_by = TUR
+                    }
+                    transfer_state_to = GRE
+                }
+
+                GRE = { load_oob = "GRE_uprising" }
+            }
+
+            declare_war_on = {
+                target = GRE
+                type = annex_everything
+            }
+        }
+    }
+}

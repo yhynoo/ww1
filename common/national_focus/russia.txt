@@ -1010,7 +1010,7 @@
 
     focus = {
         id = SOV_monarchy
-        icon = GFX_focus_generic_internal_stability
+        icon = GFX_focus_SOV_stabilize_the_monarchy
 
         relative_position_id = SOV_political_ambitions
         x = 0
@@ -1243,15 +1243,22 @@
             }
 
             hidden_effect = {
+                load_focus_tree = communist_focus
+
                 SOV = { 
                     set_cosmetic_tag = SOC
-                    set_popularities = { communism = 100 }
+                    set_popularities = { communism = 85 democratic = 10 monarchism = 5 }
                 }
 
                 random_country = {
                     limit = { original_tag = SOV not = { has_government = communism } }
                     set_cosmetic_tag = SOO
                 }
+
+                news_event = { id = baltic_civil_war.1 days = 7 random_days = 42 }
+                news_event = { id = crimea_civil_war.1 days = 7 random_days = 42 }
+                news_event = { id = poland_civil_war.1 days = 7 random_days = 42 }
+                news_event = { id = ukraine_civil_war.1 days = 7 random_days = 42 }
             }
         } 
     }

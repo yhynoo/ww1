@@ -1,8 +1,75 @@
 ideas = {
     country = {
-        sww1_idea_accommodate_belgian_refugees = {
+        sww1_idea_the_aftermath_in_flanders = {
             modifier = {
-                consumer_goods_factor = 0.2
+                consumer_goods_factor = 0.25
+                stability_factor = -0.2
+            }
+        }
+    }
+}
+
+## focus tree ideas
+ideas = {
+    country = {
+        sww1_idea_fokker = {
+            modifier = {
+                air_agility_factor = 0.25
+                air_attack_factor = 0.2
+            }
+        }
+
+        # stability
+        sww1_idea_souvereniteit = {
+            modifier = {
+                stability_factor = 0.1
+            }
+        }
+
+        sww1_idea_neutrality = {
+            modifier = {
+                army_core_defence_factor = 0.1
+                enemy_justify_war_goal_time = 0.25
+            }
+        }
+
+        sww1_idea_voc_mentaliteit = {
+            modifier = {
+                faction_trade_opinion_factor = 0.25
+                political_power_gain = 0.1
+            }
+        }
+
+        # reform
+        sww1_idea_equalize_the_voting_rights = {
+            modifier = {
+                political_power_gain = 0.15
+                stability_factor = -0.05
+            }
+        }
+    }
+}
+
+## decision ideas
+ideas = {
+    country = {
+        sww1_idea_volksraad_in_indonesia = {
+            modifier = {
+                political_power_gain = 0.05
+                democratic_drift = 0.05
+            }
+        }
+
+        sww1_idea_inclusive_canon = {
+            modifier = {
+                political_power_gain = 0.05
+            }
+        }
+
+        sww1_idea_dutch_state_media = {
+            modifier = {
+                stability_factor = 0.1
+                drift_defence_factor = 0.25
             }
         }
     }

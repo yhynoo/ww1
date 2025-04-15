@@ -1,37 +1,163 @@
-dc_belgian_crisis = {
-    ask_the_french_to_come = {
-        visible = { tag = HOL }
-
-        cost = 100
+dc_aftermath_in_flanders = {
+    invite_the_french = {
+        cost = 150
         fire_only_once = yes
 
-        available = {
-            FRA = { has_opinion = { target = HOL value > 50 } }
-        }
-
         ai_will_do = { 
-            base = 3
-            modifier = { has_stability < 0.25 factor = 2 }
+            base = 6
+            modifier = { has_completed_focus = HOL_thorbeckes_legacy factor = 6 }
         }
 
         complete_effect = {
-            FRA = { country_event = { id = holland_belgian_crisis.1 hours = 12 random_hours = 6 } }
+            FRA = { country_event = { id = holland_aftermath_in_flanders.1 hours = 12 random_hours = 6 } }
         }
     }
-    escalate_internal_tensions = {
-        visible = { tag = HOL }
-
-        cost = 75
+    escalate_tensions = {
+        cost = 100
         days_remove = 90
 
-        ai_will_do = {
+        ai_will_do = { 
             base = 3
-            modifier = { and = { has_stability > 0.2 has_country_flag = we_stay_in_flanders } factor = 3 }
+            modifier = { has_completed_focus = HOL_integrate_the_belgians factor = 3 }
         }
 
         modifier = {
+            war_support_weekly = 0.005
             monarchism_drift = 0.05
-            stability_weekly = -0.01
+        }
+    }
+}
+
+dc_world_trade_hegemony = {
+    claim_suez_canal = {
+        cost = 200
+        fire_only_once = yes
+
+        available = {
+            446 = { is_owned_by = TUR }
+            453 = { is_owned_by = TUR }
+
+            TUR = {
+                or = {
+                    has_idea = sww1_idea_amassed_foreign_debt
+                    has_idea = sww1_idea_significant_foreign_debt
+                }
+            }
+        }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { has_completed_focus = HOL_integrate_the_belgians factor = 2 }
+        }
+
+        complete_effect = {
+            TUR = { country_event = { id = holland_world_trade_hegemony.5 hours = 12 random_hours = 6 } }
+        }
+    }
+    koninklijke_shell = {
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            412 = { is_owned_by = PER }
+            413 = { is_owned_by = PER }
+        }
+
+        ai_will_do = { base = 10 }
+
+        complete_effect = {
+            PER = { country_event = { id = holland_world_trade_hegemony.2 hours = 12 random_hours = 6 } }
+        }
+    }
+    solidarity_with_the_boers = {
+        cost = 100
+        fire_only_once = yes
+
+        complete_effect = {
+            news_event = { id = holland_world_trade_hegemony.1 hours = 12 random_hours = 6 }
+            ENG = {
+                add_opinion_modifier = {
+                    target = HOL
+                    modifier = medium_decrease
+                }
+            }
+            GER = {
+                add_opinion_modifier = {
+                    target = HOL
+                    modifier = medium_increase
+                }
+            }
+
+            ai_will_do = {
+                base = 3
+                modifier = { has_country_flag = we_stay_in_flanders factor = 3 }
+            }
+
+            hidden_effect = {
+                set_country_flag = we_supported_boers
+            }
+        }
+    }
+}
+
+dc_politik_etis = {
+    establish_the_volksraad = {
+        cost = 150
+        fire_only_once = yes
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            add_ideas = sww1_idea_volksraad_in_indonesia
+        }
+    }
+    education_initiatives = {
+        cost = 75
+        days_remove = 90
+
+        ai_will_do = { base = 6 }
+
+        modifier = {
+            stability_weekly = 0.005
+            research_speed_factor = 0.05
+        }
+    }
+}
+
+dc_depillarization = {
+    establish_state_media = {
+        cost = 150
+        fire_only_once = yes
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            add_ideas = sww1_idea_dutch_state_media
+        }
+    }
+    draft_the_historical_canon = {
+        cost = 150
+        fire_only_once = yes
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            add_ideas = sww1_idea_inclusive_canon
+        }
+
+    }
+    encourage_indonesian_immigration = {
+        cost = 75
+        days_remove = 90
+
+        ai_will_do = { 
+            base = 3
+            modifier = { and = { has_stability > 0.5 has_manpower < 30000 } factor = 3 }
+        }
+
+        modifier = {
+            stability_factor = -0.05
+            weekly_manpower = 6000
         }
     }
 }

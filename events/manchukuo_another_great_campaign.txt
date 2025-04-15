@@ -11,8 +11,20 @@ country_event = {
         name = "Let them have it."
         news_event = { id = manchukuo_another_great_campaign.2 hours = 12 random_hours = 6 }
 
-        525 = { transfer_state_to = MAN }
-        527 = { transfer_state_to = MAN }
+        every_state = {
+            limit = {
+                or = {
+                    state = 525
+                    state = 527
+                    state = 982
+                    state = 983
+                    state = 984
+                    state = 985
+                }
+                is_owned_by = JAP
+            }
+            transfer_state_to = MAN
+        }
 
         ai_chance = { 
             base = 1

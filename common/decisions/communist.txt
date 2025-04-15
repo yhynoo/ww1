@@ -1,0 +1,79 @@
+dc_internationalism = {
+    join_the_internationale = {
+
+    }
+    support_the_agitators = {
+        cost = 50
+        days_remove = 90
+
+        modifier = {
+            war_support_weekly = 0.01
+        }
+
+        complete_effect = {
+            random_neighbor_country = {
+                add_timed_idea = {
+                    idea = sww1_idea_communist_agitation
+                    days = 90
+                }
+            }
+        }
+    }
+}
+
+dc_workers_councils = {
+    establish_local_communes = {
+        cost = 150
+        fire_only_once = yes
+
+        complete_effect = {
+
+        }
+    }
+    encourage_decentralization = {
+        cost = 100
+        days_remove = 90
+
+        modifier = {
+            production_factory_efficiency_gain_factor = 0.25
+            industrial_capacity_factory = 0.1
+        }
+    }
+    anarchist_education = {
+        cost = 100
+        days_remove = 90
+
+        modifier = {
+            drift_defence_factor = 0.25
+            research_speed_factor = 0.1
+        }
+    }
+}
+
+dc_the_party = {
+    establish_state_security = {
+        cost = 150
+        fire_only_once = yes
+
+        complete_effect = {
+
+        }
+    }
+    foster_ideological_purity = {
+        cost = 100
+        days_remove = 90
+
+        modifier = {
+            stability_weekly = 0.005
+            drift_defence_factor = 0.25
+        }
+    }
+    develop_the_party_apparatus = {
+        cost = 100
+        days_remove = 90
+
+        modifier = {
+
+        }
+    }
+}

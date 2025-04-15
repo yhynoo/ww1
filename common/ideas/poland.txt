@@ -1,0 +1,56 @@
+# scenario ideas
+ideas = {
+    country = {
+        sww1_idea_burden_of_three_occupiers = {
+            modifier = {
+                political_power_gain = -0.1
+            }
+        }
+    }
+}
+
+# focus tree ideas
+ideas = {
+    country = {
+        # home front
+        sww1_idea_improvised_equipment = {
+            modifier = {
+                supply_factor = 0.1
+                unit_upkeep_attrition_factor = -0.15
+            }
+        }
+        # stability
+        sww1_idea_eastern_trade_fair = {
+            modifier = {
+                trade_opinion_factor = 0.15
+                faction_trade_opinion_factor = 0.15
+            }
+        }
+
+        sww1_idea_komendant = {
+            modifier = {
+                mobilization_speed = 0.2
+                war_support_weekly_factor = 0.1
+            }
+        }
+
+        sww1_idea_unite_the_commonwealth = {
+            modifier = {
+                army_attack_factor = 0.1
+                army_morale_factor = 0.15
+            }
+        }
+    }
+}
+
+## decision ideas 
+ideas = {
+    country = {
+        sww1_monetary_union_with_austria = {
+            targeted_modifier = {
+                tag = AUS
+                trade_cost_for_target_factor = -0.5
+            }
+        }
+    }
+}

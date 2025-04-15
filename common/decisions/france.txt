@@ -2,8 +2,6 @@
 
 dc_belgian_crisis = {
     ask_the_dutch_to_leave = {
-        visible = { tag = FRA }
-
         cost = 100
         fire_only_once = yes
 
@@ -20,8 +18,8 @@ dc_belgian_crisis = {
         }
 
         ai_will_do = {
-            base = 6
-            modifier = { date > 1914.1.1 factor = 3 }
+            base = 12
+            modifier = { date > 1913.7.1 factor = 3 }
         }
 
         complete_effect = {
@@ -30,8 +28,6 @@ dc_belgian_crisis = {
     }
 
     ultimatum_to_germany = {
-        visible = { tag = FRA }
-
         cost = 100
         fire_only_once = yes
 
@@ -60,8 +56,6 @@ dc_belgian_crisis = {
     }
 
     annex_belgium = {
-        visible = { tag = FRA }
-        
         cost = 150
         fire_only_once = yes
 
@@ -227,7 +221,7 @@ dc_let_them_eat_cake = {
         ai_will_do = {
             base = 3
             modifier = { 
-                and = { date > 1915.1.1 has_war = no not = { has_decision = liberate_the_orthodox_christians } }
+                and = { date > 1915.1.1 has_war = no not = { has_decision = liberate_southern_lands } }
                 factor = 3
             }
         }

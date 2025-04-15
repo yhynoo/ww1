@@ -1,0 +1,105 @@
+add_namespace = japan_sideline_the_emperor
+
+country_event = {
+    id = japan_sideline_the_emperor.1
+    title = "Censorship of Press in Korea?"
+    desc = japan_sideline_the_emperor.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must control our occupied territories."
+        add_popularity = {
+            ideology = authoritarianism
+            popularity = 0.025
+        }
+        every_state = {
+            limit = { is_core_of = KOR }
+            add_resistance = 5
+        }
+
+        hidden_effect = {
+            country_event = { id = japan_sideline_the_emperor.2 days = 56 random_days = 28 }
+        }
+
+        ai_chance = { base = 3 }
+    }
+
+    option = {
+        name = "This is not relevant."
+        add_timed_idea = {
+            idea = sww1_idea_communism_tendencies
+            years = 1
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = japan_sideline_the_emperor.2
+    title = "Ambush on Imperial Gendarmerie in Heijo"
+    desc = japan_sideline_the_emperor.2.d
+
+    is_triggered_only = yes
+
+    immediate = {
+        hidden_effect = { news_event = { id = japan_sideline_the_emperor.3 days = 120 random_days = 240 } }
+    }
+
+    option = {
+        name = "Organize punitive measures in the countryside."
+
+        add_political_power = -50
+        add_popularity = {
+            ideology = authoritarianism
+            popularity = 0.05
+        }
+    }
+    option = {
+        name = "Try to win over the local population."
+        
+        add_ideas = sww1_idea_investments_in_rural_korea
+        add_stability = 0.05
+    }
+}
+
+news_event = {
+    id = japan_sideline_the_emperor.3
+    title = "Uprising in Korea!"
+    desc = japan_sideline_the_emperor.3.d
+
+    is_triggered_only = yes
+
+    trigger = { not = { has_completed_focus = JAP_kempeitai } }
+
+    option = {
+        name = "We must crush them!"
+
+        if = {
+            limit = { has_idea = sww1_idea_investments_in_rural_korea }
+            remove_ideas = sww1_idea_investments_in_rural_korea
+        }
+
+        hidden_effect = {
+            every_state = {
+                limit = {
+                    or = {
+                        state = 982
+                        state = 983
+                        state = 985
+                    }
+                    is_owned_by = JAP
+                }
+                transfer_state_to = KOR
+            }
+
+            KOR = { load_oob = "KOR_uprising" }
+        }
+
+        declare_war_on = {
+            target = KOR
+            type = annex_everything
+        }
+    }
+}

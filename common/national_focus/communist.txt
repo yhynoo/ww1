@@ -1,0 +1,413 @@
+focus_tree = {
+    id = communist_focus
+    
+    country = {
+        factor = 0
+        modifier = {
+            add = 50
+            has_government = communism
+        }
+    }
+
+    continuous_focus_position = { x = 250 y = 650 }
+
+    ## army tree
+
+    focus = {
+        id = COM_defend_the_revolution
+        icon = GFX_focus_COM_defend_the_revolution
+
+        relative_position_id = COM_all_power_to_the_councils
+        x = 14
+        y = 0
+        cost = 10
+
+        completion_reward = {
+        }
+    }
+
+    # army
+    focus = {
+        id = COM_peasants_army
+        icon = GFX_focus_COM_peasants_army
+
+        relative_position_id = COM_defend_the_revolution
+        x = -3
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = COM_defend_the_revolution }
+        completion_reward = {
+        }
+    }
+
+    focus = {
+        id = COM_mass_mobilization
+        icon = GFX_focus_COM_mass_mobilization
+
+        relative_position_id = COM_peasants_army
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = COM_peasants_army }
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = COM_decentralized_command
+        icon = GFX_focus_COM_decentralized_command
+
+        relative_position_id = COM_peasants_army
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = COM_peasants_army }
+        completion_reward = {
+        }
+    }
+
+    # navy
+        focus = {
+        id = COM_workers_navy
+        icon = GFX_focus_COM_workers_navy
+
+        relative_position_id = COM_defend_the_revolution
+        x = 3
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = COM_defend_the_revolution }
+        completion_reward = {
+        }
+    }
+
+    focus = {
+        id = COM_seize_the_shipyards
+        icon = GFX_focus_COM_seize_the_shipyards
+
+        relative_position_id = COM_workers_navy
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = COM_workers_navy }
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = COM_naval_guerilla_warfare
+        icon = GFX_focus_COM_naval_guerilla_warfare
+
+        relative_position_id = COM_workers_navy
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = COM_workers_navy }
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = COM_legacy_of_kronstadt
+        icon = GFX_focus_COM_legacy_of_kronstadt
+
+        relative_position_id = COM_workers_navy
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = COM_workers_navy }
+        completion_reward = {
+        }
+    }
+
+    # elite
+    focus = {
+        id = COM_political_commissars
+        icon = GFX_focus_COM_political_commissars
+
+        relative_position_id = COM_peasants_army
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = {
+            focus = COM_peasants_army
+        }
+        completion_reward = {
+            add_ideas = sww1_idea_political_commissars
+        }
+    }
+    focus = {
+        id = COM_guards_units
+        icon = GFX_focus_COM_guards_units
+
+        relative_position_id = COM_political_commissars
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { 
+            focus = COM_mass_mobilization
+            focus = COM_political_commissars
+            focus = COM_decentralized_command
+        }
+
+        completion_reward = {
+            add_ideas = sww1_idea_guards_units
+        }
+    }
+    focus = {
+        id = COM_the_ocean_turns_red
+        icon = GFX_focus_COM_the_ocean_turns_red
+
+        relative_position_id = COM_naval_guerilla_warfare
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { 
+            focus = COM_legacy_of_kronstadt
+            focus = COM_naval_guerilla_warfare
+            focus = COM_seize_the_shipyards
+        }
+        completion_reward = {
+            add_ideas = sww1_idea_ocean_turns_red
+        }
+    }
+
+    # political tree
+
+    focus = {
+        id = COM_all_power_to_the_councils
+        icon = GFX_focus_generic_over_the_edge
+
+        x = 7
+        y = 0
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 150
+        }
+    }
+
+    focus = {
+        id = COM_spread_the_fire
+        icon = GFX_focus_COM_spread_the_fire
+
+        relative_position_id = COM_all_power_to_the_councils
+        x = -4
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = COM_all_power_to_the_councils }
+        completion_reward = {
+            add_political_power = 100
+            add_war_support = 0.1
+        }
+    }
+    focus = {
+        id = COM_internationalism
+        icon = GFX_focus_COM_internationalism
+
+        relative_position_id = COM_spread_the_fire
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = COM_spread_the_fire }
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+    focus = {
+        id = COM_volunteer_troops
+        icon = GFX_focus_COM_volunteer_troops
+
+        relative_position_id = COM_spread_the_fire
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = COM_spread_the_fire }
+        completion_reward = {
+            add_ideas = sww1_idea_volunteer_troops
+        }
+    }
+
+    focus = {
+        id = COM_new_way_of_life
+        icon = GFX_focus_COM_new_way_of_life
+
+        relative_position_id = COM_all_power_to_the_councils
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = COM_all_power_to_the_councils }
+        completion_reward = {
+            add_stability = 0.1
+        }
+    }
+    focus = {
+        id = COM_workers_self_governance
+        icon = GFX_focus_COM_workers_self_governance
+
+        relative_position_id = COM_new_way_of_life
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = COM_new_way_of_life }
+        mutually_exclusive = { focus = COM_the_party }
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+    focus = {
+        id = COM_no_gods_no_masters
+        icon = GFX_focus_COM_no_gods_no_masters
+
+        relative_position_id = COM_workers_self_governance
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = COM_workers_self_governance }
+        completion_reward = {
+            add_ideas = sww1_idea_no_gods_no_masters
+        }
+    }
+
+    focus = {
+        id = COM_the_party
+        icon = GFX_focus_COM_the_party
+
+        relative_position_id = COM_new_way_of_life
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = COM_new_way_of_life }
+        mutually_exclusive = { focus = COM_workers_self_governance }
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+    focus = {
+        id = COM_red_terror
+        icon = GFX_focus_COM_red_terror
+
+        relative_position_id = COM_the_party
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = COM_the_party }
+        completion_reward = {
+            add_ideas = sww1_idea_red_terror
+        }
+    }
+
+    focus = {
+        id = COM_means_of_production
+        icon = GFX_focus_COM_means_of_production
+
+        relative_position_id = COM_all_power_to_the_councils
+        x = 4
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = COM_all_power_to_the_councils }
+        completion_reward = {
+        }
+    }
+    focus = {
+        id = COM_feed_the_workers
+        icon = GFX_focus_COM_feed_the_workers
+
+        relative_position_id = COM_means_of_production
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = COM_means_of_production }
+        completion_reward = {
+            random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = arms_factory
+										size > 0
+										include_locked = yes
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+        }
+    }
+    focus = {
+        id = COM_arm_the_troops
+        icon = GFX_focus_COM_arm_the_troops
+
+        relative_position_id = COM_means_of_production
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = COM_means_of_production }
+        completion_reward = {
+            random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = arms_factory
+										size > 0
+										include_locked = yes
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+        }
+    }
+}

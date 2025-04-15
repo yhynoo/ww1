@@ -976,7 +976,11 @@
         mutually_exclusive = { focus = JAP_sideline_the_emperor }
         prerequisite = { focus = JAP_political_ambitions }
         completion_reward = {
-            add_stability = 0.1
+            add_stability = 0.05
+            add_popularity = {
+                ideology = monarchism
+                popularity = 0.05
+            }
             news_event = { id = japan_taisho_emperor.1 days = 7 random_hours = 6 }
         }
     }
@@ -1072,7 +1076,11 @@
             }
             add_popularity = {
                 ideology = authoritarianism
-                popularity = 0.1
+                popularity = 0.05
+            }
+
+            hidden_effect = {
+                country_event = { id = japan_sideline_the_emperor.1 days = 14 random_days = 28 }
             }
         }
     }

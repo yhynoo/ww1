@@ -1,0 +1,122 @@
+# Country
+dc_kresy = {
+    demand_lwow = {
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            any_state = {
+                or = { state = 80 state = 88 state = 89 state = 91 }
+                not = { is_owned_by = POL }
+            }
+        }
+
+        complete_effect = {
+
+        }
+    }
+    anti_muscovite_sentiment = {
+        cost = 50
+        days_remove = 90
+
+        modifier = {
+            war_support_weekly_factor = 0.25
+        }
+
+        targeted_modifier = {
+            tag = SOV
+            attack_bonus_against = 0.15
+        }
+    }
+}
+
+dc_intermarium = {
+    wedding_to_the_sea = {
+        cost = 150
+        fire_only_once = yes
+
+        complete_effect = {
+
+        }
+    }
+    develop_gdynia = {
+        cost = 100
+        days_remove = 180
+
+        available = {
+            807 = { is_owned_by = POL }
+        }
+
+        modifier = {
+
+        }
+        remove_effect = {
+
+        }
+    }
+    invite_to_intermarium = {
+        cost = 100
+        fire_only_once = yes
+
+        targets = { UBD UKR }
+
+        complete_effect = {
+            
+        }
+    }
+}
+
+dc_the_little_constitution = {
+    unify_the_administration = {
+        cost = 150
+        fire_only_once = yes
+
+        complete_effect = {
+            add_stability = 0.05
+            remove_ideas = sww1_idea_burden_of_three_occupiers
+        }
+    }
+    ethnic_minorities_campaigns = {
+        cost = 75
+        days_remove = 90
+
+        modifier = {
+            stability_weekly = 0.005
+            mobilization_speed = 0.15
+        }
+    }
+}
+
+dc_the_saybusch_declaration = {
+    encourage_investments_in_galicia = {
+        cost = 75
+        days_remove = 90
+
+        available = {
+            any_state = {
+                or = { state = 80 state = 88 state = 89 state = 91 }
+                is_owned_by = POL
+            }
+        }
+
+        modifier = {
+            production_speed_buildings_factor = 0.15
+        }
+    }
+    establish_monetary_union_with_austria_hungary = {
+        cost = 100
+        fire_only_once = yes
+
+        complete_effect = {
+            add_ideas = sww1_monetary_union_with_austria
+        }
+    }
+    issue_of_pows = {
+        cost = 150
+        fire_only_once = yes
+
+        complete_effect = {
+
+        }
+    }
+}

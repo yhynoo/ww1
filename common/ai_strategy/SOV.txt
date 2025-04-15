@@ -1,0 +1,44 @@
+SOV_army_composition = {
+	allowed = { original_tag = SOV }
+    enable = { always = yes }
+
+	abort_when_not_enabled = yes
+
+	## Land troops
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 75
+	}
+
+    ai_strategy = {
+		type = role_ratio
+		id = garrison
+		value = 40
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = cyclist
+		value = 5
+	}
+}
+
+SOV_area_priority = {
+	allowed = { original_tag = SOV }
+    enable = { not = { has_completed_focus = SOV_far_east_affairs } }
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = area_priority
+		id = middle_east
+		value = 60
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = asia
+		value = -300
+	}
+}

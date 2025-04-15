@@ -14,7 +14,7 @@ country_event = {
 
         ai_chance = { 
             base = 1
-            modifier = { HOL = { owns_state = 6 } }
+            modifier = { HOL = { has_country_flag = we_stay_in_flanders } factor = 3 }
         }
     }
 
@@ -47,7 +47,10 @@ country_event = {
 
         ai_chance = { 
             base = 1
-            modifier = { owns_state = 6 factor = 3 }
+            modifier = { has_country_flag = france_made_us_wait factor = 2 }
+            modifier = { has_country_flag = we_supported_boers factor = 6 }
+
+            modifier = { has_completed_focus = HOL_neutrality factor = 0 }
         }
 
         ## Add the Netherlands to the alliance
@@ -84,7 +87,6 @@ country_event = {
 
     option = {
         name = "Give up the demand."
-
         ai_chance = { base = 1 }
     }
 }

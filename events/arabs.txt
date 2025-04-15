@@ -1,0 +1,86 @@
+add_namespace = arabs_events
+
+news_event = {
+    id = arabs_events.1
+    title = "Unrest in Southern Arabia"
+    desc = arabs_events.1.d
+
+    trigger = {
+        tag = TUR
+        has_stability < 0.25
+
+        not = { 
+            has_idea = sww1_idea_looming_arab_revolt
+            has_country_flag = arab_revolt_done
+        }
+    }
+
+    option = {
+        add_political_power = -50
+        name = "We must restore order."
+
+        hidden_effect = {
+            news_event = { id = arabs_events.2 days = 28 random_days = 70 }
+        }
+    }
+}
+
+news_event = {
+    id = arabs_events.2
+    title = "Army Officer Killed in Mecca!"
+    desc = arabs_events.2.d
+
+    trigger = { has_idea = sww1_idea_looming_arab_revolt }
+    is_triggered_only = yes
+
+    option = {
+        name = "Awful news."
+
+        hidden_effect = {
+            news_event = { id = arabs_events.3 days = 140 random_days = 140 }
+        }
+    }
+}
+
+news_event = {
+    id = arabs_events.3
+    title = "Revolt Erupts in Southern Arabia!"
+    desc = arabs_events.3.d
+
+    trigger = { 
+        has_idea = sww1_idea_looming_arab_revolt
+        any_controlled_state = { or = { state = 293 state = 856 state = 679 } }
+    }
+
+    is_triggered_only = yes
+    major = yes
+    
+    option = {
+        name = "Another challenge for the Turk."
+
+        if = {
+            limit = { tag = TUR }
+
+            hidden_effect = {
+                set_country_flag = arab_revolt_done
+                remove_ideas = sww1_idea_looming_arab_revolt
+
+                every_state = {
+                    limit = {
+                        or = { state = 293 state = 856 state = 679 }
+                        is_controlled_by = TUR
+                    }
+                    add_core_of = YEM
+                    transfer_state_to = YEM
+                }
+
+                YEM = { load_oob = "YEM_uprising" }
+            }
+
+            declare_war_on = {
+                target = YEM
+                type = annex_everything
+            }
+        }
+    }
+}

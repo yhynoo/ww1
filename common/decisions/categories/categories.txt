@@ -107,10 +107,7 @@ dc_end_imperialism = {
 # France
 dc_belgian_crisis = {
     visible = {
-        or = {
-            and = { tag = HOL has_idea = sww1_idea_accommodate_belgian_refugees }
-            and = { tag = FRA has_completed_focus = FRA_belgian_crisis }
-        }
+        has_completed_focus = FRA_belgian_crisis 
     }
 }
 
@@ -154,6 +151,32 @@ dc_heil_dir_im_siegerkranz = {
 dc_weimar_constitution = {
     visible = {
         has_completed_focus = GER_weimar_constitution
+    }
+}
+
+# Holland
+dc_aftermath_in_flanders = {
+    visible = {
+        has_completed_focus = HOL_the_aftermath_in_flanders
+        has_idea = sww1_idea_aftermath_in_flanders
+    }
+}
+
+dc_world_trade_hegemony = {
+    visible = {
+        has_completed_focus = HOL_world_trade_hegemony
+    }
+}
+
+dc_politik_etis = {
+    visible = {
+        has_completed_focus = HOL_politik_etis
+    }
+}
+
+dc_depillarization = {
+    visible = {
+        has_completed_focus = HOL_depillarization
     }
 }
 
@@ -236,6 +259,31 @@ dc_the_boxer_legacy = {
     }
 }
 
+# Country
+dc_kresy = {
+    visible = {
+        has_completed_focus = POL_kresy
+    }
+}
+
+dc_intermarium = {
+    visible = {
+        has_completed_focus = POL_intermarium
+    }
+}
+
+dc_the_little_constitution = {
+    visible = {
+        has_completed_focus = POL_the_little_constitution
+    }
+}
+
+dc_the_saybusch_declaration = {
+    visible = {
+        has_completed_focus = POL_the_saybusch_declaration
+    }
+}
+
 # Russia
 dc_serbian_question = {
     visible = {
@@ -309,5 +357,25 @@ dc_cultural_hegemony = {
 dc_automotive_industries = {
     visible = {
         has_completed_focus = USA_automotive_industries
+    }
+}
+
+# Communist states
+
+dc_internationalism = {
+    visible = {
+        has_completed_focus = COM_internationalism
+    }
+}
+
+dc_workers_councils = {
+    visible = {
+        has_completed_focus = COM_workers_self_governance
+    }
+}
+
+dc_the_party = {
+    visible = {
+        has_completed_focus = COM_the_party
     }
 }

@@ -1,0 +1,60 @@
+add_namespace = holland_aftermath_in_flanders
+
+country_event = {
+    id = holland_aftermath_in_flanders.1
+    title = "[HOL.GetName] Asks Us to Take Action"
+    desc = holland_aftermath_in_flanders.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let us take over."
+
+        every_state = {
+            limit = {
+                or = { state = 6 }
+                is_owned_by = HOL
+            }
+            transfer_state_to = FRA
+        }
+
+        ai_chance = { base = 3 }
+    }
+
+    option = {
+        name = "They must hold on for a few more weeks."
+
+        HOL = {
+            hidden_effect = {
+                set_country_flag = france_made_us_wait
+            }
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = holland_aftermath_in_flanders.2
+    title = "France Takes Over in Flanders"
+    desc = holland_aftermath_in_flanders.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Phew."
+    }
+}
+
+news_event = {
+    id = holland_aftermath_in_flanders.3
+    title = "France Won't Do Their Job"
+    desc = holland_aftermath_in_flanders.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is annoying."
+    }
+}

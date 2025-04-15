@@ -132,8 +132,17 @@ dc_another_great_campaign = {
 
         available = {
             can_declare_war_on = JAP
-            525 = { is_owned_by = JAP }
-            527 = { is_owned_by = JAP }
+            any_state = {
+                or = {
+                    state = 525
+                    state = 527
+                    state = 982
+                    state = 983
+                    state = 984
+                    state = 985
+                }
+                is_owned_by = JAP
+            }
         }
 
         ai_will_do = {
@@ -143,6 +152,21 @@ dc_another_great_campaign = {
 
         complete_effect = {
             JAP = { country_event = { id = manchukuo_another_great_campaign.1 hours = 12 random_hours = 6 } }
+
+            every_state = {
+                limit = {
+                    or = {
+                        state = 525
+                        state = 527
+                        state = 982
+                        state = 983
+                        state = 984
+                        state = 985
+                    }
+                    is_owned_by = JAP
+                }
+                add_claim_by = MAN
+            }
         }
     }
 }

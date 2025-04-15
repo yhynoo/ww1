@@ -1,0 +1,52 @@
+add_namespace = ukraine_civil_war
+
+news_event = {
+    id = ukraine_civil_war.1
+    title = "Ukraine Proclaims Independence!"            # proclamation of the state
+    desc = ukraine_civil_war.1.d
+
+    trigger = { UKR = { exists = no } }
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Glory to Ukraine!"
+
+        if = { 
+            limit = { original_tag = SOV }
+            hidden_effect = {
+                every_owned_state = {
+                    limit = {
+                        or = { state = 202 state = 203 state = 226 state = 200 state = 198 }
+                    }
+                    transfer_state_to = UKR
+                }
+
+                declare_war_on = {
+                    target = UKR
+                    type = annex_everything
+                }
+            }
+        }
+
+        if = {
+            limit = { tag = SOV }
+            hidden_effect = { UKR = { news_event = { id = ukraine_civil_war.2 hours = 6 } } }
+        }
+    }
+}
+
+news_event = {
+    id = ukraine_civil_war.2
+    title = "Volunteers Take Up Arms!"
+    desc = ukraine_civil_war.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        hidden_effect = {
+            load_oob = "UKR_uprising"
+        }
+    }
+}

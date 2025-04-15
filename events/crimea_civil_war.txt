@@ -1,0 +1,53 @@
+add_namespace = crimea_civil_war
+
+news_event = {
+    id = crimea_civil_war.1
+    title = "Revolt in the Caucasus!"            # proclamation of the state
+    desc = crimea_civil_war.1.d
+
+    trigger = { CRI = { exists = no } }
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The Caucasus is once more on fire!"
+
+        if = { 
+            limit = { original_tag = SOV }
+            hidden_effect = {
+                every_owned_state = {
+                    limit = {
+                        or = { state = 229 state = 231 state = 232 }
+                    }
+                    transfer_state_to = CRI
+                }
+
+                declare_war_on = {
+                    target = CRI
+                    type = annex_everything
+                }
+            }
+        }
+
+        if = {
+            limit = { tag = SOV }
+            hidden_effect = { CRI = { news_event = { id = crimea_civil_war.2 hours = 6 } } }
+        }
+    }
+}
+
+news_event = {
+    id = crimea_civil_war.2
+    title = "Volunteers Take Up Arms!"
+    desc = crimea_civil_war.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        hidden_effect = {
+            load_oob = "CRI_uprising"
+        }
+    }
+}

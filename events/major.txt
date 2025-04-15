@@ -118,39 +118,6 @@ news_event = {
 }
 
 news_event = {
-	id = majorevent.4
-	title = "Peasant Strikes in Ukraine"
-	desc = majorevent.4.d
-
-	major = yes
-	is_triggered_only = yes
-
-	trigger = {
-		SOV = {
-			not = { has_government = communism }
-			not = { has_completed_focus = SOV_one_and_indivisible }
-		}
-	}
-
-	option = {
-		if = {
-			limit = { tag = SOV }
-
-			add_stability = -0.025
-			add_ideas = sww1_idea_looming_revolution
-
-			hidden_effect = {
-				add_named_threat = {
-					threat = 2
-					name = "Peasant Strikes in Ukraine"
-				}
-			}
-		}
-		name = "The countryside is in turmoil."
-	}
-}
-
-news_event = {
 	id = majorevent.5
 	title = "Massacre During Union Strike in Milan"
 	desc = majorevent.5.d
