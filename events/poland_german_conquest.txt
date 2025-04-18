@@ -1,0 +1,56 @@
+add_namespace = poland_german_conquest
+
+country_event = {
+    id = poland_german_conquest.1
+    title = "Establish [POL.GetName]?"
+    desc = poland_german_conquest.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall use those who want to help us."
+        news_event = { id = poland_german_conquest.2 hours = 12 random_hours = 6 }
+        ai_chance = { base = 6 }
+
+        # politics
+        release_on_controlled = POL
+        if = {
+            limit = { is_in_faction = no }
+            create_faction = "Central Powers"
+        }
+        faction_leader = { add_to_faction = POL }
+        puppet = POL
+
+        hidden_effect = {
+            POL = { 
+                load_oob = "POL_habsburgs"
+                promote_character = POL_friedrich_christian_wettin
+                
+                set_popularities = {
+                    monarchism = 55
+                    democratic = 40
+                    communism = 5
+                }
+            }
+            add_to_war = { targeted_alliance = PREV enemy = SOV }
+        }
+    }
+
+    option = {
+        name = "Poland shall remain under our control."
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = poland_german_conquest.2
+    title = "[POL.GetName] Established!"
+    desc = poland_german_conquest.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Is this real independence though?"
+    }
+}

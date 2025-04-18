@@ -1,0 +1,54 @@
+add_namespace = ukraine_german_conquest
+
+country_event = {
+    id = ukraine_german_conquest.1
+    title = "Establish [UKR.GetNameDef]?"
+    desc = ukraine_german_conquest.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They will be a valuable ally."
+        news_event = { id = ukraine_german_conquest.2 hours = 12 random_hours = 6 }
+        ai_chance = { base = 6 }
+
+        # politics
+        release_on_controlled = UKR
+        if = {
+            limit = { is_in_faction = no }
+            create_faction = "Central Powers"
+        }
+        faction_leader = { add_to_faction = UKR }
+        puppet = UKR
+
+        hidden_effect = {
+            UKR = { 
+                load_oob = "UKR_habsburgs"
+                set_popularities = {
+                    monarchism = 45
+                    democratic = 35
+                    communism = 20
+                }
+            }
+            add_to_war = { targeted_alliance = PREV enemy = SOV }
+        }
+    }
+
+    option = {
+        name = "Ukraine shall remain under our control."
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = ukraine_german_conquest.2
+    title = "[POL.GetName] Established!"
+    desc = ukraine_german_conquest.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Another buffer state?"
+    }
+}

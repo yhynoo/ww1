@@ -4,12 +4,12 @@ default_unit_production = {
 		always = yes
 		NOT = {
 			OR = {
-				original_tag = AUS				# done, clean
-				original_tag = ENG				# done
-				original_tag = GER				# done
-				original_tag = ITA				# done
-				original_tag = JAP				# done
-				original_tag = TUR				# done
+				original_tag = AUS
+				original_tag = ENG
+				original_tag = GER
+				original_tag = ITA
+				original_tag = JAP
+				original_tag = TUR
 			}
 		}
 	}
@@ -33,12 +33,46 @@ default_unit_production = {
 		id = cyclist
 		value = 10
 	}
+}
+	
+default_navy_and_air = {
+	enable = { always = yes }
+	abort_when_not_enabled = yes
 
 	# Convoys
 	ai_strategy = {
 		type = equipment_production_min_factories
 		id = convoy
 		value = 1
+	}
+
+	# Aircraft
+	ai_strategy = {
+		type = unit_ratio
+		id = fighter
+		value = 90
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = cas
+		value = 15
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = tactical_bomber
+		value = 5
+	}
+}
+
+default_more_planes = {
+	enable = { date > 1915.1.1 }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = air_factory_balance
+		value = 15 0
 	}
 }
 

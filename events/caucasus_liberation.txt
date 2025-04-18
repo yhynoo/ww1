@@ -1,0 +1,46 @@
+add_namespace = caucasus_liberation
+
+country_event = {
+    id = caucasus_liberation.1
+    title = "Establish the Protectorate of Baltic Germans?"
+    desc = caucasus_liberation.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "God is almighty!"
+        news_event = { id = caucasus_liberation.2 hours = 12 random_hours = 6 }
+        ai_chance = { base = 6 }
+
+        # politics
+        release_on_controlled = CRI
+        if = {
+            limit = { is_in_faction = no }
+            create_faction = "Sarajevo Memorandum"
+        }
+        faction_leader = { add_to_faction = CRI }
+
+        hidden_effect = {
+            UBD = { load_oob = "CRI_uprising" }
+            add_to_war = { targeted_alliance = PREV enemy = SOV }
+        }
+    }
+
+    option = {
+        name = "Caucasus shall remain under our control."
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = caucasus_liberation.2
+    title = "[CRI.GetName] Established!"
+    desc = caucasus_liberation.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The Caucasus will be free again."
+    }
+}

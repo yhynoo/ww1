@@ -1,0 +1,88 @@
+add_namespace = poland_uprising
+
+news_event = {
+    id = poland_uprising.1
+    title = "Anti-Russian Uprising in Poland!"            # proclamation of the state
+    desc = poland_uprising.1.d
+
+    trigger = { POL = { exists = no } }
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Poland is not yet lost!"
+
+        if = { 
+            limit = { original_tag = SOV }
+            hidden_effect = {
+                every_owned_state = {
+                    limit = {
+                        or = { state = 10 state = 87 state = 97 state = 814 }
+                    }
+                    transfer_state_to = POL
+                }
+
+                declare_war_on = {
+                    target = POL
+                    type = annex_everything
+                }
+            }
+        }
+
+        if = {
+            limit = { tag = SOV }
+            hidden_effect = { 
+                POL = { 
+                    news_event = { id = poland_uprising.2 hours = 6 }
+                    country_event = { id = poland_uprising.3 days = 7 random_hours = 12 }
+                }
+            }
+        }
+    }
+}
+
+news_event = {
+    id = poland_uprising.2
+    title = "Volunteers Take Up Arms!"
+    desc = poland_uprising.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        hidden_effect = {
+            load_oob = "POL_uprising"
+        }
+    }
+}
+
+country_event = {
+    id = poland_uprising.3
+    title = "Industrialists Sign Up to Contribute"
+    desc = poland_uprising.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must focus on the logistics."
+
+        random_owned_controlled_state = {
+            add_extra_state_shared_building_slots = 1
+            add_building_construction = {
+                type = industrial_complex level = 1 instant_build = yes
+            }
+        }
+    }
+
+    option = {
+        name = "We need guns!"
+
+        random_owned_controlled_state = {
+            add_extra_state_shared_building_slots = 1
+            add_building_construction = {
+                type = arms_factory level = 1 instant_build = yes
+            }
+        }
+    }
+}

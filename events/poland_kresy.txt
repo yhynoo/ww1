@@ -1,0 +1,67 @@
+add_namespace = poland_kresy
+
+country_event = {
+    id = poland_kresy.1
+    title = "Poland demands Galicia!"
+    desc = poland_kresy.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Those are indeed Polish lands."
+        news_event = { id = poland_kresy.2 hours = 12 random_hours = 6 }
+
+        every_state = {
+            limit = {
+                or = { state = 80 state = 88 state = 89 state = 91 }
+                not = { is_owned_by = POL }
+            }
+            transfer_state_to = POL
+            add_core_of = POL
+        }
+
+        ai_chance = {
+            base = 1
+            modifier = { is_ally_with = POL factor = 3 }
+        }
+    }
+
+    option = {
+        name = "We are not making concessions."
+
+        POL = {
+            news_event = { id = poland_kresy.3 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = AUS
+                type = take_claimed_state
+            }
+        }
+
+        ai_chance = { base = 2 }
+    }
+}
+
+news_event = {
+    id = poland_kresy.2
+    title = "[AUS.GetName] Yields Galicia to Poland!"
+    desc = poland_kresy.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A great success for Poland."
+    }
+}
+
+news_event = {
+    id = poland_kresy.3
+    title = "[AUS.GetName] Declines!"
+    desc = poland_kresy.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A major setback."
+    }
+}

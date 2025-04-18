@@ -1,23 +1,27 @@
 add_namespace = austria_contain_russian_expansion
 
-### 1. Austria-Hungary Offers an Alliance to Afghanistan
+### 1. Austria-Hungary Offers Alliance
 country_event = {
     id = austria_contain_russian_expansion.1
-    title = "Austria-Hungary Offers an Alliance to Afghanistan"
+    title = "Austria-Hungary Offers an Alliance to [ROOT.GetName]"
     desc = austria_contain_russian_expansion.1.d
 
     is_triggered_only = yes
 
     option = {
         name = "Accept the alliance offer."
-        AFG = { news_event = { id = austria_contain_russian_expansion.2 hours = 12 random_hours = 6 } }
+        AUS = { news_event = { id = austria_contain_russian_expansion.2 hours = 12 random_hours = 6 } }
 
         AUS = {
             if = {
                 limit = { is_in_faction = no }
-                create_faction = "Austro-Afghan Alliance"
+                if = { 
+                    limit = { has_completed_focus = AUS_second_vienna_treaty } 
+                    create_faction = "Second Vienna Treaty"
+                }
+                else = { create_faction = "The Salzburg Coalition" }
             }
-            faction_leader = { add_to_faction = AFG }
+            faction_leader = { add_to_faction = ROOT }
         }
     }
 
@@ -27,96 +31,161 @@ country_event = {
     }
 }
 
-### 2. News: Austria and Afghanistan Form an Alliance
 news_event = {
     id = austria_contain_russian_expansion.2
-    title = "Austria-Hungary and Afghanistan Form an Alliance"
+    title = "Austria-Hungary and [FROM.GetName] Form an Alliance"
     desc = austria_contain_russian_expansion.2.d
 
     is_triggered_only = yes
     major = yes
 
     option = {
-        name = "A new alliance in Central Asia."
+        name = "Interesting."
     }
 }
 
-### 3. News: Afghanistan Rejects Austrian Alliance Offer
 news_event = {
     id = austria_contain_russian_expansion.3
-    title = "Afghanistan Rejects Austria-Hungary's Alliance Offer"
+    title = "[FROM.GetName] Rejects Our Alliance Offer"
     desc = austria_contain_russian_expansion.3.d
 
     is_triggered_only = yes
 
     option = {
-        name = "Afghanistan remains neutral."
-    }
-}
-
-### 4. Austria-Hungary Offers an Alliance to Turkey
-country_event = {
-    id = austria_contain_russian_expansion.4
-    title = "Austria-Hungary Offers an Alliance to Turkey"
-    desc = austria_contain_russian_expansion.4.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "We shall stop [SOV.GetNameDef] together."
-        TUR = { news_event = { id = austria_contain_russian_expansion.5 hours = 12 random_hours = 6 } }
-
-        AUS = {
-            if = {
-                limit = { is_in_faction = no }
-                create_faction = "Austro-Turkish Alliance"
-            }
-            faction_leader = { add_to_faction = TUR }
-        }
-    }
-
-    option = {
-        name = "Reject the alliance offer."
-        AUS = { news_event = { id = austria_contain_russian_expansion.6 hours = 12 random_hours = 6 } }
-    }
-}
-
-### 5. News: Austria and Turkey Form an Alliance
-news_event = {
-    id = austria_contain_russian_expansion.5
-    title = "Austria-Hungary and Turkey Form an Alliance"
-    desc = austria_contain_russian_expansion.5.d
-
-    is_triggered_only = yes
-    major = yes
-
-    option = {
-        name = "A tought nut to crack for the Russians."
-    }
-}
-
-### 6. News: Turkey Rejects Austrian Alliance Offer
-news_event = {
-    id = austria_contain_russian_expansion.6
-    title = "Afghanistan Rejects Austria-Hungary's Alliance Offer"
-    desc = austria_contain_russian_expansion.6.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "This will hurt both of us."
+        name = "A major setback."
     }
 }
 
 ### 7. News: Austria Supports Polish Independence
 news_event = {
-    id = austria_contain_russian_expansion.7
+    id = austria_contain_russian_expansion.4
     title = "Austria-Hungary Sides with Polish Independence"
-    desc = austria_contain_russian_expansion.7.d
+    desc = austria_contain_russian_expansion.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Austria claims the moral high ground."
+    }
+}
+
+country_event = {
+    id = austria_contain_russian_expansion.5
+    title = "Establish the Kingdom of Poland?"
+    desc = austria_contain_russian_expansion.5.d
 
     is_triggered_only = yes
 
     option = {
-        name = "Austria claims the moral high ground."
+        name = "Welcome to our new allies!"
+        news_event = { id = austria_contain_russian_expansion.6 hours = 12 random_hours = 6 }
+        ai_chance = { base = 6 }
+
+        # politics
+        release_on_controlled = POL
+        if = {
+            limit = { is_in_faction = no }
+            if = { 
+                limit = { has_completed_focus = AUS_second_vienna_treaty } 
+                create_faction = "Second Vienna Treaty"
+            }
+            else = { create_faction = "The Salzburg Coalition" }
+        }
+        faction_leader = { add_to_faction = POL }
+        hidden_effect = {
+            if = {
+                limit = { has_war_with = SOV }
+                POL = { 
+                    load_oob = "POL_habsburgs"
+                    add_to_war = { targeted_alliance = PREV enemy = SOV } 
+                }
+            }
+        }
+    }
+
+    option = {
+        name = "Polish lands shall remain ours."
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = austria_contain_russian_expansion.6
+    title = "[POL.GetName] Established!"            # under habsburg rule
+    desc = austria_contain_russian_expansion.6.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Poland is back on the map."
+    }
+}
+
+### 10. News: Austria Supports Ukrainian Independence
+news_event = {
+    id = austria_contain_russian_expansion.7
+    title = "Vienna Supports Ukrainian Struggle"
+    desc = austria_contain_russian_expansion.7.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Austria seeks more allies."
+    }
+}
+
+country_event = {
+    id = austria_contain_russian_expansion.8
+    title = "Establish the Hetmanate of Ukraine?"
+    desc = austria_contain_russian_expansion.8.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "It is great to have them by our side."
+        news_event = { id = austria_contain_russian_expansion.9 hours = 12 random_hours = 6 }
+        ai_chance = { base = 6 }
+
+        # politics
+        release_on_controlled = UKR
+        if = {
+            limit = { is_in_faction = no }
+            if = { 
+                limit = { has_completed_focus = AUS_second_vienna_treaty } 
+                create_faction = "Second Vienna Treaty"
+            }
+            else = { create_faction = "The Salzburg Coalition" }
+        }
+        faction_leader = { add_to_faction = UKR }
+        hidden_effect = {
+            if = {
+                limit = { has_war_with = SOV }
+                UKR = { 
+                    load_oob = "UKR_habsburgs"
+                    add_to_war = { targeted_alliance = PREV enemy = SOV }
+                }
+            }
+        }
+    }
+
+    option = {
+        name = "Ukrainian lands shall remain under our control."
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = austria_contain_russian_expansion.9
+    title = "[UKR.GetName] Established!"            # under habsburg rule
+    desc = austria_contain_russian_expansion.9.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The Cossacks are free again."
     }
 }

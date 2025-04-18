@@ -2,7 +2,7 @@ dc_seek_alliances = {
     seek_alliances_austria = { 
         visible = {
             AUS = { or = { is_faction_leader = yes is_in_faction = no } }
-            or = { tag = JAP tag = TUR }
+            or = { tag = JAP tag = POL tag = TUR }
         }
 
         cost = 150
@@ -12,6 +12,11 @@ dc_seek_alliances = {
             base = 3
             modifier = { has_completed_focus = TUR_sarajevo_memorandum factor = 2.5 }
             modifier = { has_war_with = SOV factor = 6 }
+
+            modifier = {
+                and = { tag = POL AUS = { is_ally_with = FRA } }
+                factor = 3
+            }
         }
 
         complete_effect = {
@@ -59,7 +64,7 @@ dc_seek_alliances = {
     seek_alliances_france = {
         visible = {
             FRA = { or = { is_faction_leader = yes is_in_faction = no } }
-            or = { tag = AUS tag = ITA tag = SOV tag = TUR }
+            or = { tag = AUS tag = ITA tag = POL tag = SOV tag = TUR }
         }
 
         cost = 150
@@ -92,6 +97,12 @@ dc_seek_alliances = {
             }
             modifier = {
                 and = { tag = ITA has_country_flag = england_rejected_us }
+                factor = 3
+            }
+
+            ## POL
+            modifier = {
+                and = { tag = POL has_war_with = GER }
                 factor = 3
             }
 
@@ -180,7 +191,7 @@ dc_seek_alliances = {
             USA = { is_faction_leader = yes }
 
             has_government = democratic
-            or = { tag = AUS tag = ITA tag = JAP tag = TUR }
+            or = { tag = AUS tag = ITA tag = JAP tag = POL tag = TUR }
         }
 
         ai_will_do = { 

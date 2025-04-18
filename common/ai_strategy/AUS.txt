@@ -37,3 +37,31 @@ AUS_stay_at_home = {
 		value = 10
 	}
 }
+
+AUS_helps_GER = {
+	allowed = { original_tag = AUS }
+
+	enable = { is_ally_with = GER }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = diplo_action_acceptance
+		id = GER
+		value = 300
+		target = join_allies
+	}
+}
+
+AUS_second_line_airfields = {
+	allowed = { original_tag = AUS }
+	enable = { has_war = yes }
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = build_building
+		id = air_base
+		target = 853		# Laibach
+		value = 2
+	}
+}

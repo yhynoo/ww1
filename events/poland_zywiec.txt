@@ -1,0 +1,50 @@
+add_namespace = poland_zywiec
+
+country_event = {
+    id = poland_zywiec.1
+    title = "[POL.GetName] Asks Us to Release Their POWs"
+    desc = poland_zywiec.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let them fight for their homeland."
+        POL = {
+            news_event = { id = poland_uprising.2 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = ROOT
+                modifier = small_increase
+            }
+        }
+    }
+
+    option = {
+        name = "We do not wish to get involved."
+        POL = { news_event = { id = poland_uprising.3 hours = 12 random_hours = 6 } }
+    }
+}
+
+news_event = {
+    id = poland_zywiec.2
+    title = "[FROM.GetName] Releases Polish POWs!"
+    desc = poland_zywiec.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        add_manpower = 15000
+    }
+}
+
+news_event = {
+    id = poland_zywiec.3
+    title = "[FROM.GetName] Won't Release Polish POWs"
+    desc = poland_zywiec.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "That's difficult to understand."
+    }
+}

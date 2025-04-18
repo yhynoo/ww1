@@ -1,10 +1,9 @@
-add_namespace = baltic_events
+add_namespace = baltic_riot_events
 
-### 1. Anti-German Riot in Riga
 news_event = {
-    id = baltic_events.1
+    id = baltic_riot_events.1
     title = "Anti-German Riot in Riga!"
-    desc = baltic_events.1.d
+    desc = baltic_riot_events.1.d
 
     is_triggered_only = yes
     major = yes
@@ -20,7 +19,7 @@ news_event = {
         if = {
             limit = { tag = GER }
             hidden_effect = {
-                country_event = { id = baltic_events.2 days = 3 random_hours = 6 }
+                country_event = { id = baltic_riot_events.2 days = 3 random_hours = 6 }
 
                 add_named_threat = {
                     name = "Tensions in the Baltics"
@@ -31,11 +30,10 @@ news_event = {
     }
 }
 
-### 2. Germany Reacts to the Riot
 country_event = {
-    id = baltic_events.2
+    id = baltic_riot_events.2
     title = "Intervene on Behalf of the Baltic Germans?"
-    desc = baltic_events.2.d
+    desc = baltic_riot_events.2.d
 
     is_triggered_only = yes
 
@@ -45,7 +43,7 @@ country_event = {
 
     option = {
         name = "Threaten military action!"
-        news_event = { id = baltic_events.3 hours = 12 random_hours = 6 }
+        news_event = { id = baltic_riot_events.3 hours = 12 random_hours = 6 }
 
         create_wargoal = {
             target = SOV
@@ -62,7 +60,7 @@ country_event = {
 
     option = {
         name = "Demand a protectorate for Baltic Germans."
-        SOV = { country_event = { id = baltic_events.4 hours = 12 random_hours = 6 } }
+        SOV = { country_event = { id = baltic_riot_events.4 hours = 12 random_hours = 6 } }
     }
 
     option = {
@@ -70,11 +68,10 @@ country_event = {
     }
 }
 
-### 3. Germany Prepares to Intervene (Threatened Military Action)
 news_event = {
-    id = baltic_events.3
+    id = baltic_riot_events.3
     title = "Germany Prepares to Intervene!"
-    desc = baltic_events.3.d
+    desc = baltic_riot_events.3.d
 
     is_triggered_only = yes
     major = yes
@@ -84,17 +81,16 @@ news_event = {
     }
 }
 
-### 4. Russia Responds to the Protectorate Demand
 country_event = {
-    id = baltic_events.4
+    id = baltic_riot_events.4
     title = "German Ultimatum: The Baltic Question"
-    desc = baltic_events.4.d
+    desc = baltic_riot_events.4.d
 
     is_triggered_only = yes
 
     option = {
         name = "Let them have it."
-        news_event = { id = baltic_events.5 hours = 12 random_hours = 6 }
+        news_event = { id = baltic_riot_events.5 hours = 12 random_hours = 6 }
 
         release = UBD
         GER = {
@@ -132,7 +128,7 @@ country_event = {
         }
 
         name = "Offer an alliance and joint management."
-        GER = { country_event = { id = baltic_events.6 hours = 12 random_hours = 6 } }
+        GER = { country_event = { id = baltic_riot_events.6 hours = 12 random_hours = 6 } }
 
         ai_chance = {
             base = 2
@@ -145,7 +141,7 @@ country_event = {
 
     option = {
         name = "Tell them it's Russia’s internal affair."
-        news_event = { id = baltic_events.10 hours = 12 random_hours = 6 }
+        news_event = { id = baltic_riot_events.10 hours = 12 random_hours = 6 }
 
         GER = {
             create_wargoal = {
@@ -167,11 +163,10 @@ country_event = {
     }
 }
 
-### 5. News Event: Russia Allows the Protectorate
 news_event = {
-    id = baltic_events.5
+    id = baltic_riot_events.5
     title = "Russia Accepts German Protectorate!"
-    desc = baltic_events.5.d
+    desc = baltic_riot_events.5.d
 
     is_triggered_only = yes
     major = yes
@@ -181,17 +176,16 @@ news_event = {
     }
 }
 
-### 6. Germany Responds to Russian Alliance Offer
 country_event = {
-    id = baltic_events.6
+    id = baltic_riot_events.6
     title = "Russian Proposal: Alliance Instead?"
-    desc = baltic_events.6.d
+    desc = baltic_riot_events.6.d
 
     is_triggered_only = yes
 
     option = {
         name = "Accept the alliance."
-        news_event = { id = baltic_events.7 hours = 12 random_hours = 6 }
+        news_event = { id = baltic_riot_events.7 hours = 12 random_hours = 6 }
 
         create_faction = "Baltic Alliance"
         add_to_faction = SOV
@@ -201,7 +195,7 @@ country_event = {
 
     option = {
         name = "This is not what we asked!"
-        news_event = { id = baltic_events.8 hours = 12 random_hours = 6 }
+        news_event = { id = baltic_riot_events.8 hours = 12 random_hours = 6 }
 
         create_wargoal = {
             target = SOV
@@ -219,11 +213,10 @@ country_event = {
     }
 }
 
-### 7. News Event: Germany Accepts Russian Alliance
 news_event = {
-    id = baltic_events.7
+    id = baltic_riot_events.7
     title = "Germany and Russia Form the Baltic Alliance!"
-    desc = baltic_events.7.d
+    desc = baltic_riot_events.7.d
 
     is_triggered_only = yes
     major = yes
@@ -233,78 +226,15 @@ news_event = {
     }
 }
 
-### 8. News Event: Germany Rejects Russian Alliance Offer
 news_event = {
-    id = baltic_events.8
+    id = baltic_riot_events.8
     title = "War to Erupt in the Baltics?"
-    desc = baltic_events.8.d
+    desc = baltic_riot_events.8.d
 
     is_triggered_only = yes
     major = yes
 
     option = {
         name = "This won't end well..."
-    }
-}
-
-### 10. Withdraw guarantees?
-country_event = {
-    id = baltic_events.10
-    title = "[SOV.GetName]: Withdraw Our Guarantees?"
-    desc = baltic_events.10.d
-
-    trigger = {
-        SOV = { is_in_faction_with = GER }
-        or = {
-            tag = ENG
-            tag = FRA
-        }
-        has_guaranteed = SOV
-    }
-
-    mean_time_to_happen = {
-        days = 3
-    }
-
-    option = {
-        name = "Declare the guarantees void."
-        news_event = { id = baltic_events.11 hours = 12 random_hours = 6 }
-
-        diplomatic_relation = {
-            country = SOV
-            relation = guarantee
-            active = no
-        }
-    }
-
-    option = {
-        name = "This does not change anything."
-    }
-}
-
-### 11. Guarantees Withdrawn
-news_event = {
-    id = baltic_events.11
-    title = "[ROOT.GetName] Withdraws Guarantees for Russia"
-    desc = baltic_events.11.d
-
-    is_triggered_only = yes
-    major = yes
-
-    option = {
-        name = "This won't end well..."
-
-        if = {
-            limit = { 
-                tag = SOV
-                has_guaranteed = ROOT
-            }
-
-            diplomatic_relation = {
-                country = ROOT
-                relation = guarantee
-                active = no
-            }
-        }
     }
 }

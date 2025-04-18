@@ -13,13 +13,13 @@ ITA_army_composition = {
 	ai_strategy = {
 		type = role_ratio
 		id = infantry
-		value = 75
+		value = 110
 	}
 
 	ai_strategy = {
 		type = role_ratio
 		id = mountaineers
-		value = 15
+		value = 25
 	}
 
 	ai_strategy = {
@@ -50,5 +50,19 @@ ITA_hates_TUR = {
 		type = invade
 		id = TUR
 		value = 300
+	}
+}
+
+ITA_second_line_airfields = {
+	allowed = { original_tag = ITA }
+	enable = { has_war = yes }
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = build_building
+		id = air_base
+		target = 159		# Milan
+		value = 2
 	}
 }

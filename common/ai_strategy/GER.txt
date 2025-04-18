@@ -13,19 +13,26 @@ GER_army_composition = {
 	ai_strategy = {
 		type = role_ratio
 		id = infantry
-		value = 95
+		value = 110
 	}
 
 	ai_strategy = {
 		type = role_ratio
 		id = cyclist
-		value = 10
+		value = 15
 	}
 
 	ai_strategy = {
 		type = role_ratio
 		id = mountaineers
 		value = 5
+	}
+
+	## Air
+	ai_strategy = {
+		type = unit_ratio
+		id = tactical_bomber
+		value = 35
 	}
 }
 
@@ -38,7 +45,35 @@ GER_protects_AUS = {
 	ai_strategy = {
 		type = diplo_action_acceptance
 		id = AUS
-		value = 100
-		target = join_ally
+		value = 300
+		target = join_allies
+	}
+}
+
+GER_second_line_airfields = {
+	allowed = { original_tag = GER }
+	enable = { has_war = yes }
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = build_building
+		id = air_base
+		target = 50			# Baden
+		value = 2
+	}
+
+	ai_strategy = {
+		type = build_building
+		id = air_base
+		target = 86			# Posen
+		value = 1
+	}
+
+	ai_strategy = {
+		type = build_building
+		id = air_base
+		target = 763		# Königsberg
+		value = 2
 	}
 }

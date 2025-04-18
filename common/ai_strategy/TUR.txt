@@ -31,15 +31,14 @@ TUR_army_composition = {
 
 TUR_likes_GER = {
 	allowed = { original_tag = TUR }
-	enable = { not = { has_country_flag = we_do_our_thing } }
-
+	enable = { or = { is_guaranteed_by = GER is_ally_with = GER } }
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
 		type = diplo_action_acceptance
 		id = GER
 		value = 300
-		target = join_ally
+		target = join_allies
 	}
 
 	ai_strategy = {

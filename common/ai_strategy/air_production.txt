@@ -1,0 +1,27 @@
+default_air_production = {
+    enable = { always = yes }
+    abort_when_not_enabled = yes
+
+    ai_strategy = {
+		type = air_factory_balance
+		value = 200
+	}
+
+    ai_strategy = {
+		type = equipment_production_factor
+		id = fighter
+		value = 100
+	}
+
+    ai_strategy = {
+		type = equipment_production_factor
+		id = cas
+		value = 30
+	}
+
+    ai_strategy = {
+		type = equipment_production_factor
+		id = tactical_bomber
+		value = 10
+	}
+}

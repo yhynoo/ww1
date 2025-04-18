@@ -1,0 +1,191 @@
+add_namespace = poland_intermarium
+
+country_event = {
+    id = poland_intermarium.0
+    title = "How Shall We Approach This?"           # if we already have access to sea
+    desc = poland_intermarium.0.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Demand Pomerania from [GER.GetName]"
+
+        ai_chance = { base = 6 }
+    }
+
+    option = {
+        name = "Offer the purchase of Madagascar."
+        add_ideas = sww1_idea_liga_morska_i_kolonialna
+
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = poland_intermarium.1
+    title = "Poland demands Eastern Pomerania!"
+    desc = poland_intermarium.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must agree to this."
+        news_event = { id = poland_intermarium.2 hours = 12 random_hours = 6 }
+
+        every_state = {
+            limit = {
+                or = { state = 85 state = 86 state = 807 }
+                not = { is_owned_by = POL }
+            }
+            transfer_state_to = POL
+            add_core_of = POL
+        }
+
+        ai_chance = { 
+            base = 1
+            modifier = { has_war = yes factor = 3 }
+        }
+    }
+
+    option = {
+        name = "They are making an awful mistake."
+
+        POL = {
+            news_event = { id = poland_intermarium.3 hours = 12 random_hours = 6 }
+            create_wargoal = {
+                target = GER
+                type = take_claimed_state
+            }
+        }
+
+        ai_chance = { base = 3 }
+    }
+}
+
+news_event = {
+    id = poland_intermarium.2
+    title = "[GER.GetName] Yields Pomerania to Poland!"
+    desc = poland_intermarium.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A great success for the new country."
+    }
+}
+
+news_event = {
+    id = poland_intermarium.3
+    title = "[GER.GetName] Declines!"
+    desc = poland_intermarium.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about it..."
+    }
+}
+
+country_event = {
+    id = poland_intermarium.4
+    title = "Poland Offers to Purchase Madagascar"
+    desc = poland_intermarium.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This sounds good."
+        news_event = { id = poland_intermarium.5 hours = 12 random_hours = 6 }
+
+        543 = { transfer_state_to = POL }
+        add_offsite_building = { type = industrial_complex level = 2 }
+    }
+
+    option = {
+        name = "We are not selling."
+        POL = { news_event = { id = poland_intermarium.6 hours = 12 random_hours = 6 } }
+    }
+}
+
+news_event = {
+    id = poland_intermarium.5
+    title = "[POL.GetName] Purchases Madagascar!"
+    desc = poland_intermarium.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "What do they need it for...?"
+    }
+}
+
+news_event = {
+    id = poland_intermarium.6
+    title = "Madagascar Offer Declined!"
+    desc = poland_intermarium.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "That's a shame."
+    }
+}
+
+# invite to Intermarium
+country_event = {
+    id = poland_intermarium.7
+    title = "Poland Offers Alliance"
+    desc = poland_intermarium.7.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall fight together."
+        POL = { news_event = { id = poland_intermarium.8 hours = 12 random_hours = 6 } }
+
+        if = {
+            limit = { POL = { is_in_faction = no } }
+            create_faction = "Międzymorze"
+        }
+        POL = { faction_leader = { add_to_faction = ROOT } }
+
+        ai_chance = { 
+            base = 3
+            modifier = { has_war = yes factor = 2 }
+        }
+    }
+
+    option = {
+        name = "We are not interested."
+        POL = { news_event = { id = poland_intermarium.9 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = poland_intermarium.8
+    title = "[FROM.GetName] Joins Międzymorze!"
+    desc = poland_intermarium.8.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Central Europe is on fire again."
+    }
+}
+
+news_event = {
+    id = poland_intermarium.6
+    title = "[FROM.GetName] Declined Alliance Offer"
+    desc = poland_intermarium.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "That's a shame."
+    }
+}

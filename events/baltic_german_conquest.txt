@@ -1,0 +1,54 @@
+add_namespace = baltic_german_conquest
+
+country_event = {
+    id = baltic_german_conquest.1
+    title = "Establish the Protectorate of Baltic Germans?"
+    desc = baltic_german_conquest.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We can count on our compatriots."
+        news_event = { id = baltic_german_conquest.2 hours = 12 random_hours = 6 }
+        ai_chance = { base = 6 }
+
+        # politics
+        release_on_controlled = UBD
+        if = {
+            limit = { is_in_faction = no }
+            create_faction = "Central Powers"
+        }
+        faction_leader = { add_to_faction = UBD }
+        puppet = UBD
+
+        hidden_effect = {
+            UBD = { 
+                load_oob = "UBD_1912"
+                set_popularities = {
+                    monarchism = 60
+                    democratic = 35
+                    authoritarianism = 5
+                }
+            }
+            add_to_war = { targeted_alliance = PREV enemy = SOV }
+        }
+    }
+
+    option = {
+        name = "Baltics shall remain under our control."
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = baltic_german_conquest.2
+    title = "[UBD.GetName] Established!"
+    desc = baltic_german_conquest.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "German collaborators become active."
+    }
+}

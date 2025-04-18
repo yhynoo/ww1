@@ -850,6 +850,11 @@
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = { not = { any_country = { has_guaranteed = TUR } } factor = 3 }
+        }
+
         prerequisite = { focus = ITA_international_affairs }
         completion_reward = {
             add_political_power = 100
@@ -889,6 +894,9 @@
 
         ai_will_do = {
             base = 1
+            modifier = { not = { any_country = { has_guaranteed = TUR } } factor = 3 }
+
+            # ignore this if we're in alliance
             modifier = { is_in_faction = yes factor = 0 }
         }
 
@@ -906,7 +914,10 @@
         y = 1
         cost = 10
 
-        ai_will_do = { base = 3 }
+        ai_will_do = {
+            base = 1
+            modifier = { not = { any_country = { has_guaranteed = TUR } } factor = 6 }
+        }
 
         prerequisite = { focus = ITA_expansionism }
         completion_reward = {

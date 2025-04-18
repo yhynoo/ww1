@@ -3,8 +3,10 @@ dc_contain_russian_expansion = {
         cost = 150
         fire_only_once = yes
 
-        available = {
-            AFG = { 
+        targets = { AFG TUR }
+
+        target_trigger = {
+            FROM = { 
                 is_subject = no 
                 is_in_faction = no
             }
@@ -17,32 +19,15 @@ dc_contain_russian_expansion = {
         }
 
         complete_effect = {
-            AFG = { country_event = { id = austria_contain_russian_expansion.1 hours = 12 random_hours = 6 } }
-        }
-    }
-    invite_turkey = {
-        cost = 150
-        fire_only_once = yes
-
-        available = {
-            has_idea = sww1_idea_slavic_unrest
-            TUR = { 
-                is_in_faction = no
-                has_completed_focus = TUR_sarajevo_memorandum
-            }
-        }
-
-        ai_will_do = {
-            base = 6
-            modifier = { threat > 0.1 factor = 3 }
-        }
-
-        complete_effect = {
-            TUR = { country_event = { id = austria_contain_russian_expansion.4 hours = 12 random_hours = 6 } }
+            FROM = { country_event = { id = austria_contain_russian_expansion.1 hours = 12 random_hours = 6 } }
         }
     }
     declare_support_poland = {
-        cost = 100
+        visible = {
+            not = { 10 = { is_owned_by = AUS } }
+        }
+
+        cost = 75
         fire_only_once = yes
 
         available = {
@@ -50,13 +35,105 @@ dc_contain_russian_expansion = {
         } 
 
         ai_will_do = { 
-            base = 2
-            modifier = { has_war_with = SOV factor = 3 }
+            base = 6
+            modifier = { has_war_with = SOV factor = 6 }
+        }
+
+        complete_effect = {
+            news_event = { id = austria_contain_russian_expansion.4 hours = 12 random_hours = 6 }
+            set_country_flag = austria_likes_poland
+        }
+    }
+    establish_poland = {
+        visible = {
+            10 = { is_controlled_by = AUS }
+            POL = { exists = no }
+        }
+
+        cost = 200
+        fire_only_once = yes
+
+        ai_will_do = { base = 9 }
+        complete_effect = {
+            news_event = { id = austria_contain_russian_expansion.6 hours = 12 random_hours = 6 }
+            
+            # politics
+            release_on_controlled = POL
+            if = {
+                limit = { is_in_faction = no }
+                if = { 
+                    limit = { has_completed_focus = AUS_second_vienna_treaty } 
+                    create_faction = "Second Vienna Treaty"
+                }
+                else = { create_faction = "The Salzburg Coalition" }
+            }
+            faction_leader = { add_to_faction = POL }
+            hidden_effect = {
+                if = {
+                    limit = { has_war_with = SOV }
+                    POL = { 
+                        load_oob = "POL_habsburgs"
+                        add_to_war = { targeted_alliance = PREV enemy = SOV }
+                    }
+                }
+            }
+        }
+    }
+    declare_support_ukraine = {
+        visible = {
+            not = { 202 = { is_owned_by = AUS } }
+        }
+
+        cost = 75
+        fire_only_once = yes
+
+        available = {
+            UKR = { exists = no }
+        } 
+
+        ai_will_do = { 
+            base = 6
+            modifier = { has_war_with = SOV factor = 9 }
         }
 
         complete_effect = {
             news_event = { id = austria_contain_russian_expansion.7 hours = 12 random_hours = 6 }
-            set_country_flag = austria_likes_poland
+            set_country_flag = austria_likes_ukraine
+        }
+    }
+    establish_ukraine = {
+        visible = {
+            202 = { is_controlled_by = AUS }
+            UKR = { exists = no }
+        }
+
+        cost = 200
+        fire_only_once = yes
+
+        ai_will_do = { base = 15 }
+        complete_effect = {
+            news_event = { id = austria_contain_russian_expansion.9 hours = 12 random_hours = 6 }
+
+            # politics
+            release_on_controlled = UKR
+            if = {
+                limit = { is_in_faction = no }
+                if = { 
+                    limit = { has_completed_focus = AUS_second_vienna_treaty } 
+                    create_faction = "Second Vienna Treaty"
+                }
+                else = { create_faction = "The Salzburg Coalition" }
+            }
+            faction_leader = { add_to_faction = UKR }
+            hidden_effect = {
+                if = {
+                    limit = { has_war_with = SOV }
+                    UKR = { 
+                        load_oob = "UKR_habsburgs"
+                        add_to_war = { targeted_alliance = PREV enemy = SOV }
+                    }
+                }
+            }
         }
     }
 }

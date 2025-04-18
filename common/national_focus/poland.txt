@@ -876,7 +876,6 @@
 
         prerequisite = { focus = POL_international_affairs }
         completion_reward = {
-            add_ideas = sww1_idea_anti_muscovite_sentiment
             custom_effect_tooltip = decision_effect_tooltip
         }
     }
@@ -917,6 +916,11 @@
         x = 0
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_government = monarchism factor = 0 }
+        }
 
         mutually_exclusive = { focus = POL_alliance_with_the_habsburgs }
         prerequisite = { focus = POL_poland_is_not_yet_lost }
@@ -1006,6 +1010,11 @@
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 2
+            modifier = { has_government = democratic factor = 0 }
+        }
+
         mutually_exclusive = { focus = POL_empower_the_democrats }
         prerequisite = { focus = POL_poland_is_not_yet_lost }
         completion_reward = {
@@ -1037,8 +1046,8 @@
         }
     }
     focus = {
-        id = POL_the_saybusch_declaration
-        icon = GFX_focus_POL_the_saybusch_declaration
+        id = POL_the_zywiec_declaration
+        icon = GFX_focus_POL_the_zywiec_declaration
 
         relative_position_id = POL_alliance_with_the_habsburgs
         x = -1
@@ -1051,7 +1060,7 @@
         }
     }
     focus = {
-        id = POL_peasant_strike
+        id = POL_polrewkom
         icon = GFX_focus_generic_over_the_edge
 
         relative_position_id = POL_state_reform

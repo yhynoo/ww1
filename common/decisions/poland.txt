@@ -7,20 +7,34 @@ dc_kresy = {
         available = {
             any_state = {
                 or = { state = 80 state = 88 state = 89 state = 91 }
-                not = { is_owned_by = POL }
+                is_owned_by = AUS
             }
         }
 
-        complete_effect = {
+        ai_will_do = { base = 9 }
 
+        complete_effect = {
+            AUS = { country_event = { id = poland_kresy.1 hours = 12 random_hours = 6 } }
+            every_state = {
+                limit = {
+                    or = { state = 80 state = 88 state = 89 state = 91 }
+                    is_owned_by = AUS
+                }
+                add_claim_by = POL
+            }
         }
     }
     anti_muscovite_sentiment = {
         cost = 50
         days_remove = 90
 
+        ai_will_do = { 
+            base = 2
+            modifier = { has_war_with = SOV factor = 3 }
+        }
+
         modifier = {
-            war_support_weekly_factor = 0.25
+            war_support_weekly_factor = 0.15
         }
 
         targeted_modifier = {
@@ -35,23 +49,58 @@ dc_intermarium = {
         cost = 150
         fire_only_once = yes
 
-        complete_effect = {
+        ai_will_do = { base = 12 }
 
+        complete_effect = {
+            if = {
+                limit = {
+                    any_state = {
+                        is_coastal = yes
+                        is_controlled_by = ROOT
+                    }
+                }
+                country_event = { id = poland_intermarium.0 hours = 3 }
+            }
+            else_if = {
+                limit = {
+                    all_states = {
+                        or = { state = 85 state = 86 state = 807 }
+                        is_owned_by = POL
+                    }
+                }
+                FRA = { country_event = { id = poland_intermarium.4 hours = 12 random_hours = 6 } }
+            }
+            else = {
+                GER = { country_event = { id = poland_intermarium.1 hours = 12 random_hours = 6 } }
+            }
         }
     }
     develop_gdynia = {
         cost = 100
         days_remove = 180
+        fire_only_once = yes
 
-        available = {
-            807 = { is_owned_by = POL }
-        }
+        available = { 85 = { is_owned_by = POL } }
 
-        modifier = {
+        ai_will_do = { base = 12 }
 
-        }
+        modifier = { political_power_gain = -0.25 }
+
         remove_effect = {
-
+            add_victory_points = {
+                province = 9263
+                value = 5
+            }
+            add_building_construction = {
+                type = industrial_complex
+                level = 2
+                instant_build = yes
+            }
+            add_building_construction = {
+                type = dockyard
+                level = 1
+                instant_build = yes
+            }
         }
     }
     invite_to_intermarium = {
@@ -59,9 +108,15 @@ dc_intermarium = {
         fire_only_once = yes
 
         targets = { UBD UKR }
+        target_trigger = { FROM = { is_subject = no } }
+
+        ai_will_do = {
+            base = 6
+            modifier = { has_war = yes factor = 3 }
+        }
 
         complete_effect = {
-            
+            FROM = { country_event = { id = poland_intermarium.7 hours = 12 random_hours = 6 } }
         }
     }
 }
@@ -70,6 +125,8 @@ dc_the_little_constitution = {
     unify_the_administration = {
         cost = 150
         fire_only_once = yes
+
+        ai_will_do = { base = 9 }
 
         complete_effect = {
             add_stability = 0.05
@@ -80,6 +137,11 @@ dc_the_little_constitution = {
         cost = 75
         days_remove = 90
 
+        ai_will_do = {
+            base = 3
+            modifier = { has_stability < 0.3 factor = 6 }
+        }
+
         modifier = {
             stability_weekly = 0.005
             mobilization_speed = 0.15
@@ -87,7 +149,7 @@ dc_the_little_constitution = {
     }
 }
 
-dc_the_saybusch_declaration = {
+dc_the_zywiec_declaration = {
     encourage_investments_in_galicia = {
         cost = 75
         days_remove = 90
@@ -99,6 +161,11 @@ dc_the_saybusch_declaration = {
             }
         }
 
+        ai_will_do = { 
+            base = 3
+            modifier = { has_war = no factor = 2 }
+        }
+
         modifier = {
             production_speed_buildings_factor = 0.15
         }
@@ -106,6 +173,11 @@ dc_the_saybusch_declaration = {
     establish_monetary_union_with_austria_hungary = {
         cost = 100
         fire_only_once = yes
+
+        ai_will_do = { 
+            base = 3
+            modifier = { has_war = no factor = 2 }
+        }
 
         complete_effect = {
             add_ideas = sww1_monetary_union_with_austria
@@ -115,8 +187,23 @@ dc_the_saybusch_declaration = {
         cost = 150
         fire_only_once = yes
 
-        complete_effect = {
+        available = {
+            any_country = {
+                or = { tag = AUS tag = GER }
+                not = { has_war_with = POL }
+            }
+        }
 
+        ai_will_do = { base = 12 }
+
+        complete_effect = {
+            every_country = {
+                limit = {
+                    or = { tag = AUS tag = GER }
+                    not = { has_war_with = POL }
+                }
+                country_event = { id = poland_zywiec.1 hours = 12 random_hours = 6 }
+            }
         }
     }
 }
