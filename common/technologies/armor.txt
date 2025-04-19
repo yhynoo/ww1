@@ -69,6 +69,13 @@ technologies = {
     }
     armored_recon_vehicles = {
         categories = { mechanized_tech }
+        enable_subunits = { armored_car_recon }
+        dependencies = { tech_recon = 1 }
+
+        category_recon = {
+            soft_attack = 0.1
+            breakthrough = 0.05
+        }
 
         research_cost = 1
         start_year = 1914
@@ -86,6 +93,11 @@ technologies = {
     armored_recon_vehicles2 = {
         categories = { mechanized_tech }
 
+        category_recon = {
+            max_organisation = 0.05
+            breakthrough = 0.1
+        }
+
         research_cost = 1
         start_year = 1916
 
@@ -97,6 +109,15 @@ technologies = {
 
     armored_assault_tactics = {
         categories = { mechanized_tech }
+
+        category_mobile_and_mobile_combat_sup = {
+            breakthrough = 0.05
+            max_organisation = 10
+        }
+        category_tanks = {
+            breakthrough = 0.05
+            max_organisation = 10
+        }
 
         research_cost = 2
         start_year = 1918

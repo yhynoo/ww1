@@ -2,7 +2,7 @@ dc_seek_alliances = {
     seek_alliances_austria = { 
         visible = {
             AUS = { or = { is_faction_leader = yes is_in_faction = no } }
-            or = { tag = JAP tag = POL tag = TUR }
+            or = { tag = HOL tag = JAP tag = POL tag = TUR }
         }
 
         cost = 150
@@ -27,7 +27,7 @@ dc_seek_alliances = {
     seek_alliances_england = {
         visible = {
             ENG = { or = { is_faction_leader = yes is_in_faction = no } }
-            or = { tag = TUR tag = SOV }
+            or = { tag = HOL tag = TUR tag = SOV }
         }
 
         cost = 150
@@ -118,7 +118,7 @@ dc_seek_alliances = {
     seek_alliances_germany = {
         visible = {
             GER = { or = { is_faction_leader = yes is_in_faction = no } }
-            or = { tag = AUS tag = ITA tag = JAP tag = TUR }
+            or = { tag = AUS tag = HOL tag = ITA tag = JAP tag = TUR }
         }
 
         cost = 150
@@ -126,22 +126,19 @@ dc_seek_alliances = {
 
         ai_will_do = { 
             base = 3
-            modifier = { threat > 0.1 factor = 3 }
-            modifier = { has_idea = sww1_idea_slavic_unrest factor = 1.5 }
+            modifier = { threat > 0.1 factor = 2 }
+            modifier = { has_idea = sww1_idea_slavic_unrest factor = 3 }
 
             modifier = {
-                and = { 
-                    or = { tag = AUS tag = TUR }
-                    GER = { is_ally_with = SOV }
-                }
+                and = { or = { tag = AUS tag = TUR } GER = { is_ally_with = SOV } }
                 factor = 0
             }
+
+            modifier = { has_country_flag = we_stay_in_flanders factor = 2 }
+
             modifier = {
-                and = {
-                    tag = TUR
-                    is_guaranteed_by = GER
-                }
-                factor = 3
+                and = { tag = TUR is_guaranteed_by = GER }
+                factor = 6
             }
 
             # Alternative Central Powers
