@@ -26,7 +26,7 @@ dc_dominate_the_mediterranean = {
         }
     }
     balfour_declaration = {
-        cost = 100
+        cost = 75
         fire_only_once = yes
 
         ai_will_do = {
@@ -61,7 +61,6 @@ dc_dominate_the_mediterranean = {
 dc_affirm_the_entente = {
     announce_containment_policies = {
         icon = decision_generic_political_discourse
-
         cost = 50
         fire_only_once = yes
 
@@ -103,7 +102,7 @@ dc_affirm_the_entente = {
 
 dc_change_the_alliances = {
     divide_influence_in_the_far_east = {
-        cost = 150
+        cost = 100
         fire_only_once = yes
         available = { not = { has_war_with = GER } }
 
@@ -127,7 +126,7 @@ dc_change_the_alliances = {
         }
     }
     allied_by_blood = {
-        cost = 200
+        cost = 150
         fire_only_once = yes
         available = { 
             is_in_faction = no
@@ -148,8 +147,7 @@ dc_change_the_alliances = {
 dc_your_country_needs_you = {
     establish_ministry_of_munitions = {
         icon = generic_industry
-
-        cost = 150
+        cost = 100
         fire_only_once = yes
 
         ai_will_do = { base = 6 }
@@ -174,7 +172,6 @@ dc_your_country_needs_you = {
     }
     dilution_of_labor = {
         icon = generic_industry
-        
         cost = 75
         days_remove = 90
 
@@ -189,7 +186,7 @@ dc_your_country_needs_you = {
 
 dc_announce_the_commons_act = {
     let_workers_own_the_industry = {
-        cost = 150
+        cost = 100
         fire_only_once = yes
         available = { communism > 0.25 }
 
@@ -230,11 +227,8 @@ dc_announce_the_commons_act = {
 
 dc_end_imperialism = {
     grant_india_independence = {
-        visible = {
-            RAJ = { is_subject_of = ENG }
-        }
-
-        cost = 200
+        visible = { RAJ = { is_subject_of = ENG } }
+        cost = 150
         fire_only_once = yes
 
         ai_will_do = { base = 6 }
@@ -252,9 +246,7 @@ dc_end_imperialism = {
         }
     }
     grant_australia_independence = {
-        visible = {
-            AST = { is_subject_of = ENG }
-        }
+        visible = { AST = { is_subject_of = ENG } }
 
         cost = 150
         fire_only_once = yes
@@ -276,10 +268,7 @@ dc_end_imperialism = {
     grant_south_africa_independence = {
         visible = {
             SAF = { exists = no }
-            any_state = {
-                is_owned_by = ENG
-                is_core_of = SAF
-            }
+            any_state = { is_owned_by = ENG is_core_of = SAF }
         }
 
         cost = 100

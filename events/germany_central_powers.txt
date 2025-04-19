@@ -1,0 +1,238 @@
+add_namespace = germany_central_powers
+
+country_event = {
+    id = germany_central_powers.1
+    title = "Formalize Alliance with [AUS.GetNameDef]?"
+    desc = germany_central_powers.1.d
+
+    trigger = {
+        tag = GER
+        AUS = { has_war_with = AUS }
+
+        is_in_faction = no
+        AUS = { is_in_faction = no }
+
+        not = { AUS = { has_country_flag = we_rejected_germany } }
+        not = { has_government = communism }
+    }
+
+    option = {
+        name = "This is a logical step."
+        AUS = { country_event = { id = germany_central_powers.2 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 3 }
+    }
+
+    option = {
+        name = "We should not be bothered by their affairs."
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = germany_central_powers.2
+    title = "[GER.GetName] Offers Alliance"
+    desc = germany_central_powers.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let's do this!"
+        GER = {
+            news_event = { id = germany_central_powers.3 hours = 12 random_hours = 6 }
+            create_faction = "Central Powers"
+            add_to_faction = AUS
+        }
+
+        hidden_effect = {
+            TUR = { country_event = { id = germany_central_powers.5 days = 7 random_hours = 6 } }
+            ITA = { country_event = { id = germany_central_powers.9 days = 14 random_hours = 6 } }
+        }
+
+        ai_chance = { base = 6 }
+    }
+    option = {
+        name = "This is not necessary."
+        GER = { news_event = { id = germany_central_powers.4 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+        hidden_effect = { AUS = { set_country_flag = we_rejected_germany } }
+    }
+}
+
+news_event = {
+    id = germany_central_powers.3
+    title = "Central Powers Formed!"
+    desc = germany_central_powers.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = germany_central_powers.4
+    title = "[AUS.GetName] Declines!"
+    desc = germany_central_powers.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A real shame."
+    }
+}
+
+country_event = {
+    id = germany_central_powers.5
+    title = "Invite [TUR.GetNameDef]?"
+    desc = germany_central_powers.5.d
+
+    is_triggered_only = yes
+    trigger = { 
+        not = { or = { has_war_with = TUR TUR = { has_country_flag = we_rejected_germany } } }
+        TUR = { is_in_faction = no }
+    }
+
+    option = {
+        name = "They will help us greatly."
+        TUR = { country_event = { id = germany_central_powers.6 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 6 }
+    }
+
+    option = {
+        name = "They won't be needed."
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = germany_central_powers.6
+    title = "[GER.GetName] Offers Alliance!"
+    desc = germany_central_powers.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "It is an opportunity for us!"
+        GER = { 
+            news_event = { id = germany_central_powers.7 hours = 12 random_hours = 6 }
+            add_to_faction = TUR
+        }
+
+        ai_chance = { 
+            base = 2
+            modifier = { has_war_with = ITA factor = 3 }
+        }
+    }
+    option = {
+        name = "We are not interested."
+        GER = { news_event = { id = germany_central_powers.8 hours = 12 random_hours = 6 } }
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = germany_central_powers.7
+    title = "[TUR.GetName] and [GER.GetName] Allied!"
+    desc = germany_central_powers.7.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Turkey joins the war."
+    }
+}
+
+news_event = {
+    id = germany_central_powers.8
+    title = "[TUR.GetName] Declines!"
+    desc = germany_central_powers.8.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We cannot trust them anymore."
+    }
+}
+
+country_event = {
+    id = germany_central_powers.9
+    title = "How About [ITA.GetNameDef]?"
+    desc = germany_central_powers.9.d
+
+    is_triggered_only = yes
+    trigger = { 
+        not = { or = { has_war_with = ITA ITA = { has_country_flag = we_rejected_germany } } }
+        ITA = { is_in_faction = no } 
+    }
+
+    option = {
+        name = "We need all help."
+        ITA = { country_event = { id = germany_central_powers.10 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 3 }
+    }
+
+    option = {
+        name = "We will manage without them."
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = germany_central_powers.10
+    title = "[GER.GetName] Offers Alliance!"
+    desc = germany_central_powers.10.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall help them."
+        GER = { 
+            news_event = { id = germany_central_powers.11 hours = 12 random_hours = 6 }
+            add_to_faction = ITA
+        }
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "We are not interested."
+        GER = { news_event = { id =  germany_central_powers.12 hours = 12 random_hours = 6 } }
+
+        ai_chance = { 
+            base = 1
+            modifier = { has_completed_focus = ITA_seek_alignment_with_uk factor = 6 }
+            modifier = { not = { owns_state = 39 } factor = 2 }
+        }
+    }
+}
+
+news_event = {
+    id = germany_central_powers.11
+    title = "[ITA.GetName] Joins the German Alliance!"
+    desc = germany_central_powers.11.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Italy joins the war."
+    }
+}
+
+news_event = {
+    id = germany_central_powers.12
+    title = "[ITA.GetName] Declines!"
+    desc = germany_central_powers.12.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We thought better of them."
+    }
+}

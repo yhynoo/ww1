@@ -14,7 +14,7 @@ SOV_army_composition = {
     ai_strategy = {
 		type = role_ratio
 		id = garrison
-		value = 40
+		value = 60
 	}
 
 	ai_strategy = {
@@ -75,6 +75,23 @@ SOV_second_line_airfields = {
 		id = air_base
 		target = 229		# Baku
 		value = 1
+	}
+
+	# We need to commit way more troops.
+	ai_strategy = {
+		type = garrison
+		value = -100
+	}
+}
+
+SOV_loves_SER = {
+	allowed = { original_tag = SOV }
+	enable = { SER = { exists = yes } }
+
+	ai_strategy = {
+		type = protect
+		id = SER
+		value = 100
 	}
 }
 

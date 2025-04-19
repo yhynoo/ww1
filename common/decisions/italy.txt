@@ -4,7 +4,7 @@ dc_influence_the_uk = {
             not = { is_ally_with = AUS }
         }
 
-        cost = 150
+        cost = 125
         fire_only_once = yes
 
         available = {
@@ -75,7 +75,8 @@ dc_influence_the_uk = {
 dc_mediterranean_expansion = {
     demand_libya = {
         icon = generic_prepare_civil_war
-        cost = 150
+        cost = 100
+        fire_only_once = yes
 
         available = {
             can_declare_war_on = TUR
@@ -97,9 +98,9 @@ dc_mediterranean_expansion = {
         }
 
         ai_will_do = {
-            base = 6
-            modifier = { is_in_faction = yes factor = 3 }
-            modifier = { not = { any_country = { has_guaranteed = TUR } } factor = 6 }
+            base = 15
+            modifier = { date < 1913.7.1 factor = 9 }
+            modifier = { any_country = { has_guaranteed = TUR } factor = 0.2 }
         }
 
         complete_effect = {
@@ -107,15 +108,8 @@ dc_mediterranean_expansion = {
             every_state = {
                 limit = {
                     or = {
-                        state = 448
-                        state = 449
-                        state = 450
-                        state = 451
-
-                        state = 661
-                        state = 662
-                        state = 663
-
+                        state = 448 state = 449 state = 450 state = 451
+                        state = 661 state = 662 state = 663
                         state = 273
                     }
                     is_owned_by = TUR
@@ -128,34 +122,27 @@ dc_mediterranean_expansion = {
     demand_aegean = {
         icon = generic_prepare_civil_war
         cost = 150
+        fire_only_once = yes
 
         available = {
             can_declare_war_on = TUR
             any_state = {
-                or = {
-                    state = 182
-                    state = 164
-                    state = 187
-                }
+                or = { state = 182 state = 164 state = 187 }
                 is_owned_by = TUR
             }
         }
 
         ai_will_do = {
-            base = 6
-            modifier = { is_in_faction = yes factor = 3 }
-            modifier = { not = { any_country = { has_guaranteed = TUR } } factor = 3 }
+            base = 12
+            modifier = { date < 1914.1.1 factor = 6 }
+            modifier = { any_country = { has_guaranteed = TUR } factor = 0.2 }
         }
 
         complete_effect = {
             TUR = { country_event = { id = italy_expansion.4 hours = 12 random_hours = 6 } }
             every_state = {
                 limit = {
-                    or = {
-                        state = 182
-                        state = 164
-                        state = 187
-                    }
+                    or = { state = 182 state = 164 state = 187 }
                     is_owned_by = TUR
                 }
                 add_claim_by = ITA
@@ -166,7 +153,7 @@ dc_mediterranean_expansion = {
 
 dc_il_mezzogiorno = {
     expand_southern_industry = {
-        cost = 150
+        cost = 100
         fire_only_once = yes
 
         available = {
@@ -213,7 +200,7 @@ dc_il_mezzogiorno = {
 
 dc_deal_with_the_unions = {
     introduce_corporatism = {
-        cost = 150
+        cost = 100
         fire_only_once = yes
 
         ai_will_do = { base = 12 }

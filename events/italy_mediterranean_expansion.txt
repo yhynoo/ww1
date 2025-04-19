@@ -12,6 +12,23 @@ country_event = {
     option = {
         name = "Cede Libya to Italy."
         ITA = { news_event = { id = italy_expansion.2 hours = 12 random_hours = 6 } }
+
+        every_state = {
+            limit = {
+                or = {
+                    state = 448 state = 449 state = 450 state = 451
+                    state = 661 state = 662 state = 663
+                    state = 273
+                }
+                is_owned_by = TUR
+            }
+            transfer_state_to = ITA
+        }
+
+        ai_chance = {
+            base = 2
+            modifier = { is_in_faction = yes factor = 0 }
+        }
     }
 
     option = {
@@ -23,6 +40,8 @@ country_event = {
                 type = take_claimed_state
             }
         }
+
+        ai_chance = { base = 1 }
     }
 }
 
@@ -32,6 +51,7 @@ news_event = {
     desc = italy_expansion.2.d
 
     is_triggered_only = yes
+    major = yes
 
     option = { name = "Italy's empire grows." }
 }
@@ -58,6 +78,19 @@ country_event = {
     option = {
         name = "Cede the islands to Italy."
         ITA = { news_event = { id = italy_expansion.5 hours = 12 random_hours = 6 } }
+
+        every_state = {
+            limit = {
+                or = { state = 182 state = 164 state = 187 }
+                is_owned_by = TUR
+            }
+            transfer_state_to = ITA
+        }
+
+        ai_chance = {
+            base = 1
+            modifier = { is_in_faction = yes factor = 0 }
+        }
     }
 
     option = {
@@ -69,6 +102,8 @@ country_event = {
                 type = take_claimed_state
             }
         }
+
+        ai_chance = { base = 6 }
     }
 }
 
@@ -78,6 +113,7 @@ news_event = {
     desc = italy_expansion.5.d
 
     is_triggered_only = yes
+    major = yes
 
     option = { name = "Italy expands its Mediterranean holdings." }
 }

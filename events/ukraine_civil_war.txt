@@ -30,7 +30,13 @@ news_event = {
 
         if = {
             limit = { tag = SOV }
-            hidden_effect = { UKR = { news_event = { id = ukraine_civil_war.2 hours = 6 } } }
+            hidden_effect = { 
+                UKR = { 
+                    news_event = { id = ukraine_civil_war.2 hours = 6 } 
+                    set_politics = { ruling_party = democratic elections_allowed = yes }
+                    set_popularities = { communism = 25 democratic = 60 monarchism = 15 }
+                }
+            }
         }
     }
 }

@@ -38,15 +38,51 @@ GER_army_composition = {
 
 GER_protects_AUS = {
 	allowed = { original_tag = GER }
-	enable = { is_ally_with = AUS }
+	enable = { or = { is_ally_with = AUS has_guaranteed = AUS } }
 
 	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = support
+		id = AUS
+		value = 100
+	}
 
 	ai_strategy = {
 		type = diplo_action_acceptance
 		id = AUS
 		value = 300
 		target = join_allies
+	}
+}
+
+GER_protects_UBD = {
+	allowed = { original_tag = GER }
+	enable = { UBD = { exists = yes } }
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = protect
+		id = UBD
+		value = 100
+	}
+
+	ai_strategy = {
+		type = support
+		id = UBD
+		value = 100
+	}
+}
+
+GER_likes_HOL_if_they_are_bold = {
+	allowed = { original_tag = GER }
+	enable = { HOL = { has_country_flag = we_stay_in_flanders } }
+
+	ai_strategy = {
+		type = alliance
+		id = HOL
+		value = 100
 	}
 }
 

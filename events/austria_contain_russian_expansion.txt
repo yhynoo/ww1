@@ -80,7 +80,10 @@ country_event = {
     option = {
         name = "Welcome to our new allies!"
         news_event = { id = austria_contain_russian_expansion.6 hours = 12 random_hours = 6 }
-        ai_chance = { base = 6 }
+        ai_chance = { 
+            base = 3
+            modifier = { has_war_with = ITA factor = 3 }
+        }
 
         # politics
         release_on_controlled = POL
@@ -147,7 +150,11 @@ country_event = {
     option = {
         name = "It is great to have them by our side."
         news_event = { id = austria_contain_russian_expansion.9 hours = 12 random_hours = 6 }
-        ai_chance = { base = 6 }
+        
+        ai_chance = { 
+            base = 6
+            modifier = { has_war_with = ITA factor = 3 }
+        }
 
         # politics
         release_on_controlled = UKR
