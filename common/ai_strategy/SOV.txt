@@ -77,3 +77,18 @@ SOV_second_line_airfields = {
 		value = 1
 	}
 }
+
+## after soviet union is formed
+
+SOV_communists_dont_join_germans = {
+	allowed = { original_tag = SOV }
+	enable = { has_government = communism }
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = alliance
+		id = GER
+		value = -600
+	}
+}

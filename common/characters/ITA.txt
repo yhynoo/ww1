@@ -41,34 +41,14 @@ characters = {
         }
     }
 
-    # army
-    ITA_luigi_cadorna = {
-        name = "Luigi Cadorna"
-        corps_commander = {
-            traits = { trickster }
-            skill = 3
-            attack_skill = 2
-            defense_skill = 4
-            planning_skill = 3
-            logistics_skill = 2
-        }
-    }
-
-    ITA_umberto_di_savoia = {
-        name = "Umberto di Savoia"
-        corps_commander = {
-            traits = { infantry_leader }
-            skill = 3
-            attack_skill = 3
-            defense_skill = 3
-            planning_skill = 3
-            logistics_skill = 2
-        }
-    }
-
     # navy
     ITA_bertrand_della_vittoria = {
         name = "Bertrand Della Vittoria"
+        portraits = {
+            army = {
+                large = "GFX_Portrait_Italy_Generic_navy_1"
+            }
+        }
         navy_leader = {
             skill = 4
             attack_skill = 3
@@ -80,12 +60,70 @@ characters = {
 
     ITA_piero_liberati = {
         name = "Piero Liberati"
+        portraits = {
+            army = {
+                large = "GFX_Portrait_Italy_Generic_navy_2"
+            }
+        }
         navy_leader = {
             skill = 3
             attack_skill = 2
             defense_skill = 3
             maneuvering_skill = 3
             coordination_skill = 3
+        }
+    }
+}
+
+characters = {
+    ITA_luigi_cadorna = {
+        name = "Luigi Cadorna"
+        portraits = {
+            army = {
+                large = "GFX_Portrait_Italy_Generic_land_1"
+            }
+        }
+        field_marshal = {
+            traits = { harsh_leader }
+            skill = 1
+            attack_skill = 1
+            defense_skill = 1
+            planning_skill = 2
+            logistics_skill = 1
+        }
+    }
+
+    ITA_armando_diaz = {
+        name = "Armando Diaz"
+        portraits = {
+            army = {
+                large = "GFX_Portrait_Italy_Generic_land_3"
+            }
+        }
+        corps_commander = {
+            traits = { }
+            skill = 2
+            attack_skill = 3
+            defense_skill = 2
+            planning_skill = 3
+            logistics_skill = 2
+        }
+    }
+
+    ITA_emmanuel_filiberto_d_aosta = {
+        name = "Emmanuel Filiberto d’Aosta"
+        portraits = {
+            army = {
+                large = "GFX_Portrait_Italy_Generic_land_4"
+            }
+        }
+        corps_commander = {
+            traits = { infantry_leader trickster }
+            skill = 3
+            attack_skill = 4
+            defense_skill = 2
+            planning_skill = 4
+            logistics_skill = 4
         }
     }
 }

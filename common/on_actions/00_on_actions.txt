@@ -89,6 +89,7 @@ on_actions = {
         effect = {
             if = { 
                 limit = { has_government = communism }
+                load_focus_tree = communist_focus
 
                 if = { 
                     limit = { is_in_faction = yes } 
@@ -135,14 +136,14 @@ on_actions = {
                 country_event = baltic_german_conquest.1
             }
 
-            if = {
-                limit = {
-                    tag = GER
-                    has_war_with = SOV
-                    FROM.FROM = { state = 10 }
-                }
-                country_event = poland_german_conquest.1
-            }
+            #if = {
+            #    limit = {
+            #        tag = GER
+            #        has_war_with = SOV
+            #        FROM.FROM = { state = 10 }
+            #    }
+            #    country_event = poland_german_conquest.1
+            #}
 
             if = {
                 limit = {

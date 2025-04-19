@@ -1,0 +1,170 @@
+start_russian_civil_war = {
+    # - first, diplomacy
+    every_country = {
+        limit = { 
+            not = { original_tag = SOV }
+            has_war_with = SOV
+        }
+
+        # - give away all states occupied by russia
+        every_owned_state = {
+            limit = { is_controlled_by = SOV }
+            transfer_state_to = PREV
+        }
+
+        # - then, transfer states that russia might lose to current occupiers
+        every_state = {
+            limit = {
+                is_owned_by = SOV
+                is_controlled_by = PREV
+            }
+            transfer_state_to = PREV
+        }
+
+        # - then, make peace
+        white_peace = SOV
+    }
+
+    if = {
+        limit = { is_in_faction = yes }
+        leave_faction = yes
+    }
+
+    # - then civil war
+    start_civil_war = {
+        ruling_party = communism
+        ideology = ROOT
+
+        size = 0.8
+        army_ratio = 0.3
+        navy_ratio = 0
+    }
+
+    # - then tags.
+    SOV = { 
+        set_cosmetic_tag = SOC
+        set_popularities = { communism = 85 democratic = 10 monarchism = 5 }
+    }
+
+    random_country = {
+        limit = { original_tag = SOV not = { has_government = communism } }
+        set_cosmetic_tag = SOO
+    }
+
+    # - finally, breakaway states
+    if = {
+        limit = {
+            UBD = { exists = no }
+            any_country = {
+                original_tag = SOV
+                or = { owns_state = 808 owns_state = 12 owns_state = 811 owns_state = 812 owns_state = 191 }
+            }
+        }
+        news_event = { id = baltic_civil_war.1 days = 7 random_days = 42 }
+    }
+
+    if = {
+        limit = {
+            CRI = { exists = no }
+            any_country = {
+                original_tag = SOV
+               or = { owns_state = 229 owns_state = 231 owns_state = 232 }
+            }
+        }
+        news_event = { id = crimea_civil_war.1 days = 7 random_days = 42 }
+    }
+
+    if = {
+        limit = {
+            POL = { exists = no }
+            any_country = {
+                original_tag = SOV
+                or = { owns_state = 10 owns_state = 86 owns_state = 87 owns_state = 97 owns_state = 807 owns_state = 814 }
+            }
+        }
+        news_event = { id = poland_uprising.1 days = 7 random_days = 42 }
+    }
+
+    if = {
+        limit = {
+            UKR = { exists = no }
+            any_country = {
+                original_tag = SOV
+                or = { owns_state = 202 owns_state = 203 owns_state = 226 owns_state = 200 owns_state = 198 }
+            }
+        }
+        news_event = { id = ukraine_civil_war.1 days = 7 random_days = 42 }
+    }
+}
+
+start_german_civil_war = {
+
+    # - diplomacy
+    every_country = {
+        limit = { 
+            not = { original_tag = GER }
+            has_war_with = GER
+        }
+
+        # - give away most states occupied by germany other than poland and baltics
+        every_owned_state = {
+            limit = { 
+                is_controlled_by = GER
+                not = {
+                    or = { is_core_of = POL is_core_of = UBD }
+                }
+            }
+            transfer_state_to = PREV
+        }
+
+        # - then, transfer states that russia might lose to current occupiers
+        every_state = {
+            limit = {
+                is_owned_by = GER
+                is_controlled_by = PREV
+            }
+            transfer_state_to = PREV
+        }
+
+        # - then, make peace
+        white_peace = GER
+    }
+
+    if = {
+        limit = { is_in_faction = yes }
+        leave_faction = yes
+    }
+
+    # - then civil war
+    start_civil_war = {
+        ruling_party = communism
+        ideology = ROOT
+
+        size = 0.75
+        army_ratio = 0.65
+        navy_ratio = 0.2
+    }
+
+    # - then tags.
+    GER = { 
+        set_cosmetic_tag = GEC
+        set_popularities = { communism = 75 democratic = 20 monarchism = 5 }
+    }
+
+    random_country = {
+        limit = { original_tag = GER not = { has_government = communism } }
+        set_cosmetic_tag = GEX
+    }
+
+    # - potential uprising in poland (if poland exists already)
+    if = {
+        limit = {
+            POL = { exists = yes }
+            any_country = {
+                original_tag = GER
+                or = { owns_state = 86 owns_state = 87 owns_state = 807 }
+            }
+        }
+        POL = { news_event = { id = poland_uprising.11 days = 2 random_hours = 12 } }
+    }
+}

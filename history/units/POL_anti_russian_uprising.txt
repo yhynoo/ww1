@@ -29,7 +29,25 @@ division_template = {
 	}
 }
 
+division_template = {
+	name = "Brygada Cyklistów"
+	division_names_group = POL_INF_01
+
+	regiments = {
+		bicycle_battalion = { x = 0 y = 0 }
+		bicycle_battalion = { x = 0 y = 1 }
+        bicycle_battalion = { x = 1 y = 0 }
+		bicycle_battalion = { x = 1 y = 1 }
+    }
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
+}
+
 units = {
+
+    # Warszawa
+
     division = {
 		location = 3544
 		division_template = "Dywizja Piechoty"
@@ -37,59 +55,37 @@ units = {
     }
     division = {
 		location = 3544
-		division_template = "Dywizja Piechoty"
-        start_experience_factor = 0.4
-    }
-    division = {
-		location = 6511
-		division_template = "Brygada Piechoty"
-        start_experience_factor = 0.4
-    }
-    division = {
-		location = 9439
-		division_template = "Brygada Piechoty"
-        start_experience_factor = 0.4
-    }
-    division = {
-		location = 6401
 		division_template = "Brygada Piechoty"
         start_experience_factor = 0.4
     }
 
     division = {
 		location = 9508
-		division_template = "Dywizja Piechoty"
-        start_experience_factor = 0.4
-    }
-    division = {
-		location = 318
 		division_template = "Brygada Piechoty"
         start_experience_factor = 0.4
     }
+    division = {
+		location = 6401
+		division_template = "Brygada Cyklistów"
+        start_experience_factor = 0.4
+    }
 
+    # Litwa
     division = {
 		location = 11301
 		division_template = "Dywizja Piechoty"
         start_experience_factor = 0.4
     }
     division = {
-		location = 400
-		division_template = "Dywizja Piechoty"
-        start_experience_factor = 0.4
-    }
-    division = {
-		location = 400
-		division_template = "Dywizja Piechoty"
-        start_experience_factor = 0.4
-    }
-    division = {
-		location = 11312
+		location = 814
 		division_template = "Brygada Piechoty"
         start_experience_factor = 0.4
     }
+
     division = {
 		location = 11312
-		division_template = "Brygada Piechoty"
+		division_template = "Dywizja Piechoty"
         start_experience_factor = 0.4
     }
+    
 }
