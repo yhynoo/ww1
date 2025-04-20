@@ -24,7 +24,7 @@ dc_contain_russian_expansion = {
     }
     declare_support_poland = {
         visible = {
-            not = { 10 = { is_owned_by = AUS } }
+            not = { controls_state = 10 }
         }
 
         cost = 75
@@ -59,6 +59,14 @@ dc_contain_russian_expansion = {
             
             # politics
             release_on_controlled = POL
+            every_country = {
+                limit = { is_ally_with = AUS }
+                every_state = {
+                    limit = { is_controlled_by = PREV is_core_of = POL }
+                    transfer_state_to = POL
+                }
+            }
+
             if = {
                 limit = { is_in_faction = no }
                 if = { 
@@ -81,7 +89,7 @@ dc_contain_russian_expansion = {
     }
     declare_support_ukraine = {
         visible = {
-            not = { 202 = { is_owned_by = AUS } }
+            not = { controls_state = 202 }
         }
 
         cost = 75
@@ -116,6 +124,14 @@ dc_contain_russian_expansion = {
 
             # politics
             release_on_controlled = UKR
+            every_country = {
+                limit = { is_ally_with = AUS }
+                every_state = {
+                    limit = { is_controlled_by = PREV is_core_of = UKR }
+                    transfer_state_to = UKR
+                }
+            }
+
             if = {
                 limit = { is_in_faction = no }
                 if = { 

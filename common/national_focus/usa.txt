@@ -800,6 +800,7 @@ focus_tree = {
         ai_will_do = {
             base = 1
             modifier = { date > 1914.1.1 factor = 3 }
+            modifier = { has_country_flag = usa_goes_to_mexico factor = 3 }
         }
 
         completion_reward = {
@@ -814,6 +815,11 @@ focus_tree = {
         x = -4
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = { has_country_flag = usa_goes_to_mexico factor = 6 }
+        }
 
         prerequisite = { focus = USA_political_ambitions }
         completion_reward = {
@@ -832,11 +838,16 @@ focus_tree = {
         y = 1
         cost = 10
 
+        available = { has_war_support > 0.3 }
+
+        ai_will_do = {
+            base = 1
+            modifier = { ENG = { has_war_with = GER } factor = 3 }
+        }
+
         prerequisite = { focus = USA_international_affairs }
         completion_reward = {
-            add_political_power = 100
-
-            remove_ideas = sww1_idea_pacifist_society
+            remove_ideas = sww1_idea_isolationist_society
             add_timed_idea = {
                 idea = sww1_idea_interventionism
                 years = 1
@@ -854,7 +865,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 1
-            modifier = { has_completed_focus = USA_interventionism factor = 6 }
+            modifier = { has_country_flag = usa_goes_to_mexico factor = 3 }
         }
 
         prerequisite = { focus = USA_international_affairs }
@@ -893,6 +904,11 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = { and = { date > 1916.1.1 ENG = { not = { has_war_with = GER } } } }
+        }
+
         prerequisite = { focus = USA_interventionism }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -909,8 +925,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 0
-            modifier = { ENG = { has_war_with = GER } add = 3 }
+            base = 1
         }
 
         mutually_exclusive = { focus = USA_not_our_war }
@@ -996,8 +1011,8 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 0
-            modifier = { ENG = { has_war_with = GER } add = 3 }
+            base = 1
+            modifier = { has_country_flag = usa_goes_to_mexico factor = 0 }
         }
 
         mutually_exclusive = { focus = USA_the_arsenal_of_liberty }

@@ -917,12 +917,11 @@
         y = 1
         cost = 10
 
+        available = { has_war_support > 0.3 }
+
         ai_will_do = {
-            base = 1.5
-            modifier = {
-                threat > 0.2
-                factor = 3
-            }
+            base = 2
+            modifier = { threat > 0.2 factor = 3 }
         }
 
         prerequisite = { focus = SOV_international_affairs }

@@ -5,18 +5,36 @@ dc_monroe_doctrine = {
         fire_only_once = yes
 
         available = { 
-            has_war_support > 0.25
-            MEX = { has_war = yes }
+            has_war_support > 0.2
+            MEX = { has_war = yes has_government = democratic }
         }
 
         ai_will_do = {
-            base = 3
-            modifier = { MEX = { surrender_progress > 0.2 } factor = 3 }
+            base = 2
+            modifier = { MEX = { or = { has_civil_war = yes surrender_progress > 0.25 } } factor = 3 }
+            modifier = { has_country_flag = usa_goes_to_mexico factor = 6 }
         }
 
-        remove_days = 90
-        remove_effect = {
-            MEX = { country_event = { id = usa_monroe_doctrine.1 hours = 12 random_hours = 6 } }
+        complete_effect = {
+            custom_effect_tooltip = "Our military will intervene in Mexico on behalf of the democratic government. In exchange, we expect to expand the territories under our control around the Panama Canal and further north-west."
+
+            hidden_effect = {
+                if = {
+                    limit = { MEX = { has_civil_war = yes } }
+                    random_country = {
+                        limit = { original_tag = MEX has_government = communism }
+                        USA = { add_to_war = { targeted_alliance = MEX enemy = PREV } }
+                    }
+                }
+                add_to_war = { targeted_alliance = MEX enemy = COL }
+
+                every_state = {
+                    limit = { or = { state = 304 state = 312 state = 313 state = 314 state = 316 state = 317 } }
+                    add_claim_by = USA
+                }
+
+                country_event = { id = usa_monroe_doctrine.4 days = 2 random_hours = 6 }
+            }
         }
     }
     guarantees_for_latin_america = {
@@ -30,7 +48,7 @@ dc_monroe_doctrine = {
         }
 
         complete_effect = {
-            news_event = { id = usa_monroe_doctrine.4 hours = 12 random_hours = 6 }
+            news_event = { id = usa_monroe_doctrine.5 hours = 12 random_hours = 6 }
 
             give_guarantee = ARG
             give_guarantee = BRA
@@ -39,7 +57,7 @@ dc_monroe_doctrine = {
         }
     }
     claim_greenland = {
-        visible = { has_completed_focus = USA_america_first }
+        available = { has_government = authoritarianism }
 
         cost = 100
         fire_only_once = yes
@@ -47,99 +65,14 @@ dc_monroe_doctrine = {
         ai_will_do = { base = 12 }
 
         complete_effect = {
-            news_event = { id = usa_monroe_doctrine.5 hours = 12 random_hours = 6 }
+            news_event = { id = usa_monroe_doctrine.6 hours = 12 random_hours = 6 }
+
+            100 = { add_claim_by = USA }
             101 = { add_claim_by = USA }
-        }
-    }
-    demand_canada = {
-        visible = { has_completed_focus = USA_america_first }
 
-        cost = 150
-        fire_only_once = yes
-
-        available = {
-            any_state = {
-                or = {
-                    state = 276
-
-                    state = 331
-                    state = 332
-
-                    state = 464
-                    state = 465
-                    state = 466
-                    state = 467
-                    state = 468
-                    state = 469
-                    state = 470
-                    state = 471
-                    state = 472
-                    state = 473
-
-                    state = 682
-                    state = 683
-
-                    state = 739
-                    state = 740
-
-                    state = 860
-                    state = 861
-                    state = 862
-                    state = 863
-                    state = 864
-                    state = 865
-                    state = 866
-                    state = 867
-                }
-                is_owned_by = ENG
+            hidden_effect = {
+                set_country_flag = usa_goes_to_arctic
             }
-        }
-
-        ai_will_do = { 
-            base = 3
-            modifier = { strength_ratio = { tag = ENG ratio > 1.0 } factor = 3 }
-        }
-
-        complete_effect = {
-            every_state = {
-                limit = {
-                    or = {
-                        state = 276
-
-                        state = 331
-                        state = 332
-
-                        state = 464
-                        state = 465
-                        state = 466
-                        state = 467
-                        state = 468
-                        state = 469
-                        state = 470
-                        state = 471
-                        state = 472
-                        state = 473
-
-                        state = 682
-                        state = 683
-
-                        state = 739
-                        state = 740
-
-                        state = 860
-                        state = 861
-                        state = 862
-                        state = 863
-                        state = 864
-                        state = 865
-                        state = 866
-                        state = 867
-                    }
-                    is_owned_by = ENG
-                }
-                add_claim_by = USA
-            }
-            ENG = { country_event = { id = usa_monroe_doctrine.6 hours = 12 random_hours = 6 } }
         }
     }
 }
