@@ -87,6 +87,15 @@ country_event = {
 
         # politics
         release_on_controlled = POL
+
+        every_country = {
+            limit = { is_ally_with = AUS }
+            every_state = {
+                limit = { is_controlled_by = PREV is_core_of = POL }
+                transfer_state_to = POL
+            }
+        }
+
         if = {
             limit = { is_in_faction = no }
             if = { 
@@ -158,6 +167,15 @@ country_event = {
 
         # politics
         release_on_controlled = UKR
+
+        every_country = {
+            limit = { is_ally_with = AUS }
+            every_state = {
+                limit = { is_controlled_by = PREV is_core_of = UKR }
+                transfer_state_to = UKR
+            }
+        }
+
         if = {
             limit = { is_in_faction = no }
             if = { 

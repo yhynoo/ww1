@@ -20,8 +20,14 @@ start_russian_civil_war = {
             }
             transfer_state_to = PREV
         }
+    }
 
-        # - then, make peace
+    every_country = {
+        limit = { 
+            not = { original_tag = SOV }
+            has_war_with = SOV
+        }
+
         white_peace = SOV
     }
 
@@ -125,8 +131,14 @@ start_german_civil_war = {
             }
             transfer_state_to = PREV
         }
+    }
 
-        # - then, make peace
+    every_country = {
+        limit = { 
+            not = { original_tag = SOV }
+            has_war_with = GER
+        }
+
         white_peace = GER
     }
 

@@ -7,13 +7,13 @@ country_event = {
 
     trigger = {
         tag = GER
-        AUS = { has_war_with = AUS }
+        not = { is_ally_with = AUS }
 
-        is_in_faction = no
-        AUS = { is_in_faction = no }
-
-        not = { AUS = { has_country_flag = we_rejected_germany } }
-        not = { has_government = communism }
+        AUS = { 
+            has_war_with = SOV
+            is_in_faction = no
+            not = { has_country_flag = we_rejected_germany }
+        }
     }
 
     option = {
