@@ -1,4 +1,22 @@
 dc_head_of_state_decisions = {
+    encourage_voluntary_draft = {
+        icon = generic_civil_support
+        
+        days_remove = 90
+        cost = 100
+
+        available = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
+
+        ai_will_do = {
+            base = 3
+            modifier = { has_war_support < 0.3 factor = 2.5 }
+        }
+
+        modifier = {
+            war_support_weekly = 0.01
+            manpower_weekly = 250
+        }
+    }
     imprison_the_extremists = {
         icon = generic_civil_support
         visible = {

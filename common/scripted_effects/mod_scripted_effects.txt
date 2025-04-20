@@ -15,7 +15,7 @@ start_russian_civil_war = {
         # - then, transfer states that russia might lose to current occupiers
         every_state = {
             limit = {
-                is_owned_by = SOV
+                is_core_of = SOV
                 is_controlled_by = PREV
             }
             transfer_state_to = PREV
@@ -121,7 +121,7 @@ start_german_civil_war = {
         every_state = {
             limit = {
                 is_owned_by = GER
-                is_controlled_by = PREV
+                is_core_of = PREV
             }
             transfer_state_to = PREV
         }

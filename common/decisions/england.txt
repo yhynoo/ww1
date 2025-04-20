@@ -34,6 +34,8 @@ dc_dominate_the_mediterranean = {
             modifier = { has_war_with = TUR factor = 9 }
         }
 
+        available = { 454 = { is_owned_by = TUR } }
+
         complete_effect = {
             news_event = { id = england_dominate_the_mediterranean.1 hours = 12 random_hours = 6 }
             TUR = {
@@ -41,18 +43,15 @@ dc_dominate_the_mediterranean = {
                     target = ENG
                     modifier = medium_decrease
                 }
-            }
-            hidden_effect = {
+
                 if = {
-                    limit = {
-                        not = { 
-                            has_idea = sww1_idea_looming_arab_revolt
-                            has_country_flag = arab_revolt_done
-                        }
-                        TUR = { add_ideas = sww1_idea_looming_arab_revolt }
+                    limit = { not = { has_idea = sww1_idea_looming_arab_revolt has_country_flag = arab_revolt_done } }
+                    add_ideas = sww1_idea_looming_arab_revolt
+
+                    hidden_effect = {
+                        TUR = { news_event = { id = arabs_events.2 days = 70 random_days = 70 } }
                     }
                 }
-                TUR = { news_event = { id = arabs_events.2 days = 70 random_days = 70 } }
             }
         }
     }

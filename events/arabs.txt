@@ -10,14 +10,15 @@ news_event = {
         has_stability < 0.25
 
         not = { 
-            has_idea = sww1_idea_looming_arab_revolt
-            has_country_flag = arab_revolt_done
+            or = { has_idea = sww1_idea_looming_arab_revolt has_country_flag = arab_revolt_done }
         }
     }
 
     option = {
         add_political_power = -50
         name = "We must restore order."
+
+        add_ideas = sww1_idea_looming_arab_revolt
 
         hidden_effect = {
             news_event = { id = arabs_events.2 days = 28 random_days = 70 }

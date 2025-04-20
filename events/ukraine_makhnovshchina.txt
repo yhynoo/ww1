@@ -143,3 +143,28 @@ news_event = {
         }
     }
 }
+
+news_event = {
+    id = ukraine_makhnovshchina.5
+    title = "End of Anarchist Uprising in Ukraine"
+    desc = ukraine_makhnovshchina.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Order is restored."
+
+        if = {
+            limit = { tag = SOV }
+            add_stability = 0.1
+
+            hidden_effect = {
+                UKR = {
+                    set_popularities = { communism = 15 democratic = 30 monarchism = 55 }
+                    set_politics = { ruling_party = monarchism }
+                }
+            }
+        }
+    }
+}

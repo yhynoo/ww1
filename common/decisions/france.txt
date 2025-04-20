@@ -60,10 +60,10 @@ dc_belgian_crisis = {
         fire_only_once = yes
 
         available = {
-            6   = { is_owned_by = FRA }
-            34  = { is_owned_by = FRA }
-            977 = { is_owned_by = FRA }
-            980 = { is_owned_by = FRA }
+            all_state = {
+                or = { state = 6 state = 34 state = 977 state = 980 }
+                is_controlled_by = FRA
+            }
         }
 
         ai_will_do = { base = 9 }
@@ -73,12 +73,7 @@ dc_belgian_crisis = {
 
             every_state = {
                 limit = {
-                    or = {
-                        state = 6
-                        state = 34
-                        state = 977
-                        state = 980
-                    }
+                    or = { state = 6 state = 34 state = 977 state = 980 }
                 }
                 add_core_of = FRA
             }
