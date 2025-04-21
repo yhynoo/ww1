@@ -45,6 +45,8 @@ country_event = {
         name = "Threaten military action!"
         news_event = { id = baltic_riot_events.3 hours = 12 random_hours = 6 }
 
+        trigger = { can_declare_war_on = SOV }
+
         create_wargoal = {
             target = SOV
             type = liberate_wargoal
@@ -56,15 +58,28 @@ country_event = {
                 threat = 3
             }
         }
+
+        ai_chance = { 
+            base = 1
+            modifier = { has_government = monarchism factor = 2 }
+        }
     }
 
     option = {
         name = "Demand a protectorate for Baltic Germans."
         SOV = { country_event = { id = baltic_riot_events.4 hours = 12 random_hours = 6 } }
+
+        ai_chance = { 
+            base = 2
+            modifier = { has_government = democratic factor = 2 }
+        }
     }
 
     option = {
         name = "Leave it."
+        add_political_power = -50
+
+        ai_chance = { base = 1 }
     }
 }
 
@@ -102,40 +117,25 @@ country_event = {
         hidden_effect = {
             UBD = {
                 load_oob = "UBD_1912"
-                set_popularities = {
-                    monarchism = 60
-                    democratic = 35
-                    authoritarianism = 5
-                }
+                set_popularities = { monarchism = 60 democratic = 35 authoritarianism = 5 }
             }
         }
 
-        ai_chance = { 
-            base = 2
-            modifier = {
-                has_stability < 0.5
-                factor = 2
-            }
-        }
+        ai_chance = { base = 1 }
     }
 
     option = {
         trigger = {
             is_in_faction = no
-            GER = {
-                is_in_faction = no
-            }
+            GER = { or = { is_in_faction = no is_faction_leader = yes } }
         }
 
         name = "Offer an alliance and joint management."
         GER = { country_event = { id = baltic_riot_events.6 hours = 12 random_hours = 6 } }
 
         ai_chance = {
-            base = 2
-            modifier = {
-                threat > 0.15
-                factor = 2
-            }
+            base = 1
+            modifier = { and = { has_war = yes GER = { has_government = monarchism } } factor = 3 }
         }
     }
 
@@ -159,6 +159,7 @@ country_event = {
 
         ai_chance = {
             base = 2
+            modifier = { has_war = yes factor = 0 }
         }
     }
 }
@@ -190,7 +191,10 @@ country_event = {
         create_faction = "Baltic Alliance"
         add_to_faction = SOV
 
-        ai_chance = { base = 4 }
+        ai_chance = { 
+            base = 1
+            modifier = { has_government = monarchism factor = 6 }
+        }
     }
 
     option = {
@@ -209,7 +213,10 @@ country_event = {
             }
         }
 
-        ai_chance = { base = 1 }
+        ai_chance = { 
+            base = 2
+            modifier = { has_war = yes factor = 0 }
+        }
     }
 }
 

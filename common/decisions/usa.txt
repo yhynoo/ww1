@@ -50,10 +50,13 @@ dc_monroe_doctrine = {
         complete_effect = {
             news_event = { id = usa_monroe_doctrine.5 hours = 12 random_hours = 6 }
 
-            give_guarantee = ARG
-            give_guarantee = BRA
-            give_guarantee = MEX
-            give_guarantee = PRU
+            every_country = {
+                limit = { 
+                    or = { tag = ARG tag = BRA tag = COL tag = MEX tag = PRU }
+                    has_government = democratic
+                }
+                give_guarantee = THIS
+            }
         }
     }
     claim_greenland = {
@@ -223,7 +226,7 @@ dc_cultural_hegemony = {
     }
 }
 
-dc_automotive_industries = {
+dc_american_industries = {
     introduce_tariffs = {
         cost = 100
         fire_only_once = yes
@@ -232,6 +235,17 @@ dc_automotive_industries = {
 
         complete_effect = {
             add_ideas = sww1_idea_isolationist_economy
+        }
+    }
+    crack_down_on_labor_unions = {
+        cost = 100
+        days_remove = 90
+
+        ai_will_do = { base = 6 }
+
+        modifier = {
+            production_speed_buildings_factor = 0.1
+            authoritarianism_drift = 0.05
         }
     }
     campaign_against_unemployment = {
@@ -243,36 +257,6 @@ dc_automotive_industries = {
         modifier = {
             production_speed_buildings_factor = 0.1
             stability_weekly = 0.005
-        }
-    }
-    encourage_racial_integration = {
-        cost = 75
-        days_remove = 90
-
-        ai_will_do = { 
-            base = 6
-            modifier = { has_completed_focus = USA_america_first factor = 0 }
-        }
-
-        modifier = {
-            democratic_drift = 0.025
-        }
-
-        complete_effect = {
-            remove_ideas = sww1_idea_jim_crow_laws
-            hidden_effect = {
-                country_event = { id = usa_automotive_industries.1 days = 14 random_days = 28 }
-            }
-        }
-
-        remove_effect = {
-            random_owned_controlled_state = {
-                add_building_construction = {
-                    type = industrial_complex
-                    level = 2
-                    instant_build = yes
-                }
-            }
         }
     }
 }

@@ -12,6 +12,9 @@ country_event = {
 
         has_civil_war = no
         has_stability > 0.1 authoritarianism > 0.5
+
+        # disable this for America
+        not = { tag = USA }
     }
 
     option = {
@@ -29,6 +32,8 @@ country_event = {
             ideology = authoritarianism
             popularity = -0.05
         }
+
+        remove_ideas_with_trait = authoritarian_demagogue
     }
 }
 
@@ -61,6 +66,8 @@ country_event = {
             ideology = communism
             popularity = -0.05
         }
+
+        remove_ideas_with_trait = sww1_communist_agitator
     }
 }
 
@@ -93,5 +100,7 @@ country_event = {
             ideology = democratic
             popularity = -0.05
         }
+
+        remove_ideas_with_trait = sww1_democratic_reformer
     }
 }

@@ -1024,7 +1024,14 @@ focus_tree = {
             focus = TUR_radio_constantinople
             focus = TUR_jihad
         }
+
+        ai_will_do = { base = 3 }
+
         completion_reward = {
+            hidden_effect = {
+                country_event = { id = turkey_military_elite.1 hours = 12 random_hours = 6 }
+            }
+
             add_timed_idea = {
                 idea = sww1_idea_appease_the_old_elite
                 years = 1

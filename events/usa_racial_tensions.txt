@@ -1,0 +1,254 @@
+add_namespace = usa_racial_tensions
+
+country_event = {
+    id = usa_racial_tensions.1
+    title = "Embers of the Past"
+    desc = usa_racial_tensions.1.d
+
+    trigger = {
+        tag = USA
+        has_government = democratic
+
+        or = {
+            date > 1913.4.1
+            authoritarianism > 0.2
+        }
+        
+        not = { has_country_flag = racial_tensions_event_chain }
+
+    }
+    
+    immediate = {
+        set_country_flag = racial_tensions_event_chain
+    }
+
+    option = {
+        name = "Do not cause trouble."
+        add_stability = -0.05
+
+        hidden_effect = {
+            country_event = { id = usa_racial_tensions.2 days = 60 random_days = 60 }
+        }
+
+        ai_chance = { base = 1 }
+    }
+
+    option = {
+        name = "Start education campaigns."
+
+        add_political_power = -50
+        add_popularity = { ideology = democratic popularity = 0.05 }
+
+        hidden_effect = {
+            country_event = { id = usa_racial_tensions.3 days = 60 random_days = 60 }
+        }
+
+        ai_chance = { base = 2 }
+    }
+}
+
+country_event = {
+    id = usa_racial_tensions.2
+    title = "Fundamentalist Surge in the South"
+    desc = usa_racial_tensions.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Free speech is sacred."
+        add_popularity = { ideology = authoritarianism popularity = 0.05 }
+        add_stability = -0.1
+
+        hidden_effect = {
+            news_event = { id = usa_racial_tensions.5 days = 60 random_days = 60 }
+        }
+
+        ai_chance = { base = 1 }
+    }
+
+    option = {
+        name = "This is too much."
+        add_political_power = -50
+
+        hidden_effect = {
+            country_event = { id = usa_racial_tensions.4 days = 60 random_days = 60 }
+        }
+
+        ai_chance = { base = 2 }
+    }
+}
+
+country_event = {
+    id = usa_racial_tensions.3
+    title = "The Trial of Thomas Lewis"     # a made up event: a white nationalist was let free after murdering a black worker in Atlanta
+    desc = usa_racial_tensions.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Revisit the trial."
+        add_political_power = -50
+
+        hidden_effect = {
+            country_event = { id = usa_racial_tensions.4 days = 60 random_days = 60 }
+        }
+    }
+
+    option = {
+        name = "Not our authority."
+        add_popularity = { ideology = authoritarianism popularity = 0.05 }
+
+        hidden_effect = {
+            news_event = { id = usa_racial_tensions.5 days = 60 random_days = 60 }
+        }
+    }
+}
+
+country_event = {
+    id = usa_racial_tensions.4
+    title = "The Cross Burns Bright"
+    desc = usa_racial_tensions.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Do not stir it up."
+
+        hidden_effect = {
+            news_event = { id = usa_racial_tensions.5 days = 60 random_days = 60 }
+        }
+
+        ai_chance = { base = 1 }
+    }
+
+    option = {
+        name = "We must crack down on those people."
+
+        add_stability = -0.1
+        add_political_power = -100
+        add_popularity = { ideology = democratic popularity = 0.05 }
+
+        hidden_effect = {
+            news_event = { id = usa_racial_tensions.7 days = 60 random_days = 60 }
+        }
+
+        ai_chance = { base = 2 }
+    }
+}
+
+news_event = {
+    id = usa_racial_tensions.5
+    title = "The Atlanta Gathering"
+    desc = usa_racial_tensions.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is concerning."
+
+        add_stability = -0.1
+        add_popularity = { ideology = authoritarianism popularity = 0.1 }
+
+        hidden_effect = {
+            country_event = { id = usa_racial_tensions.6 days = 60 random_days = 60 }
+        }
+    }
+}
+
+country_event = {
+    id = usa_racial_tensions.6
+    title = "One Nation Under God!"
+    desc = usa_racial_tensions.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "God bless America."
+
+        set_politics = { ruling_party = authoritarianism elections_allowed = no }
+        hidden_effect = {
+            add_popularity = { ideology = authoritarianism popularity = 0.2 }
+        }
+
+        ai_chance = { base = 1 }
+    }
+
+    option = {
+        name = "We must defend our democratic values!"
+
+        add_political_power = -150
+        start_civil_war = { 
+            ideology = authoritarianism
+            army_ratio = 0.4
+            states = { 364 365 366 367 370 371 372 373 374 375 }
+        }
+
+        hidden_effect = {
+            add_popularity = { ideology = democratic popularity = 0.2 }
+        }
+
+        ai_chance = { base = 2 }
+    }
+}
+
+news_event = {
+    id = usa_racial_tensions.7
+    title = "A New Way Forward"
+    desc = usa_racial_tensions.7.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+
+        add_popularity = { ideology = democratic popularity = 0.1 }
+        remove_ideas = sww1_idea_racial_tensions
+    }
+}
+
+news_event = {
+    id = usa_racial_tensions.8
+    title = "Screenings of 'Birth of a Nation'"
+    desc = usa_racial_tensions.8.d
+
+    is_triggered_only = yes
+    trigger = { has_idea = sww1_idea_racial_tensions }          # if we've solved the racial issues, this won't happen
+
+    option = {
+        name = "There is something to it, they say..."
+        add_popularity = { ideology = authoritarianism popularity = 0.05 }
+
+        hidden_effect = {
+            country_event = { id = usa_racial_tensions.9 days = 60 random_days = 60 }
+            country_event = { id = usa_racial_tensions.10 days = 60 random_days = 60 }
+        }
+    }
+}
+
+news_event = {
+    id = usa_racial_tensions.9
+    title = "Race Riots Across the South!"
+    desc = usa_racial_tensions.9.d
+
+    is_triggered_only = yes
+    trigger = { not = { has_government = authoritarianism } }       # if we're fundamentalist, there is nothing to riot against.
+
+    option = {
+        name = "Awful."
+        add_stability = -0.05
+    }
+}
+
+news_event = {
+    id = usa_racial_tensions.10
+    title = "Urban Unrest Spreads!"     # it's the black communities reaction to racist policies
+    desc = usa_racial_tensions.10.d
+
+    is_triggered_only = yes
+    trigger = { not = { has_government = democratic } }             # if we're democratic, the government is pro-integration.
+
+    option = {
+        name = "Awful."
+        add_stability = -0.05
+    }
+}

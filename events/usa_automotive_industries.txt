@@ -1,9 +1,9 @@
-add_namespace = usa_automotive_industries
+add_namespace = USA_american_industries
 
 country_event = {
-    id = usa_automotive_industries.1
+    id = USA_american_industries.1
     title = "Race Riots in Southern States!"        # This follows a decision to encourage racial integration
-    desc = usa_automotive_industries.1.d
+    desc = USA_american_industries.1.d
 
     trigger = {
         authoritarianism > 0.25
@@ -35,15 +35,15 @@ country_event = {
         ai_chance = { base = 3 }
 
         hidden_effect = {
-            country_event = { id = usa_automotive_industries.2 days = 14 random_days = 28 }
+            country_event = { id = USA_american_industries.2 days = 14 random_days = 28 }
         }
     }
 }
 
 country_event = {
-    id = usa_automotive_industries.2
+    id = USA_american_industries.2
     title = "Race Riots Spread Across The South"
-    desc = usa_automotive_industries.2.d
+    desc = USA_american_industries.2.d
 
     trigger = {
         authoritarianism > 0.3
@@ -76,15 +76,15 @@ country_event = {
         ai_chance = { base = 3 }
 
         hidden_effect = {
-            news_event = { id = usa_automotive_industries.3 days = 14 random_days = 28 }
+            news_event = { id = USA_american_industries.3 days = 14 random_days = 28 }
         }
     }
 }
 
 news_event = {
-    id = usa_automotive_industries.3
+    id = USA_american_industries.3
     title = "Anti-Integration States Take Up Arms!"     # This will appear in all countries, so must explain the context.
-    desc = usa_automotive_industries.3.d
+    desc = USA_american_industries.3.d
 
     trigger = {
         authoritarianism > 0.35
