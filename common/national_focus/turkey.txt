@@ -21,7 +21,8 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 2
+            base = 1
+            modifier = { has_war = yes factor = 3 }
         }
 
         completion_reward = {
@@ -37,13 +38,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 2
-            modifier = {
-                has_war = yes
-                factor = 3
-            }
-        }
+        ai_will_do = { base = 2 }
 
         prerequisite = { focus = TUR_adjust_budget }
         completion_reward = {
@@ -81,9 +76,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 3
-        }
+        ai_will_do = { base = 3 }
 
         prerequisite = { focus = TUR_focus_army }
         completion_reward = {
@@ -119,10 +112,6 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 2
-        }
-
         prerequisite = { focus = TUR_equipment_effort }
         completion_reward = {
             add_tech_bonus = {
@@ -140,11 +129,7 @@ focus_tree = {
         x = 0
         y = 1
         cost = 10
-
-        ai_will_do = {
-            base = 6
-        }
-
+        
         prerequisite = { focus = TUR_equipment_effort }
         completion_reward = {
             air_experience = 25
@@ -833,8 +818,6 @@ focus_tree = {
                     limit = { date < 1912.7.1 }
                     set_country_flag = we_do_our_thing
                 }
-
-                country_event = { id = turkey_young_turks.1 days = 42 random_days = 14 }
             }
         }
     }
@@ -886,8 +869,8 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_sarajevo_memorandum
-        icon = GFX_focus_TUR_sarajevo_memorandum
+        id = TUR_sarajevo_declaration
+        icon = GFX_focus_TUR_sarajevo_declaration
 
         relative_position_id = TUR_international_affairs
         x = 1
@@ -895,7 +878,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 0                                    # Unless we're doing our thing, we will never do this.
+            base = 0
             modifier = { has_country_flag = we_do_our_thing add = 3 }
         }
 
@@ -962,11 +945,10 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 3
-            modifier = { has_country_flag = turkey_nationalist_path factor = 0 }
+            base = 1
         }
 
-        mutually_exclusive = { focus = TUR_the_young_turks }
+        mutually_exclusive = { focus = TUR_the_young_ottomans }
         prerequisite = { focus = TUR_political_ambitions }
         completion_reward = {
             add_popularity = { ideology = monarchism popularity = 0.05 }
@@ -974,8 +956,8 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_radio_constantinople
-        icon = GFX_focus_TUR_radio_constantinople
+        id = TUR_jihad
+        icon = GFX_focus_TUR_jihad
 
         relative_position_id = TUR_the_sublime_porte
         x = -1
@@ -988,8 +970,8 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_jihad
-        icon = GFX_focus_TUR_jihad
+        id = TUR_uniformization
+        icon = GFX_focus_TUR_uniformization
 
         relative_position_id = TUR_the_sublime_porte
         x = 1
@@ -999,23 +981,23 @@ focus_tree = {
         prerequisite = { focus = TUR_the_sublime_porte }
         completion_reward = {
             add_timed_idea = {
-                idea = sww1_idea_jihad
+                idea = sww1_idea_uniformization
                 years = 2
             }
         }
     }
     focus = {
-        id = TUR_appease_the_old_elite
-        icon = GFX_focus_TUR_appease_the_old_elite
+        id = TUR_appease_the_ulema
+        icon = GFX_focus_TUR_appease_the_ulema
 
-        relative_position_id = TUR_radio_constantinople
+        relative_position_id = TUR_jihad
         x = 1
         y = 1
         cost = 10
 
         prerequisite = { 
-            focus = TUR_radio_constantinople
             focus = TUR_jihad
+            focus = TUR_uniformization
         }
 
         ai_will_do = { base = 3 }
@@ -1023,7 +1005,7 @@ focus_tree = {
         completion_reward = {
             hidden_effect = { country_event = { id = turkey_military_elite.1 hours = 12 random_hours = 6 } }
             add_timed_idea = {
-                idea = sww1_idea_appease_the_old_elite
+                idea = sww1_idea_appease_the_ulema
                 years = 1
             }
         }
@@ -1032,20 +1014,20 @@ focus_tree = {
         id = TUR_the_eternal_state
         icon = GFX_focus_generic_the_everlasting_spirit
 
-        relative_position_id = TUR_appease_the_old_elite
+        relative_position_id = TUR_appease_the_ulema
         x = 0
         y = 1
         cost = 10
 
-        prerequisite = { focus = TUR_appease_the_old_elite }
+        prerequisite = { focus = TUR_appease_the_ulema }
         completion_reward = {
             add_ideas = sww1_idea_the_eternal_state
         }
     }
 
     focus = {
-        id = TUR_the_young_turks
-        icon = GFX_focus_TUR_the_young_turks
+        id = TUR_the_young_ottomans
+        icon = GFX_focus_TUR_the_young_ottomans
 
         relative_position_id = TUR_political_ambitions
         x = 4
@@ -1053,16 +1035,15 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 3
-            modifier = { has_country_flag = turkey_sultan_path factor = 0 }
+            base = 1
         }
 
         mutually_exclusive = { focus = TUR_the_sublime_porte }
         prerequisite = { focus = TUR_political_ambitions }
         completion_reward = {
-            add_popularity = { ideology = authoritarianism popularity = 0.05 }
+            add_popularity = { ideology = democratic popularity = 0.05 }
             add_timed_idea = {
-                idea = sww1_idea_authoritarianism_tendencies
+                idea = sww1_idea_democratic_tendencies
                 years = 1
             }
         }
@@ -1071,39 +1052,43 @@ focus_tree = {
         id = TUR_state_reform
         icon = GFX_focus_generic_state_reform
 
-        relative_position_id = TUR_the_young_turks
+        relative_position_id = TUR_the_young_ottomans
         x = 2
         y = 1
         cost = 10
 
-        prerequisite = { focus = TUR_the_young_turks }
+        prerequisite = { focus = TUR_the_young_ottomans }
         completion_reward = {
             add_timed_idea = {
                 idea = sww1_idea_state_reform
                 years = 1
             }
+
+            hidden_effect = {
+                country_event = { id = turkey_minority_affairs.1 days = 14 random_days = 7 }
+            }
         }
     }
     focus = {
-        id = TUR_default_on_the_debt
+        id = TUR_tackle_the_debt
         icon = GFX_focus_generic_open_the_economy
 
-        relative_position_id = TUR_the_young_turks
+        relative_position_id = TUR_the_young_ottomans
         x = -1
         y = 1
         cost = 10
 
         ai_will_do = { base = 6 }
 
-        prerequisite = { focus = TUR_the_young_turks }
+        prerequisite = { focus = TUR_the_young_ottomans }
         completion_reward = {
             add_stability = 0.05
             custom_effect_tooltip = decision_effect_tooltip
         }
     }
     focus = {
-        id = TUR_declare_the_ethnic_state
-        icon = GFX_focus_TUR_declare_the_ethnic_state
+        id = TUR_yet_another_approach
+        icon = GFX_focus_TUR_yet_another_approach
 
         relative_position_id = TUR_state_reform
         x = 2
@@ -1112,33 +1097,35 @@ focus_tree = {
 
         prerequisite = { focus = TUR_state_reform }
         available = {
-            authoritarianism > 0.5
+            authoritarianism > 0.3
         }
         
         completion_reward = {
-            add_ideas = sww1_idea_turkish_ethnic_state
-            if = {
-                limit = { not = { has_government = authoritarianism } }
-                set_politics = { ruling_party = authoritarianism elections_allowed = no }
+            start_civil_war = {
+                ruling_party = authoritarianism
+                ideology = ROOT
+                size = 0.6
+            }
+
+            hidden_effect = {
+                set_popularities = { authoritarianism = 100 }
             }
         }
     }
     focus = {
-        id = TUR_address_arab_insurgencies
-        icon = GFX_focus_TUR_address_arab_insurgencies
+        id = TUR_modern_islamic_education
+        icon = GFX_focus_generic_embrace_modernity
 
         relative_position_id = TUR_state_reform
         x = -1
         y = 1
         cost = 10
 
-        available = { has_idea = sww1_idea_looming_arab_revolt }
         ai_will_do = { base = 3 }
 
         prerequisite = { focus = TUR_state_reform }
         completion_reward = {
-            remove_ideas = sww1_idea_looming_arab_revolt
-            hidden_effect = { set_country_flag = arab_revolt_done }
+            add_research_slot = 1
         }
     }
 }

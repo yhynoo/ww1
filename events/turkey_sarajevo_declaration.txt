@@ -1,0 +1,81 @@
+add_namespace = turkey_sarajevo_declaration
+
+news_event = {
+    id = turkey_sarajevo_declaration.1
+    title = "[TUR.GetName] Withdraws from Serbia"
+    desc = turkey_sarajevo_declaration.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A welcome gesture."
+    }
+}
+
+news_event = {
+    id = turkey_sarajevo_declaration.2
+    title = "[TUR.GetName] Empire Calls for Liberation of Crimea and Caucasus"
+    desc = turkey_sarajevo_declaration.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A strong declaration of intent."
+        if = {
+            limit = { tag = SOV }
+            add_opinion_modifier = { target = TUR modifier = large_decrease }
+        }
+    }
+}
+
+country_event = {
+    id = turkey_sarajevo_declaration.3
+    title = "[TUR.GetName] Offers Mutual Guarantees"
+    desc = turkey_sarajevo_declaration.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Together we are stronger."
+        news_event = { id = turkey_sarajevo_declaration.4 hours = 12 random_hours = 6 }
+
+        give_guarantee = TUR
+        TUR = { give_guarantee = AUS }
+    }
+
+    option = {
+        name = "We don't trust them."
+        TUR = {
+            news_event = { id = turkey_sarajevo_declaration.5 hours = 12 random_hours = 6 }
+            add_opinion_modifier = { target = AUS modifier = medium_decrease }
+        }
+    }
+}
+
+news_event = {
+    id = turkey_sarajevo_declaration.4
+    title = "[TUR.GetName] and [AUS.GetName] Exchange Guarantees"
+    desc = turkey_sarajevo_declaration.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = turkey_sarajevo_declaration.5
+    title = "[AUS.GetName] Declines"
+    desc = turkey_sarajevo_declaration.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "That's a shame."
+    }
+}

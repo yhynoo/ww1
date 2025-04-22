@@ -1,0 +1,51 @@
+add_namespace = turkey_alignment_with_france
+
+country_event = {
+    id = turkey_alignment_with_france.1
+    title = "[TUR.GetName] Seeks French Guarantees"
+    desc = turkey_alignment_with_france.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Grant the Ottoman request."
+        news_event = { id = turkey_alignment_with_france.2 hours = 12 random_hours = 6 }
+        give_guarantee = TUR
+    }
+
+    option = {
+        name = "Refuse to guarantee them."
+        TUR = { 
+            news_event = { id = turkey_alignment_with_france.3 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = FRA
+                modifier = medium_decrease
+            }
+        }
+    }
+}
+
+news_event = {
+    id = turkey_alignment_with_france.2
+    title = "France Agrees to Protect the Ottoman Empire"
+    desc = turkey_alignment_with_france.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A French-backed future."
+    }
+}
+
+news_event = {
+    id = turkey_alignment_with_france.3
+    title = "France Declines Our Request for Protection"
+    desc = turkey_alignment_with_france.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A rejection from Europe."
+    }
+}

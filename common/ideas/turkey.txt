@@ -3,27 +3,26 @@ ideas = {
     country = {
         sww1_idea_sick_man_of_europe = {
             modifier = {
-                army_org_factor = -0.5
-                army_morale_factor = -0.25
-            }
-        }
-        sww1_idea_hostile_officers = {
-            modifier = {
-                army_org_factor = -0.75
-                army_morale_factor = -0.5
-            }
-        }
-        sww1_idea_turkified_high_command = {
-            modifier = {
-                non_core_manpower = -0.25
-                army_org_factor = 0.1
+                army_org_factor = -0.25
+                army_morale_factor = -0.2
             }
         }
 
-        sww1_idea_sky_is_the_new_steppe = {
+        sww1_idea_unrest_in_the_adriatic = {
             modifier = {
-                experience_gain_air_factor = 0.5
-                air_advisor_cost_factor = -0.5
+                conscription = -0.005
+                stability_factor = -0.2
+            }
+        }
+        sww1_idea_unrest_in_serbia = {
+            modifier = {
+                stability_factor = -0.1
+            }
+        }
+        sww1_idea_unrest_in_greece = {
+            modifier = {
+                conscription = -0.005
+                stability_factor = -0.1
             }
         }
 
@@ -53,17 +52,17 @@ ideas = {
         }
 
         # stability
-        sww1_idea_jihad = {
+        sww1_idea_uniformization = {
             modifier = {
-                non_core_manpower = 0.2
+                stability_factor = 0.1
                 mobilization_speed = 0.1
             }
         }
 
-        sww1_idea_appease_the_old_elite = {
+        sww1_idea_appease_the_ulema = {
             modifier = {
-                political_power_gain = -0.1
-                supply_combat_penalties_on_core_factor = -0.25
+                political_power_gain = -0.05
+                research_speed_factor = 0.1
             }
         }
 
@@ -86,10 +85,10 @@ ideas = {
 # event ideas
 ideas = {
     country = {
-        sww1_idea_pashas_armies = {
+        sww1_idea_wounded_but_honest = {
             modifier = {
-                conscription = 0.025
-                monarchism_drift = 0.05
+                stability_factor = -0.05
+                political_power_factor = 0.05
             }
         }
     }

@@ -1,20 +1,17 @@
-dc_sarajevo_memorandum = {
+dc_sarajevo_declaration = {
     withdraw_from_serbia = {
         cost = 150
         fire_only_once = yes
 
         available = {
-            owns_state = 105
-            owns_state = 107
-            owns_state = 108
+            or = {
+                has_idea = sww1_idea_unrest_in_the_adriatic
+                has_idea = sww1_idea_unrest_in_serbia
+            }
         }
 
         ai_will_do = {
-            base = 10
-            modifier = {
-                has_idea = sww1_idea_turkish_ethnic_state
-                factor = 3
-            }
+            base = 9
             modifier = {
                 has_war_with = SOV      # If we're somehow already at war with Russia, we don't need more problems.
                 factor = 0
@@ -22,52 +19,48 @@ dc_sarajevo_memorandum = {
         }
 
         complete_effect = {
-            news_event = { id = ottoman_events.1 hours = 12 random_hours = 6 }
             release = SER
 
-            104 = { remove_claim_by = TUR }
-            804 = { remove_claim_by = TUR }
+            if = {
+                limit = { has_idea = sww1_idea_unrest_in_the_adriatic }
+                swap_ideas = {
+                    remove_idea = sww1_idea_unrest_in_the_adriatic
+                    add_idea = sww1_idea_unrest_in_greece
+                }
+                else = { remove_ideas = sww1_idea_unrest_in_serbia }
+            }
 
             hidden_effect = {
+                news_event = { id = turkey_sarajevo_declaration.1 hours = 12 random_hours = 6 }
+
+                104 = { remove_claim_by = TUR }
+                804 = { remove_claim_by = TUR }
+
                 802 = { add_claim_by = SER }
                 803 = { add_claim_by = SER }
 
-                SER = { load_oob = "SER_1912"}
+                SER = { load_oob = "SER_1912" }
             }
         }
     }
     call_for_the_liberation_of_crimea_and_caucasus = {
+        icon = generic_prepare_civil_war
+
         cost = 150
         fire_only_once = yes
 
         days_remove = 90
         war_with_target_on_remove = yes
         
-        available = {
-            has_idea = sww1_idea_jihad
-        }
+        available = { can_declare_war_on = SOV }
 
         complete_effect = {
-            news_event = { id = ottoman_events.2 hours = 12 random_hours = 6 }
+            news_event = { id = turkey_sarajevo_declaration.2 hours = 12 random_hours = 6 }
         }
 
         ai_will_do = {
-            base = 3                    # Unlikely, unless we have our faction together and there is no war.
-            modifier = {
-                num_faction_members > 1
-                factor = 2
-            }
-            modifier = {
-                and = {
-                    has_war = no
-                    date > 1916.1.1
-                }
-                factor = 5
-            }
-            modifier = {
-                not = { can_declare_war_on = SOV }      # Duh.
-                factor = 0 
-            }
+            base = 6
+            modifier = { and = { date > 1916.1.1 has_war = no } factor = 3 }
         }
 
         remove_effect = {
@@ -78,37 +71,21 @@ dc_sarajevo_memorandum = {
             }
         }
     }
-    seek_uk_support = {
+    seek_austrian_support = {
         cost = 100
         fire_only_once = yes
 
         available = {
-            ENG = {
-                exists = yes
-                is_faction_leader = yes
-                not = { has_war_with = TUR }
-            }
+            AUS = { not = { has_war_with = TUR } }
         }
 
         ai_will_do = {
             base = 6
-            modifier = {
-                date > 1914.7.1
-                factor = 2
-            }
+            modifier = { AUS = { has_idea = sww1_idea_slavic_unrest } factor = 3 }
         }
 
         complete_effect = {
-            if = {
-                limit = {
-                    or = {
-                        ENG = { is_in_faction_with = SOV }
-                        ENG = { has_guaranteed = SOV }
-                    }
-                }
-                custom_effect_tooltip = "This request, if granted, will lead to [SOV.GetNameDef] having a wargoal on us."
-            }
-            ENG = { country_event = { id = ottoman_events.3 hours = 12 random_hours = 6 } }
+            AUS = { country_event = { id = turkey_sarajevo_declaration.3 hours = 12 random_hours = 6 } }
         }
     }
 }
@@ -125,18 +102,10 @@ dc_alafranga = {
             }
         }
 
-        ai_will_do = {
-            base = 6
-        }
+        ai_will_do = { base = 12 }
 
         complete_effect = {
-            797 = {
-                add_building_construction = {
-                    type = arms_factory
-                    level = 1
-                    instant_build = yes
-                }
-            }
+            797 = { add_building_construction = { type = arms_factory level = 2 instant_build = yes } }
             add_tech_bonus = {
 				name = fighter_bonus
 				bonus = 1.0
@@ -150,11 +119,8 @@ dc_alafranga = {
         fire_only_once = yes
 
         ai_will_do = {
-            base = 3
-            modifier = {
-                is_in_faction = no
-                factor = 5
-            }
+            base = 6
+            modifier = { is_in_faction = no factor = 3 }
         }
 
         available = {
@@ -165,12 +131,82 @@ dc_alafranga = {
         }
 
         complete_effect = {
-            FRA = { country_event = { id = ottoman_events.6 hours = 12 random_hours = 6 } }
+            FRA = { country_event = { id = turkey_alignment_with_france.1 hours = 12 random_hours = 6 } }
         }
     }
 }
 
-dc_default_on_the_debt = {
+dc_jihad = {
+    extend_draft_in_arab_lands = {
+        icon = generic_prepare_civil_war
+        cost = 50
+
+        days_remove = 90
+        available = { not = { has_national_idea = sww1_looming_arab_revolt } }
+
+        ai_will_do = {
+            base = 1
+            modifier = { has_war = yes factor = 6 }
+        }
+
+        modifier = {
+            conscription = 0.01
+            training_time_factor = -0.05
+        }
+    }
+    develop_iraq = {
+        icon = generic_industry
+        cost = 100
+
+        fire_only_once = yes
+
+        ai_will_do = { base = 9 }
+
+        available = {
+            any_state = {
+                or = { state = 291 state = 675 state = 676 state = 986 state = 987 }
+                is_controlled_by = TUR
+            }
+        }
+
+        complete_effect = {
+            random_owned_controlled_state = {
+                limit = { or = { state = 291 state = 675 state = 676 state = 986 state = 987 } }
+                
+                add_extra_state_shared_building_slot = 1
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+            }
+            random_owned_controlled_state = {
+                limit = { or = { state = 291 state = 675 state = 676 state = 986 state = 987 } }
+                
+                add_extra_state_shared_building_slot = 1
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+        }
+    }
+    support_greek_albanians = {
+        icon = generic_civil_support
+        cost = 100
+
+        fire_only_once = yes
+
+        available = {
+            or = {
+                has_idea = sww1_idea_unrest_in_the_adriatic
+                has_idea = sww1_idea_unrest_in_serbia
+            }
+        }
+
+        ai_will_do = { base = 12 }
+
+        complete_effect = {
+            add_stability = 0.05
+            country_event = { id = turkey_unrest_in_greece.1 hours = 12 random_hours = 6 }
+        }
+    }
+}
+
+dc_tackle_the_debt = {
     offer_egypt_to_uk = {
         cost = 150
         fire_only_once = yes
@@ -196,29 +232,23 @@ dc_default_on_the_debt = {
         }
 
         ai_will_do = {
-            base = 2
+            base = 6
             modifier = {
                 has_idea = sww1_idea_amassed_foreign_debt
-                factor = 2
-            }
-            modifier = {
-                has_idea = sww1_idea_turkish_ethnic_state
-                factor = 3
+                factor = 1.5
             }
         }
 
         complete_effect = {
             custom_effect_tooltip = "If accepted, this decision will clear all our debt."
-            ENG = { country_event = { id = ottoman_events.9 hours = 12 random_hours = 6 } }
+            ENG = { country_event = { id = turkey_tackle_the_debt.1 hours = 12 random_hours = 6 } }
         }
     }
     develop_shipbuilding_in_aegean = {
         cost = 100
         fire_only_once = yes
 
-        ai_will_do = {
-            base = 9
-        }
+        ai_will_do = { base = 9 }
 
         complete_effect = {
             if = {
@@ -234,11 +264,7 @@ dc_default_on_the_debt = {
             }
             else = {
                 339 = {
-                    add_building_construction = {
-                        type = dockyard
-                        level = 2
-                        instant_build = yes
-                    }
+                    add_building_construction = { type = dockyard level = 2 instant_build = yes }
                 }
             }
         }
@@ -270,11 +296,7 @@ dc_default_on_the_debt = {
             }
             else = {
                 340 = {
-                    add_building_construction = {
-                        type = industrial_complex
-                        level = 2
-                        instant_build = yes
-                    }
+                    add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
                 }
             }
         }

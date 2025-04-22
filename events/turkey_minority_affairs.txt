@@ -1,0 +1,123 @@
+add_namespace = turkey_minority_affairs
+
+country_event = {
+    id = turkey_minority_affairs.1
+    title = "The Minorities Affairs Commission"
+    desc = turkey_minority_affairs.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Launch a formal investigation."
+        
+        add_stability = -0.05
+        add_popularity = { ideology = democratic popularity = 0.05 }
+        
+        hidden_effect = {
+            country_event = { id = turkey_minority_affairs.2 days = 28 random_days = 28 }
+        }
+    }
+
+    option = {
+        name = "Defer the matter quietly."
+        add_popularity = { ideology = authoritarianism popularity = 0.05 }
+        
+        hidden_effect = {
+            country_event = { id = turkey_minority_affairs.4 days = 28 random_days = 28 }
+        }
+    }
+}
+
+country_event = {
+    id = turkey_minority_affairs.2
+    title = "Testimonies from the East"
+    desc = turkey_minority_affairs.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Announce the findings."
+        add_timed_idea = { idea = sww1_idea_wounded_but_honest years = 1 }
+
+        hidden_effect = {
+            news_event = { id = turkey_minority_affairs.3 days = 28 random_days = 28 }
+        }
+    }
+
+    option = {
+        name = "Censor the worst material."
+
+        add_stability = 0.05
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+    }
+}
+
+news_event = {
+    id = turkey_minority_affairs.3
+    title = "Loyalty Oaths Sworn in the Eastern Provinces"
+    desc = turkey_minority_affairs.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Wonderful."
+
+        add_political_power = 150
+        add_popularity = { ideology = democratic popularity = 0.1 }
+    }
+}
+
+country_event = {
+    id = turkey_minority_affairs.4
+    title = "Slander is Treason"
+    desc = turkey_minority_affairs.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They are right."
+
+        add_stability = 0.05
+        add_popularity = { ideology = authoritarianism popularity = 0.1 }
+
+        hidden_effect = {
+            country_event = { id = turkey_minority_affairs.5 days = 28 random_days = 28 }
+        }
+    }
+
+    option = {
+        name = "We must seek an agreement."
+        add_political_power = -100
+    }
+}
+
+country_event = {
+    id = turkey_minority_affairs.5
+    title = "Conservative Elites Threaten the Government"
+    desc = turkey_minority_affairs.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must step down to preserve the empire."
+
+        set_politics = { ruling_party = authoritarianism elections_allowed = no }
+        hidden_effect = {
+            add_popularity = { ideology = authoritarianism popularity = 0.2 }
+        }
+    }
+
+    option = {
+        name = "This is nothing."
+
+        add_political_power = -100
+        start_civil_war = { 
+            ideology = authoritarianism
+            size = party_popularity@authoritarianism
+        }
+
+        hidden_effect = {
+            add_popularity = { ideology = democratic popularity = 0.2 }
+        }
+    }
+}

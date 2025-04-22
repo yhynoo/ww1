@@ -1,0 +1,92 @@
+add_namespace = turkey_tackle_the_debt
+
+country_event = {
+    id = turkey_tackle_the_debt.1
+    title = "[TUR.GetName] Offers Egypt to the United Kingdom"
+    desc = turkey_tackle_the_debt.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Accept the offer."
+        news_event = { id = turkey_tackle_the_debt.2 hours = 12 random_hours = 6 }
+        
+        every_state = {
+            limit = {
+                or = {
+                    state = 447
+                    state = 452
+                    state = 456
+                    state = 457
+                    state = 551
+                    state = 552
+                    state = 767
+                    state = 907
+                }
+            }
+            transfer_state_to = ENG
+        }
+
+        ai_chance = { base = 3 }
+
+        TUR = {
+            if = {
+                limit = { has_idea = sww1_idea_amassed_foreign_debt }
+                remove_ideas = sww1_idea_amassed_foreign_debt
+            }
+            if = {
+                limit = { has_idea = sww1_idea_significant_foreign_debt }
+                remove_ideas = sww1_idea_significant_foreign_debt
+            }
+        }
+
+        hidden_effect = {                                     
+            447 = { remove_claim_by = TUR }
+            452 = { remove_claim_by = TUR }
+            456 = { remove_claim_by = TUR }
+            457 = { remove_claim_by = TUR }
+            551 = { remove_claim_by = TUR }
+            552 = { remove_claim_by = TUR }
+            767 = { remove_claim_by = TUR }
+            907 = { remove_claim_by = TUR }
+        }
+    }
+
+    option = {
+        name = "Reject the proposal."
+        TUR = { 
+            news_event = { id = turkey_tackle_the_debt.3 hours = 12 random_hours = 6 }
+            add_opinion_modifier = {
+                target = ENG
+                modifier = small_decrease
+            }
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = turkey_tackle_the_debt.2
+    title = "United Kingdom Acquires Egypt from the Ottomans"
+    desc = turkey_tackle_the_debt.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A strategic acquisition."
+    }
+}
+
+news_event = {
+    id = turkey_tackle_the_debt.3
+    title = "United Kingdom Refuses Ottoman Offer of Egypt"
+    desc = turkey_tackle_the_debt.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A deal that never was."
+    }
+}
