@@ -13,8 +13,8 @@ country_event = {
         has_civil_war = no
         has_stability > 0.1 authoritarianism > 0.5
 
-        # disable this for America
-        not = { tag = USA }
+        # disable this for Turkey and America
+        not = { or = { tag = TUR tag = USA } }
     }
 
     option = {

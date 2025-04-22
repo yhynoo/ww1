@@ -894,12 +894,11 @@
         y = 1
         cost = 10
 
+        available = { is_in_faction = no }
+
         ai_will_do = {
             base = 1
             modifier = { not = { any_country = { has_guaranteed = TUR } } factor = 3 }
-
-            # ignore this if we're in alliance
-            modifier = { is_in_faction = yes factor = 0 }
         }
 
         prerequisite = { focus = ITA_expansionism }

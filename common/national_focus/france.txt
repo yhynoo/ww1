@@ -967,10 +967,8 @@
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 2
-            modifier = { is_in_faction = yes factor = 0 }
-        }
+        available = { is_in_faction = no }
+        ai_will_do = { base = 2 }
 
         prerequisite = { focus = FRA_expansionism }
         completion_reward = {

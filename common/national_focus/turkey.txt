@@ -821,7 +821,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1                                    # There is a chance we go early...
+            base = 1
             modifier = { or = { has_country_flag = we_do_our_thing date > 1914.1.1 } factor = 3 }
         }
 
@@ -833,6 +833,8 @@ focus_tree = {
                     limit = { date < 1912.7.1 }
                     set_country_flag = we_do_our_thing
                 }
+
+                country_event = { id = turkey_young_turks.1 days = 42 random_days = 14 }
             }
         }
     }
@@ -912,6 +914,7 @@ focus_tree = {
         cost = 10
 
         available = { is_in_faction = no }
+        
         ai_will_do = {
             base = 3
             modifier = { date > 1914.1.1 factor = 2 }
@@ -939,7 +942,7 @@ focus_tree = {
         }
 
         ai_will_do = {
-            base = 1                                    # Unlikely if we're with Germans, but likely on our own.
+            base = 1
             modifier = { has_country_flag = we_do_our_thing factor = 3 }
         }
 
@@ -959,25 +962,15 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1
-            modifier = {
-                and = {
-                    date > 1913.1.1
-                    has_country_flag = we_do_our_thing
-                }
-                factor = 2
-            }
-            modifier = {
-                has_war = yes
-                factor = 2
-            }
+            base = 3
+            modifier = { has_country_flag = turkey_nationalist_path factor = 0 }
         }
 
         mutually_exclusive = { focus = TUR_the_young_turks }
         prerequisite = { focus = TUR_political_ambitions }
         completion_reward = {
-            add_stability = 0.1
-            news_event = { id = generic_focus_tree_event.1 hours = 12 random_hours = 6 }
+            add_popularity = { ideology = monarchism popularity = 0.05 }
+            add_stability = 0.05
         }
     }
     focus = {
@@ -1028,10 +1021,7 @@ focus_tree = {
         ai_will_do = { base = 3 }
 
         completion_reward = {
-            hidden_effect = {
-                country_event = { id = turkey_military_elite.1 hours = 12 random_hours = 6 }
-            }
-
+            hidden_effect = { country_event = { id = turkey_military_elite.1 hours = 12 random_hours = 6 } }
             add_timed_idea = {
                 idea = sww1_idea_appease_the_old_elite
                 years = 1
@@ -1063,23 +1053,17 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1                    # We won't do this early, but later -- most likely.
-            modifier = {
-                date > 1914.1.1
-                factor = 5
-            }
+            base = 3
+            modifier = { has_country_flag = turkey_sultan_path factor = 0 }
         }
 
         mutually_exclusive = { focus = TUR_the_sublime_porte }
         prerequisite = { focus = TUR_political_ambitions }
         completion_reward = {
+            add_popularity = { ideology = authoritarianism popularity = 0.05 }
             add_timed_idea = {
                 idea = sww1_idea_authoritarianism_tendencies
                 years = 1
-            }
-            add_popularity = {
-                ideology = authoritarianism
-                popularity = 0.1
             }
         }
     }
@@ -1109,9 +1093,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 10           # If we already get here, it's an absolute priority.
-        }
+        ai_will_do = { base = 6 }
 
         prerequisite = { focus = TUR_the_young_turks }
         completion_reward = {
@@ -1137,10 +1119,7 @@ focus_tree = {
             add_ideas = sww1_idea_turkish_ethnic_state
             if = {
                 limit = { not = { has_government = authoritarianism } }
-                set_politics = {
-                    ruling_party = authoritarianism
-                    elections_allowed = no
-                }
+                set_politics = { ruling_party = authoritarianism elections_allowed = no }
             }
         }
     }
@@ -1153,26 +1132,13 @@ focus_tree = {
         y = 1
         cost = 10
 
-        available = {
-            has_idea = sww1_idea_looming_arab_revolt
-        }
-
-        ai_will_do = {
-            base = 3
-            modifier = {
-                is_in_faction_with = ENG
-                factor = 0.5
-            }
-        }
+        available = { has_idea = sww1_idea_looming_arab_revolt }
+        ai_will_do = { base = 3 }
 
         prerequisite = { focus = TUR_state_reform }
         completion_reward = {
-            add_political_power = 100
             remove_ideas = sww1_idea_looming_arab_revolt
-
-            hidden_effect = {
-                set_country_flag = arab_revolt_done
-            }
+            hidden_effect = { set_country_flag = arab_revolt_done }
         }
     }
 }

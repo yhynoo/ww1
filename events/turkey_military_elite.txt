@@ -2,7 +2,7 @@ add_namespace = turkey_military_elite
 
 country_event = {
     id = turkey_military_elite.1
-    title = "Old Elites Offer Financial Contributions"
+    title = "Old Elites Offer Financial Contribution"
     desc = turkey_military_elite.1.d
 
     is_triggered_only = yes
@@ -42,31 +42,6 @@ country_event = {
     }
     option = {
         name = "This is not needed."
-        ai_chance = { base = 1 }
-    }
-}
-
-country_event = {
-    id = turkey_military_elite.2
-    title = "Local Pashas Offer to Raise Conscripts"
-    desc = turkey_military_elite.2.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "We need those men."
-
-        add_political_power = -100
-        add_timed_idea = {
-            idea = sww1_idea_pashas_armies
-            years = 1
-        }
-
-        ai_chance = { base = 3 }
-    }
-
-    option = {
-        name = "We will manage on our own."
         ai_chance = { base = 1 }
     }
 }

@@ -24,7 +24,7 @@ AUS_army_composition = {
 	}
 }
 
-# don't work for Germans, they will manage
+# don't work for others, they will manage
 AUS_stay_at_home = {
 	allowed = { original_tag = AUS }
 
@@ -34,6 +34,12 @@ AUS_stay_at_home = {
 	ai_strategy = {
 		type = dont_defend_ally_borders
 		id = GER
+		value = 10
+	}
+
+	ai_strategy = {
+		type = dont_defend_ally_borders
+		id = TUR
 		value = 10
 	}
 }
