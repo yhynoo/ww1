@@ -10,6 +10,7 @@ dc_head_of_state_decisions = {
         ai_will_do = {
             base = 3
             modifier = { has_war_support < 0.3 factor = 2.5 }
+            modifier = { and = { tag = USA has_completed_focus = USA_support_the_entente has_war_support < 0.5 } factor = 5 }
         }
 
         modifier = {

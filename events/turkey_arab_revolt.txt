@@ -1,0 +1,170 @@
+add_namespace = turkey_arab_revolt
+
+country_event = {
+    id = turkey_arab_revolt.1
+    title = "[ENG.GetName] Encourages Jewish Immigration"
+    desc = turkey_arab_revolt.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We see them as our guests."
+
+        add_popularity = { ideology = democratic popularity = 0.05 }
+        add_ideas = sww1_idea_looming_arab_revolt
+
+        hidden_effect = {
+            news_event = { id = turkey_arab_revolt.2 days = 140 random_days = 7 }
+        }
+    }
+
+    option = {
+        name = "We must support local Arab leaders."
+        add_stability = 0.05
+
+        hidden_effect = {
+            country_event = { id = turkey_arab_revolt.4 days = 14 random_days = 7 }
+        }
+    }
+}
+
+news_event = {
+    id = turkey_arab_revolt.2
+    title = "Tel Aviv Reaches 100,000 Inhabitants!"
+    desc = turkey_arab_revolt.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "To the dream."
+
+        if = {
+            limit = { tag = TUR }
+            hidden_effect = {
+                news_event = { id = turkey_arab_revolt.3 days = 42 random_days = 14 }
+            }
+        }
+    }
+}
+
+country_event = {
+    id = turkey_arab_revolt.3
+    title = "Clashes in Be'er Sheva"
+    desc = turkey_arab_revolt.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Reinstate order."
+
+        add_political_power = -150
+        add_popularity = { ideology = authoritarianism popularity = 0.05 }
+
+        hidden_effect = {
+            if = { has_stability < 0.5 }
+            news_event = { id = turkey_arab_revolt.6 days = 42 random_days = 14 }
+        }
+    }
+
+    option = {
+        name = "We shall see what happens next."
+
+        add_stability = -0.05
+        hidden_effect = {
+            news_event = { id = turkey_arab_revolt.5 days = 14 random_days = 7 }
+        }
+    }
+}
+
+country_event = {
+    id = turkey_arab_revolt.4
+    title = "Clashes in Acre"
+    desc = turkey_arab_revolt.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Reinstate order."
+
+        add_political_power = -150
+        add_popularity = { ideology = authoritarianism popularity = 0.05 }
+
+        hidden_effect = {
+            if = { has_stability < 0.5 }
+            news_event = { id = turkey_arab_revolt.6 days = 42 random_days = 14 }
+        }
+    }
+
+    option = {
+        name = "We shall see what happens next."
+
+        add_stability = -0.05
+        hidden_effect = {
+            news_event = { id = turkey_arab_revolt.5 days = 14 random_days = 7 }
+        }
+    }
+}
+
+news_event = {
+    id = turkey_arab_revolt.5
+    title = "Arab Uprising in Southern Syria!"
+    desc = turkey_arab_revolt.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Awful."
+    }
+}
+
+news_event = {
+    id = turkey_arab_revolt.6
+    title = "Officer Shot in Mecca!"
+    desc = turkey_arab_revolt.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is going in a bad direction."
+        add_stability = -0.1
+
+        hidden_effect = {
+            news_event = { id = turkey_arab_revolt.7 days = 28 random_days = 14 }
+        }
+    }
+}
+
+news_event = {
+    id = turkey_arab_revolt.7
+    title = "Arab Uprising in Southern Arabia!"
+    desc = turkey_arab_revolt.7.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The Turks have troubles."
+
+        if = {
+            limit = { tag = TUR }
+
+            hidden_effect = {
+                remove_ideas = sww1_idea_looming_arab_revolt
+                every_state = {
+                    limit = {
+                        or = { state = 293 state = 856 state = 679 }
+                        is_controlled_by = TUR
+                    }
+                    add_core_of = YEM
+                    transfer_state_to = YEM
+                }
+
+                YEM = { load_oob = "YEM_uprising" }
+            }
+
+            declare_war_on = { target = YEM type = annex_everything }
+        }
+    }
+}
