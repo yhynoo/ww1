@@ -1,0 +1,146 @@
+add_namespace = england_workers_uprising
+
+country_event = {
+    id = england_workers_uprising.1
+    title = "Workers Threaten General Strike"
+    desc = england_workers_uprising.1.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Negotiate with union leaders."
+        hidden_effect = { country_event = { id = england_workers_uprising.2 days = 28 random_days = 42 } }
+
+        add_political_power = -100
+        add_popularity = { ideology = communism popularity = 0.05 }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Take a hard stance."
+
+        add_stability = -0.1
+
+        hidden_effect = { country_event = { id = england_workers_uprising.4 days = 28 random_days = 42 } }
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = england_workers_uprising.2
+    title = "All Industries Cease Operations"
+    desc = england_workers_uprising.2.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Issue an ultimatum to the strikers."
+
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+        add_political_power = -50
+
+        hidden_effect = { news_event = { id = england_workers_uprising.3 days = 7 random_days = 7 } }
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "Declare emergency law."
+
+        add_popularity = { ideology = communism popularity = 0.05 }
+        add_stability = -0.05
+       
+        ai_chance = { base = 0 }
+    }
+}
+
+news_event = {
+    id = england_workers_uprising.3
+    title = "Additional Committees in House of Commons"
+    desc = england_workers_uprising.3.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Great news."
+        add_stability = 0.05
+    }
+}
+
+country_event = {
+    id = england_workers_uprising.4
+    title = "Communists Stir Up The Coal Mines"
+    desc = england_workers_uprising.4.d
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a democracy — they can speak freely."
+        hidden_effect = { country_event = { id = england_workers_uprising.5 days = 28 random_days = 42 } }
+
+        if = {
+            limit = { not = { has_idea = sww1_idea_communism_tendencies } }
+            add_timed_idea = {
+                idea = sww1_idea_communism_tendencies
+                years = 1
+            }
+        }
+        else = { add_popularity = { ideology = communism popularity = 0.1 } }
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "Declare martial law."
+        
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+        add_political_power = -150
+
+        ai_chance = { base = 0 }
+    }
+}
+
+country_event = {
+    id = england_workers_uprising.5
+    title = "21 Dead at Oxford Street!"
+    desc = england_workers_uprising.5.d
+    is_triggered_only = yes
+
+    option = {
+        name = "We must defend ourselves against the angry mob."
+        
+        if = {
+            limit = { not = { has_idea = sww1_idea_communism_tendencies } }
+            remove_ideas = sww1_idea_communism_tendencies
+        }
+        
+        start_civil_war = { 
+            ruling_party = monarchism
+            ideology = communism
+            size = party_popularity@communism
+        }
+
+        hidden_effect = { 
+            set_popularities = { communism = 10 democratic = 25 monarchism = 65 }
+        }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Admit defeat."
+
+        set_politics = { ruling_party = communism elections_allowed = no }
+
+        hidden_effect = { 
+            add_popularity = { ideology = communism popularity = 0.2 }
+            news_event = { id = england_workers_uprising.6 hours = 6 random_hours = 12 }
+        }
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = england_workers_uprising.6
+    title = "Red Flag over London!"
+    desc = england_workers_uprising.6.d
+    
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "What a development."
+    }
+}

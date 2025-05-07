@@ -22,7 +22,7 @@ country_event = {
         name = "Go alone."
         ENG = { news_event = { id = germany_place_in_the_sun.5 hours = 12 random_hours = 6 } }
 
-        ai_chance = { base = 3 }
+        ai_chance = { base = 2 }
     }
 }
 
@@ -38,7 +38,10 @@ country_event = {
         name = "No, we stay neutral."
         GER = { country_event = { id = germany_place_in_the_sun.3 hours = 12 random_hours = 6 } }
 
-        ai_chance = { base = 3 }
+        ai_chance = { 
+            base = 1
+            modifier = { has_completed_focus = HOL_thorbeckes_legacy factor = 6 }
+        }
     }
 
     option = {
@@ -48,9 +51,7 @@ country_event = {
         ai_chance = { 
             base = 1
             modifier = { has_country_flag = france_made_us_wait factor = 2 }
-            modifier = { has_country_flag = we_supported_boers factor = 6 }
-
-            modifier = { has_completed_focus = HOL_neutrality factor = 0 }
+            modifier = { has_country_flag = we_supported_boers factor = 3 }
         }
 
         ## Add the Netherlands to the alliance
@@ -78,10 +79,7 @@ country_event = {
 
         ai_chance = { 
             base = 3
-            modifier = {
-                strength_ratio = { tag = ENG ratio > 1 }
-                factor = 3
-            }
+            modifier = { strength_ratio = { tag = ENG ratio > 1 } factor = 3 }
         }
     }
 
@@ -130,7 +128,10 @@ country_event = {
             719 = { add_claim_by = GER }
         }
 
-        ai_chance = { base = 3 }
+        ai_chance = { 
+            base = 1
+            modifier = { is_ally_with = FRA factor = 3 }
+        }
     }
 }
 
@@ -173,7 +174,10 @@ country_event = {
             719 = { add_claim_by = GER }
         }
 
-        ai_chance = { base = 6 }
+        ai_chance = { 
+            base = 2
+            modifier = { is_ally_with = FRA factor = 3 }
+        }
     }
 }
 
@@ -214,6 +218,7 @@ news_event = {
 
     option = {
         name = "A diplomatic crisis looms."
+        custom_effect_tooltip = "We have gained a war goal against [ENG.GetNameDef]."
     }
 }
 
@@ -239,8 +244,16 @@ country_event = {
 
         ai_chance = { 
             base = 3
-            modifier = { has_idea = sww1_idea_slavic_unrest factor = 6 }
-            modifier = { has_completed_focus = TUR_sarajevo_declaration factor = 0 }
+            modifier = { has_idea = sww1_idea_slavic_unrest factor = 3 }
+            modifier = { GER = { has_war_with = SOV } factor = 3 }
+            
+            modifier = { 
+                or = {
+                    has_completed_focus = TUR_sarajevo_declaration
+                    has_completed_focus = AUS_second_vienna_treaty 
+                }
+                factor = 0
+            }
 
             modifier = {
                 or = {

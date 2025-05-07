@@ -44,6 +44,11 @@ ideas = {
 
 			available = {
 				has_war_support > 0.15
+
+				if = {
+					limit = { tag = ENG }
+					not = { has_idea = sww1_idea_colonial_army }
+				}
             }
 
 			modifier = {

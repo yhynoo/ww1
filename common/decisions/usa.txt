@@ -50,12 +50,29 @@ dc_monroe_doctrine = {
         complete_effect = {
             news_event = { id = usa_monroe_doctrine.5 hours = 12 random_hours = 6 }
 
-            every_country = {
-                limit = { 
-                    or = { tag = ARG tag = BRA tag = COL tag = MEX tag = PRU }
-                    has_government = democratic
-                }
-                give_guarantee = THIS
+            if = {
+                limit = { ARG = { has_government = ROOT } }
+                give_guarantee = ARG
+            }
+
+            if = {
+                limit = { BRA = { has_government = ROOT } }
+                give_guarantee = BRA
+            }
+
+            if = {
+                limit = { COL = { has_government = ROOT } }
+                give_guarantee = COL
+            }
+
+            if = {
+                limit = { MEX = { has_government = ROOT } }
+                give_guarantee = MEX
+            }
+
+            if = {
+                limit = { PRU = { has_government = ROOT } }
+                give_guarantee = PRU
             }
         }
     }
@@ -87,12 +104,12 @@ dc_support_the_entente = {
 
         available = {
             is_in_faction = no
-            has_war_support > 0.5
+            has_war_support > 0.65
             ENG = { is_faction_leader = yes has_war = yes }
         }
 
         ai_will_do = {
-            base = 1
+            base = 3
             modifier = { threat > 0.5 factor = 3 }
             modifier = { date > 1916.4.1 factor = 6 }
         }
@@ -141,12 +158,11 @@ dc_wilsons_fourteen_points = {
 
         ai_will_do = {
             base = 3
-            modifier = { and = { date > 1916.1.1 is_in_faction = no } factor = 3 }
+            modifier = { AND = { date > 1916.1.1 is_in_faction = no } factor = 3 }
         }
 
         complete_effect = {
             news_event = { id = usa_wilson.1 hours = 12 random_hours = 6 }
-            create_faction = "League of Free Nations"
         }
     }
     support_independence = {
@@ -154,18 +170,17 @@ dc_wilsons_fourteen_points = {
         days_remove = 90
 
         available = {
-            has_government = democratic
-            or = { RAJ = { is_subject = yes } AST = { is_subject = yes } }
+            OR = { RAJ = { is_subject = yes } AST = { is_subject = yes } }
         }
 
         ai_will_do = {
             base = 3
-            modifier = { and = { date > 1917.1.1 is_faction_leader = yes } factor = 3 }
+            modifier = { AND = { date > 1917.1.1 is_faction_leader = yes } factor = 3 }
         }
 
         complete_effect = {
             if = {
-                limit = { not = { has_country_flag = we_annoyed_england } }
+                limit = { NOT = { has_country_flag = we_annoyed_england } }
 
                 news_event = { id = usa_wilson.2 hours = 12 random_hours = 6 }
                 set_country_flag = we_annoyed_england
@@ -187,11 +202,7 @@ dc_cultural_hegemony = {
         fire_only_once = yes
 
         available = {
-            or = {
-                is_ally_with = ENG
-                is_ally_with = FRA
-                is_ally_with = JAP
-            }
+            OR = { is_ally_with = ENG is_ally_with = FRA is_ally_with = JAP }
         }
 
         ai_will_do = { base = 12 }
@@ -199,11 +210,7 @@ dc_cultural_hegemony = {
         complete_effect = {
             every_country = {
                 limit = {
-                    or = {
-                        tag = ENG
-                        tag = FRA
-                        tag = JAP
-                    }
+                    OR = { tag = ENG tag = FRA tag = JAP }
                     is_ally_with = USA
                 }
                 country_event = { usa_cultural_hegemony.1 hours = 12 random_hours = 6 }

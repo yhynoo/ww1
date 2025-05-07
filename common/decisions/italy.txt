@@ -27,25 +27,6 @@ dc_influence_the_uk = {
             ENG = { country_event = { id = italy_influence_the_uk.1 hours = 12 random_hours = 6 }}
         }
     }
-    ask_about_alliance = {
-        cost = 100
-        fire_only_once = yes
-
-        available = {
-            is_in_faction = no
-            ENG = { is_faction_leader = yes }
-        }
-
-        ai_will_do = {
-            base = 3 
-            modifier = { threat > 0.1 factor = 3 }
-        }
-
-        complete_effect = {
-           ENG = { country_event = { id = italy_influence_the_uk.7 hours = 12 random_hours = 6 }}
-        }
-
-    }
     invite_uk_naval_experts = {
         cost = 50
         fire_only_once = yes
@@ -68,7 +49,64 @@ dc_influence_the_uk = {
                     modifier = medium_increase
                 }
             }
-            hidden_effect = { set_country_flag = invited_naval_experts }
+            hidden_effect = { set_country_flag = invited_uk_experts }
+        }
+    }
+}
+
+dc_italy_alliances = {
+    italy_england = {
+        targets = { ENG }
+        available = {
+            is_in_faction = no
+            FROM = { 
+                OR = { is_in_faction = no is_faction_leader = yes }
+            }
+        }
+
+        cost = 75
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 6
+            modifier = { has_completed_focus = ITA_influence_the_uk factor = 3 }
+            modifier = { OR = { ENG = { is_ally_with = AUS } ENG = { is_ally_with = TUR } ENG = { has_opinion = { target = ITA value < 25 } } } factor = 0 }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = italy_england.1 hours = 12 random_hours = 6 } }
+            hidden_effect = { set_country_flag = stop_influencing_uk }
+        }
+    }
+    italy_france = {
+        targets = { FRA }
+        available = { 
+            FROM = { is_in_faction = no is_subject = no has_war_with = AUS }
+        }
+
+        cost = 100
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 6
+            modifier = { FRA = { has_war_with = AUS } factor = 2 }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = italy_france.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    italy_greece = {
+        targets = { GRE }
+        available = { 
+            FROM = { is_in_faction = no is_subject = no has_war_with = TUR }
+        }
+
+        cost = 100
+        fire_only_once = yes
+
+        complete_effect = {
+            FROM = { country_event = { id = italy_greece.1 hours = 12 random_hours = 6 } }
         }
     }
 }
@@ -83,15 +121,8 @@ dc_mediterranean_expansion = {
             can_declare_war_on = TUR
             any_state = {
                 or = {
-                    state = 448
-                    state = 449
-                    state = 450
-                    state = 451
-
-                    state = 661
-                    state = 662
-                    state = 663
-
+                    state = 448 state = 449 state = 450 state = 451
+                    state = 661 state = 662 state = 663
                     state = 273
                 }
                 is_owned_by = TUR
@@ -99,8 +130,8 @@ dc_mediterranean_expansion = {
         }
 
         ai_will_do = {
-            base = 15
-            modifier = { date < 1913.7.1 factor = 9 }
+            base = 3
+            modifier = { date < 1913.7.1 factor = 6 }
             modifier = { any_country = { has_guaranteed = TUR } factor = 0.2 }
         }
 
@@ -134,8 +165,8 @@ dc_mediterranean_expansion = {
         }
 
         ai_will_do = {
-            base = 12
-            modifier = { date < 1914.1.1 factor = 6 }
+            base = 2
+            modifier = { date < 1913.7.1 factor = 6 }
             modifier = { any_country = { has_guaranteed = TUR } factor = 0.2 }
         }
 
@@ -158,28 +189,24 @@ dc_il_mezzogiorno = {
         fire_only_once = yes
 
         available = {
-            controls_state = 117
-            controls_state = 849
+            any_state = {
+                limit = { or = { state = 117 state = 849 state = 156 state = 115 } }
+                is_controlled_by = ITA
+            }
         }
 
         ai_will_do = { base = 6 }
 
         complete_effect = {
-            117 = {
-                add_extra_state_shared_building_slots = 1
-                add_building_construction = {
-                    type = industrial_complex
-                    level = 1
-                    instant_build = yes
-                }
+            random_owned_controlled_state = {
+                limit = { or = { state = 117 state = 849 state = 156 state = 115 } }
+                add_extra_state_shared_building_slot = 1
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
             }
-            849 = {
-                add_extra_state_shared_building_slots = 1
-                add_building_construction = {
-                    type = arms_factory
-                    level = 1
-                    instant_build = yes
-                }
+            random_owned_controlled_state = {
+                limit = { or = { state = 117 state = 849 state = 156 state = 115 } }
+                add_extra_state_shared_building_slot = 1
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
             }
         }
     }

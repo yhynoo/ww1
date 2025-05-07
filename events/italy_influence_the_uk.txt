@@ -48,7 +48,7 @@ country_event = {
         ai_chance = {
             base = 1
             modifier = { ITA = { is_ally_with = ENG } factor = 3 }
-            modifier = { ITA = { has_country_flag = invited_naval_experts } add = 1 }
+            modifier = { ITA = { has_country_flag = invited_uk_experts } add = 1 }
         }
     }
 
@@ -108,63 +108,4 @@ news_event = {
     is_triggered_only = yes
 
     option = { name = "What great allies we chose..." }
-}
-
-## Alliance with the UK
-
-country_event = {
-    id = italy_influence_the_uk.7
-    title = "Italy Proposes an Alliance"
-    desc = italy_influence_the_uk.7.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Accept the alliance offer."
-        ITA = { news_event = { id = italy_influence_the_uk.8 hours = 12 random_hours = 6 } }
-        add_to_faction = ITA
-
-        ai_chance = { 
-            base = 1
-            modifier = { has_war = yes factor = 3 }
-            modifier = { not = { is_ally_with = FRA } factor = 3 }
-            modifier = { ITA = { has_country_flag = invited_naval_experts } add = 1 }
-        }
-    }
-
-    option = {
-        name = "Decline the alliance."
-        ITA = { news_event = { id = italy_influence_the_uk.9 hours = 12 random_hours = 6 } }
-
-        ai_chance = {
-            base = 1
-            modifier = { has_government = authoritarianism factor = 3 }
-        }
-    }
-}
-
-news_event = {
-    id = italy_influence_the_uk.8
-    title = "Britain and Italy Form an Alliance"
-    desc = italy_influence_the_uk.8.d
-
-    is_triggered_only = yes
-    major = yes
-
-    option = { name = "A new era of cooperation." }
-}
-
-news_event = {
-    id = italy_influence_the_uk.9
-    title = "Britain Rejects Italy's Alliance Offer"
-    desc = italy_influence_the_uk.9.d
-
-    is_triggered_only = yes
-
-    option = { 
-        name = "Italy must stand alone."
-        hidden_effect = {
-            set_country_flag = england_rejected_us
-        }
-    }
 }

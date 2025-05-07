@@ -890,7 +890,12 @@
         y = 1
         cost = 10
 
-        available = { is_in_faction = no }
+        available = { is_in_faction = no is_subject = no }
+
+        ai_will_do = {
+            base = 1
+            modifier = { OR = { date > 1913.7.1 has_war = yes } factor = 3 }
+        }
 
         prerequisite = { focus = POL_expansionism }
         completion_reward = {
@@ -928,6 +933,8 @@
 
         mutually_exclusive = { focus = POL_alliance_with_the_habsburgs }
         prerequisite = { focus = POL_poland_is_not_yet_lost }
+        available = { has_government = democratic }
+
         completion_reward = {
             add_timed_idea = {
                 idea = sww1_idea_democratic_tendencies

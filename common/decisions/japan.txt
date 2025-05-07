@@ -24,23 +24,10 @@ dc_hong_kong_appeal = {
                     modifier = medium_increase
                 }
             }
-        }
-    }
-    ask_to_join_the_entente = {
-        cost = 100
-        fire_only_once = yes
 
-        available = {
-            ENG = { is_faction_leader = yes }
-        }
-
-        ai_will_do = {
-            base = 3 
-            modifier = { threat > 0.1 factor = 3 }
-        }
-
-        complete_effect = {
-            ENG = { country_event = { id = japan_events.1 hours = 12 random_hours = 6 } }
+            hidden_effect = {
+                set_country_flag = invited_uk_experts
+            }
         }
     }
     demand_tsingtao = {
@@ -60,6 +47,65 @@ dc_hong_kong_appeal = {
 
         complete_effect = {
             GER = { country_event = { id = japan_events.4 hours = 12 random_hours = 6 } }
+        }
+    }
+}
+
+dc_japan_alliances = {
+    japan_england = {
+        targets = { ENG }
+        available = {
+            is_in_faction = no
+            FROM = { 
+                OR = { is_in_faction = no is_faction_leader = yes }
+            }
+        }
+
+        cost = 75
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 6
+            modifier = { ENG = { has_war_with = GER } factor = 2 }
+            modifier = { ENG = { has_opinion = { target = JAP value < 25 } } factor = 0 }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = japan_england.1 hours = 12 random_hours = 6 } }
+            hidden_effect = { set_country_flag = stop_influencing_uk }
+        }
+    }
+    japan_india = {
+        targets = { RAJ }
+        available = { 
+            FROM = { is_in_faction = no is_subject = no }
+            has_completed_focus = JAP_twenty-one_demands
+        }
+
+        cost = 100
+        fire_only_once = yes
+
+        complete_effect = {
+            FROM = { country_event = { id = japan_india.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    japan_usa = {
+        targets = { USA }
+        available = {
+            is_in_faction = no
+            has_government = democratic
+            
+            FROM = { 
+                OR = { is_in_faction = no is_faction_leader = yes }
+                has_completed_focus = USA_wilsons_fourteen_points
+            }
+        }
+
+        cost = 100
+        fire_only_once = yes
+
+        complete_effect = {
+            FROM = { country_event = { id = japan_usa.1 hours = 12 random_hours = 6 } }
         }
     }
 }

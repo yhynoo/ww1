@@ -13,7 +13,7 @@ country_event = {
         has_civil_war = no
         has_stability > 0.1 authoritarianism > 0.5
 
-        # disable this for Turkey and America
+        # disable this for countries that can flip to authoritarian through focuses
         not = { or = { tag = TUR tag = USA } }
     }
 
@@ -49,6 +49,9 @@ country_event = {
 
         has_civil_war = no
         has_stability > 0.1 communism > 0.5
+
+        # disable this for countries that can flip to communist through focuses
+        not = { or = { tag = ENG tag = FRA tag = GER tag = SOV } }
     }
 
     option = {

@@ -1,0 +1,127 @@
+add_namespace = austria_tackle_emigration
+
+country_event = {
+    id = austria_tackle_emigration.1
+    title = "Emigration Worsens in Galicia"
+    desc = austria_tackle_emigration.1.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Launch an incentive program for the returnees."
+        hidden_effect = { country_event = { id = austria_tackle_emigration.2 days = 28 random_days = 42 } }
+
+        add_timed_idea = {
+            idea = sww1_idea_economic_incentives
+            years = 1
+        }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Appeal to the émigré’s patriotism."
+        hidden_effect = { country_event = { id = austria_tackle_emigration.4 days = 28 random_days = 42 } }
+
+        add_political_power = -100
+
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = austria_tackle_emigration.2
+    title = "Investment Demands Mount in Lemberg"
+    desc = austria_tackle_emigration.2.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Offer tax breaks for industrial growth."
+        hidden_effect = { news_event = { id = austria_tackle_emigration.3 days = 7 random_days = 7 } }
+
+        swap_ideas = {
+            remove_idea = sww1_idea_economic_incentives
+            add_idea = sww1_idea_tax_breaks
+        }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "This is too much to handle."
+        
+        add_stability = -0.05
+        add_political_power = -100
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = austria_tackle_emigration.3
+    title = "Austria Announces Immigration Incentives"
+    desc = austria_tackle_emigration.3.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Great news."
+        add_political_power = 150
+    }
+}
+
+country_event = {
+    id = austria_tackle_emigration.4
+    title = "Émigré Elites Cite Lack of Incentive"
+    desc = austria_tackle_emigration.4.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Support Austrian colonization."
+        hidden_effect = { country_event = { id = austria_tackle_emigration.5 days = 28 random_days = 42 } }
+        
+        add_popularity = { ideology = democratic popularity = 0.05 }
+        add_stability = -0.1
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "Encourage local initiatives."
+        
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+        add_political_power = -150
+
+        ai_chance = { base = 0 }
+    }
+}
+
+country_event = {
+    id = austria_tackle_emigration.5
+    title = "Shooting at the Krakau Station"
+    desc = austria_tackle_emigration.5.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Divert attention to local magnates."
+        add_stability = -0.1
+
+        ai_chance = { base = 0 }
+    }
+    option = {
+        name = "Withdraw from the colonization program."
+
+        add_political_power = -100
+        add_popularity = { ideology = communism popularity = 0.05 }
+
+        hidden_effect = { news_event = { id = austria_tackle_emigration.6 hours = 6 random_hours = 12 } }
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = austria_tackle_emigration.6
+    title = "Galician Industry Left for Dead?"
+    desc = austria_tackle_emigration.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A major defeat."
+    }
+}

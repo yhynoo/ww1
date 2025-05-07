@@ -21,16 +21,11 @@
         cost = 10
 
         ai_will_do = {
-            base = 3
-            modifier = {
-                has_war = yes
-                factor = 30
-            }
+            base = 1
+            modifier = { has_war = yes factor = 3 }
         }
 
-        completion_reward = {
-            add_command_power = 25
-        }
+        completion_reward = { add_command_power = 25 }
     }
     focus = {
         id = FRA_focus_army
@@ -42,15 +37,8 @@
         cost = 10
 
         ai_will_do = {
-            base = 3
-            modifier = {
-                date > 1914.1.1
-                factor = 5
-            }
-            modifier = {
-                has_war = yes
-                factor = 15
-            }
+            base = 1
+            modifier = { date > 1914.1.1 factor = 3 }
         }
 
         prerequisite = { focus = FRA_adjust_budget }
@@ -67,13 +55,7 @@
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 2
-            modifier = {
-                has_war = yes
-                factor = 15
-            }
-        }
+        ai_will_do = { base = 2 }
 
         prerequisite = { focus = FRA_focus_army }
         completion_reward = {
@@ -119,14 +101,7 @@
 
         ai_will_do = {
             base = 1
-            modifier = {
-                has_war = yes
-                factor = 1.5
-            }
-            modifier = {
-                num_of_military_factories > 10
-                factor = 3
-            }
+            modifier = { num_of_military_factories > 10 factor = 3 }
         }
 
         prerequisite = { focus = FRA_focus_army }
@@ -505,11 +480,8 @@
         cost = 10
 
         ai_will_do = {
-            base = 3
-            modifier = {
-                num_of_factories < 15
-                factor = 2
-            }
+            base = 2
+            modifier = { num_of_factories < 15 factor = 2 }
         }
 
         completion_reward = {
@@ -528,10 +500,7 @@
 
         ai_will_do = {
             base = 2
-            modifier = {
-                date > 1913.7.1
-                factor = 5
-            }
+            modifier = { has_war = yes factor = 3 }
         }
 
         prerequisite = { focus = FRA_economic_development }
@@ -646,18 +615,7 @@
 
         ai_will_do = {
             base = 3
-            modifier = {
-                has_war = no
-                factor = 1.5
-            }
-            modifier = {
-                num_of_factories < 15
-                factor = 2.5
-            }
-            modifier = {
-                date > 1913.7.1
-                factor = 5
-            }
+            modifier = { num_of_factories < 15 factor = 2 }
         }
 
         prerequisite = { focus = FRA_economic_development }
@@ -745,13 +703,7 @@
 
         cost = 10
 
-        ai_will_do = {
-            base = 2
-            modifier = {
-                num_of_civilian_factories < 10
-                factor = 3
-            }
-        }
+        ai_will_do = { base = 2 }
 
         prerequisite = { focus = FRA_infrastructure_effort }
 		completion_reward = {
@@ -897,7 +849,7 @@
 
         ai_will_do = {
             base = 1
-            modifier = { has_idea = sww1_idea_belgian_crisis factor = 6 }
+            modifier = { date > 1913.1.1 factor = 3 }
         }
 
         prerequisite = { focus = FRA_political_ambitions }
@@ -921,7 +873,7 @@
 
         ai_will_do = {
             base = 1
-            modifier = { date > 1913.1.1 factor = 3 }
+            modifier = { date > 1914.1.1 factor = 3 }
         }
 
         prerequisite = { focus = FRA_international_affairs }
@@ -943,11 +895,13 @@
         cost = 10
 
         ai_will_do = {
-            base = 12
-            modifier = { not = { has_idea = sww1_idea_belgian_crisis } factor = 0 }
+            base = 2
+            modifier = { date > 1913.10.1 factor = 3 }
         }
 
         prerequisite = { focus = FRA_international_affairs }
+        available = { has_idea = sww1_idea_belgian_crisis }
+
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
             GER = {
@@ -967,8 +921,12 @@
         y = 1
         cost = 10
 
-        available = { is_in_faction = no }
-        ai_will_do = { base = 2 }
+        available = { is_in_faction = no is_subject = no }
+
+        ai_will_do = {
+            base = 1
+            modifier = { OR = { date > 1913.7.1 has_war = yes } factor = 3 }
+        }
 
         prerequisite = { focus = FRA_expansionism }
         completion_reward = {
@@ -1008,9 +966,11 @@
             base = 1
             modifier = { has_war = yes factor = 3 }
         }
+        available = { has_government = democratic }
 
         mutually_exclusive = { focus = FRA_ancien_regime }
         prerequisite = { focus = FRA_political_ambitions }
+        
         completion_reward = {
             add_stability = 0.05
             add_popularity = {
@@ -1106,7 +1066,7 @@
         ai_will_do = {
             base = 1
             modifier = { is_ally_with = ENG factor = 0 }
-            modifier = { and = { date > 1915.1.1 is_in_faction = no } factor = 6 }
+            modifier = { and = { date > 1914.1.1 is_in_faction = no } factor = 3 }
         }
 
         mutually_exclusive = { focus = FRA_republicanism }
@@ -1121,9 +1081,8 @@
                 popularity = 0.05
             }
 
-            hidden_effect = {
-                news_event = { id = france_restore_ancien_regime.1 days = 7 random_hours = 12 }
-            }
+            # alternative path event chain
+            hidden_effect = { country_event = { id = france_ancien_regime.1 days = 14 random_days = 28 } }
         }
     }
     focus = {
@@ -1144,6 +1103,9 @@
                 idea = sww1_idea_state_reform
                 years = 1
             }
+
+            # anarchist path (second alternative)
+            hidden_effect = { country_event = { id = france_anarchist_opposition.1 days = 14 random_days = 28 } }
         }
     }
     focus = {
@@ -1181,9 +1143,8 @@
         }
 
         prerequisite = { focus = FRA_state_reform }
-        available = {
-            communism > 0.3
-        }
+        available = { communism > 0.3 has_civil_war = no }
+        bypass = { has_government = communism }
         
         completion_reward = {
             start_civil_war = {

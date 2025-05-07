@@ -8,9 +8,9 @@ country_event = {
     is_triggered_only = yes
 
     option = {
-        name = "God is almighty!"
+        name = "Allahu akbar!"
         news_event = { id = caucasus_liberation.2 hours = 12 random_hours = 6 }
-        ai_chance = { base = 6 }
+        ai_chance = { base = 3 }
 
         # politics
         release_on_controlled = CRI
@@ -21,7 +21,7 @@ country_event = {
         faction_leader = { add_to_faction = CRI }
 
         hidden_effect = {
-            UBD = { load_oob = "CRI_uprising" }
+            CRI = { load_oob = "CRI_uprising" }
             add_to_war = { targeted_alliance = PREV enemy = SOV }
         }
     }

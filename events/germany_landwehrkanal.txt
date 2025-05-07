@@ -1,0 +1,142 @@
+add_namespace = germany_landwehrkanal
+
+country_event = {
+    id = germany_landwehrkanal.1
+    title = "Communist Agitation Spreads"
+    desc = germany_landwehrkanal.1.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Investigate the matter."
+
+        add_political_power = -100
+
+        hidden_effect = { country_event = { id = germany_landwehrkanal.2 days = 28 random_days = 42 } }
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Arrest the usual suspects."
+
+        add_stability = 0.05
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+
+        hidden_effect = { country_event = { id = germany_landwehrkanal.4 days = 28 random_days = 42 } }
+        ai_chance = { base = 1 }
+    }
+}
+ 
+country_event = {
+    id = germany_landwehrkanal.2
+    title = "Crackdown on Anti-War Activists"
+    desc = germany_landwehrkanal.2.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Double down on the efforts."
+
+        add_political_power = -50
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+
+        hidden_effect = { news_event = { id = germany_landwehrkanal.3 days = 7 random_days = 7 } }
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "This is enough."
+        add_popularity = { ideology = democratic popularity = 0.05 }
+
+        ai_chance = { base = 0 }
+    }
+}
+
+news_event = {
+    id = germany_landwehrkanal.3
+    title = "Marchlewski’s Clique Goes into Exile"
+    desc = germany_landwehrkanal.3.d
+    is_triggered_only = yes
+
+    option = {
+        name = "He is not Germany’s problem anymore."
+
+        add_stability = 0.1
+        add_popularity = { ideology = communism popularity = -0.1 }
+    }
+}
+
+country_event = {
+    id = germany_landwehrkanal.4
+    title = "Thalheimer’s Trial"
+    desc = germany_landwehrkanal.4.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Carry on with the trial."
+
+        add_political_power = -50
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+
+        hidden_effect = { country_event = { id = germany_landwehrkanal.5 days = 28 random_days = 42 } }
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Maybe he is innocent, after all."
+        
+        if = {
+            limit = { has_idea = sww1_idea_democratic_tendencies }
+            remove_ideas = sww1_idea_democratic_tendencies
+        }
+        add_timed_idea = { idea = sww1_idea_communism_tendencies years = 1 }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = germany_landwehrkanal.5
+    title = "Liebknecht Dead!"
+    desc = germany_landwehrkanal.5.d
+    is_triggered_only = yes
+
+    immediate = {
+        hidden_effect = {
+            retire_character = GER_karl_liebknecht
+            promote_character = GER_wilhelm_pieck
+        }
+    }
+
+    option = {
+        name = "We have overstepped the line."
+        
+        add_stability = -0.2
+        add_popularity = { ideology = communism popularity = 0.15 }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Communists must be stopped at all costs."
+        
+        start_civil_war = { 
+            ideology = communism
+            army_ratio = party_popularity@communism
+            states = { 8 51 58 61 62 64 909 980 }
+        }
+
+        hidden_effect = { 
+            add_popularity = { ideology = communism popularity = -0.2 }
+            news_event = { id = germany_landwehrkanal.6 hours = 6 random_hours = 12 }
+        }
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = germany_landwehrkanal.6
+    title = "Communist Uprising in Germany!"
+    desc = germany_landwehrkanal.6.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Germany shattered again."
+    }
+}

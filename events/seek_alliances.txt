@@ -9,13 +9,13 @@ country_event = {
 
     option = {
         name = "Accept the offer."
-        FROM = { news_event = { id = seek_alliances.2 hours = 12 random_hours = 6 } }
+        news_event = { id = seek_alliances.2 hours = 12 random_hours = 6 }
 
         if = {
             limit = { is_in_faction = no }
             if = {
-                limit = { and = { tag = AUS FROM = TUR } }
-                create_faction = "Sarajevo Memorandum"
+                limit = { tag = AUS }
+                create_faction = "Second Vienna Treaty"
             }
             if = {
                 limit = { tag = ENG }
@@ -30,8 +30,8 @@ country_event = {
                 create_faction = "Central Powers"
             }
             if = {
-                limit = { and = { tag = SOV } }
-                create_faction = "The South-East Alliance"
+                limit = { tag = USA }
+                create_faction = "Anti-Colonialist Union"
             }
         }
         faction_leader = { add_to_faction = FROM }

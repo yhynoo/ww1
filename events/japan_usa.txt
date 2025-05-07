@@ -1,0 +1,143 @@
+add_namespace = japan_usa
+
+country_event = {
+    id = japan_usa.1
+    title = "[FROM.GetName] Seeks to Join the Anti-Colonialist Union"
+    desc = japan_usa.1.d 
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They are welcome."
+        FROM = { news_event = { id = japan_usa.2 hours = 12 random_hours = 6 } }
+        
+        if = {
+            limit = { is_in_faction = no }
+            create_faction = "Anti-Colonialist Union"
+        }
+        add_to_faction = FROM
+
+        hidden_effect = {
+            FROM = {
+                add_ai_strategy = {
+                    type = alliance
+                    id = ROOT
+                    value = 200
+                }
+            }
+        }
+
+        ai_chance = { 
+            base = 3
+            modifier = { has_opinion = { target = FROM value > 50 } factor = 2 }
+            modifier = { has_completed_focus = USA_not_our_war factor = 0 }
+        }
+    }
+
+    option = {
+        name = "We are only interested in mutual defensive guarantees."
+        trigger = {
+            NOT = { 
+                OR = { has_guaranteed = FROM FROM = { has_guaranteed = ROOT } }
+            }
+        }
+
+        FROM = { country_event = { id = japan_usa.3 hours = 12 random_hours = 6 } }
+        ai_chance = { 
+            base = 2 
+            modifier = { has_completed_focus = USA_not_our_war factor = 0 }
+        }
+    }
+
+    option = {
+        name = "We are not interested."
+        FROM = { news_event = { id = japan_usa.6 hours = 12 random_hours = 6 } }
+
+        ai_chance = { 
+            base = 1
+            modifier = { has_opinion = { target = FROM value < 0 } factor = 3 }
+        }
+    }
+}
+
+news_event = {
+    id = japan_usa.2
+    title = "[ROOT.GetName] and [FROM.GetName] Allied"
+    desc = japan_usa.2.d 
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+country_event = {
+    id = japan_usa.3
+    title = "[FROM.GetName] Offers Mutual Guarantees Instead"
+    desc = japan_usa.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "That sounds good too."
+        FROM = { news_event = { id = japan_usa.4 hours = 12 random_hours = 6 } }
+
+        give_guarantee = FROM
+        FROM = { give_guarantee = ROOT }
+
+        ai_chance = { base = 2 }
+    }
+
+    option = {
+        name = "We are not interested."
+        FROM = { news_event = { id = japan_usa.5 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = japan_usa.4
+    title = "Mutual Defense Agreement with [FROM.GetName]"
+    desc = japan_usa.4.d 
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Good."
+        add_opinion_modifier = {
+            target = FROM
+            modifier = medium_increase
+        }
+    }
+}
+
+news_event = {
+    id = japan_usa.5
+    title = "Alliance Talks Fail"
+    desc = japan_usa.5.d 
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A waste of time."
+        add_opinion_modifier = {
+            target = FROM
+            modifier = small_decrease
+        }
+    }
+}
+
+news_event = {
+    id = japan_usa.6
+    title = "[FROM.GetName] Declines Our Offer"
+    desc = japan_usa.6.d 
+
+    is_triggered_only = yes
+
+    option = {
+        name = "That's a shame."
+    }
+}

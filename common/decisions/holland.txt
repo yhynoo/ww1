@@ -28,6 +28,76 @@ dc_aftermath_in_flanders = {
     }
 }
 
+dc_holland_alliances = {
+    holland_england = {
+        targets = { ENG }
+        available = {
+            is_in_faction = no
+            not = { has_completed_focus = HOL_neutrality }
+
+            FROM = { 
+                OR = { is_in_faction = no is_faction_leader = yes }
+            }
+        }
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_country_flag = we_stay_in_flanders factor = 6 }
+        }
+
+        cost = 75
+        fire_only_once = yes
+
+        complete_effect = {
+            FROM = { country_event = { id = holland_england.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    holland_germany = {
+        targets = { GER }
+        available = {
+            is_in_faction = no
+            not = { has_completed_focus = HOL_neutrality }
+
+            FROM = { 
+                OR = { is_in_faction = no is_faction_leader = yes }
+            }
+        }
+
+        ai_will_do = {
+            base = 6
+
+            modifier = { has_country_flag = we_stay_in_flanders factor = 6 }
+            modifier = { has_completed_focus = HOL_thorbeckes_legacy factor = 0 }
+        }
+
+        cost = 75
+        fire_only_once = yes
+
+        complete_effect = {
+            FROM = { country_event = { id = holland_germany.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    holland_usa = {
+        targets = { USA }
+        available = {
+            is_in_faction = no
+            has_government = democratic
+            
+            FROM = { 
+                OR = { is_in_faction = no is_faction_leader = yes }
+                has_completed_focus = USA_wilsons_fourteen_points
+            }
+        }
+
+        cost = 100
+        fire_only_once = yes
+
+        complete_effect = {
+            FROM = { country_event = { id = holland_usa.1 hours = 12 random_hours = 6 } }
+        }
+    }
+}
+
 dc_world_trade_hegemony = {
     claim_suez_canal = {
         cost = 150

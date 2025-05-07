@@ -79,12 +79,12 @@ dc_place_in_the_sun = {
             or = { is_faction_leader = yes is_in_faction = no }
         }
 
-        targets = { AUS  TUR }
+        targets = { AUS TUR }
         target_trigger = { FROM = { is_in_faction = no } }
 
         ai_will_do = { 
             base = 6
-            mod ifier = { has_guaranteed = FROM factor = 3 }
+            modifier = { has_guaranteed = FROM factor = 3 }
             modifier = { has_war = yes factor = 2 }
         }
 

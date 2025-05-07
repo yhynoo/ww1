@@ -141,19 +141,19 @@ country_event = {
 
     option = {
         name = "Tell them it's Russia’s internal affair."
-        news_event = { id = baltic_riot_events.10 hours = 12 random_hours = 6 }
+        news_event = { id = baltic_riot_events.8 hours = 12 random_hours = 6 }
 
         GER = {
             create_wargoal = {
                 target = SOV
                 type = liberate_wargoal
             }
+        }
 
-            hidden_effect = {
-                add_named_threat = {
-                    name = "[GER.GetName] Denied Influence over the Baltics"
-                    threat = 3
-                }
+        hidden_effect = {
+            add_named_threat = {
+                name = "[GER.GetName] Denied Influence over the Baltics"
+                threat = 3
             }
         }
 
@@ -243,5 +243,6 @@ news_event = {
 
     option = {
         name = "This won't end well..."
+        custom_effect_tooltip = "We have gained a war goal against [SOV.GetNameDef]."
     }
 }

@@ -58,29 +58,17 @@ news_event = {
 	option = {
 		if = {
 			limit = { tag = AUS }
-			add_opinion_modifier = {
-					target = SOV
-					modifier = small_decrease
-				}
+			add_war_support = 0.25
+			add_opinion_modifier = { target = SOV modifier = large_decrease }
 
 			if = {
-				limit = { SER = { exists = yes } }
-				add_opinion_modifier = {
-					target = SER
-					modifier = medium_decrease
-				}
-			}
-			if = {
-				limit = { has_idea = sww1_idea_slavic_unrest }
-				create_wargoal = {
-					target = SOV
-					type = annex_everything
-				}
+				limit = { AND = { has_government = monarchism has_idea = sww1_idea_slavic_unrest } }
+				create_wargoal = { target = SOV type = annex_everything }
 			}
 
 			hidden_effect = {
 				add_named_threat = {
-					threat = 12
+					threat = 15
 					name = "Assassination of Franz Ferdinand"
 				}
 			}

@@ -19,10 +19,7 @@ country_event = {
 
         remove_ideas = sww1_idea_the_aftermath_in_flanders
 
-        ai_chance = {
-            base = 2
-            modifier = { has_completed_focus = HOL_thorbeckes_legacy factor = 3 }
-        }
+        ai_chance = { base = 2 }
     }
 
     option = {
@@ -91,12 +88,7 @@ country_event = {
         news_event = { id = france_events.5 hours = 12 random_hours = 6 }
         every_state = {
             limit = {
-                or = {
-                    state = 6
-                    state = 34
-                    state = 977
-                    state = 980
-                }
+                or = { state = 6 state = 34 state = 977 state = 980 }
                 is_owned_by = GER
             }
             transfer_state_to = FRA
@@ -104,14 +96,7 @@ country_event = {
 
         ai_chance = {
             base = 1
-            modifier = {
-                FRA = { is_ally_with = ENG }
-                factor = 2
-            }
-            modifier = {
-                FRA = { is_ally_with = SOV }
-                factor = 2.5
-            }
+            modifier = { FRA = { is_in_faction = yes } factor = 3 }
         }
     }
 
@@ -127,18 +112,13 @@ country_event = {
 
         FRA = {
             country_event = { id = france_events.6 hours = 12 random_hours = 6 }
-            create_wargoal = {
-                target = GER
-                type = take_claimed_state
-            }
+            create_wargoal = { target = GER type = take_claimed_state }
         }
 
         ai_chance = {
-            base = 4
-            modifier = {
-                is_ally_with = AUS
-                factor = 2.5
-            }
+            base = 3
+            modifier = { is_ally_with = AUS factor = 2 }
+            modifier = { has_government = democratic factor = 0 }       # democratic Germany won't go to war over this.
         }
     }
 }
@@ -320,10 +300,10 @@ news_event = {
             has_idea = sww1_idea_belgian_crisis
             has_war = no
 
-            owns_state = 6
-            owns_state = 34
-            owns_state = 977
-            owns_state = 980
+            controls_state = 6
+            controls_state = 34
+            controls_state = 977
+            controls_state = 980
         }
     }
 

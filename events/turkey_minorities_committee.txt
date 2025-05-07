@@ -1,0 +1,136 @@
+add_namespace = turkey_minorities_committee
+
+country_event = {
+    id = turkey_minorities_committee.1
+    title = "Minorities committeee"
+    desc = turkey_minorities_committee.1.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Launch a formal investigation."
+
+        add_stability = -0.05
+        add_popularity = { ideology = democratic popularity = 0.05 }
+    
+        hidden_effect = { country_event = { id = turkey_minorities_committee.2 days = 28 random_days = 42 } }
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Defer the matter quietly."
+        add_popularity = { ideology = authoritarianism popularity = 0.1 }
+
+        if = {
+            limit = { has_idea = sww1_idea_democratic_tendencies }
+            remove_ideas = sww1_idea_democratic_tendencies
+        }
+        add_timed_idea = { idea = sww1_idea_authoritarianism_tendencies years = 1 }
+
+        hidden_effect = { country_event = { id = turkey_minorities_committee.4 days = 28 random_days = 42 } }
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = turkey_minorities_committee.2
+    title = "Testimonies from Eastern Provinces"
+    desc = turkey_minorities_committee.2.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Announce the findings."
+        add_timed_idea = { idea = sww1_idea_wounded_but_honest years = 1 }
+
+        hidden_effect = { news_event = { id = turkey_minorities_committee.3 days = 7 random_days = 7 } }
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "Censor the materials."
+        
+        add_stability = 0.05
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+
+        ai_chance = { base = 0 }
+    }
+}
+
+news_event = {
+    id = turkey_minorities_committee.3
+    title = "Oaths of Loyalty Sworn in the East"
+    desc = turkey_minorities_committee.3.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Wonderful."
+        
+        add_political_power = 150
+        add_popularity = { ideology = democratic popularity = 0.1 }
+    }
+}
+
+country_event = {
+    id = turkey_minorities_committee.4
+    title = "Slander is Treason"
+    desc = turkey_minorities_committee.4.d
+    is_triggered_only = yes
+
+    option = {
+        name = "We must work towards an agreement."
+        add_stability = -0.05
+
+        hidden_effect = { country_event = { id = turkey_minorities_committee.5 days = 28 random_days = 42 } }
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "They are right."
+    
+        add_popularity = { ideology = authoritarianism popularity = 0.1 }
+        add_political_power = -150
+
+        ai_chance = { base = 0 }
+    }
+}
+
+country_event = {
+    id = turkey_minorities_committee.5
+    title = "Conservative Elites Demand Abdication"
+    desc = turkey_minorities_committee.5.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Step down to preserve the country."
+
+        set_politics = { ruling_party = authoritarianism elections_allowed = no }
+        ai_chance = { base = 2 }
+
+        hidden_effect = {
+            add_popularity = { ideology = authoritarianism popularity = 0.25 }
+        }
+    }
+    option = {
+        name = "This is nonsense."
+
+        start_civil_war = { 
+            ideology = authoritarianism
+            size = party_popularity@authoritarianism
+        }
+
+        hidden_effect = { 
+            news_event = { id = turkey_minorities_committee.6 hours = 6 random_hours = 12 }
+            add_popularity = { ideology = authoritarianism popularity = -0.2
+        }
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = turkey_minorities_committee.6
+    title = "Unrest in the Ottoman Empire"
+    desc = turkey_minorities_committee.6.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Awful."
+    }
+}

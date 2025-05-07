@@ -29,14 +29,21 @@ JAP_army_composition = {
 	}
 }
 
-JAP_avoids_europe = {
-	allowed = {
-		original_tag = JAP
-	}
+TUR_likes_ENG = {
+	allowed = { original_tag = JAP }
+	enable = { has_completed_focus = JAP_hong_kong_appeal }
+	abort = { OR = { ENG = { is_ally_with = GER } has_country_flag = stop_influencing_uk } }
 
-	enable = {
-		always = yes
+	ai_strategy = {
+		type = befriend
+		id = ENG
+		value = 100
 	}
+}
+
+JAP_avoids_europe = {
+	allowed = { original_tag = JAP }
+	enable = { always = yes }
 
 	abort_when_not_enabled = yes
 

@@ -14,23 +14,28 @@ country_event = {
 
         hidden_effect = {
             country_event = { id = germany_oriental.4 days = 2 random_hours = 6 }
-            107 = {
-                add_building_construction = {
-                    type = infrastructure
-                    level = 1
-                    instant_build = yes
+            if = {
+                limit = { has_idea = sww1_idea_amassed_foreign_debt }
+                swap_ideas = {
+                    remove_idea = sww1_idea_amassed_foreign_debt
+                    add_idea = sww1_idea_significant_foreign_debt
                 }
             }
-            737 = {
-                add_building_construction = {
-                    type = infrastructure
-                    level = 1
-                    instant_build = yes
-                }
+            else = {
+                limit = { has_idea = sww1_idea_significant_foreign_debt }
+                remove_ideas = sww1_idea_significant_foreign_debt
+            }
+
+            build_railway = {
+                level = 1
+                start_state = 797 target_state = 291
             }
         }
 
-        ai_chance = { base = 6 }
+        ai_chance = { 
+            base = 3
+            modifier = { has_idea = sww1_idea_amassed_foreign_debt factor = 3 }
+        }
     }
 
     option = {
@@ -89,7 +94,7 @@ country_event = {
         GER = { country_event = { id = germany_oriental.5 hours = 24 random_hours = 12 } }
 
         ai_chance = { 
-            base = 6
+            base = 3
             modifier = { has_country_flag = we_do_our_thing factor = 0 }
         }
     }
@@ -118,7 +123,10 @@ country_event = {
         news_event = { id = germany_oriental.6 hours = 12 random_hours = 6 }
         give_guarantee = TUR
 
-        ai_chance = { base = 6 }
+        ai_chance = { 
+            base = 2
+            modifier = { has_government = monarchism factor = 3 }
+        }
     }
 
     option = {
@@ -175,6 +183,8 @@ country_event = {
         name = "Allow German oil drilling."
         GER = { news_event = { id = germany_oriental.9 hours = 12 random_hours = 6 } }
 
+        give_resource_rights = { receiver = GER state = 291 }
+
         ai_chance = { 
             base = 1
             modifier = {
@@ -188,7 +198,7 @@ country_event = {
         name = "Deny German access to our oil fields."
         GER = { news_event = { id = germany_oriental.10 hours = 12 random_hours = 6 } }
 
-        ai_chance = { base = 3 }
+        ai_chance = { base = 2 }
     }
 }
 

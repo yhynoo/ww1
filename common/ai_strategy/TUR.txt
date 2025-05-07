@@ -1,12 +1,6 @@
 TUR_army_composition = {
-	allowed = {
-		original_tag = TUR
-	}
-
-	enable = {
-		always = yes
-	}
-
+	allowed = { original_tag = TUR }
+	enable = { always = yes }
 	abort_when_not_enabled = yes
 
 	## Land troops
@@ -38,14 +32,38 @@ TUR_stay_at_home = {
 
 	ai_strategy = {
 		type = dont_defend_ally_borders
-		id = GER
+		id = AUS
 		value = 10
 	}
 
 	ai_strategy = {
 		type = dont_defend_ally_borders
-		id = AUS
+		id = ENG
 		value = 10
+	}
+
+	ai_strategy = {
+		type = dont_defend_ally_borders
+		id = FRA
+		value = 10
+	}
+
+	ai_strategy = {
+		type = dont_defend_ally_borders
+		id = GER
+		value = 10
+	}
+}
+
+TUR_likes_ENG = {
+	allowed = { original_tag = TUR }
+	enable = { has_completed_focus = TUR_sarajevo_declaration }
+	abort = { OR = { ENG = { is_ally_with = ITA } ENG = { is_ally_with = SOV } has_country_flag = stop_influencing_uk } }
+
+	ai_strategy = {
+		type = befriend
+		id = ENG
+		value = 100
 	}
 }
 
@@ -62,20 +80,19 @@ TUR_likes_GER = {
 	}
 
 	ai_strategy = {
-		type = befriend
-		id = GER
-		value = 60
+		type = consider_weak
+		id = SOV
+		value = 100
 	}
 }
 
 TUR_hates_RUS = {
 	allowed = { original_tag = TUR }
-	enable = { always = yes }
-
+	enable = { not = { has_idea = sww1_idea_amassed_foreign_debt } }
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
-		type = antagonize
+		type = declare_war
 		id = SOV
 		value = 150
 	}

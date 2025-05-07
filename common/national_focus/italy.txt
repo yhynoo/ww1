@@ -248,7 +248,7 @@
 
         ai_will_do = { 
             base = 1
-            modifier = { has_country_flag = invited_naval_experts factor = 3 }
+            modifier = { has_country_flag = invited_uk_experts factor = 3 }
         }
 
         prerequisite = { focus = ITA_focus_navy }
@@ -371,7 +371,7 @@
 
         ai_will_do = { 
             base = 1
-            modifier = { has_country_flag = invited_naval_experts factor = 3 }
+            modifier = { has_country_flag = invited_uk_experts factor = 3 }
         }
 
         available = {
@@ -876,8 +876,8 @@
         cost = 10
 
         ai_will_do = { 
-            base = 1
-            modifier = { not = { has_completed_focus = ITA_italia_irredenta } factor = 3 }
+            base = 2
+            modifier = { AUS = { is_ally_with = GER } factor = 3 }
         }
 
         prerequisite = { focus = ITA_international_affairs }
@@ -894,11 +894,11 @@
         y = 1
         cost = 10
 
-        available = { is_in_faction = no }
+        available = { is_in_faction = no is_subject = no }
 
         ai_will_do = {
             base = 1
-            modifier = { not = { any_country = { has_guaranteed = TUR } } factor = 3 }
+            modifier = { OR = { date > 1913.7.1 has_war = yes } factor = 3 }
         }
 
         prerequisite = { focus = ITA_expansionism }
@@ -935,8 +935,10 @@
         y = 1
         cost = 10
 
+        available = { has_government = monarchism }
         mutually_exclusive = { focus = ITA_italia_irredenta }
         prerequisite = { focus = ITA_political_ambitions }
+
         completion_reward = {
             add_stability = 0.05
             add_timed_idea = {
@@ -1103,12 +1105,8 @@
         cost = 10
 
         prerequisite = { focus = ITA_state_reform }
-        available = {
-            has_civil_war = no
-            not = { has_government = authoritarianism }
-
-            authoritarianism > 0.3
-        }
+        available = { authoritarianism > 0.3 has_civil_war = no }
+        bypass = { has_government = authoritarianism }
         
         completion_reward = {
             start_civil_war = {

@@ -919,7 +919,12 @@
         y = 1
         cost = 10
 
-        available = { is_in_faction = no }
+        available = { is_in_faction = no is_subject = no }
+
+        ai_will_do = {
+            base = 1
+            modifier = { OR = { date > 1913.7.1 has_war = yes } factor = 3 }
+        }
 
         prerequisite = { focus = JAP_expansionism }
         completion_reward = {
@@ -973,12 +978,12 @@
 
         mutually_exclusive = { focus = JAP_sideline_the_emperor }
         prerequisite = { focus = JAP_political_ambitions }
+        available = { has_government = monarchism }
+
         completion_reward = {
             add_stability = 0.05
-            add_popularity = {
-                ideology = monarchism
-                popularity = 0.05
-            }
+            add_popularity = { ideology = monarchism popularity = 0.05 }
+            
             news_event = { id = japan_taisho_emperor.1 days = 7 random_hours = 6 }
         }
     }
@@ -1091,16 +1096,10 @@
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 2
-        }
+        ai_will_do = { base = 2 }
 
         bypass = { has_government = authoritarianism }
-
-        available = {
-            has_civil_war = no
-            authoritarianism > 0.4
-        }
+        available = { has_civil_war = no authoritarianism > 0.4 }
 
         prerequisite = { focus = JAP_sideline_the_emperor }
         completion_reward = {

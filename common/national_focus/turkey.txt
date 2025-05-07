@@ -469,11 +469,8 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 2
-            modifier = {
-                date > 1913.7.1
-                factor = 3
-            }
+            base = 1
+            modifier = { or { date > 1913.7.1 has_completed_focus = TUR_the_sublime_porte } factor = 3 }
         }
 
         completion_reward = {
@@ -812,13 +809,6 @@ focus_tree = {
 
         completion_reward = {
             add_political_power = 150
-
-            hidden_effect = {                           # If we go early, set a flag for the future.
-                if = {
-                    limit = { date < 1912.7.1 }
-                    set_country_flag = we_do_our_thing
-                }
-            }
         }
     }
     focus = {
@@ -830,9 +820,9 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
+        ai_will_do = { 
             base = 1
-            modifier = { has_country_flag = we_do_our_thing factor = 6 }
+            modifier = { not = { has_idea = sww1_idea_amassed_foreign_debt } factor = 3 }
         }
 
         prerequisite = { focus = TUR_political_ambitions }
@@ -840,6 +830,13 @@ focus_tree = {
             add_timed_idea = {
                 idea = sww1_idea_international_affairs
                 years = 2
+            }
+
+            hidden_effect = {
+                if = {
+                    limit = { date < 1912.9.1 }
+                    set_country_flag = we_do_our_thing
+                }
             }
         }
     }
@@ -855,8 +852,8 @@ focus_tree = {
         available = { has_war_support > 0.3 }
 
         ai_will_do = {
-            base = 1
-            modifier = { has_country_flag = we_do_our_thing factor = 6 }
+            base = 2
+            modifier = { has_country_flag = we_do_our_thing factor = 3 }
         }
 
         prerequisite = { focus = TUR_international_affairs }
@@ -896,11 +893,11 @@ focus_tree = {
         y = 1
         cost = 10
 
-        available = { is_in_faction = no }
-        
+        available = { is_in_faction = no is_subject = no }
+
         ai_will_do = {
-            base = 3
-            modifier = { date > 1914.1.1 factor = 2 }
+            base = 1
+            modifier = { OR = { date > 1913.7.1 has_war = yes } factor = 3 }
         }
 
         prerequisite = { focus = TUR_expansionism }
@@ -944,12 +941,12 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 1
-        }
+        ai_will_do = { base = 2 }
 
         mutually_exclusive = { focus = TUR_the_young_ottomans }
         prerequisite = { focus = TUR_political_ambitions }
+        available = { has_government = monarchism }
+        
         completion_reward = {
             add_popularity = { ideology = monarchism popularity = 0.05 }
             add_stability = 0.05
@@ -963,6 +960,8 @@ focus_tree = {
         x = -1
         y = 1
         cost = 10
+
+        ai_will_do = { base = 3 }
 
         prerequisite = { focus = TUR_the_sublime_porte }
         completion_reward = {
@@ -1034,9 +1033,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 1
-        }
+        ai_will_do = { base = 2 }
 
         mutually_exclusive = { focus = TUR_the_sublime_porte }
         prerequisite = { focus = TUR_political_ambitions }
@@ -1064,9 +1061,8 @@ focus_tree = {
                 years = 1
             }
 
-            hidden_effect = {
-                country_event = { id = turkey_minority_affairs.1 days = 14 random_days = 7 }
-            }
+            # alternative path event chain
+            hidden_effect = { country_event = { id = turkey_minorities_committee.1 days = 14 random_days = 28 } }
         }
     }
     focus = {
@@ -1096,9 +1092,8 @@ focus_tree = {
         cost = 10
 
         prerequisite = { focus = TUR_state_reform }
-        available = {
-            authoritarianism > 0.3
-        }
+        available = { authoritarianism > 0.3 has_civil_war = no }
+        bypass = { has_government = authoritarianism }
         
         completion_reward = {
             start_civil_war = {

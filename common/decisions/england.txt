@@ -36,7 +36,12 @@ dc_dominate_the_mediterranean = {
             modifier = { has_war_with = TUR factor = 9 }
         }
 
-        available = { 454 = { is_owned_by = TUR } }
+        available = { 
+            any_state = {
+                or = { state = 454 state = 989 }
+                is_owned_by = TUR
+            }
+        }
 
         complete_effect = {
             news_event = { id = england_dominate_the_mediterranean.1 hours = 12 random_hours = 6 }
@@ -46,13 +51,8 @@ dc_dominate_the_mediterranean = {
                     modifier = medium_decrease
                 }
 
-                if = {
-                    limit = { not = { has_idea = sww1_idea_looming_arab_revolt has_country_flag = arab_revolt_done } }
-                    add_ideas = sww1_idea_looming_arab_revolt
-
-                    hidden_effect = {
-                        TUR = { news_event = { id = arabs_events.2 days = 70 random_days = 70 } }
-                    }
+                hidden_effect = {
+                    TUR = { news_event = { id = turkey_arab_revolt.1 days = 14 random_hours = 6 } }
                 }
             }
         }
@@ -87,11 +87,12 @@ dc_affirm_the_entente = {
         target_trigger = { FROM = { is_in_faction = no } }
 
         ai_will_do = { 
-            base = 6
+            base = 3
             modifier = {
                 or = { has_war = yes threat > 0.1 }
                 factor = 2
             }
+            modifier = { FROM = { tag = FRA } factor = 3 }
             modifier = { has_completed_focus = ENG_change_the_alliances factor = 0 }
         }
 
@@ -108,13 +109,13 @@ dc_change_the_alliances = {
         available = { not = { has_war_with = GER } }
 
         ai_will_do = { 
-            base = 3
+            base = 2
             modifier = { 
                 or = { 
                     FRA = { is_faction_leader = yes } 
                     AUS = { is_faction_leader = yes }
                 } 
-                factor = 3
+                factor = 6
             }
         }
 
@@ -129,13 +130,16 @@ dc_change_the_alliances = {
     allied_by_blood = {
         cost = 150
         fire_only_once = yes
+
         available = { 
             is_in_faction = no
             GER = { not = { has_war_with = ENG } }
         }
 
         ai_will_do = {
-            base = 9
+            base = 2
+            modifier = { and = { has_government = monarchism GER = { has_government = monarchism } } factor = 3 }
+            modifier = { date > 1916.1.1 factor = 2 }
             modifier = { FRA = { is_ally_with = AUS } factor = 2 }
         }
 
@@ -212,16 +216,13 @@ dc_announce_the_commons_act = {
 
     empower_the_unions = {
         cost = 75
-        fire_only_once = yes
-        available = { communism > 0.45 }
+        days_remove = 90
 
-        ai_will_do = { base = 9 }
+        ai_will_do = { base = 6 }
 
-        complete_effect = {
-            add_stability = 0.1
-            hidden_effect = {
-                country_event = { id = britain_commons_act.1 days = 7 random_days = 7 }
-            }
+        modifier = {
+            communism_drift = 0.05
+            stability_weekly = 0.005
         }
     }
 }

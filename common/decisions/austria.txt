@@ -1,27 +1,4 @@
 dc_contain_russian_expansion = {
-    mountain_alliance = {
-        cost = 100
-        fire_only_once = yes
-
-        targets = { AFG TUR }
-
-        target_trigger = {
-            FROM = { 
-                is_subject = no 
-                is_in_faction = no
-            }
-        }
-
-        ai_will_do = { 
-            base = 1
-            modifier = { has_idea = sww1_idea_slavic_unrest factor = 3 }
-            modifier = { or = { has_country_flag = we_rejected_germany has_war = yes } factor = 5 }
-        }
-
-        complete_effect = {
-            FROM = { country_event = { id = austria_contain_russian_expansion.1 hours = 12 random_hours = 6 } }
-        }
-    }
     declare_support_poland = {
         visible = {
             not = { controls_state = 10 }
@@ -35,56 +12,14 @@ dc_contain_russian_expansion = {
         } 
 
         ai_will_do = { 
-            base = 6
-            modifier = { has_war_with = SOV factor = 6 }
+            base = 3
+            modifier = { is_in_faction = yes factor = 2 }
+            modifier = { has_war_with = SOV factor = 3 }
         }
 
         complete_effect = {
             news_event = { id = austria_contain_russian_expansion.4 hours = 12 random_hours = 6 }
             set_country_flag = austria_likes_poland
-        }
-    }
-    establish_poland = {
-        visible = {
-            10 = { is_controlled_by = AUS }
-            POL = { exists = no }
-        }
-
-        cost = 150
-        fire_only_once = yes
-
-        ai_will_do = { base = 9 }
-        complete_effect = {
-            news_event = { id = austria_contain_russian_expansion.6 hours = 12 random_hours = 6 }
-            
-            # politics
-            release_on_controlled = POL
-            every_country = {
-                limit = { is_ally_with = AUS }
-                every_state = {
-                    limit = { is_controlled_by = PREV is_core_of = POL }
-                    transfer_state_to = POL
-                }
-            }
-
-            if = {
-                limit = { is_in_faction = no }
-                if = { 
-                    limit = { has_completed_focus = AUS_second_vienna_treaty } 
-                    create_faction = "Second Vienna Treaty"
-                }
-                else = { create_faction = "The Salzburg Coalition" }
-            }
-            faction_leader = { add_to_faction = POL }
-            hidden_effect = {
-                if = {
-                    limit = { has_war_with = SOV }
-                    POL = { 
-                        load_oob = "POL_habsburgs"
-                        add_to_war = { targeted_alliance = PREV enemy = SOV }
-                    }
-                }
-            }
         }
     }
     declare_support_ukraine = {
@@ -100,8 +35,9 @@ dc_contain_russian_expansion = {
         } 
 
         ai_will_do = { 
-            base = 6
-            modifier = { has_war_with = SOV factor = 9 }
+            base = 3
+            modifier = { is_in_faction = yes factor = 2 }
+            modifier = { has_war_with = SOV factor = 3 }
         }
 
         complete_effect = {
@@ -109,47 +45,69 @@ dc_contain_russian_expansion = {
             set_country_flag = austria_likes_ukraine
         }
     }
-    establish_ukraine = {
-        visible = {
-            202 = { is_controlled_by = AUS }
-            UKR = { exists = no }
+}
+
+dc_austria_alliances = {
+    austria_afghanistan = {
+        targets = { AFG }
+        available = { 
+            FROM = { is_in_faction = no is_subject = no }
+            has_completed_focus = AUS_contain_russian_expansion
         }
 
-        cost = 150
+        cost = 100
         fire_only_once = yes
 
-        ai_will_do = { base = 15 }
+        ai_will_do = {
+            base = 6
+            modifier = { has_war = yes factor = 2 }
+            modifier = { has_completed_focus = AUS_second_vienna_treaty factor = 0 }
+        }
+
         complete_effect = {
-            news_event = { id = austria_contain_russian_expansion.9 hours = 12 random_hours = 6 }
+            FROM = { country_event = { id = austria_afghanistan.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    austria_france = {
+        targets = { FRA }
+        available = { 
+            FROM = { is_in_faction = no is_subject = no has_government = monarchism }
+            has_completed_focus = AUS_second_vienna_treaty
+        }
 
-            # politics
-            release_on_controlled = UKR
-            every_country = {
-                limit = { is_ally_with = AUS }
-                every_state = {
-                    limit = { is_controlled_by = PREV is_core_of = UKR }
-                    transfer_state_to = UKR
-                }
-            }
+        cost = 100
+        fire_only_once = yes
 
-            if = {
-                limit = { is_in_faction = no }
-                if = { 
-                    limit = { has_completed_focus = AUS_second_vienna_treaty } 
-                    create_faction = "Second Vienna Treaty"
-                }
-                else = { create_faction = "The Salzburg Coalition" }
+        ai_will_do = {
+            base = 9
+            modifier = { has_war = yes factor = 2 }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = austria_france.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    austria_germany = {
+        targets = { GER }
+        available = {
+            is_in_faction = no
+            FROM = { 
+                OR = { is_in_faction = no is_faction_leader = yes }
             }
-            faction_leader = { add_to_faction = UKR }
-            hidden_effect = {
-                if = {
-                    limit = { has_war_with = SOV }
-                    UKR = { 
-                        load_oob = "UKR_habsburgs"
-                        add_to_war = { targeted_alliance = PREV enemy = SOV }
-                    }
-                }
-            }
+        }
+
+        cost = 75
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 6
+
+            modifier = { has_idea = sww1_idea_slavic_unrest factor = 2 }
+            modifier = { has_completed_focus = AUS_second_vienna_treaty factor = 0 }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = austria_germany.1 hours = 12 random_hours = 6 } }
         }
     }
 }
@@ -162,10 +120,7 @@ dc_second_vienna_treaty = {
         fire_only_once = yes
         days_remove = 90
 
-        available = {
-            can_declare_war_on = TUR
-        }
-
+        available = { can_declare_war_on = TUR }
         war_with_on_remove = TUR
 
         complete_effect = {
@@ -173,23 +128,11 @@ dc_second_vienna_treaty = {
             every_state = {
                 limit = {
                     or = {
-                        state = 105     # Serbia + Kosovo
-                        state = 107
-                        state = 108
-                        state = 802
-                        state = 803
+                        state = 105 state = 107 state = 108 state = 802 state = 803 # Serbia + Kosovo
+                        state = 44 state = 805 state = 934 # Albania
 
-                        state = 44      # Albania
-                        state = 805
-                        state = 934
-
-                        state = 106     # Macedonia
-                        state = 970
-
-                        state = 46
-                        state = 48
-                        state = 81
-                        state = 801
+                        state = 106 state = 970 # Macedonia
+                        state = 46 state = 48 state = 81 state = 801
                     }
                     is_owned_by = TUR
                 }
@@ -198,19 +141,12 @@ dc_second_vienna_treaty = {
         }
 
         ai_will_do = {
-            base = 3
-            modifier = {
-                and = { date > 1915.1.1 has_war = no }
-                factor = 2
-            }
+            base = 2
             modifier = { TUR = { is_in_faction = no } factor = 3 }
         }
 
         remove_effect = {
-            create_wargoal = {
-                target = TUR
-                type = liberate_wargoal
-            }
+            create_wargoal = { target = TUR type = liberate_wargoal }
         }
     }
     assert_claims_in_veneto = {
@@ -221,10 +157,7 @@ dc_second_vienna_treaty = {
 
         available = {
             any_state = {
-                or = {
-                    state = 159
-                    state = 160
-                }
+                or = { state = 159 state = 160 }
                 is_owned_by = ITA
             }
         }
@@ -232,54 +165,48 @@ dc_second_vienna_treaty = {
         ai_will_do = {
             base = 3
             modifier = { ITA = { is_in_faction = no } factor = 3 }
-            modifier = { or = { is_ally_with = FRA TTS = { exists = yes } } factor = 3 }
         }
 
         complete_effect = {
             news_event = { id = austria_second_vienna_treaty.2 hours = 12 random_hours = 6 }
-            ITA = {
-                add_opinion_modifier = {
-                    target = AUS
-                    modifier = medium_decrease
+            ITA = { add_opinion_modifier = { target = AUS modifier = medium_decrease } }
+
+            every_state = {
+                limit = {
+                    or = { state = 159 state = 160 }
                 }
+                add_claim_by = AUS
             }
-
-            159 = { add_claim_by = AUS }
-            160 = { add_claim_by = AUS }
         }
     }
-    invite_france = {
-        icon = decision_generic_political_discourse
-
+    align_low_countries = {
+        icon = generic_prepare_civil_war
+        
         cost = 100
         fire_only_once = yes
-        available = { FRA = { has_government = monarchism is_in_faction = no } }
+
+        available = {
+            any_state = {
+                or = { state = 6 state = 7 state = 35 state = 36 state = 977 }
+                is_owned_by = HOL
+            }
+        }
 
         ai_will_do = {
-            base = 6
-            modifier = { threat > 0.2 factor = 2 }
-            modifier = { has_war = yes factor = 3 }
+            base = 2
+            modifier = { HOL = { is_in_faction = no } factor = 3 }
         }
 
         complete_effect = {
-            FRA = { country_event = { id = austria_second_vienna_treaty.3 hours = 12 random_hours = 6 } }
-        }
-    }
-    invite_spain = {
-        icon = decision_generic_political_discourse
+            news_event = { id = austria_second_vienna_treaty.3 hours = 12 random_hours = 6 }
+            HOL = { add_opinion_modifier = { target = AUS modifier = medium_decrease } }
 
-        cost = 100
-        fire_only_once = yes
-        available = { SPR = { has_government = monarchism is_in_faction = no } }
-
-        ai_will_do = {
-            base = 5
-            modifier = { threat > 0.2 factor = 2 }
-            modifier = { has_war = yes factor = 3 }
-        }
-
-        complete_effect = {
-            SPR = { country_event = { id = austria_second_vienna_treaty.6 hours = 12 random_hours = 6 } }
+            every_state = {
+                limit = {
+                    or = { state = 6 state = 7 state = 35 state = 36 state = 977 }
+                }
+                add_claim_by = AUS
+            }
         }
     }
 }
@@ -294,7 +221,7 @@ dc_austro-slavism = {
         complete_effect = {
             news_event = { id = austria_austro_slavism.1 hours = 12 random_hours = 6 }
 
-            add_stability = -0.15                   # The Hungarians really hate it.
+            add_stability = -0.1                   # The Hungarians really hate it.
             every_state = {
                 limit = {
                     or = {

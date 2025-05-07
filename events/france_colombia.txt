@@ -1,0 +1,138 @@
+add_namespace = france_colombia
+
+country_event = {
+    id = france_colombia.1
+    title = "[FROM.GetName] Offers Military Assistance"
+    desc = france_colombia.1.d 
+
+    is_triggered_only = yes
+
+    option = {
+        name = "That's a good idea."
+        FROM = { 
+            news_event = { id = france_colombia.2 hours = 12 random_hours = 6 }
+            if = {
+                limit = { is_in_faction = no }
+                create_faction = "Versailles Accords"
+            }
+            faction_leader = { add_to_faction = ROOT }
+        }
+
+        hidden_effect = {
+            add_ai_strategy = {
+                type = alliance
+                id = FROM
+                value = 100
+            }
+        }
+
+        ai_chance = { 
+            base = 6
+            modifier = { has_opinion = { target = FROM value > 50 } factor = 2 }
+        }
+    }
+
+    option = {
+        name = "We are only interested in mutual defensive guarantees."
+        trigger = {
+            NOT = { 
+                OR = { has_guaranteed = FROM FROM = { has_guaranteed = ROOT } }
+            }
+        }
+
+        FROM = { country_event = { id = france_colombia.3 hours = 12 random_hours = 6 } }
+        ai_chance = { base = 1 }
+    }
+
+    option = {
+        name = "We are not interested."
+        FROM = { news_event = { id = france_colombia.6 hours = 12 random_hours = 6 } }
+
+        ai_chance = { 
+            base = 2
+            modifier = { has_opinion = { target = FROM value < 0 } factor = 3 }
+        }
+    }
+}
+
+news_event = {
+    id = france_colombia.2
+    title = "[ROOT.GetName] and [FROM.GetName] Allied"
+    desc = france_colombia.2.d 
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+country_event = {
+    id = france_colombia.3
+    title = "[FROM.GetName] Offers Mutual Guarantees Instead"
+    desc = france_colombia.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "That sounds good too."
+        FROM = { news_event = { id = france_colombia.4 hours = 12 random_hours = 6 } }
+
+        give_guarantee = FROM
+        FROM = { give_guarantee = ROOT }
+
+        ai_chance = { base = 2 }
+    }
+
+    option = {
+        name = "We are not interested."
+        FROM = { news_event = { id = france_colombia.5 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = france_colombia.4
+    title = "Mutual Defense Agreement with [FROM.GetName]"
+    desc = france_colombia.4.d 
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Good."
+        add_opinion_modifier = {
+            target = FROM
+            modifier = medium_increase
+        }
+    }
+}
+
+news_event = {
+    id = france_colombia.5
+    title = "Alliance Talks Fail"
+    desc = france_colombia.5.d 
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A waste of time."
+        add_opinion_modifier = {
+            target = FROM
+            modifier = small_decrease
+        }
+    }
+}
+
+news_event = {
+    id = france_colombia.6
+    title = "[FROM.GetName] Declines Our Offer"
+    desc = france_colombia.6.d 
+
+    is_triggered_only = yes
+
+    option = {
+        name = "That's a shame."
+    }
+}

@@ -16,6 +16,22 @@
                 }
             }
         }
+
+        improved_infantry = {
+            enable = { has_war = yes }
+            upgrade_prio = { base = 2 }
+            
+            target_template = {
+                support = {
+                    artillery = 1
+                    engineer = 1
+                }
+                regiments = {
+                    infantry = 8
+                    artillery_brigade = 2
+                }
+            }
+        }
     }
 
     ENG_infantry = {
@@ -27,6 +43,7 @@
                 support = {
                     artillery = 1
                     engineer = 1
+                    field_hospital = 1
                 }
                 regiments = {
                     infantry = 9
@@ -51,6 +68,23 @@
                 }
             }
         }
+
+        ITA_improved_infantry = {
+            enable = { has_war = yes }
+            upgrade_prio = { base = 2 }
+            
+            target_template = {
+                support = {
+                    artillery = 1
+                    engineer = 1
+                    field_hospital = 1
+                }
+                regiments = {
+                    infantry = 6
+                    artillery_brigade = 2
+                }
+            }
+        }
     }
 
     MAN_infantry = {
@@ -65,6 +99,22 @@
                 }
                 regiments = {
                     infantry = 9
+                }
+            }
+        }
+
+        MAN_improved_infantry = {
+            enable = { has_war = yes }
+            upgrade_prio = { base = 2 }
+
+            target_template = {
+                support = {
+                    artillery = 1
+                    engineer = 1
+                }
+                regiments = {
+                    infantry = 12
+                    artillery_brigade = 1
                 }
             }
         }
@@ -84,6 +134,23 @@
                 }
                 regiments = {
                     mountaineers = 6
+                }
+            }
+        }
+
+        MAN_improved_mountaineers = {
+            enable = { has_war = yes }
+            upgrade_prio = { base = 2 }
+
+            target_template = {
+                support = {
+                    artillery = 1
+                    engineer = 1
+                    field_hospital = 1
+                }
+                regiments = {
+                    mountaineers = 6
+                    artillery_brigade = 2
                 }
             }
         }

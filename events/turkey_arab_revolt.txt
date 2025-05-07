@@ -2,7 +2,7 @@ add_namespace = turkey_arab_revolt
 
 country_event = {
     id = turkey_arab_revolt.1
-    title = "[ENG.GetName] Encourages Jewish Immigration"
+    title = "[ENG.GetName] Encourages Zionist Immigration"
     desc = turkey_arab_revolt.1.d
 
     is_triggered_only = yes
@@ -58,8 +58,8 @@ country_event = {
     option = {
         name = "Reinstate order."
 
-        add_political_power = -150
-        add_popularity = { ideology = authoritarianism popularity = 0.05 }
+        add_political_power = -50
+        add_popularity = { ideology = democratic popularity = 0.05 }
 
         hidden_effect = {
             if = { has_stability < 0.5 }
@@ -116,6 +116,26 @@ news_event = {
 
     option = {
         name = "Awful."
+
+        if = {
+            limit = { tag = TUR }
+
+            hidden_effect = {
+                remove_ideas = sww1_idea_looming_arab_revolt
+                every_state = {
+                    limit = {
+                        or = { state = 455 state = 554 state = 989 }
+                        is_controlled_by = TUR
+                    }
+                    add_core_of = YEM
+                    transfer_state_to = YEM
+                }
+
+                YEM = { load_oob = "YEM_israel" }
+            }
+
+            declare_war_on = { target = YEM type = annex_everything }
+        }
     }
 }
 
@@ -154,14 +174,14 @@ news_event = {
                 remove_ideas = sww1_idea_looming_arab_revolt
                 every_state = {
                     limit = {
-                        or = { state = 293 state = 856 state = 679 }
+                        or = { state = 293 state = 856 state = 858 state = 679 }
                         is_controlled_by = TUR
                     }
                     add_core_of = YEM
                     transfer_state_to = YEM
                 }
 
-                YEM = { load_oob = "YEM_uprising" }
+                YEM = { load_oob = "YEM_arabia" }
             }
 
             declare_war_on = { target = YEM type = annex_everything }

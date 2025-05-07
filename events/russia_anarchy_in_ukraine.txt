@@ -1,0 +1,170 @@
+add_namespace = russia_anarchy_in_ukraine
+
+country_event = {
+    id = russia_anarchy_in_ukraine.1
+    title = "Ukrainian Fields Unplowed"
+    desc = russia_anarchy_in_ukraine.1.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Offer concessions to the peasants."
+
+        add_political_power = -100
+        add_popularity = { ideology = democratic popularity = 0.05 }
+
+        hidden_effect = { country_event = { id = russia_anarchy_in_ukraine.2 days = 28 random_days = 42 } }
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "Eradicate dissent by force."
+        add_stability = -0.05
+
+        hidden_effect = { country_event = { id = russia_anarchy_in_ukraine.4 days = 28 random_days = 42 } }
+        ai_chance = { base = 2 }
+    }
+}
+
+country_event = {
+    id = russia_anarchy_in_ukraine.2
+    title = "Land for Loyalty?"
+    desc = russia_anarchy_in_ukraine.2.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Get them firmly on our side."
+
+        add_political_power = -150
+        add_stability = 0.05
+
+        hidden_effect = { news_event = { id = russia_anarchy_in_ukraine.3 days = 7 random_days = 7 } }
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "This is going too far."
+        add_ideas = sww1_idea_looming_revolution
+
+        ai_chance = { base = 0 }
+    }
+}
+
+news_event = {
+    id = russia_anarchy_in_ukraine.3
+    title = "Distribution Calms the Countryside"
+    desc = russia_anarchy_in_ukraine.3.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        add_stability = 0.05
+    }
+}
+
+country_event = {
+    id = russia_anarchy_in_ukraine.4
+    title = "Demonstrations in Southern Ukraine"
+    desc = russia_anarchy_in_ukraine.4.d
+    is_triggered_only = yes
+
+    option = {
+        name = "They can do what they want."
+        add_ideas = sww1_idea_looming_revolution
+
+        hidden_effect = { country_event = { id = russia_anarchy_in_ukraine.5 days = 28 random_days = 42 } }
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "Crack down on the organizers."
+        
+        add_political_power = -150
+        add_popularity = { ideology = monarchism popularity = 0.1 }
+
+        ai_chance = { base = 0 }
+    }
+}
+
+country_event = {
+    id = russia_anarchy_in_ukraine.5
+    title = "Arson in Ekaterinoslav: Local Anarchist Suspected"
+    desc = russia_anarchy_in_ukraine.5.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Amnesty and economic reform are necessary."
+
+        add_popularity = { ideology = communism popularity = 0.05 }
+        add_political_power = -150
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "Organize a show trial."
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+
+        hidden_effect = { 
+            news_event = { id = russia_anarchy_in_ukraine.6 hours = 6 random_hours = 12 }
+            UKR = {
+                set_politics = { ruling_party = communism elections_allowed = no }
+                set_popularities = { communism = 85 democratic = 10 monarchism = 5  }
+            }
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = russia_anarchy_in_ukraine.6
+    title = "Ukraine on Fire!"
+    desc = russia_anarchy_in_ukraine.6.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Anarchy rules the steppe."
+
+        if = {
+            limit = { tag = SOV }
+
+            hidden_effect = {
+                every_state = {
+                    limit = {
+                        or = { state = 137 state = 192 state = 196 state = 197 state = 200 state = 226 state = 227}
+                        is_controlled_by = SOV
+                    }
+                    transfer_state_to = UKR
+                }
+
+                UKR = { load_oob = "UKR_makhnovshchina" }
+            }
+
+            declare_war_on = {
+                target = UKR
+                type = annex_everything
+            }
+        }
+    }
+}
+
+news_event = {
+    id = russia_anarchy_in_ukraine.7
+    title = "End of Anarchist Uprising in Ukraine"
+    desc = russia_anarchy_in_ukraine.7.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Order is restored."
+
+        if = {
+            limit = { tag = SOV }
+            add_stability = 0.1
+
+            hidden_effect = {
+                UKR = {
+                    set_popularities = { communism = 15 democratic = 30 monarchism = 55 }
+                    set_politics = { ruling_party = monarchism }
+                }
+            }
+        }
+    }
+}

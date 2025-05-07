@@ -862,7 +862,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 2 
+            base = 1
             modifier = { date > 1913.1.1 factor = 3 }
         }
 
@@ -884,7 +884,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = { base = 5 }
+        ai_will_do = { base = 6 }
 
         prerequisite = { focus = GER_international_affairs }
         completion_reward = {
@@ -906,7 +906,8 @@ focus_tree = {
 
         ai_will_do = {
             base = 1
-            modifier = { date > 1914.1.1 factor = 6 }
+            modifier = { date > 1914.1.1 factor = 2 }
+            modifier = { or = { has_war = yes AUS = { has_war_with = SOV } } factor = 3 }
         }
 
         prerequisite = { focus = GER_expansionism }
@@ -925,7 +926,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 1
-            modifier = { date > 1914.1.1 factor = 2 }
+            modifier = { date > 1915.1.1 factor = 2 }
         }
 
         prerequisite = { focus = GER_expansionism }
@@ -948,12 +949,10 @@ focus_tree = {
             modifier = { has_war = yes factor = 3 }
         }
 
-        available = {
-            has_government = monarchism
-        }
-
+        available = { has_government = monarchism }
         mutually_exclusive = { focus = GER_empower_the_reichstag }
         prerequisite = { focus = GER_political_ambitions }
+
         completion_reward = {
             add_stability = 0.05
             add_popularity = {
@@ -1052,10 +1051,10 @@ focus_tree = {
                 idea = sww1_idea_democratic_tendencies
                 years = 1
             }
-            add_popularity = {
-                ideology = democratic
-                popularity = 0.1
-            }
+            add_popularity = { ideology = democratic popularity = 0.05 }
+
+            # communist alt path
+            hidden_effect = { country_event = { id = germany_landwehrkanal.1 days = 14 random_days = 28 } }
         }
     }
     focus = {
@@ -1101,12 +1100,8 @@ focus_tree = {
         cost = 10
 
         prerequisite = { focus = GER_state_reform }
-        available = {
-            has_civil_war = no
-            not = { has_government = communism }
-            
-            communism > 0.3
-        }
+        available = { communism > 0.3 has_civil_war = no }
+        bypass = { has_government = communism }
         
         completion_reward = {
             custom_effect_tooltip = "We will fight the civil war on the communist side. If we are at war, we will have to give up all most of the enemy land we now occupy, and all our land we don't control. We will make peace, and leave our faction."

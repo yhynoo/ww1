@@ -883,6 +883,13 @@
         y = 1
         cost = 10
 
+        available = { is_in_faction = no is_subject = no }
+
+        ai_will_do = {
+            base = 1
+            modifier = { OR = { date > 1913.7.1 has_war = yes } factor = 3 }
+        }
+
         prerequisite = { focus = MAN_expansionism }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -914,6 +921,8 @@
 
         mutually_exclusive = { focus = MAN_the_beiyang_army }
         prerequisite = { focus = MAN_political_ambitions }
+        available = { has_government = democratic }
+
         completion_reward = {
             add_stability = 0.05
             add_popularity = {
@@ -1066,7 +1075,7 @@
         prerequisite = { focus = MAN_yuan_shikais_clique }
         
         bypass = { has_government = monarchism }
-        available = { monarchism > 0.5 }
+        available = { monarchism > 0.4 has_civil_war = no }
         
         completion_reward = {
             set_politics = {

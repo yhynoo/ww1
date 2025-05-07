@@ -34,20 +34,15 @@ dc_belgian_crisis = {
         available = {
             can_declare_war_on = GER
             any_state = {
-                or = {
-                    state = 6
-                    state = 34
-                    state = 977
-                    state = 980
-                }
+                or = { state = 6 state = 34 state = 977 state = 980 }
                 is_owned_by = GER
             }
         }
 
         ai_will_do = {
-            base = 6
-            modifier = { date > 1914.7.1 factor = 2 }
-            modifier = { is_in_faction = yes factor = 1.5 }
+            base = 2
+            modifier = { date > 1914.7.1 factor = 6 }
+            modifier = { is_in_faction = yes factor = 2 }
         }
 
         complete_effect = {
@@ -93,75 +88,96 @@ dc_belgian_crisis = {
     }
 }
 
-# Across the Atlantic
+# Alliances
+dc_france_alliances = {
+    france_colombia = {
+        targets = { COL }
+        available = { 
+            FROM = { is_in_faction = no is_subject = no has_war = yes }
+            has_completed_focus = FRA_across_the_atlantic
+        }
 
-dc_across_the_atlantic = {
-    intervene_in_central_america = {
         cost = 100
         fire_only_once = yes
 
         ai_will_do = {
-            base = 3
-            modifier = { has_war = yes factor = 0 }
-            modifier = { or = { 41 = { is_owned_by = FRA } is_ally_with = SPR } factor = 6 }        # if we have Spain, go for it.
-        }
-
-        available = {
-            COL = { has_war_with = MEX }
+            base = 9
+            modifier = { has_government = democratic factor = 0 }
         }
 
         complete_effect = {
-            if = { 
-                limit = { or = { has_government = monarchism has_government = authoritarianism } }
-                COL = { country_event = { id = france_across_the_atlantic.1 hours = 12 random_hours = 6 } }
-            }
-            if = { 
-                limit = { has_government = democratic }
-                MEX = { country_event = { id = france_across_the_atlantic.4 hours = 12 random_hours = 6 } }
-            }
+            FROM = { country_event = { id = france_colombia.1 hours = 12 random_hours = 6 } }
         }
     }
+    france_england = {
+        targets = { ENG }
+        available = {
+            is_in_faction = no
+            FROM = { 
+                OR = { is_in_faction = no is_faction_leader = yes }
+            }
+        }
 
+        ai_will_do = {
+            base = 6
+            modifier = { has_government = monarchism factor = 0 }
+        }
+
+        cost = 75
+        fire_only_once = yes
+
+        complete_effect = {
+            FROM = { country_event = { id = france_england.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    france_russia = {
+        targets = { SOV }
+        available = { 
+            FROM = { is_in_faction = no is_subject = no }
+        }
+
+        cost = 75
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = yes factor = 6 }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = france_russia.1 hours = 12 random_hours = 6 } }
+        }
+    }
+}
+
+# Across the Atlantic
+
+dc_across_the_atlantic = {
     challenge_us_in_carribean = {
         cost = 100
         fire_only_once = yes
 
         available = {
             any_state = {
-                or = {
-                    state = 315
-                    state = 318
-                    state = 319
-                    state = 686
-                }
+                or = { state = 315 state = 318 state = 319 state = 686 }
                 is_owned_by = USA
             }
         }
 
         ai_will_do = {
-            base = 2
-            
-            modifier = { USA = { not = { has_government = FRA } } factor = 2 }                      # we will do it if they have different government than we do
-            modifier = { or = { 41 = { is_owned_by = FRA } is_ally_with = SPR } factor = 3 }        # if we have Spain, go for it.
+            base = 3
+            modifier = { has_government = monarchism factor = 3 }
         }
 
         complete_effect = {
-            news_event = { id = france_across_the_atlantic.7 hours = 12 random_hours = 6 }
+            news_event = { id = france_across_the_atlantic.1 hours = 12 random_hours = 6 }
             USA = {
-                add_opinion_modifier = {
-                    target = FRA
-                    modifier = medium_decrease
-                }
+                add_opinion_modifier = { target = FRA modifier = medium_decrease }
             }
 
             every_state = {
                 limit = { 
-                    or = {
-                        state = 315
-                        state = 318
-                        state = 319
-                        state = 686
-                    }
+                    or = { state = 315 state = 318 state = 319 state = 686 }
                     is_owned_by = USA
                 }
                 add_claim_by = FRA
@@ -216,7 +232,7 @@ dc_let_them_eat_cake = {
         ai_will_do = {
             base = 3
             modifier = { 
-                and = { date > 1915.1.1 has_war = no not = { has_decision = liberate_southern_lands } }
+                and = { date > 1915.1.1 has_war = no }
                 factor = 3
             }
         }
@@ -234,7 +250,7 @@ dc_let_them_eat_cake = {
                 }
             }
 
-            news_event = { id = austria_second_vienna_treaty.2 hours = 12 random_hours = 6 }
+            news_event = { id = france_let_them_eat_cake.6 hours = 12 random_hours = 6 }
             give_guarantee = TTS
             ITA = {
                 declare_war_on = {

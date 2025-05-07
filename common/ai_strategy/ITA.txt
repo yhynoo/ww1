@@ -29,16 +29,22 @@ ITA_army_composition = {
 	}
 }
 
+TUR_likes_ENG = {
+	allowed = { original_tag = ITA }
+	enable = { has_completed_focus = ITA_influence_the_uk }
+	abort = { OR = { ENG = { is_ally_with = AUS } ENG = { is_ally_with = TUR } has_country_flag = stop_influencing_uk } }
+
+	ai_strategy = {
+		type = befriend
+		id = ENG
+		value = 100
+	}
+}
+
 ITA_hates_TUR = {
 	allowed = { original_tag = ITA }
 	enable = { always = yes }
 	abort_when_not_enabled = yes
-
-	ai_strategy = {
-		type = conquer
-		id = TUR
-		value = 100
-	}
 
 	ai_strategy = {
 		type = invade

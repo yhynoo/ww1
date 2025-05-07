@@ -20,6 +20,11 @@ focus_tree = {
         y = 0
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = { has_war = yes factor = 3 }
+        }
+
         completion_reward = {
             add_command_power = 25
         }
@@ -47,17 +52,14 @@ focus_tree = {
         y = 1
         cost = 10
 
+        available = { 
+            has_war_support > 0.4
+            has_idea = sww1_idea_colonial_army
+        }
+
         prerequisite = { focus = ENG_focus_army }
         completion_reward = {
-            if = {
-                limit = {
-                    OR = {
-                        has_idea = disarmed_nation
-                        has_idea = volunteer_only
-                    }
-                }
-                add_ideas = limited_conscription
-            }
+            country_event = { id = england_conscription.1 hours = 3 }
         }
     }
     focus = {
@@ -196,6 +198,8 @@ focus_tree = {
 			}
 		}
 
+        ai_will_do = { base = 2 }
+
         prerequisite = { focus = ENG_adjust_budget }
         completion_reward = {
             navy_experience = 25
@@ -243,6 +247,8 @@ focus_tree = {
 				is_controlled_by = ROOT
 			}
 		}
+
+        ai_will_do = { base = 2 }
 
         prerequisite = { focus = ENG_focus_navy }
         complete_tooltip = {
@@ -846,7 +852,7 @@ focus_tree = {
 
         ai_will_do = { 
             base = 2
-            modifier = { date > 1913.7.1 factor = 2 }
+            modifier = { date > 1913.4.1 factor = 2 }
         }
 
         prerequisite = { focus = ENG_international_affairs }
@@ -867,7 +873,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = { base = 2 }
+        ai_will_do = { base = 3 }
 
         prerequisite = { focus = ENG_international_affairs }
         completion_reward = {
@@ -883,10 +889,11 @@ focus_tree = {
         y = 1
         cost = 10
 
-        available = { is_in_faction = no }
+        available = { is_faction_leader = yes }
 
         ai_will_do = { 
             base = 3
+            modifier = { date > 1913.7.1 factor = 2 }
             modifier = { has_completed_focus = ENG_announce_the_commons_act factor = 0 }
         }
 
@@ -932,15 +939,14 @@ focus_tree = {
             base = 1
             modifier = { has_war = yes factor = 3 }
         }
+        available = { has_government = democratic }
 
         mutually_exclusive = { focus = ENG_abolish_the_house_of_lords }
         prerequisite = { focus = ENG_political_ambitions }
+
         completion_reward = {
             add_stability = 0.05
-            add_popularity = {
-                ideology = monarchism
-                popularity = 0.05
-            }
+            add_popularity = { ideology = monarchism popularity = 0.05 }
         }
     }
     focus = {
@@ -1025,6 +1031,7 @@ focus_tree = {
 
         mutually_exclusive = { focus = ENG_internal_stability }
         prerequisite = { focus = ENG_political_ambitions }
+        
         completion_reward = {
             add_timed_idea = {
                 idea = sww1_idea_communism_tendencies
@@ -1034,6 +1041,9 @@ focus_tree = {
                 ideology = communism
                 popularity = 0.1
             }
+
+            # alternative path event chain
+            hidden_effect = { country_event = { id = england_workers_uprising.1 days = 14 random_days = 28 } }
         }
     }
     focus = {
@@ -1079,9 +1089,7 @@ focus_tree = {
         cost = 10
 
         prerequisite = { focus = ENG_draft_the_constitution }
-        available = {
-            has_government = communism
-        }
+        available = { has_government = communism }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip

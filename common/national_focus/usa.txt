@@ -883,7 +883,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        available = { has_war_support > 0.3 }
+        available = { has_war_support > 0.4 }
 
         ai_will_do = { 
             base = 2
@@ -909,7 +909,9 @@ focus_tree = {
             modifier = { and = { date > 1916.1.1 ENG = { not = { has_war_with = GER } } } }
         }
 
+        available = { has_government = democratic }
         prerequisite = { focus = USA_interventionism }
+        
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }
@@ -931,6 +933,8 @@ focus_tree = {
 
         mutually_exclusive = { focus = USA_not_our_war }
         prerequisite = { focus = USA_political_ambitions }
+        available = { has_government = democratic }
+
         completion_reward = {
             add_war_support = 0.05
             news_event = { id = generic_focus_tree_event.1 hours = 12 random_hours = 6 }
@@ -1024,6 +1028,9 @@ focus_tree = {
                 years = 1
             }
             add_war_support = -0.05
+
+            # alternative path event chain
+            hidden_effect = { country_event = { id = usa_embers_of_the_past.1 days = 14 random_days = 28 } }
         }
     }
     focus = {
@@ -1067,12 +1074,8 @@ focus_tree = {
         cost = 10
 
         prerequisite = { focus = USA_state_reform }
-        available = {
-            has_civil_war = no
-            not = { has_government = authoritarianism }
-
-            authoritarianism > 0.3
-        }
+        available = { authoritarianism > 0.3 has_civil_war = no }
+        bypass = { has_government = authoritarianism }
         
         completion_reward = {
             start_civil_war = {
@@ -1082,10 +1085,7 @@ focus_tree = {
             }
 
             hidden_effect = {
-                add_popularity = {
-                    ideology = authoritarianism
-                    popularity = 0.25
-                }
+                add_popularity = { ideology = authoritarianism popularity = 0.25 }
             }
         }
     }

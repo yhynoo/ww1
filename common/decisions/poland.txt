@@ -45,6 +45,55 @@ dc_kresy = {
     }
 }
 
+dc_poland_alliances = {
+    poland_france = {
+        targets = { FRA }
+        available = { 
+            FROM = { is_in_faction = no is_subject = no }
+        }
+
+        cost = 75
+        fire_only_once = yes
+
+        complete_effect = {
+            FROM = { country_event = { id = poland_france.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    poland_ukraine = {
+        targets = { UKR }
+        available = { 
+            FROM = { is_in_faction = no is_subject = no }
+            has_completed_focus = POL_intermarium
+        }
+
+        cost = 100
+        fire_only_once = yes
+
+        complete_effect = {
+            FROM = { country_event = { id = poland_ukraine.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    poland_usa = {
+        targets = { USA }
+        available = {
+            is_in_faction = no
+            has_government = democratic
+            
+            FROM = { 
+                OR = { is_in_faction = no is_faction_leader = yes }
+                has_completed_focus = USA_wilsons_fourteen_points
+            }
+        }
+
+        cost = 100
+        fire_only_once = yes
+
+        complete_effect = {
+            FROM = { country_event = { id = poland_usa.1 hours = 12 random_hours = 6 } }
+        }
+    }
+}
+
 dc_intermarium = {
     wedding_to_the_sea = {
         cost = 150
@@ -103,25 +152,6 @@ dc_intermarium = {
                 level = 1
                 instant_build = yes
             }
-        }
-    }
-    invite_to_intermarium = {
-        cost = 100
-        fire_only_once = yes
-
-        targets = { UBD UKR }
-        target_trigger = {
-            not = { has_war_with = FROM }
-            FROM = { is_subject = no }
-        }
-
-        ai_will_do = {
-            base = 6
-            modifier = { has_war = yes factor = 3 }
-        }
-
-        complete_effect = {
-            FROM = { country_event = { id = poland_intermarium.7 hours = 12 random_hours = 6 } }
         }
     }
 }

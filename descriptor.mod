@@ -8,6 +8,7 @@ supported_version="1.15.4"
 
 replace_path="common/ai_focuses"
 replace_path="common/ai_strategy"
+replace_path="common/ai_strategy_plans"
 replace_path="common/ai_templates"
 
 replace_path="common/bookmarks"

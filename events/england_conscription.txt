@@ -1,0 +1,99 @@
+add_namespace = england_conscription
+
+country_event = {
+    id = england_conscription.1
+    title = "Churchill: Army Too Small?"
+    desc = england_conscription.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Encourage volunteer 'pals battalions.'"
+        hidden_effect = { news_event = { id = england_conscription.2 days = 7 } }
+
+        remove_ideas = sww1_idea_colonial_army
+        add_political_power = -75
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Extend conscription overseas."
+        add_war_support = 0.05
+
+        hidden_effect = { news_event = { id = england_conscription.3 days = 14 } }
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = england_conscription.2
+    title = "Patriotic Euphoria in the Countryside"
+    desc = england_conscription.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Wonderful."
+        add_timed_idea = {
+            idea = sww1_idea_patriotic_euphoria
+            months = 6
+        }
+    }
+}
+
+news_event = {
+    id = england_conscription.3
+    title = "Mixed Outcomes of the Overseas Draft"
+    desc = england_conscription.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is worrying."
+        add_timed_idea = {
+            idea = sww1_idea_limited_overseas_draft
+            years = 1
+        }
+
+        hidden_effect = { country_event = { id = england_conscription.4 days = 28 random_days = 42 } }
+    }
+}
+
+country_event = {
+    id = england_conscription.4
+    title = "Autonomy for Loyalty?"
+    desc = england_conscription.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Agree to their demands."
+        add_political_power = -100
+
+        remove_ideas = sww1_idea_limited_overseas_draft
+        add_ideas = sww1_idea_extensive_overseas_draft
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "Extend conscription in Britain instead."
+        add_war_support = -0.2
+        remove_ideas = sww1_idea_colonial_army
+
+        hidden_effect = { news_event = { id = england_conscription.5 hours = 6 random_hours = 12 } }
+        ai_chance = { base = 2 }
+    }
+}
+
+news_event = {
+    id = england_conscription.5
+    title = "Admiralty Issues New Conscription Laws"
+    desc = england_conscription.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "God Save the King... I guess."
+        add_popularity = { ideology = communism popularity = 0.05 }
+    }
+}

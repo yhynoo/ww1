@@ -5,7 +5,7 @@ on_actions = {
             # After Makhnovshchina falls, reset Ukraine to monarchism
             if = {
                 limit = { FROM = { tag = UKR } }
-                SOV = { news_event = { id = ukraine_makhnovshchina.5 hours = 12 random_hours = 6 } }
+                SOV = { news_event = { id = russia_anarchy_in_ukraine.7 hours = 12 random_hours = 6 } }
             }
         }
     }
@@ -54,7 +54,6 @@ on_actions = {
             if = {
                 limit = {
                     tag = GER
-                    has_war_with = SOV
                     FROM.FROM = { state = 808 }
                 }
                 country_event = baltic_german_conquest.1
@@ -82,10 +81,36 @@ on_actions = {
             if = {
                 limit = {
                     tag = TUR
-                    has_country_flag = liberate_caucasus 
                     FROM.FROM = { state = 229 }
                 }
                 country_event = caucasus_liberation.1
+            }
+
+            # Germany loses Alsace-Lorraine
+            if = {
+                limit = {
+                    FROM = GER
+                    FROM.FROM = { state = 28 }
+                }
+                if = {
+                    limit = { has_idea = sww1_idea_unrest_in_alsace_lorraine }
+                    remove_ideas = sww1_idea_unrest_in_alsace_lorraine
+                }
+            }
+        }
+    }
+
+    on_declare_war = {
+        effect = {
+            if = {
+                limit = {
+                    28 = { is_demilitarized_zone = yes }
+                    or = {
+                        and = { tag = GER FROM = { tag = FRA } }
+                        and = { tag = FRA FROM = { tag = GER } }
+                    }
+                }
+                28 = { set_demilitarized_zone = no }
             }
         }
     }

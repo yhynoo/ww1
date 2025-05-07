@@ -44,6 +44,19 @@ AUS_stay_at_home = {
 	}
 }
 
+AUS_likes_GER = {
+	allowed = { original_tag = AUS }
+	enable = { not = { has_completed_focus = AUS_second_vienna_treaty } }
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = alliance
+		id = GER
+		value = 200
+	}
+}
+
 AUS_helps_GER = {
 	allowed = { original_tag = AUS }
 

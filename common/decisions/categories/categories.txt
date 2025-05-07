@@ -29,16 +29,6 @@ dc_economic_decisions = {
 
 dc_seek_alliances = {
     visible = {
-        is_in_faction = no
-        or = {
-            has_completed_focus = AUS_seek_alliances
-            has_completed_focus = HOL_seek_alliances
-            has_completed_focus = ITA_seek_alliances
-            has_completed_focus = JAP_seek_alliances
-            has_completed_focus = POL_seek_alliances
-            has_completed_focus = SOV_established_guarantees
-            has_completed_focus = TUR_seek_alliances
-        }
     }
 }
 
@@ -46,6 +36,14 @@ dc_seek_alliances = {
 dc_contain_russian_expansion = {
     visible = {
         has_completed_focus = AUS_contain_russian_expansion
+    }
+}
+
+dc_austria_alliances = {
+    visible = {
+        OR = { is_in_faction = no is_faction_leader = yes }
+        is_subject = no
+        has_completed_focus = AUS_seek_alliances
     }
 }
 
@@ -83,7 +81,7 @@ dc_affirm_the_entente = {
 
 dc_change_the_alliances = {
     visible = {
-        has_completed_focus = ENG_expand_the_empire
+        has_completed_focus = ENG_change_the_alliances
     }
 }
 
@@ -110,6 +108,14 @@ dc_end_imperialism = {
 dc_belgian_crisis = {
     visible = {
         has_completed_focus = FRA_belgian_crisis 
+    }
+}
+
+dc_france_alliances = {
+    visible = {
+        OR = { is_in_faction = no is_faction_leader = yes }
+        is_subject = no
+        has_completed_focus = FRA_seek_alliances
     }
 }
 
@@ -161,7 +167,15 @@ dc_aftermath_in_flanders = {
     visible = {
         has_completed_focus = HOL_the_aftermath_in_flanders
         has_idea = sww1_idea_the_aftermath_in_flanders
-        not = { has_war_with = FRA }
+        NOT = { has_war_with = FRA }
+    }
+}
+
+dc_holland_alliances = {
+    visible = {
+        OR = { is_in_faction = no is_faction_leader = yes }
+        is_subject = no
+        has_completed_focus = HOL_seek_alliances
     }
 }
 
@@ -190,6 +204,14 @@ dc_influence_the_uk = {
     }
 }
 
+dc_italy_alliances = {
+    visible = {
+        OR = { is_in_faction = no is_faction_leader = yes }
+        is_subject = no
+        has_completed_focus = ITA_seek_alliances
+    }
+}
+
 dc_mediterranean_expansion = {
     visible = {
         has_completed_focus = ITA_mediterranean_expansion
@@ -212,6 +234,14 @@ dc_deal_with_the_unions = {
 dc_hong_kong_appeal = {
     visible = {
         has_completed_focus = JAP_hong_kong_appeal
+    }
+}
+
+dc_japan_alliances = {
+    visible = {
+        OR = { is_in_faction = no is_faction_leader = yes }
+        is_subject = no
+        has_completed_focus = JAP_seek_alliances
     }
 }
 
@@ -244,6 +274,14 @@ dc_the_opium_crisis = {
     }
 }
 
+dc_manchukuo_alliances = {
+    visible = {
+        OR = { is_in_faction = no is_faction_leader = yes }
+        is_subject = no
+        has_completed_focus = MAN_seek_alliances
+    }
+}
+
 dc_another_great_campaign = {
     visible = {
         has_completed_focus = MAN_another_great_campaign
@@ -266,6 +304,14 @@ dc_the_boxer_legacy = {
 dc_kresy = {
     visible = {
         has_completed_focus = POL_kresy
+    }
+}
+
+dc_poland_alliances = {
+    visible = {
+        OR = { is_in_faction = no is_faction_leader = yes }
+        is_subject = no 
+        has_completed_focus = POL_seek_alliances
     }
 }
 
@@ -294,6 +340,14 @@ dc_serbian_question = {
     }
 }
 
+dc_russia_alliances = {
+    visible = {
+        OR = { is_in_faction = no is_faction_leader = yes }
+        is_subject = no 
+        has_completed_focus = SOV_seek_alliances
+    }
+}
+
 dc_far_east = {
     visible = {
         has_completed_focus = SOV_far_east_affairs
@@ -319,15 +373,24 @@ dc_sarajevo_declaration = {
     }
 }
 
-dc_jihad = {
+dc_turkey_alliances = {
     visible = {
-        has_completed_focus = TUR_jihad
+        OR = { is_in_faction = no is_faction_leader = yes }
+        is_subject = no 
+        has_completed_focus = TUR_seek_alliances
     }
 }
 
 dc_alafranga = {
     visible = {
         has_completed_focus = TUR_alafranga
+        FRA = { exists = yes not = { has_war_with = TUR } }
+    }
+}
+
+dc_jihad = {
+    visible = {
+        has_completed_focus = TUR_jihad
     }
 }
 

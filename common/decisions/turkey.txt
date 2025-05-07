@@ -10,13 +10,7 @@ dc_sarajevo_declaration = {
             }
         }
 
-        ai_will_do = {
-            base = 9
-            modifier = {
-                has_war_with = SOV      # If we're somehow already at war with Russia, we don't need more problems.
-                factor = 0
-            }
-        }
+        ai_will_do = { base = 12 }
 
         complete_effect = {
             release = SER
@@ -36,8 +30,10 @@ dc_sarajevo_declaration = {
                 104 = { remove_claim_by = TUR }
                 804 = { remove_claim_by = TUR }
 
+                104 = { add_claim_by = SER }
                 802 = { add_claim_by = SER }
                 803 = { add_claim_by = SER }
+                804 = { add_claim_by = SER }
 
                 SER = { load_oob = "SER_1912" }
             }
@@ -60,6 +56,7 @@ dc_sarajevo_declaration = {
 
         ai_will_do = {
             base = 6
+            modifier = { is_in_faction = yes factor = 2 }
             modifier = { and = { date > 1916.1.1 has_war = no } factor = 3 }
         }
 
@@ -71,21 +68,71 @@ dc_sarajevo_declaration = {
             }
         }
     }
-    seek_austrian_support = {
-        cost = 100
-        fire_only_once = yes
+}
 
+dc_turkey_alliances = {
+    turkey_england = {
+        targets = { ENG }
         available = {
-            AUS = { not = { has_war_with = TUR } }
+            is_in_faction = no
+            has_completed_focus = TUR_sarajevo_declaration
+
+            FROM = { 
+                OR = { is_in_faction = no is_faction_leader = yes }
+            }
         }
 
         ai_will_do = {
-            base = 6
-            modifier = { AUS = { has_idea = sww1_idea_slavic_unrest } factor = 3 }
+            base = 2
+            modifier = { has_country_flag = we_do_our_thing factor = 12 }
+            modifier = { OR = { ENG = { is_ally_with = ITA } ENG = { is_ally_with = SOV } ENG = { has_opinion = { target = TUR value < 25 } } } factor = 0 }
+        }
+
+        cost = 100
+        fire_only_once = yes
+
+        complete_effect = {
+            FROM = { country_event = { id = turkey_england.1 hours = 12 random_hours = 6 } }
+            hidden_effect = { set_country_flag = stop_influencing_uk }
+        }
+    }
+    turkey_france = {
+        targets = { FRA }
+        available = {
+            is_in_faction = no
+            has_completed_focus = TUR_alafranga
+            
+            FROM = { 
+                OR = { is_in_faction = no is_faction_leader = yes }
+            }
+        }
+
+        cost = 100
+        fire_only_once = yes
+
+        complete_effect = {
+            FROM = { country_event = { id = turkey_france.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    turkey_germany = {
+        targets = { GER }
+        available = {
+            is_in_faction = no
+            FROM = { 
+                OR = { is_in_faction = no is_faction_leader = yes }
+            }
+        }
+
+        cost = 75
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 9
+            modifier = { has_country_flag = we_do_our_thing factor = 0 }
         }
 
         complete_effect = {
-            AUS = { country_event = { id = turkey_sarajevo_declaration.3 hours = 12 random_hours = 6 } }
+            FROM = { country_event = { id = turkey_germany.1 hours = 12 random_hours = 6 } }
         }
     }
 }
@@ -95,43 +142,26 @@ dc_alafranga = {
         cost = 100
         fire_only_once = yes
 
-        available = {
-            FRA = {
-                exists = yes
-                not = { has_war_with = TUR }
-            }
-        }
-
-        ai_will_do = { base = 12 }
+        ai_will_do = { base = 9 }
 
         complete_effect = {
             797 = { add_building_construction = { type = arms_factory level = 2 instant_build = yes } }
+        }
+    }
+    invite_aviation_experts = {
+        cost = 75
+        fire_only_once = yes 
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            air_experience = 50
             add_tech_bonus = {
 				name = fighter_bonus
 				bonus = 1.0
-				uses = 1
+				uses = 2
 				category = air_equipment
 			}
-        }
-    }
-    seek_french_guarantees = {
-        cost = 100
-        fire_only_once = yes
-
-        ai_will_do = {
-            base = 6
-            modifier = { is_in_faction = no factor = 3 }
-        }
-
-        available = {
-            FRA = {
-                exists = yes
-                not = { has_war_with = TUR }
-            }
-        }
-
-        complete_effect = {
-            FRA = { country_event = { id = turkey_alignment_with_france.1 hours = 12 random_hours = 6 } }
         }
     }
 }
@@ -208,14 +238,17 @@ dc_jihad = {
 
 dc_tackle_the_debt = {
     offer_egypt_to_uk = {
-        cost = 150
-        fire_only_once = yes
-
-        available = {
+        visible = {
             or = {
                 has_idea = sww1_idea_amassed_foreign_debt
                 has_idea = sww1_idea_significant_foreign_debt
             }
+        }
+
+        cost = 150
+        fire_only_once = yes
+
+        available = {
             ENG = {
                 exists = yes
                 not = { has_war_with = TUR }
@@ -233,10 +266,7 @@ dc_tackle_the_debt = {
 
         ai_will_do = {
             base = 6
-            modifier = {
-                has_idea = sww1_idea_amassed_foreign_debt
-                factor = 1.5
-            }
+            modifier = { has_idea = sww1_idea_amassed_foreign_debt factor = 3 }
         }
 
         complete_effect = {
@@ -248,7 +278,10 @@ dc_tackle_the_debt = {
         cost = 100
         fire_only_once = yes
 
-        ai_will_do = { base = 9 }
+        ai_will_do = { 
+            base = 3
+            modifier = { or = { has_idea = sww1_idea_amassed_foreign_debt has_idea = sww1_idea_significant_foreign_debt } factor = 5 }
+        }
 
         complete_effect = {
             if = {
@@ -280,7 +313,10 @@ dc_tackle_the_debt = {
             }
         }
 
-        ai_will_do = { base = 6 }
+        ai_will_do = { 
+            base = 3
+            modifier = { or = { has_idea = sww1_idea_amassed_foreign_debt has_idea = sww1_idea_significant_foreign_debt } factor = 3 }
+        }
 
         complete_effect = {
             if = {

@@ -25,145 +25,22 @@ news_event = {
     }
 }
 
-## Alliance with France
-
-country_event = {
+news_event = {
     id = austria_second_vienna_treaty.3
-    title = "Austria-Hungary Offers an Alliance"
+    title = "Vienna Interested in Aligning the Low Countries?"
     desc = austria_second_vienna_treaty.3.d
 
     is_triggered_only = yes
+    major = yes
 
     option = {
-        name = "Accept the alliance offer."
-        AUS = { 
-            news_event = { id = austria_second_vienna_treaty.4 hours = 12 random_hours = 6 }
-
-            if = {
-                limit = { is_in_faction = no }
-                create_faction = "Second Vienna Treaty"
-            }
-            add_to_faction = FRA
-        }
-
-        ai_chance = { base = 6 }
-
-        hidden_effect = {
-            news_event = { id = austria_second_vienna_treaty.9 days = 14 random_days = 7 }
-        }
-    }
-
-    option = {
-        name = "Reject the alliance offer."
-        AUS = { news_event = { id = austria_second_vienna_treaty.5 } hours = 12 random_hours = 6 }
-
-        ai_chance = { base = 1 }
-    }
-}
-
-news_event = {
-    id = austria_second_vienna_treaty.4
-    title = "[FROM.GetName] Joins the Second Vienna Treaty!"
-    desc = austria_second_vienna_treaty.4.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "The balance of power shifts in Europe."
-    }
-}
-
-news_event = {
-    id = austria_second_vienna_treaty.5
-    title = "[FROM.GetName] Rejects the Our Offer"
-    desc = austria_second_vienna_treaty.5.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "A missed opportunity for closer ties with France."
-    }
-}
-
-## Alliance with Spain
-
-country_event = {
-    id = austria_second_vienna_treaty.6
-    title = "Austria-Hungary Offers an Alliance"
-    desc = austria_second_vienna_treaty.6.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Accept the alliance offer."
-        AUS = { 
-            news_event = { id = austria_second_vienna_treaty.7  hours = 12 random_hours = 6 }
-            if = {
-                limit = { is_in_faction = no }
-                create_faction = "Second Vienna Treaty"
-            }
-            add_to_faction = SPR
-        }
-
-        ai_chance = { base = 3 }
-    }
-
-    option = {
-        name = "Reject the alliance offer."
-        AUS = { news_event = { id = austria_second_vienna_treaty.8 } hours = 12 random_hours = 6 }
-
-        ai_chance = { base = 1 }
-    }
-}
-
-news_event = {
-    id = austria_second_vienna_treaty.7
-    title = "[SPR.GetName] Joins the Second Vienna Treaty!"
-    desc = austria_second_vienna_treaty.7.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "The balance of power shifts in Europe."
-    }
-}
-
-news_event = {
-    id = austria_second_vienna_treaty.8
-    title = "[SPR.GetName] Rejects the Our Offer"
-    desc = austria_second_vienna_treaty.8.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "A missed opportunity."
-    }
-}
-
-
-# Netherlands
-
-news_event = {
-    id = austria_second_vienna_treaty.9
-    title = "Austrian Interest in Low Countries?"
-    desc = austria_second_vienna_treaty.9.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Interesting."
+        name = "Concerning."
 
         if = {
             limit = { tag = AUS }
             every_state = {
                 limit = {
-                    or = {
-                        state = 6
-                        state = 7
-                        state = 35
-                        state = 36
-                        state = 977
-                    }
+                    or = { state = 6 state = 7 state = 35 state = 36 state = 977 }
                 }
                 add_claim_by = AUS
             }

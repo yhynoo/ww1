@@ -962,7 +962,7 @@
         }
     }
     focus = {
-        id = SOV_established_guarantees
+        id = SOV_seek_alliances
         icon = GFX_focus_generic_seek_alliances
 
         relative_position_id = SOV_expansionism
@@ -970,11 +970,11 @@
         y = 1
         cost = 10
 
-        available = { is_in_faction = no }
+        available = { is_in_faction = no is_subject = no }
 
         ai_will_do = {
-            base = 2
-            modifier = { date > 1913.1.1 factor = 3 }
+            base = 1
+            modifier = { OR = { date > 1913.7.1 has_war = yes } factor = 6 }
         }
 
         prerequisite = { focus = SOV_expansionism }
@@ -1023,31 +1023,16 @@
 
         ai_will_do = {
             base = 1
-            modifier = {
-                AND = {
-                    date > 1915.1.1
-                    has_war = no
-                }
-                factor = 5
-            }
-            modifier = {
-                is_in_faction = yes
-                factor = 2.5
-            }
+            modifier = { is_in_faction = yes factor = 3 }
         }
 
-        available = {
-            has_government = monarchism
-        }
+        available = { has_government = monarchism }
 
         mutually_exclusive = { focus = SOV_duma }
         prerequisite = { focus = SOV_political_ambitions }
         completion_reward = {
             add_stability = 0.05
-            add_popularity = {
-                ideology = monarchism
-                popularity = 0.05
-            }
+            add_popularity = { ideology = monarchism popularity = 0.05 }
         }
     }
     focus = {
@@ -1147,10 +1132,7 @@
         ai_will_do = {
             base = 1
             modifier = {
-                AND = {
-                    date > 1913.7.1
-                    is_in_faction = no
-                }
+                AND = { date > 1913.7.1 is_in_faction = no }
                 factor = 3
             }
         }
@@ -1162,10 +1144,10 @@
                 idea = sww1_idea_democratic_tendencies
                 years = 1
             }
-            add_popularity = {
-                ideology = democratic
-                popularity = 0.1
-            }
+            add_popularity = { ideology = democratic popularity = 0.1 }
+
+            # alternative path event chain
+            hidden_effect = { country_event = { id = russia_anarchy_in_ukraine.1 days = 14 random_days = 28 } }
         }
     }
     focus = {
@@ -1217,24 +1199,14 @@
         cost = 10
 
         ai_will_do = {
-            base = 3
-            modifier = {
-                communism > 30
-                factor = 5
-            }
-            modifier = {
-                surrender_progress > 0.3
-                factor = 2.5
-            }
+            base = 2
+            modifier = { communism > 30 factor = 2 }
+            modifier = { surrender_progress > 0.3 factor = 3 }
         }
 
         prerequisite = { focus = SOV_state_reform }
-        available = {
-            has_civil_war = no
-            not = { has_government = communism }
-            
-            communism > 0.3
-        }
+        available = { communism > 0.3 has_civil_war = no }
+        bypass = { has_government = communism }
         
         completion_reward = {
             custom_effect_tooltip = "We will fight the civil war on the communist side. If we are at war, we will have to give up all enemy land we occupy, and all our land we don't control. We will make peace, and leave our faction."

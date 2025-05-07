@@ -1,0 +1,138 @@
+add_namespace = france_ancien_regime
+
+country_event = {
+    id = france_ancien_regime.1
+    title = "White Flag over Paris — Again?"
+    desc = france_ancien_regime.1.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Invite the Orléanists to the government."
+
+        add_stability = -0.05
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+
+        hidden_effect = { country_event = { id = france_ancien_regime.2 days = 28 random_days = 42 } }
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Affirm the democratic system."
+        add_stability = 0.05
+
+        hidden_effect = { country_event = { id = france_ancien_regime.4 days = 28 random_days = 42 } }
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = france_ancien_regime.2
+    title = "Humanists in the Academy"
+    desc = france_ancien_regime.2.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Silence the opposing thinkers."
+
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+        add_political_power = -100
+
+        hidden_effect = { news_event = { id = france_ancien_regime.3 days = 7 random_days = 7 } }
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "Accept the critical voices."
+        
+        add_popularity = { ideology = communism popularity = 0.1 }
+        add_stability = -0.05
+
+        ai_chance = { base = 0 }
+    }
+}
+
+news_event = {
+    id = france_ancien_regime.3
+    title = "The Orléans Dossier"
+    desc = france_ancien_regime.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A system within a system."
+
+        add_popularity = { ideology = monarchism popularity = 0.15 }
+        add_stability = 0.1
+
+        set_politics = { ruling_party = monarchism elections_allowed = no }
+    }
+}
+
+country_event = {
+    id = france_ancien_regime.4
+    title = "Anti-Clerical Agitation Across France"
+    desc = france_ancien_regime.4.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Challenge the slanderers."
+
+        add_political_power = -100
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+
+        hidden_effect = { country_event = { id = france_ancien_regime.5 days = 28 random_days = 42 } }
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "The church is indeed not innocent."
+
+        add_popularity = { ideology = communism popularity = 0.05 }
+        if = {
+            limit = { has_idea = sww1_idea_monarchism_tendencies }
+            remove_ideas = sww1_idea_monarchism_tendencies
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = france_ancien_regime.5
+    title = "Liberal Leaders Call for Action"
+    desc = france_ancien_regime.5.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Diffuse the tensions."
+        add_popularity = { ideology = democratic popularity = 0.05 }
+        add_political_power = -150
+
+        ai_chance = { base = 0 }
+    }
+    option = {
+        name = "Establish an absolutist government."
+
+        start_civil_war = { 
+            ruling_party = monarchism
+            ideology = ROOT
+            size = 0.5
+        }
+
+        hidden_effect = { 
+            news_event = { id = france_ancien_regime.6 hours = 6 random_hours = 12 }
+            add_popularity = { ideology = monarchism popularity = 0.2 }
+        }
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = france_ancien_regime.6
+    title = "End of the French Republic?"
+    desc = france_ancien_regime.6.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Will they ever make up their minds?"
+    }
+}
