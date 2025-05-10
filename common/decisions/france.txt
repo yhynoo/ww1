@@ -167,13 +167,12 @@ dc_across_the_atlantic = {
         ai_will_do = {
             base = 3
             modifier = { has_government = monarchism factor = 3 }
+            modifier = { has_war = yes factor = 0 }
         }
 
         complete_effect = {
             news_event = { id = france_across_the_atlantic.1 hours = 12 random_hours = 6 }
-            USA = {
-                add_opinion_modifier = { target = FRA modifier = medium_decrease }
-            }
+            USA = { add_opinion_modifier = { target = FRA modifier = medium_decrease } }
 
             every_state = {
                 limit = { 
@@ -219,8 +218,6 @@ dc_let_them_eat_cake = {
         }
     }
     sponsor_bourbons_in_sicily = {
-        icon = generic_prepare_civil_war
-
         cost = 125
         fire_only_once = yes
         days_remove = 120

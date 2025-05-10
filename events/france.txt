@@ -19,7 +19,10 @@ country_event = {
 
         remove_ideas = sww1_idea_the_aftermath_in_flanders
 
-        ai_chance = { base = 2 }
+        ai_chance = { 
+            base = 2
+            modifier = { has_completed_focus = HOL_integrate_the_belgians factor = 0 }
+        }
     }
 
     option = {
@@ -38,7 +41,8 @@ country_event = {
                 name = "The Dutch Won't Leave Belgium"
             }
 
-            HOL = { set_country_flag = we_stay_in_flanders }
+            set_country_flag = we_stay_in_flanders
+            country_event = { id = holland_aftermath_in_flanders.4 days = 7 random_hours = 6 }
         }
 
         ai_chance = { 

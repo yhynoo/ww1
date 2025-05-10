@@ -1,0 +1,130 @@
+add_namespace = italy_adriatic_demands
+
+country_event = {
+    id = italy_adriatic_demands.1
+    title = "Trieste Students Appeal to the King"
+    desc = italy_adriatic_demands.1.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Meet with the student representatives."
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+
+        hidden_effect = { country_event = { id = italy_adriatic_demands.2 days = 28 random_days = 42 } }
+        ai_chance = { base = 3 }
+    }
+    option = {
+        name = "Downplay the matter."
+        add_popularity = { ideology = authoritarianism popularity = 0.05 }
+        add_political_power = -50
+
+        hidden_effect = { country_event = { id = italy_adriatic_demands.4 days = 28 random_days = 42 } }
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = italy_adriatic_demands.2
+    title = "A Letter from Zara"
+    desc = italy_adriatic_demands.2.d
+    is_triggered_only = yes
+
+    option = {
+        name = "Address the Dalmatian Italians."
+        hidden_effect = { news_event = { id = italy_adriatic_demands.3 days = 7 random_days = 7 } }
+
+        AUS = { add_opinion_modifier = { target = AUS modifier = medium_decrease } }
+        every_state = {
+            limit = { or = { state = 103 state = 163 state = 736 state = 852 } }
+            add_claim_by = ITA
+        }
+    
+        ai_chance = { base = 6 }
+    }
+    option = {
+        name = "Send our regards."
+        add_political_power = -150
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = italy_adriatic_demands.3
+    title = "Italy Asserts Claims to Dalmatia"
+    desc = italy_adriatic_demands.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "This won’t end well."
+    }
+}
+
+country_event = {
+    id = italy_adriatic_demands.4
+    title = "D’Annunzio Arrested in Spalato"
+    desc = italy_adriatic_demands.4.d
+
+    is_triggered_only = yes
+    trigger = { not = { has_government = authoritarianism } }
+
+    option = {
+        name = "Try to have him released."
+        AUS = { add_opinion_modifier = { target = AUS modifier = medium_decrease } }
+
+        hidden_effect = { country_event = { id = italy_adriatic_demands.5 days = 28 random_days = 42 } }
+        ai_chance = { base = 3 }
+    }
+    option = {
+        name = "This is none of our business."
+        add_political_power = -100
+
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = italy_adriatic_demands.5
+    title = "Anti-Austrian Demonstrations in Venice"
+    desc = italy_adriatic_demands.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Disperse the crowds."
+        add_stability = -0.1
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "Address the Habsburg threat."
+
+        every_state = {
+            limit = { or = { state = 103 state = 163 state = 736 state = 852 } }
+            add_claim_by = ITA
+        }
+
+        create_wargoal = {
+            target = AUS
+            type = take_claimed_state
+        }
+
+        hidden_effect = { news_event = { id = italy_adriatic_demands.6 hours = 6 random_hours = 12 } }
+        ai_chance = { base = 3 }
+    }
+}
+
+news_event = {
+    id = italy_adriatic_demands.6
+    title = "Italy Threatens War Against Austria!"
+    desc = italy_adriatic_demands.6.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Another war in Italy?"
+    }
+}

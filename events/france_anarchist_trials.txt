@@ -1,0 +1,81 @@
+add_namespace = france_anarchist_trials
+
+country_event = {
+    id = france_anarchist_trials.1
+    title = "Anarchists on Trial in Paris"
+    desc = france_anarchist_trials.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Hold open hearings."
+        add_political_power = 50
+
+        hidden_effect = { news_event = { id = france_anarchist_trials.2 days = 28 random_days = 42 } }
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Detain the suspects under special emergency laws."
+        add_stability = 0.05
+
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = france_anarchist_trials.2
+    title = "Spectacle in Palais de Justice"
+    desc = france_anarchist_trials.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Invite observers from abroad."
+        add_political_power = 100
+
+        hidden_effect = {
+            if = {
+            limit = { communism < 0.15 }
+                news_event = { id = france_anarchist_trials.3 hours = 6 random_hours = 12 }
+            }
+            else = {
+                news_event = { id = france_anarchist_trials.4 hours = 6 random_hours = 12 }
+            }
+        }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Keep coverage limited to avoid unrest."
+        add_stability = 0.05
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = france_anarchist_trials.3
+    title = "Anarchism Condemned in Public Trials"
+    desc = france_anarchist_trials.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They deserve their fate."
+        add_popularity = { ideology = democratic popularity = 0.05 }
+    }
+}
+
+news_event = {
+    id = france_anarchist_trials.4
+    title = "France Wrestles With Itself"
+    desc = france_anarchist_trials.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "The whole world watches."
+        add_stability = -0.1
+        add_popularity = { ideology = communism popularity = 0.05 }
+    }
+}

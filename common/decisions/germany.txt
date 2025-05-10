@@ -92,18 +92,6 @@ dc_place_in_the_sun = {
             FROM = { country_event = { id = germany_place_in_the_sun.9 hours = 12 random_hours = 6 } }
         }
     }
-
-    askari_troops = {
-        cost = 75
-        fire_only_once = yes
-
-        ai_will_do = { base = 6 }
-
-        complete_effect = {
-            # no event.
-            add_ideas = sww1_idea_askari_troops
-        }
-    }
 }
 
 dc_look_to_the_east = {
@@ -228,38 +216,36 @@ dc_heil_dir_im_siegerkranz = {
     }
 }
 
-dc_weimar_constitution = {
-    join_free_nations = {
+dc_kolonialministerium = {
+    developments_in_namibia = {
         cost = 100
         fire_only_once = yes
-
-        available = {
-            USA = { is_faction_leader = yes }
-
-            has_offensive_war = no
-            has_government = democratic
-        }
+        icon = generic_construction
 
         ai_will_do = { base = 9 }
+
         complete_effect = {
-            USA = { country_event =  germany_weimar_constitution.1 hours = 12 random_hours = 6 }
+            add_resource = { type = chromium amount = 12 state = 893 }
+            hidden_effect = { country_event = { id = germany_developments_in_namibia.1 days = 28 random_days = 28 } }
         }
     }
-    women_in_workforce = {
+    papua_rubber = {
         cost = 100
         fire_only_once = yes
+        icon = rubber
 
-        ai_will_do = { base = 12 }
+        ai_will_do = { base = 9 }
+
         complete_effect = {
-            add_ideas = sww1_idea_women_in_the_workforce
+            add_resource = { type = rubber amount = 6 state = 737 }
+            add_resource = { type = rubber amount = 6 state = 979 }
         }
     }
-
     establish_afrika_amt = {
         cost = 75
         fire_only_once = yes
 
-        ai_will_do = { base = 9 }
+        ai_will_do = { base = 12 }
         complete_effect = {
             news_event = { id = germany_weimar_constitution.4 hours = 12 random_hours = 6 }
             add_ideas = sww1_idea_afrika_amt

@@ -52,7 +52,9 @@ dc_austria_alliances = {
         targets = { AFG }
         available = { 
             FROM = { is_in_faction = no is_subject = no }
+
             has_completed_focus = AUS_contain_russian_expansion
+            or = { has_idea = sww1_idea_slavic_unrest has_wargoal_against = SOV }
         }
 
         cost = 100
@@ -213,28 +215,16 @@ dc_second_vienna_treaty = {
 
 dc_austro-slavism = {
     establish_the_kingdom_of_croatia = {
-        cost = 150
+        cost = 100
         fire_only_once = yes
 
-        ai_will_do = { base = 6 }
+        ai_will_do = { 
+            base = 6
+            modifier = { and = { date > 1916.1.1 has_government = monarchism } factor = 2 }
+        }
 
         complete_effect = {
-            news_event = { id = austria_austro_slavism.1 hours = 12 random_hours = 6 }
-
-            add_stability = -0.1                   # The Hungarians really hate it.
-            every_state = {
-                limit = {
-                    or = {
-                        state = 103         # Croatia
-                        state = 109
-                        state = 163
-
-                        state = 104         # Bosnia
-                        state = 804
-                    }
-                }
-                add_core_of = AUS
-            }
+            country_event = { id = austria_kingdom_of_croatia.1 hours = 3 }
         }
     }
     intensify_language_training = {

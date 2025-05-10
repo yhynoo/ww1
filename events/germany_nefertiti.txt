@@ -1,0 +1,61 @@
+add_namespace = germany_nefertiti
+
+country_event = {
+    id = germany_nefertiti.1
+    title = "German Archaeology Triumphs in Egypt!"
+    desc = germany_nefertiti.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Bring the queen to Berlin."
+        add_political_power = 50
+
+        if = {
+            limit = { not = { has_relations = { target = TUR value > 50 } } }
+            hidden_effect = { news_event = { id = germany_nefertiti.2 days = 28 random_days = 42 } }
+        }
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Make an agreement with [TUR.GetNameDef]."
+        TUR = { add_opinion_modifier = { target = GER modifier = medium_increase } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = germany_nefertiti.2
+    title = "Imperial Looting Under Scrutiny"
+    desc = germany_nefertiti.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Assert our cultural dominance."
+        TUR = { add_opinion_modifier = { target = GER modifier = medium_decrease } }
+
+        hidden_effect = { news_event = { id = germany_nefertiti.3 hours = 6 random_hours = 12 } }
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Return the bust to Egypt."
+        add_political_power = -100
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = germany_nefertiti.3
+    title = "Nefertiti: An Ancient Curse?"
+    desc = germany_nefertiti.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}

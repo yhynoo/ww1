@@ -1,0 +1,68 @@
+add_namespace = italy_worker_strikes
+
+country_event = {
+    id = italy_worker_strikes.1
+    title = "Worker Strikes in Turin"
+    desc = italy_worker_strikes.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Support the workers — we must modernize the country."
+        add_political_power = 50
+
+        if = {
+            limit = { has_stability < 0.7 }
+            hidden_effect = { news_event = { id = italy_worker_strikes.2 days = 28 random_days = 42 } }
+        }
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Call in the military to quash the unrest."
+        add_popularity = { ideology = authoritarianism popularity = 0.05 }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = italy_worker_strikes.2
+    title = "Gramsci’s Speech"
+    desc = italy_worker_strikes.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Encourage the formation of state trade unions."
+        add_popularity = { ideology = ROOT popularity = 0.05 }
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "Arrest union leaders."
+        hidden_effect = { news_event = { id = italy_worker_strikes.3 hours = 6 random_hours = 12 } }
+
+        add_stability = 0.05
+        ai_chance = { base = 2 }
+    }
+}
+
+news_event = {
+    id = italy_worker_strikes.3
+    title = "Clashes in Turin!"
+    desc = italy_worker_strikes.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Awful."
+
+        if = {
+            limit = { tag = ITA }
+
+            add_stability = -0.1
+            add_popularity = { ideology = communism popularity = 0.05 }
+        }
+    }
+}

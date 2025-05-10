@@ -28,9 +28,9 @@ country_event = {
         }
 
         ai_chance = { 
-            base = 1
-            modifier = { has_opinion = { target = FROM value > 50 } factor = 2 }
-            modifier = { ITA = { has_country_flag = invited_uk_experts } factor = 3 }
+            base = 2
+            modifier = { FROM = { has_country_flag = invited_uk_experts } factor = 2 }
+            modifier = { has_war = yes factor = 6 }
         }
     }
 
@@ -43,17 +43,14 @@ country_event = {
         }
 
         FROM = { country_event = { id = italy_england.3 hours = 12 random_hours = 6 } }
-        ai_chance = { base = 2 }
+        ai_chance = { base = 1 }
     }
 
     option = {
         name = "We are not interested."
         FROM = { news_event = { id = italy_england.6 hours = 12 random_hours = 6 } }
 
-        ai_chance = { 
-            base = 1
-            modifier = { has_opinion = { target = FROM value < 0 } factor = 3 }
-        }
+        ai_chance = { base = 1 }
     }
 }
 
@@ -84,7 +81,7 @@ country_event = {
         give_guarantee = FROM
         FROM = { give_guarantee = ROOT }
 
-        ai_chance = { base = 2 }
+        ai_chance = { base = 3 }
     }
 
     option = {

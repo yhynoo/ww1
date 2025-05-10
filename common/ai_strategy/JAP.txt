@@ -1,12 +1,6 @@
 JAP_army_composition = {
-	allowed = {
-		original_tag = JAP
-	}
-
-	enable = {
-		always = yes
-	}
-
+	allowed = { original_tag = JAP }
+	enable = { always = yes }
 	abort_when_not_enabled = yes
 
 	## Land troops
@@ -29,7 +23,7 @@ JAP_army_composition = {
 	}
 }
 
-TUR_likes_ENG = {
+JAP_likes_ENG = {
 	allowed = { original_tag = JAP }
 	enable = { has_completed_focus = JAP_hong_kong_appeal }
 	abort = { OR = { ENG = { is_ally_with = GER } has_country_flag = stop_influencing_uk } }
@@ -37,7 +31,7 @@ TUR_likes_ENG = {
 	ai_strategy = {
 		type = befriend
 		id = ENG
-		value = 100
+		value = 150
 	}
 }
 

@@ -1,0 +1,106 @@
+add_namespace = england_third_boer_war
+
+country_event = {
+    id = england_third_boer_war.1
+    title = "Smuts' Offer"
+    desc = england_third_boer_war.1.d
+
+    is_triggered_only = yes
+    trigger = {
+        any_state = { is_core_of = SAF is_controlled_by = ENG }
+    }
+
+    option = {
+        name = "Establish the Dominion of South Africa"
+        hidden_effect = { news_event = { id = england_third_boer_war.2 days = 28 random_days = 42 } }
+
+        ai_chance = { base = 1 }
+        add_political_power = -150
+
+        release = SAF
+        set_autonomy = { target = SAF autonomous_state = autonomy_dominion }
+    }
+    option = {
+        name = "Dismiss the offer."
+        hidden_effect = { news_event = { id = england_third_boer_war.3 days = 28 random_days = 42 } }
+
+        ai_chance = { base = 2 }
+    }
+}
+
+news_event = {
+    id = england_third_boer_war.2
+    title = "Dominion of South Africa Established."
+    desc = england_third_boer_war.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Another diamond in the crown."
+        add_stability = 0.05
+    }
+}
+
+news_event = {
+    id = england_third_boer_war.3
+    title = "Terrorist Attack in Bloemfontein"
+    desc = england_third_boer_war.3.d
+
+    is_triggered_only = yes
+    trigger = {
+        275 = { is_controlled_by = ENG }
+    }
+
+    option = {
+        name = "Worrying."
+        275 = { add_resistance = 30 }
+
+        hidden_effect = { country_event = { id = england_third_boer_war.4 days = 28 random_days = 42 } }
+    }
+}
+
+country_event = {
+    id = england_third_boer_war.4
+    title = "Uproar in Transvaal"
+    desc = england_third_boer_war.4.d
+
+    is_triggered_only = yes
+    trigger = {
+        any_state = { is_core_of = SAF is_controlled_by = ENG }
+    }
+
+    option = {
+        name = "Thwart those unruly peasants."
+        add_stability = -0.1
+
+        hidden_effect = {
+            release = SAF
+            SAF = { load_oob = "SAF_uprising" }
+        }
+
+        declare_war_on = { target = SAF type = annex_everything }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Withdraw from South Africa entirely." // accept the consequences
+        hidden_effect = { news_event = { id = england_third_boer_war.5 hours = 6 random_hours = 12 } }
+
+        release = SAF
+        add_political_power = -150
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = england_third_boer_war.5
+    title = "London Withdraws from South Africa!"
+    desc = england_third_boer_war.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A major defeat."
+    }
+}

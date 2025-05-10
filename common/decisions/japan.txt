@@ -38,11 +38,7 @@ dc_hong_kong_appeal = {
 
         ai_will_do = {
             base = 2
-            modifier = { is_ally_with = ENG factor = 6 }
-            modifier = {
-                and = { date > 1915.7.1 has_war = no }
-                factor = 3
-            }
+            modifier = { or = { is_ally_with = ENG GER = { has_war = yes } } factor = 9 }
         }
 
         complete_effect = {

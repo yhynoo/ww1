@@ -937,7 +937,7 @@ focus_tree = {
 
     focus = {
         id = GER_house_hohenzollern
-        icon = GFX_focus_generic_internal_stability
+        icon = GFX_focus_GER_house_hohenzollern
 
         relative_position_id = GER_political_ambitions
         x = 0
@@ -1075,18 +1075,19 @@ focus_tree = {
         }
     }
     focus = {
-        id = GER_weimar_constitution
-        icon = GFX_focus_GER_weimar_constitution
+        id = GER_kolonialministerium
+        icon = GFX_focus_GER_kolonialministerium
 
         relative_position_id = GER_empower_the_reichstag
         x = -1
         y = 1
         cost = 10
 
-        ai_will_do = { base = 3 }
+        ai_will_do = { base = 2 }
 
         prerequisite = { focus = GER_empower_the_reichstag }
         completion_reward = {
+            add_stability = 0.05
             custom_effect_tooltip = decision_effect_tooltip
         }
     }

@@ -1054,8 +1054,11 @@
             }
             add_popularity = {
                 ideology = authoritarianism
-                popularity = 0.1
+                popularity = 0.05
             }
+
+            # adriatic demands
+            hidden_effect = { country_event = { id = italy_adriatic_demands.1 days = 14 random_days = 28 } }
         }
     }
     focus = {
@@ -1112,19 +1115,11 @@
             start_civil_war = {
                 ruling_party = authoritarianism
                 ideology = ROOT
-                size = 0.5
+                size = 0.4
             }
-            
-            # Add new territorial claims - in the Adriatic coast
-            736 = { add_claim_by = ITA }
-            852 = { add_claim_by = ITA }
-            103 = { add_claim_by = ITA }
-            163 = { add_claim_by = ITA }
 
             hidden_effect = {
-                set_popularities = {
-                    authoritarianism = 100
-                }
+                add_popularity = { ideology = authoritarianism popularity = 0.3 }
             }
         }
     }

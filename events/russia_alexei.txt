@@ -1,0 +1,62 @@
+add_namespace = russia_alexei
+
+country_event = {
+    id = russia_alexei.1
+    title = "A Mystic Cures Tsarevich Alexei"
+    desc = russia_alexei.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Announce the miracle!"
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+
+        hidden_effect = { news_event = { id = russia_alexei.2 days = 28 random_days = 42 } }
+        ai_chance = { base = 3 }
+    }
+    option = {
+        name = "Keep it quiet."
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = russia_alexei.2
+    title = "The Church Spreads Miracle Stories"
+    desc = russia_alexei.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Elevate the mystic as a symbol of divine favor."
+        add_political_power = 100
+
+        hidden_effect = { news_event = { id = russia_alexei.3 hours = 6 random_hours = 12 } }
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Appoint a medical commission."
+
+        add_tech_bonus = {
+            bonus = 1
+            uses = 1
+            technology = tech_field_hospital
+            technology = tech_field_hospital2
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = russia_alexei.3
+    title = "A Divine Sign?"
+    desc = russia_alexei.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Faith is a powerful force."
+        add_stability = 0.1
+    }
+}

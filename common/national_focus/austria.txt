@@ -911,9 +911,9 @@ focus_tree = {
         available = { has_government = monarchism }
 
         ai_will_do = {
-            base = 1
+            base = 2
             modifier = { 
-                or = { has_country_flag = we_rejected_germany has_war = yes }
+                or = { date > 1914.1.1 has_war = yes }
                 factor = 3
             }
         }
@@ -1009,6 +1009,7 @@ focus_tree = {
 
         mutually_exclusive = { focus = AUS_house_habsburg }
         prerequisite = { focus = AUS_political_ambitions }
+
         completion_reward = {
             add_timed_idea = {
                 idea = sww1_idea_democratic_tendencies

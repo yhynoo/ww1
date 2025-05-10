@@ -53,3 +53,83 @@ news_event = {
         name = "This is annoying."
     }
 }
+
+# German Guarantees for the Netherlands
+country_event = {
+    id = holland_aftermath_in_flanders.4
+    title = "Cooperation with [GER.GetName] Debated in Binnenhof"
+    desc = holland_aftermath_in_flanders.4.d
+
+    is_triggered_only = yes
+    trigger = { not = { any_country = { has_guaranteed = HOL } } }
+
+    option = {
+        name = "Yes, we might need help."
+        GER = { country_event = { id = holland_aftermath_in_flanders.5 hours = 24 random_hours = 12 } }
+
+        ai_chance = { base = 6 }
+    }
+
+    option = {
+        name = "No, we can stand on our own."
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = holland_aftermath_in_flanders.5
+    title = "[HOL.GetName] Seeks German Guarantees"
+    desc = holland_aftermath_in_flanders.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They are a valuable ally."
+        news_event = { id = holland_aftermath_in_flanders.6 hours = 12 random_hours = 6 }
+        give_guarantee = HOL
+
+        ai_chance = { 
+            base = 2
+            modifier = { has_government = monarchism factor = 3 }
+            FRA = { add_opinion_modifier = { target = GER modifier = medium_decrease } }
+        }
+    }
+
+    option = {
+        name = "We must not provoke France and England."
+        TUR = { news_event = { id = holland_aftermath_in_flanders.7 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = holland_aftermath_in_flanders.6
+    title = "Germany Guarantees [HOL.GetNameDef]!"
+    desc = holland_aftermath_in_flanders.6.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "This is concerning."
+
+        if = {
+            limit = { tag = FRA }
+            FRA = { add_opinion_modifier = { target = HOL modifier = medium_decrease } }
+        }
+    }
+}
+
+news_event = {
+    id = holland_aftermath_in_flanders.7
+    title = "Germany Declines"
+    desc = holland_aftermath_in_flanders.7.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We stand alone."
+        HOL = { add_opinion_modifier = { target = GER modifier = small_decrease } }
+    }
+}

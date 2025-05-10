@@ -99,32 +99,49 @@ dc_holland_alliances = {
 }
 
 dc_world_trade_hegemony = {
-    claim_suez_canal = {
+    reorganize_indonesian_administration = {
         cost = 150
         fire_only_once = yes
 
-        available = {
-            446 = { is_owned_by = TUR }
-            453 = { is_owned_by = TUR }
-
-            TUR = {
-                or = {
-                    has_idea = sww1_idea_amassed_foreign_debt
-                    has_idea = sww1_idea_significant_foreign_debt
-                }
+        available = { 
+            has_stability > 0.65
+            any_state = {
+                or = { state = 334 state = 335 state = 667 state = 668 state = 669 state = 672 state = 673 }
+                is_fully_controlled_by = HOL
             }
         }
 
-        ai_will_do = { 
-            base = 6
-            modifier = { has_completed_focus = HOL_integrate_the_belgians factor = 2 }
+        every_state = {
+            limit = {
+                or = { state = 334 state = 335 state = 667 state = 668 state = 669 state = 672 state = 673 }
+                is_fully_controlled_by = HOL
+            }
+            add_core_of = HOL
         }
+    }
+    solidarity_with_the_boers = {
+        cost = 100
+        fire_only_once = yes
 
         complete_effect = {
-            TUR = { country_event = { id = holland_world_trade_hegemony.5 hours = 12 random_hours = 6 } }
+            news_event = { id = holland_world_trade_hegemony.1 hours = 12 random_hours = 6 }
+
+            add_war_support = 0.1
+            ENG = { add_opinion_modifier = { target = HOL modifier = medium_decrease } }
+
+            ai_will_do = {
+                base = 3
+                modifier = { has_country_flag = we_stay_in_flanders factor = 3 }
+            }
+
+            hidden_effect = {
+                set_country_flag = we_supported_boers
+                ENG = { country_event = { id = england_third_boer_war.1 days = 28 random_days = 70 } }
+            }
         }
     }
     koninklijke_shell = {
+        icon = oil
         cost = 150
         fire_only_once = yes
 
@@ -137,35 +154,6 @@ dc_world_trade_hegemony = {
 
         complete_effect = {
             PER = { country_event = { id = holland_world_trade_hegemony.2 hours = 12 random_hours = 6 } }
-        }
-    }
-    solidarity_with_the_boers = {
-        cost = 100
-        fire_only_once = yes
-
-        complete_effect = {
-            news_event = { id = holland_world_trade_hegemony.1 hours = 12 random_hours = 6 }
-            ENG = {
-                add_opinion_modifier = {
-                    target = HOL
-                    modifier = medium_decrease
-                }
-            }
-            GER = {
-                add_opinion_modifier = {
-                    target = HOL
-                    modifier = medium_increase
-                }
-            }
-
-            ai_will_do = {
-                base = 3
-                modifier = { has_country_flag = we_stay_in_flanders factor = 3 }
-            }
-
-            hidden_effect = {
-                set_country_flag = we_supported_boers
-            }
         }
     }
 }
@@ -182,6 +170,7 @@ dc_politik_etis = {
         }
     }
     education_initiatives = {
+        icon = generic_research
         cost = 75
         days_remove = 90
 

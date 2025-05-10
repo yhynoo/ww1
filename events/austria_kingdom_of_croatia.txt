@@ -1,0 +1,128 @@
+add_namespace = austria_kingdom_of_croatia
+
+country_event = {
+    id = austria_kingdom_of_croatia.1
+    title = "The Issue of Croatia"
+    desc = austria_kingdom_of_croatia.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Allow the establishment of the Kingdom of Croatia."
+        add_political_power = -150
+
+        set_autonomy = {
+            target = CRO
+            autonomous_state = autonomy_satellite
+        }
+
+        hidden_effect = { 
+            release = CRO
+
+            # set up the economy
+            104 = { 
+                transfer_state_to = CRO remove_core_of = AUS
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+            }
+            804 = { transfer_state_to = CRO remove_core_of = AUS }
+
+            CRO = {
+                set_popularities = { democratic = 20 monarchism = 80 }
+            }
+
+            news_event = { id = austria_kingdom_of_croatia.2 hours = 12 random_hours = 6 }
+        }
+        ai_chance = { 
+            base = 1
+            modifier = { has_government = democratic factor = 0 }
+        }
+    }
+    option = {
+        name = "Maintain Austrian control."
+
+        hidden_effect = { news_event = { id = austria_kingdom_of_croatia.3 days = 28 random_days = 42 } }
+        every_state = {
+            limit = { is_core_of = CRO }
+            add_compliance = 5
+        }
+
+        ai_chance = { base = 3 }
+    }
+}
+
+news_event = {
+    id = austria_kingdom_of_croatia.2
+    title = "Kingom of Croatia Established"
+    desc = austria_kingdom_of_croatia.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Wonderful."
+        add_stability = 0.05
+    }
+}
+
+news_event = {
+    id = austria_kingdom_of_croatia.3
+    title = "Sabotage in Dalmatia"
+    desc = austria_kingdom_of_croatia.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must investigate this."
+        add_stability = -0.1
+        103 = {
+            remove_building = { type = industrial_complex level = 1 }
+        }
+
+        hidden_effect = { country_event = { id = austria_kingdom_of_croatia.4 days = 28 random_days = 42 } }
+    }
+}
+
+country_event = {
+    id = austria_kingdom_of_croatia.4
+    title = "Mayor of Split Assassinated"       # we assume Teodor Šporn to be the mayor at any time.
+    desc = austria_kingdom_of_croatia.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Dissolve Dalmatian administration entirely."
+        add_political_power = -100
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "Appoint Mile Starčević."
+        add_popularity = { ideology = democratic popularity = 0.1 }
+
+        hidden_effect = { news_event = { id = austria_kingdom_of_croatia.5 hours = 6 random_hours = 12 } }
+        ai_chance = {
+            base = 1
+            modifier = { has_government = democratic factor = 6 }
+        }
+    }
+}
+
+news_event = {
+    id = austria_kingdom_of_croatia.5
+    title = "Integration Efforts Bear Fruits"
+    desc = austria_kingdom_of_croatia.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        every_state = {
+                limit = {
+                    or = {
+                        state = 103 state = 109 state = 163         # Croatia
+                        state = 104 state = 804                     # Bosnia
+                    }
+                }
+                add_core_of = AUS
+            }
+    }
+}
