@@ -1,0 +1,343 @@
+add_namespace = france_algerian_crisis
+
+country_event = {
+    id = france_algerian_crisis.1
+    title = "Unrest in Algerian Mountains"
+    desc = france_algerian_crisis.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is nothing out of ordinary."
+        hidden_effect = { news_event = { id = france_algerian_crisis.3 days = 28 random_days = 42 } }
+
+        add_stability = -0.05
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Investigate the matter."
+        hidden_effect = { news_event = { id = france_algerian_crisis.2 days = 28 random_days = 42 } }
+
+        add_political_power = -75
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = france_algerian_crisis.2
+    title = "German Agents Discovered Among the Algerian Tribes"
+    desc = france_algerian_crisis.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "What a surprise."
+
+        if = {
+            limit = { tag = FRA }
+
+            add_war_support = 0.1
+            FRA = { create_wargoal = { target = GER type = annex_everything } }
+        }
+    }
+}
+
+news_event = {
+    id = france_algerian_crisis.3
+    title = "French Outpost Attacked Near Algiers"
+    desc = france_algerian_crisis.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Disturbing."
+        add_stability = -0.05
+        add_political_power = -50
+
+        hidden_effect = { country_event = { id = france_algerian_crisis.4 days = 28 random_days = 42 } }
+    }
+}
+
+country_event = {
+    id = france_algerian_crisis.4
+    title = "Algeria on the Edge"
+    desc = france_algerian_crisis.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Deploy the military."
+
+        hidden_effect = {
+            every_state = {
+                limit = { or = { state = 459 state = 460 } }
+                transfer_state_to = ALG
+
+                ALG = { load_oob = "ALG_uprising" }
+
+                # events for Spain and Italy
+                SPR = { country_event = { id = france_algerian_crisis.6 days = 2 random_hours = 6 } }
+                ITA = { country_event = { id = france_algerian_crisis.10 days = 7 random_hours = 6 } }
+            }
+        }
+
+        declare_war_on = { target = ALG type = annex_everything }
+        ai_chance = { base = 6 }
+    }
+    option = {
+        name = "Yield to the Kabyle tribes."
+        hidden_effect = { news_event = { id = france_algerian_crisis.5 hours = 6 random_hours = 12 } }
+
+        add_popularity = { ideology = ROOT popularity = -0.1 }
+        add_political_power = -100
+
+        every_state = {
+            limit = { or = { state = 459 state = 460 state = 513 state = 514} }
+            transfer_state_to = ALG
+        }
+
+        hidden_effect = {
+            ALG = { load_oob = "ALG_uprising" }
+            GER = { give_guarantee = ALG }
+
+            459 = { 
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+
+            # events for Spain and Italy
+            SPR = { country_event = { id = france_algerian_crisis.6 days = 2 random_hours = 6 } }
+            ITA = { country_event = { id = france_algerian_crisis.10 days = 7 random_hours = 6 } }
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = france_algerian_crisis.5
+    title = "France Yields to the Kabyle Tribes"
+    desc = france_algerian_crisis.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "What a mess."
+    }
+}
+
+# Spanish demands
+
+country_event = {
+    id = france_algerian_crisis.6
+    title = "Jump on the Opportunity?"       # Spain perspective, chance to capture Morocco?
+    desc = france_algerian_crisis.6.d
+
+    is_triggered_only = yes
+
+    trigger = { 
+        not = { has_war_with = FRA }
+        can_declare_war_on = FRA
+
+        any_state = {
+            or = { state = 461 state = 462 state = 990 }
+            is_owned_by = FRA
+        }
+    }
+
+    option = {
+        name = "Present our demands."
+        FRA = { country_event = { id = france_algerian_crisis.7 hours = 12 random_hours = 6 } }
+
+        every_state = {
+            limit = {
+                or = { state = 461 state = 462 state = 990 }
+                is_owned_by = FRA
+            }
+            add_claim_by = SPR
+        }
+
+        ai_chance = { 
+            base = 1
+            modifier = { FRA = { has_war = yes } factor = 3 }
+        }
+    }
+
+    option = {
+        name = "This is not a dignified behavior."
+
+        ai_chance = { 
+            base = 1
+        }
+    }
+}
+
+country_event = {
+    id = france_algerian_crisis.7
+    title = "[SPR.GetName] Demands Morocco!"
+    desc = france_algerian_crisis.7.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let them have it."
+        news_event = { id = france_algerian_crisis.8 hours = 12 random_hours = 6 }
+
+        every_state = {
+            limit = {
+                or = { state = 461 state = 462 state = 990 }
+                is_owned_and_controlled_by = FRA
+            }
+            transfer_state_to = SPR
+        }
+
+        ai_chance = { 
+            base = 1 
+            modifier = { has_war = yes factor = 3 }
+        }
+    }
+
+    option = {
+        name = "No."
+        SPR = { 
+            news_event = { id = france_algerian_crisis.9 hours = 12 random_hours = 6 }
+            create_wargoal = { target = FRA type = take_claimed_state }
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = france_algerian_crisis.8
+    title = "[FRA.GetName] Cedes Morocco to Spain"
+    desc = france_algerian_crisis.8.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "French colonial possessions are falling apart."
+    }
+}
+
+news_event = {
+    id = france_algerian_crisis.9
+    title = "[FRA.GetName] Declines!"
+    desc = france_algerian_crisis.9.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about it."
+    }
+}
+
+# Italian demands
+
+country_event = {
+    id = france_algerian_crisis.10
+    title = "French North Africa Collapsing: Chance for Italy?"       # Italy perspective, chance to capture Tunisia?
+    desc = france_algerian_crisis.10.d
+
+    is_triggered_only = yes
+    trigger = { 
+        not = { has_war_with = FRA }
+        can_declare_war_on = FRA
+
+        any_state = {
+            or = { state = 458 state = 665 }
+            is_owned_by = FRA
+        }
+    }
+
+    option = {
+        name = "Present our demands."
+        FRA = { country_event = { id = france_algerian_crisis.11 hours = 12 random_hours = 6 } }
+
+        every_state = {
+            limit = {
+                or = { state = 458 state = 665 }
+                is_owned_by = FRA
+            }
+            add_claim_by = ITA
+        }
+
+        ai_chance = { 
+            base = 1
+            modifier = { FRA = { has_war = yes } factor = 3 }
+        }
+    }
+
+    option = {
+        name = "We must not play Germany's game."
+
+        ai_chance = { 
+            base = 2
+        }
+    }
+}
+
+country_event = {
+    id = france_algerian_crisis.11
+    title = "[ITA.GetName] Demands Tunisia!"
+    desc = france_algerian_crisis.11.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let them have it."
+        news_event = { id = france_algerian_crisis.12 hours = 12 random_hours = 6 }
+
+        every_state = {
+            limit = {
+                or = { state = 458 state = 665 }
+                is_owned_and_controlled_by = FRA
+            }
+            transfer_state_to = ITA
+        }
+
+        ai_chance = { 
+            base = 1 
+            modifier = { has_war = yes factor = 3 }
+        }
+    }
+
+    option = {
+        name = "No."
+        ITA = { 
+            news_event = { id = france_algerian_crisis.13 hours = 12 random_hours = 6 }
+            create_wargoal = { target = FRA type = take_claimed_state }
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = france_algerian_crisis.12
+    title = "[FRA.GetName] Transfers Tunisia to Italy"
+    desc = france_algerian_crisis.12.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Italy snatches another piece of Africa."
+    }
+}
+
+news_event = {
+    id = france_algerian_crisis.13
+    title = "[FRA.GetName] Declines!"
+    desc = france_algerian_crisis.13.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about it."
+    }
+}

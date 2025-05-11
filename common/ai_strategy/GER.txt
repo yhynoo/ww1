@@ -31,6 +31,29 @@ GER_army_composition = {
 	}
 }
 
+GER_hypermobilization = {
+	allowed = { original_tag = GER }		# adds on top.
+	enable = { has_war = yes }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 60
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = cyclist
+		value = 15
+	}
+
+	ai_strategy = {
+		type = added_military_to_civilian_factory_ratio
+		value = 50
+	}
+}
+
 GER_protects_AUS = {
 	allowed = { original_tag = GER }
 	enable = { or = { is_ally_with = AUS has_guaranteed = AUS } }

@@ -1,0 +1,184 @@
+add_namespace = spain_the_spanish_hyena
+
+# Rhodesia
+
+country_event = {
+    id = spain_the_spanish_hyena.1
+    title = "[SPR.GetName] Offers Custody of Rhodesia"
+    desc = spain_the_spanish_hyena.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Not a bad idea."
+        news_event = { id = spain_the_spanish_hyena.2 hours = 12 random_hours = 6 }
+
+        every_state = {
+            limit = {
+                or = { state = 771 state = 981 }
+                is_owned_and_controlled_by = ENG
+            }
+            transfer_state_to = SPR
+        }
+
+        ai_chance = { 
+            base = 1 
+            modifier = { has_war = yes factor = 2 }
+        }
+    }
+
+    option = {
+        name = "What does this even mean?"
+        SPR = { news_event = { id = spain_the_spanish_hyena.3 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 3 }
+    }
+}
+
+news_event = {
+    id = spain_the_spanish_hyena.2
+    title = "[ENG.GetName] Transfers Rhodesia to Spain"
+    desc = spain_the_spanish_hyena.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = spain_the_spanish_hyena.3
+    title = "[ENG.GetName] Declines!"
+    desc = spain_the_spanish_hyena.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "That's a shame."
+    }
+}
+
+# Central Africa
+
+country_event = {
+    id = spain_the_spanish_hyena.4
+    title = "[SPR.GetName] Offers Custody of Congo"
+    desc = spain_the_spanish_hyena.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They can have it for now."
+        news_event = { id = spain_the_spanish_hyena.5 hours = 12 random_hours = 6 }
+
+        every_state = {
+            limit = {
+                or = { 
+                    state = 539 state = 772
+                    state = 295 state = 538 state = 888 state = 889 state = 890 state = 718 
+                }
+                is_owned_and_controlled_by = FRA
+            }
+            transfer_state_to = SPR
+        }
+
+        ai_chance = { 
+            base = 1 
+            modifier = { has_war = yes factor = 2 }
+        }
+    }
+
+    option = {
+        name = "There is no reason for this."
+        SPR = { news_event = { id = spain_the_spanish_hyena.6 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 2 }
+    }
+}
+
+news_event = {
+    id = spain_the_spanish_hyena.5
+    title = "Spain Seizes French Congo"
+    desc = spain_the_spanish_hyena.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The image of Central Africa is changing rapidly."
+    }
+}
+
+news_event = {
+    id = spain_the_spanish_hyena.6
+    title = "[FRA.GetName] Declines!"
+    desc = spain_the_spanish_hyena.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "So they will lose it to the Germans."
+    }
+}
+
+# Namibia
+
+country_event = {
+    id = spain_the_spanish_hyena.7
+    title = "[SPR.GetName] Offers Custody of South-West Africa"
+    desc = spain_the_spanish_hyena.7.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We can't afford to defend it for now."
+        news_event = { id = spain_the_spanish_hyena.8 hours = 12 random_hours = 6 }
+
+        every_state = {
+            limit = {
+                or = { state = 541 state = 893 state = 894 state = 895 }
+                is_owned_and_controlled_by = GER
+            }
+            transfer_state_to = SPR
+        }
+
+        ai_chance = { 
+            base = 1 
+            modifier = { has_war = yes factor = 3 }
+        }
+    }
+
+    option = {
+        name = "They must be joking."
+        SPR = { news_event = { id = spain_the_spanish_hyena.9 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 32 }
+    }
+}
+
+news_event = {
+    id = spain_the_spanish_hyena.8
+    title = "Spain Takes Over in South-West Africa"
+    desc = spain_the_spanish_hyena.8.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Spain seizes another precious colony."
+    }
+}
+
+news_event = {
+    id = spain_the_spanish_hyena.9
+    title = "[GER.GetName] Declines!"
+    desc = spain_the_spanish_hyena.9.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "So they will lose it to the English."
+    }
+}

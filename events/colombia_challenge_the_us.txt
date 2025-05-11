@@ -1,0 +1,72 @@
+add_namespace = colombia_challenge_the_us
+
+country_event = {
+    id = colombia_challenge_the_us.1
+    title = "[COL.GetName] Demands Panama Back!"
+    desc = colombia_challenge_the_us.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We need not stand in their way."
+        news_event = { id = colombia_challenge_the_us.2 hours = 12 random_hours = 6 }
+
+        every_state = {
+            limit = {
+                or = { state = 304 state = 685 }
+                is_owned_and_controlled_by = USA
+            }
+            transfer_state_to = COL
+        }
+
+        ai_chance = { base = 1 }
+    }
+
+    option = {
+        name = "This is ridiculous."
+        COL = { 
+            news_event = { id = colombia_challenge_the_us.3 hours = 12 random_hours = 6 }
+            create_wargoal = { target = USA type = take_claimed_state }
+        }
+
+        ai_chance = { base = 6 }
+    }
+}
+
+news_event = {
+    id = colombia_challenge_the_us.2
+    title = "[USA.GetName] Transfers Panama to Colombia!"
+    desc = colombia_challenge_the_us.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Very surprising."
+    }
+}
+
+news_event = {
+    id = colombia_challenge_the_us.3
+    title = "[USA.GetName] Declines!"
+    desc = colombia_challenge_the_us.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We expected that."
+    }
+}
+
+news_event = {
+    id = colombia_challenge_the_us.4
+    title = "[COL.GetName] Asserts Claims to California!"
+    desc = colombia_challenge_the_us.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "They keep poking the sleeping giant."
+    }
+}

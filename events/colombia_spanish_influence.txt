@@ -1,0 +1,95 @@
+add_namespace = colombia_spanish_influence
+
+country_event = {
+    id = colombia_spanish_influence.1
+    title = "Spanish Influence Spreads"
+    desc = colombia_spanish_influence.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Assert our independence."
+        hidden_effect = { news_event = { id = colombia_spanish_influence.2 days = 7 random_hours = 6 } }
+
+        add_popularity = { ideology = authoritarianism popularity = 0.05 }
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Welcome the Spanish envoys."
+        hidden_effect = { news_event = { id = colombia_spanish_influence.3 days = 28 random_days = 42 } }
+
+        add_ideas = sww1_idea_accepted_spanish_influence
+        add_popularity = { ideology = monarchism popularity = 0.1 }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = colombia_spanish_influence.2
+    title = "Diplomatic Scandal Ensues"
+    desc = colombia_spanish_influence.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A mere misunderstanding."
+        SPR = { add_opinion_modifier = { target = COL modifier = medium_decrease } }
+    }
+}
+
+news_event = {
+    id = colombia_spanish_influence.3
+    title = "Ministry of Commerce Lauds Spanish Investments"
+    desc = colombia_spanish_influence.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Fantastic."
+        random_owned_controlled_state = {
+            add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+        }
+
+        hidden_effect = { country_event = { id = colombia_spanish_influence.4 days = 28 random_days = 42 } }
+    }
+}
+
+country_event = {
+    id = colombia_spanish_influence.4
+    title = "Integrationists Demand a Catholic King"
+    desc = colombia_spanish_influence.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They can say what they want."
+        add_popularity = { ideology = monarchism popularity = 0.1 }
+        add_stability = -0.05
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "Silence the dissenters."
+        hidden_effect = { 
+            news_event = { id = colombia_spanish_influence.5 hours = 6 random_hours = 12 }
+            add_popularity = { ideology = monarchism popularity = -0.5 }
+        }
+
+        add_political_power = -100
+        ai_chance = { base = 3 }
+    }
+}
+
+news_event = {
+    id = colombia_spanish_influence.5
+    title = "Integrationists Outlawed in Colombia"
+    desc = colombia_spanish_influence.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Concerning."
+    }
+}

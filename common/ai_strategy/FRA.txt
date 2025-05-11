@@ -41,16 +41,11 @@ FRA_stay_at_home = {
 		id = SOV
 		value = 100
 	}
-}
 
-FRA_needs_help_with_AUS = {
-	allowed = { tag = FRA }
-	enable = { has_war_with = AUS }
-	abort_when_not_enabled = yes
-
+	# we're also scared of Germany
 	ai_strategy = {
-		type = alliance
-		id = ITA
-		value = 100
+		type = prepare_for_war
+		id = GER
+		value = 60
 	}
 }

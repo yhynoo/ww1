@@ -31,6 +31,31 @@ dc_oriental_investments = {
 }
 
 dc_place_in_the_sun = {
+    support_unrest_in_algeria = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 150
+
+        available = {
+            any_state = {
+                or = { state = 459 state = 460 }
+                is_controlled_by = FRA
+            }
+        }
+
+        ai_will_do = {
+            base = 6
+            modifier = { 
+                or = { is_ally_with = AUS is_ally_with = TUR }
+                factor = 2
+            }
+            modifier = { has_war_with = FRA factor = 6 }
+        }
+
+        complete_effect = {
+            FRA = { country_event = { id = france_algerian_crisis.1 days = 14 random_days = 7 } }
+        }
+    }
     demand_south_africa = {
         icon = decision_generic_pickelhaube
         
@@ -51,10 +76,10 @@ dc_place_in_the_sun = {
         }
 
         ai_will_do = { 
-            base = 3
+            base = 6
             modifier = { 
-                or = { is_ally_with = AUS is_ally_with = MAN is_ally_with = HOL }
-                factor = 3 
+                or = { is_ally_with = AUS is_ally_with = HOL }
+                factor = 2
             }
         }
 

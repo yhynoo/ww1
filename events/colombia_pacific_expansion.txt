@@ -1,0 +1,72 @@
+add_namespace = colombia_pacific_expansion
+
+country_event = {
+    id = colombia_pacific_expansion.1
+    title = "[COL.GetName] Demands Northern Andes!"
+    desc = colombia_pacific_expansion.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must agree to this."
+        news_event = { id = colombia_pacific_expansion.2 hours = 12 random_hours = 6 }
+
+        every_state = {
+            limit = {
+                or = { state = 490 state = 491 }
+                is_owned_and_controlled_by = PRU
+            }
+            transfer_state_to = COL
+        }
+
+        ai_chance = { base = 1 }
+    }
+
+    option = {
+        name = "What are they thinking?"
+        COL = { 
+            news_event = { id = colombia_pacific_expansion.3 hours = 12 random_hours = 6 }
+            create_wargoal = { target = PRU type = take_claimed_state }
+        }
+
+        ai_chance = { base = 2 }
+    }
+}
+
+news_event = {
+    id = colombia_pacific_expansion.2
+    title = "[PRU.GetName] Transfers Northern Andes to Colombia!"
+    desc = colombia_pacific_expansion.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Good for them."
+    }
+}
+
+news_event = {
+    id = colombia_pacific_expansion.3
+    title = "[PRU.GetName] Declines!"
+    desc = colombia_pacific_expansion.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We will see about this."
+    }
+}
+
+news_event = {
+    id = colombia_pacific_expansion.4
+    title = "[COL.GetName] Threatens Invasion South!"   # Colombia claims mistreatment of the people by liberal elites.
+    desc = colombia_pacific_expansion.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A war at the end of the world."
+    }
+}

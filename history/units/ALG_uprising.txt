@@ -1,0 +1,58 @@
+division_template = {
+	name = "Division d'Infanterie"
+	division_names_group = FRA_INF_01
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+        infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+	}
+}
+division_template = {
+	name = "Division d'Atlas"
+	division_names_group = FRA_INF_01
+	regiments = {
+		mountaineers = { x = 0 y = 0 }
+		mountaineers = { x = 0 y = 1 }
+        mountaineers = { x = 1 y = 0 }
+		mountaineers = { x = 1 y = 1 }
+        mountaineers = { x = 2 y = 0 }
+		mountaineers = { x = 2 y = 1 }
+	}
+}
+
+units = {
+    division = {
+        location = 1145
+		division_template = "Division d'Infanterie"
+        start_equipment_factor = 0.3
+    }
+    division = {
+        location = 12051
+		division_template = "Division d'Infanterie"
+        start_equipment_factor = 0.3
+    }
+    division = {
+        location = 12051
+		division_template = "Division d'Infanterie"
+        start_equipment_factor = 0.3
+    }
+    division = {
+        location = 7166
+		division_template = "Division d'Infanterie"
+        start_equipment_factor = 0.3
+    }
+
+    division = {
+        location = 13077
+		division_template = "Division d'Atlas"
+        start_equipment_factor = 0.3
+    }
+     division = {
+        location = 12034
+		division_template = "Division d'Atlas"
+        start_equipment_factor = 0.3
+    }
+}

@@ -1,1 +1,1080 @@
-﻿
+focus_tree = {
+    id = SPR_focus
+    
+    country = {
+        factor = 0
+        modifier = {
+            add = 20
+            original_tag = SPR
+        }
+    }
+
+    continuous_focus_position = { x = 200 y = 800 }
+
+    ## military branch
+    focus = {
+        id = SPR_adjust_budget
+        icon = GFX_focus_generic_budget
+
+        x = 7
+        y = 0
+        cost = 10
+
+        completion_reward = {
+            add_command_power = 25
+        }
+    }
+    focus = {
+        id = SPR_focus_army
+        icon = GFX_focus_generic_army
+
+        relative_position_id = SPR_adjust_budget
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = SPR_adjust_budget }
+        completion_reward = {
+            army_experience = 25
+        }
+    }
+    focus = {
+        id = SPR_extend_conscription
+        icon = GFX_focus_generic_extend_conscription
+
+        relative_position_id = SPR_focus_army
+        x = -4
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = SPR_focus_army }
+        completion_reward = {
+            if = {
+                limit = {
+                    OR = {
+                        has_idea = disarmed_nation
+                        has_idea = volunteer_only
+                    }
+                }
+                add_ideas = limited_conscription
+            }
+        }
+    }
+    focus = {
+        id = SPR_army_maneuvers
+        icon = GFX_focus_generic_army_maneuvers
+
+        relative_position_id = SPR_focus_army
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = SPR_focus_army }
+        completion_reward = {
+            army_experience = 50
+        }
+    }
+    focus = {
+        id = SPR_equipment_effort
+        icon = GFX_focus_generic_equipment_effort
+
+        relative_position_id = SPR_focus_army
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = SPR_focus_army }
+        completion_reward = {
+            add_tech_bonus = {
+				name = infantry_bonus
+				bonus = 1.0
+				uses = 1
+				category = infantry_weapons
+			}
+        }
+    }
+    focus = {
+        id = SPR_artillery
+        icon = GFX_focus_generic_artillery
+
+        relative_position_id = SPR_equipment_effort
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = SPR_equipment_effort }
+        completion_reward = {
+            add_tech_bonus = {
+				bonus = 1.0
+				uses = 1
+				category = artillery_tech
+			}
+        }
+    }
+    focus = {
+        id = SPR_aircraft
+        icon = GFX_focus_generic_aircraft
+
+        relative_position_id = SPR_equipment_effort
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = SPR_equipment_effort }
+        completion_reward = {
+            air_experience = 25
+            add_tech_bonus = {
+				name = fighter_bonus
+				bonus = 1.0
+				uses = 1
+				category = air_equipment
+			}
+        }
+    }
+    focus = {
+        id = SPR_armor
+        icon = GFX_focus_generic_armor
+
+        relative_position_id = SPR_equipment_effort
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = SPR_equipment_effort }
+        completion_reward = {
+            add_tech_bonus = {
+				name = armor_bonus
+				bonus = 1.0
+				uses = 1
+				category = armor_bonus_tech
+			}
+        }
+    }
+    focus = {
+        id = SPR_modern_warfare
+        icon = GFX_focus_generic_modern_warfare
+
+        relative_position_id = SPR_aircraft
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { 
+            focus = SPR_artillery
+            focus = SPR_aircraft
+            focus = SPR_kaiserjager
+        }
+        completion_reward = {
+            army_experience = 100
+            add_ideas = sww1_idea_modern_warfare
+        }
+    }
+
+    focus = {
+        id = SPR_focus_navy
+        icon = GFX_focus_generic_navy
+
+        relative_position_id = SPR_adjust_budget
+        x = 2
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = SPR_adjust_budget }
+        completion_reward = {
+            navy_experience = 25
+        }
+    }
+    focus = {
+        id = SPR_naval_exercises
+        icon = GFX_focus_generic_naval_exercises
+
+        relative_position_id = SPR_focus_navy
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = SPR_focus_navy }
+        completion_reward = {
+            navy_experience = 50
+            add_doctrine_cost_reduction = {
+				name = navy_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
+        }
+    }
+    focus = {
+        id = SPR_expand_dockyards
+        icon = GFX_focus_generic_expand_dockyards
+
+        relative_position_id = SPR_focus_navy
+        x = 2
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = SPR_focus_navy }
+        complete_tooltip = {
+			navy_experience = 25
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type = dockyard
+				level = 3
+				instant_build = yes
+			}
+		}
+		
+		completion_reward = {
+			navy_experience = 25
+			if = {
+				limit = {
+					NOT = {
+						any_owned_state = {
+							dockyard > 0
+							free_building_slots = {
+								building = dockyard
+								size > 2
+								include_locked = yes
+							}
+						}
+					}
+					any_owned_state = {
+						is_coastal = yes
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						is_coastal = yes
+						free_building_slots = {
+							building = dockyard
+							size > 2
+							include_locked = yes
+						}
+					}
+					add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+						type = dockyard
+						level = 3
+						instant_build = yes
+					}
+				}
+				set_country_flag = naval_effort_built
+			}
+			if = {
+				limit = {
+					NOT = { has_country_flag = naval_effort_built }
+					any_owned_state = {
+						dockyard > 0
+						free_building_slots = {
+							building = dockyard
+							size > 2
+							include_locked = yes
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						dockyard > 0
+						free_building_slots = {
+							building = dockyard
+							size > 2
+							include_locked = yes
+						}
+					}
+					add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+						type = dockyard
+						level = 3
+						instant_build = yes
+					}
+				}
+				set_country_flag = naval_effort_built
+			}
+			if = {
+				limit = {
+					NOT = { has_country_flag = naval_effort_built }
+					NOT = {
+						any_owned_state = {
+							free_building_slots = {
+								building = dockyard
+								size > 2
+								include_locked = yes
+							}
+						}
+					}
+				}
+				random_state = {
+					limit = {
+						controller = { tag = ROOT }
+						free_building_slots = {
+							building = dockyard
+							size > 2
+							include_locked = yes
+						}
+					}
+					add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+						type = dockyard
+						level = 3
+						instant_build = yes
+					}
+				}
+			}			
+		}
+    }
+    focus = {
+        id = SPR_high_seas
+        icon = GFX_focus_generic_high_seas
+
+        relative_position_id = SPR_expand_dockyards
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = SPR_expand_dockyards }
+        completion_reward = {
+            add_tech_bonus = {
+				name = capital_ships_bonus
+				bonus = 1.0
+				uses = 1
+				category = capital_ship_tech
+			}
+        }
+    }
+    focus = {
+        id = SPR_the_dark_deep
+        icon = GFX_focus_generic_the_dark_deep
+
+        relative_position_id = SPR_expand_dockyards
+        x = 2
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = SPR_expand_dockyards }
+        completion_reward = {
+            add_tech_bonus = {
+				name = ss_bonus
+				bonus = 1.0
+				uses = 1
+				category = submarines_tech
+			}
+        }
+    }
+    focus = {
+        id = SPR_seaborne_operations
+        icon = GFX_focus_generic_seaborne_operations
+
+        relative_position_id = SPR_naval_exercises
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = SPR_naval_exercises }
+        completion_reward = {
+            add_tech_bonus = {
+				name = special_forces_bonus
+				bonus = 1.0
+				uses = 1
+				technology = marines_1
+                technology = marines_2
+			}
+        }
+    }
+    focus = {
+        id = SPR_rule_the_waves
+        icon = GFX_focus_generic_rule_the_waves
+
+        relative_position_id = SPR_high_seas
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { 
+            focus = SPR_seaborne_operations
+            focus = SPR_high_seas
+            focus = SPR_the_dark_deep
+        }
+        completion_reward = {
+            navy_experience = 100
+            add_ideas = sww1_idea_rule_the_waves
+        }
+    }
+
+    ## economic branch
+    focus = {
+        id = SPR_economic_development
+        icon = GFX_focus_generic_economic_development
+
+        x = 21
+        y = 0
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        completion_reward = {
+            add_stability = 0.05
+        }
+    }
+    focus = {
+        id = SPR_agrarian_reform
+        icon = GFX_focus_generic_agrarian_reform
+
+        relative_position_id = SPR_economic_development
+        x = -3
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = SPR_economic_development }
+        completion_reward = {
+            add_stability = 0.05
+        }
+    }
+    focus = {
+        id = SPR_rationing
+        icon = GFX_focus_generic_rationing
+
+        relative_position_id = SPR_agrarian_reform
+        x = 0
+        y = 1
+
+        cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
+
+        prerequisite = { focus = SPR_agrarian_reform }
+        completion_reward = {
+            add_stability = -0.1
+            add_ideas = sww1_idea_rationing
+        }
+    }
+    focus = {
+        id = SPR_land_reclamation
+        icon = GFX_focus_generic_land_reclamation
+
+        relative_position_id = SPR_agrarian_reform
+        x = -2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = SPR_agrarian_reform }
+        completion_reward = {
+
+            random_owned_controlled_state = {
+                add_manpower = 1500
+                add_extra_state_shared_building_slots = 2
+            }
+            random_owned_controlled_state = {
+                add_manpower = 1500
+                add_extra_state_shared_building_slots = 2
+            }
+        }
+    }
+    focus = {
+        id = SPR_arms_exports
+        icon = GFX_focus_SPR_arms_exports
+
+        relative_position_id = SPR_agrarian_reform
+        x = 2
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        prerequisite = { focus = SPR_agrarian_reform }
+        completion_reward = {
+            add_war_support = 0.05
+            add_ideas = sww1_idea_spanish_arms_exports
+        }
+    }
+    focus = {
+        id = SPR_austerity_measures
+        icon = GFX_focus_generic_austerity_measures
+
+        relative_position_id = SPR_rationing
+        x = 0
+        y = 1
+
+        cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
+
+        prerequisite = { focus = SPR_rationing }
+        completion_reward = {
+            add_war_support = -0.1
+            add_stability = -0.2
+
+            swap_ideas = {
+                remove_idea = sww1_idea_rationing
+                add_idea = sww1_idea_austerity_measures
+            }
+        }
+    }
+
+    focus = {
+        id = SPR_infrastructure_effort
+        icon = GFX_focus_generic_infrastructure_effort
+
+        relative_position_id = SPR_economic_development
+        x = 3
+        y = 1
+
+        cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { date > 1914.1.1 factor = 3 }
+        }
+
+        prerequisite = { focus = SPR_economic_development }
+        bypass = {
+			custom_trigger_tooltip = {
+				tooltip = infrastructure_effort_tt
+				all_owned_state = {			
+					free_building_slots = {
+						building = infrastructure
+						size < 1
+					}
+				}
+			}
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 0
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = infrastructure
+										size > 0
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+            add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 1.0
+				uses = 2
+				category = industry
+			}
+		}
+    }
+    focus = {
+        id = SPR_construct_civilian
+        icon = GFX_focus_generic_construct_civilian
+
+        relative_position_id = SPR_infrastructure_effort
+        x = -2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = SPR_infrastructure_effort }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+    }
+    focus = {
+        id = SPR_construct_military
+        icon = GFX_focus_generic_construct_military
+
+        relative_position_id = SPR_infrastructure_effort
+        x = 0
+        y = 1
+
+        cost = 10
+
+        ai_will_do = {
+            base = 0.5
+            modifier = { has_war = yes factor = 3 }
+        }
+
+        prerequisite = { focus = SPR_infrastructure_effort }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = arms_factory
+										size > 0
+										include_locked = yes
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+    }
+    focus = {
+        id = SPR_expand_mining
+        icon = GFX_focus_generic_expand_mining
+
+        relative_position_id = SPR_infrastructure_effort
+        x = 2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = SPR_infrastructure_effort }
+        completion_reward = {
+            random_owned_controlled_state = {
+                add_resource = {
+                    type = steel
+                    amount = 12
+                }
+            }
+            random_owned_controlled_state = {
+                add_resource = {
+                    type = aluminium
+                    amount = 4
+                }
+            }
+        }
+    }
+    focus = {
+        id = SPR_steady_growth
+        icon = GFX_focus_generic_steady_growth
+
+        relative_position_id = SPR_construct_military
+        x = 0
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        prerequisite = { 
+            focus = SPR_construct_civilian
+            focus = SPR_construct_military
+            focus = SPR_expand_mining
+        }
+        completion_reward = {
+            add_ideas = sww1_idea_steady_growth
+        }
+    }
+
+
+## political branch
+    focus = {
+        id = SPR_political_ambitions
+        icon = GFX_focus_generic_political_ambitions
+
+        relative_position_id = SPR_economic_development
+        x = -1
+        y = 5
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        completion_reward = {
+            add_political_power = 150
+        }
+    }
+    focus = {
+        id = SPR_international_affairs
+        icon = GFX_focus_generic_international_affairs
+
+        relative_position_id = SPR_political_ambitions
+        x = -4
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = SPR_political_ambitions }
+        completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_international_affairs
+                years = 2
+            }
+        }
+    }
+    focus = {
+        id = SPR_expansionism
+        icon = GFX_focus_generic_expansionism
+
+        relative_position_id = SPR_international_affairs
+        x = -2
+        y = 1
+        cost = 10
+
+        available = { has_war_support > 0.3 }
+
+        prerequisite = { focus = SPR_international_affairs }
+        completion_reward = {
+            add_political_power = 100
+            add_timed_idea = {
+                idea = sww1_idea_expansionism
+                years = 1
+            }
+        }
+    }
+    focus = {
+        id = SPR_the_spanish_hyena
+        icon = GFX_focus_SPR_the_spanish_hyena
+
+        relative_position_id = SPR_international_affairs
+        x = 1
+        y = 1
+        cost = 10
+
+        ai_will_do = { 
+            base = 1
+            modifier = { date > 1914.1.1 factor = 3 }
+        }
+
+        prerequisite = { focus = SPR_international_affairs }
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+    focus = {
+        id = SPR_seek_alliances
+        icon = GFX_focus_generic_seek_alliances
+
+        relative_position_id = SPR_expansionism
+        x = -2
+        y = 1
+        cost = 10
+
+        available = { is_in_faction = no is_subject = no }
+
+        ai_will_do = {
+            base = 1
+            modifier = { OR = { date > 1913.7.1 has_war = yes } factor = 3 }
+        }
+
+        prerequisite = { focus = SPR_expansionism }
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+    focus = {
+        id = SPR_latin_america
+        icon = GFX_focus_SPR_latin_america
+
+        relative_position_id = SPR_expansionism
+        x = 1
+        y = 1
+        cost = 10
+
+        ai_will_do = { base = 1 }
+
+        prerequisite = { focus = SPR_expansionism }
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+
+    focus = {
+        id = SPR_reform_the_monarchy
+        icon = GFX_focus_SPR_reform_the_monarchy
+
+        relative_position_id = SPR_political_ambitions
+        x = 0
+        y = 1
+        cost = 10
+
+        available = { has_government = monarchism }
+
+        ai_will_do = { base = 2 }
+
+        mutually_exclusive = { focus = SPR_democratization }
+        prerequisite = { focus = SPR_political_ambitions }
+
+        completion_reward = {
+            add_stability = 0.05
+            add_popularity = { ideology = monarchism popularity = 0.05 }
+        }
+    }
+    focus = {
+        id = SPR_public_support
+        icon = GFX_focus_SPR_public_support
+
+        relative_position_id = SPR_reform_the_monarchy
+        x = -1
+        y = 1
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        prerequisite = { focus = SPR_reform_the_monarchy }
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+    focus = {
+        id = SPR_prioritize_the_military
+        icon = GFX_focus_SPR_prioritize_the_military
+
+        relative_position_id = SPR_reform_the_monarchy
+        x = 1
+        y = 1
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        prerequisite = { focus = SPR_reform_the_monarchy }
+        completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_prioritize_the_military
+                years = 2
+            }
+        }
+    }
+    focus = {
+        id = SPR_strength_in_unity
+        icon = GFX_focus_generic_strength_in_unity
+
+        relative_position_id = SPR_public_support
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { 
+            focus = SPR_public_support
+            focus = SPR_prioritize_the_military
+        }
+        completion_reward = {
+            remove_ideas = sww1_idea_post_imperial_decline
+            add_timed_idea = {
+                idea = sww1_idea_strength_in_unity
+                years = 1
+            }
+        }
+    }
+    focus = {
+        id = SPR_plus_ultra
+        icon = GFX_focus_generic_the_everlasting_spirit
+
+        relative_position_id = SPR_strength_in_unity
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = SPR_strength_in_unity }
+        completion_reward = {
+            add_ideas = sww1_idea_plus_ultra
+        }
+    }
+
+    focus = {
+        id = SPR_democratization
+        icon = GFX_focus_SPR_democratic_reforms
+
+        relative_position_id = SPR_political_ambitions
+        x = 4
+        y = 1
+        cost = 10
+
+        mutually_exclusive = { focus = SPR_reform_the_monarchy }
+        prerequisite = { focus = SPR_political_ambitions }
+
+        completion_reward = {
+            remove_ideas = sww1_idea_post_imperial_decline
+            add_timed_idea = { idea = sww1_idea_democratic_tendencies years = 1 }
+            add_popularity = { ideology = democratic popularity = 0.05 }
+        }
+    }
+    focus = {
+        id = SPR_state_reform
+        icon = GFX_focus_generic_state_reform
+
+        relative_position_id = SPR_democratization
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = SPR_democratization }
+        completion_reward = {
+            add_timed_idea = { idea = sww1_idea_state_reform years = 1 }
+        }
+    }
+    focus = {
+        id = SPR_open_the_economy
+        icon = GFX_focus_generic_open_the_economy
+
+        relative_position_id = SPR_democratization
+        x = -1
+        y = 1
+        cost = 10
+
+        ai_will_do = { base = 3 }
+
+        prerequisite = { focus = SPR_democratization }
+        completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_open_the_economy
+                years = 1
+            }
+
+            random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+        }
+    }
+    focus = {
+        id = SPR_over_the_edge
+        icon = GFX_focus_generic_over_the_edge
+
+        relative_position_id = SPR_state_reform
+        x = 2
+        y = 1
+        cost = 10
+
+        ai_will_do = {
+            base = 3
+            modifier = { has_war = yes factor = 0 }
+        }
+
+        prerequisite = { focus = SPR_state_reform }
+        available = {
+            has_civil_war = no
+            not = { has_government = communism }
+            
+            communism > 0.3
+        }
+        
+        completion_reward = {
+            start_civil_war = {
+                ruling_party = communism
+                ideology = ROOT
+                size = 0.5
+            }
+
+            hidden_effect = {
+                set_popularities = {
+                    communism = 100
+                }
+            }
+        }
+    }
+    focus = {
+        id = SPR_embrace_modernity
+        icon = GFX_focus_SPR_embrace_modernity
+
+        relative_position_id = SPR_state_reform
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = SPR_state_reform }
+        completion_reward = {
+            add_research_slot = 1
+        }
+    }
+}

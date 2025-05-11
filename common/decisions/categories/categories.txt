@@ -14,8 +14,9 @@ dc_public_support_decisions = {
     visible = {
         OR = {
             has_completed_focus = XXX_public_support
+            has_completed_focus = COL_public_support
             has_completed_focus = FRA_on_ne_passe_pas
-            has_completed_focus = TUR_radio_constantinople
+            has_completed_focus = SPR_public_support
         }
     }
     visible_when_empty = no
@@ -57,6 +58,27 @@ dc_austro-slavism = {
 dc_review_the_ausgleich_agreement = {
     visible = {
         has_completed_focus = AUS_review_the_ausgleich_agreement
+    }
+}
+
+# Colombia
+dc_challenge_the_us = {
+    visible = {
+        has_completed_focus = COL_challenge_the_us
+    }
+}
+
+dc_colombia_alliances = {
+    visible = {
+        OR = { is_in_faction = no is_faction_leader = yes }
+        is_subject = no
+        has_completed_focus = COL_seek_alliances
+    }
+}
+
+dc_pacific_expansion = {
+    visible = {
+        has_completed_focus = COL_pacific_expansion
     }
 }
 
@@ -295,7 +317,7 @@ dc_the_boxer_legacy = {
     }
 }
 
-# Country
+# Poland
 dc_kresy = {
     visible = {
         has_completed_focus = POL_kresy
@@ -359,6 +381,27 @@ dc_self_determination = {
     visible = {
         has_completed_focus = SOV_self_determination
     }
+}
+
+# Spain
+dc_the_spainsh_hyena = {
+    visible = {
+        has_completed_focus = SPR_the_spanish_hyena
+    }
+}
+
+dc_spain_alliances = {
+    visible = {
+        OR = { is_in_faction = no is_faction_leader = yes }
+        is_subject = no 
+        has_completed_focus = SPR_seek_alliances
+    }
+}
+
+dc_latin_america = {
+    visible = {
+        has_completed_focus = SPR_latin_america
+    }   
 }
 
 # Turkey

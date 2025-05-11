@@ -1,0 +1,104 @@
+add_namespace = colombia_integration_of_mexico
+
+country_event = {
+    id = colombia_integration_of_mexico.1
+    title = "Integration of Mexico"
+    desc = colombia_integration_of_mexico.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Grant them limited autonomy."
+        hidden_effect = { news_event = { id = colombia_integration_of_mexico.2 days = 7 random_hours = 6 } }
+
+        release = MEX
+        puppet = MEX
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "Enforce strict military administration."
+        hidden_effect = { news_event = { id = colombia_integration_of_mexico.3 days = 28 random_days = 42 } }
+
+        add_political_power = -100
+        every_state = {
+            limit = { is_core_of = MEX is_owned_by = COL }
+            add_resistance = 0.05
+        }
+
+        ai_chance = { base = 3 }
+    }
+}
+
+news_event = {
+    id = colombia_integration_of_mexico.2
+    title = "Colombian Governor in Palacio Nacional"    # puppet mexican state established
+    desc = colombia_integration_of_mexico.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = colombia_integration_of_mexico.3
+    title = "Anti-American Sentiments on the Rise"
+    desc = colombia_integration_of_mexico.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This sounds good."
+        add_political_power = 50
+
+        hidden_effect = { country_event = { id = colombia_integration_of_mexico.4 days = 28 random_days = 42 } }
+    }
+}
+
+country_event = {
+    id = colombia_integration_of_mexico.4
+    title = "'Sermon of Dignity'"
+    desc = colombia_integration_of_mexico.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must spread this as much as we can."
+
+        add_political_power = -150
+        every_state = {
+            limit = { is_core_of = MEX is_owned_by = COL }
+            add_compliance = 0.1
+        }
+
+        hidden_effect = {
+            news_event = { id = colombia_integration_of_mexico.5 days = 14 random_days = 28 }
+        }
+
+        ai_chance = { base = 6 }
+    }
+    option = {
+        name = "Do not get too involved."
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = colombia_integration_of_mexico.5
+    title = "Integration Efforts Succeed"
+    desc = colombia_integration_of_mexico.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Wonderful."
+
+        every_state = {
+            limit = { is_core_of = MEX is_owned_by = COL }
+            add_core_of = COL
+        }
+    }
+}

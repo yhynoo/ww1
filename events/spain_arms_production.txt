@@ -1,0 +1,63 @@
+add_namespace = spain_arms_production
+
+country_event = {
+    id = spain_arms_production.1
+    title = "[SPR.GetName] Offers Investments in Arms"
+    desc = spain_arms_production.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They are welcome."
+        SPR = { news_event = { id = spain_arms_production.2 hours = 12 random_hours = 6 } }
+
+        random_owned_controlled_state = {
+            add_extra_state_shared_building_slots = 1
+            add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+        }
+        random_owned_controlled_state = {
+            add_extra_state_shared_building_slots = 1
+            add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+        }
+
+        ai_chance = { base = 6 }
+    }
+
+    option = {
+        name = "This is not necessary."
+        SPR = { news_event = { id = spain_arms_production.3 hours = 12 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = spain_arms_production.2
+    title = "[COL.GetName] Accepts Our Offer"
+    desc = spain_arms_production.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+
+        add_war_support = 0.1
+        add_timed_idea = { idea = sww1_idea_arms_production_in_colombia years = 1 }
+
+        hidden_effect = {
+            COL = { country_event = { id = colombia_spanish_influence.1 days = 14 random_days = 14 } }
+        }
+    }
+}
+
+news_event = {
+    id = spain_arms_production.3
+    title = "[COL.GetName] Declines!"
+    desc = spain_arms_production.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "It's their loss."
+    }
+}

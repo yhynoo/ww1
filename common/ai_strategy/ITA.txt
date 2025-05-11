@@ -32,12 +32,12 @@ ITA_army_composition = {
 ITA_likes_ENG = {
 	allowed = { original_tag = ITA }
 	enable = { has_completed_focus = ITA_influence_the_uk }
-	abort = { OR = { ENG = { is_ally_with = AUS } ENG = { is_ally_with = TUR } has_country_flag = stop_influencing_uk } }
+	abort = { ENG = { has_opinion = { target = ITA value > 75 } } }
 
 	ai_strategy = {
 		type = befriend
 		id = ENG
-		value = 150
+		value = 100
 	}
 }
 
@@ -47,9 +47,15 @@ ITA_hates_TUR = {
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
+		type = consider_weak
+		id = TUR
+		value = 100
+	}
+
+	ai_strategy = {
 		type = invade
 		id = TUR
-		value = 300
+		value = 200
 	}
 }
 

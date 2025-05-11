@@ -1,1 +1,1039 @@
-﻿
+﻿focus_tree = {
+    id = MEX_focus
+    
+    country = {
+        factor = 0
+        modifier = {
+            add = 20
+            original_tag = MEX
+        }
+    }
+
+    continuous_focus_position = { x = 200 y = 800 }
+
+    ## military branch
+    focus = {
+        id = MEX_adjust_budget
+        icon = GFX_focus_generic_budget
+
+        x = 7
+        y = 0
+        cost = 10
+
+        completion_reward = {
+            add_command_power = 25
+        }
+    }
+    focus = {
+        id = MEX_focus_army
+        icon = GFX_focus_generic_army
+
+        relative_position_id = MEX_adjust_budget
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MEX_adjust_budget }
+        completion_reward = {
+            army_experience = 25
+        }
+    }
+    focus = {
+        id = MEX_extend_conscription
+        icon = GFX_focus_generic_extend_conscription
+
+        relative_position_id = MEX_focus_army
+        x = -4
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MEX_focus_army }
+        completion_reward = {
+            if = {
+                limit = {
+                    OR = {
+                        has_idea = disarmed_nation
+                        has_idea = volunteer_only
+                    }
+                }
+                add_ideas = limited_conscription
+            }
+        }
+    }
+    focus = {
+        id = MEX_army_maneuvers
+        icon = GFX_focus_generic_army_maneuvers
+
+        relative_position_id = MEX_focus_army
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MEX_focus_army }
+        completion_reward = {
+            army_experience = 50
+        }
+    }
+    focus = {
+        id = MEX_equipment_effort
+        icon = GFX_focus_generic_equipment_effort
+
+        relative_position_id = MEX_focus_army
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MEX_focus_army }
+        completion_reward = {
+            add_tech_bonus = {
+				name = infantry_bonus
+				bonus = 1.0
+				uses = 1
+				category = infantry_weapons
+			}
+        }
+    }
+    focus = {
+        id = MEX_artillery
+        icon = GFX_focus_generic_artillery
+
+        relative_position_id = MEX_equipment_effort
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MEX_equipment_effort }
+        completion_reward = {
+            add_tech_bonus = {
+				bonus = 1.0
+				uses = 1
+				category = artillery_tech
+			}
+        }
+    }
+    focus = {
+        id = MEX_aircraft
+        icon = GFX_focus_generic_aircraft
+
+        relative_position_id = MEX_equipment_effort
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MEX_equipment_effort }
+        completion_reward = {
+            air_experience = 25
+            add_tech_bonus = {
+				name = fighter_bonus
+				bonus = 1.0
+				uses = 1
+				category = air_equipment
+			}
+        }
+    }
+    focus = {
+        id = MEX_armor
+        icon = GFX_focus_generic_armor
+
+        relative_position_id = MEX_equipment_effort
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MEX_equipment_effort }
+        completion_reward = {
+            add_tech_bonus = {
+				name = armor_bonus
+				bonus = 1.0
+				uses = 1
+				category = armor_bonus_tech
+			}
+        }
+    }
+    focus = {
+        id = MEX_modern_warfare
+        icon = GFX_focus_generic_modern_warfare
+
+        relative_position_id = MEX_aircraft
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { 
+            focus = MEX_artillery
+            focus = MEX_aircraft
+            focus = MEX_kaiserjager
+        }
+        completion_reward = {
+            army_experience = 100
+            add_ideas = sww1_idea_modern_warfare
+        }
+    }
+
+    focus = {
+        id = MEX_focus_navy
+        icon = GFX_focus_generic_navy
+
+        relative_position_id = MEX_adjust_budget
+        x = 2
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = MEX_adjust_budget }
+        completion_reward = {
+            navy_experience = 25
+        }
+    }
+    focus = {
+        id = MEX_naval_exercises
+        icon = GFX_focus_generic_naval_exercises
+
+        relative_position_id = MEX_focus_navy
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = MEX_focus_navy }
+        completion_reward = {
+            navy_experience = 50
+            add_doctrine_cost_reduction = {
+				name = navy_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
+        }
+    }
+    focus = {
+        id = MEX_expand_dockyards
+        icon = GFX_focus_generic_expand_dockyards
+
+        relative_position_id = MEX_focus_navy
+        x = 2
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = MEX_focus_navy }
+        complete_tooltip = {
+			navy_experience = 25
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type = dockyard
+				level = 3
+				instant_build = yes
+			}
+		}
+		
+		completion_reward = {
+			navy_experience = 25
+			if = {
+				limit = {
+					NOT = {
+						any_owned_state = {
+							dockyard > 0
+							free_building_slots = {
+								building = dockyard
+								size > 2
+								include_locked = yes
+							}
+						}
+					}
+					any_owned_state = {
+						is_coastal = yes
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						is_coastal = yes
+						free_building_slots = {
+							building = dockyard
+							size > 2
+							include_locked = yes
+						}
+					}
+					add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+						type = dockyard
+						level = 3
+						instant_build = yes
+					}
+				}
+				set_country_flag = naval_effort_built
+			}
+			if = {
+				limit = {
+					NOT = { has_country_flag = naval_effort_built }
+					any_owned_state = {
+						dockyard > 0
+						free_building_slots = {
+							building = dockyard
+							size > 2
+							include_locked = yes
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						dockyard > 0
+						free_building_slots = {
+							building = dockyard
+							size > 2
+							include_locked = yes
+						}
+					}
+					add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+						type = dockyard
+						level = 3
+						instant_build = yes
+					}
+				}
+				set_country_flag = naval_effort_built
+			}
+			if = {
+				limit = {
+					NOT = { has_country_flag = naval_effort_built }
+					NOT = {
+						any_owned_state = {
+							free_building_slots = {
+								building = dockyard
+								size > 2
+								include_locked = yes
+							}
+						}
+					}
+				}
+				random_state = {
+					limit = {
+						controller = { tag = ROOT }
+						free_building_slots = {
+							building = dockyard
+							size > 2
+							include_locked = yes
+						}
+					}
+					add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+						type = dockyard
+						level = 3
+						instant_build = yes
+					}
+				}
+			}			
+		}
+    }
+    focus = {
+        id = MEX_high_seas
+        icon = GFX_focus_generic_high_seas
+
+        relative_position_id = MEX_expand_dockyards
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = MEX_expand_dockyards }
+        completion_reward = {
+            add_tech_bonus = {
+				name = capital_ships_bonus
+				bonus = 1.0
+				uses = 1
+				category = capital_ship_tech
+			}
+        }
+    }
+    focus = {
+        id = MEX_the_dark_deep
+        icon = GFX_focus_generic_the_dark_deep
+
+        relative_position_id = MEX_expand_dockyards
+        x = 2
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = MEX_expand_dockyards }
+        completion_reward = {
+            add_tech_bonus = {
+				name = ss_bonus
+				bonus = 1.0
+				uses = 1
+				category = submarines_tech
+			}
+        }
+    }
+    focus = {
+        id = MEX_seaborne_operations
+        icon = GFX_focus_generic_seaborne_operations
+
+        relative_position_id = MEX_naval_exercises
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = MEX_naval_exercises }
+        completion_reward = {
+            add_tech_bonus = {
+				name = special_forces_bonus
+				bonus = 1.0
+				uses = 1
+				technology = marines_1
+                technology = marines_2
+			}
+        }
+    }
+    focus = {
+        id = MEX_rule_the_waves
+        icon = GFX_focus_generic_rule_the_waves
+
+        relative_position_id = MEX_high_seas
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { 
+            focus = MEX_seaborne_operations
+            focus = MEX_high_seas
+            focus = MEX_the_dark_deep
+        }
+        completion_reward = {
+            navy_experience = 100
+            add_ideas = sww1_idea_rule_the_waves
+        }
+    }
+
+    ## economic branch
+    focus = {
+        id = MEX_economic_development
+        icon = GFX_focus_generic_economic_development
+
+        x = 21
+        y = 0
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        completion_reward = {
+            add_stability = 0.05
+        }
+    }
+    focus = {
+        id = MEX_agrarian_reform
+        icon = GFX_focus_generic_agrarian_reform
+
+        relative_position_id = MEX_economic_development
+        x = -3
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = MEX_economic_development }
+        completion_reward = {
+            add_stability = 0.05
+        }
+    }
+    focus = {
+        id = MEX_rationing
+        icon = GFX_focus_generic_rationing
+
+        relative_position_id = MEX_agrarian_reform
+        x = 0
+        y = 1
+
+        cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
+
+        prerequisite = { focus = MEX_agrarian_reform }
+        completion_reward = {
+            add_stability = -0.1
+            add_ideas = sww1_idea_rationing
+        }
+    }
+    focus = {
+        id = MEX_land_reclamation
+        icon = GFX_focus_generic_land_reclamation
+
+        relative_position_id = MEX_agrarian_reform
+        x = -2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = MEX_agrarian_reform }
+        completion_reward = {
+
+            random_owned_controlled_state = {
+                add_manpower = 1500
+                add_extra_state_shared_building_slots = 2
+            }
+            random_owned_controlled_state = {
+                add_manpower = 1500
+                add_extra_state_shared_building_slots = 2
+            }
+        }
+    }
+    focus = {
+        id = MEX_trade_tariffs
+        icon = GFX_focus_MEX_trade_tariffs
+
+        relative_position_id = MEX_agrarian_reform
+        x = 2
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        prerequisite = { focus = MEX_agrarian_reform }
+        completion_reward = {
+            add_ideas = sww1_idea_trade_tariffs
+        }
+    }
+    focus = {
+        id = MEX_austerity_measures
+        icon = GFX_focus_generic_austerity_measures
+
+        relative_position_id = MEX_rationing
+        x = 0
+        y = 1
+
+        cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
+
+        prerequisite = { focus = MEX_rationing }
+        completion_reward = {
+            add_war_support = -0.1
+            add_stability = -0.2
+
+            swap_ideas = {
+                remove_idea = sww1_idea_rationing
+                add_idea = sww1_idea_austerity_measures
+            }
+        }
+    }
+
+    focus = {
+        id = MEX_infrastructure_effort
+        icon = GFX_focus_generic_infrastructure_effort
+
+        relative_position_id = MEX_economic_development
+        x = 3
+        y = 1
+
+        cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { date > 1914.1.1 factor = 3 }
+        }
+
+        prerequisite = { focus = MEX_economic_development }
+        bypass = {
+			custom_trigger_tooltip = {
+				tooltip = infrastructure_effort_tt
+				all_owned_state = {			
+					free_building_slots = {
+						building = infrastructure
+						size < 1
+					}
+				}
+			}
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 0
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = infrastructure
+										size > 0
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+            add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 1.0
+				uses = 2
+				category = industry
+			}
+		}
+    }
+    focus = {
+        id = MEX_construct_civilian
+        icon = GFX_focus_generic_construct_civilian
+
+        relative_position_id = MEX_infrastructure_effort
+        x = -2
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 3 }
+
+        prerequisite = { focus = MEX_infrastructure_effort }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+    }
+    focus = {
+        id = MEX_construct_military
+        icon = GFX_focus_generic_construct_military
+
+        relative_position_id = MEX_infrastructure_effort
+        x = 0
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        prerequisite = { focus = MEX_infrastructure_effort }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = arms_factory
+										size > 0
+										include_locked = yes
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+    }
+    focus = {
+        id = MEX_expand_mining
+        icon = GFX_focus_generic_expand_mining
+
+        relative_position_id = MEX_infrastructure_effort
+        x = 2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = MEX_infrastructure_effort }
+        completion_reward = {
+            random_owned_controlled_state = {
+                add_resource = {
+                    type = steel
+                    amount = 12
+                }
+            }
+            random_owned_controlled_state = {
+                add_resource = {
+                    type = aluminium
+                    amount = 4
+                }
+            }
+        }
+    }
+    focus = {
+        id = MEX_steady_growth
+        icon = GFX_focus_generic_steady_growth
+
+        relative_position_id = MEX_construct_military
+        x = 0
+        y = 1
+
+        cost = 10
+
+        prerequisite = { 
+            focus = MEX_construct_civilian
+            focus = MEX_construct_military
+            focus = MEX_expand_mining
+        }
+        completion_reward = {
+            add_ideas = sww1_idea_steady_growth
+        }
+    }
+
+
+## political branch
+    focus = {
+        id = MEX_political_ambitions
+        icon = GFX_focus_generic_political_ambitions
+
+        relative_position_id = MEX_economic_development
+        x = -1
+        y = 5
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        completion_reward = {
+            add_political_power = 150
+        }
+    }
+    focus = {
+        id = MEX_international_affairs
+        icon = GFX_focus_generic_international_affairs
+
+        relative_position_id = MEX_political_ambitions
+        x = -4
+        y = 1
+        cost = 10
+
+        ai_will_do = { base = 3 }
+
+        prerequisite = { focus = MEX_political_ambitions }
+        completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_international_affairs
+                years = 2
+            }
+        }
+    }
+    focus = {
+        id = MEX_expansionism
+        icon = GFX_focus_generic_expansionism
+
+        relative_position_id = MEX_international_affairs
+        x = -2
+        y = 1
+        cost = 10
+
+        available = { has_war_support > 0.3 }
+
+        prerequisite = { focus = MEX_international_affairs }
+        completion_reward = {
+            add_political_power = 100
+            add_timed_idea = {
+                idea = sww1_idea_expansionism
+                years = 1
+            }
+        }
+    }
+    focus = {
+        id = MEX_stabilize_central_america
+        icon = GFX_focus_MEX_stabilize_central_america
+
+        relative_position_id = MEX_international_affairs
+        x = 1
+        y = 1
+        cost = 10
+
+        ai_will_do = { 
+            base = 2
+            modifier = { has_war_with = COL factor = 6 }
+        }
+
+        prerequisite = { focus = MEX_international_affairs }
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+    focus = {
+        id = MEX_seek_alliances
+        icon = GFX_focus_generic_seek_alliances
+
+        relative_position_id = MEX_expansionism
+        x = -2
+        y = 1
+        cost = 10
+
+        available = { is_in_faction = no is_subject = no }
+
+        ai_will_do = {
+            base = 1
+            modifier = { OR = { date > 1913.7.1 has_war = yes } factor = 3 }
+        }
+
+        prerequisite = { focus = MEX_expansionism }
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+    focus = {
+        id = MEX_a_senor_partner
+        icon = GFX_focus_MEX_a_senor_partner
+
+        relative_position_id = MEX_expansionism
+        x = 1
+        y = 1
+        cost = 10
+
+        ai_will_do = { 
+            base = 2
+            modifier = { has_war = yes factor = 0 }
+        }
+
+        prerequisite = { focus = MEX_expansionism }
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+
+    focus = {
+        id = MEX_affirm_democracy
+        icon = GFX_focus_MEX_affirm_democracy
+
+        relative_position_id = MEX_political_ambitions
+        x = 0
+        y = 1
+        cost = 10
+
+        available = { has_government = democratic }
+
+        ai_will_do = { base = 2 }
+
+        mutually_exclusive = { focus = MEX_hispanic_traditionalism }
+        prerequisite = { focus = MEX_political_ambitions }
+
+        completion_reward = {
+            add_stability = 0.05
+            add_popularity = { ideology = democratic popularity = 0.05 }
+        }
+    }
+    focus = {
+        id = MEX_public_support
+        icon = GFX_focus_MEX_public_support
+
+        relative_position_id = MEX_affirm_democracy
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MEX_affirm_democracy }
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+    focus = {
+        id = MEX_sacred_duty
+        icon = GFX_focus_MEX_sacred_duty
+
+        relative_position_id = MEX_affirm_democracy
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MEX_affirm_democracy }
+        completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_sacred_duty
+                years = 2
+            }
+        }
+    }
+    focus = {
+        id = MEX_unitarian_government
+        icon = GFX_focus_MEX_unitarian_government
+
+        relative_position_id = MEX_public_support
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { 
+            focus = MEX_public_support
+            focus = MEX_sacred_duty
+        }
+        completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_unitarian_government
+                years = 1
+            }
+        }
+    }
+    focus = {
+        id = MEX_la_concordia_panamericana
+        icon = GFX_focus_generic_the_everlasting_spirit
+
+        relative_position_id = MEX_strength_in_unity
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MEX_strength_in_unity }
+        completion_reward = {
+            add_ideas = sww1_idea_la_concordia_panamericana
+        }
+    }
+
+    focus = {
+        id = MEX_dissolve_the_parliament
+        icon = GFX_focus_MEX_dissolve_the_parliament
+
+        relative_position_id = MEX_political_ambitions
+        x = 4
+        y = 1
+        cost = 10
+
+        mutually_exclusive = { focus = MEX_affirm_democracy }
+        prerequisite = { focus = MEX_political_ambitions }
+
+        completion_reward = {
+            add_timed_idea = { idea = sww1_idea_authoritarianism_tendencies years = 1 }
+            add_popularity = { ideology = authoritarianism popularity = 0.05 }
+        }
+    }
+    focus = {
+        id = MEX_state_reform
+        icon = GFX_focus_generic_state_reform
+
+        relative_position_id = MEX_dissolve_the_parliament
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MEX_dissolve_the_parliament }
+        completion_reward = {
+            add_timed_idea = { idea = sww1_idea_state_reform years = 1 }
+        }
+    }
+    focus = {
+        id = MEX_caudillo_estates
+        icon = GFX_focus_generic_open_the_economy
+
+        relative_position_id = MEX_dissolve_the_parliament
+        x = -1
+        y = 1
+        cost = 10
+
+        ai_will_do = { base = 3 }
+
+        prerequisite = { focus = MEX_dissolve_the_parliament }
+        completion_reward = {
+            add_timed_idea = {
+                idea = sww1_idea_caudillo_estates
+                years = 1
+            }
+        }
+    }
+    focus = {
+        id = MEX_eradicate_atheist_dissent
+        icon = GFX_focus_MEX_eradicate_atheist_dissent
+
+        relative_position_id = MEX_state_reform
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MEX_state_reform }
+        available = { has_government = authoritarianism }
+        
+        completion_reward = {
+            set_popularities = { authoritarianism = 100 }
+        }
+    }
+    focus = {
+        id = MEX_militarize_the_academia
+        icon = GFX_focus_MEX_militarize_the_academia
+
+        relative_position_id = MEX_state_reform
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = MEX_state_reform }
+        completion_reward = {
+            add_research_slot = 1
+        }
+    }
+}
