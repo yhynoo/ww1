@@ -25,3 +25,5 @@ replace_path="gfx/loadingscreens"
 replace_path="gfx/flags"
 replace_path="gfx/flags/medium"
 replace_path="gfx/flags/small"
+
+replace_path="history/states"

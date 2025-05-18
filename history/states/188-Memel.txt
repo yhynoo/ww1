@@ -1,7 +1,7 @@
 state = {
 	id = 188
 	name = "STATE_188"
-	manpower = 105000
+	manpower = 2105000
 	
 	state_category = rural
 	
@@ -13,23 +13,25 @@ state = {
 		victory_points = {
 			3288 3 # Klaipeda/Memel
 		}
-		
+
+		victory_points = {
+			6332 10 # Königsberg
+		}
+
 		buildings = {
-			infrastructure = 3 #was: 5
-			3288 = {
+			infrastructure = 3 #was: 6
+			industrial_complex = 2
+			air_base = 1
+			
+			6332 = {
+				naval_base = 3
+				bunker = 3
 			}
 		}
-		
-		1939.3.22 = {
-			owner = GER
-			controller = GER
-			add_core_of = GER
-		}
-
 	}
 
-	provinces = {
-		3288 	
+	provinces={
+		281 348 395 3288 3384 6332 11265 
 	}
 	local_supplies = 0.0 
 }
