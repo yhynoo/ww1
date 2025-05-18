@@ -1,97 +1,48 @@
 on_actions = {
+    
+    # atmosphere events
+    
     on_startup = {
         effect = {
-            AUS = {
-                # Kisch in Antwerp
-                country_event = { id = austria_kisch.1 months = 2 random_days = 28 }
-
-                # franz ferdinand killed
-                news_event = { id = majorevent.2 months = 29 days = 28 }
-
-                # franz joseph dies
-                news_event = { id = majorevent.3 months = 58 days = 21 }
-            }
-
-            ENG = {
-                # titanic
-                news_event = { id = vibeevents.1 months = 3 days = 12 }
-
-                # movies
-                news_event = { id = vibeevents.3 months = 13 random_days = 28 }
-
-                # food on planes
-                news_event = { id = vibeevents.6 months = 24 random_days = 28 }
-
-                # airmail
-                news_event = { id = vibeevents.14 months = 61 random_days = 8 }
-            }
-
-            FRA = {
-                # anarchist trials
-                country_event = { id = france_anarchist_trials.1 months = 1 random_days = 28 }
-
-                # neon
-                news_event = { id = vibeevents.2 months = 8 days = 10 }
-
-                # arson in brussels
-                news_event = { id = majorevent.1 months = 9 days = 12 }
-
-                # stravinsky
-                news_event = { id = vibeevents.4 months = 16 days = 29 }
-
-                # transfusion
-                news_event = { id = vibeevents.7 months = 27 days = 5 }
-
-                # sklodowska's nobel
-                news_event = { id = vibeevents.11 months = 51 days = 20 }
-            }
-
-            GER = {
-                # nefertiti
-                country_event = { id = germany_nefertiti.1 months = 11 days = 6 }
-
-                # einstein
-                news_event = { id = vibeevents.10 months = 44 days = 23 }
-            }
-
-            ITA = {
-                # italy_worker_strikes
-                country_event = { id = italy_worker_strikes.1 months = 16 random_days = 15 }
-            }
-
-            SOV = {
-                # alexei
-                country_event = { id = russia_alexei.1 months = 7 random_days = 28 }
-
-                # riot in riga
-                news_event = { id = baltic_riot_events.1 months = 38 random_days = 30 }
-            }
-
             USA = {
-                # zapatistas in mexico
-                news_event = { id = usa_monroe_doctrine.1 months = 1 days = 4 }
+                # 1912
+                news_event = { id = x_atmosphere.1 months = 1 random_days = 14 }
+                news_event = { id = x_atmosphere.2 months = 3 days = 15 }
+                news_event = { id = x_atmosphere.3 months = 3 days = 27 }
 
-                # ford
-                news_event = { id = vibeevents.5 months = 18 days = 11 }
+                # 1913
+                news_event = { id = x_atmosphere.4 months = 14 random_days = 28 }
 
-                # radio
-                news_event = { id = vibeevents.8 months = 30 random_days = 14 }
+                # 1914
+                news_event = { id = x_atmosphere.5 months = 38 random_days = 28 }
 
-                # birth of a nation
-                news_event = { id = usa_embers_of_the_past.7 months = 37 days = 8 }
+                # 1916
+                news_event = { id = x_atmosphere.6 months = 51 random_days = 28 }
+                news_event = { id = x_atmosphere.7 months = 54 random_days = 28 }
 
-                # jazz
-                news_event = { id = vibeevents.9 months = 41 random_days = 30 }
-
-                # ice cream
-                news_event = { id = vibeevents.12 months = 60 random_days = 30 }
-
-                # washing machine
-                news_event = { id = vibeevents.13 months = 61 random_days = 28 }
-
-                # hollywood
-                news_event = { id = vibeevents.15 months = 77 random_days = 28 }
+                # 1918
+                news_event = { id = x_atmosphere.8 months = 78 random_days = 28 }
             }
         }
     }
+
+    # 1912 events
+    on_startup = {
+        effect = {
+
+            # England 
+            ENG = { country_event = { id = england_imperial_wireless.1 months = 5 random_days = 14 } }
+
+            # France
+            FRA = { country_event = { id = france_art_disputes.1 months = 7 random_days = 14 } }
+
+            # Germany
+            GER = { country_event = { id = germany_archaeology.1 months = 11 random_days = 14 } }
+
+            # Russia
+            SOV = { country_event = { id = russia_alexei.1 months = 4 random_days = 14 } }
+
+        }
+    }
+
 }

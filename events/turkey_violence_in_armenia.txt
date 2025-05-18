@@ -1,0 +1,77 @@
+add_namespace = turkey_violence_in_armenia
+
+country_event = {
+    id = turkey_violence_in_armenia.1
+    title = "Violence in Armenia and Assyria"
+    desc = turkey_violence_in_armenia.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = turkey_violence_in_armenia.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = ""
+
+        hidden_effect = { country_event = { id = turkey_violence_in_armenia.3 days = 7 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = turkey_violence_in_armenia.2
+    title = "Ottoman Govt Admits ‘Missteps’ in East"
+    desc = turkey_violence_in_armenia.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+    }
+}
+
+country_event = {
+    id = turkey_violence_in_armenia.3
+    title = "‘Slander is Treason!’"
+    desc = turkey_violence_in_armenia.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = turkey_violence_in_armenia.4 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = turkey_violence_in_armenia.5 days = 7 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = turkey_violence_in_armenia.4
+    title = "Crackdown on Conservatives"
+    desc = turkey_violence_in_armenia.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = ""
+    }
+}
+
+news_event = {
+    id = turkey_violence_in_armenia.5
+    title = "Another Catastrophe in the Making?"
+    desc = turkey_violence_in_armenia.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = ""
+    }
+}

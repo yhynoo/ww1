@@ -816,10 +816,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 1
-            modifier = { has_country_flag = usa_goes_to_mexico factor = 6 }
-        }
+        ai_will_do = { base = 3 }
 
         prerequisite = { focus = USA_political_ambitions }
         completion_reward = {
@@ -847,11 +844,8 @@ focus_tree = {
 
         prerequisite = { focus = USA_international_affairs }
         completion_reward = {
+            add_war_support = 0.1
             remove_ideas = sww1_idea_isolationist_society
-            add_timed_idea = {
-                idea = sww1_idea_interventionism
-                years = 1
-            }
         }
     }
     focus = {
@@ -864,8 +858,8 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1
-            modifier = { has_country_flag = usa_goes_to_mexico factor = 3 }
+            base = 2
+            modifier = { has_war_support > 0.3 factor = 3 }
         }
 
         prerequisite = { focus = USA_international_affairs }
@@ -875,15 +869,15 @@ focus_tree = {
         }
     }
     focus = {
-        id = USA_support_the_entente
-        icon = GFX_focus_USA_support_the_entente
+        id = USA_seek_alliances
+        icon = GFX_focus_generic_seek_alliances
 
         relative_position_id = USA_interventionism
         x = -2
         y = 1
         cost = 10
 
-        available = { has_war_support > 0.4 }
+        available = { is_in_faction = no is_subject = no }
 
         ai_will_do = { 
             base = 2
@@ -896,20 +890,14 @@ focus_tree = {
         }
     }
     focus = {
-        id = USA_wilsons_fourteen_points
-        icon = GFX_focus_USA_wilsons_fourteen_points
+        id = USA_north_atlantic_expansion
+        icon = GFX_focus_USA_north_atlantic_expansion
 
         relative_position_id = USA_interventionism
         x = 1
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 1
-            modifier = { and = { date > 1916.1.1 ENG = { not = { has_war_with = GER } } } }
-        }
-
-        available = { has_government = democratic }
         prerequisite = { focus = USA_interventionism }
         
         completion_reward = {
@@ -937,12 +925,12 @@ focus_tree = {
 
         completion_reward = {
             add_war_support = 0.05
-            news_event = { id = generic_focus_tree_event.1 hours = 12 random_hours = 6 }
+            add_popularity = { ideology = democratic popularity = 0.05 }
         }
     }
     focus = {
-        id = USA_cultural_hegemony
-        icon = GFX_focus_USA_cultural_hegemony
+        id = USA_public_support
+        icon = GFX_focus_USA_public_support
 
         relative_position_id = USA_the_arsenal_of_liberty
         x = -1
@@ -955,9 +943,9 @@ focus_tree = {
         }
     }
     focus = {
-        id = USA_uncle_sam
-        icon = GFX_focus_USA_uncle_sam
-
+        id = USA_technological_mobilization
+        icon = GFX_focus_USA_technological_mobilization
+        
         relative_position_id = USA_the_arsenal_of_liberty
         x = 1
         y = 1
@@ -966,27 +954,27 @@ focus_tree = {
         prerequisite = { focus = USA_the_arsenal_of_liberty }
         completion_reward = {
             add_timed_idea = {
-                idea = sww1_idea_uncle_sam
+                idea = sww1_idea_technological_mobilization
                 years = 2
             }
         }
     }
     focus = {
-        id = USA_strength_in_unity
-        icon = GFX_focus_USA_strength_in_unity
+        id = USA_uncle_sam
+        icon = GFX_focus_USA_uncle_sam
 
-        relative_position_id = USA_cultural_hegemony
+        relative_position_id = USA_public_support
         x = 1
         y = 1
         cost = 10
 
         prerequisite = { 
-            focus = USA_cultural_hegemony
-            focus = USA_uncle_sam
+            focus = USA_public_support
+            focus = USA_technological_mobilization
         }
         completion_reward = {
             add_timed_idea = {
-                idea = sww1_idea_strength_in_unity
+                idea = sww1_idea_uncle_sam
                 years = 1
             }
         }
@@ -995,12 +983,12 @@ focus_tree = {
         id = USA_freedom_for_all
         icon = GFX_focus_generic_the_everlasting_spirit
 
-        relative_position_id = USA_strength_in_unity
+        relative_position_id = USA_uncle_sam
         x = 0
         y = 1
         cost = 10
 
-        prerequisite = { focus = USA_strength_in_unity }
+        prerequisite = { focus = USA_uncle_sam }
         completion_reward = {
             add_ideas = sww1_idea_freedom_for_all
         }
@@ -1090,8 +1078,8 @@ focus_tree = {
         }
     }
     focus = {
-        id = USA_harbor_of_free_thought
-        icon = GFX_focus_generic_embrace_modernity
+        id = USA_christian_education
+        icon = GFX_focus_USA_christian_education
 
         relative_position_id = USA_state_reform
         x = -1

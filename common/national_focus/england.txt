@@ -59,7 +59,10 @@ focus_tree = {
 
         prerequisite = { focus = ENG_focus_army }
         completion_reward = {
-            country_event = { id = england_conscription.1 hours = 3 }
+            swap_ideas = {
+                remove_idea = sww1_idea_colonial_army
+                add_idea = limited_conscription
+            }
         }
     }
     focus = {
@@ -894,7 +897,7 @@ focus_tree = {
         ai_will_do = { 
             base = 3
             modifier = { date > 1913.7.1 factor = 2 }
-            modifier = { has_completed_focus = ENG_announce_the_commons_act factor = 0 }
+            modifier = { and = { has_completed_focus = ENG_announce_the_commons_act not = { has_government = monarchism } } factor = 0 }
         }
 
         prerequisite = { focus = ENG_expansionism }
@@ -1045,7 +1048,7 @@ focus_tree = {
             }
 
             # alternative path event chain
-            hidden_effect = { country_event = { id = england_workers_uprising.1 days = 14 random_days = 28 } }
+            hidden_effect = { country_event = { id = england_dockers_strike.1 days = 14 random_days = 28 } }
         }
     }
     focus = {

@@ -1,0 +1,86 @@
+on_actions = {
+    on_war = {
+        effect = {
+
+            # Austria
+            if = {
+                limit = {
+                    tag = AUS
+                    not = { has_country_flag = flour_triggered }
+                }
+            
+                country_event = { id = austria_flour.1 months = 6 random_days = 90 }
+                set_country_flag = flour_triggered
+            }
+
+            # England
+            if = {
+                limit = {
+                    tag = ENG
+                    not = { has_country_flag = feathers_triggered }
+                }
+            
+                country_event = { id = england_white_feathers.1 months = 3 random_days = 90 }
+                set_country_flag = feathers_triggered
+            }
+
+            # France
+            if = {
+                limit = {
+                    tag = FRA
+                    not = { has_country_flag = mutinies_triggered }
+                }
+            
+                country_event = { id = france_mutinees.1 months = 18 random_days = 90 }
+                set_country_flag = mutinies_triggered
+            }
+
+            # Germany
+            if = {
+                limit = {
+                    tag = GER
+                    not = { has_country_flag = bread_triggered }
+                }
+            
+                country_event = { id = germany_bread.1 months = 12 random_days = 90 }
+                set_country_flag = bread_triggered
+            }
+
+            # Russia
+            if = {
+                limit = {
+                    tag = SOV
+                    not = { has_country_flag = agitation_triggered }
+                }
+            
+                country_event = { id = france_mutinees.1 months = 18 random_days = 90 }
+                set_country_flag = agitation_triggered
+            }
+
+            # Turkey
+            if = {
+                limit = {
+                    tag = TUR
+                    has_war_with = SOV          # only against Russia.
+
+                    not = { has_country_flag = ararat_triggered }
+                }
+            
+                country_event = { id = turkey_ararat.1 months = 3 random_days = 90 }
+                set_country_flag = ararat_triggered
+            }
+
+            # USA
+            if = {
+                limit = {
+                    tag = USA
+                    not = { has_country_flag = espionage_act_triggered }
+                }
+            
+                country_event = { id = usa_espionage_act.1 months = 3 random_days = 90 }
+                set_country_flag = espionage_act_triggered
+            }
+
+        }
+    }
+}

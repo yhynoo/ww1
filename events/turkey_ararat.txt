@@ -1,0 +1,28 @@
+country_event = {
+    id = turkey_ararat.1
+    title = "The Ararat Tragedy"
+    desc = turkey_ararat.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = turkey_ararat.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = ""
+    }
+}
+
+news_event = {
+    id = turkey_ararat.2
+    title = "Minister: ‘Supplies Arrive As Scheduled’"
+    desc = turkey_ararat.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+    }
+}

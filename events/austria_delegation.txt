@@ -1,0 +1,77 @@
+add_namespace = austria_delegation
+
+country_event = {
+    id = austria_delegation.1
+    title = "The Delegation Arrives"
+    desc = austria_delegation.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = austria_delegation.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = ""
+
+        hidden_effect = { country_event = { id = austria_delegation.3 days = 7 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = austria_delegation.2
+    title = "A Whispered Compromise"
+    desc = austria_delegation.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+    }
+}
+
+country_event = {
+    id = austria_delegation.3
+    title = "Galician Industrialists Threaten the Crown"
+    desc = austria_delegation.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = austria_delegation.4 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = austria_delegation.5 days = 7 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = austria_delegation.4
+    title = "Tax Incentives for Galicia?"
+    desc = austria_delegation.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = ""
+    }
+}
+
+news_event = {
+    id = austria_delegation.5
+    title = "Thugs Assault Imperial Officials"
+    desc = austria_delegation.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = ""
+    }
+}

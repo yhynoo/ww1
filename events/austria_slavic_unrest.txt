@@ -1,0 +1,36 @@
+add_namespace = austria_slavic_unrest
+
+news_event = {
+    id = austria_slavic_unrest.1
+    title = "Train Derailed in Lemberg"
+    desc = austria_slavic_unrest.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must investigate this matter."
+
+        add_stability = -0.05
+        hidden_effect = { news_event = { id = austria_slavic_unrest.4 days = 28 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = austria_slavic_unrest.2
+    title = "Assassination Attempt in Sarajevo!"
+    desc = austria_slavic_unrest.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Outrageous."
+
+        if = {
+            limit = { tag = AUS }
+
+            add_war_support = 0.2
+            create_wargoal = { target = SOV type = annex_everything }
+        }
+    }
+}

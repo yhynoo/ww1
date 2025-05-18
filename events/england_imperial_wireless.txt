@@ -1,0 +1,30 @@
+add_namespace = england_imperial_wireless
+
+country_event = {
+    id = england_imperial_wireless.1
+    title = "Imperial Wireless’ Strange Investments"
+    desc = england_imperial_wireless.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = england_imperial_wireless.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = ""
+    }
+}
+
+news_event = {
+    id = england_imperial_wireless.2
+    title = "Admiralty’s Initiative Falters"
+    desc = england_imperial_wireless.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+    }
+}

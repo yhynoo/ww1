@@ -1,0 +1,70 @@
+add_namespace = x_stability
+
+# Greek independence war
+news_event = {
+    id = x_stability.1
+    title = "Achaean League Issues Call to Arms!"
+    desc = x_stability.1.d
+
+    trigger = { TUR = { has_stability < 0.6 } }
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        trigger = { not = { tag = TUR } }
+        name = "The Greeks have had enough."
+    }
+
+    option = {
+        trigger = { tag = TUR }
+        name = "We must restore order!"
+
+        add_stability = -0.05
+        hidden_effect = { start_greek_independence_war = yes }
+    }
+}
+
+# Uprising in South Africa
+country_event = {
+    id = x_stability.2
+    title = "Smuts' Offer"
+    desc = x_stability.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "South Africa shall remain part of the Empire."
+        hidden_effect = { news_event = { id = x_stability.3 days = 14 random_days = 7 } }
+    }
+    option = {
+        name = "We shall accept his offer."
+
+        release = SAF
+        set_autonomy = { target = SAF autonomous_state = autonomy_dominion }
+    }
+}
+
+news_event = {
+    id = x_stability.3
+    title = "Oranje Uprising"
+    desc = x_stability.3.d
+
+    trigger = { ENG = { has_stability < 0.6 } }
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        trigger = { not = { tag = ENG } }
+        name = "Yet another Boer war?"
+    }
+
+    option = {
+        trigger = { tag = ENG }
+        name = "We must restore order!"
+
+        add_stability = -0.05
+        hidden_effect = { start_south_african_independence_war = yes }
+    }
+}

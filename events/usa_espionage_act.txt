@@ -1,0 +1,30 @@
+add_namespace = usa_espionage_act
+
+country_event = {
+    id = usa_espionage_act.1
+    title = "The Espionage Act Debated"
+    desc = usa_espionage_act.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = usa_espionage_act.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = ""
+    }
+}
+
+news_event = {
+    id = usa_espionage_act.2
+    title = "‘Law Against Dissent?’"
+    desc = usa_espionage_act.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+    }
+}

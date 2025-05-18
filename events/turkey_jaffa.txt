@@ -1,0 +1,21 @@
+add_namespace = turkey_jaffa
+
+news_event = {
+    id = turkey_jaffa.1
+    title = "Jaffa Harbor Erupts in Violence!"
+    desc = turkey_jaffa.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Awful!"
+
+        if = {
+            limit = { tag = TUR }
+
+            add_stability = -0.05
+            hidden_effect = { start_arab_independence_war = yes }
+        }
+    }
+}

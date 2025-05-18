@@ -944,10 +944,7 @@
 
         ai_will_do = {
             base = 1
-            modifier = {
-                date > 1912.6.1
-                factor = 2.5
-            }
+            modifier = { has_government = monarchism factor = 6 }
         }
 
         prerequisite = { focus = SOV_international_affairs }
@@ -1140,14 +1137,11 @@
         mutually_exclusive = { focus = SOV_monarchy }
         prerequisite = { focus = SOV_political_ambitions }
         completion_reward = {
-            add_timed_idea = {
-                idea = sww1_idea_democratic_tendencies
-                years = 1
-            }
+            add_timed_idea = { idea = sww1_idea_democratic_tendencies years = 1 }
             add_popularity = { ideology = democratic popularity = 0.1 }
 
             # alternative path event chain
-            hidden_effect = { country_event = { id = russia_anarchy_in_ukraine.1 days = 14 random_days = 28 } }
+            hidden_effect = { country_event = { id = russia_unrest_in_ukraine.1 days = 14 random_days = 28 } }
         }
     }
     focus = {

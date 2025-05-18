@@ -1,0 +1,28 @@
+country_event = {
+    id = russia_agitation.1
+    title = "Communist Agitators in the Army"
+    desc = russia_agitation.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = russia_agitation.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = ""
+    }
+}
+
+news_event = {
+    id = russia_agitation.2
+    title = "Duma Condemns ‘Subversives’"
+    desc = russia_agitation.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+    }
+}

@@ -1,0 +1,77 @@
+add_namespace = france_legitimists_coup
+
+country_event = {
+    id = france_legitimists_coup.1
+    title = "A Letter from Orleans"
+    desc = france_legitimists_coup.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = france_legitimists_coup.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = ""
+
+        hidden_effect = { country_event = { id = france_legitimists_coup.3 days = 7 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = france_legitimists_coup.2
+    title = "The Chambers Dismiss Monarchist Musings"
+    desc = france_legitimists_coup.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+    }
+}
+
+country_event = {
+    id = france_legitimists_coup.3
+    title = "Legitimist Demonstration in Lyon"
+    desc = france_legitimists_coup.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = france_legitimists_coup.4 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = france_legitimists_coup.5 days = 7 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = france_legitimists_coup.4
+    title = "State Within a State?"
+    desc = france_legitimists_coup.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = ""
+    }
+}
+
+news_event = {
+    id = france_legitimists_coup.5
+    title = "France — Absolutist Again?"
+    desc = france_legitimists_coup.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = ""
+    }
+}

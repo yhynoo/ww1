@@ -1,0 +1,30 @@
+create_appropriate_faction = {
+    if = {
+        limit = { tag = AUS }
+        if = { 
+            limit = { has_completed_focus = AUS_second_vienna_treaty }
+            create_faction = "Second Vienna Treaty"
+        }
+        else = { create_faction = "Hofburg Alliance" }
+    }
+
+    if = {
+        limit = { tag = ENG }
+        create_faction = "Entente"
+    }
+
+    if = {
+        limit = { tag = FRA }
+        create_faction = "Versailles Accords"
+    }
+
+    if = {
+        limit = { tag = GER }
+        create_faction = "Central Powers"
+    }
+
+    if = {
+        limit = { tag = SOV }
+        create_faction = "Sevastopol Agreement"
+    }
+}

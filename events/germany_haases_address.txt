@@ -1,0 +1,77 @@
+add_namespace = germany_haases_address
+
+country_event = {
+    id = germany_haases_address.1
+    title = "Haase’s Address"
+    desc = germany_haases_address.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = germany_haases_address.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = ""
+
+        hidden_effect = { country_event = { id = germany_haases_address.3 days = 7 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = germany_haases_address.2
+    title = "Committee for Mutual Agreement"
+    desc = germany_haases_address.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+    }
+}
+
+country_event = {
+    id = germany_haases_address.3
+    title = "Hamburg Docks on Strike"
+    desc = germany_haases_address.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = germany_haases_address.4 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = germany_haases_address.5 days = 7 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = germany_haases_address.4
+    title = "Conference in Charlottenburg"
+    desc = germany_haases_address.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = ""
+    }
+}
+
+news_event = {
+    id = germany_haases_address.5
+    title = "Liebknecht Dead!"
+    desc = germany_haases_address.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = ""
+    }
+}

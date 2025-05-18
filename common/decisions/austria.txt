@@ -224,7 +224,7 @@ dc_austro-slavism = {
         }
 
         complete_effect = {
-            country_event = { id = austria_kingdom_of_croatia.1 hours = 3 }
+            country_event = { id = austria_croatia.1 hours = 3 }
         }
     }
     intensify_language_training = {
@@ -253,19 +253,7 @@ dc_austro-slavism = {
     }
 }
 
-dc_review_the_ausgleich_agreement = {
-    address_magyarization = {
-        icon = decision_generic_political_discourse
-
-        cost = 100
-        fire_only_once = yes
-
-        ai_will_do = { base = 6 }
-
-        complete_effect = {             ## prioritize Hungary (+ 2 civs) or equal development (+ 1 civ, 1 mil, 1 airfield)
-            country_event = { id = austria_review_ausgleich_agreement.1 hours = 2 }
-        }        
-    }
+dc_equal_development = {
     invest_in_tatra = {
         icon = decision_generic_trucks
 
@@ -276,13 +264,7 @@ dc_review_the_ausgleich_agreement = {
         ai_will_do = { base = 6 }
 
         complete_effect = {
-            74 = {
-                add_building_construction = {
-                    type = arms_factory
-                    level = 1
-                    instant_build = yes
-                }
-            }
+            74 = { add_building_construction = { type = arms_factory level = 1 instant_build = yes } }
         }
     }
     develop_galician_oil = {
@@ -295,20 +277,10 @@ dc_review_the_ausgleich_agreement = {
         ai_will_do = { base = 6 }
 
         complete_effect = {
-            add_resource = {
-                type = oil
-                amount = 24
-                state = 89
-            }
+            add_resource = { type = oil amount = 24 state = 89 }
             if = {
                 limit = { has_tech = synth_oil_0 }
-                89 = {
-                    add_building_construction = {
-                        type = oil_refinery
-                        level = 1
-                        instant_build = yes
-                    }
-                }
+                89 = { add_building_construction = { type = oil_refinery level = 1 instant_build = yes } }
             }
         }
     }

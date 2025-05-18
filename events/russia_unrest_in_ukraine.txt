@@ -1,0 +1,77 @@
+add_namespace = russia_unrest_in_ukraine
+
+country_event = {
+    id = russia_unrest_in_ukraine.1
+    title = "Unrest in Ukraine"
+    desc = russia_unrest_in_ukraine.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = russia_unrest_in_ukraine.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = ""
+
+        hidden_effect = { country_event = { id = russia_unrest_in_ukraine.3 days = 7 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = russia_unrest_in_ukraine.2
+    title = "Democrats for Widespread Agrarian Reform"
+    desc = russia_unrest_in_ukraine.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+    }
+}
+
+country_event = {
+    id = russia_unrest_in_ukraine.3
+    title = "Arson in Mykolaiv"
+    desc = russia_unrest_in_ukraine.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = russia_unrest_in_ukraine.4 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = russia_unrest_in_ukraine.5 days = 7 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = russia_unrest_in_ukraine.4
+    title = "Ukrainian Peasants Accept the Terms"
+    desc = russia_unrest_in_ukraine.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = ""
+    }
+}
+
+news_event = {
+    id = russia_unrest_in_ukraine.5
+    title = "Anarchy in the Steppe!"
+    desc = russia_unrest_in_ukraine.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = ""
+    }
+}

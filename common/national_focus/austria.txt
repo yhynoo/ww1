@@ -918,7 +918,7 @@ focus_tree = {
             }
         }
 
-        mutually_exclusive = { focus = AUS_adjust_the_government }
+        mutually_exclusive = { focus = AUS_federalization }
         prerequisite = { focus = AUS_political_ambitions }
         completion_reward = {
             add_stability = 0.05
@@ -929,8 +929,8 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_austro-slavism
-        icon = GFX_focus_AUS_austro-slavism
+        id = AUS_austro-slavism                             # replace
+        icon = GFX_focus_AUS_austro-slavism                 # replace
 
         relative_position_id = AUS_house_habsburg
         x = -1
@@ -964,8 +964,8 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_modernize_the_monarchy
-        icon = GFX_focus_AUS_modernize_the_monarchy
+        id = AUS_the_hofburg_appeal
+        icon = GFX_focus_AUS_the_hofburg_appeal
 
         relative_position_id = AUS_austro-slavism
         x = 1
@@ -978,7 +978,7 @@ focus_tree = {
         }
         completion_reward = {
             add_timed_idea = {
-                idea = sww1_idea_modernize_the_monarchy
+                idea = sww1_idea_the_hofburg_appean
                 years = 1
             }
         }
@@ -987,20 +987,20 @@ focus_tree = {
         id = AUS_alles_erdreich_ist_osterreich
         icon = GFX_focus_generic_the_everlasting_spirit
 
-        relative_position_id = AUS_modernize_the_monarchy
+        relative_position_id = AUS_the_hofburg_appeal
         x = 0
         y = 1
         cost = 10
 
-        prerequisite = { focus = AUS_modernize_the_monarchy }
+        prerequisite = { focus = AUS_the_hofburg_appeal }
         completion_reward = {
             add_ideas = sww1_idea_alles_erdreich_ist_osterreich
         }
     }
 
     focus = {
-        id = AUS_adjust_the_government
-        icon = GFX_focus_AUS_adjust_the_government
+        id = AUS_federalization
+        icon = GFX_focus_AUS_federalization
 
         relative_position_id = AUS_political_ambitions
         x = 4
@@ -1018,19 +1018,19 @@ focus_tree = {
             add_popularity = { ideology = democratic popularity = 0.05 }
 
             # alternative path event chain
-            hidden_effect = { country_event = { id = austria_tackle_emigration.1 days = 14 random_days = 28 } }
+            hidden_effect = { country_event = { id = austria_delegation.1 days = 14 random_days = 28 } }
         }
     }
     focus = {
         id = AUS_state_reform
         icon = GFX_focus_generic_state_reform
 
-        relative_position_id = AUS_adjust_the_government
+        relative_position_id = AUS_federalization
         x = 2
         y = 1
         cost = 10
 
-        prerequisite = { focus = AUS_adjust_the_government }
+        prerequisite = { focus = AUS_federalization }
         completion_reward = {
             add_timed_idea = {
                 idea = sww1_idea_state_reform
@@ -1039,23 +1039,19 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_review_the_ausgleich_agreement
-        icon = GFX_focus_AUS_review_the_ausgleich_agreement
+        id = AUS_equal_development
+        icon = GFX_focus_generic_open_the_economy
 
-        relative_position_id = AUS_adjust_the_government
+        relative_position_id = AUS_federalization
         x = -1
         y = 1
         cost = 10
 
         ai_will_do = { base = 3 }
 
-        prerequisite = { focus = AUS_adjust_the_government }
+        prerequisite = { focus = AUS_federalization }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
-            add_timed_idea = {
-                idea = sww1_idea_ausgleich
-                years = 1
-            }
         }
     }
     focus = {
@@ -1087,7 +1083,7 @@ focus_tree = {
     }
     focus = {
         id = AUS_lemberg_university
-        icon = GFX_focus_generic_embrace_modernity
+        icon = GFX_focus_AUS_lemberg_university
 
         relative_position_id = AUS_state_reform
         x = -1

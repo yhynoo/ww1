@@ -1,0 +1,50 @@
+add_namespace = austria_croatia
+
+country_event = {
+    id = austria_croatia.1
+    title = "The Croatian Question"
+    desc = austria_croatia.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Attempt integrating Croatian lands."
+        add_political_power = -50
+
+        every_state = {
+            limit = { or = { is_core_of = CRO is_claimed_by = CRO } }
+            add_compliance = 5
+        }
+
+        hidden_effect = { news_event = { id = austria_croatia.2 days = 14 random_days = 7 } }
+    }
+    option = {
+        name = "Establish the Kingdom of Croatia."
+        release_puppet = CRO
+
+        hidden_effect = {
+            104 = { transfer_state_to = CRO }
+            804 = { transfer_state_to = CRO }
+
+            CRO = { set_politics = { democratic = 35 monarchism = 65 } }
+        }
+    }
+}
+
+news_event = {
+    id = austria_croatia.2
+    title = "Integration Efforts Successful"
+    desc = austria_croatia.2.d
+
+    is_triggered_only = yes
+    trigger = { has_stability > 0.5 }
+
+    option = {
+        name = "Great."
+
+        every_state = {
+            limit = { is_core_of = CRO }
+            add_core_of = AUS
+        }
+    }
+}

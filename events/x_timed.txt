@@ -1,0 +1,29 @@
+add_namespace = x_timed
+
+# Mexican Civil War
+
+# Antwerp Assault
+news_event = {
+    id = x_stability.2
+    title = "Dutch Officers in Antwerp Assaulted"
+    desc = x_stability.2.d
+
+    trigger = { HOL = { owns_state = 977 } }
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        trigger = { not = { tag = HOL } }
+        name = "Awful."
+    }
+
+    option = {
+        trigger = { tag = HOL }
+        name = "And what did the government do about it?"
+
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+    }
+}
+
+# Anti-German Riot in Riga

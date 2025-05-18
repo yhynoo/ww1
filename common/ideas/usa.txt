@@ -18,20 +18,24 @@ ideas = {
 # focus tree ideas
 ideas = {
     country = {
-        sww1_idea_interventionism = {
+        sww1_idea_liberty_bonds = {
             modifier = {
-                guarantee_tension = -0.25
-                lend_lease_tension = -0.4
+                consumer_goods_factor = -0.05
+                conversion_cost_civ_to_mil_factor = -0.25
             }
         }
-
         sww1_idea_uncle_sam = {
             modifier = {
                 war_stability_factor = 0.2
                 training_time_factor = -0.1
             }
         }
-
+        sww1_idea_technological_mobilization = {
+            modifier = {
+                research_speed_factor = 0.2
+                equipment_conversion_speed = 0.5
+            }
+        }
         sww1_idea_freedom_for_all = {
             modifier = {
                 political_power_factor = 0.1
@@ -44,23 +48,15 @@ ideas = {
 # decision ideas
 ideas = {
     country = {
-        sww1_idea_aid_to_mexico = {
+        sww1_idea_aid_for_mexico = {
             modifier = {
                 civilian_factory_use = 3
             }
         }
-
-        sww1_idea_american_volunteers = {
-            modifier = {
-                send_volunteer_divisions_required = -0.25
-                send_volunteer_factor = 0.5
-            }
-        }
-
         sww1_idea_isolationist_economy = {
             modifier = {
-                industrial_capacity_dockyard = 0.1
-                industrial_capacity_factory = 0.1
+                trade_opinion_factor = -0.25
+                consumer_goods_factor = -0.2
             }
         }
     }

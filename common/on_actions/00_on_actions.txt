@@ -58,27 +58,6 @@ on_actions = {
                 }
                 country_event = ukraine_german_conquest.1
             }
-
-            # Ottomans liberate Caucasus
-            if = {
-                limit = {
-                    tag = TUR
-                    FROM.FROM = { state = 229 }
-                }
-                country_event = caucasus_liberation.1
-            }
-
-            # Germany loses Alsace-Lorraine
-            if = {
-                limit = {
-                    FROM = GER
-                    FROM.FROM = { state = 28 }
-                }
-                if = {
-                    limit = { has_idea = sww1_idea_unrest_in_alsace_lorraine }
-                    remove_ideas = sww1_idea_unrest_in_alsace_lorraine
-                }
-            }
         }
     }
 }

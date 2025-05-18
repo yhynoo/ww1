@@ -7,23 +7,14 @@ dc_serbian_question = {
 
         ai_will_do = {
             base = 3
-            modifier = {
-                has_government = monarchism
-                factor = 2
-            }
-            modifier = {
-                date > 1913.7.1
-                factor = 2
-            }
+            modifier = { has_government = monarchism factor = 2 }
+            modifier = { date > 1914.4.1 factor = 2 }
         }
 
         complete_effect = {
-            country_event = { id = russia_events.1 hours = 12 random_hours = 6 }
             AUS = {
-                add_timed_idea = {
-                    idea = sww1_idea_slavic_unrest
-                    years = 2
-                }
+                country_event = { id = austria_slavic_unrest.1 hours = 12 random_hours = 6 }
+                add_timed_idea = { idea = sww1_idea_slavic_unrest years = 2 }
             }
         }
     }
@@ -50,7 +41,7 @@ dc_russia_alliances = {
         }
 
         complete_effect = {
-            FROM = { country_event = { id = russia_england.1 hours = 12 random_hours = 6 } }
+            FROM = { country_event = { id = x_alliance.1 hours = 12 random_hours = 6 } }
         }
     }
     russia_france = {
@@ -71,7 +62,7 @@ dc_russia_alliances = {
         fire_only_once = yes
 
         complete_effect = {
-            FROM = { country_event = { id = russia_france.1 hours = 12 random_hours = 6 } }
+            FROM = { country_event = { id = x_alliance.1 hours = 12 random_hours = 6 } }
         }
     }
     russia_serbia = {
@@ -90,7 +81,7 @@ dc_russia_alliances = {
         }
 
         complete_effect = {
-            FROM = { country_event = { id = russia_serbia.1 hours = 12 random_hours = 6 } }
+            FROM = { country_event = { id = x_alliance.2 hours = 12 random_hours = 6 } }
         }
     }
 }

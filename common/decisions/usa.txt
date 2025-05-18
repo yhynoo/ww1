@@ -1,234 +1,155 @@
-
 dc_monroe_doctrine = {
-    intervene_in_mexico = {
-        cost = 125
+    aid_for_mexico = {
+        icon = generic_industry
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            any_country = {
+                original_tag = MEX
+                has_government = democratic
+            }
+        }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { has_completed_focus = USA_the_arsenal_of_liberty factor = 3 }
+        }
+
+        complete_effect = {
+            random_country = {
+                limit = { original_tag = MEX has_government = democratic }
+                    
+                country_event = { id = usa_aid_for_mexico.1 hours = 12 random_hours = 6 }
+                add_opinion_modifier = { target = USA modifier = medium_increase }
+            }
+        }
+    }
+    intervene_in_central_america = {
+        icon = generic_prepare_civil_war
+        cost = 150
         fire_only_once = yes
 
         available = { 
-            has_war_support > 0.2
-            MEX = { has_war = yes has_government = democratic }
-        }
-
-        ai_will_do = {
-            base = 2
-            modifier = { MEX = { or = { has_civil_war = yes surrender_progress > 0.25 } } factor = 3 }
-            modifier = { has_country_flag = usa_goes_to_mexico factor = 6 }
+            MEX = { has_war_with = COL }
+            has_war_support > 0.3
         }
 
         complete_effect = {
-            custom_effect_tooltip = "Our military will intervene in Mexico on behalf of the democratic government. In exchange, we expect to expand the territories under our control around the Panama Canal and further north-west."
-
-            hidden_effect = {
-                if = {
-                    limit = { MEX = { has_civil_war = yes } }
-                    random_country = {
-                        limit = { original_tag = MEX has_government = communism }
-                        USA = { add_to_war = { targeted_alliance = MEX enemy = PREV } }
-                    }
-                }
-                add_to_war = { targeted_alliance = MEX enemy = COL }
-
-                every_state = {
-                    limit = { or = { state = 304 state = 312 state = 313 state = 314 state = 316 state = 317 } }
-                    add_claim_by = USA
-                }
-
-                country_event = { id = usa_monroe_doctrine.4 days = 2 random_hours = 6 }
-            }
+            country_event = { id = usa_intervene_in_central_america.1 hours = 3 }
         }
     }
-    guarantees_for_latin_america = {
+}
+
+dc_usa_alliances = {
+    usa_australia = {
+        targets = { AST }
+        available = {
+            is_in_faction = no
+            has_government = democratic
+            
+            FROM = { 
+                is_subject = no
+                has_government = democratic
+                OR = { is_in_faction = no is_faction_leader = yes }
+            }
+        }
+
         cost = 100
         fire_only_once = yes
+
+        complete_effect = {
+            FROM = { country_event = { id = usa_australia.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    usa_england = {
+        targets = { ENG }
+        available = {
+            is_in_faction = no
+            FROM = { 
+                OR = { is_in_faction = no is_faction_leader = yes }
+            }
+        }
 
         ai_will_do = {
             base = 6
-            modifier = { threat > 0.2 factor = 2 }
-            modifier = { FRA = { has_government = monarchism } factor = 2 }
+            modifier = { has_completed_focus = USA_not_our_war factor = 0 }
+
+            modifier = { threat > 0.5 factor = 2 }
+            modifier = { and = { ENG = { has_war_with = GER } date > 1917.4.1 } factor = 12 }
         }
 
-        complete_effect = {
-            news_event = { id = usa_monroe_doctrine.5 hours = 12 random_hours = 6 }
-
-            if = {
-                limit = { ARG = { has_government = ROOT } }
-                give_guarantee = ARG
-            }
-
-            if = {
-                limit = { BRA = { has_government = ROOT } }
-                give_guarantee = BRA
-            }
-
-            if = {
-                limit = { COL = { has_government = ROOT } }
-                give_guarantee = COL
-            }
-
-            if = {
-                limit = { MEX = { has_government = ROOT } }
-                give_guarantee = MEX
-            }
-
-            if = {
-                limit = { PRU = { has_government = ROOT } }
-                give_guarantee = PRU
-            }
-        }
-    }
-    claim_greenland = {
-        available = { has_government = authoritarianism }
-
-        cost = 100
+        cost = 75
         fire_only_once = yes
 
-        ai_will_do = { base = 12 }
-
         complete_effect = {
-            news_event = { id = usa_monroe_doctrine.6 hours = 12 random_hours = 6 }
-
-            100 = { add_claim_by = USA }
-            101 = { add_claim_by = USA }
-
-            hidden_effect = {
-                set_country_flag = usa_goes_to_arctic
-            }
+            FROM = { country_event = { id = usa_england.1 hours = 12 random_hours = 6 } }
         }
     }
-}
-
-dc_support_the_entente = {
-    intervene_in_europe = {
-        cost = 150
-        fire_only_once = yes
-
+    usa_france = {
+        targets = { FRA }
         available = {
             is_in_faction = no
-            has_war_support > 0.55
-            ENG = { is_faction_leader = yes has_war = yes }
+            has_government = democratic
+
+            FROM = {
+                has_government = democratic
+                OR = { is_in_faction = no is_faction_leader = yes }
+            }
         }
 
         ai_will_do = {
             base = 3
-            modifier = { threat > 0.5 factor = 3 }
-            modifier = { date > 1916.4.1 factor = 6 }
+            modifier = { has_completed_focus = USA_not_our_war factor = 0 }
+            modifier = { and = { FRA = { has_war_with = GER } date > 1915.4.1 } factor = 12 }
         }
 
-        complete_effect = {
-            ENG = { country_event = { id = usa_entente.1 hours = 12 random_hours = 6 } }
-        }
-    }
-    enlist_volunteers = {
-        cost = 100
-        fire_only_once = yes
-
-        ai_will_do = {
-            base = 1
-            modifier = { ENG = { has_war_with = GER } factor = 6 }
-            modifier = { authoritarianism < 0.2 factor = 3 }
-        }
-
-        complete_effect = {
-            add_ideas = sww1_idea_american_volunteers
-        }
-    }
-    expand_military_industry = {
-        cost = 100
-        days_remove = 90
-
-        ai_will_do = {
-            base = 1
-            modifier = { num_of_military_factories < 60 factor = 3 }
-            modifier = { has_war = yes factor = 6 }
-        }
-
-        modifier = {
-            production_speed_industrial_complex_factor = 0.1
-            conversion_cost_civ_to_mil_factor = -0.25
-        }
-    }
-}
-
-dc_wilsons_fourteen_points = {
-    encourage_decolonization = {
-        cost = 150
-        fire_only_once = yes
-
-        available = { is_in_faction = no }
-
-        ai_will_do = {
-            base = 3
-            modifier = { AND = { date > 1916.1.1 is_in_faction = no } factor = 3 }
-        }
-
-        complete_effect = {
-            news_event = { id = usa_wilson.1 hours = 12 random_hours = 6 }
-        }
-    }
-    support_independence = {
-        cost = 100
-        days_remove = 90
-
-        available = {
-            OR = { RAJ = { is_subject = yes } AST = { is_subject = yes } }
-        }
-
-        ai_will_do = {
-            base = 3
-            modifier = { AND = { date > 1917.1.1 is_faction_leader = yes } factor = 3 }
-        }
-
-        complete_effect = {
-            if = {
-                limit = { NOT = { has_country_flag = we_annoyed_england } }
-
-                news_event = { id = usa_wilson.2 hours = 12 random_hours = 6 }
-                set_country_flag = we_annoyed_england
-            }
-        }
-
-        modifier = { 
-            ENG = { 
-                stability_weekly = -0.005
-                subjects_autonomy_gain = 0.5
-            }
-        }
-    }
-}
-
-dc_cultural_hegemony = {
-    established_shared_research = {
-        cost = 100
-        fire_only_once = yes
-
-        available = {
-            OR = { is_ally_with = ENG is_ally_with = FRA is_ally_with = JAP }
-        }
-
-        ai_will_do = { base = 12 }
-
-        complete_effect = {
-            every_country = {
-                limit = {
-                    OR = { tag = ENG tag = FRA tag = JAP }
-                    is_ally_with = USA
-                }
-                country_event = { usa_cultural_hegemony.1 hours = 12 random_hours = 6 }
-            }
-        }
-    }
-    invest_in_entertainment = {
         cost = 75
-        days_remove = 90
+        fire_only_once = yes
 
-        ai_will_do = { 
-            base = 3
-            modifier = { has_stability < 0.5 factor = 3 }
+        complete_effect = {
+            FROM = { country_event = { id = usa_france.1 hours = 12 random_hours = 6 } }
+        }
+    }
+}
+
+dc_north_atlantic_expansion = {
+    claim_greenland = {
+        icon = generic_civil_support
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            not = { has_war_with = DEN }
+            any_state = {
+                or = { state = 100 state = 101 }
+                is_owned_by = DEN
+            }
         }
 
-        modifier = {
-            opinion_gain_monthly_factor = 0.5
-            stability_weekly = 0.005
+        ai_will_do = {
+            base = 3
+            modifier = { has_war_with = GER factor = 3 }
+        }
+
+        complete_effect = {
+            DEN = { country_event = { id = usa_north_atlantic_expansion.1 hours = 12 random_hours = 6 } }
+        }
+    }
+    develop_iceland = {
+        icon = generic_construction
+        cost = 100
+        fire_only_once = yes
+
+        available = { 100 = { is_owned_and_controlled_by = USA } }
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            100 = { 
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                add_building_construction = { type = naval_base province = 12674 level = 3 instant_build = yes }
+            }
         }
     }
 }
@@ -238,32 +159,39 @@ dc_american_industries = {
         cost = 100
         fire_only_once = yes
 
-        ai_will_do = { base = 6 }
+        ai_will_do = { base = 9 }
 
         complete_effect = {
             add_ideas = sww1_idea_isolationist_economy
         }
     }
-    crack_down_on_labor_unions = {
-        cost = 100
-        days_remove = 90
+    encourage_racial_integration = {
+        cost = 75
+        fire_only_once = yes
 
-        ai_will_do = { base = 6 }
+        ai_will_do = { base = 9 }
 
-        modifier = {
-            production_speed_buildings_factor = 0.1
-            authoritarianism_drift = 0.05
+        complete_effect = {
+            add_stability = -0.05
+            add_popularity = { ideology = authoritarianism popularity = -0.05 }
+
+            hidden_effect = {
+                country_event = { id = usa_embers_of_the_past.1 days = 7 random_days = 14 }
+            }
         }
     }
-    campaign_against_unemployment = {
-        cost = 75
+    challenge_the_unions = {
+        cost = 50
         days_remove = 90
 
-        ai_will_do = { base = 6 }
+        ai_will_do = { 
+            base = 3
+            modifier = { has_stability > 0.8 factor = 2 }
+        }
 
         modifier = {
+            stability_weekly = -0.05
             production_speed_buildings_factor = 0.1
-            stability_weekly = 0.005
         }
     }
 }

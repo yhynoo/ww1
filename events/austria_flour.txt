@@ -1,0 +1,30 @@
+add_namespace = austria_flour
+
+country_event = {
+    id = austria_flour.1
+    title = "Flour Affair"
+    desc = austria_flour.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = austria_flour.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = ""
+    }
+}
+
+news_event = {
+    id = austria_flour.2
+    title = "Austerity Committee Established"
+    desc = austria_flour.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+    }
+}

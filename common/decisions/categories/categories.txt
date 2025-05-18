@@ -13,10 +13,12 @@ dc_head_of_state_decisions = {
 dc_public_support_decisions = {
     visible = {
         OR = {
+            has_completed_focus = FRA_on_ne_passe_pas
+
             has_completed_focus = XXX_public_support
             has_completed_focus = COL_public_support
-            has_completed_focus = FRA_on_ne_passe_pas
             has_completed_focus = SPR_public_support
+            has_completed_focus = USA_public_support
         }
     }
     visible_when_empty = no
@@ -55,9 +57,9 @@ dc_austro-slavism = {
     }
 }
 
-dc_review_the_ausgleich_agreement = {
+dc_equal_development = {
     visible = {
-        has_completed_focus = AUS_review_the_ausgleich_agreement
+        has_completed_focus = AUS_equal_development
     }
 }
 
@@ -317,6 +319,27 @@ dc_the_boxer_legacy = {
     }
 }
 
+# Mexico
+dc_stabilize_central_america = {
+    visible = {
+        has_completed_focus = MEX_stabilize_central_america
+    }
+}
+
+dc_mexico_alliances = {
+    visible = {
+        OR = { is_in_faction = no is_faction_leader = yes }
+        is_subject = no
+        has_completed_focus = MEX_seek_alliances
+    }
+}
+
+dc_a_senor_partner = {
+    visible = {
+        has_completed_focus = MEX_a_senor_partner
+    }
+}
+
 # Poland
 dc_kresy = {
     visible = {
@@ -446,21 +469,17 @@ dc_monroe_doctrine = {
     }
 }
 
-dc_support_the_entente = {
+dc_usa_alliances = {
     visible = {
-        has_completed_focus = USA_support_the_entente
+        OR = { is_in_faction = no is_faction_leader = yes }
+        is_subject = no 
+        has_completed_focus = USA_seek_alliances
     }
 }
 
-dc_wilsons_fourteen_points = {
+dc_north_atlantic_expansion = {
     visible = {
-        has_completed_focus = USA_wilsons_fourteen_points
-    }
-}
-
-dc_cultural_hegemony = {
-    visible = {
-        has_completed_focus = USA_cultural_hegemony
+        has_completed_focus = USA_north_atlantic_expansion
     }
 }
 

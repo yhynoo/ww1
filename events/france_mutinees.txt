@@ -1,0 +1,30 @@
+add_namespace = france_mutinees
+
+country_event = {
+    id = france_mutinees.1
+    title = "Discipline Crisis in the Navy"
+    desc = france_mutinees.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+
+        hidden_effect = { news_event = { id = france_mutinees.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = ""
+    }
+}
+
+news_event = {
+    id = france_mutinees.2
+    title = "‘We Don’t Want Another Dreyfus’"
+    desc = france_mutinees.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+    }
+}

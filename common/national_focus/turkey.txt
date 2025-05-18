@@ -1039,10 +1039,10 @@ focus_tree = {
         prerequisite = { focus = TUR_political_ambitions }
         completion_reward = {
             add_popularity = { ideology = democratic popularity = 0.05 }
-            add_timed_idea = {
-                idea = sww1_idea_democratic_tendencies
-                years = 1
-            }
+            add_timed_idea = { idea = sww1_idea_democratic_tendencies years = 1 }
+
+            # alternative path event chain
+            hidden_effect = { country_event = { id = turkey_violence_in_armenia.1 days = 14 random_days = 28 } }
         }
     }
     focus = {
@@ -1060,9 +1060,6 @@ focus_tree = {
                 idea = sww1_idea_state_reform
                 years = 1
             }
-
-            # alternative path event chain
-            hidden_effect = { country_event = { id = turkey_minorities_committee.1 days = 14 random_days = 28 } }
         }
     }
     focus = {
