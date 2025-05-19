@@ -27,3 +27,4 @@ replace_path="gfx/flags/medium"
 replace_path="gfx/flags/small"
 
 replace_path="history/states"
+replace_path="history/countries"
