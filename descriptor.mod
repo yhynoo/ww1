@@ -18,6 +18,7 @@ replace_path="common/decisions/categories"
 replace_path="common/ideas"
 replace_path="common/national_focus"
 replace_path="common/on_actions"
+replace_path="common/technologies"
 
 replace_path="events"
 
