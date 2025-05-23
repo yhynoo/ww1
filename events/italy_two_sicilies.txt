@@ -1,0 +1,23 @@
+add_namespace = italy_two_sicilies
+
+news_event = {
+    id = italy_two_sicilies.2
+    title = "Two Sicilies Denounce Italy!"
+    desc = italy_two_sicilies.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        trigger = { not = { tag = ITA } }
+        name = "That looks suspicious..."
+    }
+
+    option = {
+        trigger = { tag = ITA }
+        name = "Traitors!"
+
+        add_stability = -0.05
+        hidden_effect = { start_sicilian_independence_war = yes }
+    }
+}

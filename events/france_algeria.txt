@@ -1,0 +1,34 @@
+add_namespace = france_algeria
+
+news_event = {
+    id = france_algeria.1
+    title = "Our Outposts Attacked in Algeria"
+    desc = france_algeria.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must investigate this matter."
+
+        add_stability = -0.05
+        hidden_effect = { news_event = { id = france_algeria.2 days = 28 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = france_algeria.2
+    title = "Uprising in Algeria!"
+    desc = france_algeria.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Right."
+
+        if = {
+            limit = { tag = FRA }
+            hidden_effect = { start_algerian_independence_war = yes }
+        }
+    }
+}
