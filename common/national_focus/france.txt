@@ -1072,14 +1072,8 @@
         mutually_exclusive = { focus = FRA_republicanism }
         prerequisite = { focus = FRA_political_ambitions }
         completion_reward = {
-            add_timed_idea = {
-                idea = sww1_idea_monarchism_tendencies
-                years = 1
-            }
-            add_popularity = {
-                ideology = monarchism
-                popularity = 0.05
-            }
+            add_timed_idea = { idea = sww1_idea_monarchism_tendencies years = 1 }
+            add_popularity = { ideology = monarchism popularity = 0.05 }
 
             # alternative path event chain
             hidden_effect = { country_event = { id = france_legitimists_coup.1 days = 14 random_days = 28 } }

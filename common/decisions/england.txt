@@ -1,27 +1,22 @@
 dc_dominate_the_mediterranean = {
     develop_malta_and_cyprus = {
+        icon = generic_construction
+        
         cost = 100
         fire_only_once = yes
 
-        ai_will_do = {
-            base = 6
-            modifier = { has_war_with = TUR factor = 2 }
-        }
+        ai_will_do = { base = 6 }
 
         complete_effect = {
             116 = {
                 add_building_construction = {
-                    type = naval_base
-                    level = 3
-                    instant_build = yes
+                    type = naval_base level = 3 instant_build = yes
                     province = 12003
                 }
             }
             183 = {
                 add_building_construction = {
-                    type = naval_base
-                    level = 3
-                    instant_build = yes
+                    type = naval_base level = 3 instant_build = yes
                     province = 11984
                 }
             }
@@ -37,22 +32,17 @@ dc_dominate_the_mediterranean = {
         }
 
         available = { 
-            any_state = {
-                or = { state = 454 state = 989 }
-                is_owned_by = TUR
-            }
+            454 = { is_owned_by = TUR }
         }
 
         complete_effect = {
             news_event = { id = england_dominate_the_mediterranean.1 hours = 12 random_hours = 6 }
             TUR = {
-                add_opinion_modifier = {
-                    target = ENG
-                    modifier = medium_decrease
-                }
+                add_opinion_modifier = { target = ENG modifier = medium_decrease }
+                add_stability = -0.1
 
                 hidden_effect = {
-                    TUR = { news_event = { id = turkey_arab_revolt.1 days = 14 random_hours = 6 } }
+                    TUR = { news_event = { id = turkey_jaffa.1 days = 28 random_days = 28 } }
                 }
             }
         }
@@ -60,137 +50,58 @@ dc_dominate_the_mediterranean = {
 }
 
 dc_affirm_the_entente = {
-    announce_containment_policies = {
-        icon = decision_generic_political_discourse
-        cost = 50
+    england_france = {
+        targets = { FRA }
+        available = { FROM = { is_in_faction = no is_subject = no } }
+
+        cost = 75
         fire_only_once = yes
 
-        ai_will_do = { 
-            base = 9
-            modifier = { has_completed_focus = ENG_change_the_alliances factor = 0 }
+        ai_will_do = {
+            base = 3
+            modifier = { date > 1914.1.1 factor = 3 }
         }
 
         complete_effect = {
-            news_event = { id = britain_affirm_the_entente.1 hours = 12 random_hours = 6 }
-            hidden_effect = { set_country_flag = announced_containment }
+            FROM = { country_event = { id = x_alliance.2 hours = 12 random_hours = 6 } }
         }
     }
-    invite_to_entente = {
-        cost = 100
+    england_japan = {
+        targets = { JAP }
+        available = { FROM = { is_in_faction = no is_subject = no } }
+
+        cost = 75
         fire_only_once = yes
 
-        available = { 
-            or = { is_faction_leader = yes is_in_faction = no }
-        }
-
-        targets = { FRA JAP }
-        target_trigger = { FROM = { is_in_faction = no } }
-
-        ai_will_do = { 
+        ai_will_do = {
             base = 3
-            modifier = {
-                or = { has_war = yes threat > 0.1 }
-                factor = 2
-            }
-            modifier = { FROM = { tag = FRA } factor = 3 }
-            modifier = { has_completed_focus = ENG_change_the_alliances factor = 0 }
+            modifier = { date > 1914.1.1 factor = 3 }
         }
 
         complete_effect = {
-            FROM = { country_event = { id = britain_affirm_the_entente.2 hours = 12 random_hours = 6 } }
+            FROM = { country_event = { id = x_alliance.2 hours = 12 random_hours = 6 } }
         }
     }
 }
 
 dc_change_the_alliances = {
-    divide_influence_in_the_far_east = {
-        cost = 100
-        fire_only_once = yes
-        available = { not = { has_war_with = GER } }
+    agreement_on_asia = {
+        targets = { GER }
 
-        ai_will_do = { 
-            base = 2
-            modifier = { 
-                or = { 
-                    FRA = { is_faction_leader = yes } 
-                    AUS = { is_faction_leader = yes }
-                } 
-                factor = 6
-            }
-        }
-
-        complete_effect = {
-            news_event = { id = britain_change_the_alliances.1 hours = 12 random_hours = 6 }
-            if = {
-                limit = { is_ai = yes }
-                dismantle_faction = yes
-            }
-        }
-    }
-    allied_by_blood = {
         cost = 150
         fire_only_once = yes
 
-        available = { 
-            is_in_faction = no
-            GER = { not = { has_war_with = ENG } }
-        }
-
-        ai_will_do = {
-            base = 2
-            modifier = { and = { has_government = monarchism GER = { has_government = monarchism } } factor = 3 }
-            modifier = { date > 1916.1.1 factor = 2 }
-            modifier = { FRA = { is_ally_with = AUS } factor = 2 }
-        }
+        available = { not = { has_war_with = GER } }
+        ai_will_do = { base = 9 }
 
         complete_effect = {
-            GER = { country_event = { id = britain_change_the_alliances.2 hours = 12 random_hours = 6 } }
-        }
-    }
-}
-
-dc_your_country_needs_you = {
-    establish_ministry_of_munitions = {
-        icon = generic_industry
-        cost = 100
-        fire_only_once = yes
-
-        ai_will_do = { base = 6 }
-
-        complete_effect = {
-            add_ideas = sww1_idea_ministry_of_munitions
-        }
-    }
-    draft_encouragement = {
-        cost = 100
-        days_remove = 90
-
-        ai_will_do = { 
-            base = 3
-            modifier = { has_manpower < 100000 factor = 3 }
-        }
-
-        modifier = {
-            mobilization_speed = 0.1
-            conscription = 0.005
-        }
-    }
-    dilution_of_labor = {
-        icon = generic_industry
-        cost = 75
-        days_remove = 90
-
-        ai_will_do = { base = 6 }
-
-        modifier = {
-            production_speed_industrial_complex_factor = 0.1
-            production_speed_arms_factory_factor = 0.1
+            FROM = { country_event = { id = england_change_the_alliances.1 hours = 12 random_hours = 6 } }
         }
     }
 }
 
 dc_announce_the_commons_act = {
-    let_workers_own_the_industry = {
+    own_the_industry = {
         cost = 100
         fire_only_once = yes
         available = { communism > 0.25 }
@@ -236,7 +147,6 @@ dc_end_imperialism = {
         ai_will_do = { base = 6 }
 
         complete_effect = {
-            news_event = { id = england_end_imperialism.1 hours = 12 random_hours = 6 }
             set_autonomy = {
                 target = RAJ
                 autonomous_state = autonomy_free
@@ -256,7 +166,6 @@ dc_end_imperialism = {
         ai_will_do = { base = 6 }
 
         complete_effect = {
-            news_event = { id = england_end_imperialism.2 hours = 12 random_hours = 6 }
             set_autonomy = {
                 target = AST
                 autonomous_state = autonomy_free
@@ -278,9 +187,6 @@ dc_end_imperialism = {
 
         ai_will_do = { base = 6 }
 
-        complete_effect = {
-            news_event = { id = england_end_imperialism.3 hours = 12 random_hours = 6 }
-            release = SAF
-        }
+        complete_effect = { release = SAF }
     } 
 }

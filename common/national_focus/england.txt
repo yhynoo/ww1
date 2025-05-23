@@ -1038,14 +1038,8 @@ focus_tree = {
         prerequisite = { focus = ENG_political_ambitions }
         
         completion_reward = {
-            add_timed_idea = {
-                idea = sww1_idea_communism_tendencies
-                years = 1
-            }
-            add_popularity = {
-                ideology = communism
-                popularity = 0.1
-            }
+            add_timed_idea = { idea = sww1_idea_communism_tendencies years = 1 }
+            add_popularity = { ideology = communism popularity = 0.1 }
 
             # alternative path event chain
             hidden_effect = { country_event = { id = england_dockers_strike.1 days = 14 random_days = 28 } }
@@ -1094,7 +1088,6 @@ focus_tree = {
         cost = 10
 
         prerequisite = { focus = ENG_draft_the_constitution }
-        available = { has_government = communism }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip

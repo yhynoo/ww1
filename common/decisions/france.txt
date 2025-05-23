@@ -1,18 +1,15 @@
 # The Belgian Crisis
 
 dc_belgian_crisis = {
-    ask_the_dutch_to_leave = {
+    demand_flanders = {
+        targets = { HOL }
+
         cost = 100
         fire_only_once = yes
 
         available = {
             any_state = {
-                or = {
-                    state = 6
-                    state = 34
-                    state = 977
-                    state = 980
-                }
+                or = { state = 6 state = 34 }
                 is_owned_by = HOL
             }
         }
@@ -23,18 +20,19 @@ dc_belgian_crisis = {
         }
 
         complete_effect = {
-            HOL = { country_event = { id = france_events.1 hours = 12 random_hours = 6 } }
+            FROM = { country_event = { id = france_belgian_crisis.1 hours = 6 random_hours = 3 } }
         }
     }
 
-    ultimatum_to_germany = {
+    demand_wallonia = {
+        targets = { GER }
+
         cost = 100
         fire_only_once = yes
 
         available = {
-            can_declare_war_on = GER
             any_state = {
-                or = { state = 6 state = 34 state = 977 state = 980 }
+                or = { state = 6 state = 34 }
                 is_owned_by = GER
             }
         }
@@ -46,43 +44,30 @@ dc_belgian_crisis = {
         }
 
         complete_effect = {
-            GER = { country_event = { id = france_events.4 hours = 12 random_hours = 6 } }
+            FROM = { country_event = { id = france_belgian_crisis.4 hours = 6 random_hours = 3 } }
         }
     }
 
     annex_belgium = {
-        cost = 150
+        cost = 50
         fire_only_once = yes
 
         available = {
             6 = { is_controlled_by = FRA }
             34 = { is_controlled_by = FRA }
-            977 = { is_controlled_by = FRA }
-            980 = { is_controlled_by = FRA }
         }
 
         ai_will_do = { base = 9 }
 
         complete_effect = {
-            news_event = { id = france_events.10 hours = 12 random_hours = 6 }
-
             every_state = {
-                limit = {
-                    or = { state = 6 state = 34 state = 977 state = 980 }
-                }
+                limit = { or = { state = 6 state = 34 } }
                 add_core_of = FRA
             }
 
             if = {
                 limit = { has_idea = sww1_idea_belgian_crisis }
                 remove_ideas = sww1_idea_belgian_crisis
-            }
-
-            hidden_effect = {
-                add_named_threat = {
-                    threat = 5
-                    name = "The Annexation of Belgium"
-                }
             }
         }
     }
@@ -93,7 +78,7 @@ dc_france_alliances = {
     france_colombia = {
         targets = { COL }
         available = { 
-            FROM = { is_in_faction = no is_subject = no has_war = yes }
+            FROM = { is_in_faction = no is_subject = no }
             has_completed_focus = FRA_across_the_atlantic
         }
 
@@ -106,16 +91,14 @@ dc_france_alliances = {
         }
 
         complete_effect = {
-            FROM = { country_event = { id = france_colombia.1 hours = 12 random_hours = 6 } }
+            FROM = { country_event = { id = x_alliance.2 hours = 12 random_hours = 6 } }
         }
     }
     france_england = {
         targets = { ENG }
         available = {
             is_in_faction = no
-            FROM = { 
-                OR = { is_in_faction = no is_faction_leader = yes }
-            }
+            FROM = { OR = { is_in_faction = no is_faction_leader = yes } }
         }
 
         ai_will_do = {
@@ -127,14 +110,12 @@ dc_france_alliances = {
         fire_only_once = yes
 
         complete_effect = {
-            FROM = { country_event = { id = france_england.1 hours = 12 random_hours = 6 } }
+            FROM = { country_event = { id = x_alliance.1 hours = 12 random_hours = 6 } }
         }
     }
     france_russia = {
         targets = { SOV }
-        available = { 
-            FROM = { is_in_faction = no is_subject = no }
-        }
+        available = { FROM = { is_in_faction = no is_subject = no } }
 
         cost = 75
         fire_only_once = yes
@@ -145,7 +126,7 @@ dc_france_alliances = {
         }
 
         complete_effect = {
-            FROM = { country_event = { id = france_russia.1 hours = 12 random_hours = 6 } }
+            FROM = { country_event = { id = x_alliance.2 hours = 12 random_hours = 6 } }
         }
     }
 }
@@ -153,40 +134,50 @@ dc_france_alliances = {
 # Across the Atlantic
 
 dc_across_the_atlantic = {
+    develop_guyana = {
+        icon = generic_construction
+
+        cost = 75
+        fire_only_once = yes
+
+        available = {
+            310 = { is_owned_and_controlled_by = FRA }
+        }
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            310 = {
+                add_resource = { type = aluminium amount = 24 }
+                add_extra_state_shared_building_slots = 2
+            }
+        }
+    }
     challenge_us_in_carribean = {
         cost = 100
         fire_only_once = yes
 
         available = {
             any_state = {
-                or = { state = 315 state = 318 state = 319 state = 686 }
+                or = { state = 315 state = 318 state = 319 }
                 is_owned_by = USA
             }
         }
 
         ai_will_do = {
             base = 3
-            modifier = { has_government = monarchism factor = 3 }
-            modifier = { has_war = yes factor = 0 }
+            modifier = { and = { has_government = monarchism has_war = no } factor = 3 }
         }
 
         complete_effect = {
-            news_event = { id = france_across_the_atlantic.1 hours = 12 random_hours = 6 }
-            USA = { add_opinion_modifier = { target = FRA modifier = medium_decrease } }
+            news_event = { id = france_across_the_atlantic.1 hours = 6 random_hours = 3 }
 
             every_state = {
                 limit = { 
-                    or = { state = 315 state = 318 state = 319 state = 686 }
+                    or = { state = 315 state = 318 state = 319 }
                     is_owned_by = USA
                 }
                 add_claim_by = FRA
-            }
-
-            hidden_effect = {
-                add_named_threat = {
-                    threat = 2
-                    name = "[FRA.GetName] Asserts Claims in the Carribean"
-                }
             }
         }
     }
@@ -206,59 +197,15 @@ dc_let_them_eat_cake = {
 
         ai_will_do = {
             base = 3
-            modifier = { has_war = yes factor = 3 }
-            modifier = {
-                or = { is_in_faction = no is_faction_leader = yes }
-                factor = 1.5
-            }
+            modifier = { or = { is_in_faction = no is_faction_leader = yes } factor = 3 }
         }
 
         complete_effect = {
-            SPR = { country_event = { id = france_let_them_eat_cake.1 hours = 12 random_hours = 6 } }
-        }
-    }
-    sponsor_bourbons_in_sicily = {
-        cost = 125
-        fire_only_once = yes
-        days_remove = 120
-
-        available = {
-            any_state = { is_core_of = TTS is_owned_by = ITA }
-        }
-
-        ai_will_do = {
-            base = 3
-            modifier = { 
-                and = { date > 1915.1.1 has_war = no }
-                factor = 3
-            }
-        }
-
-        war_with_on_remove = ITA
-
-        remove_effect = {
-            hidden_effect = {
-                ITA = {
-                    release = TTS
-                    transfer_units_fraction = {
-                        target = TTS
-                        size = 0.2
-                    }
-                }
-            }
-
-            news_event = { id = france_let_them_eat_cake.6 hours = 12 random_hours = 6 }
-            give_guarantee = TTS
-            ITA = {
-                declare_war_on = {
-                    target = TTS
-                    type = annex_everything
-                }
-            }
+            # event
         }
     }
     international_trade_missions = {
-        cost = 100
+        cost = 75
         fire_only_once = yes
 
         complete_effect = { add_ideas = sww1_idea_international_trade_missions }

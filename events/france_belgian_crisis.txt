@@ -1,0 +1,144 @@
+add_namespace = france_belgian_crisis
+
+# Netherlands
+
+country_event = {
+    id = france_belgian_crisis.1
+    title = "France Demands We Leave Flanders"
+    desc = france_belgian_crisis.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a welcome development."
+        FROM = { 
+            news_event = { id = france_belgian_crisis.2 hours = 6 random_hours = 6 }
+            every_state = {
+                limit = { or = { state = 6 state = 34 } is_owned_and_controlled_by = HOL }      # add states.
+                transfer_state_to = FRA
+            }
+        }
+
+        ai_chance = { base = 1 modifier = { has_completed_focus = HOL_thorbeckes_legacy factor = 3 } }
+    }
+    option = {
+        name = "We will not agree to this."
+        FROM = { 
+            news_event = { id = france_belgian_crisis.3 hours = 6 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = take_state_focus
+            }
+        }
+
+        ai_chance = { base = 1 modifier = { has_completed_focus = HOL_integrate_the_belgians factor = 3 } }
+    }
+}
+
+news_event = {
+    id = france_belgian_crisis.2
+    title = "[FROM.GetName] Leaves Flanders"
+    desc = france_belgian_crisis.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Phew."
+    }
+}
+
+news_event = {
+    id = france_belgian_crisis.3
+    title = "[FROM.GetName] Declines!"
+    desc = france_belgian_crisis.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about this."
+    }
+}
+
+# Germany
+
+country_event = {
+    id = france_belgian_crisis.4
+    title = "France Demands We Leave Wallonia"
+    desc = france_belgian_crisis.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must agree to this."
+        FROM = { 
+            news_event = { id = france_belgian_crisis.5 hours = 6 random_hours = 6 }
+            every_state = {
+                limit = { or = { state = 6 state = 34 } is_owned_and_controlled_by = GER }      # add states.
+                transfer_state_to = FRA
+            }
+        }
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "Or what?"
+        FROM = { 
+            news_event = { id = france_belgian_crisis.6 hours = 6 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = take_state_focus
+            }
+        }
+
+        ai_chance = { base = 3 }
+    }
+}
+
+news_event = {
+    id = france_belgian_crisis.5
+    title = "[FROM.GetName] Leaves Wallonia"
+    desc = france_belgian_crisis.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Phew."
+    }
+}
+
+news_event = {
+    id = france_belgian_crisis.6
+    title = "[FROM.GetName] Declines!"
+    desc = france_belgian_crisis.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about this."
+        hidden_effect = { GER = { country_event = { id = france_belgian_crisis.7 days = 7 } } }
+    }
+}
+
+country_event = {
+    id = france_belgian_crisis.7
+    title = "France Caves In?"
+    desc = france_belgian_crisis.7.d
+
+    is_triggered_only = yes
+    trigger = { not = { has_war_with = FRA } }
+
+    option = {
+        name = "We shall use the opportunity."
+
+        add_war_support = 0.1
+        declare_war_on = { target = FRA type = annex_everything}
+
+        ai_chance = { base = 1 modifier = { has_government = monarchism factor = 3 } }
+    }
+    option = {
+        name = "Nonsense."
+        ai_chance = { base = 1 modifier = { has_government = democratic factor = 3 } }
+    }
+}

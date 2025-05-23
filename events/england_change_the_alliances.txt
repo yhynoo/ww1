@@ -1,0 +1,65 @@
+add_namespace = england_change_the_alliances
+
+country_event = {
+    id = england_change_the_alliances.1
+    title = "England Offers An Agreement on Asia"
+    desc = england_change_the_alliances.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a welcome development."
+        FROM = { 
+            news_event = { id = england_change_the_alliances.2 hours = 6 random_hours = 6 }
+            dismantle_faction = yes
+            
+            every_state = {
+                limit = { 
+                    or = { 
+                        state = 670 state = 671 state = 286
+                        state = 289 state = 334 state = 614
+                    }
+                }
+                add_claim_by = ENG
+            }
+
+            every_state = {
+                limit = { or = { state = 335 state = 667 state = 668 state = 669 state = 672 state = 673 } }
+                add_claim_by = GER
+            }
+        }
+
+        ai_chance = { base = 3 }
+    }
+    option = {
+        name = "We are not interested."
+        FROM = { news_event = { id = england_change_the_alliances.3 hours = 6 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = england_change_the_alliances.2
+    title = "England and Germany Divide Asia?"
+    desc = england_change_the_alliances.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Concerning."
+    }
+}
+
+news_event = {
+    id = england_change_the_alliances.3
+    title = "[FROM.GetName] Declines!"
+    desc = england_change_the_alliances.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "What a shame."
+    }
+}
