@@ -1,0 +1,50 @@
+add_namespace = soviet_serbia
+
+country_event = {
+    id = soviet_serbia.1
+    title = "[SOV.GetName] Offers Mutual Guarantees"
+    desc = soviet_serbia.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a good idea."
+        FROM = { news_event = { id = soviet_serbia.2 hours = 6 random_hours = 6 } }
+
+        give_guatantee = SOV
+        SOV = { give_guatantee = SER }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "We are not interested."
+        FROM = { news_event = { id = soviet_serbia.3 hours = 6 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = soviet_serbia.2
+    title = "[SER.GetName] and [SOV.GetName] Exchange Guarantees"
+    desc = soviet_serbia.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = soviet_serbia.3
+    title = "[FROM.GetName] Declines!"
+    desc = soviet_serbia.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "What a shame."
+    }
+}

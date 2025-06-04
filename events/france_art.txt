@@ -1,0 +1,33 @@
+add_namespace = france_art
+
+country_event = {
+    id = france_art.1
+    title = "Avant-Garde Under Attack"
+    desc = france_art.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Demand explanations."
+        add_political_power = -50
+
+        hidden_effect = { news_event = { id = france_art.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = "He is free to do what he wants."
+        add_popularity = { ideology = communism popularity = 0.025 }
+    }
+}
+
+news_event = {
+    id = france_art.2
+    title = "Artist Denies Anarchist Sympathies"
+    desc = france_art.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Wonderful."
+        add_stability = 0.025
+    }
+}

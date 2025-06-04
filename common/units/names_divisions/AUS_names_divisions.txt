@@ -1,0 +1,77 @@
+AUS_INF_01 = {
+	name = "Infantry Division"
+
+	for_countries = { AUS }
+	can_use = { always = yes }
+
+	division_types = { "infantry" "motorized" }
+	#link_numbering_with = { AUS_INF_01 }
+
+	fallback_name = "%d. Division"
+
+	ordered = {
+		1 = { "%d. Division" }
+		2 = { "%d. Division" }
+		3 = { "%d. Division" }
+		4 = { "%d. Division" }
+		5 = { "%d. Division" }
+		6 = { "%d. Division" }
+	}
+}
+
+AUS_CAV_01 = {
+	name = "Cavalry Division"
+
+	for_countries = { AUS }
+	can_use = { always = yes }
+
+	division_types = { "cyclist" "mechanized" "light_armor" "heavy_armor" }
+	link_numbering_with = { AUS_INF_01 }
+	fallback_name = "%d. Schnelle Division"
+
+	ordered = {
+		1 = { "%d. Schnelle Division" }
+		2 = { "%d. Schnelle Division" }
+		3 = { "%d. Schnelle Division" }
+		4 = { "%d. Schnelle Division" }
+		5 = { "%d. Schnelle Division" }
+		6 = { "%d. Schnelle Division" }
+	}
+}
+
+AUS_MNT_01 = {
+	name = "Mountain Division"
+
+	for_countries = { AUS }
+	can_use = { always = yes }
+
+	division_types = { "mountaineers" }
+	fallback_name = "%d. Kaiserjäger-Division"
+
+	ordered = {
+		1 = { "%d. Tiroler Kaiserjäger-Division" }
+		2 = { "%d. Kaiserjäger-Division" }
+		3 = { "%d. Kroatische Kaiserjäger-Division" }
+		4 = { "%d. Innsbrucker Kaiserjäger-Div." }
+		5 = { "%d. Kaiserjäger-Division" }
+		6 = { "%d. Trienter Kaiserjäger-Division" }
+	}
+}
+
+AUS_INF_02 = {
+	name = "Kraljevsko Domobranstvo"
+	for_countries = { AUS }
+
+	can_use = { always = yes }
+	division_types = { "infantry" }
+	fallback_name = "%d. Kral. Domobr."
+
+	ordered = {
+		1 = { "%d. Divize" }
+		2 = { "%d. Hrvatsko Kral. Domobr." }
+		5 = { "%d. Slovenska Divízia" }
+		8 = { "%d. Slovansko Domobranstvo" }
+		12 = { "%d. Divize" }
+		19 = { "%d. Kraljevsko Slav.-Hrv. Domobr." }
+	}
+}

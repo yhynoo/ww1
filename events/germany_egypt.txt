@@ -1,0 +1,33 @@
+add_namespace = germany_egypt
+
+country_event = {
+    id = germany_egypt.1
+    title = "German Archaeologists’ Triumph in Egypt!"
+    desc = germany_egypt.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Exhibit the queen to Berlin."
+        add_political_power = 25
+
+        hidden_effect = { news_event = { id = germany_egypt.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = "Offer her to the Turks."
+        TUR = { add_opinion_modifier = { target = GER modifier = donated_nefertiti } }
+    }
+}
+
+news_event = {
+    id = germany_egypt.2
+    title = "An Ancient Curse?"
+    desc = germany_egypt.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Interesting."
+        add_stability = -0.01
+    }
+}

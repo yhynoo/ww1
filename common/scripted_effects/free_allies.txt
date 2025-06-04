@@ -1,0 +1,47 @@
+release_baltic = {
+    release_on_controlled = UBD
+
+    if = { 
+        limit = { is_in_faction = yes }
+        every_allied_country = { release_on_controlled = UBD }
+    }
+
+    # add to faction
+    if = { limit = { is_in_faction = no } create_appropriate_faction = yes }
+    faction_leader = { add_to_faction = UBD }
+
+    # load armies
+    UBD = { load_oob = "UBD_1912" }
+}
+
+release_poland = {
+    release_on_controlled = POL
+
+    if = { 
+        limit = { is_in_faction = yes }
+        every_allied_country = { release_on_controlled = POL }
+    }
+
+    # add to faction
+    if = { limit = { is_in_faction = no } create_appropriate_faction = yes }
+    faction_leader = { add_to_faction = POL }
+
+    # load armies
+    POL = { load_oob = "POL_1912" }
+}
+
+release_ukraine = {
+    release_on_controlled = UKR
+
+    if = { 
+        limit = { is_in_faction = yes }
+        every_allied_country = { release_on_controlled = UKR }
+    }
+
+    # add to faction
+    if = { limit = { is_in_faction = no } create_appropriate_faction = yes }
+    faction_leader = { add_to_faction = UKR }
+
+    # load armies
+    UKR = { load_oob = "UKR_1912" }
+}

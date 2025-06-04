@@ -1,0 +1,166 @@
+oriental_investments = {
+    turkish_infrastructure = {
+        icon = generic_construction
+
+        cost = 75
+        fire_only_once = yes
+
+        available = {
+            not = { has_war_with = TUR }
+
+            any_state = {
+                or = { state = 341 state = 291 }
+                is_owned_and_controlled_by = TUR
+            }
+        }
+
+        complete_effect = {
+            TUR = { country_event = { id = germany_oriental.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    arabian_oil = {
+        icon = oil
+
+        cost = 75
+        fire_only_once = yes
+
+        available = {
+            not = { has_war_with = TUR }
+            292 = { is_owned_and_controlled_by = TUR }
+        }
+
+        complete_effect = {
+            TUR = { country_event = { id = germany_oriental.4 hours = 6 random_hours = 6 } }
+        }
+    }
+    unrest_in_algeria = {
+        icon = generic_prepare_civil_war
+
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            any_state = {
+                is_core_of = ALG
+                is_owned_by = FRA
+            }
+        }
+
+        complete_effect = {
+            FRA = {
+                add_timed_idea = { idea = idea_unrest_in_algeria years = 1 }
+                hidden_effect = { country_event = { id = france_algeria.1 hours = 6 random_hours = 6 } }
+            }
+        }
+    }
+}
+
+germany_alliances = {
+    demand_south_africa = {
+        icon = generic_prepare_civil_war
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            any_state = { 
+                or = { state = 275 state = 542 state = 544 state = 545 state = 681 }
+                is_owned_and_controlled_by = ENG
+            }
+        }
+
+        complete_effect = {
+            ENG = { country_event = germany_south_africa.1 hours = 6 random_hours = 6 }
+        }
+    }
+    ger_offer_alliance = {
+        cost = 75
+        fire_only_once = yes
+
+        targets = { MAN TUR }
+        available = { FROM = { is_in_faction = no not = { has_war_with = ROOT } } }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.2 hours = 6 random_hours = 6 } }
+        }
+    }
+    ger_join_alliance = {
+        cost = 100
+        fire_only_once = yes
+
+        targets = {  }
+        available = { FROM = { or = { is_in_faction = no is_faction_leader = yes } } }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}
+
+greater_germany = {
+    against_austria = {
+        icon = generic_prepare_civil_war
+        cost = 150
+        fire_only_once = yes
+
+        days_remove = 90
+        available = { not = { has_war_with = AUS } }
+
+        complete_effect = {
+            if = {
+                limit = { is_ally_with = AUS }
+                if = {
+                    limit = { is_faction_leader = yes }
+                    remove_from_faction = AUS
+                }
+                else = { leave_faction = yes }
+            }
+
+            every_state = {
+                limit = { 
+                    or = { state = 4 state = 9 state = 33 state = 39 state = 69 state = 74 state = 75 state = 102 state = 152 state = 153 state = 664 }
+                    is_owned_by = AUS
+                }
+                add_claim_by = GER
+            }
+        }
+
+        remove_effect = {
+            create_wargoal = { target = AUS type = take_claimed_state }
+        }
+    }
+    baltic_germans = {
+        icon = generic_prepare_civil_war
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            not = { has_war_with = SOV }
+        }
+
+        complete_effect = {
+            # event
+        }
+    }
+}
+
+afrika_amt = {
+    develop_south_west_africa = {
+        icon = generic_construction
+
+        fire_only_once = yes
+        cost = 75
+
+        available = { controls_state = 541 }
+        complete_effect = {
+            541 = { add_resource = { type = chromium amount = 16 } }
+        }
+    }
+    afrikahandelsverein = {
+        fire_only_once = yes
+        cost = 75
+
+        complete_effect = {
+            add_ideas = idea_afrikahandelsverein
+        }
+    }
+}

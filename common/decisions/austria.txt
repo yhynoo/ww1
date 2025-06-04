@@ -1,0 +1,108 @@
+contain_eastern_threats = {
+    support_poland = {
+        icon = generic_prepare_civil_war
+
+        fire_only_once = yes
+        cost = 50
+
+        available = { 
+            POL = { exists = no }
+            not = { controls_state = 10 }
+        }
+
+        complete_effect = {
+            random_country = {
+                limit = { controls_state = 10 }
+                add_stability = -0.025
+            }
+            
+            news_event = austria_eastern_threats.1
+        }
+    }
+    support_ukraine = {
+        icon = generic_prepare_civil_war
+
+        fire_only_once = yes
+        cost = 50
+
+        available = { 
+            UKR = { exists = no }
+            not = { controls_state = 202 }
+        }
+
+        complete_effect = {
+            random_country = {
+                limit = { controls_state = 202 }
+                add_stability = -0.025
+            }
+
+            news_event = austria_eastern_threats.2
+        }
+    }
+}
+
+austria_alliances = {
+    aus_offer_alliance = {
+        cost = 75
+        fire_only_once = yes
+
+        targets = { AFG FRA TUR }
+
+        available = {
+            FROM = { is_in_faction = no not = { has_war_with = ROOT } }
+
+            if = {
+                limit = { FROM = { tag = FRA } }
+                AUS = {
+                    or = { is_in_faction = no is_faction_leader = yes }
+                    has_completed_focus = AUS_second_vienna_treaty
+                    has_government = monarchism
+                }
+                FRA = { has_government = monarchism }
+            }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.2 hours = 6 random_hours = 6 } }
+        }
+    }
+    aus_join_alliance = {
+        cost = 100
+        fire_only_once = yes
+
+        targets = {  }
+        available = { FROM = { or = { is_in_faction = no is_faction_leader = yes } } }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}
+
+equal_development = {
+    galician_oil = {
+        icon = oil
+
+        fire_only_once = yes
+        cost = 75
+
+        available = { controls_state = 89 }
+        complete_effect = {
+            89 = { add_resource = { type = oil amount = 24 } }
+        }
+        
+    }
+    tatra_trucks = {
+        fire_only_once = yes
+        cost = 75
+
+        available = { controls_state = 75 }
+        complete_effect = {
+            75 = {
+                add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+                add_extra_state_shared_building_slots = 2
+            }
+        }
+    }
+}
+

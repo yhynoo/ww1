@@ -1,0 +1,453 @@
+technologies = {
+
+    @1912 = 4
+    @1913 = 6
+    @1914 = 8
+    @1915 = 10
+    @1916 = 12
+    @1917 = 14
+    @1918 = 16
+    @1919 = 18
+    @1920 = 20
+
+    # machine guns
+    mg_1 = {
+        categories = { infantry_weapons }
+
+        category_infantry_and_bicycle = {
+            defense = 0.2
+            entrenchment = 0.05
+        }
+
+        research_cost = 1
+        start_year = 1912
+
+        path = {
+            leads_to_tech = mg_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+
+    mg_2 = {
+        categories = { infantry_weapons }
+
+        category_infantry_and_bicycle = {
+            defense = 0.15
+            entrenchment = 0.1
+        }
+
+        research_cost = 1
+        start_year = 1914
+
+        path = {
+            leads_to_tech = assault_mg
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+
+    assault_mg = {
+        categories = { infantry_weapons }
+        enable_subunits = { sturmtruppe_battalion }
+
+        category_infantry_and_bicycle = {
+            soft_attack = 0.1
+            breakthrough = 0.1
+            initiative = 0.05
+        }
+
+        research_cost = 1
+        start_year = 1917
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1917 }
+        }
+    }
+
+    # basic infantry weapons
+    infantry_1904 = {
+        enable_equipments = { infantry_equipment_0 }
+        categories = { infantry_weapons }
+
+        research_cost = 1
+        start_year = 1904
+
+        path = {
+            leads_to_tech = infantry_1912
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = 0 }
+        }
+    }
+
+    infantry_1912 = {
+        enable_equipments = { infantry_equipment_1 }
+        categories = { infantry_weapons }
+
+        research_cost = 1.5
+        start_year = 1912
+
+        path = {
+            leads_to_tech = infantry_1914
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+
+    infantry_1914 = {
+        enable_equipments = { infantry_equipment_2 }
+        categories = { infantry_weapons }
+
+        research_cost = 1.5
+        start_year = 1914
+
+        path = {
+            leads_to_tech = infantry_1918
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+
+    infantry_1918 = {
+        enable_equipments = { infantry_equipment_3 }
+        categories = { infantry_weapons }
+
+        research_cost = 1.5
+        start_year = 1918
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1918 }
+        }
+    }
+
+    ## grenades
+    grenades = {
+        categories = { infantry_weapons }
+        category_light_infantry = {
+            soft_attack = 0.05
+            breakthrough = 0.05
+        }
+
+        research_cost = 1
+        start_year = 1914
+
+        path = {
+            leads_to_tech = grenades_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+    grenades_2 = {
+        categories = { infantry_weapons }
+        category_light_infantry = {
+            soft_attack = 0.1
+            breakthrough = 0.05
+        }
+
+        research_cost = 1
+        start_year = 1916
+
+        path = {
+            leads_to_tech = rifle_grenades
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1916 }
+        }
+    }
+    rifle_grenades = {
+        categories = { infantry_weapons }
+        category_light_infantry = {
+            soft_attack = 0.1
+            breakthrough = 0.1
+        }
+
+        research_cost = 1
+        start_year = 1917
+
+        path = {
+            leads_to_tech = anti_tank_rifle
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1917 }
+        }
+    }
+    anti_tank_rifle = {
+        categories = { infantry_weapons }
+        category_light_infantry = {
+            hard_attack = 0.05
+            ap_attack = 0.15
+        }
+
+        research_cost = 1.5
+        start_year = 1920
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1920 }
+        }
+    }
+
+    ## specialists
+    mountaineers_1 = {
+        categories = { mountaineers_tech }
+        enable_subunits = { mountaineers }
+
+        research_cost = 1.5
+        start_year = 1914
+
+        path = {
+            leads_to_tech = mountaineers_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+    mountaineers_2 = {
+        categories = { mountaineers_tech }
+
+        special_forces_cap = 0.1
+        category_mountaineers = {
+            max_organisation = 5
+        }
+
+        research_cost = 1.5
+        start_year = 1917
+
+        path = {
+            leads_to_tech = mountaineers_3
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1917 }
+        }
+    }
+    mountaineers_3 = {
+        categories = { mountaineers_tech }
+
+        special_forces_cap = 0.1
+        category_mountaineers = {
+            max_organisation = 10
+        }
+
+        research_cost = 1.5
+        start_year = 1920
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1920 }
+        }
+    }
+
+    marines_1 = {
+        categories = { marines_tech }
+        enable_subunits = { marine }
+
+        research_cost = 1.5
+        start_year = 1914
+
+        path = {
+            leads_to_tech = marines_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+    marines_2 = {
+        categories = { marines_tech }
+
+        special_forces_cap = 0.1
+        category_marines = {
+            max_organisation = 5
+        }
+
+        research_cost = 1.5
+        start_year = 1917
+
+        path = {
+            leads_to_tech = marines_3
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1917 }
+        }
+    }
+    marines_3 = {
+        categories = { marines_tech }
+
+        special_forces_cap = 0.1
+        category_marines = {
+            max_organisation = 10
+        }
+
+        research_cost = 1.5
+        start_year = 1920
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1920 }
+        }
+    }
+
+    ## motorized
+    art_tractors_1 = {
+        categories = { motorized_tech }
+
+        category_artillery = {
+            maximum_speed = 0.2
+        }
+
+        research_cost = 1.5
+        start_year = 1912
+
+        path = {
+            leads_to_tech = early_trucks
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+    early_trucks = {
+        enable_equipments = { motorized_equipment_0 }
+        categories = { motorized_tech }
+
+        research_cost = 2
+        start_year = 1914
+
+        path = {
+            leads_to_tech = mot_inf
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = art_tractors_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+    mot_inf = {
+        enable_equipments = { motorized_equipment_1 }
+        enable_subunits = { motorized }
+        categories = { motorized_tech }
+
+        truck_attrition_factor = -0.1
+
+        research_cost = 2
+        start_year = 1917
+
+        path = {
+            leads_to_tech = mot_inf_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1917 }
+        }
+    }
+    mot_inf_2 = {
+        categories = { motorized_tech }
+
+        category_vehicle_infantry = {
+            max_organisation = 10
+            reliability = 0.2
+        }
+
+        research_cost = 2
+        start_year = 1919
+
+        folder = {
+            name = infantry_folder
+            position = { x = 0 y = @1919 }
+        }
+    }
+    
+    art_tractors_2 = {
+        categories = { motorized_tech }
+
+        category_artillery = {
+            maximum_speed = 0.1
+            reliability = 0.2
+        }
+
+        research_cost = 1.5
+        start_year = 1914
+
+        path = {
+            leads_to_tech = mot_art
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = infantry_folder
+            position = { x = 2 y = @1914 }
+        }
+    }
+    mot_art = {
+        categories = { motorized_tech }
+        enable_subunits = {
+            mot_artillery_brigade
+            mot_anti_air_brigade
+        }
+
+        research_cost = 1.5
+        start_year = 1917
+
+        path = {
+            leads_to_tech = mot_art
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = infantry_folder
+            position = { x = 2 y = @1917 }
+        }
+    }
+}

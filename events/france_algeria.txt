@@ -1,0 +1,40 @@
+add_namespace = france_algeria
+
+country_event = {
+    id = france_algeria.1
+    title = "Unrest In Algerian Mountains"
+    desc = france_algeria.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Investigate this matter."
+
+        add_stability = 0.05
+        hidden_effect = { news_event = { id = france_algeria.2 days = 14 random_days = 42 } }
+    }
+    option = {
+        name = "Let it diffuse quietly."
+        add_war_support = -0.05
+    }
+}
+
+news_event = {
+    id = france_algeria.2
+    title = "Uprising in Algeria!"
+    desc = france_algeria.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Awful."
+
+        if = {
+            limit = { tag = FRA }
+            remove_ideas = idea_unrest_in_algeria
+
+            hidden_effect = { start_algerian_independence_war = yes }
+        }
+    }
+}

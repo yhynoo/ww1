@@ -1,0 +1,62 @@
+general_mobilization = {
+    demand_north_andes = {
+        icon = generic_prepare_civil_war
+
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            any_state = {
+                or = { state = 490 state = 491 }
+                is_owned_by = PRU
+            }
+        }
+
+        complete_effect = {
+            PRU = { country_event = { id = colombia_andes.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    expand_oil_fields = {
+        icon = oil
+
+        fire_only_once = yes
+        cost = 75
+
+        available = { controls_state = 307 }
+        complete_effect = {
+            307 = { add_resource = { type = oil amount = 24 } }
+        }
+        
+    }
+}
+
+colombia_alliances = {
+    col_offer_alliance = {
+        cost = 75
+        fire_only_once = yes
+
+        targets = {  }
+        
+        # available = { }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.2 hours = 6 random_hours = 6 } }
+        }
+    }
+    col_join_alliance = {
+        cost = 100
+        fire_only_once = yes
+
+        targets = { FRA SPR }
+        available = { 
+            FROM = { 
+                not = { has_war_with = ROOT }
+                or = { is_in_faction = no is_faction_leader = yes } 
+            }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}

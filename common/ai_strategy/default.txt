@@ -1,0 +1,108 @@
+default_unit_production = {
+	# If adding country-unique ones, bear in mind that they STACK unless excluding countries in the enable
+	enable = {
+		always = yes
+		NOT = {
+			OR = {
+				original_tag = AUS
+				original_tag = ENG
+				original_tag = FRA
+				original_tag = GER
+				original_tag = ITA
+				original_tag = JAP
+				original_tag = SOV
+				original_tag = TUR
+			}
+		}
+	}
+	abort_when_not_enabled = yes
+
+	# Land division factors
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 65
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = garrison
+		value = 15
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = cyclist
+		value = 10
+	}
+}
+	
+default_navy_and_air = {
+	enable = { always = yes }
+	abort_when_not_enabled = yes
+
+	# Convoys
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = convoy
+		value = 1
+	}
+
+	# Aircraft
+	ai_strategy = {
+		type = unit_ratio
+		id = fighter
+		value = 90
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = cas
+		value = 15
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = tactical_bomber
+		value = 5
+	}
+}
+
+default_more_planes_after_1915 = {
+	enable = { date > 1915.1.1 }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = air_factory_balance
+		value = 50
+	}
+}
+
+default_area_priority = {
+	enable = { always = yes }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = area_priority
+		id = mainland_europe
+		value = 300
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = middle_east
+		value = 10
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = asia
+		value = -30
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = africa
+		value = -60
+	}
+}

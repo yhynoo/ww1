@@ -1,0 +1,196 @@
+division_template = {
+	name = "Division d'Infanterie"
+	division_names_group = FRA_INF_01
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+        infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+        artillery_brigade = { x = 3 y = 0 }
+	}
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
+}
+division_template = {
+	name = "Division Coloniale"
+	division_names_group = FRA_GAR_01
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+	}
+	priority = 0
+}
+division_template = {
+	name = "Division d'Infanterie Cycliste"
+	division_names_group = FRA_INF_01
+	regiments = {
+		bicycle_battalion = { x = 0 y = 0 }
+		bicycle_battalion = { x = 0 y = 1 }
+        bicycle_battalion = { x = 1 y = 0 }
+		bicycle_battalion = { x = 1 y = 1 }
+        bicycle_battalion = { x = 2 y = 0 }
+		bicycle_battalion = { x = 2 y = 1 }
+	}
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
+}
+
+# units
+units = {
+    # NORD (3 divs.)
+
+    division = {
+		location = 11548
+		division_template = "Division d'Infanterie"
+        start_experience_factor = 0.2
+    }
+
+    division = {
+		location = 11483
+		division_template = "Division d'Infanterie"
+        start_experience_factor = 0.2
+    }
+    division = {
+		location = 11483
+		division_template = "Division d'Infanterie Cycliste"
+        start_experience_factor = 0.2
+    }
+
+    # EST (11 divs.)
+    
+    division = {
+		location = 3560
+		division_template = "Division d'Infanterie"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 3560
+		division_template = "Division d'Infanterie"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 3560
+		division_template = "Division d'Infanterie"
+        start_experience_factor = 0.3
+    }
+
+    division = {
+		location = 11516
+		division_template = "Division d'Infanterie"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 11516
+		division_template = "Division d'Infanterie"
+        start_experience_factor = 0.3
+    }
+
+    division = {
+		location = 521
+		division_template = "Division d'Infanterie"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 521
+		division_template = "Division d'Infanterie"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 521
+		division_template = "Division d'Infanterie"
+        start_experience_factor = 0.3
+    }
+
+    division = {
+		location = 3652
+		division_template = "Division d'Infanterie"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 3652
+		division_template = "Division d'Infanterie"
+        start_experience_factor = 0.3
+    }
+    division = {
+		location = 3652
+		division_template = "Division d'Infanterie Cycliste"
+        start_experience_factor = 0.3
+    }
+
+    # RESERVE (4 divs)
+    division = {
+		location = 11506
+		division_template = "Division d'Infanterie"
+        start_experience_factor = 0.2
+        start_equipment_factor = 0.5
+    }
+    division = {
+		location = 11465
+		division_template = "Division d'Infanterie"
+        start_experience_factor = 0.2
+        start_equipment_factor = 0.5
+    }
+    
+    division = {
+		location = 6613
+		division_template = "Division d'Infanterie"
+        start_experience_factor = 0.2
+        start_equipment_factor = 0.5
+    }
+    division = {
+		location = 6766
+		division_template = "Division d'Infanterie"
+        start_experience_factor = 0.2
+        start_equipment_factor = 0.5
+    }
+
+    # ALPES (2 divs)
+
+    division = {
+		location = 9909
+		division_template = "Division d'Infanterie"
+        start_experience_factor = 0.2
+    }
+    division = {
+		location = 9909
+		division_template = "Division d'Infanterie Cycliste"
+        start_experience_factor = 0.2
+    }
+
+    # COLONIES (5 divs.)
+
+    # Algeria
+    division = {
+		location = 11969
+		division_template = "Division Coloniale"
+        start_experience_factor = 0.3
+    }
+
+    # Indochine
+    division = {
+		location = 4401
+		division_template = "Division Coloniale"
+        start_experience_factor = 0.3
+    }
+}
+
+air_wings = {
+    18 = {
+        fighter_equipment_0 = {
+            owner = "FRA"
+            amount = 24
+        }
+    }
+    31 = {
+        fighter_equipment_0 = {
+            owner = "FRA"
+            amount = 12
+        }
+    }
+}

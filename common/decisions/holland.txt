@@ -1,0 +1,52 @@
+aftermath_of_antwerp = {
+    invite_french = {
+        cost = 75
+        fire_only_once = yes
+
+        complete_effect = {
+            FRA = { country_event = { id = holland_antwerp.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    escalate_tensions = {
+        icon = generic_civil_war
+
+        cost = 50
+        days_remove = 90
+
+        modifier = {
+            war_support_weekly = 0.01
+            monarchism_drift = 0.05
+        }
+    }
+}
+
+holland_alliances = {
+    hol_offer_alliance = {
+        cost = 75
+        fire_only_once = yes
+
+        targets = { }
+
+        # available = { }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.2 hours = 6 random_hours = 6 } }
+        }
+    }
+    hol_join_alliance = {
+        cost = 100
+        fire_only_once = yes
+
+        targets = { ENG FRA GER }
+        available = { 
+            FROM = { 
+                not = { has_war_with = ROOT }
+                or = { is_in_faction = no is_faction_leader = yes } 
+            }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}

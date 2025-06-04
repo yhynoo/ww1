@@ -1,0 +1,49 @@
+JAP_army_composition = {
+	allowed = { original_tag = JAP }
+	enable = { always = yes }
+	abort_when_not_enabled = yes
+
+	## Land troops
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 55
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = garrison
+		value = 30
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = marines
+		value = 5
+	}
+}
+
+JAP_likes_ENG = {
+	allowed = { original_tag = JAP }
+	enable = { has_completed_focus = JAP_hong_kong_appeal }
+	abort = { OR = { ENG = { is_ally_with = GER } has_country_flag = stop_influencing_uk } }
+
+	ai_strategy = {
+		type = befriend
+		id = ENG
+		value = 150
+	}
+}
+
+JAP_avoids_europe = {
+	allowed = { original_tag = JAP }
+	enable = { always = yes }
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = area_priority
+		id = europe
+		value = -150
+	}
+}

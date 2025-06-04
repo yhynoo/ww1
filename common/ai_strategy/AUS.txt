@@ -1,0 +1,78 @@
+AUS_army_composition = {
+	allowed = { original_tag = AUS }
+	
+	enable = { always = yes }
+	abort_when_not_enabled = yes
+
+	## Land troops
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 75
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = cyclist
+		value = 15
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = mountaineers
+		value = 10
+	}
+}
+
+# don't work for others, they will manage
+AUS_stay_at_home = {
+	allowed = { original_tag = AUS }
+
+	enable = { always = yes }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = dont_defend_ally_borders
+		id = GER
+		value = 10
+	}
+
+	ai_strategy = {
+		type = dont_defend_ally_borders
+		id = TUR
+		value = 10
+	}
+}
+
+AUS_likes_GER = {
+	allowed = { original_tag = AUS }
+	enable = { not = { has_completed_focus = AUS_second_vienna_treaty } }
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = alliance
+		id = GER
+		value = 200
+	}
+}
+
+AUS_helps_GER = {
+	allowed = { original_tag = AUS }
+
+	enable = { is_ally_with = GER }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = diplo_action_acceptance
+		id = GER
+		value = 300
+		target = join_allies
+	}
+
+	ai_strategy = {
+		type = declare_war
+		id = SOV
+		value = 100
+	}
+}

@@ -1,0 +1,40 @@
+on_actions = {
+    on_startup = {
+        effect = {
+
+            # 1912 events
+            ENG = {
+                country_event = { id = england_wireless.1 months = 6 random_days = 28 }
+            }
+
+            FRA = {
+                country_event = { id = france_art.1 months = 4 random_days = 28 }
+            }
+
+            GER = {
+                country_event = { id = germany_egypt.1 months = 11 days = 5 }
+            }
+
+            SOV = {
+                country_event = { id = soviet_alexei.1 months = 4 random_days = 28 }
+            }
+
+            # atmosphere events
+            USA = {
+                # 1912
+                news_event = { id = x_atmosphere.1 months = 3 days = 15 }
+
+                # 1913
+                news_event = { id = x_atmosphere.2 months = 18 random_days = 28 }
+                news_event = { id = x_atmosphere.3 months = 23 random_days = 7 }
+
+                # 1915
+                news_event = { id = x_atmosphere.4 months = 45 days = 21 }
+                news_event = { id = x_atmosphere.5 months = 46 days = 25 }
+
+                # 1917
+                news_event = { id = x_atmosphere.6 months = 63 days = 10 }
+            }
+        }
+    }
+}

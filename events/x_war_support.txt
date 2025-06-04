@@ -1,0 +1,29 @@
+add_namespace = x_war_support
+
+news_event = {
+    id = x_war_support.1
+    title = "The Army Marches in [ROOT.capital.GetName]"
+    desc = x_war_support.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Wonderful."
+        add_war_support = 0.05
+    }
+}
+
+news_event = {
+    id = x_war_support.2
+    title = "Veterans Offer Talks Across the Country"
+    desc = x_war_support.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Our heroes."
+
+        add_war_support = 0.05
+        add_popularity = { ideology = ROOT popularity = 0.05 }
+    }
+}

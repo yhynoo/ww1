@@ -1,0 +1,177 @@
+add_namespace = france_antwerp_affair
+
+country_event = {
+    id = france_antwerp_affair.1
+    title = "France Offers to Take Over Vlaanderen"
+    desc = france_antwerp_affair.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        FROM = { 
+            news_event = { id = france_antwerp_affair.2 hours = 6 random_hours = 6 }
+            remove_ideas = idea_antwerp_affair
+
+            every_state = {
+                limit = { or = { state = 6 state = 34 } is_owned_and_controlled_by = HOL }
+                transfer_state_to = FRA
+            }
+        }
+
+        ai_chance = {
+            base = 1
+            modifier = { has_completed_focus = HOL_integrate_flanders factor = 0 }
+        }
+    }
+    option = {
+        name = "Too late."
+        FROM = { 
+            news_event = { id = france_antwerp_affair.3 hours = 6 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = take_state_focus
+            }
+        }
+
+        ai_chance = {
+            base = 1
+            modifier = { has_completed_focus = HOL_thorbeckes_legacy factor = 0 }
+        }
+    }
+}
+
+news_event = {
+    id = france_antwerp_affair.2
+    title = "[FROM.GetName] Transfers Flanders"
+    desc = france_antwerp_affair.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Great."
+    }
+}
+
+news_event = {
+    id = france_antwerp_affair.3
+    title = "[FROM.GetName] Declines!"
+    desc = france_antwerp_affair.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about this."
+    }
+}
+
+# germany
+
+country_event = {
+    id = france_antwerp_affair.4
+    title = "France Demands Wallonien"
+    desc = france_antwerp_affair.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must accept their demands."
+        FROM = { 
+            news_event = { id = france_antwerp_affair.5 hours = 6 random_hours = 6 }
+            every_state = {
+                limit = { or = { state = 6 state = 34 } is_owned_and_controlled_by = GER }
+                transfer_state_to = FRA
+            }
+        }
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "Or...?"
+        FROM = { 
+            news_event = { id = france_antwerp_affair.6 hours = 6 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = take_state_focus
+            }
+        }
+
+        hidden_effect = { country_event = { id = france_antwerp_affair.7 days = 14 } }
+
+        ai_chance = {
+            base = 6
+            modifier = { has_government = democratic factor = 0 }
+        }
+    }
+}
+
+news_event = {
+    id = france_antwerp_affair.5
+    title = "[FROM.GetName] Leaves Wallonia"
+    desc = france_antwerp_affair.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Great."
+    }
+}
+
+news_event = {
+    id = france_antwerp_affair.6
+    title = "[FROM.GetName] Declines!"
+    desc = france_antwerp_affair.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about this."
+    }
+}
+
+country_event = {
+    id = france_antwerp_affair.7
+    title = "An Opportunity in the West?"
+    desc = france_antwerp_affair.7.d
+
+    is_triggered_only = yes
+    trigger = { 
+        has_war_support > 0.5
+        not = { has_war_with = FRA } 
+    }
+
+    option = {
+        name = "We must strike while they are weak!"
+        declare_war_on = { target = FRA type = annex_everything }
+
+        ai_chance = { base = 3 }
+    }
+    option = {
+        name = "This is nonsense."
+        add_war_support = -0.25
+
+        ai_chance = { base = 1 }
+    }
+}
+
+# fixed
+news_event = {
+    id = france_antwerp_affair.8
+    title = "France Takes Flanders and Wallonia"
+    desc = france_antwerp_affair.8.d
+
+    trigger = {
+        tag = FRA
+
+        controls_state = 6
+        controls_state = 34
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "Great."
+        remove_ideas = idea_antwerp_affair
+    }
+}

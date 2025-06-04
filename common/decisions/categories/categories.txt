@@ -1,0 +1,166 @@
+dc_war_cabinet = {
+    visible = { has_war = yes }
+    priority = 5
+}
+
+dc_head_of_state_decisions = {
+    visible_when_empty = yes
+    priority = 4
+}
+
+dc_public_support_decisions = {
+    visible = { has_country_flag = public_support_allowed }
+    priority = 3
+}
+
+dc_economic_decisions = {
+    visible_when_empty = yes
+    priority = 2
+}
+
+
+# country specific
+adriatic_unrest = {
+    visible = { has_completed_focus = TUR_sarajevo_memorandum }
+}
+
+african_expansion = {
+    has_completed_focus = SPA_african_expansion
+}
+
+afrika_amt = {
+    visible = { has_completed_focus = GER_afrika_amt }
+}
+
+aftermath_of_antwerp = {
+    visible = { 
+        has_completed_focus = HOL_aftermath_of_antwerp
+
+        has_idea = idea_antwerp_affair
+        not = { has_war_with = FRA }
+    }
+}
+
+american_industries = {
+    visible = { has_completed_focus = USA_american_industries }
+}
+
+antwerp_affair = {
+    visible = { has_completed_focus = FRA_antwerp_affair }
+}
+
+contain_eastern_threats = {
+    visible = { has_completed_focus = AUS_contain_eastern_threats }
+}
+
+equal_development = {
+    visible = { has_completed_focus = AUS_equal_development }
+}
+
+general_mobilization = {
+    visible = { has_completed_focus = COL_general_mobilization }
+}
+
+greater_germany = {
+    visible = { has_completed_focus = GER_on_our_own }   
+}
+
+hong_kong_appeal = {
+    visible = { has_completed_focus = JAP_hong_kong_appeal }
+}
+
+influence_the_uk = {
+    visible = {
+        has_completed_focus = ITA_influence_the_uk
+        not = { has_war_with = ENG }
+    }
+}
+
+intervene_central_america = {
+    visible = { has_completed_focus = USA_central_america }
+}
+
+let_them_eat_cake = {
+    visible = { has_completed_focus = FRA_let_them_eat_cake }
+}
+
+limited_autonomy = {
+    visible = { has_completed_focus = SOV_limited_autonomy }
+}
+
+mediterranean_expansion_eng = {
+    visible = { has_completed_focus = ENG_mediterranean_expansion }
+}
+
+opium_crisis = {
+    visible = { has_completed_focus = MAN_opium_crisis }
+}
+
+oriental_investments = {
+    visible = { has_completed_focus = GER_oriental_investments }
+}
+
+peoples_act = {
+    visible = { has_completed_focus = ENG_peoples_act }
+}
+
+slavic_unrest = {
+    visible = { has_completed_focus = SOV_slavic_unrest }
+}
+
+tackle_the_debt = {
+    visible = { 
+        or = { has_idea = idea_amassed_foreign_debt has_idea = idea_significant_foreign_debt }
+        has_completed_focus = TUR_tackle_the_debt
+    }
+}
+
+# alliances
+
+austria_alliances = {
+    visible = { has_completed_focus = AUS_seek_alliances }
+}
+
+colombia_alliances = {
+    visible = { has_completed_focus = COL_seek_alliances }
+}
+
+england_alliances = {
+    visible = { has_completed_focus = ENG_seek_alliances }
+}
+
+france_alliances = {
+    visible = { has_completed_focus = FRA_seek_alliances }
+}
+
+germany_alliances = {
+    visible = { has_completed_focus = GER_seek_alliances }
+}
+
+holland_alliances = {
+    visible = { has_completed_focus = HOL_seek_alliances }
+}
+
+italy_alliances = {
+    visible = { has_completed_focus = ITA_seek_alliances }
+}
+
+japan_alliances = {
+    visible = { has_completed_focus = JAP_seek_alliances }
+}
+
+manchukuo_alliances = {
+    visible = { has_completed_focus = MAN_seek_alliances }
+}
+
+soviet_alliances = {
+    visible = { has_completed_focus = SOV_seek_alliances }
+}
+
+turkey_alliances = {
+    visible = { has_completed_focus = TUR_seek_alliances }
+}
+
+usa_alliances = {
+    visible = { has_completed_focus = USA_seek_alliances }
+}

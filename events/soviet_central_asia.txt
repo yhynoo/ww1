@@ -1,0 +1,36 @@
+add_namespace = soviet_central_asia
+
+country_event = {
+    id = soviet_central_asia.1
+    title = "The Turanist Movement Active in Central Asia"
+    desc = soviet_central_asia.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "It is not a threat."
+        add_war_support = -0.1
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "We must do something about it."
+        add_political_power = -50
+
+        hidden_effect = { news_event = { id = soviet_central_asia.2 days = 14 random_days = 42 } }
+        ai_chance = { base = 3 }
+    }
+}
+
+news_event = {
+    id = soviet_central_asia.2
+    title = "Turkish Agents Discovered!"
+    desc = soviet_central_asia.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They deserve punishment!"
+        create_wargoal = { target = TUR type = topple_government }
+    }
+}

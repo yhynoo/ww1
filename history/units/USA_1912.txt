@@ -1,0 +1,69 @@
+division_template = {
+	name = "Infantry Division"
+	division_names_group = USA_INF_01
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+		infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+	}
+	support = {
+		artillery = { x = 0 y = 0 }
+	}
+}
+
+division_template = {
+	name = "National Guard"
+	division_names_group = USA_GAR_01
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+	}
+	priority = 0
+}
+
+# units
+units = {
+	# mainland US
+    division = {
+		location = 3957
+		division_template = "Infantry Division"
+        start_experience_factor = 0.4
+		start_equipment_factor = 0.6
+    }
+	division = {
+		location = 6710
+		division_template = "Infantry Division"
+        start_experience_factor = 0.4
+		start_equipment_factor = 0.4
+    }
+
+	# pacific
+	division = {
+		location = 4180
+		division_template = "Infantry Division"
+        start_experience_factor = 0.4
+		start_equipment_factor = 0.6
+    }
+
+	# philippines
+	division = {
+		location = 10236
+		division_template = "Infantry Division"
+        start_experience_factor = 0.4
+		start_equipment_factor = 0.6
+    }
+}
+
+air_wings = {
+    361 = {
+        fighter_equipment_0 = {
+            owner = "USA"
+            amount = 8
+        }
+    }
+} 

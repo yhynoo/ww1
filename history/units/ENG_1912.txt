@@ -1,0 +1,111 @@
+division_template = {
+	name = "Infantry Division"
+	division_names_group = ENG_INF_01
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 0 y = 2 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+		infantry = { x = 1 y = 2 }
+		infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+		infantry = { x = 2 y = 2 }
+		artillery_brigade = { x = 3 y = 0 }
+		artillery_brigade = { x = 3 y = 1 }
+	}
+	support = {
+		artillery = { x = 0 y = 0 }
+	}
+}
+
+division_template = {
+	name = "Colonial Garrison"
+	division_names_group = ENG_GAR_01
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+		infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+	}
+	priority = 0
+}
+
+division_template = {
+	name = "Royal Marines"
+	division_names_group = ENG_MAR_01
+	regiments = {
+		marine = { x = 0 y = 0 }
+		marine = { x = 0 y = 1 }
+        marine = { x = 1 y = 0 }
+        marine = { x = 1 y = 1 }
+		marine = { x = 2 y = 0 }
+        marine = { x = 2 y = 1 }
+	}
+}
+
+# units
+units = {
+	# britain
+    division = {
+		location = 6103
+		division_template = "Infantry Division"
+        start_experience_factor = 0.8
+    }
+	division = {
+		location = 540
+		division_template = "Infantry Division"
+        start_experience_factor = 0.8
+    }
+	division = {
+		location = 3501
+		division_template = "Infantry Division"
+        start_experience_factor = 0.8
+    }
+
+	# ireland
+	division = {
+		location = 3379
+		division_template = "Infantry Division"
+        start_experience_factor = 0.8
+    }
+
+	# canada
+	division = {
+		location = 7361
+		division_template = "Colonial Garrison"
+        start_experience_factor = 0.5
+    }
+
+	# south africa
+	division = {
+		location = 12589
+		division_template = "Colonial Garrison"
+        start_experience_factor = 0.5
+    }
+
+	# arabia
+	division = {
+		location = 10760
+		division_template = "Colonial Garrison"
+        start_experience_factor = 0.5
+    }
+
+	# east asia
+	division = {
+		location = 12299
+		division_template = "Colonial Garrison"
+        start_experience_factor = 0.5
+    }
+}
+
+air_wings = {
+    125 = {
+        fighter_equipment_0 = {
+            owner = "ENG"
+            amount = 16
+        }
+    }
+}

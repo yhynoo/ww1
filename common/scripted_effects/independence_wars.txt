@@ -1,0 +1,159 @@
+# arab
+start_arab_independence_war = {
+    TUR = {
+        # transfer states
+        every_controlled_state = {
+            limit = { or = { state = 454 state = 554 } }        # add states
+            transfer_state_to = YEM
+        }
+
+        # declare war
+        declare_war_on = { target = YEM type = annex_everything }
+    }
+    
+    # load troops
+    YEM = { load_oob = "YEM_1912" }
+}
+
+# algeria
+start_algerian_independence_war = {
+    FRA = {
+        # transfer states
+        every_controlled_state = {
+            limit = { or = { state = 459 state = 460 } }        # add states
+            transfer_state_to = ALG
+        }
+
+        # declare war
+        declare_war_on = { target = ALG type = annex_everything }
+    }
+    
+    # load troops
+    ALG = { load_oob = "ALG_1912" }
+}
+
+# baltic
+start_baltic_independence_war = {
+    every_country_with_original_tag = {
+        original_tag_to_check = SOV
+
+        # transfer states
+        every_controlled_state = {
+            limit = { or = { state = 12 state = 13 } }        # add states
+            transfer_state_to = UBD
+        }
+
+        # declare war
+        declare_war_on = { target = UBD type = annex_everything }
+    }
+
+    # load troops
+    UBD = { load_oob = "UBD_1912" }
+}
+
+# greek
+start_greek_independence_war = {
+    TUR = {
+        # transfer states
+        every_controlled_state = {
+            limit = { or = { state = 185 state = 186 state = 187 } }        # add states
+            transfer_state_to = GRE
+        }
+
+        # declare war
+        declare_war_on = { target = GRE type = annex_everything }
+    }
+    
+    # load troops
+    GRE = { load_oob = "GRE_1912" }
+}
+
+# mongolia
+start_mongolian_independence_war = {
+    every_country_with_original_tag = {
+        original_tag_to_check = MAN
+
+        # transfer states
+        330 = { transfer_state_to = MON }
+
+        # declare war
+        declare_war_on = { target = MON type = annex_everything }
+    }
+
+    # load troops
+    MON = { load_oob = "MON_1912" }
+}
+
+# poland
+start_polish_independence_war = {
+    every_country_with_original_tag = {
+        original_tag_to_check = SOV
+
+        # transfer states
+        every_controlled_state = {
+            limit = { or = { state = 10 state = 87 state = 90 state = 97 } }        # add states
+            transfer_state_to = POL
+        }
+
+        # declare war
+        declare_war_on = { target = POL type = annex_everything }
+    }
+
+    # load troops
+    POL = { load_oob = "POL_1912" }
+}
+
+# sicily
+start_sicilian_independence_war = {
+    every_country_with_original_tag = {
+        original_tag_to_check = ITA
+
+        # transfer states
+        every_controlled_state = {
+            limit = { is_core_of = TTS }
+            transfer_state_to = TTS
+        }
+
+        # declare war
+        declare_war_on = { target = TTS type = annex_everything }
+    }
+
+    # load troops
+    TTS = { load_oob = "TTS_1912" }
+}
+
+# south africa
+start_south_african_independence_war = {
+    ENG = {
+        # transfer states
+        every_controlled_state = {
+            limit = { state = 275 }
+            transfer_state_to = SAF
+        }
+
+        # declare war
+        declare_war_on = { target = SAF type = annex_everything }
+    }
+    
+    # load troops
+    SAF = { load_oob = "SAF_1912" }
+}
+
+# ukraine
+start_ukrainian_independence_war = {
+    every_country_with_original_tag = {
+        original_tag_to_check = SOV
+
+        # transfer states
+        every_controlled_state = {
+            limit = { or = { state = 198 state = 200 state = 202 state = 203 state = 226 } }        # add states
+            transfer_state_to = UKR
+        }
+
+        # declare war
+        declare_war_on = { target = UKR type = annex_everything }
+    }
+
+    # load troops
+    UKR = { load_oob = "UKR_1912" }
+}

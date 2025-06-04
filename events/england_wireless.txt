@@ -1,0 +1,33 @@
+add_namespace = england_wireless
+
+country_event = {
+    id = england_wireless.1
+    title = "Imperial Wireless’ Strange Investments"
+    desc = england_wireless.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Investigate the matter."
+        add_political_power = -50
+
+        hidden_effect = { news_event = { id = england_wireless.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = "This is none of the public's interest."
+        add_popularity = { ideology = democratic popularity = -0.05 }
+    }
+}
+
+news_event = {
+    id = england_wireless.2
+    title = "Admiralty’s Initiative Falters"
+    desc = england_wireless.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "At least it is solved."
+        add_war_support = -0.05
+    }
+}

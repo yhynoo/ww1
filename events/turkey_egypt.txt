@@ -1,0 +1,71 @@
+add_namespace = turkey_egypt
+
+country_event = {
+    id = turkey_egypt.1
+    title = "[TUR.GetName] Offers Egypt"
+    desc = turkey_egypt.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a good deal."
+        FROM = { 
+            news_event = { id = turkey_egypt.2 hours = 6 random_hours = 6 }
+
+            if = {
+                limit = { has_idea = idea_amassed_foreign_debt }
+                remove_ideas = idea_amassed_foreign_debt
+            }
+            if = {
+                limit = { has_idea = idea_significant_foreign_debt }
+                remove_ideas = idea_significant_foreign_debt
+            }
+        }
+
+        every_state = {
+            limit = { or = { state = 447 state = 452 state = 456 state = 457 state = 551 state = 552 } }
+            transfer_state_to = ENG
+        }
+
+        ai_chance = {
+            base = 3
+            modifier = { TUR = { is_in_faction = yes not = { is_ally_with = ENG } } factor = 0 }
+        }
+    }
+    option = {
+        name = "We are not interested."
+        FROM = { 
+            news_event = { id = turkey_egypt.3 hours = 6 random_hours = 6 }
+        }
+
+        ai_chance = { 
+            base = 1
+            modifier = { TUR = { is_ally_with = ENG } factor = 0 }
+        }
+    }
+}
+
+news_event = {
+    id = turkey_egypt.2
+    title = "[TUR.GetName] Sells Egypt!"
+    desc = turkey_egypt.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = turkey_egypt.3
+    title = "[FROM.GetName] Declines!"
+    desc = turkey_egypt.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Disappointing."
+    }
+}

@@ -1,0 +1,339 @@
+technologies = {
+
+    @1912 = 4
+    @1913 = 6
+    @1914 = 8
+    @1915 = 10
+    @1916 = 12
+    @1917 = 14
+    @1918 = 16
+    @1919 = 18
+    @1920 = 20
+
+    artillery_1904 = {
+        enable_equipments = { artillery_equipment_1 }
+        categories = { artillery_tech }
+
+        research_cost = 1
+        start_year = 1904
+
+        path = {
+            leads_to_tech = artillery_1912
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = 0 }
+        }
+    }
+    artillery_1912 = {
+        enable_equipments = { artillery_equipment_2 }
+        categories = { artillery_tech }
+
+        research_cost = 1.5
+        start_year = 1912
+
+        path = {
+            leads_to_tech = flash_spotting
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+    flash_spotting = {
+        categories = { artillery_tech }
+
+        research_cost = 1
+        start_year = 1915
+
+        category_artillery = {
+            initiative = 0.05
+        }
+
+        path = {
+            leads_to_tech = artillery_1916
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1915 }
+        }
+    }
+    artillery_1916 = {
+        enable_equipments = { artillery_equipment_3 }
+        categories = { artillery_tech }
+
+        research_cost = 1.5
+        start_year = 1916
+
+        path = {
+            leads_to_tech = artillery_1918
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = aa_tech_1
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1916 }
+        }
+    }
+    artillery_1918 = {
+        enable_equipments = { artillery_equipment_4 }
+        categories = { artillery_tech }
+
+        research_cost = 1.5
+        start_year = 1918
+
+        path = {
+            leads_to_tech = count_bat
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1918 }
+        }
+    }
+    count_bat = {
+        categories = { artillery_tech }
+
+        research_cost = 1
+        start_year = 1920
+
+        category_artillery = {
+            initiative = 0.1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1920 }
+        }
+    }
+
+    ## AA
+    aa_tech_1 = {
+        enable_equipments = { anti_air_equipment_1 }
+        enable_subunits = {
+            anti_air
+            anti_air_brigade
+        }
+        enable_building = {
+            building = anti_air_building
+            level = 5
+        }
+
+        categories = { artillery_tech anti_air_artillery }
+
+        research_cost = 1.5
+        start_year = 1916
+
+        path = {
+            leads_to_tech = aa_tech_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 2 y = @1916 }
+        }
+    }
+    aa_tech_2 = {
+        enable_equipments = { anti_air_equipment_2 }
+        categories = { artillery_tech anti_air_artillery }
+
+        research_cost = 1.5
+        start_year = 1918
+
+        path = {
+            leads_to_tech = aa_tech_3
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 2 y = @1918 }
+        }
+    }
+    aa_tech_3 = {
+        categories = { artillery_tech anti_air_artillery }
+
+        research_cost = 1
+        start_year = 1920
+
+        static_anti_air_damage_factor = 0.1
+        static_anti_air_hit_chance_factor = 0.2
+
+        folder = {
+            name = artillery_folder
+            position = { x = 2 y = @1920 }
+        }
+    }
+
+    ## Gas
+    gas_shells = {
+        categories = { artillery_tech }
+
+        research_cost = 1
+        start_year = 1915
+
+        path = {
+            leads_to_tech = gas_shells_2
+            research_cost_coeff = 1
+        }
+
+        category_artillery = {
+            soft_attack = 0.05
+            breakthrough = 0.05
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1915 }
+        }
+    }
+    gas_shells_2 = {
+        categories = { artillery_tech }
+
+        research_cost = 1
+        start_year = 1918
+
+        category_artillery = {
+            soft_attack = 0.05
+            breakthrough = 0.05
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1918 }
+        }
+    }
+
+    ## Mortars
+    petard = {
+        categories = { artillery_tech infantry_tech }
+
+        research_cost = 1
+        start_year = 1912
+
+        category_infantry_and_bicycle = {
+            soft_attack = 0.05
+            defense = 0.1
+        }
+
+        path = {
+            leads_to_tech = mortar
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+    mortar = {
+        categories = { artillery_tech infantry_tech }
+
+        research_cost = 1.5
+        start_year = 1914
+
+        category_infantry_and_bicycle = {
+            soft_attack = 0.05
+            defense = 0.1
+        }
+
+        path = {
+            leads_to_tech = heavy_mortar
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = trench_mortar
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+    heavy_mortar = {
+        categories = { artillery_tech }
+
+        research_cost = 1.5
+        start_year = 1916
+
+        category_artillery = {
+            soft_attack = 0.1
+            defense = 0.1
+        }
+
+        path = {
+            leads_to_tech = heavy_mortar_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1916 }
+        }
+    }
+    heavy_mortar_2 = {
+        categories = { artillery_tech }
+
+        research_cost = 1
+        start_year = 1919
+
+        category_artillery = {
+            breakthrough = 0.1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1919 }
+        }
+    }
+
+    trench_mortar = {
+        categories = { artillery_tech infantry_tech }
+
+        research_cost = 1.5
+        start_year = 1914
+
+        category_infantry_and_bicycle = {
+            soft_attack = 0.05
+            defense = 0.1
+        }
+
+        path = {
+            leads_to_tech = trench_mortar_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 2 y = @1914 }
+        }
+    }
+    trench_mortar_2 = {
+        categories = { artillery_tech infantry_tech }
+
+        category_infantry_and_bicycle = {
+            breakthrough = 0.1
+        }
+
+        research_cost = 1
+        start_year = 1917
+
+        folder = {
+            name = artillery_folder
+            position = { x = 2 y = @1917 }
+        }
+    }
+}

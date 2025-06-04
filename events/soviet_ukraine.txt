@@ -1,0 +1,96 @@
+add_namespace = soviet_ukraine
+
+country_event = {
+    id = soviet_ukraine.1
+    title = "Unrest in Ukraine"
+    desc = soviet_ukraine.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Seek agreement with the moderates."
+        add_political_power = -75
+
+        hidden_effect = { news_event = { id = soviet_ukraine.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = "This is unacceptable."
+        add_timed_idea = { idea = idea_unrest_in_ukraine months = 6 }
+
+        hidden_effect = { country_event = { id = soviet_ukraine.3 days = 7 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = soviet_ukraine.2
+    title = "Democrats for Widespread Agrarian Reform"
+    desc = soviet_ukraine.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        add_popularity = { ideology = democratic popularity = 0.1 }
+    }
+}
+
+country_event = {
+    id = soviet_ukraine.3
+    title = "Arson in Mykolaiv"
+    desc = soviet_ukraine.3.d
+
+    is_triggered_only = yes
+    trigger = { has_stability < 0.7 }
+
+    option = {
+        name = "Negotiate with Ukrainian peasants."
+        add_political_power = -75
+
+        hidden_effect = { news_event = { id = soviet_ukraine.4 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = "Crack down on the extremists."
+        add_stability = -0.05
+
+        hidden_effect = { news_event = { id = soviet_ukraine.5 days = 7 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = soviet_ukraine.4
+    title = "Ukrainian Peasants Accept the Terms"
+    desc = soviet_ukraine.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        remove_ideas = idea_unrest_in_ukraine
+    }
+}
+
+news_event = {
+    id = soviet_ukraine.5
+    title = "Anarchy in the Steppe!"
+    desc = soviet_ukraine.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Awful."
+        add_popularity = { ideology = communism popularity = 0.1 }
+
+        if = {
+            limit = { tag = SOV }
+
+            hidden_effect = {
+                UKR = { 
+                    set_politics = { ruling_party = communism }
+                    set_popularities = { communism = 70 democratic = 30 }
+                }
+                start_ukrainian_independence_war = yes
+            }
+        }
+    }
+}

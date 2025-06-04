@@ -1,0 +1,85 @@
+add_namespace = austria_delegation
+
+country_event = {
+    id = austria_delegation.1
+    title = "The Delegation Arrives"
+    desc = austria_delegation.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Offer a compromise."
+        add_political_power = -50
+
+        hidden_effect = { news_event = { id = austria_delegation.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = "Dismiss them."
+        add_stability = -0.05
+        add_popularity = { ideology = democratic popularity = 0.05 }
+
+        hidden_effect = { country_event = { id = austria_delegation.3 days = 7 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = austria_delegation.2
+    title = "A Whispered Compromise"
+    desc = austria_delegation.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        add_timed_idea = { idea = idea_compromise_with_industrialists years = 1 }
+    }
+}
+
+country_event = {
+    id = austria_delegation.3
+    title = "Galician Industrialists Threaten the Crown"
+    desc = austria_delegation.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Offer economic concessions."
+        add_political_power = -75
+
+        hidden_effect = { news_event = { id = austria_delegation.4 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = "Who do they think they are?"
+        add_stability = -0.05
+
+        hidden_effect = { news_event = { id = austria_delegation.5 days = 7 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = austria_delegation.4
+    title = "Tax Incentives for Investors?"
+    desc = austria_delegation.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Interesting."
+        add_timed_idea = { idea = idea_tax_breaks years = 2 }
+    }
+}
+
+news_event = {
+    id = austria_delegation.5
+    title = "Thugs Assault Imperial Officials"
+    desc = austria_delegation.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Awful."
+
+        add_political_power = -50
+        add_popularity = { ideology = monarchism popularity = -0.05 }
+    }
+}

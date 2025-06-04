@@ -1,0 +1,59 @@
+add_namespace = x_local_conflict
+
+country_event = {
+    id = x_local_conflict.1
+    title = "[FROM.GetName] Stages Local Clashes?"
+    desc = x_local_conflict.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is unacceptable."
+
+        news_event = { id = x_local_conflict.2 hours = 6 random_hours = 6 }
+        create_wargoal = { target = FROM type = take_state_focus }
+    }
+    option = {
+        name = "We must not escalate further."
+        add_popularity = { ideology = ROOT popularity = -0.05 }
+    }
+}
+
+news_event = {
+    id = x_local_conflict.2
+    title = "[ROOT.GetName] Threatens War"
+    desc = x_local_conflict.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Worrying."
+    }
+}
+
+news_event = {
+    id = x_local_conflict.3
+    title = "Local Clashes in Our Favor"
+    desc = x_local_conflict.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        add_war_support = 0.05 army_experience = 25
+    }
+}
+
+news_event = {
+    id = x_local_conflict.4
+    title = "Defeat in Local Clashes"
+    desc = x_local_conflict.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "That's not good."
+        add_war_support = -0.05
+    }
+}

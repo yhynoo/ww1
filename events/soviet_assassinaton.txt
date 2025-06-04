@@ -1,0 +1,87 @@
+add_namespace = soviet_assassination
+
+country_event = {
+    id = soviet_assassination.1
+    title = "Military Train Derailed"
+    desc = soviet_assassination.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Investigate the matter."
+        add_political_power = -100
+
+        hidden_effect = { news_event = { id = soviet_assassination.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = "A silly accident."
+        add_stability = -0.05
+
+        hidden_effect = { country_event = { id = soviet_assassination.3 days = 70 random_days = 42 } }
+    }
+}
+
+news_event = {
+    id = soviet_assassination.2
+    title = "Okhrana Spies Captured"
+    desc = soviet_assassination.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a provocation!"
+        add_war_support = 0.15
+
+        create_wargoal = { target = SOV type = topple_government }
+    }
+}
+
+
+country_event = {
+    id = soviet_assassination.3
+    title = "Assassination Attempt in Sarajevo!"
+    desc = soviet_assassination.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This means war!"
+
+        hidden_effect = { news_event = { id = soviet_assassination.4 hours = 6 random_hours = 6 } }
+        declare_war_on = { target = SOV type = topple_government }
+    }
+    option = {
+        name = "We must not act in haste."
+        add_political_power = -100
+
+        hidden_effect = { news_event = { id = soviet_assassination.5 days = 7 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = soviet_assassination.4
+    title = "[AUS.GetName] Goes to War!"
+    desc = soviet_assassination.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Worrying."
+    }
+}
+
+news_event = {
+    id = soviet_assassination.5
+    title = "An Egregious Humiliation"
+    desc = soviet_assassination.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A disappointment."
+
+        add_stability = -0.1
+        add_popularity = { ideology = monarchism popularity = -0.25 }
+    }
+}

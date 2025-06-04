@@ -1,0 +1,90 @@
+slavic_unrest = {
+    unrest_in_galicia = {
+        icon = generic_prepare_civil_war
+
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            any_state = {
+                or = { state = 88 state = 89 state = 91 }
+                is_owned_and_controlled_by = AUS
+            }
+        }
+
+        complete_effect = {
+            AUS = {
+                add_timed_idea = { idea = idea_unrest_in_galicia years = 1 }
+                hidden_effect = { country_event = { id = soviet_assassination.1 hours = 6 random_hours = 6 } }
+            }
+        }
+    }
+    mutual_guarantees_serbia = {
+        fire_only_once = yes
+        cost = 75
+
+        available = { SER = { exists = yes } }
+
+        complete_effect = {
+            SER = { country_event = { id = soviet_serbia.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}
+
+soviet_alliances = {
+    sov_offer_alliance = {
+        cost = 75
+        fire_only_once = yes
+
+        targets = { SER }
+        available = { FROM = { is_in_faction = no not = { has_war_with = ROOT } } }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.2 hours = 6 random_hours = 6 } }
+        }
+    }
+    sov_join_alliance = {
+        cost = 100
+        fire_only_once = yes
+
+        targets = { ENG FRA }
+        available = { 
+            FROM = { 
+                not = { has_war_with = ROOT }
+                or = { is_in_faction = no is_faction_leader = yes } 
+            }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}
+
+limited_autonomy = {
+    sokol_society = {
+        fire_only_once = yes
+        cost = 75
+
+        available = { POL = { exists = no } }
+
+        complete_effect = {
+            add_ideas = idea_sokol_society
+        }
+    }
+    prosvita = {
+        fire_only_once = yes
+        cost = 75
+
+        available = { UKR = { exists = no } }
+
+        complete_effect = {
+            add_ideas = idea_prosvita
+
+            if = {
+                limit = { has_idea = idea_unrest_in_ukraine }
+                remove_ideas = idea_unrest_in_ukraine
+            }
+        }
+    }
+}

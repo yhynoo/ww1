@@ -1,0 +1,44 @@
+capital = 306
+
+oob = "COL_1912"
+set_naval_oob = "COL_naval_1912"
+
+set_research_slots = 2
+set_stability = 0.55
+set_war_support = 0.6
+
+recruit_character = COL_jose_vicente_concha
+recruit_character = COL_tomás_quiróz_calderón
+recruit_character = COL_rafael_reyes
+recruit_character = COL_rafael_uribe_uribe
+recruit_character = COL_roberto_s_aizpuru
+
+add_ideas = { 
+    idea_david_and_goliath
+    idea_a_liberal_autocrat
+}
+
+set_technology = {
+    infantry_1904 = 1
+    artillery_1904 = 1
+
+    capital_ship_1904 = 1
+    destroyer_1904 = 1
+}
+
+set_popularities = {
+    authoritarianism = 85
+    monarchism = 15
+}
+
+set_politics = {
+    ruling_party = authoritarianism
+    last_election = "1910.1.12"
+    election_frequency = 48
+    elections_allowed = no
+}
+
+declare_war_on = {
+		target = MEX
+		type = annex_everything
+	}

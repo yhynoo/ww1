@@ -1,0 +1,37 @@
+add_namespace = russia_alexei
+
+country_event = {
+    id = russia_alexei.1
+    title = "A Mystic Cures Tsarevich Alexei"
+    desc = russia_alexei.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Announce the miracle."
+        add_political_power = -50
+
+        hidden_effect = { news_event = { id = russia_alexei.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = "Gather the medical experts."
+        add_tech_bonus = {
+				name = field_hospital_bonus bonus = 1.0 uses = 1
+				technology = tech_field_hospital
+                technology = tech_field_hospital2
+			}
+    }
+}
+
+news_event = {
+    id = russia_alexei.2
+    title = "A Divine Sign?"
+    desc = russia_alexei.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Faith is a mighty force."
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+    }
+}

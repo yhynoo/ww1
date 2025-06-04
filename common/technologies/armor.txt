@@ -1,0 +1,249 @@
+technologies = {
+
+    @1912 = 4
+    @1913 = 6
+    @1914 = 8
+    @1915 = 10
+    @1916 = 12
+    @1917 = 14
+    @1918 = 16
+    @1919 = 18
+    @1920 = 20
+
+    early_armored_car = {
+        categories = { mechanized_tech }
+
+        research_cost = 1
+        start_year = 1904
+
+        experience_gain_army = 0.1
+
+        path = {
+            leads_to_tech = armored_car_1912
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = armour_folder
+            position = { x = 0 y = 0 }
+        }
+    }
+    armored_car_1912 = {
+        enable_subunits = { armored_car }
+        enable_equipments = { gw_armored_car_equipment }
+        categories = { mechanized_tech }
+
+        research_cost = 2
+        start_year = 1912
+
+        path = {
+            leads_to_tech = armored_car_1914
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = armour_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+    armored_car_1914 = {
+        enable_equipments = { armored_car_equipment_1 }
+        categories = { mechanized_tech }
+
+        research_cost = 2
+        start_year = 1914
+
+        path = {
+            leads_to_tech = armored_assault_tactics
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = armored_recon_vehicles
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = armour_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+    armored_recon_vehicles = {
+        categories = { mechanized_tech }
+        enable_subunits = { armored_car_recon }
+        dependencies = { tech_recon = 1 }
+
+        category_recon = {
+            soft_attack = 0.1
+            breakthrough = 0.05
+        }
+
+        research_cost = 1
+        start_year = 1914
+
+        path = {
+            leads_to_tech = armored_recon_vehicles2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = armour_folder
+            position = { x = 2 y = @1914 }
+        }
+    }
+    armored_recon_vehicles2 = {
+        categories = { mechanized_tech }
+
+        category_recon = {
+            max_organisation = 0.05
+            breakthrough = 0.1
+        }
+
+        research_cost = 1
+        start_year = 1916
+
+        folder = {
+            name = armour_folder
+            position = { x = 2 y = @1916 }
+        }
+    }
+
+    armored_assault_tactics = {
+        categories = { mechanized_tech }
+
+        category_mobile_and_mobile_combat_sup = {
+            breakthrough = 0.05
+            max_organisation = 10
+        }
+        category_tanks = {
+            breakthrough = 0.05
+            max_organisation = 10
+        }
+
+        research_cost = 2
+        start_year = 1918
+
+        path = {
+            leads_to_tech = mech_inf
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = armour_folder
+            position = { x = 0 y = @1918 }
+        }
+    }
+    mech_inf = {
+        enable_subunits = { mechanized }
+        enable_equipments = { mechanized_equipment_1 }
+        categories = { mechanized_tech }
+
+        research_cost = 3
+        start_year = 1920
+
+        folder = {
+            name = armour_folder
+            position = { x = 0 y = @1920 }
+        }
+    }
+
+    ## tanks
+    tank_experiments = {
+        categories = { armor_tech }
+
+        research_cost = 3
+        start_year = 1914
+
+        experience_gain_army = 0.1
+
+        path = {
+            leads_to_tech = heavy_1916
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = armour_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+    heavy_1916 = {
+        enable_subunits = { heavy_armor }
+        enable_equipments = { heavy_tank_equipment_1 }
+        categories = { armor_tech }
+
+        research_cost = 3
+        start_year = 1916
+
+        path = {
+            leads_to_tech = heavy_1920
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = light_1916
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = armour_folder
+            position = { x = 0 y = @1916 }
+        }
+    }
+    heavy_1920 = {
+        enable_equipments = { heavy_tank_equipment_2 }
+        categories = { armor_tech }
+
+        research_cost = 3
+        start_year = 1920
+
+        folder = {
+            name = armour_folder
+            position = { x = 0 y = @1920 }
+        }
+    }
+    light_1916 = {
+        enable_subunits = { light_armor }
+        enable_equipments = { light_tank_equipment_1 }
+        categories = { armor_tech }
+
+        research_cost = 3
+        start_year = 1916
+
+        path = {
+            leads_to_tech = light_1918
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = armour_folder
+            position = { x = 2 y = @1916 }
+        }
+    }
+    light_1918 = {
+        enable_equipments = { light_tank_equipment_2 }
+        categories = { armor_tech }
+
+        research_cost = 3
+        start_year = 1918
+
+        path = {
+            leads_to_tech = light_1920
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = armour_folder
+            position = { x = 2 y = @1918 }
+        }
+    }
+    light_1920 = {
+        enable_equipments = { light_tank_equipment_3 }
+        categories = { armor_tech }
+
+        research_cost = 3
+        start_year = 1920
+
+        folder = {
+            name = armour_folder
+            position = { x = 2 y = @1920 }
+        }
+    }
+}

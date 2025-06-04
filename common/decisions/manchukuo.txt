@@ -1,0 +1,67 @@
+opium_crisis = {
+    tax_opium = {
+        fire_only_once = yes
+        cost = 75
+
+        complete_effect = {
+            swap_ideas = {
+                remove_idea = idea_severe_opium_crisis
+                add_idea = idea_limited_opium_crisis
+            }
+        }
+    }
+    invade_indochina = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        available = { 
+            any_state = {
+                or = { state = 286 state = 670 state = 671 state = 289 state = 614 }
+                not = { is_owned_and_controlled_by = MAN }
+            }
+        }
+
+        complete_effect = {
+            every_country = {
+                limit = { or = { owns_state = 286 owns_state = 670 owns_state = 671 owns_state = 289 owns_state = 614 } }
+                country_event = { id = manchukuo_opium.1 hours = 6 random_hours = 6 }
+            }
+        }
+    }
+}
+
+manchukuo_alliances = {
+    man_offer_alliance = {
+        cost = 75
+        fire_only_once = yes
+
+        targets = { }
+        available = { }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.2 hours = 6 random_hours = 6 } }
+        }
+    }
+    man_join_alliance = {
+        cost = 100
+        fire_only_once = yes
+
+        targets = { ENG GER USA }
+        available = { 
+            FROM = { 
+                not = { has_war_with = ROOT }
+                or = { is_in_faction = no is_faction_leader = yes } 
+            }
+
+            if = { 
+                FROM = { tag = USA }
+                not = { has_idea = idea_isolationist_society }
+            }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}

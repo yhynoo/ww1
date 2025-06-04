@@ -1,0 +1,42 @@
+peace_ai_desires = {
+
+    # authoritarian
+    authoritarians_take_stuff = {
+        peace_action_type = take_states
+        enable = {
+            ROOT = { 
+                has_government = authoritarianism 
+                tag = ROOT.FROM
+            }
+        }
+
+        ai_desire = 150
+    }
+
+    # monarchies
+    monarchies_make_protectorates = {
+        peace_action_type = puppet
+        enable = {
+            ROOT = { 
+                NOT = { tag = SOV }     # russia is different.
+
+                has_government = monarchism 
+                tag = ROOT.FROM
+            }
+        }
+
+        ai_desire = 150
+    }
+
+    monarchies_also_take_stuff = {
+        peace_action_type = take_states
+        enable = {
+            ROOT = { 
+                has_government = monarchism 
+                tag = ROOT.FROM
+            }
+        }
+
+        ai_desire = 100
+    }
+}

@@ -1,0 +1,68 @@
+### allowed later
+
+too_early_for_tanks = {
+    enable = { not = { has_tech = tank_experiments } }
+    abort_when_not_enabled = yes
+
+    ai_strategy = {
+        type = role_ratio
+        id = armor
+        value = -300
+    }
+}
+
+too_early_for_mountaineers = {
+    enable = {
+        not = { has_tech = mountaineers_1 }
+    }
+
+    abort_when_not_enabled = yes
+
+    ai_strategy = {
+        type = role_ratio
+        id = mountaineers
+        value = -300
+    }
+}
+
+too_early_for_marines = {
+    enable = {
+        not = { has_tech = marines_1 }
+    }
+
+    abort_when_not_enabled = yes
+
+    ai_strategy = {
+        type = role_ratio
+        id = marines
+        value = -300
+    }
+}
+
+
+### other
+
+other_limits = {
+    enable = {
+        always = yes
+    }
+    abort = { always = no }
+
+    ai_strategy = {
+        type = role_ratio
+        id = paratroopers
+        value = -1000
+    }
+
+    ai_strategy = {
+        type = role_ratio
+        id = suppression
+        value = -1000
+    }
+
+    ai_strategy = {
+        type = role_ratio
+        id = anti_armor
+        value = -1000
+    }
+}

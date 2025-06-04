@@ -1,0 +1,42 @@
+add_namespace = turkey_arab_lands
+
+country_event = {
+    id = turkey_arab_lands.1
+    title = "[ENG.GetName] Supports Jewish Settlements"
+    desc = turkey_arab_lands.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall welcome them as guests."
+
+        add_popularity = { ideology = democratic popularity = 0.05 }
+        hidden_effect = { news_event = { id = turkey_arab_lands.2 days = 14 random_days = 42 } }
+    }
+    option = {
+        name = "Those are Arab lands."
+
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+    }
+}
+
+news_event = {
+    id = turkey_arab_lands.2
+    title = "Arab Uprising in Jaffa!"
+    desc = turkey_arab_lands.2.d
+
+    is_triggered_only = yes
+    trigger = { TUR = { has_stabilty < 0.6 } }
+    major = yes
+
+    option = {
+        name = "Awful."
+
+        if = {
+            limit = { tag = TUR }
+            remove_ideas = idea_unrest_in_arab_lands
+
+            hidden_effect = { start_arab_independence_war = yes }
+        }
+    }
+}

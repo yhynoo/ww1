@@ -1,0 +1,104 @@
+intervene_central_america = {
+    aid_to_mexico = {
+        fire_only_once = yes
+        cost = 75
+
+        available = {
+            any_country = {
+                original_tag = MEX
+                has_government = ROOT
+                has_war = yes
+            }
+        }
+
+        complete_effect = {
+            add_timed_idea = { idea = idea_aid_to_mexico years = 1 }
+            add_war_support = 0.05
+
+            random_country = {
+                limit = { original_tag = MEX has_government = ROOT }
+
+                add_offsite_building = { type = industrial_complex level = 1 }
+                add_offsite_building = { type = arms_factory level = 1 }
+            }
+        }
+    }
+    invade_central_america = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        days_remove = 180
+
+        available = { 
+            any_state = {
+                or = { state = 312 state = 313 state = 316 state = 317 }
+                is_owned_and_controlled_by = COL
+            }
+
+            can_declare_war_on = COL
+            has_war_support > 0.3 
+        }
+
+        remove_effect = {
+            war_with_on_remove = COL
+            create_wargoal = { target = COL type = take_state_focus }
+        }
+    }
+}
+
+usa_alliances = {
+    usa_offer_alliance = {
+        cost = 75
+        fire_only_once = yes
+
+        targets = { AST }
+        available = { 
+            has_completed_focus = USA_on_our_own
+            FROM = { 
+                is_subject = no
+                is_in_faction = no not = { has_war_with = ROOT }
+            } 
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.2 hours = 6 random_hours = 6 } }
+        }
+    }
+    usa_join_alliance = {
+        cost = 100
+        fire_only_once = yes
+
+        targets = { ENG FRA }
+        available = { 
+            FROM = { 
+                not = { has_war_with = ROOT }
+                or = { is_in_faction = no is_faction_leader = yes } 
+            }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}
+
+american_industries = {
+    introduce_tariffs = {
+        fire_only_once = yes
+        cost = 75
+
+        complete_effect = {
+            add_ideas = idea_tariffs
+        }
+    }
+    appease_unions_usa = {
+        cost = 50
+        days_remove = 90
+
+        modifier = {
+            industrial_capacity_factory = 0.1
+            democratic_drift = 0.05
+        }
+    }
+}

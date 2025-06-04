@@ -1,0 +1,51 @@
+FRA_army_composition = {
+	allowed = { original_tag = FRA }
+	enable = { always = yes }
+
+	abort_when_not_enabled = yes
+
+	## Land troops
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 90
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = cyclist
+		value = 10
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = mountaineers
+		value = 5
+	}
+}
+
+# don't work for ITA or RUS, we need those troops at home
+FRA_stay_at_home = {
+	allowed = { tag = FRA }
+	enable = { always = yes }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = dont_defend_ally_borders
+		id = ITA
+		value = 100
+	}
+
+    ai_strategy = {
+		type = dont_defend_ally_borders
+		id = SOV
+		value = 100
+	}
+
+	# we're also scared of Germany
+	ai_strategy = {
+		type = prepare_for_war
+		id = GER
+		value = 60
+	}
+}

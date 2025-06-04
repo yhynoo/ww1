@@ -1,0 +1,103 @@
+mediterranean_expansion_eng = {
+    malta_cyprus = {
+        icon = generic_construction
+
+        cost = 75
+        fire_only_once = yes
+
+        available = {
+            any_state = {
+                or = { state = 116 state = 183 }
+                is_owned_and_controlled_by = ENG
+            }
+        }
+
+        complete_effect = {
+            if = {
+                limit = { 116 = { is_owned_and_controlled_by = ENG } }
+                116 = { add_building_construction = { type = naval_base level = 2 province = 12003 instant_build = yes } }
+            }
+            if = {
+                limit = { 183 = { is_owned_and_controlled_by = ENG } }
+                183 = { add_building_construction = { type = naval_base level = 2 province = 7193 instant_build = yes } }
+            }
+        }
+    }
+    jaffa_unrest = {
+        icon = generic_prepare_civil_war
+
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            TUR = { owns_state = 454 }
+        }
+
+        complete_effect = {
+            TUR = {
+                add_timed_idea = { idea = idea_unrest_in_arab_lands years = 1 }
+                hidden_effect = { country_event = { id = turkey_arab_lands.1 hours = 6 random_hours = 6 } }
+            }
+        }
+    }
+}
+
+england_alliances = {
+    announce_containment = {
+        icon = generic_prepare_civil_war
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            threat > 0.2
+            has_war_support > 0.5
+        }
+
+        complete_effect = {
+            add_ideas = idea_containment
+        }
+    }
+    eng_offer_alliance = {
+        cost = 75
+        fire_only_once = yes
+
+        targets = { FRA JAP }
+        available = { FROM = { is_in_faction = no not = { has_war_with = ROOT } } }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.2 hours = 6 random_hours = 6 } }
+        }
+    }
+    eng_join_alliance = {
+        cost = 100
+        fire_only_once = yes
+
+        targets = {  }
+        available = { FROM = { or = { is_in_faction = no is_faction_leader = yes } } }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}
+
+peoples_act = {
+    encourage_local_administration = {
+        cost = 50
+        days_remove = 90
+
+        modifier = {
+            stability_weekly = 0.005
+            subjects_autonomy_gain = 0.5        # to adjust
+        }
+    }
+    appease_unions_eng = {
+        cost = 50
+        days_remove = 90
+
+        modifier = {
+            industrial_capacity_factory = 0.1
+            communism_drift = 0.05
+        }
+    }
+}

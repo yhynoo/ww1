@@ -1,0 +1,60 @@
+UKR_INF_01 = {
+	name = "Infantry Division"
+
+	for_countries = { UKR }
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+	fallback_name = "%dya Pikhotna Dyviziia"
+
+	ordered = {
+		1 = { "%dya 'Kyivska' Pikh. Dyv." }
+		2 = { "%dya 'Odeska' Pikh. Dyv." }
+        3 = { "%dya Pikh. Dyv. 'Hetman Mazepa'"}
+        6 = { "%dya Pikhotna Dyviziia" }
+        8 = { "%dya 'Tavriiska' Pikh. Dyv." }
+        11 = { "%dya 'Dniprovska' Pikh. Div." }
+	}
+}
+
+UKR_INF_02 = {
+	name = "Infantry Brigade"
+
+	for_countries = { UKR }
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+	fallback_name = "%dya Pikhotna Bryhada"
+
+    link_numbering_with = { UKR_INF_01 }
+
+	ordered = {
+		4 = { "%dya Dobrovol'ts'ka Pikh. Br." }
+		7 = { "%dya 'Khortytska' Pikh. Br." }
+        12 = { "%dya Pikhotna Bryhada" }
+        14 = { "%dya Pikh. Br. 'Hetman Khmelnytskyi'" }
+        18 = { "%dya 'Kremenchutska' Pikh. Br." }
+        24 = { "%dya Dobrovol'ts'ka Pikh. Br." }
+	}
+}
+
+UKR_GAR_01 = {
+	name = "Garrison Troops"
+
+	for_countries = { UKR }
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+	fallback_name = "%dyi Dobrovol'ts'kyi Polk"
+
+    link_numbering_with = { UKR_INF_01 }
+
+	ordered = {
+        2 = { "%dyi 'Hlukhivskyi' Dobrovol'ts'kyi Polk" }
+        5 = { "%dyi 'Kozatskyi' Dobrovol'ts'kyi Polk" }
+        6 = { "%dyi Dobrovol'ts'kyi Polk" }
+        10 = { "%dyi 'Lvivskyi' Dobrovol'ts'kyi Polk" }
+        14 = { "%dyi Dobrovol'ts'kyi Polk" }
+        15 = { "%dyi 'Mykolaivskyi' Dobrovol'ts'kyi Polk" }
+	}
+}

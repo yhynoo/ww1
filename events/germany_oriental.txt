@@ -1,0 +1,115 @@
+add_namespace = germany_oriental
+
+country_event = {
+    id = germany_oriental.1
+    title = "[GER.GetName] Wants To Invest"
+    desc = germany_oriental.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is great."
+        FROM = { 
+            news_event = { id = germany_oriental.2 hours = 6 random_hours = 6 }
+            give_guarantee = TUR
+        }
+
+        every_state = {
+            limit = { or = { state = 341 state = 291 } is_owned_and_controlled_by = ROOT }
+            add_building_construction = { type = infrastructure level = 2 instant_build = yes }
+        }
+    }
+    option = {
+        name = "We are not interested."
+        FROM = { 
+            news_event = { id = germany_oriental.3 hours = 6 random_hours = 6 }
+        }
+    }
+}
+
+news_event = {
+    id = germany_oriental.2
+    title = "[FROM.GetName] Opens to German Investments"
+    desc = germany_oriental.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = germany_oriental.3
+    title = "[FROM.GetName] Declines!"
+    desc = germany_oriental.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "What a shame."
+    }
+}
+
+# oil
+
+country_event = {
+    id = germany_oriental.4
+    title = "[GER.GetName] Wants Arabian Oil"
+    desc = germany_oriental.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a good deal."
+        FROM = { 
+            news_event = { id = germany_oriental.5 hours = 6 random_hours = 6 }
+        }
+
+        give_resource_rights = { receiver = GER state = 292 }
+
+        if = {
+            limit = { has_idea = idea_amassed_foreign_debt }
+            swap_ideas = {
+                remove_idea = idea_amassed_foreign_debt
+                add_idea = idea_significant_foreign_debt
+            }
+        }
+        if = {
+            limit = { has_idea = idea_significant_foreign_debt }
+            remove_ideas = idea_significant_foreign_debt
+        }
+    }
+    option = {
+        name = "We are not interested."
+        FROM = { 
+            news_event = { id = germany_oriental.6 hours = 6 random_hours = 6 }
+        }
+    }
+}
+
+news_event = {
+    id = germany_oriental.5
+    title = "[GER.GetName] Accesses Arabian Oil"
+    desc = germany_oriental.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = germany_oriental.6
+    title = "[FROM.GetName] Declines!"
+    desc = germany_oriental.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Disappointing."
+    }
+}

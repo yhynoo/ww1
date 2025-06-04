@@ -1,0 +1,977 @@
+focus_tree = {
+    id = AUS_focus
+
+    country = {
+        factor = 0
+        modifier = { add = 20 original_tag = AUS }
+    }
+
+    continuous_focus_position = { x = 200 y = 800 }
+
+    ## military branch
+    focus = {
+        id = AUS_adjust_budget
+        icon = GFX_focus_generic_budget
+
+        x = 7
+        y = 0
+        cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = { has_war = yes factor = 3 }
+        }
+
+        completion_reward = {
+            add_command_power = 25
+        }
+    }
+    focus = {
+        id = AUS_focus_army
+        icon = GFX_focus_generic_army
+
+        relative_position_id = AUS_adjust_budget
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = AUS_adjust_budget }
+        completion_reward = {
+            army_experience = 25
+        }
+    }
+    focus = {
+        id = AUS_extend_conscription
+        icon = GFX_focus_generic_extend_conscription
+
+        relative_position_id = AUS_focus_army
+        x = -4
+        y = 1
+        cost = 10
+
+        available = { or = { has_idea = disarmed_nation has_idea = volunteer_only } }
+
+        prerequisite = { focus = AUS_focus_army }
+        completion_reward = {
+            add_ideas = limited_conscription
+        }
+    }
+    focus = {
+        id = AUS_army_maneuvers
+        icon = GFX_focus_generic_army_maneuvers
+
+        relative_position_id = AUS_focus_army
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = AUS_focus_army }
+        completion_reward = {
+            army_experience = 50
+            add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+        }
+    }
+    focus = {
+        id = AUS_equipment_effort
+        icon = GFX_focus_generic_equipment_effort
+
+        relative_position_id = AUS_focus_army
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = AUS_focus_army }
+        completion_reward = {
+            add_tech_bonus = {
+				name = infantry_bonus
+				bonus = 1.0
+				uses = 1
+				category = infantry_weapons
+			}
+        }
+    }
+    focus = {
+        id = AUS_artillery
+        icon = GFX_focus_generic_artillery
+
+        relative_position_id = AUS_equipment_effort
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = AUS_equipment_effort }
+        completion_reward = {
+            add_tech_bonus = {
+				bonus = 1.0
+				uses = 1
+				category = artillery_tech
+			}
+        }
+    }
+    focus = {
+        id = AUS_aircraft
+        icon = GFX_focus_generic_aircraft
+
+        relative_position_id = AUS_equipment_effort
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = AUS_equipment_effort }
+        completion_reward = {
+            air_experience = 25
+            add_tech_bonus = {
+				name = fighter_bonus
+				bonus = 1.0
+				uses = 1
+				category = air_equipment
+			}
+        }
+    }
+    focus = {
+        id = AUS_armor
+        icon = GFX_focus_generic_armor
+
+        relative_position_id = AUS_equipment_effort
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = AUS_equipment_effort }
+        completion_reward = {
+            add_tech_bonus = {
+				name = armor_bonus
+				bonus = 1.0
+				uses = 1
+				category = armor_tech
+			}
+        }
+    }
+    focus = {
+        id = AUS_modern_warfare
+        icon = GFX_focus_generic_modern_warfare
+
+        relative_position_id = AUS_aircraft
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { 
+            focus = AUS_artillery
+            focus = AUS_aircraft
+            focus = AUS_armor
+        }
+        completion_reward = {
+            army_experience = 100
+            add_ideas = idea_modern_warfare
+        }
+    }
+
+    focus = {
+        id = AUS_focus_navy
+        icon = GFX_focus_generic_navy
+
+        relative_position_id = AUS_adjust_budget
+        x = 2
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = AUS_adjust_budget }
+        completion_reward = {
+            navy_experience = 25
+        }
+    }
+    focus = {
+        id = AUS_naval_exercises
+        icon = GFX_focus_generic_naval_exercises
+
+        relative_position_id = AUS_focus_navy
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = AUS_focus_navy }
+        completion_reward = {
+            navy_experience = 50
+            add_doctrine_cost_reduction = {
+				name = navy_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
+        }
+    }
+    focus = {
+        id = AUS_expand_dockyards
+        icon = GFX_focus_generic_expand_dockyards
+
+        relative_position_id = AUS_focus_navy
+        x = 2
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = AUS_focus_navy }
+		
+		completion_reward = {
+			navy_experience = 25
+			if = {
+				limit = { any_owned_state = { is_coastal = yes } }
+
+				random_owned_controlled_state = {
+					limit = { is_coastal = yes }
+
+					add_extra_state_shared_building_slots = 3
+					add_building_construction = { type = dockyard level = 3 instant_build = yes }
+				}
+			}		
+		}
+    }
+    focus = {
+        id = AUS_high_seas
+        icon = GFX_focus_generic_high_seas
+
+        relative_position_id = AUS_expand_dockyards
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = AUS_expand_dockyards }
+        completion_reward = {
+            add_tech_bonus = {
+				name = capital_ships_bonus
+				bonus = 1.0
+				uses = 1
+				category = capital_ship_tech
+			}
+        }
+    }
+    focus = {
+        id = AUS_the_dark_deep
+        icon = GFX_focus_generic_the_dark_deep
+
+        relative_position_id = AUS_expand_dockyards
+        x = 2
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = AUS_expand_dockyards }
+        completion_reward = {
+            add_tech_bonus = {
+				name = ss_bonus
+				bonus = 1.0
+				uses = 1
+				category = submarines_tech
+			}
+        }
+    }
+    focus = {
+        id = AUS_seaborne_operations
+        icon = GFX_focus_generic_seaborne_operations
+
+        relative_position_id = AUS_naval_exercises
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = AUS_naval_exercises }
+        completion_reward = {
+            add_tech_bonus = {
+				name = special_forces_bonus
+				bonus = 1.0
+				uses = 1
+				technology = marines_1
+                technology = marines_2
+			}
+        }
+    }
+    focus = {
+        id = AUS_rule_the_waves
+        icon = GFX_focus_generic_rule_the_waves
+
+        relative_position_id = AUS_high_seas
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { 
+            focus = AUS_seaborne_operations
+            focus = AUS_high_seas
+            focus = AUS_the_dark_deep
+        }
+        completion_reward = {
+            navy_experience = 100
+            add_ideas = idea_rule_the_waves
+        }
+    }
+
+    ## economic branch
+    focus = {
+        id = AUS_economic_development
+        icon = GFX_focus_generic_economic_development
+
+        x = 20
+        y = 0
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        completion_reward = {
+            add_stability = 0.05
+        }
+    }
+    focus = {
+        id = AUS_home_front
+        icon = GFX_focus_generic_home_front
+
+        relative_position_id = AUS_economic_development
+        x = -2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = AUS_economic_development }
+        completion_reward = {
+            add_stability = 0.05
+        }
+    }
+    focus = {
+        id = AUS_rationing
+        icon = GFX_focus_generic_rationing
+
+        relative_position_id = AUS_home_front
+        x = 0
+        y = 1
+
+        cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
+
+        prerequisite = { focus = AUS_home_front }
+        completion_reward = {
+            add_stability = -0.1
+            add_ideas = idea_rationing
+        }
+    }
+    focus = {
+        id = AUS_land_reclamation
+        icon = GFX_focus_generic_land_reclamation
+
+        relative_position_id = AUS_home_front
+        x = -2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = AUS_home_front }
+        completion_reward = {
+            random_owned_controlled_state = {
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                add_extra_state_shared_building_slots = 2
+            }
+            random_owned_controlled_state = {
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                add_extra_state_shared_building_slots = 2
+            }
+        }
+    }
+    focus = {
+        id = AUS_austerity_measures
+        icon = GFX_focus_generic_austerity_measures
+
+        relative_position_id = AUS_rationing
+        x = 0
+        y = 1
+
+        cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
+
+        prerequisite = { focus = AUS_rationing }
+        completion_reward = {
+            add_war_support = -0.1
+            add_stability = -0.2
+
+            swap_ideas = {
+                remove_idea = idea_rationing
+                add_idea = idea_austerity_measures
+            }
+        }
+    }
+
+    focus = {
+        id = AUS_infrastructure_effort
+        icon = GFX_focus_generic_infrastructure_effort
+
+        relative_position_id = AUS_economic_development
+        x = 2
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        prerequisite = { focus = AUS_economic_development }
+        bypass = {
+			custom_trigger_tooltip = {
+				tooltip = infrastructure_effort_tt
+				all_owned_state = {			
+					free_building_slots = {
+						building = infrastructure
+						size < 1
+					}
+				}
+			}
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 0
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = infrastructure
+										size > 0
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 1
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = infrastructure
+										size > 1
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+            add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 1.0
+				uses = 2
+				category = industry
+			}
+		}
+    }
+    focus = {
+        id = AUS_construct_civilian
+        icon = GFX_focus_generic_construct_civilian
+
+        relative_position_id = AUS_infrastructure_effort
+        x = -2
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 3 }
+
+        prerequisite = { focus = AUS_infrastructure_effort }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+    }
+    focus = {
+        id = AUS_construct_military
+        icon = GFX_focus_generic_construct_military
+
+        relative_position_id = AUS_infrastructure_effort
+        x = 0
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        prerequisite = { focus = AUS_infrastructure_effort }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = arms_factory
+										size > 0
+										include_locked = yes
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+    }
+    focus = {
+        id = AUS_expand_mining
+        icon = GFX_focus_generic_expand_mining
+
+        relative_position_id = AUS_infrastructure_effort
+        x = 2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = AUS_infrastructure_effort }
+        completion_reward = {
+            random_owned_controlled_state = {
+                add_resource = {
+                    type = steel
+                    amount = 12
+                }
+            }
+            random_owned_controlled_state = {
+                add_resource = {
+                    type = aluminium
+                    amount = 4
+                }
+            }
+        }
+    }
+    focus = {
+        id = AUS_steady_growth
+        icon = GFX_focus_generic_steady_growth
+
+        relative_position_id = AUS_construct_military
+        x = 0
+        y = 1
+
+        cost = 10
+
+        prerequisite = { 
+            focus = AUS_construct_civilian
+            focus = AUS_construct_military
+            focus = AUS_expand_mining
+        }
+        completion_reward = {
+            add_ideas = idea_steady_growth
+        }
+    }
+
+    ## political branch
+    focus = {
+        id = AUS_political_ambitions
+        icon = GFX_focus_generic_political_ambitions
+
+        relative_position_id = AUS_economic_development
+        x = -1
+        y = 5
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        completion_reward = {
+            add_political_power = 150
+        }
+    }
+    focus = {
+        id = AUS_international_affairs
+        icon = GFX_focus_generic_international_affairs
+
+        relative_position_id = AUS_political_ambitions
+        x = -4
+        y = 1
+        cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = { threat > 0.1 factor = 3 }
+        }
+
+        available = { is_subject = no }
+
+        prerequisite = { focus = AUS_political_ambitions }
+        completion_reward = {
+            add_timed_idea = { idea = idea_international_affairs years = 2 }
+        }
+    }
+    focus = {
+        id = AUS_expansionism
+        icon = GFX_focus_generic_expansionism
+
+        relative_position_id = AUS_international_affairs
+        x = -2
+        y = 1
+        cost = 10
+
+        available = { 
+            is_subject = no
+            has_war_support > 0.3
+        }
+
+        ai_will_do = {
+            base = 1
+            modifier = { threat > 0.2 factor = 3 }
+        }
+
+        prerequisite = { focus = AUS_international_affairs }
+        completion_reward = {
+            add_political_power = 100
+            add_timed_idea = { idea = idea_expansionism years = 1 }
+        }
+    }
+    focus = {
+        id = AUS_contain_eastern_threats
+        icon = GFX_focus_generic_deterrence
+
+        relative_position_id = AUS_international_affairs
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = AUS_international_affairs }
+        available = { is_subject = no }
+
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+    focus = {
+        id = AUS_seek_alliances
+        icon = GFX_focus_generic_seek_alliances
+
+        relative_position_id = AUS_expansionism
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = AUS_expansionism }
+        available = { is_subject = no }
+
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+    focus = {
+        id = AUS_on_our_own
+        icon = GFX_focus_generic_change_alliances
+
+        relative_position_id = AUS_expansionism
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = AUS_expansionism }
+
+        available = { 
+            is_subject = no
+            has_war = no
+        }
+
+        completion_reward = {
+            if = {
+                limit = { is_in_faction = yes }
+                leave_faction = yes
+            }
+            
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+
+    focus = {
+        id = AUS_traditionalism
+        icon = GFX_focus_generic_internal_stability
+
+        relative_position_id = AUS_political_ambitions
+        x = 0
+        y = 1
+        cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = { has_government = monarchism factor = 2 }
+        }
+
+        mutually_exclusive = { focus = AUS_adjust_the_government }
+        prerequisite = { focus = AUS_political_ambitions }
+        completion_reward = {
+            add_stability = 0.05
+            news_event = { id = x_war_support.1 hours = 12 random_hours = 6 }
+        }
+    }
+    focus = {
+        id = AUS_public_support
+        icon = GFX_focus_generic_public_support
+
+        relative_position_id = AUS_traditionalism
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = AUS_traditionalism }
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+            hidden_effect = { set_country_flag = public_support_allowed }
+        }
+    }
+    focus = {
+        id = AUS_mobilize_the_masses
+        icon = GFX_focus_generic_mobilize_the_masses
+
+        relative_position_id = AUS_traditionalism
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = AUS_traditionalism }
+        completion_reward = {
+            add_timed_idea = { idea = idea_mobilize_the_masses years = 2 }
+
+            hidden_effect = {
+                news_event = { id = x_war_support.2 hours = 12 random_hours = 6 }
+            }
+        }
+    }
+    focus = {
+        id = AUS_strength_in_unity
+        icon = GFX_focus_generic_strength_in_unity
+
+        relative_position_id = AUS_public_support
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { 
+            focus = AUS_public_support
+            focus = AUS_mobilize_the_masses
+        }
+        completion_reward = {
+            add_political_power = 50
+            add_timed_idea = { idea = idea_strength_in_unity years = 1 }
+        }
+    }
+    focus = {
+        id = AUS_the_everlasting_spirit
+        icon = GFX_focus_generic_the_everlasting_spirit
+
+        relative_position_id = AUS_strength_in_unity
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = AUS_strength_in_unity }
+        completion_reward = {
+            add_ideas = idea_alles_erdreich_ist_osterreich
+        }
+    }
+
+    focus = {
+        id = AUS_adjust_the_government
+        icon = GFX_focus_generic_red_reform
+
+        relative_position_id = AUS_political_ambitions
+        x = 4
+        y = 1
+        cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = { has_government = democratic factor = 2 }
+        }
+
+        mutually_exclusive = { focus = AUS_traditionalism }
+        prerequisite = { focus = AUS_political_ambitions }
+        completion_reward = {
+            add_timed_idea = { idea = idea_democratic_tendencies years = 1 }
+            add_popularity = { ideology = democratic popularity = 0.1 }
+
+            hidden_effect = { country_event = { id = austria_delegation.1 days = 42 random_days = 70 } }
+        }
+    }
+    focus = {
+        id = AUS_state_reform
+        icon = GFX_focus_generic_state_reform
+
+        relative_position_id = AUS_adjust_the_government
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = AUS_adjust_the_government }
+        completion_reward = {
+            add_timed_idea = { idea = idea_state_reform years = 1 }
+        }
+    }
+    focus = {
+        id = AUS_equal_development
+        icon = GFX_focus_generic_open_the_economy
+
+        relative_position_id = AUS_adjust_the_government
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = AUS_adjust_the_government }
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+
+            random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+        }
+    }
+    focus = {
+        id = AUS_over_the_edge
+        icon = GFX_focus_generic_over_the_edge
+
+        relative_position_id = AUS_state_reform
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = AUS_state_reform }
+        available = {
+            has_civil_war = no
+            not = { has_government = communism }
+            
+            communism > 0.3
+        }
+        
+        completion_reward = {
+            start_civil_war = {
+                ruling_party = communism
+                ideology = ROOT
+                size = 0.5
+            }
+
+            hidden_effect = {
+                set_popularities = { communism = 100 }
+            }
+        }
+    }
+    focus = {
+        id = AUS_embrace_modernity
+        icon = GFX_focus_generic_embrace_modernity
+
+        relative_position_id = AUS_state_reform
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = AUS_state_reform }
+        completion_reward = {
+            add_research_slot = 1
+        }
+    }
+}

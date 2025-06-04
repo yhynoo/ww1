@@ -1,0 +1,161 @@
+division_template = {
+	name = "Divisione di Fanteria"
+	division_names_group = ITA_INF_01
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+		infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+	}
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
+}
+
+division_template = {
+	name = "Reggimento Veloce"
+	division_names_group = ITA_INF_01
+	regiments = {
+        bicycle_battalion = { x = 0 y = 0 }
+		bicycle_battalion = { x = 0 y = 1 }
+        bicycle_battalion = { x = 1 y = 0 }
+		bicycle_battalion = { x = 1 y = 1 }
+	}
+	support = {
+		artillery = { x = 0 y = 0 }
+	}
+}
+
+division_template = {
+	name = "Alpini"
+	division_names_group = ITA_MNT_01
+	regiments = {
+		mountaineers = { x = 0 y = 0 }
+		mountaineers = { x = 0 y = 1 }
+        mountaineers = { x = 1 y = 0 }
+        mountaineers = { x = 1 y = 1 }
+	}
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
+}
+
+division_template = {
+	name = "Fanteria di Marina"
+	division_names_group = ITA_MAR_01
+	regiments = {
+		marine = { x = 0 y = 0 }
+		marine = { x = 0 y = 1 }
+        marine = { x = 1 y = 0 }
+        marine = { x = 1 y = 1 }
+	}
+	support = {
+        artillery = { x = 0 y = 0 }
+    }
+}
+
+# units
+units = {
+    # Norte (7 divs.)
+    division = {
+		location = 3780
+		division_template = "Divisione di Fanteria"
+        start_experience_factor = 0.2
+    }
+    division = {
+		location = 3780
+		division_template = "Divisione di Fanteria"
+        start_experience_factor = 0.2
+    }
+	division = {
+		location = 3780
+		division_template = "Reggimento Veloce"
+        start_experience_factor = 0.2
+    }
+
+	division = {
+		location = 11587
+		division_template = "Alpini"
+        start_experience_factor = 0.8
+    }
+
+	division = {
+		location = 6780
+		division_template = "Alpini"
+        start_experience_factor = 0.8
+    }
+    division = {
+		location = 6780
+		division_template = "Divisione di Fanteria"
+        start_experience_factor = 0.2
+    }
+
+	division = {
+		location = 3657
+		division_template = "Divisione di Fanteria"
+        start_experience_factor = 0.2
+    }
+
+	division = {
+		location = 6606
+		division_template = "Divisione di Fanteria"
+        start_experience_factor = 0.2
+    }
+
+	division = {
+		location = 11584
+		division_template = "Divisione di Fanteria"
+        start_experience_factor = 0.2
+    }
+	division = {
+		location = 11584
+		division_template = "Alpini"
+        start_experience_factor = 0.8
+    }
+
+    # Roma
+    division = {
+		location = 9904
+		division_template = "Divisione di Fanteria"
+        start_experience_factor = 0.2
+    }
+	division = {
+		location = 9904
+		division_template = "Reggimento Veloce"
+        start_experience_factor = 0.2
+    }
+
+	# Sud
+    division = {
+		location = 819
+		division_template = "Divisione di Fanteria"
+        start_experience_factor = 0.2
+    }
+	division = {
+		location = 819
+		division_template = "Reggimento Veloce"
+        start_experience_factor = 0.2
+    }
+
+	division = {
+		location = 10074
+		division_template = "Fanteria di Marina"
+        start_experience_factor = 0.5
+    }
+	division = {
+		location = 10074
+		division_template = "Fanteria di Marina"
+        start_experience_factor = 0.5
+    }
+}
+
+air_wings = {
+    117 = {
+        fighter_equipment_0 = {
+            owner = "ITA"
+            amount = 20
+        }
+    }
+}

@@ -1,0 +1,93 @@
+add_namespace = england_dockers
+
+country_event = {
+    id = england_dockers.1
+    title = "Strike at the Docks"
+    desc = england_dockers.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Offer concessions."
+        add_political_power = -50
+
+        hidden_effect = { news_event = { id = england_dockers.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = "Ignore the commotion."
+        add_stability = -0.05
+
+        hidden_effect = { country_event = { id = england_dockers.3 days = 7 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = england_dockers.2
+    title = "Unions Agree to Modest Gains"
+    desc = england_dockers.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        add_stability = 0.05
+    }
+}
+
+country_event = {
+    id = england_dockers.3
+    title = "Communist Agitation Spreads"
+    desc = england_dockers.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Agree to their demands."
+        add_political_power = -75
+
+        hidden_effect = { news_event = { id = england_dockers.4 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = "This is not the way."
+        add_popularity = { ideology = communism popularity = 0.1 }
+
+        hidden_effect = { news_event = { id = england_dockers.5 days = 7 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = england_dockers.4
+    title = "South England Secures a Deal"
+    desc = england_dockers.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        add_popularity = { ideology = communism popularity = 0.05 }
+    }
+}
+
+news_event = {
+    id = england_dockers.5
+    title = "The Portsmouth Uprising"
+    desc = england_dockers.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Awful."
+
+        if = {
+            limit = { tag = ENG }
+
+            set_politics = { ruling_party = monarchism elections_allowed = no }
+
+            start_civil_war = {
+                ideology = communism army_ratio = 0.4 navy_ratio = 0.2
+                states = { 122 123 127 128 132 338 }
+            }
+        }
+    }
+}

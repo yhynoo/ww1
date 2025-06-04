@@ -1,0 +1,516 @@
+technologies = {
+    diesel_engine = {
+        categories = { industry }
+
+        research_cost = 1
+        start_year = 1904
+
+        production_factory_max_efficiency_factor = 0.05
+
+        path = {
+            leads_to_tech = electrification
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 1 y = 0 }
+        }
+    }
+
+    electrification = {
+        categories = { industry }
+
+        research_cost = 1
+        start_year = 1912
+
+        production_factory_max_efficiency_factor = 0.05
+
+        path = {
+            leads_to_tech = assembly_line_1
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = taylorism
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 1 y = 2 }
+        }
+    }
+    assembly_line_1 = {
+        categories = { industry }
+
+        research_cost = 1
+        start_year = 1914
+
+        production_factory_max_efficiency_factor = 0.1
+        production_factory_efficiency_gain_factor = 0.1
+
+        path = {
+            leads_to_tech = assembly_line_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = 4 }
+        }
+    }
+    assembly_line_2 = {
+        categories = { industry }
+
+        research_cost = 1
+        start_year = 1916
+
+        production_factory_max_efficiency_factor = 0.1
+        production_factory_efficiency_gain_factor = 0.1
+
+        path = {
+            leads_to_tech = assembly_line_3
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = 6 }
+        }
+    }
+    assembly_line_3 = {
+        categories = { industry }
+
+        research_cost = 1
+        start_year = 1918
+
+        production_factory_max_efficiency_factor = 0.1
+        production_factory_efficiency_gain_factor = 0.1
+
+        path = {
+            leads_to_tech = mechanization_of_production
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = 8 }
+        }
+    }
+
+    taylorism = {
+        categories = { industry }
+
+        research_cost = 1
+        start_year = 1914
+
+        path = {
+            leads_to_tech = automation_1
+            research_cost_coeff = 1
+        }
+
+        industrial_capacity_factory = 0.1
+		industrial_capacity_dockyard = 0.1
+
+        folder = {
+            name = industry_folder
+            position = { x = 2 y = 4 }
+        }
+    }
+    automation_1 = {
+        categories = { industry }
+
+        research_cost = 1
+        start_year = 1916
+
+        industrial_capacity_factory = 0.1
+		industrial_capacity_dockyard = 0.1
+
+        path = {
+            leads_to_tech = automation_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 2 y = 6 }
+        }
+    }
+    automation_2 = {
+        categories = { industry }
+
+        research_cost = 1
+        start_year = 1918
+
+        industrial_capacity_factory = 0.1
+		industrial_capacity_dockyard = 0.1
+
+        path = {
+            leads_to_tech = mechanization_of_production
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 2 y = 8 }
+        }
+    }
+    mechanization_of_production = {
+        categories = { industry }
+
+        research_cost = 1
+        start_year = 1920
+
+        production_factory_max_efficiency_factor = 0.1
+        equipment_conversion_speed = 0.2
+
+        folder = {
+            name = industry_folder
+            position = { x = 1 y = 10 }
+        }
+    }
+
+    reinforced_concrete = {
+        categories = { 
+            industry 
+            construction_tech
+        }
+
+        research_cost = 1
+        start_year = 1912
+
+        production_speed_buildings_factor = 0.05
+		industry_repair_factor = 0.05
+
+        path = {
+            leads_to_tech = modular_construction
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = 2 }
+        }
+    }
+    modular_construction = {
+        categories = { 
+            industry 
+            construction_tech
+        }
+
+        research_cost = 1
+        start_year = 1914
+
+        production_speed_buildings_factor = 0.05
+		industry_repair_factor = 0.05
+
+        path = {
+            leads_to_tech = pre_stressed_concrete
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = 4 }
+        }
+    }
+    pre_stressed_concrete = {
+        categories = { 
+            industry 
+            construction_tech
+        }
+
+        research_cost = 1
+        start_year = 1916
+
+        production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.05
+
+        path = {
+            leads_to_tech = advanced_construction
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = 6 }
+        }
+    }
+    advanced_construction = {
+        categories = { 
+            industry 
+            construction_tech
+        }
+
+        research_cost = 1
+        start_year = 1918
+
+        production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.05
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = 8 }
+        }
+    }
+
+    synthetic_dyes = {
+        categories = { 
+            industry
+            synth_resources
+        }
+
+        research_cost = 1.5
+        start_year = 1904
+
+        production_lack_of_resource_penalty_factor = -0.1
+        consumer_goods_factor = -0.05
+
+        path = {
+            leads_to_tech = haber_process
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = early_plastics
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 2 y = 0 }
+        }
+    }
+    haber_process = {
+        categories = { 
+            industry
+            synth_resources
+        }
+
+        production_lack_of_resource_penalty_factor = -0.2
+
+        research_cost = 1.5
+        start_year = 1912
+
+        path = {
+            leads_to_tech = synth_oil_0
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 1 y = 2 }
+        }
+    }
+    synth_oil_0 = {
+        categories = { 
+            industry
+            synth_resources
+        }
+
+        enable_building = {
+            building = fuel_silo
+            level = 3
+        }
+        enable_building = {
+            building = synthetic_refinery
+            level = 3
+        }
+
+        research_cost = 2
+        start_year = 1914
+
+        path = {
+            leads_to_tech = synth_oil_1
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = synth_rubber_1
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 1 y = 4 }
+        }
+    }
+    synth_oil_1 = {
+        categories = { 
+            industry
+            synth_resources
+        }
+
+        production_oil_factor = 0.5
+
+        research_cost = 2
+        start_year = 1916
+
+        path = {
+            leads_to_tech = synth_oil_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = 6 }
+        }
+    }
+    synth_oil_2 = {
+        categories = { 
+            industry
+            synth_resources
+        }
+
+        production_oil_factor = 0.5
+
+        research_cost = 2
+        start_year = 1918
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = 8 }
+        }
+    }
+    synth_rubber_1 = {
+        categories = { 
+            industry
+            synth_resources
+        }
+
+        on_research_complete = {
+			modify_building_resources = {
+				building = synthetic_refinery
+				resource = rubber
+				amount = 1
+			}
+		}
+
+        research_cost = 2
+        start_year = 1916
+
+        path = {
+            leads_to_tech = synth_rubber_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 2 y = 6 }
+        }
+    }
+    synth_rubber_2 = {
+        categories = { 
+            industry
+            synth_resources
+        }
+
+        on_research_complete = {
+			modify_building_resources = {
+				building = synthetic_refinery
+				resource = rubber
+				amount = 1
+			}
+		}
+
+        research_cost = 2
+        start_year = 1918
+
+        folder = {
+            name = industry_folder
+            position = { x = 2 y = 8 }
+        }
+    }
+
+    early_plastics = {
+        path = {
+            leads_to_tech = improved_plastics
+            research_cost_coeff = 1
+        }
+
+        categories = { 
+            industry
+            synth_resources
+        }
+
+        consumer_goods_factor = -0.05
+
+        research_cost = 2
+        start_year = 1912
+
+        folder = {
+            name = industry_folder
+            position = { x = 3 y = 2 }
+        }
+    }
+    improved_plastics = {
+        categories = { 
+            industry
+            synth_resources
+        }
+
+        consumer_goods_factor = -0.05
+
+        research_cost = 2
+        start_year = 1914
+
+        folder = {
+            name = industry_folder
+            position = { x = 3 y = 4 }
+        }
+    }
+
+    extraction_0 = {
+        local_resources_factor = 0.1
+
+        categories = { 
+            industry
+        }
+
+        research_cost = 2
+        start_year = 1912
+
+        path = {
+            leads_to_tech = extraction_1
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = 2 }
+        }
+    }
+    extraction_1 = {
+        local_resources_factor = 0.1
+
+        categories = { 
+            industry
+        }
+
+        research_cost = 2
+        start_year = 1916
+
+        path = {
+            leads_to_tech = extraction_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = 6 }
+        }
+    }
+    extraction_2 = {
+        local_resources_factor = 0.1
+
+        categories = { 
+            industry
+        }
+
+        research_cost = 2
+        start_year = 1920
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = 10 }
+        }
+    }
+}

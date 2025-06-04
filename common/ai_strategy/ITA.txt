@@ -1,0 +1,74 @@
+ITA_army_composition = {
+	allowed = { original_tag = ITA }
+	enable = { always = yes }
+	abort_when_not_enabled = yes
+
+	## Land troops
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 50
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = mountaineers
+		value = 10
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = marines
+		value = 5
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = cyclist
+		value = 5
+	}
+}
+
+ITA_likes_ENG = {
+	allowed = { original_tag = ITA }
+	enable = { has_completed_focus = ITA_influence_the_uk }
+	abort = { ENG = { has_opinion = { target = ITA value > 75 } } }
+
+	ai_strategy = {
+		type = befriend
+		id = ENG
+		value = 100
+	}
+}
+
+ITA_hates_TUR = {
+	allowed = { original_tag = ITA }
+	enable = { always = yes }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = consider_weak
+		id = TUR
+		value = 100
+	}
+
+	ai_strategy = {
+		type = invade
+		id = TUR
+		value = 200
+	}
+}
+
+ITA_second_line_airfields = {
+	allowed = { original_tag = ITA }
+	enable = { has_war = yes }
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = build_building
+		id = air_base
+		target = 159		# Milan
+		value = 2
+	}
+}

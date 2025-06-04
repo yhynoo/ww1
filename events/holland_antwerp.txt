@@ -1,0 +1,52 @@
+add_namespace = holland_antwerp
+
+country_event = {
+    id = holland_antwerp.1
+    title = "[HOL.GetName] Asks Us to Take Over"
+    desc = holland_antwerp.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall fulfill our obligation."
+        add_political_power = -50
+
+        HOL = { 
+            news_event = { id = holland_antwerp.2 hours = 6 random_hours = 6 }
+            remove_ideas = idea_antwerp_affair
+
+            every_state = {
+                limit = { or = { state = 6 state = 34 } is_owned_and_controlled_by = HOL }
+                transfer_state_to = FRA
+            }
+        }
+    }
+    option = {
+        name = "We can't do this now."
+    }
+}
+
+news_event = {
+    id = holland_antwerp.2
+    title = "[HOL.GetName] Transfers Flanders"
+    desc = holland_antwerp.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Very good."
+    }
+}
+
+news_event = {
+    id = holland_antwerp.3
+    title = "[FROM.GetName] Declines!"
+    desc = holland_antwerp.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about this."
+    }
+}
