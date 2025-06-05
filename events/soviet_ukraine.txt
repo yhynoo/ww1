@@ -94,3 +94,18 @@ news_event = {
         }
     }
 }
+
+news_event = {
+    id = soviet_ukraine.6
+    title = "Order Enforced Again"
+    desc = soviet_ukraine.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "But for how long...?"
+        add_stability = 0.05
+
+        hidden_effect = { UKR = { set_politics = { ruling_party = monarchism elections_allowed = no } } }
+    }
+}

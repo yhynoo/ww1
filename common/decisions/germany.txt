@@ -14,6 +14,8 @@ oriental_investments = {
             }
         }
 
+        ai_will_do = { base = 12 }
+
         complete_effect = {
             TUR = { country_event = { id = germany_oriental.1 hours = 6 random_hours = 6 } }
         }
@@ -27,6 +29,11 @@ oriental_investments = {
         available = {
             not = { has_war_with = TUR }
             292 = { is_owned_and_controlled_by = TUR }
+        }
+
+        ai_will_do = { 
+            base = 6 
+            modifier = { has_war = yes add = 6 }
         }
 
         complete_effect = {
@@ -44,6 +51,11 @@ oriental_investments = {
                 is_core_of = ALG
                 is_owned_by = FRA
             }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = { has_war_with = FRA add = 9 }
         }
 
         complete_effect = {
@@ -68,6 +80,11 @@ germany_alliances = {
             }
         }
 
+        ai_will_do = { 
+            base = 3
+            modifier = { date > 1914.7.1 add = 6 }
+        }
+
         complete_effect = {
             ENG = { country_event = germany_south_africa.1 hours = 6 random_hours = 6 }
         }
@@ -78,6 +95,11 @@ germany_alliances = {
 
         targets = { MAN TUR }
         available = { FROM = { is_in_faction = no not = { has_war_with = ROOT } } }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { FROM = { tag = TUR } add = 6 }
+        }
 
         complete_effect = {
             FROM = { country_event = { id = x_alliance.2 hours = 6 random_hours = 6 } }

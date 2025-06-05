@@ -7,6 +7,11 @@ antwerp_affair = {
 
         available = { HOL = { controls_state = 6 } }
 
+        ai_will_do = {
+            base = 0
+            modifier = { date > 1913.7.1 add = 9 }
+        }
+
         complete_effect = {
             HOL = { country_event = { id = france_antwerp_affair.1 hours = 6 random_hours = 6 } }
         }
@@ -18,6 +23,11 @@ antwerp_affair = {
         cost = 75
 
         available = { GER = { controls_state = 34 } }
+
+        ai_will_do = {
+            base = 0
+            modifier = { date > 1914.4.1 add = 12 }
+        }
 
         complete_effect = {
             GER = { country_event = { id = france_antwerp_affair.4 hours = 6 random_hours = 6 } }
@@ -32,6 +42,8 @@ antwerp_affair = {
             controls_state = 6
             controls_state = 34
         }
+
+        ai_will_do = { base = 9 }
 
         complete_effect = {
             6 = { add_core_of = FRA }

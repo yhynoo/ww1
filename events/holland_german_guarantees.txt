@@ -1,0 +1,73 @@
+add_namespace = holland_german_guarantees
+
+country_event = {
+    id = holland_german_guarantees.1
+    title = "Should We Seek German Guarantees"
+    desc = holland_german_guarantees.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We might need external help."
+        GER = { news_event = { id = holland_german_guarantees.2 hours = 6 random_hours = 6 } }
+
+        ai_chance = { base = 6  }
+    }
+    option = {
+        name = "We will manage on our own."
+        add_war_support = 0.1
+
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = holland_german_guarantees.2
+    title = "[HOL.GetName] Asks for Guarantees"
+    desc = holland_german_guarantees.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They are a valuable ally."
+        FROM = { news_event = { id = holland_german_guarantees.3 hours = 6 random_hours = 6 } }
+
+        give_guatantee = HOL
+
+        ai_chance = { 
+            base = 3
+            modifier = { has_government = democratic factor = 0 }
+        }
+    }
+    option = {
+        name = "We are not interested."
+        FROM = { news_event = { id = holland_german_guarantees.4 hours = 6 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = holland_german_guarantees.3
+    title = "[GER.GetName] Guarantees [HOL.GetName]"
+    desc = holland_german_guarantees.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = holland_german_guarantees.4
+    title = "[FROM.GetName] Declines!"
+    desc = holland_german_guarantees.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "What a shame."
+    }
+}

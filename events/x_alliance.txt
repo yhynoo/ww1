@@ -19,10 +19,19 @@ country_event = {
         add_to_faction = FROM
             
         FROM = { news_event = { id = x_alliance.3 hours = 6 random_hours = 6 } }
+
+        ai_chance = {
+            base = 1
+
+            modifier = { is_faction_leader = yes add = 2 }
+            modifier = { has_war = yes factor = 3 }
+        }
     }
     option = {
         name = "We are not interested."
         FROM = { news_event = { id = x_alliance.4 hours = 6 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
     }
 }
 

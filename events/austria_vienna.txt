@@ -12,3 +12,17 @@ news_event = {
         name = "Another religious war?"
     }
 }
+
+news_event = {
+    id = austria_vienna.2
+    title = "Insurgency in South Italy!"
+    desc = austria_vienna.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "This looks like an external job..."
+        if = { limit = { tag = FRA } add_popularity = { ideology = monarchism popularity = 0.05 } }
+    }
+}

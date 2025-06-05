@@ -10,6 +10,11 @@ contain_eastern_threats = {
             not = { controls_state = 10 }
         }
 
+        ai_will_do = {
+            base = 3
+            modifier = { has_idea = idea_unrest_in_galicia add = 9 }
+        }
+
         complete_effect = {
             random_country = {
                 limit = { controls_state = 10 }
@@ -28,6 +33,11 @@ contain_eastern_threats = {
         available = { 
             UKR = { exists = no }
             not = { controls_state = 202 }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = { has_idea = idea_unrest_in_galicia add = 6 }
         }
 
         complete_effect = {
@@ -92,6 +102,11 @@ second_vienna_treaty = {
             has_war_support > 0.3 
         }
 
+        ai_will_do = { 
+            base = 6
+            modifier = { or = { not = { any_country = { has_guaranteed = TUR } } TUR = { is_in_faction = no } } add = 3 }
+        }
+
         complete_effect = {
             news_event = { id = austria_vienna.1 hours = 6 random_hours = 6 }
         }
@@ -116,9 +131,17 @@ second_vienna_treaty = {
             }
         }
 
+        ai_will_do = { 
+            base = 6
+            modifier = { or = { not = { any_country = { has_guaranteed = TUR } } TUR = { is_in_faction = no } } add = 6 }
+        }
+
         remove_effect = {
             give_guarantee = TTS
-            hidden_effect = { start_sicilian_independence_war = yes }
+            hidden_effect = { 
+                start_sicilian_independence_war = yes
+                news_event = { id = austria_vienna.2 hours = 6 random_hours = 6 }
+            }
         }
     }
 }

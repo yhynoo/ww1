@@ -1,9 +1,9 @@
-add_namespace = holland_transvaal
+add_namespace = england_transvaal
 
 country_event = {
-    id = holland_transvaal.1
+    id = england_transvaal.1
     title = "Arson in Bloemfontein"
-    desc = holland_transvaal.1.d
+    desc = england_transvaal.1.d
 
     is_triggered_only = yes
 
@@ -11,7 +11,7 @@ country_event = {
         name = "Enforce order."
         add_political_power = -75
 
-        hidden_effect = { news_event = { id = holland_transvaal.2 days = 14 random_days = 42 } }
+        hidden_effect = { news_event = { id = england_transvaal.2 days = 14 random_days = 42 } }
     }
     option = {
         name = "This will diffuse."
@@ -23,9 +23,9 @@ country_event = {
 }
 
 news_event = {
-    id = holland_transvaal.2
+    id = england_transvaal.2
     title = "Boer Uprising in Transvaal!"
-    desc = holland_transvaal.2.d
+    desc = england_transvaal.2.d
 
     is_triggered_only = yes
     trigger = { 275 = { resistance > 20 } }

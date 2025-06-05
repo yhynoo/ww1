@@ -3,59 +3,8 @@ on_actions = {
         effect = {
             # After Makhnovshchina falls, reset Ukraine to monarchism
             if = {
-                limit = { FROM = { tag = UKR } }
-                SOV = { news_event = { id = russia_anarchy_in_ukraine.7 hours = 12 random_hours = 6 } }
-            }
-        }
-    }
-
-    on_state_control_changed = {
-        effect = {
-            # Austria liberates Poland
-            if = {
-                limit = {
-                    tag = AUS
-                    has_country_flag = austria_likes_poland
-                    FROM.FROM = { state = 10 }
-                }
-                country_event = austria_contain_russian_expansion.5
-            }
-
-            # Austria liberates Ukraine
-            if = {
-                limit = {
-                    tag = AUS
-                    has_country_flag = austria_likes_ukraine
-                    FROM.FROM = { state = 202 }
-                }
-                country_event = austria_contain_russian_expansion.8
-            }
-
-            # Germany puppets Central Europe
-            if = {
-                limit = {
-                    tag = GER
-                    FROM.FROM = { state = 808 }
-                }
-                country_event = baltic_german_conquest.1
-            }
-
-            #if = {
-            #    limit = {
-            #        tag = GER
-            #        has_war_with = SOV
-            #        FROM.FROM = { state = 10 }
-            #    }
-            #    country_event = poland_german_conquest.1
-            #}
-
-            if = {
-                limit = {
-                    tag = GER
-                    has_war_with = SOV
-                    FROM.FROM = { state = 202 }
-                }
-                country_event = ukraine_german_conquest.1
+                limit = { FROM = { tag = UKR has_government = communism } }
+                SOV = { news_event = { id = soviet_ukraine.6 hours = 6 random_hours = 6 } }
             }
         }
     }

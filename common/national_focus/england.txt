@@ -696,7 +696,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1
+            base = 2
             modifier = { threat > 0.1 factor = 3 }
         }
 
@@ -722,8 +722,8 @@ focus_tree = {
         }
 
         ai_will_do = {
-            base = 1
-            modifier = { threat > 0.2 factor = 3 }
+            base = 3
+            modifier = { date > 1914.1.1 factor = 3 }
         }
 
         prerequisite = { focus = ENG_international_affairs }
@@ -763,6 +763,9 @@ focus_tree = {
         ai_will_do = {
             base = 2
             modifier = { and = { date > 1913.10.1 } add = 3 }
+
+            # communist england won't go for this
+            modifier = { or = { has_government = communism has_idea = idea_communism_tendencies } factor = 0 }
         }
 
         completion_reward = {
@@ -826,6 +829,11 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0.5 }
+        }
+
         prerequisite = { focus = ENG_traditionalism }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -840,6 +848,11 @@ focus_tree = {
         x = 1
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
 
         prerequisite = { focus = ENG_traditionalism }
         completion_reward = {

@@ -51,8 +51,13 @@ colombia_alliances = {
         available = { 
             FROM = { 
                 not = { has_war_with = ROOT }
-                or = { is_in_faction = no is_faction_leader = yes } 
+                or = { is_in_faction = no is_faction_leader = yes }
             }
+        }
+
+        ai_will_do = { 
+            base = 3
+            modifier = { threat > 0.3 add = 6 }
         }
 
         complete_effect = {
@@ -75,6 +80,8 @@ challenge_usa = {
             }
         }
 
+        ai_will_do = { base = 6 }
+
         complete_effect = {
             USA = { country_event = { id = colombia_panama.1 hours = 6 random_hours = 6 } }
         }
@@ -89,6 +96,11 @@ challenge_usa = {
         available = {
             480 = { is_controlled_by = COL }
             375 = { is_controlled_by = USA }
+        }
+
+        ai_will_do = { 
+            base = 3
+            modifier = { USA = { has_war = yes } add = 6 }
         }
 
         remove_effect = {

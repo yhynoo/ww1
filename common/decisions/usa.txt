@@ -11,6 +11,11 @@ intervene_central_america = {
             }
         }
 
+        ai_will_do = {
+            base = 9
+            modifier = { has_completed_focus = USA_not_our_war factor = 0 }
+        }
+
         complete_effect = {
             add_timed_idea = { idea = idea_aid_to_mexico years = 1 }
             add_war_support = 0.05
@@ -40,6 +45,11 @@ intervene_central_america = {
             has_war_support > 0.3 
         }
 
+        ai_will_do = {
+            base = 6
+            modifier = { has_completed_focus = USA_not_our_war factor = 0 }
+        }
+
         remove_effect = {
             war_with_on_remove = COL
             create_wargoal = { target = COL type = take_state_focus }
@@ -61,6 +71,8 @@ usa_alliances = {
             } 
         }
 
+        ai_will_do = { base = 9 }
+
         complete_effect = {
             FROM = { country_event = { id = x_alliance.2 hours = 6 random_hours = 6 } }
         }
@@ -75,6 +87,13 @@ usa_alliances = {
                 not = { has_war_with = ROOT }
                 or = { is_in_faction = no is_faction_leader = yes } 
             }
+        }
+
+        ai_will_do = {
+            base = 0
+
+            modifier = { FROM = { war_length_with = { tag = GER months > 24 } } add = 9 }
+            modifier = { has_completed_focus = USA_not_our_war factor = 0 }
         }
 
         complete_effect = {
@@ -95,6 +114,11 @@ anticolonialism = {
                 or = { tag = AST tag = RAJ }
                 is_subject = yes
             }
+        }
+
+        ai_will_do = { 
+            base = 3
+            modifier = { ENG = { not = { has_government = ROOT } } add = 6 }
         }
 
         complete_effect = {
@@ -124,6 +148,11 @@ anticolonialism = {
             has_war_support > 0.3 
         }
 
+        ai_will_do = { 
+            base = 3
+            modifier = { FRA = { not = { has_government = ROOT } } add = 6 }
+        }
+
         remove_effect = {
             war_with_on_remove = FRA
             create_wargoal = { target = FRA type = take_state_focus }
@@ -136,6 +165,8 @@ american_industries = {
         fire_only_once = yes
         cost = 75
 
+        ai_will_do = { base = 6 }
+
         complete_effect = {
             add_ideas = idea_tariffs
         }
@@ -143,6 +174,8 @@ american_industries = {
     appease_unions_usa = {
         cost = 50
         days_remove = 90
+
+        ai_will_do = { base = 6 }
 
         modifier = {
             industrial_capacity_factory = 0.1

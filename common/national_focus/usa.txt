@@ -697,7 +697,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 1
-            modifier = { threat > 0.1 factor = 3 }
+            modifier = { MEX = { has_war = yes } add = 2 }
         }
 
         available = { is_subject = no }
@@ -743,6 +743,11 @@ focus_tree = {
 
         prerequisite = { focus = USA_international_affairs }
         available = { is_subject = no }
+
+        ai_will_do = {
+            base = 1
+            modifier = { MEX = { has_war = yes } add = 5 }
+        }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -821,6 +826,11 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0.5 }
+        }
+
         prerequisite = { focus = USA_hearts_and_minds }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -835,6 +845,11 @@ focus_tree = {
         x = 1
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
 
         prerequisite = { focus = USA_hearts_and_minds }
         completion_reward = {

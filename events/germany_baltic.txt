@@ -14,6 +14,8 @@ country_event = {
         GER = { puppet = UBD }
 
         hidden_effect = { news_event = { id = germany_baltic.2 days = 7 random_days = 7 } }
+        ai_chance = { base = 1 }
+
     }
     option = {
         name = "How about an alliance instead?"
@@ -24,6 +26,8 @@ country_event = {
         }
 
         GER = { country_event = { id = germany_baltic.3 days = 7 random_days = 7 } }
+
+        ai_chance = { base = 3 }
     }
     option = {
         name = "Who do they think they are?"
@@ -33,6 +37,11 @@ country_event = {
                 target = ROOT
                 type = liberate_wargoal
             }
+        }
+
+        ai_chance = { 
+            base = 1
+            modifier = { GER = { has_war = yes } add = 5 }
         }
     }
 }

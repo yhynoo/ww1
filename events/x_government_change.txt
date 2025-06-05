@@ -1,0 +1,109 @@
+add_namespace = x_government_change
+
+country_event = {
+    id = x_government_change.1
+    title = "The Military Threatens Coup"
+    desc = x_government_change.1.d
+
+    trigger = {
+        not = { has_government = authoritarianism }
+        has_civil_war = no
+
+        authoritarianism > 0.5
+    }
+
+    option = {
+        name = "We must accept their demands."
+        set_politics = { ruling_party = authoritarianism elections_allowed = no }
+    }
+    option = {
+        name = "We must resist those thugs!"
+        start_civil_war = {
+            ideology = authoritarianism
+            size = party_popularity@authoritarianism
+        }
+
+        hidden_effect = { add_popularity = { ideology = authoritarianism popularity = -0.25 } }
+    }
+}
+
+country_event = {
+    id = x_government_change.2
+    title = "Communists Demand Government Change!"
+    desc = x_government_change.2.d
+
+    trigger = {
+        not = { has_government = communism }
+        has_civil_war = no
+
+        communism > 0.5
+    }
+
+    option = {
+        name = "We must accept their demands."
+        set_politics = { ruling_party = communism elections_allowed = no }
+    }
+    option = {
+        name = "We must resist those traitors!"
+        start_civil_war = {
+            ideology = communism
+            size = party_popularity@communism
+        }
+
+        hidden_effect = { add_popularity = { ideology = communism popularity = -0.25 } }
+    }
+}
+
+country_event = {
+    id = x_government_change.3
+    title = "Civil Movements Demand Elections"
+    desc = x_government_change.3.d
+
+    trigger = {
+        not = { has_government = democratic }
+        has_civil_war = no
+
+        democratic > 0.5
+    }
+
+    option = {
+        name = "Let us organize free elections then."
+        set_politics = { ruling_party = democratic elections_allowed = yes }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "No way."
+        add_political_power = -100
+        add_popularity = { ideology = democratic popularity = -0.05 }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = x_government_change.4
+    title = "Monarchists Demand Government Dissolution"
+    desc = x_government_change.4.d
+
+    trigger = {
+        not = { has_government = monarchism }
+        has_civil_war = no
+
+        monarchism > 0.5
+    }
+
+    option = {
+        name = "The divine order is what we might need now."
+        set_politics = { ruling_party = monarchism elections_allowed = no }
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "This is not the way."
+        add_political_power = -100
+        add_popularity = { ideology = monarchism popularity = -0.05 }
+
+        ai_chance = { base = 2 }
+    }
+}

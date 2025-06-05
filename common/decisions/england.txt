@@ -64,6 +64,11 @@ england_alliances = {
         targets = { FRA JAP }
         available = { FROM = { is_in_faction = no not = { has_war_with = ROOT } } }
 
+        ai_will_do = { 
+            base = 12
+            modifier = { FROM = { tag = FRA } add = 6 }
+        }
+
         complete_effect = {
             FROM = { country_event = { id = x_alliance.2 hours = 6 random_hours = 6 } }
         }
@@ -132,6 +137,8 @@ peoples_act = {
         cost = 50
         days_remove = 90
 
+        ai_will_do = { base = 6 }
+
         modifier = {
             stability_weekly = 0.005
             subjects_autonomy_gain = 0.5        # to adjust
@@ -140,6 +147,8 @@ peoples_act = {
     appease_unions_eng = {
         cost = 50
         days_remove = 90
+
+        ai_will_do = { base = 6 }
 
         modifier = {
             industrial_capacity_factory = 0.1

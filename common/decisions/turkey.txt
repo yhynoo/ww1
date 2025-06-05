@@ -11,6 +11,8 @@ adriatic_unrest = {
             }
         }
 
+        ai_will_do = { base = 12 }
+
         complete_effect = {
             every_state = {
                 limit = {
@@ -44,6 +46,8 @@ adriatic_unrest = {
             }
         }
 
+        ai_will_do = { base = 9 }
+
         complete_effect = {
             hidden_effect = { country_event = turkey_greece.1 days = 14 random_days = 28 }
 
@@ -71,6 +75,11 @@ adriatic_unrest = {
                 or = { state = 405 state = 584 state = 585 state = 587 }
                 is_owned_and_controlled_by = SOV
             }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { and = { date > 1915.1.1 has_war = no } add = 9 }
         }
 
         complete_effect = {
@@ -104,6 +113,14 @@ turkey_alliances = {
                 not = { has_war_with = ROOT }
                 or = { is_in_faction = no is_faction_leader = yes } 
             }
+        }
+
+        ai_will_do = { 
+            base = 0
+            modifier = { threat > 0.2 add = 9 }
+
+            modifier = { and = { FROM = { tag = FRA } has_completed_focus = TUR_on_our_own } add = 6 }      # we prefer the French
+            modifier = { FROM = { is_ally_with = SOV } factor = 0 }                                         # but we'll never ally with Russia.
         }
 
         complete_effect = {

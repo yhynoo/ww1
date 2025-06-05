@@ -680,7 +680,10 @@
         y = 5
         cost = 10
 
-        ai_will_do = { base = 2 }
+        ai_will_do = { 
+            base = 2
+            modifier = { date > 1913.1.1 add = 3 }
+        }
 
         completion_reward = {
             add_political_power = 150
@@ -815,6 +818,11 @@
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0.5 }
+        }
+
         prerequisite = { focus = FRA_republicanism }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -829,6 +837,11 @@
         x = 1
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
 
         prerequisite = { focus = FRA_republicanism }
         completion_reward = {

@@ -1,0 +1,234 @@
+add_namespace = x_conquest
+
+country_event = {
+    id = x_conquest.1
+    title = "[ROOT.GetAdjective] Troops March in Warsaw"
+    desc = x_conquest.1.d
+
+    trigger = { POL = { exists = no } }
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = "Poland shall be a worthy ally."
+        hidden_effect = { 
+            release_poland = yes
+            set_politics = { ruling_party = ROOT }
+        }
+
+        ai_chance = { 
+            base = 2
+            modifier = { has_government = democratic factor = 3 }
+        }
+    }
+    option = {
+        name = "Nonsense."
+        every_controlled_state = { limit = { is_core_of = POL } add_resistance = 10 }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = x_conquest.2
+    title = "[ROOT.GetAdjective] Troops March in Kyiv"
+    desc = x_conquest.2.d
+
+    trigger = { UKR = { exists = no } }
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = "Ukraine shall be a worthy ally."
+        hidden_effect = { 
+            release_ukraine = yes
+            set_politics = { ruling_party = ROOT }
+        }
+
+        ai_chance = { 
+            base = 2
+            modifier = { has_government = democratic factor = 3 }
+        }
+    }
+    option = {
+        name = "Nonsense."
+        every_controlled_state = { limit = { is_core_of = UKR } add_resistance = 10 }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = x_conquest.3
+    title = "[ROOT.GetAdjective] Troops March in Riga"
+    desc = x_conquest.3.d
+
+    trigger = { UBD = { exists = no } }
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = "The Baltic shall be a worthy ally."
+        hidden_effect = { 
+            release_baltic = yes
+            set_politics = { ruling_party = ROOT }
+        }
+
+        ai_chance = { 
+            base = 2
+            modifier = { has_government = democratic factor = 3 }
+        }
+    }
+    option = {
+        name = "Nonsense."
+        every_controlled_state = { limit = { is_core_of = UBD } add_resistance = 10 }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+## atmosphere
+add_namespace = x_conquest_atmosphere
+
+news_event = {
+    id = x_conquest_atmosphere.1
+    title = "Victory on Champs Elysées!"
+    desc = x_conquest_atmosphere.1.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = "Just like our grandfathers."
+        add_war_support = 0.1
+    }
+}
+
+news_event = {
+    id = x_conquest_atmosphere.2
+    title = "The Cross Returns to Hagia Sophia!"
+    desc = x_conquest_atmosphere.2.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = "Shall we crown the Kaiser a Patriarch?"
+        add_war_support = 0.1
+    }
+}
+
+news_event = {
+    id = x_conquest_atmosphere.3
+    title = "London Taken!"
+    desc = x_conquest_atmosphere.3.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = "How about some tea now?"
+        add_war_support = 0.1
+    }
+}
+
+news_event = {
+    id = x_conquest_atmosphere.4
+    title = "Our Troops Enter Vienna!"
+    desc = x_conquest_atmosphere.4.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = "Cue the Blue Danube."
+        add_war_support = 0.1
+    }
+}
+
+news_event = {
+    id = x_conquest_atmosphere.5
+    title = "St. Petersburg Abandoned by the Enemy!"
+    desc = x_conquest_atmosphere.5.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = "Amazing."
+        add_war_support = 0.1
+    }
+}
+
+news_event = {
+    id = x_conquest_atmosphere.6
+    title = "Officers Discover a Champagne Cellar"
+    desc = x_conquest_atmosphere.6.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = "Prost!"
+        add_war_support = 0.05
+    }
+}
+
+news_event = {
+    id = x_conquest_atmosphere.7
+    title = "Kölsch or Riesling?"
+    desc = x_conquest_atmosphere.7.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = "Santé!"
+        add_war_support = 0.05
+    }
+}
+
+news_event = {
+    id = x_conquest_atmosphere.8
+    title = "Hamburg Taverns Offer Fish and Chips"
+    desc = x_conquest_atmosphere.8.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = "Just like home."
+        add_war_support = 0.05
+    }
+}
+
+news_event = {
+    id = x_conquest_atmosphere.9
+    title = "The Steppe Awaits..."
+    desc = x_conquest_atmosphere.9.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = "Onwards, Cossacks!"
+        add_war_support = 0.05
+    }
+}
+
+news_event = {
+    id = x_conquest_atmosphere.10
+    title = "A Day in Casablanca"
+    desc = x_conquest_atmosphere.10.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = "It could be a movie one day."
+        add_war_support = 0.05
+    }
+}

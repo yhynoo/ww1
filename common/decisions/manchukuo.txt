@@ -3,6 +3,10 @@ opium_crisis = {
         fire_only_once = yes
         cost = 75
 
+        available = { has_idea = idea_severe_opium_crisis }
+
+        ai_will_do = { base = 12 }
+
         complete_effect = {
             swap_ideas = {
                 remove_idea = idea_severe_opium_crisis
@@ -15,11 +19,18 @@ opium_crisis = {
         fire_only_once = yes
         cost = 100
 
-        available = { 
+        available = {
+            or = { has_idea = idea_severe_opium_crisis has_idea = idea_limited_opium_crisis }
+
             any_state = {
                 or = { state = 286 state = 670 state = 671 state = 289 state = 614 }
                 not = { is_owned_and_controlled_by = MAN }
             }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = { threat > 0.3 add = 6 }
         }
 
         complete_effect = {
@@ -107,6 +118,11 @@ eight_banners = {
 
         days_remove = 30
         days_re_enable = 90
+
+        ai_will_do = { 
+            base = 3
+            modifier = { threat > 0.3 add = 6 }
+        }
 
         available = {
             618 = { is_controlled_by = MAN }

@@ -742,7 +742,10 @@
         cost = 10
 
         prerequisite = { focus = MAN_international_affairs }
-        available = { is_subject = no }
+        available = { 
+            is_subject = no
+            or = { has_idea = idea_severe_opium_crisis has_idea = idea_limited_opium_crisis }
+        }
 
         ai_will_do = { base = 3 }
 

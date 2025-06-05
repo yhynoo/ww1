@@ -1,0 +1,81 @@
+on_actions = {
+    on_state_control_changed = {
+        effect = {
+            if = {
+                limit = { not = { original_tag = SOV } }
+
+                # Warsaw
+                if = {
+                    limit = { FROM.FROM = { state = 10 } }
+                    country_event = { id = x_conquest.1 hours = 6 random_hours = 6 }
+                }
+
+                # Kyiv
+                if = {
+                    limit = { FROM.FROM = { state = 202 } }
+                    country_event = { id = x_conquest.2 hours = 6 random_hours = 6 }
+                }
+
+                # Riga
+                if = {
+                    limit = { FROM.FROM = { state = 12 } }
+                    country_event = { id = x_conquest.3 hours = 6 random_hours = 6 }
+                }
+            }
+
+            # other
+            # 1. GER in Paris
+            if = {
+                limit = { FROM.FROM = { state = 16 } tag = GER }
+                country_event = { id = x_conquest_atmosphere.1 hours = 6 random_hours = 6 }
+            }
+            # 2. AUS in Constantinople
+            if = {
+                limit = { FROM.FROM = { state = 341 } tag = AUS has_government = monarchism }
+                country_event = { id = x_conquest_atmosphere.2 hours = 6 random_hours = 6 }
+            }
+
+            # 3. London, Vienna, Petrograd
+            if = {
+                limit = { FROM.FROM = { state = 126 } not = { original_tag = ENG } }
+                country_event = { id = x_conquest_atmosphere.3 hours = 6 random_hours = 6 }
+            }
+
+            if = {
+                limit = { FROM.FROM = { state = 4 } not = { original_tag = AUS } }
+                country_event = { id = x_conquest_atmosphere.4 hours = 6 random_hours = 6 }
+            }
+
+            if = {
+                limit = { FROM.FROM = { state = 195 } not = { original_tag = SOV } }
+                country_event = { id = x_conquest_atmosphere.5 hours = 6 random_hours = 6 }
+            }
+
+            # 4. Champagne, Cologne, Hamburg, Tsaritsyn, Casablanca
+            if = {
+                limit = { FROM.FROM = { state = 18 } tag = GER }
+                country_event = { id = x_conquest_atmosphere.6 hours = 6 random_hours = 6 }
+            }
+
+            if = {
+                limit = { FROM.FROM = { state = 51 } tag = GER }
+                country_event = { id = x_conquest_atmosphere.7 hours = 6 random_hours = 6 }
+            }
+            
+            if = {
+                limit = { FROM.FROM = { state = 58 } tag = GER }
+                country_event = { id = x_conquest_atmosphere.8 hours = 6 random_hours = 6 }
+            }
+
+            if = {
+                limit = { FROM.FROM = { state = 217 } tag = UKR }
+                country_event = { id = x_conquest_atmosphere.9 hours = 6 random_hours = 6 }
+            }
+
+            if = {
+                limit = { FROM.FROM = { state = 461 } tag = SPR }
+                country_event = { id = x_conquest_atmosphere.10 hours = 6 random_hours = 6 }
+            }
+        }
+    }
+}

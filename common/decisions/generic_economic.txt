@@ -22,7 +22,7 @@ dc_economic_decisions = {
 
     }
     industrial_war_effort = {
-        icon = generic_construction
+        icon = generic_industry
         cost = 100
 
         available = {
@@ -57,27 +57,6 @@ dc_economic_decisions = {
             }
         }
 
-    }
-    expand_industrial_areas = {
-        icon = generic_construction
-        days_remove = 90
-        cost = 75
-
-        ai_will_do = {
-            base = 6
-            modifier = { has_war = yes factor = 0.5 }
-        }
-
-        available = { has_idea = idea_industrial_expansion }
-
-        remove_effect = {
-            random_owned_controlled_state = {
-                add_extra_state_shared_building_slots = 1
-            }
-            random_owned_controlled_state = {
-                add_extra_state_shared_building_slots = 1
-            }
-        }
     }
     literacy_campaigns = {
         icon = generic_research

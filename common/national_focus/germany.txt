@@ -35,6 +35,8 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = { base = 2 }
+
         prerequisite = { focus = GER_adjust_budget }
         completion_reward = {
             army_experience = 25
@@ -50,6 +52,8 @@ focus_tree = {
         cost = 10
 
         available = { or = { has_idea = disarmed_nation has_idea = volunteer_only } }
+
+        ai_will_do = { base = 3 }
 
         prerequisite = { focus = GER_focus_army }
         completion_reward = {
@@ -84,6 +88,8 @@ focus_tree = {
         x = 0
         y = 1
         cost = 10
+
+        ai_will_do = { base = 3 }
 
         prerequisite = { focus = GER_focus_army }
         completion_reward = {
@@ -696,7 +702,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1
+            base = 3
             modifier = { threat > 0.1 factor = 3 }
         }
 
@@ -781,7 +787,15 @@ focus_tree = {
         cost = 10
 
         prerequisite = { focus = GER_expansionism }
-        available = { is_subject = no }
+        available = { 
+            or = { has_government = monarchism has_government = authoritarianism } 
+            is_subject = no
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { date > 1915.1.1 add = 1 }
+        }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -818,6 +832,11 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0.5 }
+        }
+
         prerequisite = { focus = GER_traditionalism }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -832,6 +851,11 @@ focus_tree = {
         x = 1
         y = 1
         cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
 
         prerequisite = { focus = GER_traditionalism }
         completion_reward = {
@@ -923,6 +947,8 @@ focus_tree = {
             custom_effect_tooltip = decision_effect_tooltip
 
             random_owned_controlled_state = {
+                limit = { is_on_continent = africa }
+
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
 			}

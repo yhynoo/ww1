@@ -46,6 +46,14 @@ italy_alliances = {
             }
         }
 
+        ai_will_do = { 
+            base = 0
+            modifier = { threat > 0.2 add = 9 }
+
+            modifier = { FROM = { tag = ENG } add = 6 }     # we prefer the entente.
+            modifier = { FROM = { is_ally_with = TUR } factor = 0 }     # but we'll never ally with Turkey.
+        }
+
         complete_effect = {
             FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
         }
@@ -58,6 +66,11 @@ mediterranean_expansion_ita = {
 
         fire_only_once = yes
         cost = 100
+
+        ai_will_do = { 
+            base = 0
+            modifier = { or = { not = { any_country = { has_guaranteed = TUR } } TUR = { is_in_faction = no } } add = 12 }
+        }
 
         available = {
             any_state = {
@@ -75,6 +88,11 @@ mediterranean_expansion_ita = {
 
         fire_only_once = yes
         cost = 100
+
+        ai_will_do = { 
+            base = 0
+            modifier = { or = { not = { any_country = { has_guaranteed = TUR } } TUR = { is_in_faction = no } } add = 9 }
+        }
 
         available = {
             any_state = {
