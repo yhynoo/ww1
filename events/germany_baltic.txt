@@ -1,0 +1,118 @@
+add_namespace = germany_baltic
+
+country_event = {
+    id = germany_baltic.1
+    title = "[GER.GetName] Demands Baltic Independence"
+    desc = germany_baltic.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must agree to their demands."
+
+        release = UBD
+        GER = { puppet = UBD }
+
+        hidden_effect = { news_event = { id = germany_baltic.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = "How about an alliance instead?"
+
+        trigger = {
+            is_in_faction = no
+            GER = { or = { is_in_faction = no is_faction_leader = yes } }
+        }
+
+        GER = { country_event = { id = germany_baltic.3 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = "Who do they think they are?"
+        GER = { 
+            news_event = { id = germany_baltic.6 hours = 6 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = liberate_wargoal
+            }
+        }
+    }
+}
+
+news_event = {
+    id = germany_baltic.2
+    title = "[UBD.GetName] Established"
+    desc = germany_baltic.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+country_event = {
+    id = germany_baltic.3
+    title = "[SOV.GetName] Offers Alliance Instead"
+    desc = germany_baltic.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This sounds alright."
+
+        if = {
+            limit = { is_in_faction = no }
+            create_faction = "Baltic Alliance"
+        }
+        add_to_faction = SOV
+
+        hidden_effect = { news_event = { id = germany_baltic.4 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = "We are not interested."
+
+        create_wargoal = {
+            target = SOV
+            type = liberate_wargoal
+        }
+
+        SOV = { news_event = { id = germany_baltic.5 days = 7 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = germany_baltic.4
+    title = "[GER.GetName] and [SOV.GetNameDef] Allied!"
+    desc = germany_baltic.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Right."
+    }
+}
+
+news_event = {
+    id = germany_baltic.5
+    title = "[GER.GetName] Declines!"
+    desc = germany_baltic.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "What a shame."
+    }
+}
+
+news_event = {
+    id = germany_baltic.6
+    title = "[SOV.GetName] Declines!"
+    desc = germany_baltic.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about it."
+    }
+}

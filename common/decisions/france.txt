@@ -78,6 +78,46 @@ france_alliances = {
     }
 }
 
+across_atlantic = {
+    demand_carribean = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            any_state = {
+                or = { state = 451 state = 450 state = 308 state = 686 state = 318 state = 319 }
+                owner = { not = { tag = ENG } not = { has_war_with = ENG } }
+            }
+        }
+
+        complete_effect = {
+            every_country = {
+                limit = {
+                    or = { controls_state = 451 controls_state = 450 controls_state = 308 controls_state = 686 controls_state = 318 controls_state = 319 }
+                }
+                country_event = { id = france_carribean.1 hours = 6 random_hours = 6 }
+            }
+        }
+    }
+    develop_guyana = {
+        icon = generic_construction
+
+        fire_only_once = yes
+        cost = 75
+
+        available = { controls_state = 310 }
+        complete_effect = {
+            310 = {
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                add_building_construction = { type = dockyard level = 1 instant_build = yes }
+
+                add_extra_state_shared_building_slots = 2
+            }
+        }
+    }
+}
+
 let_them_eat_cake = {
     develop_congo = {
         icon = generic_construction

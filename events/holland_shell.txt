@@ -1,0 +1,53 @@
+add_namespace = holland_shell
+
+country_event = {
+    id = holland_shell.1
+    title = "Dutch Shell Demands Drilling Licenses"
+    desc = holland_shell.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must accept."
+        FROM = { 
+            news_event = { id = holland_shell.2 hours = 6 random_hours = 6 }
+        }
+
+        give_resource_rights = { receiver = HOL state = 413 }
+    }
+    option = {
+        name = "We are not interested."
+        FROM = { 
+            news_event = { id = holland_shell.3 hours = 6 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = take_state_focus
+            }
+        }
+    }
+}
+
+news_event = {
+    id = holland_shell.2
+    title = "[HOL.GetName] Accesses Persian Oil"
+    desc = holland_shell.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = holland_shell.3
+    title = "[FROM.GetName] Declines!"
+    desc = holland_shell.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Disappointing."
+    }
+}

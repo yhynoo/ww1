@@ -71,3 +71,57 @@ african_expansion = {
         }
     }
 }
+
+second_reconquista = {
+    support_colombia = {
+        fire_only_once = yes
+        cost = 75
+
+        available = {
+            has_government = monarchism
+            COL = { has_war = yes }
+        }
+
+        complete_effect = {
+            add_timed_idea = { idea = idea_aid_to_colombia years = 1 }
+            add_war_support = 0.1
+
+            COL = {
+                add_offsite_building = { type = arms_factory level = 2 }
+                add_timed_idea = { idea = idea_aid_from_spain years = 1 }
+            }
+        }
+    }
+    atlantic_naval = {
+        icon = generic_construction
+
+        fire_only_once = yes
+        cost = 100
+
+        available = { 
+            any_state = {
+                or = { state = 112 state = 469 state = 657 }
+                is_owned_and_controlled_by = SPR
+            }
+        }
+        complete_effect = {
+            if = {
+                limit = { controls_state = 112 }
+                112 = { 
+                    add_building_construction = { type = dockyard level = 2 instant_build = yes }
+                    add_extra_state_shared_building_slots = 2
+                }
+            }
+
+            if = {
+                limit = { controls_state = 469 }
+                469 = { add_building_construction = { type = naval_base province = 1751 level = 2 instant_build = yes } }
+            }
+
+            if = {
+                limit = { controls_state = 657 }
+                675 = { add_building_construction = { type = naval_base province = 13014 level = 2 instant_build = yes } }
+            }
+        }
+    }
+}

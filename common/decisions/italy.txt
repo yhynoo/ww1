@@ -22,8 +22,8 @@ influence_the_uk = {
     }
 }
 
-austria_alliances = {
-    aus_offer_alliance = {
+italy_alliances = {
+    ita_offer_alliance = {
         cost = 75
         fire_only_once = yes
 
@@ -34,7 +34,7 @@ austria_alliances = {
             FROM = { country_event = { id = x_alliance.2 hours = 6 random_hours = 6 } }
         }
     }
-    aus_join_alliance = {
+    ita_join_alliance = {
         cost = 100
         fire_only_once = yes
 
@@ -48,6 +48,43 @@ austria_alliances = {
 
         complete_effect = {
             FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}
+
+mediterranean_expansion_ita = {
+    demand_libya = {
+        icon = generic_prepare_civil_war
+
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            any_state = {
+                or = { state = 273 state = 661 state = 663 }
+                is_owned_by = TUR
+            }
+        }
+
+        complete_effect = {
+            TUR = { country_event = { id = italy_libya.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    demand_aegean = {
+        icon = generic_prepare_civil_war
+
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            any_state = {
+                or = { state = 182 state = 187 }
+                is_owned_by = TUR
+            }
+        }
+
+        complete_effect = {
+            TUR = { country_event = { id = italy_aegean.1 hours = 6 random_hours = 6 } }
         }
     }
 }

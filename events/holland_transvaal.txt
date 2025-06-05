@@ -1,0 +1,44 @@
+add_namespace = holland_transvaal
+
+country_event = {
+    id = holland_transvaal.1
+    title = "Arson in Bloemfontein"
+    desc = holland_transvaal.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Enforce order."
+        add_political_power = -75
+
+        hidden_effect = { news_event = { id = holland_transvaal.2 days = 14 random_days = 42 } }
+    }
+    option = {
+        name = "This will diffuse."
+        every_state = {
+            limit = { is_core_of = SAF is_owned_and_controlled_by = ENG }
+            add_resistance = 20
+        }
+    }
+}
+
+news_event = {
+    id = holland_transvaal.2
+    title = "Boer Uprising in Transvaal!"
+    desc = holland_transvaal.2.d
+
+    is_triggered_only = yes
+    trigger = { 275 = { resistance > 20 } }
+    major = yes
+
+    option = {
+        name = "Awful."
+
+        if = {
+            limit = { tag = ENG }
+            remove_ideas = idea_unrest_in_transvaal
+
+            hidden_effect = { start_south_african_independence_war = yes }
+        }
+    }
+}

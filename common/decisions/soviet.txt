@@ -61,6 +61,74 @@ soviet_alliances = {
     }
 }
 
+manchurian_question = {
+    avenge_1905 = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        days_remove = 180
+
+        available = { 
+            any_state = {
+                or = { state = 328 state = 619 state = 654 state = 72 }
+                is_owned_and_controlled_by = JAP
+            }
+
+            can_declare_war_on = JAP
+            has_war_support > 0.3 
+        }
+
+        remove_effect = {
+            war_with_on_remove = JAP
+            create_wargoal = { target = JAP type = take_state_focus }
+        }
+    }
+    develop_far_east = {
+        icon = generic_construction
+
+        fire_only_once = yes
+        cost = 100
+
+        available = { 
+            any_state = {
+                or = { state = 408 state = 409 state = 657 state = 560 state = 561 }
+                is_owned_and_controlled_by = SOV
+            }
+        }
+        complete_effect = {
+            random_state = {
+                limit = {
+                    or = { state = 408 state = 409 state = 657 state = 560 state = 561 }
+                    is_owned_and_controlled_by = SOV
+
+                    free_building_slots = {
+                        building = industrial_complex
+                        size > 0
+                        include_locked = no
+                    }
+                }
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
+            random_state = {
+                limit = {
+                    or = { state = 408 state = 409 state = 657 state = 560 state = 561 }
+                    is_owned_and_controlled_by = SOV
+
+                    free_building_slots = {
+                        building = industrial_complex
+                        size > 0
+                        include_locked = no
+                    }
+                }
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
+        }
+    }
+}
+
 limited_autonomy = {
     sokol_society = {
         fire_only_once = yes

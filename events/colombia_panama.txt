@@ -1,0 +1,59 @@
+add_namespace = colombia_panama
+
+country_event = {
+    id = colombia_panama.1
+    title = "Colombia Demands Panama"
+    desc = colombia_panama.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let them have it."
+        FROM = { 
+            news_event = { id = colombia_panama.2 hours = 6 random_hours = 6 }
+            every_state = {
+                limit = { or = { state = 304 state = 685 } is_owned_and_controlled_by = ROOT }      # add states.
+                transfer_state_to = FROM
+            }
+        }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "We will never agree to this."
+        FROM = { 
+            news_event = { id = colombia_panama.3 hours = 6 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = take_state_focus
+            }
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = colombia_panama.2
+    title = "[USA.GetName] Transfer Panama"
+    desc = colombia_panama.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = colombia_panama.3
+    title = "[FROM.GetName] Declines!"
+    desc = colombia_panama.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about this."
+    }
+}

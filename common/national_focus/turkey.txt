@@ -421,6 +421,8 @@ focus_tree = {
 
         prerequisite = { focus = TUR_home_front }
         completion_reward = {
+            add_ideas = idea_industrial_expansion
+            
             random_owned_controlled_state = {
                 add_building_construction = { type = infrastructure level = 1 instant_build = yes }
                 add_extra_state_shared_building_slots = 2
@@ -742,6 +744,11 @@ focus_tree = {
         prerequisite = { focus = TUR_international_affairs }
         available = { is_subject = no }
 
+        ai_will_do = {
+            base = 0
+            modifier = { and = { date > 1913.1.1 } add = 3 }
+        }
+
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }
@@ -788,10 +795,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 1
-            modifier = { has_government = monarchism factor = 2 }
-        }
+        ai_will_do = { base = 1 }
 
         mutually_exclusive = { focus = TUR_adjust_the_government }
         prerequisite = { focus = TUR_political_ambitions }
@@ -875,10 +879,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 1
-            modifier = { has_government = democratic factor = 2 }
-        }
+        ai_will_do = { base = 2 }
 
         mutually_exclusive = { focus = TUR_traditionalism }
         prerequisite = { focus = TUR_political_ambitions }

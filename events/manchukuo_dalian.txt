@@ -1,0 +1,56 @@
+add_namespace = manchukuo_dalian
+
+country_event = {
+    id = manchukuo_dalian.1
+    title = "[MAN.GetName] Demands Dalian"
+    desc = manchukuo_dalian.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must agree."
+        FROM = { 
+            news_event = { id = manchukuo_dalian.2 hours = 6 random_hours = 6 }
+            72 = { transfer_state_to = FROM }
+        }
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "We will never agree to this."
+        FROM = { 
+            news_event = { id = manchukuo_dalian.3 hours = 6 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = take_state_focus
+            }
+        }
+
+        ai_chance = { base = 3 }
+    }
+}
+
+news_event = {
+    id = manchukuo_dalian.2
+    title = "[MAN.GetName] Takes Dalian"
+    desc = manchukuo_dalian.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Concerning."
+    }
+}
+
+news_event = {
+    id = manchukuo_dalian.3
+    title = "[FROM.GetName] Declines!"
+    desc = manchukuo_dalian.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about this."
+    }
+}

@@ -421,6 +421,8 @@ focus_tree = {
 
         prerequisite = { focus = AUS_home_front }
         completion_reward = {
+            add_ideas = idea_industrial_expansion
+            
             random_owned_controlled_state = {
                 add_building_construction = { type = infrastructure level = 1 instant_build = yes }
                 add_extra_state_shared_building_slots = 2
@@ -742,6 +744,8 @@ focus_tree = {
         prerequisite = { focus = AUS_international_affairs }
         available = { is_subject = no }
 
+        ai_will_do = { base = 3 }
+
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }
@@ -776,6 +780,12 @@ focus_tree = {
         available = { 
             is_subject = no
             has_war = no
+            has_government = monarchism
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { date > 1915.1.1 add = 3 }
         }
 
         completion_reward = {
@@ -797,10 +807,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 1
-            modifier = { has_government = monarchism factor = 2 }
-        }
+        ai_will_do = { base = 2 }
 
         mutually_exclusive = { focus = AUS_adjust_the_government }
         prerequisite = { focus = AUS_political_ambitions }
@@ -884,10 +891,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 1
-            modifier = { has_government = democratic factor = 2 }
-        }
+        ai_will_do = { base = 1 }
 
         mutually_exclusive = { focus = AUS_traditionalism }
         prerequisite = { focus = AUS_political_ambitions }

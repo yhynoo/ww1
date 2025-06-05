@@ -1,0 +1,64 @@
+add_namespace = japan_debt
+
+country_event = {
+    id = japan_debt.1
+    title = "[JAP.GetName] Demands Access to Mines"
+    desc = japan_debt.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must accept."
+        FROM = { 
+            news_event = { id = japan_debt.2 hours = 6 random_hours = 6 }
+        }
+
+        if = {
+            limit = { controls_state = 592 }
+            give_resource_rights = { receiver = JAP state = 592 }
+        }
+        if = {
+            limit = { controls_state = 593 }
+            give_resource_rights = { receiver = JAP state = 593 }
+        }
+        if = {
+            limit = { controls_state = 594 }
+            give_resource_rights = { receiver = JAP state = 594 }
+        }
+    }
+    option = {
+        name = "Who do they think they are?"
+        FROM = { 
+            news_event = { id = japan_debt.3 hours = 6 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = take_state_focus
+            }
+        }
+    }
+}
+
+news_event = {
+    id = japan_debt.2
+    title = "[JAP.GetName] Accesses Mines in South China"
+    desc = japan_debt.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = japan_debt.3
+    title = "[FROM.GetName] Declines!"
+    desc = japan_debt.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Disappointing."
+    }
+}

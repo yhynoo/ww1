@@ -61,3 +61,44 @@ japan_alliances = {
         }
     }
 }
+
+twenty_one_demands = {
+    demand_manchuria = {
+        icon = generic_prepare_civil_war
+
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            any_state = {
+                or = { state = 72 state = 328 state = 619 state = 654 }
+                not = { is_owned_and_controlled_by = JAP }
+            }
+        }
+
+        complete_effect = {
+            every_country = {
+                limit = { or = { controls_state = 72 controls_state = 328 controls_state = 619 controls_state = 654 } }
+                country_event = { id = japan_manchuria.1 hours = 6 random_hours = 6 }
+            }
+        }
+    }
+    demand_debt = {
+        icon = steel
+
+        cost = 75
+        fire_only_once = yes
+
+        available = {
+            not = { has_war_with = MAN }
+            any_state = {
+                or = { state = 592 state = 593 state = 594 }
+                is_owned_and_controlled_by = MAN
+            }
+        }
+
+        complete_effect = {
+            MAN = { country_event = { id = japan_debt.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}

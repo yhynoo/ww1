@@ -1,0 +1,59 @@
+add_namespace = england_east_indies
+
+country_event = {
+    id = england_east_indies.1
+    title = "[ENG.GetName] Demands East Indies!"
+    desc = england_east_indies.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let them have it."
+        FROM = { 
+            news_event = { id = england_east_indies.2 hours = 6 random_hours = 6 }
+            every_state = {
+                limit = { or = { state = 289 state = 614 state = 286 state = 670 state = 671 } is_owned_and_controlled_by = ROOT }      # add states.
+                transfer_state_to = FROM
+            }
+        }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "We will never agree to this."
+        FROM = { 
+            news_event = { id = england_east_indies.3 hours = 6 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = take_state_focus
+            }
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = england_east_indies.2
+    title = "[FROM.GetName] Transfer East Indian Colonies"
+    desc = england_east_indies.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = england_east_indies.3
+    title = "[FROM.GetName] Declines!"
+    desc = england_east_indies.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about this."
+    }
+}

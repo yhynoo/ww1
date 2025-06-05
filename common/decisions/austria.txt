@@ -79,6 +79,50 @@ austria_alliances = {
     }
 }
 
+second_vienna_treaty = {
+    challenge_ottomans = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 150
+
+        days_remove = 180
+
+        available = { 
+            can_declare_war_on = TUR
+            has_war_support > 0.3 
+        }
+
+        complete_effect = {
+            news_event = { id = austria_vienna.1 hours = 6 random_hours = 6 }
+        }
+
+        remove_effect = {
+            war_with_on_remove = TUR
+            create_wargoal = { target = TUR type = take_state_focus }
+        }
+    }
+    two_sicilies = {
+        icon = generic_form_nation
+        fire_only_once = yes
+        cost = 100
+
+        days_remove = 90
+
+        available = {
+            TTS = { exists = no }
+            any_state = {
+                is_core_of = TTS
+                is_controlled_by = ITA
+            }
+        }
+
+        remove_effect = {
+            give_guarantee = TTS
+            hidden_effect = { start_sicilian_independence_war = yes }
+        }
+    }
+}
+
 equal_development = {
     galician_oil = {
         icon = oil

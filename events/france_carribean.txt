@@ -1,0 +1,59 @@
+add_namespace = france_carribean
+
+country_event = {
+    id = france_carribean.1
+    title = "[FRA.GetName] Demands Carribean Colonies!"
+    desc = france_carribean.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let them have it."
+        FROM = { 
+            news_event = { id = france_carribean.2 hours = 6 random_hours = 6 }
+            every_state = {
+                limit = { or = { state = 451 state = 450 state = 308 state = 686 state = 318 state = 319 } is_owned_and_controlled_by = ROOT }      # add states.
+                transfer_state_to = FROM
+            }
+        }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "We will never agree to this."
+        FROM = { 
+            news_event = { id = france_carribean.3 hours = 6 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = take_state_focus
+            }
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = france_carribean.2
+    title = "[FROM.GetName] Transfer Carribean Colonies"
+    desc = france_carribean.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = france_carribean.3
+    title = "[FROM.GetName] Declines!"
+    desc = france_carribean.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about this."
+    }
+}

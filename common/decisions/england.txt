@@ -81,6 +81,52 @@ england_alliances = {
     }
 }
 
+change_alliances = {
+    demand_east_indies = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            any_state = {
+                or = { state = 289 state = 614 state = 286 state = 670 state = 671 }
+                owner = { not = { tag = ENG } not = { has_war_with = ENG } }
+            }
+        }
+
+        complete_effect = {
+            every_country = {
+                limit = {
+                    or = { controls_state = 289 controls_state = 614 controls_state = 286 controls_state = 670 controls_state = 671 }
+                }
+                country_event = { id = england_east_indies.1 hours = 6 random_hours = 6 }
+            }
+        }
+    }
+    intervene_central_africa = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        days_remove = 180
+
+        available = { 
+            any_state = {
+                or = { state = 539 state = 295 state = 576 state = 538 state = 660 }
+                is_owned_and_controlled_by = FRA
+            }
+
+            can_declare_war_on = FRA
+            has_war_support > 0.3 
+        }
+
+        remove_effect = {
+            war_with_on_remove = FRA
+            create_wargoal = { target = FRA type = take_state_focus }
+        }
+    }
+}
+
 peoples_act = {
     encourage_local_administration = {
         cost = 50

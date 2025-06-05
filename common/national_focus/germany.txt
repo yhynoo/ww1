@@ -421,6 +421,8 @@ focus_tree = {
 
         prerequisite = { focus = GER_home_front }
         completion_reward = {
+            add_ideas = idea_industrial_expansion
+            
             random_owned_controlled_state = {
                 add_building_construction = { type = infrastructure level = 1 instant_build = yes }
                 add_extra_state_shared_building_slots = 2
@@ -720,7 +722,7 @@ focus_tree = {
         }
 
         ai_will_do = {
-            base = 1
+            base = 3
             modifier = { threat > 0.2 factor = 3 }
         }
 
@@ -742,6 +744,8 @@ focus_tree = {
         prerequisite = { focus = GER_international_affairs }
         available = { is_subject = no }
 
+        ai_will_do = { base = 3 }
+
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }
@@ -757,6 +761,11 @@ focus_tree = {
 
         prerequisite = { focus = GER_expansionism }
         available = { is_subject = no }
+
+        ai_will_do = {
+            base = 1
+            modifier = { and = { date > 1913.10.1 } add = 3 }
+        }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -790,7 +799,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 1
-            modifier = { has_government = monarchism factor = 2 }
+            modifier = { has_war = yes add = 3 }
         }
 
         mutually_exclusive = { focus = GER_adjust_the_government }
