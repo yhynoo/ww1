@@ -2,7 +2,7 @@ add_namespace = x_war_support
 
 news_event = {
     id = x_war_support.1
-    title = "The Army Marches in [ROOT.capital.GetName]"
+    title = "The Army Marches in [ROOT.capital.GetCapitalVictoryPointName]"
     desc = x_war_support.1.d
 
     is_triggered_only = yes
@@ -10,6 +10,8 @@ news_event = {
     option = {
         name = "Wonderful."
         add_war_support = 0.05
+
+        hidden_effect = { add_named_threat = { threat = 1 name = "The Army Marches in [ROOT.capital.GetCapitalVictoryPointName]" } }
     }
 }
 

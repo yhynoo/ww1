@@ -27,6 +27,13 @@ news_event = {
     is_triggered_only = yes
     major = yes
 
+    immediate = {
+        if = {
+            limit = { tag = FRA }
+            hidden_effect = { add_named_threat = { threat = 2 name = "Uprising in Algeria" } }
+        }
+    }
+
     option = {
         name = "Awful."
 

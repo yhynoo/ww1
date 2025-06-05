@@ -74,15 +74,11 @@ news_event = {
     desc = usa_embers_of_the_past.5.d
 
     is_triggered_only = yes
-    major = yes
 
     option = {
         name = "Disgraceful."
-
-        if = {
-            limit = { tag = USA }
-            add_stability = -0.1
-            add_popularity = { ideology = authoritarianism popularity = 0.1 }
-        }
+        
+        add_stability = -0.1
+        add_popularity = { ideology = authoritarianism popularity = 0.1 }
     }
 }

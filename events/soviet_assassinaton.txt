@@ -33,6 +33,7 @@ news_event = {
         add_war_support = 0.15
 
         create_wargoal = { target = SOV type = topple_government }
+        hidden_effect = { add_named_threat = { threat = 5 name = "Okhrana Spies Captured" } }
     }
 }
 
@@ -43,6 +44,10 @@ country_event = {
     desc = soviet_assassination.3.d
 
     is_triggered_only = yes
+
+    immediate = {
+        hidden_effect = { add_named_threat = { threat = 15 name = "Assassination Attempt in Sarajevo!" } }
+    }
 
     option = {
         name = "This means war!"

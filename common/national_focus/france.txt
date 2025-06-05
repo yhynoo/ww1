@@ -765,6 +765,11 @@
         prerequisite = { focus = FRA_expansionism }
         available = { is_subject = no }
 
+        ai_will_do = { 
+            base = 1
+            modifier = { and = { has_government = democratic date > 1914.1.1 } factor = 3 }
+        }
+
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }

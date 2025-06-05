@@ -34,7 +34,10 @@ country_event = {
             }
         }
 
-        hidden_effect = { id = holland_german_guarantees.1 days = 2 }
+        hidden_effect = { 
+            country_event = { id = holland_german_guarantees.1 days = 2 } 
+            add_named_threat = { threat = 3 name = "The Dutch Stay in Flanders" }
+        }
 
         ai_chance = {
             base = 1
@@ -99,7 +102,10 @@ country_event = {
             }
         }
 
-        hidden_effect = { country_event = { id = france_antwerp_affair.7 days = 14 } }
+        hidden_effect = { 
+            country_event = { id = france_antwerp_affair.7 days = 14 } 
+            add_named_threat = { threat = 10 name = "The Germans Stay in Wallonia" }
+        }
 
         ai_chance = {
             base = 6

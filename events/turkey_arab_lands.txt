@@ -29,6 +29,13 @@ news_event = {
     trigger = { TUR = { has_stabilty < 0.6 } }
     major = yes
 
+    immediate = {
+        if = {
+            limit = { tag = TUR }
+            hidden_effect = { add_named_threat = { threat = 2 name = "Arab Uprising in Jaffa" } }
+        }
+    }
+
     option = {
         name = "Awful."
 

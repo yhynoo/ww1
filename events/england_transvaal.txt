@@ -31,6 +31,13 @@ news_event = {
     trigger = { 275 = { resistance > 20 } }
     major = yes
 
+    immediate = {
+        if = {
+            limit = { tag = ENG }
+            hidden_effect = { add_named_threat = { threat = 2 name = "Boer Uprising in Transvaal" } }
+        }
+    }
+
     option = {
         name = "Awful."
 

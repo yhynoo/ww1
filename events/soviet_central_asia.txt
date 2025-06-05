@@ -29,6 +29,13 @@ news_event = {
 
     is_triggered_only = yes
 
+    immediate = {
+        if = {
+            limit = { tag = TUR }
+            hidden_effect = { add_named_threat = { threat = 3 name = "Turkish Agents in Central Asia" } }
+        }
+    }
+
     option = {
         name = "They deserve punishment!"
         create_wargoal = { target = TUR type = topple_government }

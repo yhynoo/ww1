@@ -42,6 +42,10 @@ country_event = {
     is_triggered_only = yes
     trigger = { has_stability < 0.7 }
 
+    immediate = {
+        hidden_effect = { add_named_threat = { threat = 2 name = "Unrest in Ukraine" } }
+    }
+
     option = {
         name = "Negotiate with Ukrainian peasants."
         add_political_power = -75
