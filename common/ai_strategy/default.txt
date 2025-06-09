@@ -4,14 +4,7 @@ default_unit_production = {
 		always = yes
 		NOT = {
 			OR = {
-				original_tag = AUS
-				original_tag = ENG
-				original_tag = FRA
-				original_tag = GER
-				original_tag = ITA
-				original_tag = JAP
-				original_tag = SOV
-				original_tag = TUR
+				original_tag = AUS original_tag = ENG original_tag = FRA original_tag = GER original_tag = ITA original_tag = JAP original_tag = SOV original_tag = TUR
 			}
 		}
 	}
@@ -34,6 +27,23 @@ default_unit_production = {
 		type = role_ratio
 		id = cyclist
 		value = 10
+	}
+}
+
+civil_war_adjustment = {
+	enable = { has_civil_war = yes }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = -35
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = garrison
+		value = 50
 	}
 }
 	

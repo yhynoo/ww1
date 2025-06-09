@@ -1,0 +1,39 @@
+BAY_INF_01 = {
+	name = "Infanterie-Division"
+
+	for_countries = { BAY }
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+	fallback_name = "%d. Bayer. Infanterie-Division"
+
+	ordered = {
+		1 = { "%d. Infanterie-Division 'Maximilian I.'" }
+		2 = { "%d. Bayer. Infanterie-Division" }
+		3 = { "%d. Fränkische Infanterie-Division" }
+		5 = { "%d. Infanterie-Division" }
+		6 = { "%d. Alpen-Division 'Edelweiß'" }
+		10 = { "%d. Leichte Infanterie-Division 'Weiß-Blau'" }
+	}
+}
+
+BAY_GAR_01 = {
+	name = "Wachregiment"
+
+	for_countries = { BAY }
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+	fallback_name = "%d. Bayer. Wachregiment"
+
+	link_numbering_with = { BAY_INF_01 }
+
+	ordered = {
+		2 = { "%d. Kgl. Wachregiment" }
+		4 = { "%d. Freiwill.-Wachregiment" }
+		8 = { "%d. Fränkisches Wachregiment 'Nürnberg'" }
+		11 = { "%d. Fränkisches Wachregiment" }
+		12 = { "%d. Bayer. Wachregiment" }
+		14 = { "%d. Freiwill.-Wachregiment 'München'" }
+	}
+}

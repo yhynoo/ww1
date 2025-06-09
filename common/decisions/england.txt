@@ -12,6 +12,8 @@ mediterranean_expansion_eng = {
             }
         }
 
+        ai_will_do = { base = 9 }
+
         complete_effect = {
             if = {
                 limit = { 116 = { is_owned_and_controlled_by = ENG } }
@@ -33,6 +35,11 @@ mediterranean_expansion_eng = {
             TUR = { owns_state = 454 }
         }
 
+        ai_will_do = {
+            base = 0
+            modifier = { has_war_with = TUR add = 12 }
+        }
+
         complete_effect = {
             TUR = {
                 add_timed_idea = { idea = idea_unrest_in_arab_lands years = 1 }
@@ -52,6 +59,8 @@ england_alliances = {
             threat > 0.2
             has_war_support > 0.5
         }
+
+        ai_will_do = { base = 9 }
 
         complete_effect = {
             add_ideas = idea_containment
@@ -153,6 +162,49 @@ peoples_act = {
         modifier = {
             industrial_capacity_factory = 0.1
             communism_drift = 0.05
+        }
+    }
+}
+
+# feathers
+white_feathers = {
+    organize_feather_patrols = {
+        icon = generic_civil_support
+        cost = 20
+        days_remove = 60
+
+        modifier = {
+            stability_weekly = -0.005
+        }
+
+        complete_effect = {
+            add_power_balance_value = { id = england_feathers value = 0.05 tooltip_side = england_feathers_right }
+        }
+    }
+    evaluate_exemptions = {
+        icon = generic_political_discourse
+        cost = 25
+        days_remove = 60
+
+        modifier = {
+            training_time_factor = 0.15
+        }
+
+        complete_effect = {
+            add_power_balance_value = { id = england_feathers value = 0.1 tooltip_side = england_feathers_right }
+        }
+    }
+    draft_essential_workers = {
+        icon = generic_prepare_civil_war
+        cost = 50
+        days_remove = 60
+
+        modifier = {
+            industrial_capacity_factory = -0.2
+        }
+
+        complete_effect = {
+            add_power_balance_value = { id = england_feathers value = 0.1 tooltip_side = england_feathers_right }
         }
     }
 }

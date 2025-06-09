@@ -3,6 +3,11 @@ aftermath_of_antwerp = {
         cost = 75
         fire_only_once = yes
 
+        available = {
+            not = { has_war_with = FRA }
+            controls_state = 6
+        }
+
         ai_will_do = { base = 6 }
 
         complete_effect = {
@@ -17,7 +22,7 @@ aftermath_of_antwerp = {
 
         ai_will_do = {
             base = 0
-            modifier = { has_completed_focus = HOL_integrate_belgians add = 9 }
+            modifier = { has_completed_focus = HOL_integrate_flanders add = 9 }
         }
 
         modifier = {
@@ -46,6 +51,7 @@ holland_alliances = {
 
         targets = { ENG FRA GER }
         available = { 
+            is_in_faction = no
             FROM = { 
                 not = { has_war_with = ROOT }
                 or = { is_in_faction = no is_faction_leader = yes } 

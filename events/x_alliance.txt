@@ -21,7 +21,7 @@ country_event = {
         FROM = { news_event = { id = x_alliance.3 hours = 6 random_hours = 6 } }
 
         ai_chance = {
-            base = 1
+            base = 2
 
             modifier = { is_faction_leader = yes add = 2 }
             modifier = { has_war = yes factor = 3 }
@@ -55,6 +55,23 @@ country_event = {
             
             news_event = { id = x_alliance.3 hours = 6 random_hours = 6 }
             faction_leader = { add_to_faction = ROOT }
+
+            ai_chance = {
+                base = 1
+                modifier = { FROM = { has_guaranteed = ROOT } add = 2 }
+                modifier = { has_war = yes factor = 6 }
+
+                # France: if we have Belgium and Alsace-Lorraine, we will stay neutral.
+                modifier = { tag = FRA FROM = { tag = ENG } factor = 3 }
+
+                modifier = { 
+                    and = {
+                        tag = FRA  
+                        owns_state = 6 owns_state = 28 owns_state = 34
+                    }
+                    factor = 0
+                }
+            }
         }
     }
     option = {

@@ -11,7 +11,10 @@ country_event = {
         name = "We might need external help."
         GER = { news_event = { id = holland_german_guarantees.2 hours = 6 random_hours = 6 } }
 
-        ai_chance = { base = 6  }
+        ai_chance = { 
+            base = 3
+            modifier = { threat > 0.1 factor = 2 }
+        }
     }
     option = {
         name = "We will manage on our own."
@@ -32,7 +35,7 @@ country_event = {
         name = "They are a valuable ally."
         FROM = { news_event = { id = holland_german_guarantees.3 hours = 6 random_hours = 6 } }
 
-        give_guatantee = HOL
+        give_guarantee = HOL
 
         ai_chance = { 
             base = 3

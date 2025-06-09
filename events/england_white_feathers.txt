@@ -1,0 +1,40 @@
+add_namespace = england_white_feathers
+
+news_event = {
+    id = england_white_feathers.1
+    title = "White Feathers Given to Young Men"
+    desc = england_white_feathers.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Interesting."
+        set_power_balance = { id = england_feathers }
+    }
+}
+
+news_event = {
+    id = england_white_feathers.2
+    title = "Suffragettes Join the Movement"
+    desc = england_white_feathers.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "What is their deal?"
+        add_stability = -0.05
+    }
+}
+
+news_event = {
+    id = england_white_feathers.3
+    title = "Enough Is Enough"
+    desc = england_white_feathers.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Good."
+        add_war_support = 0.05
+    }
+}

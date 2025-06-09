@@ -1,0 +1,117 @@
+civil_soviet = {
+    civil_soviet_guns = {
+        visible = {
+            not = { original_tag = SOV }
+            any_neighbor_country = { or = { original_tag = SOV tag = POL tag = UBD tag = UKR } }
+        }
+
+        icon = generic_industry
+        cost = 50
+        days_re_enable = 90
+
+        targets = { SOV POL UBD UKR }
+        targets_dynamic = yes
+        target_trigger = { 
+            FROM = {
+                has_war = yes
+                is_neighbor_of = ROOT
+                not = { has_war_with = ROOT }
+            }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = { FROM = { has_government = ROOT } factor = 2 }
+        }
+
+        available = {
+            has_equipment = { infantry_equipment > 599 }
+        }
+
+        complete_effect = {
+            send_equipment = { equipment = infantry_equipment amount = 600 target = FROM }
+        }
+
+    }
+    civil_soviet_truce = {
+        visible = { 
+            not = { original_tag = SOV }
+            any_country = { original_tag = SOV has_war_with = ROOT } 
+        }
+
+        targets = { SOV }
+        targets_dynamic = yes
+        target_trigger = { FROM = { has_war_with = ROOT } }
+
+        available = {
+            not = { any_core_state = { is_controlled_by = FROM } }
+        }
+
+        icon = border_war
+        cost = 75
+        days_re_enable = 90
+
+        ai_will_do = { base = 12 }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_civil_war.1 hours = 6 random_hours = 6 } }
+        }
+
+    }
+    civil_soviet_cores = {
+        visible = {
+            not = { original_tag = SOV }
+            any_country = {
+                not = { has_war_with = ROOT }
+                any_controlled_state = { or = { is_core_of = ROOT is_claimed_by = ROOT } is_core_of = SOV }
+            }
+        }
+
+        icon = generic_form_nation
+        cost = 75
+        days_re_enable = 90
+
+        ai_will_do = { base = 24 }
+
+        targets_dynamic = yes
+        target_trigger = {
+            FROM = {
+                any_controlled_state = { 
+                    or = { is_claimed_by = ROOT is_core_of = ROOT }
+                    is_core_of = SOV
+                }
+            }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_civil_war.4 hours = 6 random_hours = 6 } }
+        }
+    }
+    civil_soviet_occupation = {
+        visible = {
+            original_tag = SOV
+            any_country = {
+                not = { has_war_with = ROOT }
+                any_controlled_state = { is_core_of = ROOT not = { is_core_of = controller } }
+            }
+        }
+
+        icon = generic_form_nation
+        cost = 100
+        days_re_enable = 90
+
+        ai_will_do = { base = 24 }
+
+        targets_dynamic = yes
+        target_trigger = {
+            FROM = {
+                not = { has_war_with = ROOT }
+                any_controlled_state = { is_core_of = ROOT not = { is_core_of = controller } }
+            }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_civil_war.7 hours = 6 random_hours = 6 } }
+        }
+    }
+}

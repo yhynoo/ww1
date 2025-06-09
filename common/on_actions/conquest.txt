@@ -47,8 +47,17 @@ on_actions = {
             }
 
             if = {
-                limit = { FROM.FROM = { state = 195 } not = { original_tag = SOV } }
-                country_event = { id = x_conquest_atmosphere.5 hours = 6 random_hours = 6 }
+                limit = { FROM.FROM = { state = 195 } }
+                
+                if = { 
+                    limit = { not = { original_tag = SOV } }
+                    country_event = { id = x_conquest_atmosphere.5 hours = 6 random_hours = 6 }
+                }
+                
+                if = {
+                    limit = { original_tag = SOV has_government = communism }
+                    news_event = { id = soviet_civil_war.2 days = 7 }
+                }
             }
 
             # 4. Champagne, Cologne, Hamburg, Tsaritsyn, Casablanca
@@ -75,6 +84,22 @@ on_actions = {
             if = {
                 limit = { FROM.FROM = { state = 461 } tag = SPR }
                 country_event = { id = x_conquest_atmosphere.10 hours = 6 random_hours = 6 }
+            }
+
+            # GER civil war
+            if = {
+                limit = { FROM.FROM = { state = 50 } original_tag = GER has_government = communism }
+                country_event = { id = germany_civil_war.3 hours = 6 random_hours = 6 }
+            }
+
+            if = {
+                limit = { FROM.FROM = { state = 52 } original_tag = GER has_government = communism }
+                country_event = { id = germany_civil_war.4 hours = 6 random_hours = 6 }
+            }
+            
+            if = {
+                limit = { FROM.FROM = { state = 59 } original_tag = GER has_government = communism }
+                country_event = { id = germany_civil_war.5 hours = 6 random_hours = 6 }
             }
         }
     }

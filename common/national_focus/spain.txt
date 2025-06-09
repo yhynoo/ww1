@@ -790,11 +790,6 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 1
-            modifier = { has_government = monarchism factor = 2 }
-        }
-
         mutually_exclusive = { focus = SPA_adjust_the_government }
         prerequisite = { focus = SPA_political_ambitions }
         completion_reward = {
@@ -813,7 +808,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 2
-            modifier = { has_war = no factor = 0.5 }
+            modifier = { has_war = no factor = 0 }
         }
 
         prerequisite = { focus = SPA_traditionalism }
@@ -886,11 +881,6 @@ focus_tree = {
         x = 4
         y = 1
         cost = 10
-
-        ai_will_do = {
-            base = 1
-            modifier = { has_government = democratic factor = 2 }
-        }
 
         mutually_exclusive = { focus = SPA_traditionalism }
         prerequisite = { focus = SPA_political_ambitions }

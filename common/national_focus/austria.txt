@@ -67,7 +67,7 @@ focus_tree = {
 
         prerequisite = { focus = AUS_focus_army }
         completion_reward = {
-            army_experience = 50
+            remove_ideas = idea_archaic_army
             add_doctrine_cost_reduction = {
 				name = land_doc_bonus
 				cost_reduction = 0.5
@@ -485,33 +485,7 @@ focus_tree = {
 			}
 		}
 		completion_reward = {
-			random_owned_controlled_state = {
-				limit = {
-					free_building_slots = {
-						building = infrastructure
-						size > 0
-					}
-					OR = {
-						is_in_home_area = yes
-						NOT = {
-							owner = {
-								any_owned_state = {
-									free_building_slots = {
-										building = infrastructure
-										size > 0
-									}
-									is_in_home_area = yes
-								}
-							}
-						}
-					}
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}
-			}
+            remove_ideas = idea_disjointed_transport_system
 			random_owned_controlled_state = {
 				limit = {
 					free_building_slots = {
@@ -827,7 +801,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 2
-            modifier = { has_war = no factor = 0.5 }
+            modifier = { has_war = no factor = 0 }
         }
 
         prerequisite = { focus = AUS_traditionalism }

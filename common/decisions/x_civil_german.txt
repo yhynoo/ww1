@@ -1,0 +1,178 @@
+civil_german = {
+    civil_german_rhineland = {
+        visible = {
+            tag = FRA
+            any_country = {
+                original_tag = GER
+                or = { controls_state = 42 controls_state = 51 }
+            }
+
+            not = { GER = { has_idea = idea_aftermath_of_german_civil_war } }
+        }
+
+        icon = generic_prepare_civil_war
+        cost = 100
+        fire_only_once = yes
+
+        targets_dynamic = yes
+        target_trigger = {
+            FROM = {
+                not = { has_war_with = ROOT }
+
+                original_tag = GER
+                or = { controls_state = 42 controls_state = 51 }
+
+                any_controlled_state = {
+                    or = { state = 42 state = 51 }
+                    any_neighbor_state = { is_controlled_by = FRA }
+                }
+            }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = france_rhineland.1 hours = 6 random_hours = 6 } }
+        }
+
+    }
+    civil_german_guns = {
+        visible = {
+            not = { original_tag = GER }
+            any_neighbor_country = { or = { original_tag = GER tag = BAY tag = HAN tag = WUR } }
+
+            not = { GER = { has_idea = idea_aftermath_of_german_civil_war } }
+        }
+
+        icon = generic_industry
+        cost = 50
+        days_re_enable = 90
+
+        targets = { GER BAY HAN WUR }
+        targets_dynamic = yes
+        target_trigger = { 
+            FROM = {
+                has_war = yes
+                is_neighbor_of = ROOT
+                not = { has_war_with = ROOT }
+            }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = { FROM = { has_government = ROOT } factor = 2 }
+        }
+
+        available = {
+            has_equipment = { infantry_equipment > 599 }
+        }
+
+        complete_effect = {
+            send_equipment = { equipment = infantry_equipment amount = 600 target = FROM }
+        }
+
+    }
+    civil_german_truce = {
+        visible = { 
+            not = { original_tag = GER }
+            any_country = { original_tag = GER has_war_with = ROOT } 
+
+            not = { GER = { has_idea = idea_aftermath_of_german_civil_war } }
+        }
+
+        targets = { GER }
+        targets_dynamic = yes
+        target_trigger = { FROM = { has_war_with = ROOT } }
+
+        available = {
+            not = { any_core_state = { is_controlled_by = FROM } }
+        }
+
+        icon = border_war
+        cost = 75
+        days_re_enable = 90
+
+        ai_will_do = { base = 12 }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_civil_war.1 hours = 6 random_hours = 6 } }
+        }
+
+    }
+    civil_german_cores = {
+        visible = {
+            not = { original_tag = GER }
+            any_country = {
+                not = { has_war_with = ROOT }
+                any_controlled_state = { or = { is_core_of = ROOT is_claimed_by = ROOT } is_core_of = GER }
+            }
+
+            not = { GER = { has_idea = idea_aftermath_of_german_civil_war } }
+        }
+
+        icon = generic_form_nation
+        cost = 75
+        days_re_enable = 90
+
+        ai_will_do = { base = 24 }
+
+        targets_dynamic = yes
+        target_trigger = {
+            FROM = {
+                any_controlled_state = { 
+                    or = { is_claimed_by = ROOT is_core_of = ROOT }
+                    is_core_of = GER
+                }
+            }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_civil_war.4 hours = 6 random_hours = 6 } }
+        }
+    }
+    civil_german_occupation = {
+        visible = {
+            original_tag = GER
+            any_country = {
+                not = { has_war_with = ROOT }
+                any_controlled_state = { is_core_of = ROOT not = { is_core_of = controller } }
+            }
+        }
+
+        icon = generic_form_nation
+        cost = 100
+        days_re_enable = 90
+
+        ai_will_do = { base = 24 }
+
+        targets_dynamic = yes
+        target_trigger = {
+            FROM = {
+                not = { has_war_with = ROOT }
+                any_controlled_state = { is_core_of = ROOT not = { is_core_of = controller } }
+            }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_civil_war.7 hours = 6 random_hours = 6 } }
+        }
+    }
+
+    # reunification
+    civil_german_reunification = {
+        visible = {
+            tag = GER has_idea = idea_aftermath_of_german_civil_war
+        }
+
+        icon = generic_form_nation
+        cost = 100
+        days_re_enable = 90
+
+        ai_will_do = { base = 15 }
+
+        targets = { BAY HAN WUR }
+        available = { FROM = { not = { has_war_with = ROOT } } }
+
+        complete_effect = {
+            FROM = { country_event = { id = germany_civil_war.7 hours = 6 random_hours = 6 } }
+        }
+    }
+}

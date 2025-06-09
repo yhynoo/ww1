@@ -49,3 +49,15 @@ FRA_stay_at_home = {
 		value = 60
 	}
 }
+
+FRA_careful = {
+	allowed = { tag = FRA }
+	enable = { HOL = { is_guaranteed_by = GER } is_in_faction = no }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = declare_war
+		id = HOL
+		value = -50
+	}
+}

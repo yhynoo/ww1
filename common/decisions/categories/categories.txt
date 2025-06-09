@@ -25,7 +25,7 @@ across_atlantic = {
 }
 
 adriatic_unrest = {
-    visible = { has_completed_focus = TUR_sarajevo_memorandum }
+    visible = { has_completed_focus = TUR_salonika_memorandum }
 }
 
 african_expansion = {
@@ -161,6 +161,36 @@ twenty_one_demands = {
 
 voc_mentaliteit = {
     visible = { has_completed_focus = HOL_on_our_own }
+}
+
+# war events
+civil_war_in_mexico = {
+    visible = {
+        has_country_flag = american_involvement_in_mexico
+        any_country = { has_original_tag = MEX has_civil_war = yes has_government = ROOT }
+    }
+}
+
+civil_soviet = {
+    visible = { SOV = { has_civil_war = yes } }
+}
+
+civil_german = {
+    visible = { or = { GER = { has_civil_war = yes } has_idea = idea_aftermath_of_german_civil_war } }
+}
+
+# war weariness
+agitation_in_army = {
+    visible = { 
+        tag = SOV
+        has_idea = idea_agitation_in_army
+    }
+    priority = 10
+}
+
+white_feathers = {
+    visible = { has_idea = idea_white_feathers }
+    priority = 10
 }
 
 # alliances

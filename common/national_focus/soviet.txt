@@ -819,7 +819,7 @@
 
         ai_will_do = {
             base = 2
-            modifier = { has_war = no factor = 0.5 }
+            modifier = { has_war = no factor = 0 }
         }
 
         prerequisite = { focus = SOV_traditionalism }
@@ -949,20 +949,32 @@
             
             communism > 0.3
         }
+
+        ai_will_do = {
+            base = 1
+            modifier = { communism > 0.4 add = 5 }
+        }
         
         completion_reward = {
+            news_event = { id = soviet_civil_war.1 hours = 6 random_hours = 6 }
+            
             start_civil_war = {
                 ruling_party = communism
                 ideology = ROOT
-                size = 0.5
+                size = 0.6
             }
 
             hidden_effect = {
-                set_popularities = { communism = 100 }
+                soviet_civil_war_setup = yes
+
+                # independence wars
+                news_event = { id = soviet_civil_war.3 days = 14 random_days = 70 }
+                news_event = { id = soviet_civil_war.4 days = 14 random_days = 70 }
+                news_event = { id = soviet_civil_war.5 days = 14 random_days = 70 }
             }
         }
     }
-    focus = {
+    focus = { 
         id = SOV_embrace_modernity
         icon = GFX_focus_generic_embrace_modernity
 

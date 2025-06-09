@@ -1,0 +1,65 @@
+add_namespace = usa_central_america
+
+country_event = {
+    id = usa_central_america.1
+    title = "[USA.GetName] Offer Political Alignment"
+    desc = usa_central_america.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We need their protection."
+        FROM = { 
+            news_event = { id = usa_central_america.2 hours = 6 random_hours = 6 }
+            set_autonomy = { target = MEX autonomous_state = autonomy_dominion }
+        }
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "We will stand on our own."
+
+        add_war_support = 0.05
+        FROM = { news_event = { id = usa_central_america.3 hours = 6 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = usa_central_america.2
+    title = "[FROM.GetName] Aligns with the United States"
+    desc = usa_central_america.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = usa_central_america.3
+    title = "[FROM.GetName] Declines!"
+    desc = usa_central_america.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Such a disappointment."
+        add_political_power = -50
+    }
+}
+
+news_event = {
+    id = usa_central_america.4
+    title = "[USA.GetName] to Invade Central America?"
+    desc = usa_central_america.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "America has too many sons."
+    }
+}

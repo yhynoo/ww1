@@ -5,7 +5,10 @@ antwerp_affair = {
         fire_only_once = yes
         cost = 75
 
-        available = { HOL = { controls_state = 6 } }
+        available = { 
+            not = { has_war_with = HOL }
+            HOL = { controls_state = 6 }
+        }
 
         ai_will_do = {
             base = 0
@@ -22,11 +25,15 @@ antwerp_affair = {
         fire_only_once = yes
         cost = 75
 
-        available = { GER = { controls_state = 34 } }
+        available = { 
+            not = { has_war_with = GER }
+            GER = { controls_state = 34 } 
+        }
 
         ai_will_do = {
             base = 0
             modifier = { date > 1914.4.1 add = 12 }
+            modifier = { is_in_faction = no factor = 0.5 }
         }
 
         complete_effect = {
@@ -68,6 +75,20 @@ france_alliances = {
             FROM = { is_in_faction = no not = { has_war_with = ROOT } }
         }
 
+        ai_will_do = {
+            base = 3
+            
+            modifier = {
+                and = { FROM = { tag = COL } has_government = monarchism }
+                add = 6
+            } 
+
+            modifier = {
+                and = { FROM = { tag = SOV } or = { date > 1915.1.1 has_war = yes } }
+                add = 6
+            } 
+        }
+
         complete_effect = {
             FROM = { country_event = { id = x_alliance.2 hours = 6 random_hours = 6 } }
         }
@@ -78,10 +99,16 @@ france_alliances = {
 
         targets = { ENG }
         available = { 
+            is_in_faction = no
             FROM = { 
                 not = { has_war_with = ROOT }
                 or = { is_in_faction = no is_faction_leader = yes } 
             }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { and = { has_war = yes has_government = democratic } add = 24 } 
         }
 
         complete_effect = {

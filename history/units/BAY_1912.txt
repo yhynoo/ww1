@@ -1,0 +1,67 @@
+division_template = {
+	name = "Infanterie-Division"
+	division_names_group = BAY_INF_01
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+        infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+	}
+	support = {
+		artillery = { x = 0 y = 0 }
+	}
+    priority = 1
+}
+
+division_template = {
+	name = "Wachregiment"
+	division_names_group = BAY_GAR_01
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+	}
+    priority = 0
+}
+
+units = {
+    division = {
+		location = 11544
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+	division = {
+		location = 9557
+		division_template = "Infanterie-Division"
+		start_experience_factor = 0.5
+        start_equipment_factor = 0.8
+    }
+    division = {
+		location = 11544
+		division_template = "Wachregiment"
+        start_equipment_factor = 0.6
+    }
+
+	division = {
+		location = 9515
+		division_template = "Infanterie-Division"
+		start_experience_factor = 0.5
+        start_equipment_factor = 0.8
+    }
+	division = {
+		location = 532
+		division_template = "Wachregiment"
+        start_equipment_factor = 0.6
+    }
+
+	division = {
+		location = 586
+		division_template = "Wachregiment"
+        start_equipment_factor = 0.6
+    }
+}

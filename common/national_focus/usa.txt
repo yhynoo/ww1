@@ -697,7 +697,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 1
-            modifier = { MEX = { has_war = yes } add = 2 }
+            modifier = { MEX = { has_war = yes } add = 1 }
         }
 
         available = { is_subject = no }
@@ -746,7 +746,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 1
-            modifier = { MEX = { has_war = yes } add = 5 }
+            modifier = { MEX = { has_war = yes } add = 2 }
         }
 
         completion_reward = {
@@ -807,13 +807,13 @@ focus_tree = {
 
         ai_will_do = {
             base = 0
-            modifier = { has_war = yes add = 2}
+            modifier = { threat > 0.3 add = 3 } 
         }
 
         mutually_exclusive = { focus = USA_not_our_war }
         prerequisite = { focus = USA_political_ambitions }
         completion_reward = {
-            add_stability = 0.05
+            remove_ideas = idea_isolationist_society 
             news_event = { id = x_war_support.1 hours = 12 random_hours = 6 }
         }
     }
@@ -828,7 +828,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 2
-            modifier = { has_war = no factor = 0.5 }
+            modifier = { has_war = no factor = 0 }
         }
 
         prerequisite = { focus = USA_hearts_and_minds }
@@ -910,8 +910,8 @@ focus_tree = {
         mutually_exclusive = { focus = USA_hearts_and_minds }
         prerequisite = { focus = USA_political_ambitions }
         completion_reward = {
-            add_timed_idea = { idea = idea_authoritarianism_tendencies years = 1 }
-            add_popularity = { ideology = authoritarianism popularity = 0.1 }
+            add_timed_idea = { idea = idea_communism_tendencies years = 1 }
+            add_popularity = { ideology = communism popularity = 0.1 }
 
             hidden_effect = { country_event = { id = usa_embers_of_the_past.1 days = 42 random_days = 70 } }
         }
@@ -961,20 +961,20 @@ focus_tree = {
         prerequisite = { focus = USA_state_reform }
         available = {
             has_civil_war = no
-            not = { has_government = authoritarianism }
+            not = { has_government = monarchism }
             
-            authoritarianism > 0.3
+            monarchism > 0.3
         }
         
         completion_reward = {
             start_civil_war = {
-                ruling_party = authoritarianism
+                ruling_party = monarchism
                 ideology = ROOT
                 size = 0.5
             }
 
             hidden_effect = {
-                set_popularities = { authoritarianism = 100 }
+                set_popularities = { monarchism = 100 }
             }
         }
     }

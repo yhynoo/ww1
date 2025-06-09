@@ -1,0 +1,39 @@
+HAN_INF_01 = {
+	name = "Infanterie-Division"
+
+	for_countries = { HAN }
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+	fallback_name = "%d. Hannöv. Infanterie-Division"
+
+	ordered = {
+		1 = { "%d. Infanterie-Division 'Ernst August'" }
+		2 = { "%d. Hannöv. Infanterie-Division" }
+		3 = { "%d. Leichte Hannöv. Inf.-Division" }
+		5 = { "%d. Infanterie-Division 'Weser'" }
+		6 = { "%d. Infanterie-Division 'Emden'" }
+		10 = { "%d. Hannöv. Infanterie-Division" }
+	}
+}
+
+HAN_GAR_01 = {
+	name = "Wachregiment"
+
+	for_countries = { HAN }
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+	fallback_name = "%d. Hannöv. Wachregiment"
+
+	link_numbering_with = { HAN_INF_01 }
+
+	ordered = {
+		2 = { "%d. Wachregiment 'Sturmvogel'" }
+		4 = { "%d. Wachregiment 'Möwe'" }
+		8 = { "%d. Hannöv. Wachregiment" }
+		11 = { "%d. Wachregiment 'Albatros'" }
+		12 = { "%d. Marine-Wachregiment 'Seeadler'" }
+		14 = { "%d. Hannöv. Wachreg. 'Pinguin'" }
+	}
+}

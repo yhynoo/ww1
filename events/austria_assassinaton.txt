@@ -1,9 +1,9 @@
-add_namespace = soviet_assassination
+add_namespace = austria_assassination
 
 country_event = {
-    id = soviet_assassination.1
+    id = austria_assassination.1
     title = "Military Train Derailed"
-    desc = soviet_assassination.1.d
+    desc = austria_assassination.1.d
 
     is_triggered_only = yes
 
@@ -11,20 +11,20 @@ country_event = {
         name = "Investigate the matter."
         add_political_power = -100
 
-        hidden_effect = { news_event = { id = soviet_assassination.2 days = 7 random_days = 7 } }
+        hidden_effect = { news_event = { id = austria_assassination.2 days = 7 random_days = 7 } }
     }
     option = {
         name = "A silly accident."
         add_stability = -0.05
 
-        hidden_effect = { country_event = { id = soviet_assassination.3 days = 70 random_days = 42 } }
+        hidden_effect = { country_event = { id = austria_assassination.3 days = 70 random_days = 42 } }
     }
 }
 
 news_event = {
-    id = soviet_assassination.2
+    id = austria_assassination.2
     title = "Okhrana Spies Captured"
-    desc = soviet_assassination.2.d
+    desc = austria_assassination.2.d
 
     is_triggered_only = yes
 
@@ -39,9 +39,9 @@ news_event = {
 
 
 country_event = {
-    id = soviet_assassination.3
+    id = austria_assassination.3
     title = "Assassination Attempt in Sarajevo!"
-    desc = soviet_assassination.3.d
+    desc = austria_assassination.3.d
 
     is_triggered_only = yes
 
@@ -52,21 +52,21 @@ country_event = {
     option = {
         name = "This means war!"
 
-        hidden_effect = { news_event = { id = soviet_assassination.4 hours = 6 random_hours = 6 } }
+        hidden_effect = { news_event = { id = austria_assassination.4 hours = 6 random_hours = 6 } }
         declare_war_on = { target = SOV type = topple_government }
     }
     option = {
         name = "We must not act in haste."
         add_political_power = -100
 
-        hidden_effect = { news_event = { id = soviet_assassination.5 days = 7 random_days = 7 } }
+        hidden_effect = { news_event = { id = austria_assassination.5 days = 7 random_days = 7 } }
     }
 }
 
 news_event = {
-    id = soviet_assassination.4
+    id = austria_assassination.4
     title = "[AUS.GetName] Goes to War!"
-    desc = soviet_assassination.4.d
+    desc = austria_assassination.4.d
 
     is_triggered_only = yes
     major = yes
@@ -77,9 +77,9 @@ news_event = {
 }
 
 news_event = {
-    id = soviet_assassination.5
+    id = austria_assassination.5
     title = "An Egregious Humiliation"
-    desc = soviet_assassination.5.d
+    desc = austria_assassination.5.d
 
     is_triggered_only = yes
 

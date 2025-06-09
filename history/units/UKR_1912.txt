@@ -1,5 +1,5 @@
 division_template = {
-	name = "Dyviziya Pikhoty"
+	name = "Lehion Striltsiv"
 	division_names_group = UKR_INF_01
 
 	regiments = {
@@ -10,55 +10,94 @@ division_template = {
         infantry = { x = 2 y = 0 }
 		infantry = { x = 2 y = 1 }
 	}
+	support = {
+		artillery = { x = 0 y = 0 }
+	}
+}
+
+division_template = {
+	name = "Dobrovoltskyi Kurin'"
+	division_names_group = UKR_GAR_01
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+	}
+	priority = 0
 }
 
 
 units = {
-
-    # Kyiv (4 divs.)
     division = {
 		location = 525
-		division_template = "Dyviziya Pikhoty"
-        start_equipment_factor = 0.3
+		division_template = "Lehion Striltsiv"
+        start_equipment_factor = 0.5
     }
 	division = {
 		location = 525
-		division_template = "Dyviziya Pikhoty"
-        start_equipment_factor = 0.2
+		division_template = "Lehion Striltsiv"
+        start_equipment_factor = 0.6
 	}
 
 	division = {
 		location = 488
-		division_template = "Dyviziya Pikhoty"
-        start_equipment_factor = 0.3
+		division_template = "Lehion Striltsiv"
+        start_equipment_factor = 0.6
     }
 	division = {
 		location = 488
-		division_template = "Dyviziya Pikhoty"
+		division_template = "Lehion Striltsiv"
         start_equipment_factor = 0.3
     }
-    
 
-    # Dnipro (4 divs.)
+	division = {
+		location = 9568
+		division_template = "Dobrovoltskyi Kurin'"
+        start_equipment_factor = 0.3
+	}
+	division = {
+		location = 11409
+		division_template = "Dobrovoltskyi Kurin'"
+        start_equipment_factor = 0.5
+	}
+	division = {
+		location = 6497
+		division_template = "Dobrovoltskyi Kurin'"
+        start_equipment_factor = 0.2
+	}
+    
     division = {
 		location = 11437
-		division_template = "Dyviziya Pikhoty"
-        start_equipment_factor = 0.3
+		division_template = "Lehion Striltsiv"
+        start_equipment_factor = 0.5
     }
 	division = {
 		location = 11437
-		division_template = "Dyviziya Pikhoty"
+		division_template = "Dobrovoltskyi Kurin'"
         start_equipment_factor = 0.2
 	}
 
 	division = {
 		location = 486
-		division_template = "Dyviziya Pikhoty"
-        start_equipment_factor = 0.2
+		division_template = "Lehion Striltsiv"
+        start_equipment_factor = 0.3
 	}
 	division = {
 		location = 11561
-		division_template = "Dyviziya Pikhoty"
+		division_template = "Dobrovoltskyi Kurin'"
+        start_equipment_factor = 0.2
+	}
+
+	division = {
+		location = 9571
+		division_template = "Dobrovoltskyi Kurin'"
+        start_equipment_factor = 0.2
+	}
+	division = {
+		location = 6596
+		division_template = "Dobrovoltskyi Kurin'"
         start_equipment_factor = 0.2
 	}
     

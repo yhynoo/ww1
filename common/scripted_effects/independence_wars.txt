@@ -32,6 +32,28 @@ start_algerian_independence_war = {
     ALG = { load_oob = "ALG_1912" }
 }
 
+# baden
+start_badenian_independence_war = {
+    every_country = {
+        limit = { original_tag = GER not = { has_government = monarchism } }
+
+        # transfer states
+        every_controlled_state = {
+            limit = { state = 50 }        # add states
+            transfer_state_to = WUR
+        }
+
+        # declare war
+        declare_war_on = { target = WUR type = annex_everything }
+    }
+
+    # load troops
+    WUR = { 
+        load_oob = "WUR_1912"
+        add_ideas = { closed_economy partial_economic_mobilisation extensive_conscription }
+    }
+}
+
 # baltic
 start_baltic_independence_war = {
     every_country_with_original_tag = {
@@ -39,16 +61,44 @@ start_baltic_independence_war = {
 
         # transfer states
         every_controlled_state = {
-            limit = { or = { state = 12 state = 13 } }        # add states
+            limit = { or = { state = 12 state = 13 state = 188 } }        # add states
             transfer_state_to = UBD
         }
+    }
 
-        # declare war
+    # declare war
+    every_country_with_original_tag = {
+        original_tag_to_check = SOV
         declare_war_on = { target = UBD type = annex_everything }
     }
 
     # load troops
-    UBD = { load_oob = "UBD_1912" }
+    UBD = { 
+        load_oob = "UBD_1912"
+        add_ideas = { limited_exports partial_economic_mobilisation extensive_conscription }
+    }
+}
+
+# bavaria
+start_bavarian_independence_war = {
+    every_country = {
+        limit = { original_tag = GER not = { has_government = monarchism } }
+
+        # transfer states
+        every_controlled_state = {
+            limit = { or = { state = 53 state = 54 } }        # add states
+            transfer_state_to = BAY
+        }
+
+        # declare war
+        declare_war_on = { target = BAY type = annex_everything }
+    }
+
+    # load troops
+    BAY = { 
+        load_oob = "BAY_1912"
+        add_ideas = { limited_exports partial_economic_mobilisation extensive_conscription }
+    }
 }
 
 # greek
@@ -65,7 +115,32 @@ start_greek_independence_war = {
     }
     
     # load troops
-    GRE = { load_oob = "GRE_1912" }
+    GRE = { 
+        load_oob = "GRE_1912"
+        add_ideas = { limited_exports partial_economic_mobilisation extensive_conscription }
+    }
+}
+
+# hanover - only independence from communist rebels
+start_hanover_independence_war = {
+    every_country = {
+        limit = { original_tag = GER not = { has_government = monarchism } }
+
+        # transfer states
+        every_controlled_state = {
+            limit = { or = { state = 59 state = 56 } }        # add states
+            transfer_state_to = HAN
+        }
+
+        # declare war
+        declare_war_on = { target = HAN type = annex_everything }
+    }
+
+    # load troops
+    HAN = { 
+        load_oob = "HAN_1912"
+        add_ideas = { limited_exports partial_economic_mobilisation extensive_conscription }
+    }
 }
 
 # mongolia
@@ -94,13 +169,19 @@ start_polish_independence_war = {
             limit = { or = { state = 10 state = 87 state = 90 state = 97 } }        # add states
             transfer_state_to = POL
         }
+    }
 
-        # declare war
+    # declare war
+    every_country_with_original_tag = {
+        original_tag_to_check = SOV
         declare_war_on = { target = POL type = annex_everything }
     }
 
     # load troops
-    POL = { load_oob = "POL_1912" }
+    POL = { 
+        load_oob = "POL_1912"
+        add_ideas = { limited_exports partial_economic_mobilisation limited_conscription }
+    }
 }
 
 # sicily
@@ -113,13 +194,19 @@ start_sicilian_independence_war = {
             limit = { is_core_of = TTS }
             transfer_state_to = TTS
         }
+    }
 
-        # declare war
+    # declare war
+    every_country_with_original_tag = {
+        original_tag_to_check = ITA
         declare_war_on = { target = TTS type = annex_everything }
     }
 
     # load troops
-    TTS = { load_oob = "TTS_1912" }
+    TTS = { 
+        load_oob = "TTS_1912"
+        add_ideas = { closed_economy partial_economic_mobilisation limited_conscription }
+    }
 }
 
 # south africa
@@ -136,7 +223,10 @@ start_south_african_independence_war = {
     }
     
     # load troops
-    SAF = { load_oob = "SAF_1912" }
+    SAF = { 
+        load_oob = "SAF_1912"
+        add_ideas = { closed_economy partial_economic_mobilisation extensive_conscription }
+    }
 }
 
 # ukraine
@@ -149,11 +239,17 @@ start_ukrainian_independence_war = {
             limit = { or = { state = 198 state = 200 state = 202 state = 203 state = 226 } }        # add states
             transfer_state_to = UKR
         }
+    }
 
-        # declare war
+    # declare war
+    every_country_with_original_tag = {
+        original_tag_to_check = SOV
         declare_war_on = { target = UKR type = annex_everything }
     }
 
     # load troops
-    UKR = { load_oob = "UKR_1912" }
+    UKR = { 
+        load_oob = "UKR_1912"
+        add_ideas = { closed_economy partial_economic_mobilisation extensive_conscription }
+    }
 }

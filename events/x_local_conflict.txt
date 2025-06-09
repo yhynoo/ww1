@@ -12,10 +12,17 @@ country_event = {
 
         news_event = { id = x_local_conflict.2 hours = 6 random_hours = 6 }
         create_wargoal = { target = FROM type = take_state_focus }
+
+        ai_chance = { base = 1 }
     }
     option = {
         name = "We must not escalate further."
         add_popularity = { ideology = ROOT popularity = -0.05 }
+
+        ai_chance = { 
+            base = 1
+            modifier = { has_war = yes add = 3 }
+        }
     }
 }
 

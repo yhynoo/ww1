@@ -3,7 +3,7 @@ dc_head_of_state_decisions = {
         icon = generic_prepare_civil_war
         
         days_remove = 90
-        cost = 100
+        cost = 50
 
         available = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
 
@@ -34,16 +34,13 @@ dc_head_of_state_decisions = {
         }
         fire_only_once = no
         days_remove = 90
-        cost = 100
+        cost = 75
 
         ai_will_do = {
             base = 3
             modifier = { 
-                OR = {
-                    communism > 0.2
-                    authoritarianism > 0.2
-                }
-                factor = 2.5
+                OR = { communism > 0.2 authoritarianism > 0.2 has_stability < 0.3 }
+                factor = 3
             }
             modifier = {
                 or = { has_idea = idea_communism_tendencies has_idea = idea_authoritarism_tendencies }
@@ -67,13 +64,13 @@ dc_head_of_state_decisions = {
         }
         fire_only_once = no
         days_remove = 90
-        cost = 100
+        cost = 75
 
         ai_will_do = {
             base = 3
             modifier = { 
-                OR = { democratic > 0.2 monarchism > 0.2 } 
-                factor = 2.5
+                OR = { democratic > 0.2 monarchism > 0.2 has_stability < 0.3 } 
+                factor = 3
             }
             modifier = {
                 or = { has_idea = idea_monarchism_tendencies has_idea = idea_democratic_tendencies }

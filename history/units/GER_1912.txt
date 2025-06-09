@@ -17,21 +17,8 @@ division_template = {
 }
 
 division_template = {
-	name = "Koloniale Division"
-	division_names_group = GER_GAR_01
-
-	regiments = {
-		infantry = { x = 0 y = 0 }
-		infantry = { x = 0 y = 1 }
-        infantry = { x = 1 y = 0 }
-		infantry = { x = 1 y = 1 }
-	}
-    priority = 0
-}
-
-division_template = {
-	name = "Fahrrad-Division"
-	division_names_group = GER_INF_01
+	name = "Radfahrtruppen"
+	division_names_group = GER_INF_02
     
 	regiments = {
 		bicycle_battalion = { x = 0 y = 0 }
@@ -46,6 +33,19 @@ division_template = {
     }
 }
 
+division_template = {
+	name = "Kolonialverbände"
+	division_names_group = GER_GAR_01
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+	}
+    priority = 0
+}
+
 # units
 units = {
 
@@ -58,7 +58,7 @@ units = {
     }
     division = {
 		location = 6332
-		division_template = "Fahrrad-Division"
+		division_template = "Radfahrtruppen"
         start_experience_factor = 0.3
     }
 
@@ -93,7 +93,7 @@ units = {
     }
     division = {
 		location = 9575
-		division_template = "Fahrrad-Division"
+		division_template = "Radfahrtruppen"
         start_experience_factor = 0.3
     }
 
@@ -109,7 +109,7 @@ units = {
     }
     division = {
 		location = 9444
-		division_template = "Fahrrad-Division"
+		division_template = "Radfahrtruppen"
         start_experience_factor = 0.3
     }
 
@@ -181,12 +181,12 @@ units = {
     ## COLONIAL (2 divs.)
     division = {
 		location = 4879
-		division_template = "Koloniale Division"
+		division_template = "Kolonialverbände"
         start_experience_factor = 0.3
     }
     division = {
 		location = 10000
-		division_template = "Koloniale Division"
+		division_template = "Kolonialverbände"
         start_experience_factor = 0.3
     }
 

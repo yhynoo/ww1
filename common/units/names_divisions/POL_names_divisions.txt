@@ -1,0 +1,61 @@
+POL_INF_01 = {
+	name = "Dywizja Piechoty"
+
+	for_countries = { POL }
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+	fallback_name = "%d. Dywizja Piechoty"
+
+	ordered = {
+		1 = { "%d. Warszawska Dywizja Piechoty" }
+		2 = { "%d. Dywizja Piechoty 'Kraków'" }
+		3 = { "%d. Kresowa Dywizja Piechoty" }
+		4 = { "%d. (Łemk.) Dywizja Piechoty 'Hałycz'" }
+		7 = { "%d. Dywizja Piechoty" }
+		10 = { "%d. Grodnieńska Dywizja Piechoty" }
+	}
+}
+
+POL_INF_02 = {
+	name = "Dywizja Piechoty Legionów"
+
+	for_countries = { POL }
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+	fallback_name = "%d. Dyw. Piechoty Legionów"
+
+	link_numbering_with = { POL_INF_01 }
+
+	ordered = {
+		1 = { "%d. Dyw. Piechoty Legionów" }
+		2 = { "%d. Wileńska Dyw. Piech. Legionów" }
+		3 = { "%d. Małopolska Dyw. Piech." }
+		6 = { "%d. Dyw. Piechoty Legionów" }
+		9 = { "%d. Dyw. Piech. Legionów 'Lwów'" }
+		12 = { "%d. Podhalańska Dyw. Piech. Legionów" }
+	}
+}
+
+POL_GAR_01 = {
+	name = "Legiony Ochotnicze"
+
+	for_countries = { POL }
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+	fallback_name = "%d. Legion Ochotniczy"
+
+	link_numbering_with = { POL_INF_01 }
+
+	ordered = {
+		2 = { "%d. Legion Ochotniczy 'Warszawa'" }
+		5 = { "%d. Legion Ochotniczy 'Radom'" }
+		6 = { "%d. Małopolski (chłop.) Legion Ochotniczy" }
+		8 = { "%d. Legion Ochotniczy 'Warta'" }
+		13 = { "%d. Legion Ochotniczy" }
+		17 = { "%d. Śląski Legion Ochotniczy" }
+	}
+}
+

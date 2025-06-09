@@ -758,7 +758,7 @@ focus_tree = {
     }
     focus = {
         id = GER_seek_alliances
-        icon = GFX_focus_generic_seek_alliances
+        icon = GFX_focus_generic_on_our_own
 
         relative_position_id = GER_expansionism
         x = -2
@@ -794,11 +794,12 @@ focus_tree = {
 
         ai_will_do = {
             base = 0
-            modifier = { date > 1915.1.1 add = 1 }
+            modifier = { has_country_flag = we_go_auth add = 1 }
         }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
+            add_popularity = { ideology = authoritarianism popularity = 0.05 }
         }
     }
 
@@ -834,7 +835,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 2
-            modifier = { has_war = no factor = 0.5 }
+            modifier = { has_war = no factor = 0 }
         }
 
         prerequisite = { focus = GER_traditionalism }
@@ -845,7 +846,7 @@ focus_tree = {
     }
     focus = {
         id = GER_mobilize_the_masses
-        icon = GFX_focus_generic_mobilize_the_masses
+        icon = GFX_focus_GER_mobilize_the_masses
 
         relative_position_id = GER_traditionalism
         x = 1
@@ -859,7 +860,7 @@ focus_tree = {
 
         prerequisite = { focus = GER_traditionalism }
         completion_reward = {
-            add_timed_idea = { idea = idea_mobilize_the_masses years = 2 }
+            add_timed_idea = { idea = idea_die_wacht_am_rhein years = 2 }
 
             hidden_effect = {
                 news_event = { id = x_war_support.2 hours = 12 random_hours = 6 }
@@ -972,14 +973,33 @@ focus_tree = {
         }
         
         completion_reward = {
+            news_event = { id = germany_civil_war.1 hours = 6 random_hours = 6 }
+
+            hidden_effect = { 
+                set_capital = { state = 58 }            # so the communists won't keep berlin
+                if = {
+                    limit = { has_government = democratic }
+                    # country_event = { id = germany_civil_war.10 days = 30 random_days = 14 }
+                }
+            }        
+
             start_civil_war = {
                 ruling_party = communism
                 ideology = ROOT
-                size = 0.5
+                
+                states = all
+                capital = 64
+                states_filter = {
+                    not = { state = 57 } not = { state = 58 } not = { state = 61 } not = { state = 62 } not = { state = 63 } 
+                    not = { state = 8 }  not = { state = 28 } not = { state = 34 } not = { state = 51 } not = { state = 55 } not = { state = 56 } not = { state = 42 } 
+                }
+                army_ratio = 0.4
+                navy_ratio = 0.1
+
             }
 
-            hidden_effect = {
-                set_popularities = { communism = 100 }
+            hidden_effect = { 
+                german_civil_war_setup = yes
             }
         }
     }

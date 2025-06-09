@@ -1,0 +1,58 @@
+GER_INF_01 = {
+	name = "Infanterie-Division"
+
+	for_countries = { GER }
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+	fallback_name = "%d. Infanterie-Division"
+
+	ordered = {
+		1 = { "%d. Garde-Infanterie-Division" }
+		2 = { "%d. Garde-Infanterie-Division" }
+		3 = { "%d. Kgl. Bayer. Infanterie-Division" }
+		4 = { "%d. Infanterie-Division" }
+		8 = { "%d. (Res.) Infanterie-Division" }
+		10 = { "%d. Württembergische Infanterie-Division" }
+	}
+}
+
+GER_INF_02 = {
+	name = "Radfahrtruppen"
+
+	for_countries = { GER }
+	can_use = { always = yes }
+
+	division_types = { "bicycle" }
+	fallback_name = "%d. Radfahr-Division"
+
+	ordered = {
+		1 = { "%d. Radfahr-Division 'Diamant'" }
+		2 = { "%d. Garde-Radfahr-Division 'Kronprinz'" }
+		3 = { "%d. Radfahr-Division" }
+		4 = { "%d. Radfahr-Husaren-Division" }
+		5 = { "%d. Kgl. Bayer. Radfahr-Division" }
+		6 = { "%d. Leichte Radfahr-Division 'Königsberg'" }
+	}
+}
+
+GER_GAR_01 = {
+	name = "Kolonialverbände"
+
+	for_countries = { GER }
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+	fallback_name = "%d. Landwehr-Regiment"
+
+	link_numbering_with = { GER_INF_01 }
+
+	ordered = {
+		1 = { "%d. Schutztruppe 'Deutsch-Ostafrika'" }
+		3 = { "%d. Kolonial-Regiment 'Tsingtau'" }
+		4 = { "%d. Kolonial-Regiment" }
+		9 = { "%d. Landwehr-Regiment 'Stuttgart'" }
+		16 = { "%d. Landwehr-Regiment 'Metz'" }
+		17 = { "%d. Schutztruppe 'Samoa'" }
+	}
+}

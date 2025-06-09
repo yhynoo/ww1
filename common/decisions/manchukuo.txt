@@ -60,6 +60,7 @@ manchukuo_alliances = {
 
         targets = { ENG GER USA }
         available = { 
+            is_in_faction = no
             FROM = { 
                 not = { has_war_with = ROOT }
                 or = { is_in_faction = no is_faction_leader = yes } 
@@ -85,6 +86,7 @@ eight_banners = {
         cost = 100
 
         available = {
+            not = { has_war_with = SOV }
             any_state = {
                 or = { state = 408 state = 409 }
                 is_owned_by = SOV

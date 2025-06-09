@@ -74,6 +74,7 @@ germany_alliances = {
         fire_only_once = yes
 
         available = {
+            not = { has_war_with = ENG }
             any_state = { 
                 or = { state = 275 state = 542 state = 544 state = 545 state = 681 }
                 is_owned_and_controlled_by = ENG
@@ -99,6 +100,8 @@ germany_alliances = {
         ai_will_do = { 
             base = 6
             modifier = { FROM = { tag = TUR } add = 6 }
+
+            modifier = { and = { FROM = { tag = MAN } not = { has_war_with = JAP } } factor = 0 }
         }
 
         complete_effect = {
@@ -127,9 +130,28 @@ greater_germany = {
         days_remove = 90
         available = { not = { has_war_with = AUS } }
 
+        highlight_states = {
+            highlight_state_targets = {
+                state = 4 state = 9 state = 33 state = 39 state = 69 state = 74 state = 75 state = 80 state = 102 state = 152 state = 153 state = 664
+            }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { 
+                or = {
+                    not = { is_ally_with = AUS } 
+                    and = { date > 1916.1.1 not = { has_war = yes } }
+                }    
+                add = 12
+            }
+        }
+
         complete_effect = {
             if = {
                 limit = { is_ally_with = AUS }
+                news_event = { id = germany_greater.1 hours = 6 random_hours = 6 }
+
                 if = {
                     limit = { is_faction_leader = yes }
                     remove_from_faction = AUS
@@ -137,12 +159,14 @@ greater_germany = {
                 else = { leave_faction = yes }
             }
 
-            every_state = {
-                limit = { 
-                    or = { state = 4 state = 9 state = 33 state = 39 state = 69 state = 74 state = 75 state = 102 state = 152 state = 153 state = 664 }
-                    is_owned_by = AUS
+            hidden_effect = {
+                every_state = {
+                    limit = { 
+                        or = { state = 4 state = 9 state = 33 state = 39 state = 69 state = 74 state = 75 state = 80 state = 102 state = 152 state = 153 state = 664 }
+                        is_owned_by = AUS
+                    }
+                    add_claim_by = GER
                 }
-                add_claim_by = GER
             }
         }
 
@@ -150,17 +174,69 @@ greater_germany = {
             create_wargoal = { target = AUS type = take_claimed_state }
         }
     }
-    baltic_germans = {
+    drang_nach_osten = {
         icon = generic_prepare_civil_war
         cost = 150
         fire_only_once = yes
 
-        available = {
-            not = { has_war_with = SOV }
+        days_remove = 90
+        available = { 
+            hidden_trigger = {
+                any_country = {
+                    any_controlled_state = { or = { is_core_of = POL is_core_of = UBD } }
+                    not = { has_war_with = GER }
+                }
+            }
         }
 
+        highlight_states = {
+            highlight_state_targets = {
+                state = 10 state = 87  state = 90 state = 92 state = 98
+                state = 11 state = 189 state = 190 state = 12 state = 188 state = 13 state = 191 
+            }
+        }
+        
         complete_effect = {
-            SOV = { country_event = { id = germany_baltic.1 hours = 6 random_hours = 6 } }
+            news_event = { id = germany_greater.2 hours = 6 random_hours = 6 }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { 
+                and = { date > 1916.1.1 not = { has_war = yes } }
+                add = 12
+            }
+        }
+
+        remove_effect = {
+            custom_effect_tooltip = drang_nach_osten_tt
+            hidden_effect = {
+                every_other_country = {
+                    limit = { 
+                        any_controlled_state = { or = { is_core_of = POL is_core_of = UBD } }
+                        not = { has_war_with = GER }
+                    }
+                    ROOT = { create_wargoal = { target = PREV type = annex_everything } }
+                }
+            }
+        }
+    }
+    align_holland = {
+        icon = generic_form_nation
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            HOL = { 
+                is_subject = no
+                not = { has_war_with = GER }
+            }
+        }
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            HOL = { country_event = { id = germany_greater.3 hours = 6 random_hours = 6 } }
         }
     }
 }

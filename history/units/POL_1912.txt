@@ -10,50 +10,100 @@ division_template = {
         infantry = { x = 2 y = 0 }
 		infantry = { x = 2 y = 1 }
 	}
+	support = {
+		artillery = { x = 0 y = 0 }
+	}
+    priority = 1
 }
 
+division_template = {
+	name = "Dywizja Piechoty Legionów"
+	division_names_group = POL_INF_02
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+        infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+		artillery_brigade = { x = 3 y = 1 }
+	}
+	support = {
+		artillery = { x = 0 y = 0 }
+	}
+    priority = 2
+}
+
+division_template = {
+	name = "Legiony Ochotnicze"
+	division_names_group = UBD_GAR_01
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+	}
+    priority = 0
+}
 
 units = {
-
-    # Warszawa (5 divs.)
+    # Warszawa
     division = {
 		location = 3544
-		division_template = "Dywizja Piechoty"
-        start_equipment_factor = 0.3
+		division_template = "Dywizja Piechoty Legionów"
+        start_equipment_factor = 0.6
     }
-	division = {
-		location = 3544
-		division_template = "Dywizja Piechoty"
-        start_equipment_factor = 0.2
-	}
-
 	division = {
 		location = 9508
 		division_template = "Dywizja Piechoty"
-        start_equipment_factor = 0.3
+        start_equipment_factor = 0.5
     }
+
+	division = {
+		location = 3544
+		division_template = "Legiony Ochotnicze"
+        start_equipment_factor = 0.5
+	}
 	division = {
 		location = 3458
-		division_template = "Dywizja Piechoty"
+		division_template = "Legiony Ochotnicze"
+        start_equipment_factor = 0.5
+    }
+
+	division = {
+		location = 11430
+		division_template = "Legiony Ochotnicze"
         start_equipment_factor = 0.3
     }
 	division = {
-		location = 11430
-		division_template = "Dywizja Piechoty"
-        start_equipment_factor = 0.2
+		location = 3482
+		division_template = "Legiony Ochotnicze"
+        start_equipment_factor = 0.3
     }
     
-
-    # Litwa (2 divs.)
+    # Litwa
     division = {
 		location = 11301
 		division_template = "Dywizja Piechoty"
+        start_equipment_factor = 0.6
+    }
+	division = {
+		location = 11301
+		division_template = "Legiony Ochotnicze"
         start_equipment_factor = 0.3
     }
+
 	division = {
 		location = 3281
 		division_template = "Dywizja Piechoty"
-        start_equipment_factor = 0.2
+        start_equipment_factor = 0.3
 	}
+	division = {
+		location = 400
+		division_template = "Legiony Ochotnicze"
+        start_equipment_factor = 0.2
+    }
     
 }

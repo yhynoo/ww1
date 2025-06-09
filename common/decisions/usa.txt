@@ -1,18 +1,16 @@
-intervene_central_america = {
+# event decisions
+civil_war_in_mexico = {
     aid_to_mexico = {
+        icon = generic_industry
         fire_only_once = yes
         cost = 75
 
         available = {
-            any_country = {
-                original_tag = MEX
-                has_government = ROOT
-                has_war = yes
-            }
+            any_country = { original_tag = MEX has_government = ROOT has_war = yes }
         }
 
         ai_will_do = {
-            base = 9
+            base = 15
             modifier = { has_completed_focus = USA_not_our_war factor = 0 }
         }
 
@@ -20,12 +18,79 @@ intervene_central_america = {
             add_timed_idea = { idea = idea_aid_to_mexico years = 1 }
             add_war_support = 0.05
 
+            news_event = { id = usa_mexican_uprising.1 hours = 6 random_hours = 6}
+
             random_country = {
                 limit = { original_tag = MEX has_government = ROOT }
 
                 add_offsite_building = { type = industrial_complex level = 1 }
                 add_offsite_building = { type = arms_factory level = 1 }
             }
+        }
+    }
+    deliver_weapons = {
+        icon = generic_prepare_civil_war
+        cost = 50
+
+        days_re_enable = 90
+        available = {
+            any_country = { original_tag = MEX has_government = ROOT has_war = yes }
+        }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { MEX = { surrender_progress > 0.15 } add = 6 }
+        }
+
+        remove_effect = {
+            send_equipment = { equipment = infantry_equipment amount = 300 target = MEX }
+        }
+    }
+    raid_hideouts = {
+        icon = generic_prepare_civil_war
+        cost = 50
+
+        days_remove = 14
+        days_re_enable = 90
+
+        available = {
+            375 = { is_controlled_by = USA }
+            any_country = { has_government = communism controls_state = 482 }
+        }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { MEX = { surrender_progress > 0.3 } add = 6 }
+        }
+
+        remove_effect = {
+            start_border_war = {
+                change_state_after_war = no
+                attacker = { state = 375 on_win = usa_mexican_uprising.2 on_lose = usa_mexican_uprising.3 }
+                defender = { state = 482 on_win = x_local_conflict.3 on_lose = x_local_conflict.4 }
+            }
+        }
+    }
+}
+
+# focus decisions
+intervene_central_america = {
+    align_mexico = {
+        icon = generic_form_nation
+        fire_only_once = yes
+        cost = 150
+
+        available = {
+            any_country = { original_tag = MEX has_government = democratic }
+        }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { has_completed_focus = USA_not_our_war factor = 0 }
+        }
+
+        complete_effect = {
+            MEX = { country_event = { id = usa_central_america.1 hours = 6 random_hours = 6 } }
         }
     }
     invade_central_america = {
@@ -83,6 +148,7 @@ usa_alliances = {
 
         targets = { ENG FRA }
         available = { 
+            is_in_faction = no
             FROM = { 
                 not = { has_war_with = ROOT }
                 or = { is_in_faction = no is_faction_leader = yes } 
@@ -179,7 +245,7 @@ american_industries = {
 
         modifier = {
             industrial_capacity_factory = 0.1
-            democratic_drift = 0.05
+            communism_drift = 0.05
         }
     }
 }

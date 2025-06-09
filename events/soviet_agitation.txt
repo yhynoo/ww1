@@ -1,0 +1,99 @@
+add_namespace = soviet_agitation
+
+news_event = {
+    id = soviet_agitation.1
+    title = "Communist Agitation in the Army"
+    desc = soviet_agitation.1.d
+
+    fire_only_once = yes
+    trigger = {
+        tag = SOV
+        not = { or = { has_civil_war = yes has_government = communism } }
+
+        has_stability < 0.3
+        or = { longest_war_length > 18 surrender_progress > 0.15 }
+    }
+
+    option = {
+        name = "We must do something about this."
+        add_timed_idea = { idea = idea_agitation_in_army days = 180 }
+
+        hidden_effect = {
+            news_event = { id = soviet_agitation.2 days = 28 random_days = 14 }
+            GER = { country_event = { id = soviet_agitation.4 days = 42 random_days = 28 } }
+        }
+    }
+}
+
+news_event = {
+    id = soviet_agitation.2
+    title = "Gendarmerie Outpost Attacked in Central Asia"
+    desc = soviet_agitation.2.d
+
+    is_triggered_only = yes
+    trigger = {
+        has_stability < 0.5
+    }
+
+    option = {
+        name = "Disgraceful."
+        add_popularity = { ideology = communism popularity = 0.05 }
+    }
+}
+
+news_event = {
+    id = soviet_agitation.3
+    title = "Council of Soldiers' and Workers' Deputies Meets"
+    desc = soviet_agitation.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Disgraceful."
+
+        add_popularity = { ideology = communism popularity = 0.1 }
+        add_ideas = idea_widespread_demoralization
+    }
+}
+
+# lenin
+country_event = {
+    id = soviet_agitation.4
+    title = "Famous Activist — Unlikely Ally?"
+    desc = soviet_agitation.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Send him to Russia."
+        add_political_power = -50
+        hidden_effect = { news_event = { id = soviet_agitation.5 days = 7 random_days = 7 } }
+
+        ai_chance = { base = 3 }
+    }
+    option = {
+        name = "It's none of our business."
+        add_popularity = { ideology = communism popularity = 0.05 }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = soviet_agitation.5
+    title = "Lenin Arrives in Moscow"
+    desc = soviet_agitation.5.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Russia is heading towards a disaster."
+        if = {
+            limit = { tag = SOV }
+
+            add_popularity = { ideology = communism popularity = 0.05 }
+            promote_character = SOV_vladimir_lenin
+        }
+    }
+}
