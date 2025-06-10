@@ -58,7 +58,8 @@ italy_alliances = {
             base = 0
             modifier = { threat > 0.2 add = 9 }
 
-            modifier = { FROM = { tag = ENG } add = 6 }     # we prefer the entente.
+            modifier = { FROM = { tag = ENG } add = 6 }                 # we prefer the entente.
+            modifier = { FROM = { or = { has_war_with = AUS has_war_with = TUR } } factor = 3 }
             modifier = { FROM = { is_ally_with = TUR } factor = 0 }     # but we'll never ally with Turkey.
         }
 

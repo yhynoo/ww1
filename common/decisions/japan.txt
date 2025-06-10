@@ -5,6 +5,8 @@ hong_kong_appeal = {
 
         available = { not = { has_war_with = ENG } }
 
+        ai_will_do = { base = 12 }
+
         complete_effect = {
             navy_experience = 50
             ENG = { add_opinion_modifier = { target = JAP modifier = invited_experts } }
@@ -22,6 +24,11 @@ hong_kong_appeal = {
                 or = { state = 431 state = 647 state = 684 }
                 is_owned_by = GER
             }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { GER = { has_war = yes } add = 9 }
         }
 
         complete_effect = {
@@ -60,6 +67,11 @@ japan_alliances = {
             }
         }
 
+        ai_will_do = {
+            base = 0
+            modifier = { FROM = { tag = ENG } add = 9 }
+        }
+
         complete_effect = {
             FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
         }
@@ -78,6 +90,17 @@ twenty_one_demands = {
             any_state = {
                 or = { state = 72 state = 328 state = 619 state = 654 }
                 not = { is_owned_and_controlled_by = JAP }
+            }
+        }
+
+        ai_will_do = {
+            base = 6
+            modifier = { and = { has_war = no date > 1916.1.1 } add = 6 }
+        }
+
+        highlight_states = {
+            highlight_state_targets = {
+                state = 72 state = 328 state = 619 state = 654
             }
         }
 
@@ -100,6 +123,11 @@ twenty_one_demands = {
                 or = { state = 592 state = 593 state = 594 }
                 is_owned_and_controlled_by = MAN
             }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { MAN = { has_war = yes } add = 12 }
         }
 
         complete_effect = {

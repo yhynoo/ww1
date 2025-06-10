@@ -108,6 +108,17 @@ change_alliances = {
             }
         }
 
+        highlight_states = {
+            highlight_state_targets = {
+                state = 289 state = 614 state = 286 state = 670 state = 671
+            }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = { RAJ = { is_subject_of = ENG } factor = 3 }
+        }
+
         complete_effect = {
             every_country = {
                 limit = {
@@ -132,6 +143,23 @@ change_alliances = {
 
             can_declare_war_on = FRA
             has_war_support > 0.3 
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = { 
+                any_state = {
+                    or = { state = 558 state = 549 state = 548 state = 545 }
+                    is_controlled_by = ENG
+                }
+                factor = 2
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = {
+                state = 539 state = 295 state = 576 state = 538 state = 660
+            }
         }
 
         remove_effect = {

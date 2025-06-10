@@ -20,7 +20,20 @@ country_event = {
         ai_chance = { 
             base = 2
             modifier = { has_government = democratic factor = 3 }
+
+            # not greater germany
+            modifier = { has_completed_focus = GER_on_our_own factor = 0 }
         }
+    }
+    option = {
+        name = "God, Honor, Fatherland!"
+        hidden_effect = { 
+            release_poland = yes
+            set_politics = { ruling_party = ROOT }
+        }
+
+        POL = { change_tag_from = ROOT }
+        ai_chance = { base = 0 }
     }
     option = {
         name = "Nonsense."
@@ -53,6 +66,16 @@ country_event = {
         }
     }
     option = {
+        name = "Glory all around the world!"
+        hidden_effect = { 
+            release_ukraine = yes
+            set_politics = { ruling_party = ROOT }
+        }
+
+        UKR = { change_tag_from = ROOT }
+        ai_chance = { base = 0 }
+    }
+    option = {
         name = "Nonsense."
         every_controlled_state = { limit = { is_core_of = UKR } add_resistance = 10 }
 
@@ -80,7 +103,20 @@ country_event = {
         ai_chance = { 
             base = 2
             modifier = { has_government = democratic factor = 3 }
+
+            # not greater germany
+            modifier = { has_completed_focus = GER_on_our_own factor = 0 }
         }
+    }
+    option = {
+        name = "Let the three stars shine bright."
+        hidden_effect = { 
+            release_baltic = yes
+            set_politics = { ruling_party = ROOT }
+        }
+
+        UBD = { change_tag_from = ROOT }
+        ai_chance = { base = 0 }
     }
     option = {
         name = "Nonsense."

@@ -20,7 +20,6 @@ news_event = {
 
         hidden_effect = {
             news_event = { id = soviet_agitation.2 days = 28 random_days = 14 }
-            GER = { country_event = { id = soviet_agitation.4 days = 42 random_days = 28 } }
         }
     }
 }
@@ -51,49 +50,7 @@ news_event = {
     option = {
         name = "Disgraceful."
 
-        add_popularity = { ideology = communism popularity = 0.1 }
+        add_popularity = { ideology = communism popularity = 0.15 }
         add_ideas = idea_widespread_demoralization
-    }
-}
-
-# lenin
-country_event = {
-    id = soviet_agitation.4
-    title = "Famous Activist — Unlikely Ally?"
-    desc = soviet_agitation.4.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Send him to Russia."
-        add_political_power = -50
-        hidden_effect = { news_event = { id = soviet_agitation.5 days = 7 random_days = 7 } }
-
-        ai_chance = { base = 3 }
-    }
-    option = {
-        name = "It's none of our business."
-        add_popularity = { ideology = communism popularity = 0.05 }
-
-        ai_chance = { base = 1 }
-    }
-}
-
-news_event = {
-    id = soviet_agitation.5
-    title = "Lenin Arrives in Moscow"
-    desc = soviet_agitation.5.d
-
-    is_triggered_only = yes
-    major = yes
-
-    option = {
-        name = "Russia is heading towards a disaster."
-        if = {
-            limit = { tag = SOV }
-
-            add_popularity = { ideology = communism popularity = 0.05 }
-            promote_character = SOV_vladimir_lenin
-        }
     }
 }
