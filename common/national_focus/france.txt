@@ -67,7 +67,7 @@
 
         prerequisite = { focus = FRA_focus_army }
         completion_reward = {
-            army_experience = 50
+            remove_ideas = idea_headless_rooster
             add_doctrine_cost_reduction = {
 				name = land_doc_bonus
 				cost_reduction = 0.5
@@ -784,7 +784,10 @@
         cost = 10
 
         prerequisite = { focus = FRA_expansionism }
-        available = { is_subject = no }
+        available = { 
+            is_subject = no
+            has_government = monarchism
+        }
 
         ai_will_do = {
             base = 0
@@ -811,7 +814,7 @@
         prerequisite = { focus = FRA_political_ambitions }
         completion_reward = {
             add_stability = 0.05
-            add_popularity = { ideology = democratic popularity = 0.05 }
+            add_popularity = { ideology = democratic popularity = 0.05  }
         }
     }
     focus = {
@@ -956,7 +959,6 @@
         available = {
             has_civil_war = no
             not = { has_government = communism }
-            
             communism > 0.3
         }
         

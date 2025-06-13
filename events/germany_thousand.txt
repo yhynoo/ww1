@@ -1,0 +1,66 @@
+add_namespace = germany_thousand
+
+news_event = {
+    id = germany_thousand.1
+    title = "[GER.GetName] Turns Against Austria?"
+    desc = germany_thousand.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Concerning."
+    }
+}
+
+# treaty of aachen
+
+country_event = {
+    id = germany_thousand.2
+    title = "[GER.GetName] Offers a Treaty"
+    desc = germany_thousand.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall work together."
+        FROM = {
+            news_event = { id = germany_thousand.3 hours = 6 random_hours = 6 }
+        }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "After everything they've done to us?"
+        FROM = {
+            news_event = { id = germany_thousand.4 hours = 6 random_hours = 6 }
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = germany_thousand.3
+    title = "[FROM.GetName] and [ROOT.GetName] Meet in Aachen"
+    desc = germany_thousand.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = germany_thousand.4
+    title = "[FROM.GetName] Declines!"
+    desc = germany_thousand.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about this."
+    }
+}

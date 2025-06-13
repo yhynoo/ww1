@@ -2,55 +2,53 @@ add_namespace = france_legitimists
 
 country_event = {
     id = france_legitimists.1
-    title = "A Letter from Orleans"
+    title = "Orleanists Convene in Tours Cathedral"
     desc = france_legitimists.1.d
 
     is_triggered_only = yes
 
     option = {
-        name = "This is nonsense."
-        add_political_power = -50
+        name = "Invite them."
+        add_political_power = -25
 
         hidden_effect = { news_event = { id = france_legitimists.2 days = 7 random_days = 7 } }
     }
     option = {
-        name = "We shall keep this in our minds."
+        name = "This does not concern us."
         add_popularity = { ideology = monarchism popularity = 0.05 }
 
-        hidden_effect = { country_event = { id = france_legitimists.3 days = 7 random_days = 7 } }
+        hidden_effect = { country_event = { id = france_legitimists.3 days = 28 random_days = 7 } }
     }
 }
 
 news_event = {
     id = france_legitimists.2
-    title = "The Chambers Dismiss Monarchist Musings"
+    title = "Archbishop Speaks in the Senate"
     desc = france_legitimists.2.d
 
     is_triggered_only = yes
 
     option = {
-        name = "As expected."
-        add_stability = 0.05
+        name = "It is a valuable perspective."
+        add_popularity = { ideology = monarchism popularity = 0.05 }
     }
 }
 
 country_event = {
     id = france_legitimists.3
-    title = "Legitimist Demonstration in Lyon"
+    title = "Another Scandal in War Ministry?"
     desc = france_legitimists.3.d
 
     is_triggered_only = yes
 
     option = {
-        name = "We must seek compromise."
+        name = "Silence the matter."
         add_political_power = -75
 
         hidden_effect = { news_event = { id = france_legitimists.4 days = 7 random_days = 7 } }
     }
     option = {
-        name = "Down with the republic!"
-
-        add_stability = -0.15
+        name = "Appoint a monarchist."
         add_popularity = { ideology = monarchism popularity = 0.1 }
 
         hidden_effect = { news_event = { id = france_legitimists.5 days = 7 random_days = 7 } }
@@ -59,35 +57,27 @@ country_event = {
 
 news_event = {
     id = france_legitimists.4
-    title = "State Within a State?"
+    title = "Trust in the Government Declines"
     desc = france_legitimists.4.d
 
     is_triggered_only = yes
-    trigger = { monarchism > 0.5 }
     
     option = {
-        name = "Interesting."
-        set_politics = { ruling_party = monarchism }
+        name = "Worrying."
+        add_stability = -0.05
     }
 }
 
 news_event = {
     id = france_legitimists.5
-    title = "Orleanist Uprising in France!"
+    title = "Tensions in the General Staff"
     desc = france_legitimists.5.d
 
     is_triggered_only = yes
     major = yes
 
     option = {
-        name = "Let us restore the holy order!"
-
-        if = {
-            limit = { tag = FRA }
-            start_civil_war = {
-                ruling_party = monarchism ideology = ROOT
-                size = 0.6
-            }
-        }
+        name = "They must figure it out."
+        add_war_support = -0.05
     }
 }

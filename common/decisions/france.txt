@@ -33,7 +33,7 @@ antwerp_affair = {
         ai_will_do = {
             base = 0
             modifier = { date > 1914.4.1 add = 12 }
-            modifier = { is_in_faction = no factor = 0.5 }
+            modifier = { and = { is_in_faction = no GER = { has_war = no } } factor = 0.5 }
         }
 
         complete_effect = {
@@ -117,7 +117,48 @@ france_alliances = {
     }
 }
 
-across_atlantic = {
+another_empire = {
+    liberate_india = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 150
+
+        days_remove = 90
+        available = {
+            hidden_trigger = {
+                RAJ = { exists = yes }
+
+                if = {
+                    limit = { RAJ = { is_subject = yes } }
+                    any_country = {
+                        has_subject = RAJ
+                        FRA = { can_declare_war_on = PREV }
+                    }
+                }
+            }
+        }
+
+        ai_will_do = { base = 0 modifier = { has_war = no add = 6 } }
+
+        complete_effect = {
+            news_event = { id = france_empire.4 hours = 6 random_hours = 6 }
+            every_country = {
+                limit = { 
+                    or = { tag = AFG tag = HOL tag = PER }
+                    is_neighbor_of = RAJ
+                    is_subject = no
+                }
+                country_event = { id = france_empire.1 days = 7 random_hours = 6 }
+            }
+        }
+
+        remove_effect = {
+            create_wargoal = {
+                target = RAJ
+                type = puppet_wargoal_focus
+            }
+        }
+    }
     demand_carribean = {
         icon = generic_prepare_civil_war
         fire_only_once = yes
@@ -130,6 +171,8 @@ across_atlantic = {
             }
         }
 
+        ai_will_do = { base = 0 modifier = { has_war = no add = 9 } }
+
         complete_effect = {
             every_country = {
                 limit = {
@@ -139,6 +182,9 @@ across_atlantic = {
             }
         }
     }
+}
+
+let_them_eat_cake = {
     develop_guyana = {
         icon = generic_construction
 
@@ -155,25 +201,6 @@ across_atlantic = {
             }
         }
     }
-}
-
-let_them_eat_cake = {
-    develop_congo = {
-        icon = generic_construction
-
-        fire_only_once = yes
-        cost = 75
-
-        available = { controls_state = 295 }
-        complete_effect = {
-            295 = {
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-                add_building_construction = { type = dockyard level = 1 instant_build = yes }
-
-                add_extra_state_shared_building_slots = 2
-            }
-        }
-    }
     international_trade_missions = {
         fire_only_once = yes
         cost = 75
@@ -181,5 +208,54 @@ let_them_eat_cake = {
         complete_effect = {
             add_ideas = idea_international_trade_missions
         }
+    }
+}
+
+# war weariness
+cracks_in_trenches = {
+    cracks_in_trenches_mission = {
+        icon = generic_army_support
+        days_mission_timeout = 180
+        is_good = no
+
+        available = {
+            has_stability > 0.5
+        }
+
+        activation = { has_idea = idea_war_weariness }
+        complete_effect = { remove_ideas = idea_war_weariness }
+        timeout_effect = { news_event = x_war_weariness.2 }
+    }
+    increase_rations = {
+        icon = generic_prepare_civil_war
+        cost = 25
+
+        days_remove = 30
+
+        modifier = {
+            supply_consumption_factor = 0.1
+            army_morale_factor = 0.1
+        }
+
+        ai_will_do = {
+            base = 6
+            modifier = { has_stability > 0.4 factor = 2 }
+        }
+
+        complete_effect = { add_stability = 0.05 }
+    }
+    crack_down_on_mutineers = {
+        icon = oppression
+        cost = 25
+        days_remove = 30
+
+        modifier = {
+            experience_loss_factor = 0.1
+            army_org_factor = 0.05
+        }
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = { add_stability = 0.05 }      
     }
 }
