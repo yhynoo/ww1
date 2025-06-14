@@ -7,7 +7,7 @@ USA_army_composition = {
 	ai_strategy = {
 		type = role_ratio
 		id = infantry
-		value = 35
+		value = 30
 	}
 
 	ai_strategy = {
@@ -23,44 +23,37 @@ USA_army_composition = {
 	}
 }
 
-USA_likes_ENG_MEX_and_POL = {
-    allowed = { tag = USA }
-    enable = { always = yes }
-	abort_when_not_enabled = yes
+USA_supports_dems = {
+    allowed = { NOT = { original_tag = USA } }
+    enable_reverse = { USA = { has_completed_focus = USA_hearts_and_minds } }
 
-    ai_strategy = {
-        type = support
-        id = ENG
-        value = 100
+    enable = {
+        has_government = democratic
+        has_defensive_war = yes
     }
+    abort_when_not_enabled = yes
 
     ai_strategy = {
         type = support
-        id = MEX
-        value = 100
-    }
-
-    ai_strategy = {
-        type = support
-        id = POL
+        id = USA
         value = 100
     }
 }
 
 USA_joins_the_entente = {
-	allowed = { original_tag = USA }
-	enable = { has_completed_focus = USA_support_the_entente }
+	allowed = { tag = USA }
+	enable = { and = { has_completed_focus = USA_seek_alliances threat > 0.6 date > 1917.7.1 } }
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
         type = alliance
         id = ENG
-        value = 100
+        value = 200
     }
 
 	ai_strategy = {
         type = alliance
         id = FRA
-        value = 100
+        value = 150
     }
 }

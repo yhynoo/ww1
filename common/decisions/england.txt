@@ -108,12 +108,6 @@ change_alliances = {
             }
         }
 
-        highlight_states = {
-            highlight_state_targets = {
-                state = 289 state = 614 state = 286 state = 670 state = 671
-            }
-        }
-
         ai_will_do = {
             base = 3
             modifier = { RAJ = { is_subject_of = ENG } factor = 3 }
@@ -146,20 +140,15 @@ change_alliances = {
         }
 
         ai_will_do = {
-            base = 3
+            base = 0
             modifier = { 
                 any_state = {
                     or = { state = 558 state = 549 state = 548 state = 545 }
                     is_controlled_by = ENG
                 }
-                factor = 2
+                add = 6
             }
-        }
-
-        highlight_states = {
-            highlight_state_targets = {
-                state = 539 state = 295 state = 576 state = 538 state = 660
-            }
+            modifier = { FRA = { has_war = yes } factor = 2 }
         }
 
         remove_effect = {
@@ -190,49 +179,6 @@ peoples_act = {
         modifier = {
             industrial_capacity_factory = 0.1
             communism_drift = 0.05
-        }
-    }
-}
-
-# feathers
-white_feathers = {
-    organize_feather_patrols = {
-        icon = generic_civil_support
-        cost = 20
-        days_remove = 60
-
-        modifier = {
-            stability_weekly = -0.005
-        }
-
-        complete_effect = {
-            add_power_balance_value = { id = england_feathers value = 0.05 tooltip_side = england_feathers_right }
-        }
-    }
-    evaluate_exemptions = {
-        icon = generic_political_discourse
-        cost = 25
-        days_remove = 60
-
-        modifier = {
-            training_time_factor = 0.15
-        }
-
-        complete_effect = {
-            add_power_balance_value = { id = england_feathers value = 0.1 tooltip_side = england_feathers_right }
-        }
-    }
-    draft_essential_workers = {
-        icon = generic_prepare_civil_war
-        cost = 50
-        days_remove = 60
-
-        modifier = {
-            industrial_capacity_factory = -0.2
-        }
-
-        complete_effect = {
-            add_power_balance_value = { id = england_feathers value = 0.1 tooltip_side = england_feathers_right }
         }
     }
 }

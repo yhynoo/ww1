@@ -29,46 +29,36 @@ ITA_army_composition = {
 	}
 }
 
-ITA_likes_ENG = {
-	allowed = { original_tag = ITA }
-	enable = { has_completed_focus = ITA_influence_the_uk }
-	abort = { ENG = { has_opinion = { target = ITA value > 75 } } }
+ITA_dislikes_TUR = {
+	allowed = { tag = ITA }
+	enable = { has_completed_focus = ITA_on_our_own }
+	abort_when_not_enabled = yes
 
 	ai_strategy = {
-		type = befriend
-		id = ENG
+		type = antagonize
+		id = TUR
 		value = 100
 	}
 }
 
-ITA_hates_TUR = {
-	allowed = { original_tag = ITA }
-	enable = { always = yes }
-	abort_when_not_enabled = yes
+ITA_ally_ENG = {
+	allowed = { tag = ITA }
+	enable = { and = { has_completed_focus = ITA_influence_the_uk threat > 0.5 } }
+	abort = { owns_state = 33 owns_state = 39 }
 
 	ai_strategy = {
-		type = consider_weak
-		id = TUR
-		value = 100
-	}
-
-	ai_strategy = {
-		type = invade
-		id = TUR
+		type = alliance
+		id = ENG
 		value = 200
 	}
 }
 
 ITA_second_line_airfields = {
-	allowed = { original_tag = ITA }
+	allowed = { tag = ITA }
 	enable = { has_war = yes }
-
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
-		type = build_building
-		id = air_base
-		target = 159		# Milan
-		value = 2
+		type = build_building id = air_base target = 161 value = 2
 	}
 }

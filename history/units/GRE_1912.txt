@@ -1,5 +1,5 @@
 division_template = {
-	name = "Volunteer Troops"
+	name = "Merarchía Pezikoú"
 	division_names_group = GRE_INF_01
 
 	regiments = {
@@ -10,58 +10,35 @@ division_template = {
         infantry = { x = 2 y = 0 }
 		infantry = { x = 2 y = 1 }
 	}
-}
-division_template = {
-	name = "Volunteer Mountaineers"
-	division_names_group = GRE_INF_01
-
-	regiments = {
-		mountaineers = { x = 0 y = 0 }
-		mountaineers = { x = 0 y = 1 }
-        mountaineers = { x = 1 y = 0 }
-		mountaineers = { x = 1 y = 1 }
+	support = {
+		artillery = { x = 0 y = 0 }
 	}
 }
 
 units = {
 
-    # South (2 div.)
+    # Athens (3 div.)
     division = {
-		location = 7211
-		division_template = "Volunteer Troops"
-        start_experience_factor = 0.5
+		location = 4109
+		division_template = "Merarchía Pezikoú"
     }
     division = {
-		location = 7096
-		division_template = "Volunteer Troops"
-        start_experience_factor = 0.5
-    }
-
-    # North (3 div.)
-    division = {
-		location = 10203
-		division_template = "Volunteer Troops"
-        start_experience_factor = 0.5
-    }
-    division = {
-		location = 3914
-		division_template = "Volunteer Troops"
-        start_experience_factor = 0.5
-    }
-    division = {
-		location = 9837
-		division_template = "Volunteer Mountaineers"
-        start_experience_factor = 0.5
+		location = 4109
+		division_template = "Merarchía Pezikoú"
     }
 
 	division = {
-		location = 3401
-		division_template = "Volunteer Troops"
-        start_experience_factor = 0.5
+		location = 3973
+		division_template = "Merarchía Pezikoú"
     }
-	division = {
-		location = 8435
-		division_template = "Volunteer Troops"
-        start_experience_factor = 0.5
+
+    # Crete + Aegean (2 div.)
+    division = {
+		location = 9940
+		division_template = "Merarchía Pezikoú"
+    }
+    division = {
+		location = 6550
+		division_template = "Merarchía Pezikoú"
     }
 }

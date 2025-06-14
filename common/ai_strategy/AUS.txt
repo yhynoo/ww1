@@ -44,35 +44,29 @@ AUS_stay_at_home = {
 	}
 }
 
-AUS_likes_GER = {
+AUS_hates_SOV = {
 	allowed = { original_tag = AUS }
-	enable = { not = { has_completed_focus = AUS_second_vienna_treaty } }
-
-	abort_when_not_enabled = yes
-
-	ai_strategy = {
-		type = alliance
-		id = GER
-		value = 200
+	enable = { 
+		has_idea = idea_unrest_in_galicia
+		not = { has_country_flag = chose_alternative }
 	}
-}
-
-AUS_helps_GER = {
-	allowed = { original_tag = AUS }
-
-	enable = { is_ally_with = GER }
 	abort_when_not_enabled = yes
-
-	ai_strategy = {
-		type = diplo_action_acceptance
-		id = GER
-		value = 300
-		target = join_allies
-	}
 
 	ai_strategy = {
 		type = declare_war
 		id = SOV
+		value = 200
+	}
+}
+
+AUS_likes_FRA = {
+	allowed = { original_tag = AUS }
+	enable = { has_country_flag = chose_alternative }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = support
+		id = FRA
 		value = 100
 	}
 }

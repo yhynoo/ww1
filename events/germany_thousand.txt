@@ -26,9 +26,44 @@ country_event = {
         name = "We shall work together."
         FROM = {
             news_event = { id = germany_thousand.3 hours = 6 random_hours = 6 }
+            add_ideas = idea_aachen_treaty
         }
 
-        ai_chance = { base = 2 }
+        diplomatic_relation = { country = FROM relation = non_aggression_pact active = yes }
+        
+        add_ideas = idea_aachen_treaty
+        if = {
+            limit = { has_idea = idea_antwerp_affair }
+            remove_ideas = idea_antwerp_affair
+        }
+
+        every_state = {
+            limit = { or = { state = 6 state = 34 } }
+            remove_claim_by = FRA
+        }
+
+        hidden_effect = {
+            add_ai_strategy = {
+                type = support
+                id = GER
+                value = 100
+            }
+
+            GER = {
+                add_ai_strategy = {
+                    type = support
+                    id = FRA
+                    value = 100
+                }
+            }
+        }
+
+        ai_chance = { 
+            base = 2
+
+            # France won't agree if they are already allied with Austria
+            modifier = { is_ally_with = AUS factor = 0 }
+        }
     }
     option = {
         name = "After everything they've done to us?"
@@ -42,7 +77,7 @@ country_event = {
 
 news_event = {
     id = germany_thousand.3
-    title = "[FROM.GetName] and [ROOT.GetName] Meet in Aachen"
+    title = "German and French Monarchs Meet in Aachen"
     desc = germany_thousand.3.d
 
     is_triggered_only = yes
@@ -50,6 +85,11 @@ news_event = {
 
     option = {
         name = "Interesting."
+
+        if = {
+            limit = { or = { tag = FRA tag = GER } }
+            add_popularity = { ideology = monarchism popularity = 0.1 }
+        }
     }
 }
 

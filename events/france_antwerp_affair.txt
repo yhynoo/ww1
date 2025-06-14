@@ -9,10 +9,10 @@ country_event = {
 
     option = {
         name = "Great."
+        remove_ideas = idea_antwerp_affair 
+
         FROM = { 
             news_event = { id = france_antwerp_affair.2 hours = 6 random_hours = 6 }
-            remove_ideas = idea_antwerp_affair
-
             every_state = {
                 limit = { or = { state = 6 state = 34 } is_owned_and_controlled_by = HOL }
                 transfer_state_to = FRA

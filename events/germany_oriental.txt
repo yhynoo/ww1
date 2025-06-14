@@ -27,6 +27,9 @@ country_event = {
             news_event = { id = germany_oriental.3 hours = 6 random_hours = 6 }
         }
 
+        # from now on, Turkey goes on the alternative path.
+        hidden_effect = { set_country_flag = chose_alternative }
+
         ai_chance = { base = 1 }
     }
 }
@@ -80,7 +83,7 @@ country_event = {
                 add_idea = idea_significant_foreign_debt
             }
         }
-        if = {
+        else_if = {
             limit = { has_idea = idea_significant_foreign_debt }
             remove_ideas = idea_significant_foreign_debt
         }

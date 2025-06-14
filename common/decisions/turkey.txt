@@ -1,76 +1,82 @@
-adriatic_unrest = {
-    leave_serbia = {
+reach_out_to_french = {
+    sky_is_the_new_steppe = {
+        icon = generic_industry
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            controls_state = 341
+            FRA = { has_opinion = { target = TUR value > 49 } }
+        }
+
+        ai_will_do = { base = 12 }
+
+        complete_effect = {
+            add_ideas = idea_sky_steppe
+            if = {
+                limit = { has_idea = idea_amassed_foreign_debt }
+                swap_ideas = {
+                    remove_idea = idea_amassed_foreign_debt
+                    add_idea = idea_significant_foreign_debt
+                }
+            }
+            else_if = {
+                limit = { has_idea = idea_significant_foreign_debt }
+                remove_ideas = idea_significant_foreign_debt
+            }
+
+            341 = {
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+
+            hidden_effect = { add_extra_state_shared_building_slots = 1 }
+        }
+    }
+    liberate_greece = {
         icon = generic_form_nation
         cost = 150
         fire_only_once = yes
 
         available = {
             any_state = {
-                or = { state = 105 state = 107 state = 108 }
+                or = { state = 47 state = 182 state = 186 state = 187 }
                 is_owned_and_controlled_by = TUR
             }
         }
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            remove_ideas = idea_unrest_in_greece
+            news_event = { id = turkey_greece.1 hours = 6 random_hours = 6 }
+
+            every_state = {
+                limit = {
+                    or = { state = 47 state = 182 state = 186 state = 187 }
+                    is_owned_and_controlled_by = TUR
+                }
+                transfer_state_to = GRE
+            }
+
+            hidden_effect = { GRE = { load_oob = "GRE_1912" } }
+        }
+    }
+}
+
+turanist_ambition = {
+    salonika_declaration = {
+        cost = 50
+        fire_only_once = yes
 
         ai_will_do = { base = 12 }
 
         complete_effect = {
-            every_state = {
-                limit = {
-                    or = { state = 105 state = 107 state = 108 }
-                    is_owned_and_controlled_by = TUR
-                }
-                transfer_state_to = SER
-            }
-
-            hidden_effect = {
-                SER = { load_oob = "SER_1912" }
-            }
-
-            if = {
-                limit = { has_idea = idea_unrest_in_the_adriatic }
-                swap_ideas = {
-                    remove_idea = idea_unrest_in_the_adriatic
-                    add_idea = idea_unrest_in_greece
-                }
-            }
-            if = {
-                limit = { has_idea = idea_unrest_in_serbia }
-                remove_ideas = idea_unrest_in_serbia
-            }
-        }
-    }
-    greece_settlements = {
-        cost = 100
-        fire_only_once = yes
-
-        available = {
-            any_state = {
-                is_core_of = GRE
-                is_owned_and_controlled_by = TUR
-            }
-        }
-
-        ai_will_do = { base = 9 }
-
-        complete_effect = {
-            hidden_effect = { country_event = turkey_greece.1 days = 14 random_days = 28 }
-
-            if = {
-                limit = { has_idea = idea_unrest_in_the_adriatic }
-                swap_ideas = {
-                    remove_idea = idea_unrest_in_the_adriatic
-                    add_idea = idea_unrest_in_serbia
-                }
-            }
-            if = {
-                limit = { has_idea = idea_unrest_in_greece }
-                remove_ideas = idea_unrest_in_greece
-            }
+            add_stability = 0.1
+            news_event = { id = turkey_turanist.1 hours = 6 random_hours = 6 }
         }
     }
     turanist_movement = {
         icon = generic_prepare_civil_war
-
         cost = 100
         fire_only_once = yes
 
@@ -91,6 +97,32 @@ adriatic_unrest = {
                 add_timed_idea = { idea = idea_unrest_in_central_asia years = 1 }
                 hidden_effect = { country_event = { id = soviet_central_asia.1 hours = 6 random_hours = 6 } }
             }
+        }
+    }
+    unite_the_yurt = {
+        icon = generic_form_nation
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            controls_state = 330
+        }
+
+        complete_effect = {
+            every_state = {
+                limit = {
+                    or = { 
+                        state = 330                             # Mongolia
+                        state = 287 state = 617 state = 618     # Sinkiang
+                        state = 405 state = 584 state = 585 state = 587 state = 589     # Central Asia
+
+                        state = 402 state = 407 state = 236 state = 237             # Russia & Caucasus
+                        state = 229 state = 231 state = 232 state = 233 state = 234 state = 235 state = 238
+                    }
+                    is_controlled_by = TUR
+                }
+            }
+            add_core_of = TUR
         }
     }
 }
@@ -122,40 +154,21 @@ turkey_alliances = {
 
         ai_will_do = { 
             base = 0
-            modifier = { threat > 0.2 add = 9 }
+            modifier = {
+                and = { has_completed_focus = TUR_deterrence or = { FROM = { tag = FRA } FROM = { is_ally_with = FRA } } }
+                add = 12
+            }
+            modifier = {
+                and = { is_guaranteed_by = GER FROM = { tag = GER } }
+                add = 12
+            }
 
-            modifier = { and = { FROM = { tag = FRA } has_completed_focus = TUR_on_our_own } add = 6 }      # we prefer the French
-            modifier = { FROM = { is_ally_with = SOV } factor = 0 }                                         # but we'll never ally with Russia.
+            modifier = { threat > 0.2 add = 6 } 
+            modifier = { FROM = { is_ally_with = SOV } factor = 0 }
         }
 
         complete_effect = {
             FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
-        }
-    }
-}
-
-align_with_french = {
-    french_air_experts = {
-        cost = 50
-        fire_only_once = yes
-
-        complete_effect = {
-            air_experience = 50
-            FRA = { add_opinion_modifier = { target = TUR modifier = invited_experts } }
-        }
-    }
-    invite_french_investors = {
-        icon = generic_construction
-
-        fire_only_once = yes
-        cost = 75
-
-        available = { controls_state = 341 }
-        complete_effect = {
-            341 = {
-                add_building_construction = { type = arms_factory level = 2 instant_build = yes }
-                add_extra_state_shared_building_slots = 2
-            }
         }
     }
 }
@@ -172,6 +185,10 @@ tackle_the_debt = {
                 is_owned_and_controlled_by = TUR
             }
         }
+        ai_will_do = {
+            base = 0
+            modifier = { has_idea = idea_amassed_foreign_debt add = 9 }
+        }
 
         complete_effect = {
             ENG = { country_event = { id = turkey_egypt.1 hours = 6 random_hours = 6 } }
@@ -184,6 +201,8 @@ tackle_the_debt = {
         cost = 75
 
         available = { controls_state = 339 }
+        ai_will_do = { base = 9 }
+
         complete_effect = {
             if = {
                 limit = { has_idea = idea_amassed_foreign_debt }
@@ -192,7 +211,7 @@ tackle_the_debt = {
                     add_idea = idea_significant_foreign_debt
                 }
             }
-            if = {
+            else_if = {
                 limit = { has_idea = idea_significant_foreign_debt }
                 remove_ideas = idea_significant_foreign_debt
             }

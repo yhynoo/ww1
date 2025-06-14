@@ -1,5 +1,24 @@
 add_namespace = x_atmosphere
 
+# AI choice
+country_event = {
+    id = x_atmosphere.0
+    title = "AI chooses path"
+    desc = ""
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Historical"
+        ai_chance = { base = 3 }
+    }
+    option = {
+        name = "Alternative"
+        ai_chance = { base = 1 }
+        set_country_flag = chose_alternative
+    }
+}
+
 # 1912
 
 news_event = {

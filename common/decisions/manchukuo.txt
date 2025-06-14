@@ -67,10 +67,12 @@ manchukuo_alliances = {
             }
 
             if = { 
-                FROM = { tag = USA }
+                limit = { FROM = { tag = USA } }
                 not = { has_idea = idea_isolationist_society }
             }
         }
+
+        ai_will_do = { base = 6 }
 
         complete_effect = {
             FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
@@ -93,6 +95,11 @@ eight_banners = {
             }
         }
 
+        ai_will_do = {
+            base = 0
+            modifier = { SOV = { has_war = yes } add = 9 }
+        }
+
         complete_effect = {
             SOV = { country_event = { id = manchukuo_haishenwai.1 hours = 6 random_hours = 6 } }
         }
@@ -105,6 +112,15 @@ eight_banners = {
 
         available = {
             72 = { not = { is_owned_by = MAN } }
+            any_country = {
+                owns_state = 72
+                not = { has_war_with = MAN }
+            }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { any_country = { onws_state = 72 has_war = yes } add = 12 }
         }
 
         complete_effect = {

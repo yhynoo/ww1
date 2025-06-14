@@ -1,7 +1,6 @@
 FRA_army_composition = {
 	allowed = { original_tag = FRA }
 	enable = { always = yes }
-
 	abort_when_not_enabled = yes
 
 	## Land troops
@@ -46,7 +45,7 @@ FRA_stay_at_home = {
 	ai_strategy = {
 		type = prepare_for_war
 		id = GER
-		value = 60
+		value = 30
 	}
 }
 
@@ -58,6 +57,24 @@ FRA_careful = {
 	ai_strategy = {
 		type = declare_war
 		id = HOL
-		value = -50
+		value = -100
+	}
+}
+
+FRA_likes_COL_and_SOV = {
+	allowed = { tag = FRA }
+	enable = { has_country_flag = chose_alternative }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = support
+		id = COL
+		value = 60
+	}
+
+	ai_strategy = {
+		type = support
+		id = SOV
+		value = 60
 	}
 }

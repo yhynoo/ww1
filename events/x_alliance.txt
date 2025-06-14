@@ -21,10 +21,10 @@ country_event = {
         FROM = { news_event = { id = x_alliance.3 hours = 6 random_hours = 6 } }
 
         ai_chance = {
-            base = 2
+            base = 1
 
-            modifier = { is_faction_leader = yes add = 2 }
-            modifier = { has_war = yes factor = 3 }
+            # if we're at war already, or we lead the faction - then it's more likely we will agree.
+            modifier = { or = { is_faction_leader = yes has_war = yes } add = 2 }
         }
     }
     option = {
@@ -62,14 +62,12 @@ country_event = {
                 modifier = { has_war = yes factor = 6 }
 
                 # France: if we have Belgium and Alsace-Lorraine, we will stay neutral.
-                modifier = { tag = FRA FROM = { tag = ENG } factor = 3 }
-
                 modifier = { 
                     and = {
                         tag = FRA  
                         owns_state = 6 owns_state = 28 owns_state = 34
                     }
-                    factor = 0
+                    factor = 0.5
                 }
             }
         }
@@ -77,6 +75,13 @@ country_event = {
     option = {
         name = "We are not interested."
         FROM = { news_event = { id = x_alliance.4 hours = 6 random_hours = 6 } }
+
+        ai_chance = { 
+            base = 1
+
+            # if England invites and we're not edgy - join.
+            modifier = { and = { FROM = { tag = ENG } not = { has_country_flag = chose_alternative } } factor = 0 }
+        }
     }
 }
 

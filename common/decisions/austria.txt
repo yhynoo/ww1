@@ -72,6 +72,18 @@ austria_alliances = {
             }
         }
 
+        ai_will_do = {
+            base = 9
+            modifier = {
+                and = { FROM = { tag = FRA } has_idea = chose_alternative }
+                factor = 2
+            }
+            modifier = {
+                and = { FROM = { tag = TUR } has_idea = chose_alternative }
+                factor = 0
+            }
+        }
+
         complete_effect = {
             FROM = { country_event = { id = x_alliance.2 hours = 6 random_hours = 6 } }
         }
@@ -103,8 +115,14 @@ second_vienna_treaty = {
         }
 
         ai_will_do = { 
-            base = 6
-            modifier = { or = { not = { any_country = { has_guaranteed = TUR } } TUR = { is_in_faction = no } } add = 3 }
+            base = 9
+            modifier = { 
+                and = {
+                    not = { is_ally_with = FRA }
+                    TUR = { or = { is_ally_with = GER is_guaranteed_by = GER } } 
+                }
+                factor = 0 
+            } 
         }
 
         complete_effect = {
@@ -132,12 +150,18 @@ second_vienna_treaty = {
         }
 
         ai_will_do = { 
-            base = 6
-            modifier = { or = { not = { any_country = { has_guaranteed = TUR } } TUR = { is_in_faction = no } } add = 6 }
+            base = 9
+            modifier = { 
+                and = {
+                    not = { is_ally_with = FRA }
+                    ITA = { or = { is_ally_with = GER is_guaranteed_by = GER } } 
+                }
+                factor = 0 
+            } 
         }
 
         remove_effect = {
-            give_guarantee = TTS
+            puppet = TTS
             hidden_effect = { 
                 start_sicilian_independence_war = yes
                 news_event = { id = austria_vienna.2 hours = 6 random_hours = 6 }

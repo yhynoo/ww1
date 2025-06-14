@@ -1,29 +1,29 @@
 dc_head_of_state_decisions = {
-    encourage_voluntary_draft = {
-        icon = generic_prepare_civil_war
-        
-        days_remove = 90
-        cost = 50
-
-        available = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
-
-        ai_will_do = {
-            base = 3
-            modifier = { has_war_support < 0.35 factor = 3 }
-            modifier = { 
-                and = { 
-                    tag = USA has_completed_focus = USA_interventionism 
-                    has_war_support < 0.65 
-                } 
-                factor = 5
-            }
-        }
-
-        modifier = {
-            war_support_weekly = 0.01
-            weekly_manpower = 1200
-        }
-    }
+    #encourage_voluntary_draft = {
+    #    icon = generic_prepare_civil_war
+    #    
+    #    days_remove = 90
+    #    cost = 50
+    #
+    #    available = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
+    #
+    #    ai_will_do = {
+    #        base = 3
+    #        modifier = { has_war_support < 0.35 factor = 3 }
+    #        modifier = { 
+    #            and = { 
+    #                tag = USA has_completed_focus = USA_interventionism 
+    #                has_war_support < 0.65 
+    #            } 
+    #            factor = 5
+    #        }
+    #    }
+    #
+    #    modifier = {
+    #        war_support_weekly = 0.01
+    #        weekly_manpower = 1200
+    #    }
+    #}
     imprison_the_extremists = {
         icon = generic_civil_support
         visible = {

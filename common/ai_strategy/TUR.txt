@@ -23,77 +23,34 @@ TUR_army_composition = {
 	}
 }
 
-# don't work for others, they will manage
-TUR_stay_at_home = {
-	allowed = { original_tag = TUR }
+# our alignment with france
 
-	enable = { always = yes }
+TUR_likes_FRA = {
+	allowed = { original_tag = TUR }
+	enable = { has_country_flag = chose_alternative }
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
-		type = dont_defend_ally_borders
-		id = AUS
-		value = 10
-	}
-
-	ai_strategy = {
-		type = dont_defend_ally_borders
-		id = ENG
-		value = 10
-	}
-
-	ai_strategy = {
-		type = dont_defend_ally_borders
+		type = alliance
 		id = FRA
-		value = 10
-	}
-
-	ai_strategy = {
-		type = dont_defend_ally_borders
-		id = GER
-		value = 10
-	}
-}
-
-TUR_likes_ENG = {
-	allowed = { original_tag = TUR }
-	enable = { has_completed_focus = TUR_salonika_memorandum }
-	abort = { OR = { ENG = { is_ally_with = ITA } ENG = { is_ally_with = SOV } has_country_flag = stop_influencing_uk } }
-
-	ai_strategy = {
-		type = befriend
-		id = ENG
 		value = 100
+	}
+
+	ai_strategy = {
+		type = ignore
+		id = GER
+		value = 200
 	}
 }
 
 TUR_likes_GER = {
 	allowed = { original_tag = TUR }
-	enable = { or = { is_guaranteed_by = GER is_ally_with = GER } }
+	enable = { is_guaranteed_by = GER }
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
-		type = diplo_action_acceptance
+		type = alliance
 		id = GER
-		value = 300
-		target = join_allies
-	}
-
-	ai_strategy = {
-		type = consider_weak
-		id = SOV
 		value = 100
-	}
-}
-
-TUR_hates_RUS = {
-	allowed = { original_tag = TUR }
-	enable = { not = { has_idea = idea_amassed_foreign_debt } }
-	abort_when_not_enabled = yes
-
-	ai_strategy = {
-		type = declare_war
-		id = SOV
-		value = 150
 	}
 }

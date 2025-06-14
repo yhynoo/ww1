@@ -1,56 +1,66 @@
 add_namespace = soviet_agitation
 
-news_event = {
+country_event = {
     id = soviet_agitation.1
-    title = "Communist Agitation in the Army"
+    title = "Agitation in the Army"
     desc = soviet_agitation.1.d
 
-    fire_only_once = yes
     trigger = {
         tag = SOV
-        not = { or = { has_civil_war = yes has_government = communism } }
+        not = { has_country_flag = exhaustion_fired }
+        and = { longest_war_length > 18 has_war_support < 0.35 }
+    }
 
-        has_stability < 0.3
-        or = { longest_war_length > 18 surrender_progress > 0.15 }
+    immediate = { 
+        hidden_effect = { 
+            set_country_flag = exhaustion_fired 
+            news_event = { id = soviet_agitation.2 days = 60 random_days = 30 } 
+        } 
     }
 
     option = {
-        name = "We must do something about this."
-        add_timed_idea = { idea = idea_agitation_in_army days = 180 }
+        name = "Execute the agitators."
+        add_political_power = -150
 
-        hidden_effect = {
-            news_event = { id = soviet_agitation.2 days = 28 random_days = 14 }
+        hidden_effect = { 
+            news_event = { id = soviet_agitation.3 days = 180 } 
+        }
+    }
+    option = {
+        name = "This should not bother us."
+        add_timed_idea = { idea = idea_agitation_in_army years = 1 }
+
+        ai_chance = {
+            base = 1
+            modifier = { has_country_flag = chose_alternative factor = 0 }
         }
     }
 }
 
 news_event = {
     id = soviet_agitation.2
-    title = "Gendarmerie Outpost Attacked in Central Asia"
+    title = "Anarchists Spread Anti-War Slogans"
     desc = soviet_agitation.2.d
 
     is_triggered_only = yes
-    trigger = {
-        has_stability < 0.5
-    }
+    trigger = { has_war_support < 0.5 }
 
     option = {
-        name = "Disgraceful."
+        name = "We must do something about it."
         add_popularity = { ideology = communism popularity = 0.05 }
     }
 }
 
 news_event = {
     id = soviet_agitation.3
-    title = "Council of Soldiers' and Workers' Deputies Meets"
+    title = "Outpost Assaulted in Central Asia"
     desc = soviet_agitation.3.d
 
     is_triggered_only = yes
+    trigger = { has_war_support < 0.5 }
 
     option = {
-        name = "Disgraceful."
-
-        add_popularity = { ideology = communism popularity = 0.15 }
-        add_ideas = idea_widespread_demoralization
+        name = "Very disturbing."
+        add_ideas = idea_army_is_done
     }
 }

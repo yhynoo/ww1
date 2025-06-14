@@ -49,11 +49,16 @@ focus_tree = {
         y = 1
         cost = 10
 
-        available = { or = { has_idea = disarmed_nation has_idea = volunteer_only } }
+        available = { has_idea = idea_colonial_army }
+
+        ai_will_do = { 
+            base = 0 
+            modifier = { has_war = yes add = 3 }
+        }
 
         prerequisite = { focus = ENG_focus_army }
         completion_reward = {
-            add_ideas = limited_conscription
+            remove_ideas = idea_colonial_army
         }
     }
     focus = {
@@ -760,12 +765,9 @@ focus_tree = {
         prerequisite = { focus = ENG_expansionism }
         available = { is_subject = no }
 
-        ai_will_do = {
-            base = 2
-            modifier = { and = { date > 1913.10.1 } add = 3 }
-
-            # communist england won't go for this
-            modifier = { or = { has_government = communism has_idea = idea_communism_tendencies } factor = 0 }
+        ai_will_do = { 
+            base = 3
+            modifier = { has_country_flag = chose_alternative factor = 0 }
         }
 
         completion_reward = {
@@ -787,15 +789,22 @@ focus_tree = {
             has_war = no
         }
 
-        ai_will_do = {
+        ai_will_do = { 
             base = 0
-            modifier = { and = { date > 1915.1.1 } add = 3 }
+            modifier = { has_country_flag = chose_alternative add = 2 }
         }
 
         completion_reward = {
             if = {
-                limit = { is_faction_leader = yes }
+                limit = { is_faction_leader = yes }§
                 dismantle_faction = yes
+            }
+            
+            hidden_effect = {
+                every_country = {
+                    limit = { is_guaranteed_by = ROOT }
+                    ENG = { diplomatic_relation = { country = PREV relation = guarantee active = no } }
+                }
             }
             
             custom_effect_tooltip = decision_effect_tooltip
@@ -811,7 +820,10 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = { base = 3 }
+        ai_will_do = { 
+            base = 2
+            modifier = { has_country_flag = chose_alternative factor = 0 }
+        }
 
         mutually_exclusive = { focus = ENG_abolish_lords }
         prerequisite = { focus = ENG_political_ambitions }
@@ -905,7 +917,10 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = { base = 1 }
+        ai_will_do = { 
+            base = 0
+            modifier = { has_country_flag = chose_alternative add = 2 }
+        }
 
         mutually_exclusive = { focus = ENG_traditionalism }
         prerequisite = { focus = ENG_political_ambitions }

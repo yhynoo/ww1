@@ -20,10 +20,6 @@ dc_economic_decisions = {
 
 
 # country specific
-adriatic_unrest = {
-    visible = { has_completed_focus = TUR_salonika_memorandum }
-}
-
 african_expansion = {
     visible = { has_completed_focus = SPA_african_expansion }
 }
@@ -41,10 +37,6 @@ aftermath_of_antwerp = {
     }
 }
 
-align_with_french = {
-    visible = { has_completed_focus = TUR_on_our_own }
-}
-
 american_industries = {
     visible = { has_completed_focus = USA_american_industries }
 }
@@ -58,7 +50,10 @@ anticolonialism = {
 }
 
 antwerp_affair = {
-    visible = { has_completed_focus = FRA_antwerp_affair }
+    visible = { 
+        has_completed_focus = FRA_antwerp_affair
+        not = { has_idea = idea_aachen_treaty }
+    }
 }
 
 challenge_usa = {
@@ -136,6 +131,10 @@ peoples_act = {
     visible = { has_completed_focus = ENG_peoples_act }
 }
 
+reach_out_to_french = {
+    visible = { has_completed_focus = TUR_deterrence }
+}
+
 second_reconquista = {
     visible = { has_completed_focus = SPR_on_our_own }
 }
@@ -153,6 +152,10 @@ tackle_the_debt = {
         or = { has_idea = idea_amassed_foreign_debt has_idea = idea_significant_foreign_debt }
         has_completed_focus = TUR_tackle_the_debt
     }
+}
+
+turanist_ambition = {
+    visible = { has_completed_focus = TUR_on_our_own }
 }
 
 twenty_one_demands = {

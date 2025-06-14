@@ -65,6 +65,8 @@ focus_tree = {
         y = 1
         cost = 10
 
+        ai_will_do = { base = 3 }
+
         prerequisite = { focus = TUR_focus_army }
         completion_reward = {
             remove_ideas = idea_sick_man_of_europe
@@ -733,8 +735,8 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_salonika_memorandum
-        icon = GFX_focus_generic_deterrence
+        id = TUR_deterrence
+        icon = GFX_focus_TUR_deterrence
 
         relative_position_id = TUR_international_affairs
         x = 1
@@ -744,9 +746,9 @@ focus_tree = {
         prerequisite = { focus = TUR_international_affairs }
         available = { is_subject = no }
 
-        ai_will_do = {
+        ai_will_do = { 
             base = 0
-            modifier = { and = { date > 1913.1.1 } add = 3 }
+            modifier = { has_country_flag = chose_alternative add = 2 }
         }
 
         completion_reward = {
@@ -771,7 +773,7 @@ focus_tree = {
     }
     focus = {
         id = TUR_on_our_own
-        icon = GFX_focus_TUR_on_our_own
+        icon = GFX_focus_generic_on_our_own
 
         relative_position_id = TUR_expansionism
         x = 1
@@ -795,9 +797,9 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 0
-            modifier = { date > 1914.1.1 add = 1 }
+        ai_will_do = { 
+            base = 1
+            modifier = { has_country_flag = chose_alternative factor = 0 }
         }
 
         mutually_exclusive = { focus = TUR_adjust_the_government }
@@ -892,9 +894,9 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
+        ai_will_do = { 
             base = 0
-            modifier = { date > 1914.1.1 add = 2 }
+            modifier = { has_country_flag = chose_alternative add = 2 }
         }
 
         mutually_exclusive = { focus = TUR_traditionalism }
@@ -932,7 +934,7 @@ focus_tree = {
         prerequisite = { focus = TUR_adjust_the_government }
         available = { or = { has_idea = idea_amassed_foreign_debt has_idea = idea_significant_foreign_debt } }
 
-        ai_will_do = { base = 3 }
+        ai_will_do = { base = 2 }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip

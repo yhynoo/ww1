@@ -83,29 +83,3 @@ SOV_second_line_airfields = {
 		value = -100
 	}
 }
-
-SOV_loves_SER = {
-	allowed = { original_tag = SOV }
-	enable = { SER = { exists = yes } }
-
-	ai_strategy = {
-		type = protect
-		id = SER
-		value = 100
-	}
-}
-
-## after soviet union is formed
-
-SOV_communists_dont_join_germans = {
-	allowed = { original_tag = SOV }
-	enable = { has_government = communism }
-
-	abort_when_not_enabled = yes
-
-	ai_strategy = {
-		type = alliance
-		id = GER
-		value = -600
-	}
-}

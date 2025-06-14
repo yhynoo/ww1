@@ -14,7 +14,7 @@ GER_army_composition = {
 	ai_strategy = {
 		type = role_ratio
 		id = cyclist
-		value = 15
+		value = 10
 	}
 
 	ai_strategy = {
@@ -22,29 +22,15 @@ GER_army_composition = {
 		id = mountaineers
 		value = 5
 	}
-
-	## Air
-	ai_strategy = {
-		type = unit_ratio
-		id = tactical_bomber
-		value = 35
-	}
 }
 
 GER_protects_AUS = {
 	allowed = { original_tag = GER }
 	enable = { or = { is_ally_with = AUS has_guaranteed = AUS } }
-
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
 		type = support
-		id = AUS
-		value = 100
-	}
-
-	ai_strategy = {
-		type = protect
 		id = AUS
 		value = 100
 	}
@@ -53,14 +39,7 @@ GER_protects_AUS = {
 GER_protects_UBD = {
 	allowed = { original_tag = GER }
 	enable = { UBD = { exists = yes } }
-
 	abort_when_not_enabled = yes
-
-	ai_strategy = {
-		type = protect
-		id = UBD
-		value = 100
-	}
 
 	ai_strategy = {
 		type = support
@@ -69,10 +48,10 @@ GER_protects_UBD = {
 	}
 }
 
-TUR_likes_TUR = {
+GER_likes_TUR = {
 	allowed = { original_tag = TUR }
 	enable = { has_completed_focus = GER_oriental_investments }
-	abort = { OR = { TUR = { is_ally_with = ENG } TUR = { has_completed_focus = TUR_salonika_memorandum } } }
+	abort = { TUR = { or = { has_country_flag = chose_alternative is_ally_with = ENG } } }
 
 	ai_strategy = {
 		type = befriend

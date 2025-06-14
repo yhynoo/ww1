@@ -54,8 +54,11 @@ oriental_investments = {
         }
 
         ai_will_do = {
-            base = 3
-            modifier = { has_war_with = FRA add = 9 }
+            base = 0
+            modifier = { has_war_with = FRA add = 12 }
+
+            # don't antagonize France if alternative path is on.
+            modifier = { has_country_flag = chose_alternative factor = 0 }
         }
 
         complete_effect = {
@@ -158,16 +161,14 @@ greater_germany = {
             create_wargoal = { target = AUS type = liberate_wargoal }
         }
     }
-    strasburg_treaty = {
+    aachen_treaty = {
         icon = generic_civil_support
         cost = 100
         fire_only_once = yes
 
         available = {
-            FRA = {
-                not = { has_war_with = GER }
-                has_government = monarchism
-            }
+            not = { has_war_with = FRA }
+            FRA = { has_government = monarchism }
         }
 
         ai_will_do = { base = 18 }

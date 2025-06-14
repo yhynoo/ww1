@@ -67,7 +67,7 @@
 
         prerequisite = { focus = FRA_focus_army }
         completion_reward = {
-            remove_ideas = idea_headless_rooster
+            remove_ideas = idea_a_headless_rooster
             add_doctrine_cost_reduction = {
 				name = land_doc_bonus
 				cost_reduction = 0.5
@@ -745,7 +745,7 @@
         cost = 10
 
         prerequisite = { focus = FRA_international_affairs }
-        available = { is_subject = no }
+        available = { is_subject = no has_idea = idea_antwerp_affair }
 
         ai_will_do = { base = 3 }
 
@@ -765,10 +765,7 @@
         prerequisite = { focus = FRA_expansionism }
         available = { is_subject = no }
 
-        ai_will_do = { 
-            base = 1
-            modifier = { and = { has_government = democratic date > 1914.1.1 } factor = 3 }
-        }
+        ai_will_do = { base = 2 }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -789,9 +786,9 @@
             has_government = monarchism
         }
 
-        ai_will_do = {
+        ai_will_do = { 
             base = 0
-            modifier = { and = { date > 1915.1.1 has_war = no has_government = monarchism } add = 3 }
+            modifier = { has_country_flag = chose_alternative add = 2 }
         }
 
         completion_reward = {
@@ -808,7 +805,10 @@
         y = 1
         cost = 10
 
-        ai_will_do = { base = 3 }
+        ai_will_do = { 
+            base = 2
+            modifier = { has_country_flag = chose_alternative factor = 0 }
+        }
 
         mutually_exclusive = { focus = FRA_support_the_legitimists }
         prerequisite = { focus = FRA_political_ambitions }
@@ -902,7 +902,10 @@
         y = 1
         cost = 10
 
-        ai_will_do = { base = 1 }
+        ai_will_do = { 
+            base = 0
+            modifier = { has_country_flag = chose_alternative add = 2 }
+        }
 
         mutually_exclusive = { focus = FRA_republicanism }
         prerequisite = { focus = FRA_political_ambitions }

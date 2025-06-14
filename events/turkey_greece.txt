@@ -1,41 +1,14 @@
 add_namespace = turkey_greece
 
-country_event = {
+news_event = {
     id = turkey_greece.1
-    title = "Achaean League Attacks in Athens"
+    title = "[TUR.GetName] Withdraws from Greece"
     desc = turkey_greece.1.d
 
     is_triggered_only = yes
-
-    option = {
-        name = "We must destroy those terrorists!"
-
-        add_popularity = { ideology = monarchism popularity = 0.05 }
-        hidden_effect = { news_event = { id = turkey_greece.2 days = 14 random_days = 42 } }
-    }
-    option = {
-        name = "We must withdraw."
-        add_political_power = -100
-    }
-}
-
-news_event = {
-    id = turkey_greece.2
-    title = "Greeks Fight for Their Independence!"
-    desc = turkey_greece.2.d
-
-    is_triggered_only = yes
-    trigger = { TUR = { has_stabilty < 0.6 } }
     major = yes
 
     option = {
-        name = "Yet another attempt."
-
-        if = {
-            limit = { tag = TUR }
-            remove_ideas = idea_unrest_in_arab_lands
-
-            hidden_effect = { start_greek_independence_war = yes }
-        }
+        name = "A chance for peace."
     }
 }

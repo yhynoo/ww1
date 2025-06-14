@@ -5,6 +5,8 @@ influence_the_uk = {
 
         available = { not = { has_war_with = ENG } }
 
+        ai_will_do = { base = 12 }
+
         complete_effect = {
             navy_experience = 50
             ENG = { add_opinion_modifier = { target = ITA modifier = invited_experts } }
@@ -22,6 +24,8 @@ influence_the_uk = {
 
             39 = { is_owned_and_controlled_by = AUS }
         }
+
+        ai_will_do = { base = 9 }
 
         complete_effect = {
             ENG = { country_event = { id = italy_tirol.1 hours = 6 random_hours = 6 } }
@@ -59,7 +63,6 @@ italy_alliances = {
             modifier = { threat > 0.2 add = 9 }
 
             modifier = { FROM = { tag = ENG } add = 6 }                 # we prefer the entente.
-            modifier = { FROM = { or = { has_war_with = AUS has_war_with = TUR } } factor = 3 }
             modifier = { FROM = { is_ally_with = TUR } factor = 0 }     # but we'll never ally with Turkey.
         }
 

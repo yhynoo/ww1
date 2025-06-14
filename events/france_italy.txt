@@ -1,0 +1,77 @@
+add_namespace = france_italy
+
+country_event = {
+    id = france_italy.1
+    title = "Invite Italy into the War?"
+    desc = france_italy.1.d
+
+    trigger = {
+        tag = FRA
+        war_length_with = { tag = AUS months > 6 }
+        AUS = { is_ally_with = TUR }
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "This is a good idea."
+
+        add_political_power = -50
+        ITA = { country_event = { id = france_italy.2 hours = 6 random_hours = 6 } }
+    }
+
+    option = {
+        name = "Nonsense."
+    }
+}
+
+country_event = {
+    id = france_italy.2
+    title = "France Offers Dalmatia for Alliance"
+    desc = france_italy.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a good idea."
+        FROM = { faction_leader = { add_to_faction = ITA } }
+
+        every_state = {
+            limit = {
+                or = { state = 33 state = 103 state = 163 }
+                is_controlled_by = AUS
+            }
+            add_claim_by = ITA
+        }
+
+        hidden_effect = { news_event = { id = france_italy.3 hours = 6 random_hours = 6 } }
+    }
+    option = {
+        name = "The French are only trying to use us."
+        FROM = { news_event = { id = france_italy.4 hours = 6 random_hours = 6 } }
+    }
+}
+
+news_event = {
+    id = france_italy.3
+    title = "[ITA.GetName] and France Allied"
+    desc = france_italy.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Right."
+    }
+}
+
+news_event = {
+    id = france_italy.4
+    title = "[ITA.GetName] Declines!"
+    desc = france_italy.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Disappointing."
+    }
+}

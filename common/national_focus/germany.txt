@@ -703,7 +703,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 3
-            modifier = { threat > 0.1 factor = 3 }
+            modifier = { has_country_flag = chose_alternative factor = 2 }
         }
 
         available = { is_subject = no }
@@ -729,7 +729,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 3
-            modifier = { threat > 0.2 factor = 3 }
+            modifier = { has_country_flag = chose_alternative factor = 2 }
         }
 
         prerequisite = { focus = GER_international_affairs }
@@ -768,9 +768,9 @@ focus_tree = {
         prerequisite = { focus = GER_expansionism }
         available = { is_subject = no }
 
-        ai_will_do = {
-            base = 1
-            modifier = { and = { date > 1913.10.1 } add = 3 }
+        ai_will_do = { 
+            base = 2
+            modifier = { has_country_flag = chose_alternative factor = 0 }
         }
 
         completion_reward = {
@@ -791,13 +791,17 @@ focus_tree = {
             is_subject = no
         }
 
-        ai_will_do = {
+        ai_will_do = { 
             base = 0
-            modifier = { has_country_flag = we_go_auth add = 1 }
+            modifier = { or = { has_country_flag = chose_alternative not = { is_ally_with = AUS } } add = 2 }
         }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
+
+            hidden_effect = {
+                AUS = { set_country_flag = chose_alternative }
+            }
         }
     }
 
@@ -811,8 +815,8 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1
-            modifier = { has_war = yes add = 3 }
+            base = 2
+            modifier = { has_war = yes add = 2 }
         }
 
         mutually_exclusive = { focus = GER_adjust_the_government }
@@ -907,7 +911,10 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = { base = 1 }
+        ai_will_do = { 
+            base = 2
+            modifier = { has_country_flag = chose_alternative factor = 0 }
+        }
 
         mutually_exclusive = { focus = GER_traditionalism }
         prerequisite = { focus = GER_political_ambitions }

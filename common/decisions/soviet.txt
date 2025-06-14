@@ -27,15 +27,15 @@ slavic_unrest = {
             }
         }
     }
-    mutual_guarantees_serbia = {
+    mutual_guarantees_greece = {
         fire_only_once = yes
         cost = 75
 
-        available = { SER = { exists = yes not = { is_guaranteed_by = SOV } } }
+        available = { GRE = { exists = yes not = { is_guaranteed_by = SOV } } }
         ai_will_do = { base = 6 }
 
         complete_effect = {
-            SER = { country_event = { id = soviet_serbia.1 hours = 6 random_hours = 6 } }
+            GRE = { country_event = { id = soviet_serbia.1 hours = 6 random_hours = 6 } }
         }
     }
 }
@@ -45,7 +45,7 @@ soviet_alliances = {
         cost = 75
         fire_only_once = yes
 
-        targets = { SER }
+        targets = { GRE }
         available = { FROM = { is_in_faction = no not = { has_war_with = ROOT } } }
 
         ai_will_do = {
@@ -66,6 +66,8 @@ soviet_alliances = {
         ai_will_do = { 
             base = 9
             modifier = { FROM = { tag = ENG } add = 6 }
+
+            modifier = { FROM = { is_ally_with = TUR } factor = 0 }
         }
 
         available = { 
@@ -174,57 +176,5 @@ limited_autonomy = {
                 remove_ideas = idea_unrest_in_ukraine
             }
         }
-    }
-}
-
-# agitation
-agitation_in_army = {
-    agitation_mission = {
-        icon = generic_army_support
-        days_mission_timeout = 180
-        is_good = no
-
-        available = {
-            has_stability > 0.5
-        }
-
-        activation = { has_idea = idea_agitation_in_army }
-        complete_effect = { remove_ideas = idea_agitation_in_army }
-        timeout_effect = { news_event = soviet_agitation.3 }
-    }
-    execute_deserters = {
-        icon = oppression
-        cost = 25
-
-        days_remove = 30
-
-        modifier = {
-            experience_loss_factor = 0.05
-            army_morale_factor = -0.15
-        }
-
-        ai_will_do = {
-            base = 6
-            modifier = { or = { has_completed_focus = SOV_mobilize_the_masses has_stability > 0.4 } factor = 2 }
-        }
-
-        complete_effect = { add_stability = 0.05 }
-    }
-    defensive_approach = {
-        icon = border_war
-        cost = 25
-        days_remove = 30
-
-        modifier = {
-            army_attack_factor = -0.50
-            army_morale_factor = 0.25
-        }
-
-        ai_will_do = {
-            base = 6
-            modifier = { has_completed_focus = SOV_traditionalism add = 3 }
-        }
-
-        complete_effect = { add_stability = 0.05 }      
     }
 }

@@ -744,9 +744,9 @@ focus_tree = {
         prerequisite = { focus = USA_international_affairs }
         available = { is_subject = no }
 
-        ai_will_do = {
-            base = 1
-            modifier = { MEX = { has_war = yes } add = 2 }
+        ai_will_do = { 
+            base = 2
+            modifier = { has_country_flag = chose_alternative factor = 0 }
         }
 
         completion_reward = {
@@ -765,9 +765,9 @@ focus_tree = {
         prerequisite = { focus = USA_expansionism }
         available = { is_subject = no }
 
-        ai_will_do = {
-            base = 1
-            modifier = { and = { date > 1915.7.1 has_war = no } add = 3 }
+        ai_will_do = { 
+            base = 2
+            modifier = { has_country_flag = chose_alternative factor = 0 }
         }
 
         completion_reward = {
@@ -786,9 +786,9 @@ focus_tree = {
         prerequisite = { focus = USA_expansionism }
         available = { is_subject = no }
 
-        ai_will_do = {
+        ai_will_do = { 
             base = 0
-            modifier = { and = { date > 1916.1.1 has_war = no } add = 2 }
+            modifier = { has_country_flag = chose_alternative add = 2 }
         }
 
         completion_reward = {
@@ -805,9 +805,9 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 0
-            modifier = { threat > 0.3 add = 3 } 
+        ai_will_do = { 
+            base = 2
+            modifier = { has_country_flag = chose_alternative factor = 0 }
         }
 
         mutually_exclusive = { focus = USA_not_our_war }
@@ -902,9 +902,9 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
+        ai_will_do = { 
             base = 0
-            modifier = { threat > 0.3 add = 1 }
+            modifier = { and = { threat > 0.2 has_country_flag = chose_alternative } add = 2 }
         }
 
         mutually_exclusive = { focus = USA_hearts_and_minds }
