@@ -6,7 +6,11 @@ country_event = {
     desc = x_tired_of_war.1.d
 
     trigger = {
-        not = { tag = SOV }
+        not = { 
+            tag = ENG
+            tag = GER
+            tag = SOV
+        }
 
         not = { has_country_flag = exhaustion_fired }
         and = { longest_war_length > 18 has_war_support < 0.35 }

@@ -1,78 +1,4 @@
-influence_the_uk = {
-    invite_uk_experts_ita = {
-        cost = 50
-        fire_only_once = yes
-
-        available = { not = { has_war_with = ENG } }
-
-        ai_will_do = { base = 12 }
-
-        complete_effect = {
-            navy_experience = 50
-            ENG = { add_opinion_modifier = { target = ITA modifier = invited_experts } }
-        }
-    }
-    south_tirol = {
-        icon = generic_prepare_civil_war
-
-        cost = 75
-        fire_only_once = yes
-
-        available = {
-            not = { has_war_with = ENG }
-            not = { has_war_with = AUS }
-
-            39 = { is_owned_and_controlled_by = AUS }
-        }
-
-        ai_will_do = { base = 9 }
-
-        complete_effect = {
-            ENG = { country_event = { id = italy_tirol.1 hours = 6 random_hours = 6 } }
-        }
-    }
-}
-
-italy_alliances = {
-    ita_offer_alliance = {
-        cost = 75
-        fire_only_once = yes
-
-        targets = { }
-        available = { }
-
-        complete_effect = {
-            FROM = { country_event = { id = x_alliance.2 hours = 6 random_hours = 6 } }
-        }
-    }
-    ita_join_alliance = {
-        cost = 100
-        fire_only_once = yes
-
-        targets = { ENG FRA }
-        available = { 
-            is_in_faction = no
-            FROM = { 
-                not = { has_war_with = ROOT }
-                or = { is_in_faction = no is_faction_leader = yes } 
-            }
-        }
-
-        ai_will_do = { 
-            base = 0
-            modifier = { threat > 0.2 add = 9 }
-
-            modifier = { FROM = { tag = ENG } add = 6 }                 # we prefer the entente.
-            modifier = { FROM = { is_ally_with = TUR } factor = 0 }     # but we'll never ally with Turkey.
-        }
-
-        complete_effect = {
-            FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
-        }
-    }
-}
-
-mediterranean_expansion_ita = {
+avenge_libya = {
     demand_libya = {
         icon = generic_prepare_civil_war
 
@@ -99,7 +25,6 @@ mediterranean_expansion_ita = {
     }
     demand_aegean = {
         icon = generic_prepare_civil_war
-
         fire_only_once = yes
         cost = 100
 
@@ -119,6 +44,169 @@ mediterranean_expansion_ita = {
 
         complete_effect = {
             TUR = { country_event = { id = italy_aegean.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}
+
+italy_alliances = {
+    ita_offer_alliance = {
+        cost = 75
+        fire_only_once = yes
+
+        targets = { }
+        available = { }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.2 hours = 6 random_hours = 6 } }
+        }
+    }
+    ita_join_alliance = {
+        cost = 100
+        fire_only_once = yes
+
+        targets = { ENG FRA GER }
+        available = { 
+            is_in_faction = no
+            FROM = { 
+                not = { has_war_with = ROOT }
+                or = { is_in_faction = no is_faction_leader = yes } 
+            }
+        }
+
+        ai_will_do = { 
+            base = 0
+            modifier = {
+                or = { 
+                    threat > 0.1
+                    has_war_with_major = yes
+                }
+                add = 12
+            }
+
+            modifier = { 
+                and = {
+                    FROM = { or = { tag = ENG tag = FRA } }
+                    has_country_flag = chose_alternative
+                }
+                factor = 0
+            }
+
+            modifier = { 
+                and = {
+                    FROM = { tag = GER }
+                    not = { has_country_flag = chose_alternative }
+                }
+                factor = 0
+            }
+
+            modifier = { FROM = { is_ally_with = TUR } factor = 0 }     # but we'll never ally with Turkey.
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}
+
+old_alliances = {
+    demand_tunisia = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            not = { has_war_with = FRA }
+            any_state = {
+                or = { state = 458 state = 665 }
+                is_owned_and_controlled_by = FRA
+            }
+        }
+
+        ai_will_do = { 
+            base = 0
+            modifier = { is_in_faction = yes add = 9 }
+        }
+
+        complete_effect = {
+            FRA = { country_event = { id = italy_old_alliances.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    loyalty_for_tirol = {
+        icon = generic_civil_support
+        fire_only_once = yes
+        cost = 75
+
+        available = {
+            AUS = { owns_state = 39 }
+            not = { 
+                has_war_with = AUS
+                has_non_aggression_pact_with = AUS
+            }
+        }
+
+        ai_will_do = { 
+            base = 0
+            modifier = { not = { is_ally_with = AUS } add = 9 }
+        }
+
+        complete_effect = {
+            AUS = { country_event = { id = italy_old_alliances.4 hours = 6 random_hours = 6 } }
+        }
+    }
+    coordinate_mountain_troops = {
+        icon = generic_military_support
+        fire_only_once = yes
+        cost = 50
+        
+        available = {
+            is_in_faction = yes
+            has_tech = mountaineers_1
+        }
+
+        ai_will_do = { base = 12 }
+
+        complete_effect = {
+            every_other_country = {
+                limit = { is_ally_with = ITA }
+                add_tech_bonus = {
+                    name = mountain_bonus bonus = 1.0 uses = 1
+                    technology = mountaineers_1
+                }
+            }
+        }
+    }
+}
+
+deal_with_unions = {
+    expand_voting_rights = {
+        icon = generic_civil_support
+        fire_only_once = yes
+        cost = 100
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            add_popularity = { ideology = communism popularity = 0.1 }
+            news_event = { id = italy_unions.1 hours = 6 random_hours = 6 }
+        }
+    }
+    tackle_housing_crisis = {
+        icon = generic_construction
+        days_remove = 180
+        cost = 50
+
+        ai_will_do = { base = 6 }
+
+        modifier = {
+            stability_factor = 0.05
+            consumer_goods_factor = 0.05
+        }
+
+        complete_effect = {
+            random_owned_controlled_state = {
+                limit = { infrastructure < 5 }
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
         }
     }
 }

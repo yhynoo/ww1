@@ -1,0 +1,72 @@
+add_namespace = x_aachen
+
+country_event = {
+    id = x_aachen.1
+    title = "[FROM.GetName] Demands Territories!"
+    desc = x_aachen.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must accept their demands."
+        FROM = { 
+            news_event = { id = x_aachen.2 hours = 6 random_hours = 6 }
+            every_state = {
+                limit = { is_claimed_by = FROM is_owned_and_controlled_by = ROOT }      # add states.
+                transfer_state_to = FROM
+            }
+        }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "We will never agree to this."
+        FROM = { 
+            news_event = { id = x_aachen.3 hours = 6 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = take_state_focus
+            }
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = x_aachen.2
+    title = "[FROM.GetName] Withdraws Under [ROOT.GetAdjective] Pressure"
+    desc = x_aachen.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Worrying."
+    }
+}
+
+news_event = {
+    id = x_aachen.3
+    title = "[FROM.GetName] Declines!"
+    desc = x_aachen.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about this."
+    }
+}
+
+news_event = {
+    id = x_aachen.4
+    title = "Bourbon Insurgency in Southern Italy!"
+    desc = x_aachen.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Italian unification undone."
+    }
+}

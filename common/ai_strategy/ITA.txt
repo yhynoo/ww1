@@ -21,12 +21,6 @@ ITA_army_composition = {
 		id = marines
 		value = 5
 	}
-
-	ai_strategy = {
-		type = role_ratio
-		id = cyclist
-		value = 5
-	}
 }
 
 ITA_dislikes_TUR = {
@@ -35,21 +29,33 @@ ITA_dislikes_TUR = {
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
-		type = antagonize
+		type = conquer
 		id = TUR
 		value = 100
 	}
 }
 
-ITA_ally_ENG = {
+ITA_likes_ENG = {
 	allowed = { tag = ITA }
-	enable = { and = { has_completed_focus = ITA_influence_the_uk threat > 0.5 } }
-	abort = { owns_state = 33 owns_state = 39 }
+	enable = { and = { not = { has_country_flag = chose_alternative } threat > 0.5 } }
+	abort = { ENG = { is_ally_with = TUR } }
 
 	ai_strategy = {
 		type = alliance
 		id = ENG
-		value = 200
+		value = 100
+	}
+}
+
+ITA_likes_GER = {
+	allowed = { tag = ITA }
+	enable = { and = { has_country_flag = chose_alternative threat > 0.5 } }
+	abort = { GER = { is_ally_with = TUR } }
+
+	ai_strategy = {
+		type = alliance
+		id = GER
+		value = 100
 	}
 }
 

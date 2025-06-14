@@ -59,9 +59,8 @@ country_event = {
             ai_chance = {
                 base = 1
                 modifier = { FROM = { has_guaranteed = ROOT } add = 2 }
-                modifier = { has_war = yes factor = 6 }
 
-                # France: if we have Belgium and Alsace-Lorraine, we will stay neutral.
+                # France: if we have Belgium and Alsace-Lorraine, we will likely stay neutral.
                 modifier = { 
                     and = {
                         tag = FRA  
@@ -79,8 +78,23 @@ country_event = {
         ai_chance = { 
             base = 1
 
-            # if England invites and we're not edgy - join.
-            modifier = { and = { FROM = { tag = ENG } not = { has_country_flag = chose_alternative } } factor = 0 }
+            # if England invites and we're not edgy - we won't say no.
+            modifier = { 
+                and = { 
+                    FROM = { tag = ENG } 
+                    not = { has_country_flag = chose_alternative }
+                } 
+                factor = 0 
+            }
+
+            # if we're France and Austria invites - we won't say no.
+            modifier = {
+                and = { tag = FRA FROM = { tag = AUS } }
+                factor = 0
+            }
+
+            # if we're at war, we won't say no.
+            modifier = { has_war = yes factor = 0 }
         }
     }
 }

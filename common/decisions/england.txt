@@ -167,7 +167,7 @@ peoples_act = {
 
         modifier = {
             stability_weekly = 0.005
-            subjects_autonomy_gain = 0.5        # to adjust
+            production_speed_buildings_factor = 0.1
         }
     }
     appease_unions_eng = {
@@ -179,6 +179,45 @@ peoples_act = {
         modifier = {
             industrial_capacity_factory = 0.1
             communism_drift = 0.05
+        }
+    }
+}
+
+controlled_decolonization = {
+    release_saf = {
+        icon = generic_form_nation
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            SAF = { exists = no }
+            any_state = {
+                is_core_of = SAF
+                is_controlled_by = ROOT
+            }
+        }
+
+        complete_effect = {
+            hidden_effect = { release_on_controlled = SAF }
+            puppet = SAF
+        }
+    }
+
+    support_local_communists = {
+        icon = generic_civil_support
+        cost = 50
+        days_remove = 90
+
+        targets_dynamic = yes
+        target_trigger = {
+            FROM = { is_subject_of = ENG }
+        }
+
+        complete_effect = {
+            FROM = {
+                add_autonomy_score = { value = -50 }
+                add_popularity = { ideology = communism popularity = 0.05 }
+            }
         }
     }
 }

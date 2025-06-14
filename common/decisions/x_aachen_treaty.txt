@@ -1,0 +1,151 @@
+aachen_treaty_decisions = {
+    demand_holland = {
+        visible = { 
+            tag = GER
+            any_state = {
+                or = { state = 7 state = 35 state = 36 }
+                not = { is_owned_by = ROOT }
+            }
+        }
+
+        icon = generic_prepare_civil_war
+        cost = 75
+        fire_only_once = yes
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            every_state = {
+                limit = {
+                    or = { state = 7 state = 35 state = 36 }
+                    not = { is_owned_by = ROOT }
+                }
+                add_claim_by = ROOT
+            }
+
+            every_other_country = {
+                limit = { or = { owns_state = 7 owns_state = 35 owns_state = 36 } }
+                country_event = { id = x_aachen.1 hours = 6 random_hours = 6 }
+            }
+        }
+    }
+    demand_venice = {
+        visible = { 
+            tag = GER
+            160 = { not = { is_owned_by = ROOT } §}
+        }
+
+        icon = generic_prepare_civil_war
+        cost = 75
+        fire_only_once = yes
+
+        available = {
+            160 = { any_neighbor_state = { is_owned_by = GER } }
+        }
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            160 = {
+                add_claim_by = ROOT
+            }
+
+            every_other_country = {
+                limit = { owns_state = 160 }
+                country_event = { id = x_aachen.1 hours = 6 random_hours = 6 }
+            }
+        }
+    }
+    demand_sardegna = {
+        visible = { 
+            tag = FRA
+            114 = { not = { is_owned_by = ROOT } }
+        }
+
+        icon = generic_prepare_civil_war
+        cost = 75
+        fire_only_once = yes
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            114 = {
+                add_claim_by = ROOT
+            }
+
+            every_other_country = {
+                limit = { owns_state = 114 }
+                country_event = { id = x_aachen.1 hours = 6 random_hours = 6 }
+            }
+        }
+    }
+    demand_aragon = {
+        visible = { 
+            tag = FRA
+            any_state = {
+                or = { state = 165 state = 172 }
+                not = { is_owned_by = ROOT }
+            }
+        }
+
+        icon = generic_prepare_civil_war
+        cost = 75
+        fire_only_once = yes
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            every_state = {
+                limit = {
+                    or = { state = 165 state = 172 }
+                    not = { is_owned_by = ROOT }
+                }
+                add_claim_by = ROOT
+            }
+
+            every_other_country = {
+                limit = { or = { owns_state = 165 owns_state = 172 } }
+                country_event = { id = x_aachen.1 hours = 6 random_hours = 6 }
+            }
+        }
+    }
+    france_two_sicilies = {
+        visible = { tag = FRA }
+
+        icon = generic_form_nation
+        fire_only_once = yes
+        cost = 100
+
+        days_remove = 90
+
+        available = {
+            TTS = { exists = no }
+            any_state = {
+                is_core_of = TTS
+                is_controlled_by = ITA
+            }
+        }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { 
+                ITA = { or = { is_ally_with = ENG is_guaranteed_by = ENG } }
+                factor = 0 
+            } 
+        }
+
+        remove_effect = {
+            puppet = TTS
+            hidden_effect = { 
+                start_sicilian_independence_war = yes
+                news_event = { id = x_aachen.4 hours = 6 random_hours = 6 }
+            }
+        }
+
+        complete_effect = {
+            hidden_effect = {
+                add_ai_strategy = { type = prepare_for_war id = ITA value = 60 }
+            }
+        }
+    }
+}

@@ -410,8 +410,8 @@
         }
     }
     focus = {
-        id = ITA_land_reclamation
-        icon = GFX_focus_generic_land_reclamation
+        id = ITA_reclaim_land
+        icon = GFX_focus_generic_reclaim_land
 
         relative_position_id = ITA_home_front
         x = -2
@@ -733,8 +733,8 @@
         }
     }
     focus = {
-        id = ITA_influence_the_uk
-        icon = GFX_focus_ITA_influence_the_uk
+        id = ITA_deterrence
+        icon = GFX_focus_generic_across_the_sea
 
         relative_position_id = ITA_international_affairs
         x = 1
@@ -768,7 +768,7 @@
     }
     focus = {
         id = ITA_on_our_own
-        icon = GFX_focus_generic_across_the_sea
+        icon = GFX_focus_generic_on_our_own
 
         relative_position_id = ITA_expansionism
         x = 1
@@ -778,9 +778,9 @@
         prerequisite = { focus = ITA_expansionism }
         available = { is_subject = no }
 
-        ai_will_do = {
-            base = 6
-            modifier = { date > 1914.1.1 add = -5 }
+        ai_will_do = { 
+            base = 0
+            modifier = { has_country_flag = chose_alternative add = 2 }
         }
 
         completion_reward = {
@@ -797,9 +797,9 @@
         y = 1
         cost = 10
 
-        ai_will_do = {
+        ai_will_do = { 
             base = 1
-            modifier = { has_government = monarchism factor = 2 }
+            modifier = { has_country_flag = chose_alternative add = 1 }
         }
 
         mutually_exclusive = { focus = ITA_adjust_the_government }
@@ -892,23 +892,25 @@
 
     focus = {
         id = ITA_adjust_the_government
-        icon = GFX_focus_generic_adjust_the_government
+        icon = GFX_focus_generic_red_reform
 
         relative_position_id = ITA_political_ambitions
         x = 4
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 1
-            modifier = { has_government = democratic factor = 2 }
+        ai_will_do = { 
+            base = 2
+            modifier = { has_country_flag = chose_alternative factor = 0.5 }
         }
 
         mutually_exclusive = { focus = ITA_traditionalism }
         prerequisite = { focus = ITA_political_ambitions }
         completion_reward = {
-            add_timed_idea = { idea = idea_democratic_tendencies years = 1 }
-            add_popularity = { ideology = democratic popularity = 0.1 }
+            add_timed_idea = { idea = idea_communism_tendencies years = 1 }
+            add_popularity = { ideology = communism popularity = 0.05 }
+
+            hidden_effect = { country_event = { id = italy_genoa days = 14 random_days = 70 } }
         }
     }
     focus = {
@@ -975,7 +977,7 @@
     }
     focus = {
         id = ITA_embrace_modernity
-        icon = GFX_focus_generic_embrace_modernity
+        icon = GFX_focus_generic_red_education
 
         relative_position_id = ITA_state_reform
         x = -1

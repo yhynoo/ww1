@@ -1,0 +1,18 @@
+on_actions = {
+    on_declare_war = {
+        effect = {
+            if = {
+                limit = { 
+                    has_idea = idea_aachen_treaty
+                    FROM = { has_idea = idea_aachen_treaty }
+                }
+
+                remove_ideas = idea_aachen_treaty
+                FROM = { 
+                    remove_ideas = idea_aachen_treaty
+                    news_event = { id = germany_thousand.5 hours = 6 random_hours = 6 }
+                }
+            }
+        }
+    }
+}
