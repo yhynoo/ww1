@@ -744,7 +744,6 @@
         prerequisite = { focus = MAN_international_affairs }
         available = { 
             is_subject = no
-            or = { has_idea = idea_severe_opium_crisis has_idea = idea_limited_opium_crisis }
         }
 
         ai_will_do = { 
@@ -910,6 +909,8 @@
         completion_reward = {
             remove_ideas = idea_enthusiasm_for_democracy
             add_timed_idea = { idea = idea_monarchism_tendencies years = 1 }
+
+            hidden_effect = { country_event = { id = manchukuo_communists.1 days = 42 random_days = 70 } }
         }
     }
     focus = {
