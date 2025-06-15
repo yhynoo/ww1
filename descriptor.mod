@@ -22,7 +22,6 @@ replace_path="common/on_actions"
 replace_path="common/operations"
 replace_path="common/raids"
 replace_path="common/scripted_effects"
-replace_path="common/scripted_triggers"
 replace_path="common/technologies"
 
 replace_path="events"
