@@ -7,7 +7,6 @@ avenge_libya = {
 
         ai_will_do = { 
             base = 0
-            modifier = { TUR = { has_war = yes } add = 9 }
             modifier = { or = { not = { any_country = { has_guaranteed = TUR } } TUR = { is_in_faction = no } } add = 12 }
         }
 
@@ -30,7 +29,6 @@ avenge_libya = {
 
         ai_will_do = { 
             base = 0
-            modifier = { TUR = { has_war = yes } add = 6 }
             modifier = { or = { not = { any_country = { has_guaranteed = TUR } } TUR = { is_in_faction = no } } add = 9 }
         }
 
@@ -64,7 +62,7 @@ italy_alliances = {
         cost = 100
         fire_only_once = yes
 
-        targets = { ENG FRA GER }
+        targets = { ENG FRA }
         available = { 
             is_in_faction = no
             FROM = { 
@@ -87,14 +85,6 @@ italy_alliances = {
                 and = {
                     FROM = { or = { tag = ENG tag = FRA } }
                     has_country_flag = chose_alternative
-                }
-                factor = 0
-            }
-
-            modifier = { 
-                and = {
-                    FROM = { tag = GER }
-                    not = { has_country_flag = chose_alternative }
                 }
                 factor = 0
             }
@@ -151,28 +141,6 @@ old_alliances = {
 
         complete_effect = {
             AUS = { country_event = { id = italy_old_alliances.4 hours = 6 random_hours = 6 } }
-        }
-    }
-    coordinate_mountain_troops = {
-        icon = generic_military_support
-        fire_only_once = yes
-        cost = 50
-        
-        available = {
-            is_in_faction = yes
-            has_tech = mountaineers_1
-        }
-
-        ai_will_do = { base = 12 }
-
-        complete_effect = {
-            every_other_country = {
-                limit = { is_ally_with = ITA }
-                add_tech_bonus = {
-                    name = mountain_bonus bonus = 1.0 uses = 1
-                    technology = mountaineers_1
-                }
-            }
         }
     }
 }

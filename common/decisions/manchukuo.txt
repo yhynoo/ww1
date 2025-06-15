@@ -1,42 +1,44 @@
-opium_crisis = {
-    tax_opium = {
-        fire_only_once = yes
-        cost = 75
-
-        available = { has_idea = idea_severe_opium_crisis }
-
-        ai_will_do = { base = 12 }
-
-        complete_effect = {
-            swap_ideas = {
-                remove_idea = idea_severe_opium_crisis
-                add_idea = idea_limited_opium_crisis
-            }
-        }
-    }
-    invade_indochina = {
+entente_integration = {
+    expel_germans = {
         icon = generic_prepare_civil_war
         fire_only_once = yes
         cost = 100
 
         available = {
-            or = { has_idea = idea_severe_opium_crisis has_idea = idea_limited_opium_crisis }
-
-            any_state = {
-                or = { state = 286 state = 670 state = 671 state = 289 state = 614 }
-                not = { is_owned_and_controlled_by = MAN }
-            }
+            not = { has_war_with = GER }
+            431 = { is_owned_by = GER }
         }
 
         ai_will_do = {
-            base = 3
-            modifier = { threat > 0.3 add = 6 }
+            base = 0
+            modifier = { GER = { has_war = yes } add = 6 }
         }
 
         complete_effect = {
-            every_country = {
-                limit = { or = { owns_state = 286 owns_state = 670 owns_state = 671 owns_state = 289 owns_state = 614 } }
-                country_event = { id = manchukuo_opium.1 hours = 6 random_hours = 6 }
+            GER = { country_event = { id = manchukuo_shandong.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    develop_arms_industry = {
+        icon = generic_industry
+
+        fire_only_once = yes
+        cost = 100
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            random_owned_controlled_state = {
+                limit = { infrastructure > 1 }
+
+                add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+                add_extra_state_shared_building_slots = 2
+            }
+
+            random_owned_controlled_state = {
+                limit = { infrastructure > 1 }
+
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+                add_extra_state_shared_building_slots = 1
             }
         }
     }
@@ -72,7 +74,18 @@ manchukuo_alliances = {
             }
         }
 
-        ai_will_do = { base = 6 }
+        ai_will_do = { 
+            base = 0
+
+            modifier = { 
+                FROM = { tag = ENG not = { has_country_flag = chose_alternative } }
+                add = 9
+            }
+            modifier = { 
+                FROM = { tag = GER has_country_flag = chose_alternative }
+                add = 12
+            }
+        }
 
         complete_effect = {
             FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
@@ -81,29 +94,6 @@ manchukuo_alliances = {
 }
 
 eight_banners = {
-    demand_haishenwai = {
-        icon = generic_prepare_civil_war
-
-        fire_only_once = yes
-        cost = 100
-
-        available = {
-            not = { has_war_with = SOV }
-            any_state = {
-                or = { state = 408 state = 409 }
-                is_owned_by = SOV
-            }
-        }
-
-        ai_will_do = {
-            base = 0
-            modifier = { SOV = { has_war = yes } add = 9 }
-        }
-
-        complete_effect = {
-            SOV = { country_event = { id = manchukuo_haishenwai.1 hours = 6 random_hours = 6 } }
-        }
-    }
     demand_dalian = {
         icon = generic_prepare_civil_war
 
@@ -130,36 +120,116 @@ eight_banners = {
             }
         }
     }
-    clashes_altai = {
+    invade_indochina = {
         icon = generic_prepare_civil_war
-        cost = 75
+        fire_only_once = yes
+        cost = 100
 
-        days_remove = 30
-        days_re_enable = 90
+        available = {
+            any_state = {
+                or = { state = 286 state = 670 state = 671 state = 289 state = 614 }
+                or = { is_owned_and_controlled_by = ENG is_owned_and_controlled_by = FRA is_owned_and_controlled_by = HOL }
+            }
+        }
 
-        ai_will_do = { 
+        ai_will_do = {
             base = 3
             modifier = { threat > 0.3 add = 6 }
         }
 
+        complete_effect = {
+            every_state = {
+                limit = {
+                    or = { state = 286 state = 670 state = 671 state = 289 state = 614 }
+                    not = { is_owned_and_controlled_by = MAN }
+                }
+                add_claim_by = MAN
+            }
+
+            if = {
+                limit = { ENG = { or = { owns_state = 286 owns_state = 670 owns_state = 671 owns_state = 289 owns_state = 614 } } }
+                MAN = { create_wargoal = { target = ENG type = take_claimed_state } }
+            }
+
+            if = {
+                limit = { FRA = { or = { owns_state = 286 owns_state = 670 owns_state = 671 owns_state = 289 owns_state = 614 } } }
+                MAN = { create_wargoal = { target = FRA type = take_claimed_state } }
+            }
+
+            if = {
+                limit = { HOL = { or = { owns_state = 286 owns_state = 670 owns_state = 671 owns_state = 289 owns_state = 614 } } }
+                MAN = { create_wargoal = { target = HOL type = take_claimed_state } }
+            }
+        }
+    }
+}
+
+legacy_of_boxers = {
+    terminate_hong_kong = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
         available = {
-            618 = { is_controlled_by = MAN }
-            any_country = {
-                controls_state = 40
-                not = { has_war_with = MAN }
+            not = { has_war_with = ENG }
+            326 = { is_owned_by = ENG }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { ENG = { has_war = yes } add = 6 }
+        }
+
+        complete_effect = {
+            ENG = { country_event = { id = manchukuo_hong_kong.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    develop_manchuria = {
+        icon = generic_industry
+
+        fire_only_once = yes
+        cost = 75
+
+        ai_will_do = { base = 9 }
+
+        available = {
+            any_state = {
+                or = { state = 610 state = 611 state = 328 state = 619 state = 654 state = 72 }
+                is_controlled_by = MAN
             }
         }
 
-        remove_effect = {
-            random_country = {
-                limit = { controls_state = 40 }
-                country_event = { id = x_local_conflict.1 days = 2 }
+        complete_effect = {
+            random_owned_controlled_state = {
+                limit = { 
+                    or = { state = 610 state = 611 state = 328 state = 619 state = 654 state = 72 }
+                }
+
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                add_extra_state_shared_building_slots = 1
             }
-            start_border_war = {
-                change_state_after_war = no
-                attacker = { state = 618 on_win = x_local_conflict.3 on_lose = x_local_conflict.4 }
-                defender = { state = 40 on_win = x_local_conflict.3 on_lose = x_local_conflict.4 }
+
+            random_owned_controlled_state = {
+                limit = { 
+                    or = { state = 610 state = 611 state = 328 state = 619 state = 654 state = 72 }
+                }
+
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                add_extra_state_shared_building_slots = 1
             }
         }
+    }
+    expel_foreigners = {
+        icon = generic_civil_support
+        cost = 50
+        days_remove = 90
+
+        ai_will_do = { base = 6 }
+
+        modifier = {
+            monarchism_drift = 0.1
+            research_speed_factor = -0.1
+        }
+
     }
 }

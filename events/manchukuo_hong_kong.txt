@@ -1,0 +1,56 @@
+add_namespace = manchukuo_hong_kong
+
+country_event = {
+    id = manchukuo_hong_kong.1
+    title = "[MAN.GetName] Terminates Hong-Kong Deal"
+    desc = manchukuo_hong_kong.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Hong Kong shall return to the Chinese."
+        FROM = { 
+            news_event = { id = manchukuo_hong_kong.2 hours = 6 random_hours = 6 }
+            326 = { transfer_state_to = FROM }
+        }
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "They are not in position to do this."
+        FROM = { 
+            news_event = { id = manchukuo_hong_kong.3 hours = 6 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = take_state_focus
+            }
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = manchukuo_hong_kong.2
+    title = "[ENG.GetName] Out of Hong Kong"
+    desc = manchukuo_hong_kong.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A great victory for China."
+    }
+}
+
+news_event = {
+    id = manchukuo_hong_kong.3
+    title = "[FROM.GetName] Declines!"
+    desc = manchukuo_hong_kong.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about this."
+    }
+}

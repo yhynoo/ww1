@@ -35,30 +35,6 @@ ITA_dislikes_TUR = {
 	}
 }
 
-ITA_likes_ENG = {
-	allowed = { tag = ITA }
-	enable = { and = { not = { has_country_flag = chose_alternative } threat > 0.5 } }
-	abort = { ENG = { is_ally_with = TUR } }
-
-	ai_strategy = {
-		type = alliance
-		id = ENG
-		value = 100
-	}
-}
-
-ITA_likes_GER = {
-	allowed = { tag = ITA }
-	enable = { and = { has_country_flag = chose_alternative threat > 0.5 } }
-	abort = { GER = { is_ally_with = TUR } }
-
-	ai_strategy = {
-		type = alliance
-		id = GER
-		value = 100
-	}
-}
-
 ITA_second_line_airfields = {
 	allowed = { tag = ITA }
 	enable = { has_war = yes }

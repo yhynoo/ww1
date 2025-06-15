@@ -733,8 +733,8 @@
         }
     }
     focus = {
-        id = MAN_opium_crisis
-        icon = GFX_focus_MAN_opium_crisis
+        id = MAN_deterrence
+        icon = GFX_focus_generic_deterrence
 
         relative_position_id = MAN_international_affairs
         x = 1
@@ -747,7 +747,10 @@
             or = { has_idea = idea_severe_opium_crisis has_idea = idea_limited_opium_crisis }
         }
 
-        ai_will_do = { base = 3 }
+        ai_will_do = { 
+            base = 2
+            modifier = { has_country_flag = chose_alternative factor = 0 }
+        }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -778,6 +781,11 @@
         y = 1
         cost = 10
 
+        ai_will_do = { 
+            base = 0
+            modifier = { has_country_flag = chose_alternative add = 2 }
+        }
+
         prerequisite = { focus = MAN_expansionism }
         available = { is_subject = no }
 
@@ -795,7 +803,10 @@
         y = 1
         cost = 10
 
-        ai_will_do = { base = 1 }
+        ai_will_do = { 
+            base = 2
+            modifier = { has_country_flag = chose_alternative factor = 0 }
+        }
 
         mutually_exclusive = { focus = MAN_beiyang_army }
         prerequisite = { focus = MAN_political_ambitions }
@@ -889,8 +900,9 @@
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 1
+        ai_will_do = { 
+            base = 0
+            modifier = { has_country_flag = chose_alternative add = 2 }
         }
 
         mutually_exclusive = { focus = MAN_three_principles }
@@ -916,7 +928,7 @@
     }
     focus = {
         id = MAN_open_the_economy
-        icon = GFX_focus_generic_open_the_economy
+        icon = GFX_focus_MAN_open_the_economy
 
         relative_position_id = MAN_beiyang_army
         x = -1
@@ -925,7 +937,7 @@
 
         prerequisite = { focus = MAN_beiyang_army }
         completion_reward = {
-            add_timed_idea = { idea = idea_open_the_economy years = 1 }
+            custom_effect_tooltip = decision_effect_tooltip
 
             random_owned_controlled_state = {
 				add_extra_state_shared_building_slots = 1
@@ -964,7 +976,7 @@
     }
     focus = {
         id = MAN_embrace_modernity
-        icon = GFX_focus_generic_embrace_modernity
+        icon = GFX_focus_generic_red_education
 
         relative_position_id = MAN_state_reform
         x = -1

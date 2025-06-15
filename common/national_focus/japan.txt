@@ -744,9 +744,9 @@
         prerequisite = { focus = JAP_international_affairs }
         available = { is_subject = no }
 
-        ai_will_do = {
-            base = 1
-            modifier = { is_ally_with = ENG add = 3 }
+        ai_will_do = { 
+            base = 2
+            modifier = { has_country_flag = chose_alternative factor = 0.5 }
         }
 
         completion_reward = {
@@ -781,9 +781,9 @@
         prerequisite = { focus = JAP_expansionism }
         available = { is_subject = no }
 
-        ai_will_do = {
-            base = 1
-            modifier = { is_ally_with = ENG add = 3 }
+        ai_will_do = { 
+            base = 0
+            modifier = { has_country_flag = chose_alternative add = 2 }
         }
 
         completion_reward = {
@@ -793,14 +793,17 @@
 
     focus = {
         id = JAP_korea
-        icon = GFX_focus_JAP_korea
+        icon = GFX_focus_generic_traditionalism
 
         relative_position_id = JAP_political_ambitions
         x = 0
         y = 1
         cost = 10
 
-        ai_will_do = { base = 2 }
+        ai_will_do = { 
+            base = 1
+            modifier = { has_country_flag = chose_alternative factor = 2 }
+        }
 
         mutually_exclusive = { focus = JAP_adjust_the_government }
         prerequisite = { focus = JAP_political_ambitions }
@@ -831,7 +834,7 @@
     }
     focus = {
         id = JAP_mobilize_the_masses
-        icon = GFX_focus_generic_mobilize_the_masses
+        icon = GFX_focus_JAP_mobilize_the_masses
 
         relative_position_id = JAP_korea
         x = 1
@@ -845,7 +848,7 @@
 
         prerequisite = { focus = JAP_korea }
         completion_reward = {
-            add_timed_idea = { idea = idea_mobilize_the_masses years = 2 }
+            add_timed_idea = { idea = idea_ethics_of_honor years = 2 }
 
             hidden_effect = {
                 news_event = { id = x_war_support.2 hours = 12 random_hours = 6 }
@@ -894,7 +897,10 @@
         y = 1
         cost = 10
 
-        ai_will_do = { base = 1 }
+        ai_will_do = { 
+            base = 2
+            modifier = { has_country_flag = chose_alternative factor = 0.5 }
+        }
 
         mutually_exclusive = { focus = JAP_korea }
         prerequisite = { focus = JAP_political_ambitions }
@@ -929,7 +935,7 @@
 
         prerequisite = { focus = JAP_adjust_the_government }
         completion_reward = {
-            add_timed_idea = { idea = idea_open_the_economy years = 1 }
+            custom_effect_tooltip = decision_effect_tooltip
 
             random_owned_controlled_state = {
 				add_extra_state_shared_building_slots = 1

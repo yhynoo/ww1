@@ -1,5 +1,4 @@
 ideas = {
-
 	economy = {
 		law = yes
 		use_list_view = yes
@@ -45,7 +44,7 @@ ideas = {
 			ai_will_do = {
    				factor = 2
    				modifier = {
-					factor = 20
+					factor = 3
 					is_major = yes
 				}
 				modifier = {
@@ -84,7 +83,7 @@ ideas = {
 			ai_will_do = {
    				factor = 2
    				modifier = {
-					factor = 20
+					factor = 3
 					is_major = yes
 				}
    			}
@@ -110,7 +109,7 @@ ideas = {
 			ai_will_do = {
    				base = 3
 				modifier = {
-					factor = 20
+					factor = 3
 					manpower_per_military_factory > 1000
 				}
    			}
@@ -136,10 +135,6 @@ ideas = {
 			}
 
 			cancel_if_invalid = no
-
-			ai_will_do = {
-   				factor = 1
-   			}
 		}
 
 		export_focus = {
@@ -161,7 +156,7 @@ ideas = {
 			cancel_if_invalid = no
 
 			ai_will_do = {
-   				factor = 1
+   				base = 1
 				modifier = {
 					factor = 0
 					is_major = no
@@ -189,7 +184,7 @@ ideas = {
 			cancel_if_invalid = no
 
 			ai_will_do = {
-   				factor = 1
+   				base = 1
 
    				modifier = {
 					add = -1
@@ -205,17 +200,14 @@ ideas = {
 					has_war = no
 				}
 				modifier = {
-					factor = 200
+					factor = 3
 					NOT = { has_idea = closed_economy }
 					has_war = yes
 					is_major = yes
 				}
 				modifier = {
-					add = 1500
-
-					# revert from closed_economy if we have large allies
+					add = 12
 					has_idea = closed_economy
-					has_large_ally_not_pick_closed_economy = yes
 				}
    			}
 		}
@@ -261,11 +253,6 @@ ideas = {
 					factor = 0
 					is_major = no
 					has_war = no
-				}
-
-				modifier = {
-					factor = 0
-					has_large_ally_not_pick_closed_economy = yes
 				}
    			}
 		}
