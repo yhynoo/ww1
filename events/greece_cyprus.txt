@@ -1,0 +1,49 @@
+add_namespace = greece_cyprus
+
+country_event = {
+    id = greece_cyprus.1
+    title = "[GRE.GetName] Asks for Cyprus"
+    desc = greece_cyprus.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let them have it."
+        FROM = { 
+            news_event = { id = greece_cyprus.2 hours = 6 random_hours = 6 }
+            183 = { transfer_state_to = FROM }
+        }
+    }
+    option = {
+        name = "Cyprus is too important to give it away."
+        FROM = { 
+            news_event = { id = greece_cyprus.3 hours = 6 random_hours = 6 }
+            hidden_effect = { set_country_flag = chose_alternative }
+        }
+    }
+}
+
+news_event = {
+    id = greece_cyprus.2
+    title = "[FROM.GetName] Transfers Cyprus"
+    desc = greece_cyprus.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = greece_cyprus.3
+    title = "[FROM.GetName] Declines!"
+    desc = greece_cyprus.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Disappointing."
+    }
+}

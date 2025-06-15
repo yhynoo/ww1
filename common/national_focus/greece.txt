@@ -1,16 +1,16 @@
-﻿focus_tree = {
-    id = ITA_focus
+focus_tree = {
+    id = GRE_focus
 
     country = {
         factor = 0
-        modifier = { add = 20 original_tag = ITA }
+        modifier = { add = 20 original_tag = GRE }
     }
 
     continuous_focus_position = { x = 200 y = 800 }
 
     ## military branch
     focus = {
-        id = ITA_adjust_budget
+        id = GRE_adjust_budget
         icon = GFX_focus_generic_budget
 
         x = 7
@@ -27,45 +27,45 @@
         }
     }
     focus = {
-        id = ITA_focus_army
+        id = GRE_focus_army
         icon = GFX_focus_generic_army
 
-        relative_position_id = ITA_adjust_budget
+        relative_position_id = GRE_adjust_budget
         x = -2
         y = 1
         cost = 10
 
-        prerequisite = { focus = ITA_adjust_budget }
+        prerequisite = { focus = GRE_adjust_budget }
         completion_reward = {
             army_experience = 25
         }
     }
     focus = {
-        id = ITA_extend_conscription
+        id = GRE_extend_conscription
         icon = GFX_focus_generic_extend_conscription
 
-        relative_position_id = ITA_focus_army
+        relative_position_id = GRE_focus_army
         x = -4
         y = 1
         cost = 10
 
         available = { or = { has_idea = disarmed_nation has_idea = volunteer_only } }
 
-        prerequisite = { focus = ITA_focus_army }
+        prerequisite = { focus = GRE_focus_army }
         completion_reward = {
             add_ideas = limited_conscription
         }
     }
     focus = {
-        id = ITA_army_maneuvers
+        id = GRE_army_maneuvers
         icon = GFX_focus_generic_army_maneuvers
 
-        relative_position_id = ITA_focus_army
+        relative_position_id = GRE_focus_army
         x = -2
         y = 1
         cost = 10
 
-        prerequisite = { focus = ITA_focus_army }
+        prerequisite = { focus = GRE_focus_army }
         completion_reward = {
             army_experience = 50
             add_doctrine_cost_reduction = {
@@ -77,15 +77,15 @@
         }
     }
     focus = {
-        id = ITA_equipment_effort
+        id = GRE_equipment_effort
         icon = GFX_focus_generic_equipment_effort
 
-        relative_position_id = ITA_focus_army
+        relative_position_id = GRE_focus_army
         x = 0
         y = 1
         cost = 10
 
-        prerequisite = { focus = ITA_focus_army }
+        prerequisite = { focus = GRE_focus_army }
         completion_reward = {
             add_tech_bonus = {
 				name = infantry_bonus
@@ -96,15 +96,15 @@
         }
     }
     focus = {
-        id = ITA_artillery
+        id = GRE_artillery
         icon = GFX_focus_generic_artillery
 
-        relative_position_id = ITA_equipment_effort
+        relative_position_id = GRE_equipment_effort
         x = -2
         y = 1
         cost = 10
 
-        prerequisite = { focus = ITA_equipment_effort }
+        prerequisite = { focus = GRE_equipment_effort }
         completion_reward = {
             add_tech_bonus = {
 				bonus = 1.0
@@ -114,15 +114,15 @@
         }
     }
     focus = {
-        id = ITA_aircraft
+        id = GRE_aircraft
         icon = GFX_focus_generic_aircraft
 
-        relative_position_id = ITA_equipment_effort
+        relative_position_id = GRE_equipment_effort
         x = 0
         y = 1
         cost = 10
 
-        prerequisite = { focus = ITA_equipment_effort }
+        prerequisite = { focus = GRE_equipment_effort }
         completion_reward = {
             air_experience = 25
             add_tech_bonus = {
@@ -134,15 +134,15 @@
         }
     }
     focus = {
-        id = ITA_armor
+        id = GRE_armor
         icon = GFX_focus_generic_armor
 
-        relative_position_id = ITA_equipment_effort
+        relative_position_id = GRE_equipment_effort
         x = 2
         y = 1
         cost = 10
 
-        prerequisite = { focus = ITA_equipment_effort }
+        prerequisite = { focus = GRE_equipment_effort }
         completion_reward = {
             add_tech_bonus = {
 				name = armor_bonus
@@ -153,18 +153,18 @@
         }
     }
     focus = {
-        id = ITA_modern_warfare
+        id = GRE_modern_warfare
         icon = GFX_focus_generic_modern_warfare
 
-        relative_position_id = ITA_aircraft
+        relative_position_id = GRE_aircraft
         x = 0
         y = 1
         cost = 10
 
         prerequisite = { 
-            focus = ITA_artillery
-            focus = ITA_aircraft
-            focus = ITA_armor
+            focus = GRE_artillery
+            focus = GRE_aircraft
+            focus = GRE_armor
         }
         completion_reward = {
             army_experience = 100
@@ -173,10 +173,10 @@
     }
 
     focus = {
-        id = ITA_focus_navy
+        id = GRE_focus_navy
         icon = GFX_focus_generic_navy
 
-        relative_position_id = ITA_adjust_budget
+        relative_position_id = GRE_adjust_budget
         x = 2
         y = 1
         cost = 10
@@ -188,16 +188,16 @@
 			}
 		}
 
-        prerequisite = { focus = ITA_adjust_budget }
+        prerequisite = { focus = GRE_adjust_budget }
         completion_reward = {
             navy_experience = 25
         }
     }
     focus = {
-        id = ITA_naval_exercises
+        id = GRE_naval_exercises
         icon = GFX_focus_generic_naval_exercises
 
-        relative_position_id = ITA_focus_navy
+        relative_position_id = GRE_focus_navy
         x = 0
         y = 1
         cost = 10
@@ -209,7 +209,7 @@
 			}
 		}
 
-        prerequisite = { focus = ITA_focus_navy }
+        prerequisite = { focus = GRE_focus_navy }
         completion_reward = {
             navy_experience = 50
             add_doctrine_cost_reduction = {
@@ -221,10 +221,10 @@
         }
     }
     focus = {
-        id = ITA_expand_dockyards
+        id = GRE_expand_dockyards
         icon = GFX_focus_generic_expand_dockyards
 
-        relative_position_id = ITA_focus_navy
+        relative_position_id = GRE_focus_navy
         x = 2
         y = 1
         cost = 10
@@ -236,7 +236,7 @@
 			}
 		}
 
-        prerequisite = { focus = ITA_focus_navy }
+        prerequisite = { focus = GRE_focus_navy }
 		
 		completion_reward = {
 			navy_experience = 25
@@ -253,10 +253,10 @@
 		}
     }
     focus = {
-        id = ITA_high_seas
+        id = GRE_high_seas
         icon = GFX_focus_generic_high_seas
 
-        relative_position_id = ITA_expand_dockyards
+        relative_position_id = GRE_expand_dockyards
         x = 0
         y = 1
         cost = 10
@@ -268,7 +268,7 @@
 			}
 		}
 
-        prerequisite = { focus = ITA_expand_dockyards }
+        prerequisite = { focus = GRE_expand_dockyards }
         completion_reward = {
             add_tech_bonus = {
 				name = capital_ships_bonus
@@ -279,10 +279,10 @@
         }
     }
     focus = {
-        id = ITA_the_dark_deep
+        id = GRE_the_dark_deep
         icon = GFX_focus_generic_the_dark_deep
 
-        relative_position_id = ITA_expand_dockyards
+        relative_position_id = GRE_expand_dockyards
         x = 2
         y = 1
         cost = 10
@@ -294,7 +294,7 @@
 			}
 		}
 
-        prerequisite = { focus = ITA_expand_dockyards }
+        prerequisite = { focus = GRE_expand_dockyards }
         completion_reward = {
             add_tech_bonus = {
 				name = ss_bonus
@@ -305,10 +305,10 @@
         }
     }
     focus = {
-        id = ITA_seaborne_operations
+        id = GRE_seaborne_operations
         icon = GFX_focus_generic_seaborne_operations
 
-        relative_position_id = ITA_naval_exercises
+        relative_position_id = GRE_naval_exercises
         x = 0
         y = 1
         cost = 10
@@ -320,7 +320,7 @@
 			}
 		}
 
-        prerequisite = { focus = ITA_naval_exercises }
+        prerequisite = { focus = GRE_naval_exercises }
         completion_reward = {
             add_tech_bonus = {
 				name = special_forces_bonus
@@ -332,10 +332,10 @@
         }
     }
     focus = {
-        id = ITA_rule_the_waves
+        id = GRE_rule_the_waves
         icon = GFX_focus_generic_rule_the_waves
 
-        relative_position_id = ITA_high_seas
+        relative_position_id = GRE_high_seas
         x = 0
         y = 1
         cost = 10
@@ -348,9 +348,9 @@
 		}
 
         prerequisite = { 
-            focus = ITA_seaborne_operations
-            focus = ITA_high_seas
-            focus = ITA_the_dark_deep
+            focus = GRE_seaborne_operations
+            focus = GRE_high_seas
+            focus = GRE_the_dark_deep
         }
         completion_reward = {
             navy_experience = 100
@@ -360,7 +360,7 @@
 
     ## economic branch
     focus = {
-        id = ITA_economic_development
+        id = GRE_economic_development
         icon = GFX_focus_generic_economic_development
 
         x = 20
@@ -374,25 +374,25 @@
         }
     }
     focus = {
-        id = ITA_home_front
+        id = GRE_home_front
         icon = GFX_focus_generic_home_front
 
-        relative_position_id = ITA_economic_development
+        relative_position_id = GRE_economic_development
         x = -2
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = ITA_economic_development }
+        prerequisite = { focus = GRE_economic_development }
         completion_reward = {
             add_stability = 0.05
         }
     }
     focus = {
-        id = ITA_rationing
+        id = GRE_rationing
         icon = GFX_focus_generic_rationing
 
-        relative_position_id = ITA_home_front
+        relative_position_id = GRE_home_front
         x = 0
         y = 1
 
@@ -403,23 +403,23 @@
             modifier = { has_war = no factor = 0 }
         }
 
-        prerequisite = { focus = ITA_home_front }
+        prerequisite = { focus = GRE_home_front }
         completion_reward = {
             add_stability = -0.1
             add_ideas = idea_rationing
         }
     }
     focus = {
-        id = ITA_reclaim_land
+        id = GRE_reclaim_land
         icon = GFX_focus_generic_reclaim_land
 
-        relative_position_id = ITA_home_front
+        relative_position_id = GRE_home_front
         x = -2
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = ITA_home_front }
+        prerequisite = { focus = GRE_home_front }
         completion_reward = {
             add_ideas = idea_industrial_expansion
             
@@ -434,10 +434,10 @@
         }
     }
     focus = {
-        id = ITA_austerity_measures
+        id = GRE_austerity_measures
         icon = GFX_focus_generic_austerity_measures
 
-        relative_position_id = ITA_rationing
+        relative_position_id = GRE_rationing
         x = 0
         y = 1
 
@@ -448,7 +448,7 @@
             modifier = { has_war = no factor = 0 }
         }
 
-        prerequisite = { focus = ITA_rationing }
+        prerequisite = { focus = GRE_rationing }
         completion_reward = {
             add_war_support = -0.1
             add_stability = -0.2
@@ -461,10 +461,10 @@
     }
 
     focus = {
-        id = ITA_infrastructure_effort
+        id = GRE_infrastructure_effort
         icon = GFX_focus_generic_infrastructure_effort
 
-        relative_position_id = ITA_economic_development
+        relative_position_id = GRE_economic_development
         x = 2
         y = 1
 
@@ -472,7 +472,7 @@
 
         ai_will_do = { base = 2 }
 
-        prerequisite = { focus = ITA_economic_development }
+        prerequisite = { focus = GRE_economic_development }
         bypass = {
 			custom_trigger_tooltip = {
 				tooltip = infrastructure_effort_tt
@@ -548,10 +548,10 @@
 		}
     }
     focus = {
-        id = ITA_construct_civilian
+        id = GRE_construct_civilian
         icon = GFX_focus_generic_construct_civilian
 
-        relative_position_id = ITA_infrastructure_effort
+        relative_position_id = GRE_infrastructure_effort
         x = -2
         y = 1
 
@@ -559,7 +559,7 @@
 
         ai_will_do = { base = 3 }
 
-        prerequisite = { focus = ITA_infrastructure_effort }
+        prerequisite = { focus = GRE_infrastructure_effort }
 		completion_reward = {
 			random_owned_controlled_state = {
 				limit = {
@@ -579,10 +579,10 @@
 		}
     }
     focus = {
-        id = ITA_construct_military
+        id = GRE_construct_military
         icon = GFX_focus_generic_construct_military
 
-        relative_position_id = ITA_infrastructure_effort
+        relative_position_id = GRE_infrastructure_effort
         x = 0
         y = 1
 
@@ -590,7 +590,7 @@
 
         ai_will_do = { base = 2 }
 
-        prerequisite = { focus = ITA_infrastructure_effort }
+        prerequisite = { focus = GRE_infrastructure_effort }
 		completion_reward = {
 			random_owned_controlled_state = {
 				limit = {
@@ -625,16 +625,16 @@
 		}
     }
     focus = {
-        id = ITA_expand_mining
+        id = GRE_expand_mining
         icon = GFX_focus_generic_expand_mining
 
-        relative_position_id = ITA_infrastructure_effort
+        relative_position_id = GRE_infrastructure_effort
         x = 2
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = ITA_infrastructure_effort }
+        prerequisite = { focus = GRE_infrastructure_effort }
         completion_reward = {
             random_owned_controlled_state = {
                 add_resource = {
@@ -651,19 +651,19 @@
         }
     }
     focus = {
-        id = ITA_steady_growth
+        id = GRE_steady_growth
         icon = GFX_focus_generic_steady_growth
 
-        relative_position_id = ITA_construct_military
+        relative_position_id = GRE_construct_military
         x = 0
         y = 1
 
         cost = 10
 
         prerequisite = { 
-            focus = ITA_construct_civilian
-            focus = ITA_construct_military
-            focus = ITA_expand_mining
+            focus = GRE_construct_civilian
+            focus = GRE_construct_military
+            focus = GRE_expand_mining
         }
         completion_reward = {
             add_ideas = idea_steady_growth
@@ -672,10 +672,10 @@
 
     ## political branch
     focus = {
-        id = ITA_political_ambitions
+        id = GRE_political_ambitions
         icon = GFX_focus_generic_political_ambitions
 
-        relative_position_id = ITA_economic_development
+        relative_position_id = GRE_economic_development
         x = -1
         y = 5
         cost = 10
@@ -687,31 +687,31 @@
         }
     }
     focus = {
-        id = ITA_international_affairs
+        id = GRE_international_affairs
         icon = GFX_focus_generic_international_affairs
 
-        relative_position_id = ITA_political_ambitions
+        relative_position_id = GRE_political_ambitions
         x = -4
         y = 1
         cost = 10
 
         ai_will_do = {
-            base = 2
+            base = 1
             modifier = { threat > 0.1 factor = 3 }
         }
 
         available = { is_subject = no }
 
-        prerequisite = { focus = ITA_political_ambitions }
+        prerequisite = { focus = GRE_political_ambitions }
         completion_reward = {
             add_timed_idea = { idea = idea_international_affairs years = 2 }
         }
     }
     focus = {
-        id = ITA_expansionism
+        id = GRE_expansionism
         icon = GFX_focus_generic_expansionism
 
-        relative_position_id = ITA_international_affairs
+        relative_position_id = GRE_international_affairs
         x = -2
         y = 1
         cost = 10
@@ -722,103 +722,91 @@
         }
 
         ai_will_do = {
-            base = 2
+            base = 1
             modifier = { threat > 0.2 factor = 3 }
         }
 
-        prerequisite = { focus = ITA_international_affairs }
+        prerequisite = { focus = GRE_international_affairs }
         completion_reward = {
             add_political_power = 100
             add_timed_idea = { idea = idea_expansionism years = 1 }
         }
     }
     focus = {
-        id = ITA_deterrence
+        id = GRE_deterrence
+        icon = GFX_focus_generic_deterrence
+
+        relative_position_id = GRE_international_affairs
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = GRE_international_affairs }
+        available = { is_subject = no }
+
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+    focus = {
+        id = GRE_seek_alliances
+        icon = GFX_focus_generic_seek_alliances
+
+        relative_position_id = GRE_expansionism
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = GRE_expansionism }
+        available = { is_subject = no }
+
+        completion_reward = {
+            add_timed_idea = { idea = idea_seek_alliances years = 1 }
+        }
+    }
+    focus = {
+        id = GRE_on_our_own
         icon = GFX_focus_generic_across_the_sea
 
-        relative_position_id = ITA_international_affairs
+        relative_position_id = GRE_expansionism
         x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = GRE_expansionism }
+        available = { is_subject = no }
+
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+
+    focus = {
+        id = GRE_traditionalism
+        icon = GFX_focus_generic_adjust_the_government
+
+        relative_position_id = GRE_political_ambitions
+        x = 0
         y = 1
         cost = 10
 
         ai_will_do = {
             base = 1
-            modifier = { date < 1913.1.1 add = 5 }
+            modifier = { has_government = monarchism factor = 2 }
         }
 
-        prerequisite = { focus = ITA_international_affairs }
-        available = { is_subject = no }
-
-        completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
-        }
-    }
-    focus = {
-        id = ITA_seek_alliances
-        icon = GFX_focus_generic_seek_alliances
-
-        relative_position_id = ITA_expansionism
-        x = -2
-        y = 1
-        cost = 10
-
-        prerequisite = { focus = ITA_expansionism }
-        available = { is_subject = no }
-
-        ai_will_do = { base = 3 }
-
-        completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
-        }
-    }
-    focus = {
-        id = ITA_on_our_own
-        icon = GFX_focus_generic_on_our_own
-
-        relative_position_id = ITA_expansionism
-        x = 1
-        y = 1
-        cost = 10
-
-        prerequisite = { focus = ITA_expansionism }
-        available = { is_subject = no }
-
-        ai_will_do = { 
-            base = 0
-            modifier = { has_country_flag = chose_alternative add = 2 }
-        }
-
-        completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
-        }
-    }
-
-    focus = {
-        id = ITA_traditionalism
-        icon = GFX_focus_generic_internal_stability
-
-        relative_position_id = ITA_political_ambitions
-        x = 0
-        y = 1
-        cost = 10
-
-        ai_will_do = { 
-            base = 1
-            modifier = { has_country_flag = chose_alternative add = 1 }
-        }
-
-        mutually_exclusive = { focus = ITA_adjust_the_government }
-        prerequisite = { focus = ITA_political_ambitions }
+        mutually_exclusive = { focus = GRE_adjust_the_government }
+        prerequisite = { focus = GRE_political_ambitions }
         completion_reward = {
             add_stability = 0.05
             news_event = { id = x_war_support.1 hours = 12 random_hours = 6 }
         }
     }
     focus = {
-        id = ITA_public_support
+        id = GRE_public_support
         icon = GFX_focus_generic_public_support
 
-        relative_position_id = ITA_traditionalism
+        relative_position_id = GRE_traditionalism
         x = -1
         y = 1
         cost = 10
@@ -828,17 +816,17 @@
             modifier = { has_war = no factor = 0 }
         }
 
-        prerequisite = { focus = ITA_traditionalism }
+        prerequisite = { focus = GRE_traditionalism }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
             hidden_effect = { set_country_flag = public_support_allowed }
         }
     }
     focus = {
-        id = ITA_mobilize_the_masses
-        icon = GFX_focus_generic_mobilize_the_masses
+        id = GRE_mobilize_the_masses
+        icon = GFX_focus_GRE_mobilize_the_masses
 
-        relative_position_id = ITA_traditionalism
+        relative_position_id = GRE_traditionalism
         x = 1
         y = 1
         cost = 10
@@ -848,7 +836,7 @@
             modifier = { has_war = no factor = 0 }
         }
 
-        prerequisite = { focus = ITA_traditionalism }
+        prerequisite = { focus = GRE_traditionalism }
         completion_reward = {
             add_timed_idea = { idea = idea_mobilize_the_masses years = 2 }
 
@@ -858,17 +846,17 @@
         }
     }
     focus = {
-        id = ITA_strength_in_unity
+        id = GRE_strength_in_unity
         icon = GFX_focus_generic_strength_in_unity
 
-        relative_position_id = ITA_public_support
+        relative_position_id = GRE_public_support
         x = 1
         y = 1
         cost = 10
 
         prerequisite = { 
-            focus = ITA_public_support
-            focus = ITA_mobilize_the_masses
+            focus = GRE_public_support
+            focus = GRE_mobilize_the_masses
         }
         completion_reward = {
             add_political_power = 50
@@ -876,74 +864,67 @@
         }
     }
     focus = {
-        id = ITA_the_everlasting_spirit
+        id = GRE_the_everlasting_spirit
         icon = GFX_focus_generic_the_everlasting_spirit
 
-        relative_position_id = ITA_strength_in_unity
+        relative_position_id = GRE_strength_in_unity
         x = 0
         y = 1
         cost = 10
 
-        available = {
-            owns_state = 33
-            owns_state = 39
-        }
-
-        prerequisite = { focus = ITA_strength_in_unity }
+        prerequisite = { focus = GRE_strength_in_unity }
         completion_reward = {
-            add_ideas = idea_italia_unita
+            add_ideas = idea_the_everlasting_spirit
         }
     }
 
     focus = {
-        id = ITA_adjust_the_government
-        icon = GFX_focus_generic_red_reform
+        id = GRE_adjust_the_government
+        icon = GFX_focus_generic_internal_stability
 
-        relative_position_id = ITA_political_ambitions
+        relative_position_id = GRE_political_ambitions
         x = 4
         y = 1
         cost = 10
 
-        ai_will_do = { 
-            base = 2
-            modifier = { has_country_flag = chose_alternative factor = 0.5 }
+        ai_will_do = {
+            base = 1
+            modifier = { has_government = democratic factor = 2 }
         }
 
-        mutually_exclusive = { focus = ITA_traditionalism }
-        prerequisite = { focus = ITA_political_ambitions }
+        mutually_exclusive = { focus = GRE_traditionalism }
+        prerequisite = { focus = GRE_political_ambitions }
         completion_reward = {
-            add_timed_idea = { idea = idea_communism_tendencies years = 1 }
-            add_popularity = { ideology = communism popularity = 0.05 }
-
-            hidden_effect = { country_event = { id = italy_genoa days = 14 random_days = 70 } }
+            add_timed_idea = { idea = idea_monarchism_tendencies years = 1 }
+            add_popularity = { ideology = monarchism popularity = 0.05 }
         }
     }
     focus = {
-        id = ITA_state_reform
+        id = GRE_state_reform
         icon = GFX_focus_generic_state_reform
 
-        relative_position_id = ITA_adjust_the_government
+        relative_position_id = GRE_adjust_the_government
         x = 2
         y = 1
         cost = 10
 
-        prerequisite = { focus = ITA_adjust_the_government }
+        prerequisite = { focus = GRE_adjust_the_government }
         completion_reward = {
             add_timed_idea = { idea = idea_state_reform years = 1 }
         }
     }
     focus = {
-        id = ITA_open_the_economy
+        id = GRE_open_the_economy
         icon = GFX_focus_generic_open_the_economy
 
-        relative_position_id = ITA_adjust_the_government
+        relative_position_id = GRE_adjust_the_government
         x = -1
         y = 1
         cost = 10
 
-        prerequisite = { focus = ITA_adjust_the_government }
+        prerequisite = { focus = GRE_adjust_the_government }
         completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
+            add_timed_idea = { idea = idea_open_the_economy years = 1 }
 
             random_owned_controlled_state = {
 				add_extra_state_shared_building_slots = 1
@@ -952,44 +933,43 @@
         }
     }
     focus = {
-        id = ITA_eia_eia_alala
-        icon = GFX_focus_generic_authoritarian
+        id = GRE_over_the_edge
+        icon = GFX_focus_generic_over_the_edge
 
-        relative_position_id = ITA_state_reform
+        relative_position_id = GRE_state_reform
         x = 2
         y = 1
         cost = 10
 
-        prerequisite = { focus = ITA_state_reform }
+        prerequisite = { focus = GRE_state_reform }
         available = {
             has_civil_war = no
-            not = { has_government = authoritarianism }
-            
-            authoritarianism > 0.3
+            not = { has_government = communism }
+            communism > 0.3
         }
         
         completion_reward = {
             start_civil_war = {
-                ruling_party = authoritarianism
+                ruling_party = communism
                 ideology = ROOT
                 size = 0.5
             }
 
             hidden_effect = {
-                set_popularities = { authoritarianism = 100 }
+                set_popularities = { communism = 100 }
             }
         }
     }
     focus = {
-        id = ITA_embrace_modernity
-        icon = GFX_focus_generic_red_education
+        id = GRE_embrace_modernity
+        icon = GFX_focus_generic_embrace_modernity
 
-        relative_position_id = ITA_state_reform
+        relative_position_id = GRE_state_reform
         x = -1
         y = 1
         cost = 10
 
-        prerequisite = { focus = ITA_state_reform }
+        prerequisite = { focus = GRE_state_reform }
         completion_reward = {
             add_research_slot = 1
         }

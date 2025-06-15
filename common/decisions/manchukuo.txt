@@ -78,11 +78,11 @@ manchukuo_alliances = {
             base = 0
 
             modifier = { 
-                FROM = { tag = ENG not = { has_country_flag = chose_alternative } }
+                and = { FROM = { tag = ENG }  not = { has_country_flag = chose_alternative } }
                 add = 9
             }
             modifier = { 
-                FROM = { tag = GER has_country_flag = chose_alternative }
+                and = { FROM = { tag = GER } has_country_flag = chose_alternative }
                 add = 12
             }
         }
@@ -137,7 +137,8 @@ eight_banners = {
             modifier = { threat > 0.3 add = 6 }
         }
 
-        complete_effect = {
+        days_remove = 90
+        remove_effect = {
             every_state = {
                 limit = {
                     or = { state = 286 state = 670 state = 671 state = 289 state = 614 }
@@ -148,17 +149,17 @@ eight_banners = {
 
             if = {
                 limit = { ENG = { or = { owns_state = 286 owns_state = 670 owns_state = 671 owns_state = 289 owns_state = 614 } } }
-                MAN = { create_wargoal = { target = ENG type = take_claimed_state } }
+                create_wargoal = { target = ENG type = take_claimed_state }
             }
 
             if = {
                 limit = { FRA = { or = { owns_state = 286 owns_state = 670 owns_state = 671 owns_state = 289 owns_state = 614 } } }
-                MAN = { create_wargoal = { target = FRA type = take_claimed_state } }
+                create_wargoal = { target = FRA type = take_claimed_state }
             }
 
             if = {
                 limit = { HOL = { or = { owns_state = 286 owns_state = 670 owns_state = 671 owns_state = 289 owns_state = 614 } } }
-                MAN = { create_wargoal = { target = HOL type = take_claimed_state } }
+                create_wargoal = { target = HOL type = take_claimed_state }
             }
         }
     }

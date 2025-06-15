@@ -21,6 +21,13 @@ FRA_army_composition = {
 		id = mountaineers
 		value = 5
 	}
+
+	# we're also scared of Germany
+	ai_strategy = {
+		type = prepare_for_war
+		id = GER
+		value = 30
+	}
 }
 
 # don't work for ITA or RUS, we need those troops at home
@@ -39,13 +46,6 @@ FRA_stay_at_home = {
 		type = dont_defend_ally_borders
 		id = SOV
 		value = 100
-	}
-
-	# we're also scared of Germany
-	ai_strategy = {
-		type = prepare_for_war
-		id = GER
-		value = 30
 	}
 }
 
