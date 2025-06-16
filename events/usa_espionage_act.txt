@@ -1,0 +1,42 @@
+add_namespace = usa_espionage_act
+
+country_event = {
+    id = usa_espionage_act.1
+    title = "Congress Debates the Espionage Act"
+    desc = usa_espionage_act.1.d
+
+    trigger = {
+        tag = USA
+        not = { has_country_flag = exhaustion_fired }
+        and = { longest_war_length > 18 has_war_support < 0.35 }
+    }
+
+    immediate = { 
+        hidden_effect = { set_country_flag = exhaustion_fired } 
+    }
+
+    option = {
+        name = "We need this measure."
+        add_political_power = -50
+
+        hidden_effect = { news_event = { id = usa_espionage_act.2 days = 180 } }
+    }
+    option = {
+        name = "This is nonsense."
+        add_timed_idea = idea_espionage_scare
+    }
+}
+
+news_event = {
+    id = usa_espionage_act.2
+    title = "Exodus of Foreign Specialists"
+    desc = usa_espionage_act.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Worrying."
+        add_ideas = idea_exodus_of_specialists
+    }
+}

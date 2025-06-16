@@ -8,9 +8,19 @@ country_event = {
 
     is_triggered_only = yes
 
+    immediate = {
+        clr_country_flag = chose_alternative        # reset the flag first.
+    }
+
     option = {
         name = "Historical"
-        ai_chance = { base = 3 }
+        ai_chance = { 
+            base = 3
+            modifier = { 
+                or = { tag = ITA tag = JAP tag = MAN tag = TUR }
+                factor = 0.5
+            }
+        }
     }
     option = {
         name = "Alternative"

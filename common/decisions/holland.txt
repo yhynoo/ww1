@@ -25,7 +25,7 @@ aftermath_of_antwerp = {
 
         ai_will_do = {
             base = 0
-            modifier = { has_completed_focus = HOL_integrate_flanders add = 12 }
+            modifier = { has_completed_focus = HOL_integrate_flanders add = 9 }
         }
 
         modifier = {
@@ -77,6 +77,8 @@ voc_mentaliteit = {
             275 = { is_owned_and_controlled_by = ENG }
         }
 
+        ai_will_do = { base = 9 }
+
         complete_effect = {
             ENG = {
                 add_timed_idea = { idea = idea_unrest_in_transvaal years = 1 }
@@ -95,23 +97,64 @@ voc_mentaliteit = {
             413 = { is_owned_and_controlled_by = PER }
         }
 
+        ai_will_do = { base = 6 }
+
         complete_effect = {
             PER = { country_event = { id = holland_shell.1 hours = 6 random_hours = 6 } }
         }
     }
-    develop_java = {
+    develop_den_helder = {
         icon = generic_construction
-
         fire_only_once = yes
         cost = 75
 
-        available = { controls_state = 335 }
-        complete_effect = {
-            335 = {
-                add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
-                add_building_construction = { type = dockyard level = 1 instant_build = yes }
+        ai_will_do = { base = 9 }
 
-                add_extra_state_shared_building_slots = 3
+        available = { controls_state = 7 }
+        complete_effect = {
+            7 = {
+                add_building_construction = { type = naval_base province = 3314 level = 2 instant_build = yes }
+                add_building_construction = { type = dockyard level = 2 instant_build = yes }
+
+                add_extra_state_shared_building_slots = 2
+            }
+        }
+    }
+}
+
+militarize_the_economy = {
+    invest_fokker = {
+        icon = generic_construction
+        fire_only_once = yes
+        cost = 50
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            random_owned_controlled_state = {
+                limit = { is_core_of = ROOT }
+
+                add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+                add_extra_state_shared_building_slots = 2
+            }
+
+            add_tech_bonus = {
+				name = fighter_bonus bonus = 1.0 uses = 1
+				category = air_equipment
+			}
+        }
+    }
+    invite_indonesians = {
+        icon = generic_civil_support
+        cost = 50
+        days_remove = 90
+
+        remove_effect = {
+            random_owned_controlled_state = {
+                limit = { is_core_of = ROOT }
+
+                add_manpower = 12000
+                add_extra_state_shared_building_slots = 1
             }
         }
     }

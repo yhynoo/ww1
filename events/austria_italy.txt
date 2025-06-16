@@ -18,15 +18,14 @@ country_event = {
 
         add_political_power = -50
         ITA = { country_event = { id = austria_italy.2 hours = 6 random_hours = 6 } }
+
+        ai_will_do = { base = 3 }
     }
 
     option = {
         name = "Nonsense."
 
-        ai_will_do = { 
-            base = 2
-            modifier = { has_country_flag = chose_alternative factor = 0 }
-        }
+        ai_will_do = { base = 1 }
     }
 }
 
@@ -45,7 +44,10 @@ country_event = {
         }
 
         hidden_effect = { news_event = { id = austria_italy.3 hours = 6 random_hours = 6 } }
-        ai_chance = { base = 2 }
+        ai_chance = { 
+            base = 2
+            modifier = { has_government = communism factor = 0 }
+        }
     }
     option = {
         name = "They are only trying to use us."

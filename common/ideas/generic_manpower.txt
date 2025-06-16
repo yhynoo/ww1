@@ -43,8 +43,6 @@ ideas = {
 			level = 5
 
 			available = {
-				has_war_support > 0.15
-
 				if = {
 					limit = { tag = ENG }
 					not = { has_idea = idea_colonial_army }
@@ -82,9 +80,13 @@ ideas = {
                             has_government = authoritarianism
                             has_government = communism
                         }
-                        has_war_support > 0.5
+                        has_war_support > 0.3
                     }
                 }
+				if = {
+					limit = { tag = ENG }
+					not = { has_idea = idea_colonial_army }
+				}
 			}
 
 			ai_will_do = {
@@ -131,6 +133,10 @@ ideas = {
                         has_war_support > 0.6
                     }
                 }
+				if = {
+					limit = { tag = ENG }
+					not = { has_idea = idea_colonial_army }
+				}
 			}
 
 			ai_will_do = {
@@ -169,7 +175,12 @@ ideas = {
 		all_adults_serve = {
 			available = {
 				has_war = yes
-				has_war_support > 0.7
+				has_war_support > 0.4
+
+				if = {
+					limit = { tag = ENG }
+					not = { has_idea = idea_colonial_army }
+				}
 			}
 
 			ai_will_do = {
@@ -209,7 +220,12 @@ ideas = {
 		scraping_the_barrel = {
 			available = {
 				has_war = yes
-				has_war_support > 0.85
+				has_war_support > 0.5
+
+				if = {
+					limit = { tag = ENG }
+					not = { has_idea = idea_colonial_army }
+				}
 			}
 
 			ai_will_do = {

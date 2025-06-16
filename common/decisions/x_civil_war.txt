@@ -1,0 +1,85 @@
+civil_war_decisions = {
+    generic_send_guns = {
+        visible = {
+            has_civil_war = no
+            any_neighbor_country = { has_civil_war = yes }
+        }
+
+        icon = generic_industry
+        cost = 50
+        days_remove = 90
+
+        targets_dynamic = yes
+        target_trigger = { 
+            FROM = {
+                has_civil_war = yes
+                is_neighbor_of = ROOT
+                not = { has_war_with = ROOT }
+            }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { and = { has_war = no FROM = { has_government = ROOT } } add = 6 }
+        }
+
+        available = {
+            has_equipment = { infantry_equipment > 599 }
+        }
+
+        complete_effect = {
+            add_war_support = 0.025
+            send_equipment = { equipment = infantry_equipment amount = 600 target = FROM }
+        }
+    }
+    generic_truce = {
+        visible = { 
+            has_civil_war = no
+            any_enemy_country = { has_civil_war = yes }     # although if we fight those who do, we can.
+        }
+
+        icon = border_war
+        cost = 75
+        days_re_enable = 90
+
+        targets_dynamic = yes
+        target_trigger = {
+            has_civil_war = no
+            FROM = { has_war_with = ROOT has_civil_war = yes }
+        }
+
+        available = {
+            not = { any_core_state = { is_controlled_by = FROM } }
+        }
+
+        ai_will_do = { 
+            base = 12
+            modifier = { tag = COL factor = 0 }         # colombia will fight.
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_civil_war.1 hours = 6 random_hours = 6 } }
+        }
+
+    }
+    generic_cores = {
+        visible = {
+            has_civil_war = no
+            has_idea = idea_aftermath_of_civil_war
+        }
+
+        icon = border_war
+        cost = 75
+        days_re_enable = 90
+
+        targets_dynamic = yes
+        target_trigger = { 
+            not = { has_war_with = FROM }
+            any_core_state = { is_owned_and_controlled_by = FROM }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_civil_war.4 hours = 6 random_hours = 6 } }
+        }
+    }
+}

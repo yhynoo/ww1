@@ -1,0 +1,70 @@
+add_namespace = poland_frontier
+
+country_event = {
+    id = poland_frontier.1
+    title = "[POL.GetName] Demands Galicia"
+    desc = poland_frontier.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Those are their native lands."
+        FROM = {
+            news_event = { id = poland_frontier.2 hours = 6 random_hours = 6 }
+            every_state = {
+                limit = { or = { state = 80 state = 88 state = 89 state = 91 } is_owned_and_controlled_by = ROOT }      # add states.
+                transfer_state_to = FROM
+
+                hidden_effect = { add_core_of = POL }
+            }
+        }
+    }
+    option = {
+        name = "We will never agree to this."
+        FROM = {
+            news_event = { id = poland_frontier.3 hours = 6 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = take_state_focus
+            }
+        }
+    }
+}
+
+news_event = {
+    id = poland_frontier.2
+    title = "[FROM.GetName] Yields Galicia"
+    desc = poland_frontier.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A great victory for Poland."
+    }
+}
+
+news_event = {
+    id = poland_frontier.3
+    title = "[FROM.GetName] Declines!"
+    desc = poland_frontier.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about this."
+    }
+}
+
+news_event = {
+    id = poland_frontier.4
+    title = "Unrest in Greater Poland!"
+    desc = poland_frontier.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "This looks suspicious."
+    }
+}

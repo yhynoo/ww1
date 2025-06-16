@@ -1,4 +1,41 @@
+add_namespace = x_civil_war_start
+
+# start
+
+news_event = {
+    id = x_civil_war_start.1
+    title = "Civil War in [ROOT.GetNameDef]!"
+    desc = x_civil_war_start.1.d
+
+    is_triggered_only = yes
+    fire_for_sender = no
+    major = yes
+
+    option = {
+        name = "Awful."
+    }
+}
+
+add_namespace = x_civil_war_end
+
+# start
+
+news_event = {
+    id = x_civil_war_end.1
+    title = "[ROOT.GetAdjective] Civil War Ends"
+    desc = x_civil_war_end.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Great."
+    }
+}
+
 add_namespace = x_civil_war
+
+# truce
 
 country_event = {
     id = x_civil_war.1
@@ -8,34 +45,42 @@ country_event = {
     is_triggered_only = yes
 
     option = {
-        name = "Let's agree for now."
-        white_peace = FROM
+        name = "This is a chance to focus on our internal affairs."
 
-        FROM = {
-            every_core_state = {
-                limit = { is_controlled_by = FROM owns_state = ROOT }
+        FROM = { 
+            news_event = { id = x_civil_war.2 hours = 6 random_hours = 6 }
+            every_state = {
+                limit = {
+                    is_owned_by = ROOT is_controlled_by = FROM        # all ROOT's states that FROM conquered
+                }
                 transfer_state_to = FROM
             }
         }
-        
-        ai_chance = { base = 3 }
+
+        white_peace = FROM
+        ai_chance = { base = 2 }
     }
     option = {
-        name = "We are not interested."
+        name = "We will never agree to this."
+        FROM = { 
+            news_event = { id = x_civil_war.3 hours = 6 random_hours = 6 }
+            add_war_support = 0.05
+        }
+
         ai_chance = { base = 1 }
     }
 }
 
 news_event = {
     id = x_civil_war.2
-    title = "[ROOT.GetName] Signs Truce with [FROM.GetNameDef]"
+    title = "[FROM.GetName] Signs Truce with [ROOT.GetName]"
     desc = x_civil_war.2.d
 
     is_triggered_only = yes
     major = yes
 
     option = {
-        name = "Great."
+        name = "Interesting."
     }
 }
 
@@ -47,53 +92,51 @@ news_event = {
     is_triggered_only = yes
 
     option = {
-        name = "So we will kick them even harder."
-        add_war_support = 0.05
+        name = "So we shall continue beating them."
     }
 }
 
 # cores
+
 country_event = {
     id = x_civil_war.4
-    title = "[FROM.GetName] Demands Territories"
+    title = "[FROM.GetName] Demands Our Withdrawal"
     desc = x_civil_war.4.d
 
     is_triggered_only = yes
 
     option = {
-        name = "They are rightfully theirs."
-        FROM = { news_event = { id = x_civil_war.5 hours = 6 random_hours = 6 } }
-
-        every_controlled_state = {
-            limit = { or = { is_core_of = FROM is_claimed_by = FROM } }
-            transfer_state_to = FROM
-        }
-        
-        ai_chance = { 
-            base = 2
-            modifier = { has_government = communism add = 3 }
+        name = "We must accept their demands."
+        FROM = { 
+            news_event = { id = x_civil_war.5 hours = 6 random_hours = 6 }
+            every_state = {
+                limit = { is_core_of = FROM is_owned_and_controlled_by = ROOT }
+                transfer_state_to = FROM
+            }
         }
     }
     option = {
-        name = "So what?"
-        ai_chance = { base = 1 }
-
+        name = "We did not fight for nothing."
         FROM = { 
             news_event = { id = x_civil_war.6 hours = 6 random_hours = 6 }
-            create_wargoal = { target = ROOT type = take_state_focus }
+            create_wargoal = {
+                target = ROOT
+                type = take_state_focus
+            }
         }
     }
 }
 
 news_event = {
     id = x_civil_war.5
-    title = "[FROM.GetName] Transfers Land to [ROOT.GetName]"
+    title = "[FROM.GetName] Withdraws from Occupied Lands"
     desc = x_civil_war.5.d
 
     is_triggered_only = yes
+    major = yes
 
     option = {
-        name = "A victory for [ROOT.GetName]."
+        name = "A step towards peace."
     }
 }
 
@@ -105,68 +148,6 @@ news_event = {
     is_triggered_only = yes
 
     option = {
-        name = "We may have to take them by force."
-        add_war_support = 0.05
-    }
-}
-
-# occupation
-country_event = {
-    id = x_civil_war.7
-    title = "[FROM.GetName] Demands Withdrawal"
-    desc = x_civil_war.7.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "We no longer need to occupy those lands."
-        FROM = { news_event = { id = x_civil_war.8 hours = 6 random_hours = 6 } }
-
-        every_controlled_state = {
-            limit = { is_core_of = FROM not = { is_core_of = ROOT } }
-            transfer_state_to = FROM
-        }
-        
-        ai_chance = { 
-            base = 1
-            modifier = { has_war = yes add = 2 }
-
-            # france won't every give anything to germans.
-            modifier = { and = { ROOT = { tag = FRA } FROM = { original_tag = GER } } factor = 0 }
-        }
-    }
-    option = {
-        name = "We are not interested."
-        ai_chance = { base = 1 }
-
-        FROM = { 
-            news_event = { id = x_civil_war.9 hours = 6 random_hours = 6 }
-            create_wargoal = { target = ROOT type = take_state_focus }
-        }
-    }
-}
-
-news_event = {
-    id = x_civil_war.8
-    title = "[FROM.GetName] Withdraws Occupying Troops"
-    desc = x_civil_war.8.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Right."
-    }
-}
-
-news_event = {
-    id = x_civil_war.9
-    title = "[FROM.GetName] Declines!"
-    desc = x_civil_war.9.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "We will get to them one day."
-        add_war_support = 0.05
+        name = "We shall see about this."
     }
 }

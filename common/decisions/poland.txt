@@ -1,0 +1,152 @@
+poland_frontiers = {
+    demand_galicia = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            any_country = {
+                or = { controls_state = 80 controls_state = 88 controls_state = 89 controls_state = 91 }
+                not = { has_war_with = POL }
+            }
+        }
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            every_country = {
+                limit = {
+                    or = { controls_state = 80 controls_state = 88 controls_state = 89 controls_state = 91 }
+                    not = { has_war_with = POL }
+                }
+                country_event = { id = poland_frontier.1 hours = 6 random_hours = 6 }
+            }
+        }
+    }
+    poznan_uprising = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            any_state = {
+                or = { state = 85 state = 86 }
+                is_controlled_by = GER
+            }
+        }
+
+        days_remove = 90
+        ai_will_do = {
+            base = 0
+            modifier = { GER = { has_war = yes } add = 6 }
+        }
+
+        complete_effect = {
+            news_event = { id = poland_frontier.4 hours = 6 random_hours = 6 }
+            GER = { add_stability = -0.025 }
+
+            85 = { add_core_of = POL }
+            86 = { add_core_of = POL }
+        }
+
+        remove_effect = {
+            create_wargoal = { target = GER type = take_claimed_state }
+        }
+    }
+}
+
+poland_alliances = {
+    pol_offer_alliance = {
+        cost = 75
+        fire_only_once = yes
+
+        targets = { TUR }
+
+        available = { FROM = { is_in_faction = no not = { has_war_with = ROOT } } }
+
+        ai_will_do = { 
+            base = 0
+            modifier = { has_completed_focus = POL_on_our_own add = 12 }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.2 hours = 6 random_hours = 6 } }
+        }
+    }
+    pol_join_alliance = {
+        cost = 100
+        fire_only_once = yes
+
+        targets = { ENG FRA }
+        available = { 
+            is_in_faction = no
+            FROM = { 
+                not = { has_war_with = ROOT }
+                or = { is_in_faction = no is_faction_leader = yes } 
+            }
+        }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { FROM = { tag = FRA } add = 3 }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}
+
+miedzymorze = {
+    wedding_to_the_sea = {
+        icon = generic_construction
+        fire_only_once = yes
+        cost = 75
+
+        ai_will_do = { base = 12 }
+
+        available = { controls_state = 85 }
+        complete_effect = {
+            85 = {
+                add_building_construction = { type = naval_base province = 9263 level = 2 instant_build = yes }
+                add_building_construction = { type = dockyard level = 2 instant_build = yes }
+
+                add_extra_state_shared_building_slots = 2
+
+                hidden_effect = {
+                    add_victory_points = { province = 9263 value = 5 }
+                }
+            }
+        }
+    }
+    align_ukraine = {
+        icon = generic_form_nation
+        fire_only_once = yes
+        cost = 150
+
+        available = {
+            UKR = { exists = yes not = { has_government = communism } }
+        }
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            POL = { country_event = { id = poland_ukraine.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    envoys_to_constantinople = {
+        icon = generic_civil_support
+        fire_only_once = yes
+        cost = 150
+
+        available = {
+            TUR = { exists = yes not = { has_government = communism } }
+        }
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            TUR = { country_event = { id = poland_turkey.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}

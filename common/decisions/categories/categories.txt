@@ -18,6 +18,16 @@ dc_economic_decisions = {
     priority = 2
 }
 
+civil_war_decisions = {
+    visible = {
+        has_civil_war = no
+        or = {
+            any_neighbor_country = { has_civil_war = yes }
+            has_idea = idea_aftermath_of_civil_war
+        }
+    }
+}
+
 
 # country specific
 aachen_treaty = {
@@ -140,6 +150,14 @@ megali_idea = {
     visible = { has_completed_focus = GRE_on_our_own }
 }
 
+miedzymorze = {
+    visible = { has_completed_focus = POL_on_our_own }
+}
+
+militarize_the_economy = {
+    visible = { has_completed_focus = HOL_open_the_economy }
+}
+
 old_alliances = {
     visible = { has_completed_focus = ITA_on_our_own }
 }
@@ -154,6 +172,10 @@ pacific_claims = {
 
 peoples_act = {
     visible = { has_completed_focus = ENG_peoples_act }
+}
+
+poland_frontiers = {
+    visible = { has_completed_focus = POL_deterrence }
 }
 
 reach_out_to_french = {
@@ -179,8 +201,16 @@ tackle_the_debt = {
     }
 }
 
+true_rus = {
+    visible = { has_completed_focus = UKR_on_our_own }
+}
+
 turanist_ambition = {
     visible = { has_completed_focus = TUR_on_our_own }
+}
+
+ukraine_galicia = {
+    visible = { has_completed_focus = UKR_deterrence }
 }
 
 unification_efforts = {
@@ -189,41 +219,6 @@ unification_efforts = {
 
 voc_mentaliteit = {
     visible = { has_completed_focus = HOL_on_our_own }
-}
-
-# war events
-civil_war_in_mexico = {
-    visible = {
-        has_country_flag = american_involvement_in_mexico
-        any_country = { has_original_tag = MEX has_civil_war = yes has_government = ROOT }
-    }
-}
-
-civil_soviet = {
-    visible = { SOV = { has_civil_war = yes } }
-}
-
-civil_german = {
-    visible = { or = { GER = { has_civil_war = yes } has_idea = idea_aftermath_of_german_civil_war } }
-}
-
-# war weariness
-agitation_in_army = {
-    visible = { 
-        tag = SOV
-        has_idea = idea_agitation_in_army
-    }
-    priority = 10
-}
-
-cracks_in_trenches = {
-    visible = { has_idea = idea_cracks_in_trenches }
-    priority = 10
-}
-
-war_weariness = {
-    visible = { has_idea = idea_war_weariness }
-    priority = 10
 }
 
 # alliances
@@ -268,12 +263,20 @@ manchukuo_alliances = {
     visible = { has_completed_focus = MAN_seek_alliances }
 }
 
+poland_alliances = {
+    visible = { has_completed_focus = POL_seek_alliances }
+}
+
 soviet_alliances = {
     visible = { has_completed_focus = SOV_seek_alliances }
 }
 
 turkey_alliances = {
     visible = { has_completed_focus = TUR_seek_alliances }
+}
+
+ukraine_alliances = {
+    visible = { has_completed_focus = UKR_seek_alliances }
 }
 
 usa_alliances = {

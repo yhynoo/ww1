@@ -1,27 +1,41 @@
 on_actions = {
-    on_state_control_changed = {
+    on_war_relation_added = {
         effect = {
-            
+            if = {
+                limit = { original_tag = FROM }         # if root has the same tag as FROM, it is a civil war.
+
+                # countries or generic?
+                if = {
+                    limit = { FROM = { tag = MEX is_dynamic_country = no } }
+                    # event is not needed here, as it's launched via on_actions/startup.txt
+                    mexican_civil_war = yes
+                }
+                else_if = {
+                    limit = { FROM = { tag = SOV } }
+                    # event is not needed here, as it's launched via the focus tree
+                    east_civil_war = yes
+                }
+                else = {
+                    news_event = { id = x_civil_war_start.1 hours = 6 random_hours = 6 } 
+                }
+
+                # adjust ideologies.
+                FROM = { set_popularity = { ideology = ROOT popularity = -0.35 } }
+
+                # switch off joining factions
+                set_rule = { can_join_factions = no }
+                FROM = { set_rule = { can_join_factions = no } }
+            }
         }
     }
 
     on_civil_war_end = {
         effect = {
-            if = {
-                limit = { tag = GER }
-                news_event = { id = germany_civil_war.6 hours = 6 random_hours = 6 }
+            news_event = { id = x_civil_war_end.1 hours = 6 random_hours = 6 }
 
-                if = {
-                    limit = { has_government = monarchism }
-                    set_cosmetic_tag = GEM
-                    promote_character = GER_wilhelm_ii
-                }
-
-                if = {
-                    limit = { has_government = communism }
-                    set_capital = { state = 64 }
-                }
-            }
+            # add idea and reset things
+            add_timed_idea = { idea = idea_aftermath_of_civil_war years = 1 }
+            set_rule = { can_join_factions = yes }
         }
     }
 }

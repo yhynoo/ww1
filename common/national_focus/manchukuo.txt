@@ -782,7 +782,7 @@
 
         ai_will_do = { 
             base = 0
-            modifier = { has_country_flag = chose_alternative add = 2 }
+            modifier = { and = { is_in_faction = yes has_country_flag = chose_alternative } add = 2 }
         }
 
         prerequisite = { focus = MAN_expansionism }

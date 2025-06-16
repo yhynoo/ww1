@@ -1,0 +1,57 @@
+add_namespace = ukraine_galicia
+
+country_event = {
+    id = ukraine_galicia.1
+    title = "[UKR.GetName] Demands Eastern Galicia"
+    desc = ukraine_galicia.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "The countryside speaks Ukrainian anyway."
+        FROM = {
+            news_event = { id = ukraine_galicia.2 hours = 6 random_hours = 6 }
+            every_state = {
+                limit = { or = { state = 89 state = 91 } is_owned_and_controlled_by = ROOT }      # add states.
+                transfer_state_to = UKR
+
+                hidden_effect = { add_core_of = UKR }
+            }
+        }
+    }
+    option = {
+        name = "Nonsense."
+        FROM = {
+            news_event = { id = ukraine_galicia.3 hours = 6 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = take_state_focus
+            }
+        }
+    }
+}
+
+news_event = {
+    id = ukraine_galicia.2
+    title = "[FROM.GetName] Transfers Lviv"
+    desc = ukraine_galicia.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A victory for Ukraine."
+    }
+}
+
+news_event = {
+    id = ukraine_galicia.3
+    title = "[FROM.GetName] Declines!"
+    desc = ukraine_galicia.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about this."
+    }
+}

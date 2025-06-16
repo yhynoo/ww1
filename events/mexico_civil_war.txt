@@ -1,0 +1,19 @@
+add_namespace = mexico_civil_war
+
+news_event = {
+    id = mexico_civil_war.1
+    title = "Agrarianist Uprising"
+    desc = mexico_civil_war.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The peasants have had enough."
+        if = {
+            limit = { tag = MEX }
+            remove_ideas = idea_zapatista_threat
+            hidden_effect = { start_civil_war = { ideology = communism size = 0.4 } }
+        }
+    }
+}

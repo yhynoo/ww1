@@ -1,0 +1,168 @@
+ukraine_galicia = {
+    demand_lviv = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            any_country = {
+                or = { controls_state = 89 controls_state = 91 }
+                not = { has_war_with = UKR }
+            }
+        }
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            every_country = {
+                limit = {
+                    or = { controls_state = 89 controls_state = 91 }
+                    not = { has_war_with = UKR }
+                }
+                country_event = { id = ukraine_galicia.1 hours = 6 random_hours = 6 }
+            }
+        }
+    }
+    develop_odesa = {
+        icon = generic_construction
+        fire_only_once = yes
+        cost = 75
+
+        ai_will_do = { base = 12 }
+
+        available = { controls_state = 192 }
+        complete_effect = {
+            192 = {
+                add_building_construction = { type = dockyard level = 2 instant_build = yes }
+                add_building_construction = { type = naval_base province = 11670 level = 2 instant_build = yes }
+                add_extra_state_shared_building_slots = 2
+            }
+        }
+    }
+}
+
+ukraine_alliances = {
+    ukr_offer_alliance = {
+        cost = 75
+        fire_only_once = yes
+
+        targets = { }
+
+        available = { FROM = { is_in_faction = no not = { has_war_with = ROOT } } }
+
+        ai_will_do = { 
+            base = 0
+            modifier = { has_completed_focus = POL_on_our_own add = 12 }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.2 hours = 6 random_hours = 6 } }
+        }
+    }
+    ukr_join_alliance = {
+        cost = 100
+        fire_only_once = yes
+
+        targets = { ENG GER }
+        available = { 
+            is_in_faction = no
+            FROM = { 
+                not = { has_war_with = ROOT }
+                or = { is_in_faction = no is_faction_leader = yes } 
+            }
+        }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { has_government = communism factor = 0 }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}
+
+true_rus = {
+    develop_donetsk = {
+        icon = generic_construction
+        fire_only_once = yes
+        cost = 75
+
+        ai_will_do = { base = 9 }
+
+        available = { controls_state = 227 }
+        complete_effect = {
+            227 = {
+                add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+                add_extra_state_shared_building_slots = 2
+                add_resource = { type = steel amount = 32 }
+            }
+        }
+    }
+    clashes_in_crimea = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 75
+
+        days_remove = 30
+        days_re_enable = 90
+
+        available = {
+            196 = { is_controlled_by = UKR }
+            any_country = {
+                controls_state = 137
+                not = { has_war_with = UKR }
+            }
+        }
+
+        ai_will_do = { base = 6 }
+
+        remove_effect = {
+            random_country = {
+                limit = { controls_state = 137 }
+                country_event = { id = x_local_conflict.1 days = 2 }
+            }
+            start_border_war = {
+                change_state_after_war = no
+                attacker = { state = 196 on_win = x_local_conflict.3 on_lose = x_local_conflict.4 }
+                defender = { state = 137 on_win = x_local_conflict.3 on_lose = x_local_conflict.4 }
+            }
+        }
+    }
+    claim_the_steppe = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            any_state = {
+                or = { state = 218 state = 240 state = 245 }
+                is_controlled_by = SOV
+            }
+        }
+
+        days_remove = 90
+        ai_will_do = {
+            base = 0
+            modifier = { SOV = { has_war = yes } add = 6 }
+        }
+
+        complete_effect = {
+            news_event = { id = ukraine_steppe.1 hours = 6 random_hours = 6 }
+            SOV = { add_stability = -0.025 }
+
+            every_state = {
+                limit = {
+                    or = { state = 218 state = 240 state = 245 }
+                    is_controlled_by = SOV
+                }
+                add_core_of = UKR
+            }
+        }
+
+        remove_effect = {
+            create_wargoal = { target = SOV type = take_claimed_state }
+        }
+    }
+}

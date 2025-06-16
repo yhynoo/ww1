@@ -2,131 +2,23 @@ add_namespace = soviet_civil_war
 
 news_event = {
     id = soviet_civil_war.1
-    title = "Communist Uprising in [195.GetCapitalVictoryPointName]!"
+    title = "Communist Uprising; Czar Executed?"
     desc = soviet_civil_war.1.d
 
     is_triggered_only = yes
     major = yes
 
     option = {
-        name = "The old empire sinks in chaos."
-        add_popularity = { ideology = communism popularity = 0.05 }
-    }
-}
+        name = "The workers' councils have taken to arms."
 
-news_event = {
-    id = soviet_civil_war.2
-    title = "Nikolai II and His Family Executed?"
-    desc = soviet_civil_war.2.d
-
-    trigger = {
-        original_tag = SOV
-        has_government = communism
-
-        controls_state = 195
-        any_country = { has_country_leader = { character = SOV_nikolai_ii ruling_only = yes } }
-    }
-
-    major = yes
-
-    option = {
-        trigger = { original_tag = SOV has_government = communism }
-        name = "Down with the tyrant!"
-        add_political_power = 100
-    }
-    option = {
-        trigger = { original_tag = SOV not = { has_government = communism } }
-        name = "God save his soul."
-
-        retire_character = SOV_nikolai_ii
-        add_war_support = -0.2
-    }
-    option = {
-        trigger = { not = { original_tag = SOV } }
-        name = "Outrageous."
-    }
-}
-
-# independence wars
-news_event = {
-    id = soviet_civil_war.3
-    title = "Poland Emerges Out of Empire's Ruins!"
-    desc = soviet_civil_war.3.d
-
-    is_triggered_only = yes
-    major = yes
-
-    trigger = {
-        POL = { exists = no }
-        any_country = { original_tag = SOV or = { controls_state = 10 controls_state = 87 controls_state = 90 controls_state = 97 } }
-    }
-
-    option = {
-        name = "For our freedom and yours!"
-        
         if = {
-            limit = { tag = SOV }
-
-            hidden_effect = { 
-                start_polish_independence_war = yes
-                POL = { 
-                    set_politics = { ruling_party = democratic elections_allowed = yes } 
-                    set_popularities = { communism = 10 democratic = 55 monarchism = 35 }
-                    set_rule = { can_join_factions = no }
-                }
-            }
+            limit = { stability < 0.5 }
+            add_popularity = { ideology = communism popularity = 0.05 }
         }
-    }
-}
 
-news_event = {
-    id = soviet_civil_war.4
-    title = "Ukrainian Nationalists Take Kyiv!"
-    desc = soviet_civil_war.4.d
-
-    is_triggered_only = yes
-    major = yes
-
-    trigger = {
-        UKR = { exists = no }
-        any_country = { original_tag = SOV or = { controls_state = 198 controls_state = 200 controls_state = 202 controls_state = 203 controls_state = 226 } }
-    }
-
-    option = {
-        name = "Glory to Ukraine!"
-        
         if = {
             limit = { tag = SOV }
-            hidden_effect = { 
-                start_ukrainian_independence_war = yes
-                UKR = { set_rule = { can_join_factions = no } }
-            }
-        }
-    }
-}
-
-news_event = {
-    id = soviet_civil_war.5
-    title = "Baltic Germans Take Up Arms!"
-    desc = soviet_civil_war.5.d
-
-    is_triggered_only = yes
-    major = yes
-
-    trigger = {
-        UBD = { exists = no }
-        any_country = { original_tag = SOV or = { controls_state = 12 controls_state = 13 controls_state = 188 } }
-    }
-
-    option = {
-        name = "For God and Fatherland!"
-        
-        if = {
-            limit = { tag = SOV }
-            hidden_effect = { 
-                start_baltic_independence_war = yes
-                UBD = { set_rule = { can_join_factions = no } }
-            }
+            hidden_effect = { start_civil_war = { ruling_party = communism ideology = ROOT size = 0.6 } }
         }
     }
 }
