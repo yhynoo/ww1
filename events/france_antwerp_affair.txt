@@ -100,6 +100,15 @@ country_event = {
                 target = ROOT
                 type = take_state_focus
             }
+
+            # german army will rush to the border at this point
+            hidden_effect = {
+                add_ai_strategy = {
+                    type = prepare_for_war
+                    id = FRA
+                    value = 100
+                }
+            }
         }
 
         hidden_effect = { 

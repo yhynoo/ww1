@@ -34,8 +34,7 @@ civil_war_decisions = {
     }
     generic_truce = {
         visible = { 
-            has_civil_war = no
-            any_enemy_country = { has_civil_war = yes }     # although if we fight those who do, we can.
+            has_civil_war = yes
         }
 
         icon = border_war
@@ -44,17 +43,20 @@ civil_war_decisions = {
 
         targets_dynamic = yes
         target_trigger = {
-            has_civil_war = no
-            FROM = { has_war_with = ROOT has_civil_war = yes }
-        }
+            FROM = {
+                has_war_with = ROOT
+                has_civil_war = no
 
-        available = {
-            not = { any_core_state = { is_controlled_by = FROM } }
+                or = { is_faction_leader = yes is_in_faction = no }
+                not = {
+                    any_country = { original_tag = ROOT is_ally_with = FROM }       # we won't make peace with the allies of our civil war adversary
+                }
+            }
         }
 
         ai_will_do = { 
-            base = 12
-            modifier = { tag = COL factor = 0 }         # colombia will fight.
+            base = 9
+            modifier = { surrender_progress > 0.1 factor = 2 }
         }
 
         complete_effect = {
@@ -63,10 +65,7 @@ civil_war_decisions = {
 
     }
     generic_cores = {
-        visible = {
-            has_civil_war = no
-            has_idea = idea_aftermath_of_civil_war
-        }
+        visible = { has_civil_war = no }
 
         icon = border_war
         cost = 75
@@ -75,7 +74,12 @@ civil_war_decisions = {
         targets_dynamic = yes
         target_trigger = { 
             not = { has_war_with = FROM }
-            any_core_state = { is_owned_and_controlled_by = FROM }
+            any_core_state = { is_owned_and_controlled_by = FROM not = { is_core_of = FROM } }
+
+            or = {
+                has_idea = idea_aftermath_of_civil_war
+                FROM = { has_idea = idea_aftermath_of_civil_war }
+            }
         }
 
         complete_effect = {

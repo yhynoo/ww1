@@ -1,0 +1,68 @@
+dont_naval_invade = {
+    allowed = {
+        not = {
+            tag = AST tag = ENG tag = JAP tag = ITA tag = USA
+        }
+    }
+    enable = { always = yes }
+    abort_when_not_enabled = yes
+
+    ai_strategy = {
+        type = invasion_unit_request
+        country_trigger = { always = yes }
+        value = -150
+    }
+}
+
+# japan can invade tsingtao and a few islands only
+entente_tsingtao = {
+    allowed = { tag = JAP }
+    enable = { always = yes }
+    abort_when_not_enabled = yes
+
+    ai_strategy = {
+        type = invasion_unit_request
+        state_trigger = { 
+            not = { or = { state = 431 state = 647 state = 684 } }
+        }
+        value = -150
+    }
+}
+
+# italy, if fighting turkey alone, can invade libya and albania
+entente_libya = {
+    allowed = { tag = ITA }
+    enable = { is_in_faction = no has_war_with = TUR }
+    abort_when_not_enabled = yes
+
+    ai_strategy = {
+        type = invasion_unit_request
+        state_trigger = { 
+            not = { or = { state = 661 state = 663 state = 44 } }
+        }
+        value = -150
+    }
+}
+
+# allies can invade arabia, the aegean, and gallipoli
+entente_gallipoli = {
+    allowed = { 
+        or = { tag = AST tag = ENG tag = USA }
+    }
+    enable = { always = yes }
+    abort_when_not_enabled = yes
+
+    ai_strategy = {
+        type = invasion_unit_request
+        state_trigger = { 
+            not = { 
+                or = { 
+                    state = 292 state = 656                             # arabia
+                    state = 586 state = 184 state = 187 state = 164     # the aegean
+                    state = 340                                         # gallipoli
+                }
+            }
+        }
+        value = -150
+    }
+}

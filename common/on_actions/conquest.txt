@@ -21,6 +21,24 @@ on_actions = {
                     limit = { FROM.FROM = { state = 12 } }
                     country_event = { id = x_conquest.3 hours = 6 random_hours = 6 }
                 }
+
+                # Bratislava or Budapest
+                if = {
+                    limit = { 
+                        has_completed_focus = GER_on_our_own
+                        FROM.FROM = { or = { state = 70 state = 43 } }
+                    }
+                    country_event = { id = x_conquest.4 hours = 6 random_hours = 6 }
+                }
+
+                # Zagreb
+                if = {
+                    limit = { 
+                        has_completed_focus = GER_on_our_own
+                        FROM.FROM = { state = 109 }
+                    }
+                    country_event = { id = x_conquest.5 hours = 6 random_hours = 6 }
+                }
             }
 
             # other

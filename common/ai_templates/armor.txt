@@ -1,39 +1,63 @@
-armor_generic = {
+standard_armor = {
     role = armor
 
-    early_armor = {
-        enable = { has_tech = heavy_1916 }
-        upgrade_prio = { base = 2 }
+    standard_armor_1916 = {
+        enable = { 
+            has_tech = heavy_1916
+            not = { num_of_military_factories < 10 }
+        }
+        upgrade_prio = { base = 1 }
 
         target_template = {
             support = {
+                artillery = 1
                 recon = 1
             }
             regiments = {
-                infantry = 4
-                artillery_brigade = 2
+                infantry = 5
                 heavy_armor = 1
             }
         }
     }
 
-    improved_armor = {
-        enable = {
-            has_tech = armored_car_1912
-            has_tech = light_1916
+    standard_armor_1918 = {
+        enable = { 
+            has_tech = heavy_1916
+            not = { num_of_military_factories < 20 }
         }
-        upgrade_prio = { base = 3 }
+        upgrade_prio = { base = 2 }
 
         target_template = {
             support = {
-                armored_car_recon = 1
-                logistics_company = 1
+                artillery = 1
+                recon = 1
             }
             regiments = {
-                infantry = 4
-                artillery_brigade = 2
-                heavy_armor = 1
-                light_armor = 1
+                infantry = 6
+                heavy_armor = 2
+            }
+        }
+    }
+}
+
+light_armor = {
+    role = armor
+    available_for = { FRA USA }
+
+    light_armor_1916 = {
+        enable = { 
+            has_tech = light_1916
+            not = { num_of_military_factories < 10 }
+        }
+
+        target_template = {
+            support = {
+                artillery = 1
+                engineer = 1
+            }
+            regiments = {
+                bicycle_battalion = 5
+                light_armor = 2
             }
         }
     }

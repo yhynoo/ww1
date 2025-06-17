@@ -1,188 +1,81 @@
 ### infantry
 
-    generic_infantry = {
-        blocked_for = { ENG ITA MAN SOV TUR }
-        role = infantry
+standard_infantry = {
+    blocked_for = { MAN SOV TUR }
+    role = infantry
 
-        early_infantry = {
-            target_template = {
-                support = {
-                    artillery = 1
-                    engineer = 1
-                }
-                regiments = {
-                    infantry = 6
-                    artillery_brigade = 1
-                }
+    standard_infantry_1912 = {
+        target_template = {
+            support = {
+                artillery = 1
+                engineer = 1
             }
-        }
-
-        improved_infantry = {
-            enable = { has_war = yes }
-            upgrade_prio = { base = 2 }
-            
-            target_template = {
-                support = {
-                    artillery = 1
-                    engineer = 1
-                }
-                regiments = {
-                    infantry = 8
-                    artillery_brigade = 2
-                }
+            regiments = {
+                infantry = 6
+                artillery_brigade = 1
             }
         }
     }
+}
 
-    ENG_infantry = {
-        available_for = { ENG }
-        role = infantry
+cheap_infantry = {
+    available_for = { MAN SOV TUR }
+    role = infantry
 
-        ENG_early_infantry = {
-            target_template = {
-                support = {
-                    artillery = 1
-                    engineer = 1
-                    field_hospital = 1
-                }
-                regiments = {
-                    infantry = 9
-                    artillery_brigade = 2
-                }
-            }
+    cheap_infantry_1912 = {
+        target_template = {
+            regiments = { infantry = 9 }
+            support = { artillery = 1 }
         }
     }
-
-    ITA_infantry = {
-        available_for = { ITA }
-        role = infantry
-
-        ITA_early_infantry = {
-            target_template = {
-                support = {
-                    artillery = 1
-                    engineer = 1
-                }
-                regiments = {
-                    infantry = 6
-                }
-            }
-        }
-
-        ITA_improved_infantry = {
-            enable = { has_war = yes }
-            upgrade_prio = { base = 2 }
-            
-            target_template = {
-                support = {
-                    artillery = 1
-                    engineer = 1
-                    field_hospital = 1
-                }
-                regiments = {
-                    infantry = 6
-                    artillery_brigade = 2
-                }
-            }
-        }
-    }
-
-    MAN_infantry = {
-        available_for = { MAN TUR SOV }
-        role = infantry
-
-        MAN_early_infantry = {
-            target_template = {
-                support = {
-                    artillery = 1
-                    engineer = 1
-                }
-                regiments = {
-                    infantry = 9
-                }
-            }
-        }
-
-        MAN_improved_infantry = {
-            enable = { has_war = yes }
-            upgrade_prio = { base = 2 }
-
-            target_template = {
-                support = {
-                    artillery = 1
-                    engineer = 1
-                }
-                regiments = {
-                    infantry = 12
-                    artillery_brigade = 1
-                }
-            }
-        }
-    }
+}
 
 ### mountaineers
 
-    generic_mountaineers = {
-        role = mountaineers
+standard_mountaineers_1912 = {
+    role = mountaineers
 
-        early_mountaineers = {
-            enable = { has_tech = mountaineers_1 }
-            target_template = {
-                support = {
-                    artillery = 1
-                    engineer = 1
-                }
-                regiments = {
-                    mountaineers = 6
-                }
-            }
-        }
-
-        MAN_improved_mountaineers = {
-            enable = { has_war = yes }
-            upgrade_prio = { base = 2 }
-
-            target_template = {
-                support = {
-                    artillery = 1
-                    engineer = 1
-                    field_hospital = 1
-                }
-                regiments = {
-                    mountaineers = 6
-                    artillery_brigade = 2
-                }
-            }
+    standard_mountaineers_1912 = {
+        enable = { has_tech = mountaineers_1 }
+        target_template = {
+            regiments = { mountaineers = 6 }
+            support = { artillery = 1 }
         }
     }
+}
 
 
 ### marines
 
-    generic_marines = {
-        role = marines
+standard_marines_1912 = {
+    role = marines
 
-        early_marines = {
-            enable = { has_tech = marines_1 }
-
-            target_template = {
-                regiments = {
-                    marine = 6
-                }
-            }
+    early_marines = {
+        enable = { has_tech = marines_1 }
+        target_template = {
+            regiments = { marine = 6 }
+            support = { engineer = 1 }
         }
     }
+}
 
 ### garrison
 
-    garrison_generic = {
-        role = garrison
+standard_garrison = {
+    blocked_for = { ENG FRA }
+    role = garrison
 
-        early_garrison = {
-            target_template = {
-                regiments = {
-                    infantry = 4
-                }
-            }
-        }
+    standard_garrison_1912 = {
+        target_template = { regiments = { infantry = 4 } }
     }
+}
+
+colonial_garrison = {
+    available_for = { ENG FRA }
+    role = garrison
+
+    colonial_garrison_1912 = {
+        target_template = { regiments = { infantry = 6 } }
+        support = { engineer = 1 }
+    }
+}

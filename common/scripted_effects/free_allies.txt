@@ -14,6 +14,41 @@ release_baltic = {
     UBD = { load_oob = "UBD_1912" }
 }
 
+release_croatia = {
+    release_on_controlled = CRO
+
+    if = { 
+        limit = { is_in_faction = yes }
+        every_allied_country = { release_on_controlled = UKR }
+    }
+
+    # add to faction
+    if = { limit = { is_in_faction = no } create_appropriate_faction = yes }
+    faction_leader = { add_to_faction = CRO }
+
+    # load armies
+    CRO = { load_oob = "CRO_1912" }
+}
+
+release_hungary = {
+    release_on_controlled = HUN
+
+    if = { 
+        limit = { is_in_faction = yes }
+        every_allied_country = { release_on_controlled = UKR }
+    }
+
+    # add to faction
+    if = { limit = { is_in_faction = no } create_appropriate_faction = yes }
+    faction_leader = { add_to_faction = HUN }
+
+    # load armies
+    HUN = { load_oob = "HUN_1912" }
+
+    # change Austria's name
+    AUS = { set_cosmetic_tag = AUS_alone }
+}
+
 release_poland = {
     release_on_controlled = POL
 

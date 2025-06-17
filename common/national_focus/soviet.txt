@@ -969,6 +969,11 @@
         
         completion_reward = {
             news_event = { id = soviet_civil_war.1 hours = 3 }
+
+            if = {
+                limit = { has_idea = idea_agitation_in_army }
+                remove_ideas = idea_agitation_in_army
+            }
         }
     }
     focus = { 

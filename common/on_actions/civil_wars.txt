@@ -8,7 +8,6 @@ on_actions = {
                 if = {
                     limit = { FROM = { tag = MEX is_dynamic_country = no } }
                     # event is not needed here, as it's launched via on_actions/startup.txt
-                    mexican_civil_war = yes
                 }
                 else_if = {
                     limit = { FROM = { tag = SOV } }
@@ -20,11 +19,18 @@ on_actions = {
                 }
 
                 # adjust ideologies.
-                FROM = { set_popularity = { ideology = ROOT popularity = -0.35 } }
+                FROM = { add_popularity = { ideology = ROOT popularity = -0.5 } }
 
-                # switch off joining factions
-                set_rule = { can_join_factions = no }
-                FROM = { set_rule = { can_join_factions = no } }
+                # can't magically peace out
+                every_country = {
+                    limit = { 
+                        has_war_with = ROOT
+                        or = { is_faction_leader = yes is_in_faction = no }
+                    }
+                    FROM = {
+                        declare_war_on = { target = PREV type = topple_government }
+                    }
+                }
             }
         }
     }

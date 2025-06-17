@@ -26,7 +26,10 @@ news_event = {
     desc = turkey_arab_lands.2.d
 
     is_triggered_only = yes
-    trigger = { TUR = { has_stabilty < 0.6 } }
+    trigger = { 
+        TUR = { has_stabilty < 0.6 }
+        454 = { is_controlled_by = TUR }
+    }
     major = yes
 
     immediate = {

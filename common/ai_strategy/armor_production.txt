@@ -1,0 +1,11 @@
+default_armor_strategy = {
+	allowed = { or = { tag = ENG tag = FRA tag = GER tag = USA } }
+	enable = { has_tech = heavy_1916 }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = role_ratio
+		id = armor
+		value = 10
+	}
+}

@@ -44,23 +44,18 @@ ideologies = {
 		}
 
 		ai_fascist = yes # uses the fascist AI behaviour
-		ai_ideology_wanted_units_factor = 1.65
-		
+		ai_ideology_wanted_units_factor = 1.5
 		ai_give_core_state_control_threshold = 10000
 	}
 
-		communism = {
+	communism = {
 
 		types = {
+			marxism = { }
 
-			marxism = {
-			}
+			anarchism = { }
 
-			anarchism = {
-			}
-
-			leninism = {
-			}
+			leninism = { }
 		}
 
 		dynamic_faction_names = {
@@ -83,6 +78,9 @@ ideologies = {
 			can_force_government = yes
 			can_send_volunteers = yes
 			can_puppet = yes
+
+			# can only be friends with other communists.
+			can_join_opposite_factions = no
 		}
 
 		can_collaborate = yes
@@ -107,14 +105,11 @@ ideologies = {
 
 	democratic = {
 		types = {
-			conservatism = {
-			}
+			conservatism = { }
 
-			liberalism = {
-			}
+			liberalism = { }
 
-			agrarism = {
-			}
+			agrarism = { }
 		}
 
 		dynamic_faction_names = {
@@ -164,20 +159,16 @@ ideologies = {
 		}
 		ai_democratic = yes # uses the democratic AI behaviour
 		ai_ideology_wanted_units_factor = 1.10 # multiplies threat impact on number of desired units by this value, defaults to 1.0. If at war, the larger of this value and NDefines::NAI::WANTED_UNITS_WAR_THREAT_FACTOR will be used instead
-		
 		ai_give_core_state_control_threshold = 0 # Extra threshold value added to DIPLOMATIC_ACTION_PROPOSE_SCORE for this ideology to give back core state control to other country
 	}
 
 	monarchism = {
 		types = {
-			moderatism = {
-			}
+			moderatism = { }
 
-			absolutism = {
-			}
+			absolutism = { }
 
-			despotism  = {
-			}
+			despotism  = { }
 		}
 
 		dynamic_faction_names = {
@@ -219,7 +210,6 @@ ideologies = {
 
 		ai_neutral = yes #
 		ai_ideology_wanted_units_factor = 1.15
-		
 		ai_give_core_state_control_threshold = 10000
 	}
 

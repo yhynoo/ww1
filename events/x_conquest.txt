@@ -11,6 +11,16 @@ country_event = {
     fire_only_once = yes
 
     option = {
+        name = "8Continue as [POL.GetNameDef]"
+        hidden_effect = { 
+            release_poland = yes
+            set_politics = { ruling_party = ROOT }
+        }
+
+        POL = { change_tag_from = ROOT }
+        ai_chance = { base = 0 }
+    }
+    option = {
         name = "Poland shall be a worthy ally."
         hidden_effect = { 
             release_poland = yes
@@ -24,16 +34,6 @@ country_event = {
             # not greater germany
             modifier = { has_completed_focus = GER_on_our_own factor = 0 }
         }
-    }
-    option = {
-        name = "God, Honor, Fatherland!"
-        hidden_effect = { 
-            release_poland = yes
-            set_politics = { ruling_party = ROOT }
-        }
-
-        POL = { change_tag_from = ROOT }
-        ai_chance = { base = 0 }
     }
     option = {
         name = "Nonsense."
@@ -54,6 +54,16 @@ country_event = {
     fire_only_once = yes
 
     option = {
+        name = "8Continue as [UKR.GetNameDef]"
+        hidden_effect = { 
+            release_ukraine = yes
+            set_politics = { ruling_party = ROOT }
+        }
+
+        UKR = { change_tag_from = ROOT }
+        ai_chance = { base = 0 }
+    }
+    option = {
         name = "Ukraine shall be a worthy ally."
         hidden_effect = { 
             release_ukraine = yes
@@ -64,16 +74,6 @@ country_event = {
             base = 2
             modifier = { has_government = democratic factor = 3 }
         }
-    }
-    option = {
-        name = "Glory all around the world!"
-        hidden_effect = { 
-            release_ukraine = yes
-            set_politics = { ruling_party = ROOT }
-        }
-
-        UKR = { change_tag_from = ROOT }
-        ai_chance = { base = 0 }
     }
     option = {
         name = "Nonsense."
@@ -94,7 +94,17 @@ country_event = {
     fire_only_once = yes
 
     option = {
-        name = "The Baltic shall be a worthy ally."
+        name = "8Continue as [UBD.GetNameDef]"
+        hidden_effect = { 
+            release_baltic = yes
+            set_politics = { ruling_party = ROOT }
+        }
+
+        UBD = { change_tag_from = ROOT }
+        ai_chance = { base = 0 }
+    }
+    option = {
+        name = "The Baltics shall be worthy allies."
         hidden_effect = { 
             release_baltic = yes
             set_politics = { ruling_party = ROOT }
@@ -109,18 +119,82 @@ country_event = {
         }
     }
     option = {
-        name = "Let the three stars shine bright."
+        name = "Nonsense."
+        every_controlled_state = { limit = { is_core_of = UBD } add_resistance = 10 }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = x_conquest.4
+    title = "[ROOT.GetAdjective] Troops Enter Hungarian Lands"
+    desc = x_conquest.4.d
+
+    trigger = { HUN = { exists = no } }
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = "8Continue as [HUN.GetNameDef]"
+        hidden_effect = { 
+            release_hungary = yes
+            set_politics = { ruling_party = ROOT }
+        }
+
+        HUN = { change_tag_from = ROOT }
+        ai_chance = { base = 0 }
+    }
+    option = {
+        name = "The Hungarians shall be worthy allies."
+        hidden_effect = { 
+            release_hungary = yes
+            set_politics = { ruling_party = ROOT }
+        }
+
+        ai_chance = { base = 3 }
+    }
+    option = {
+        name = "Nonsense."
+        every_controlled_state = { limit = { is_core_of = HUN } add_resistance = 10 }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = x_conquest.5
+    title = "[ROOT.GetAdjective] Troops March in Agram"
+    desc = x_conquest.5.d
+
+    trigger = { CRO = { exists = no } }
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = "8Continue as [CRO.GetNameDef]"
+        hidden_effect = { 
+            release_croatia = yes
+            set_politics = { ruling_party = ROOT }
+        }
+
+        CRO = { change_tag_from = ROOT }
+        ai_chance = { base = 0 }
+    }
+    option = {
+        name = "The Croatians shall be worthy allies."
         hidden_effect = { 
             release_baltic = yes
             set_politics = { ruling_party = ROOT }
         }
 
-        UBD = { change_tag_from = ROOT }
-        ai_chance = { base = 0 }
+        ai_chance = { base = 3 }
     }
     option = {
         name = "Nonsense."
-        every_controlled_state = { limit = { is_core_of = UBD } add_resistance = 10 }
+        every_controlled_state = { limit = { is_core_of = CRO } add_resistance = 10 }
 
         ai_chance = { base = 1 }
     }

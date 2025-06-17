@@ -1,27 +1,37 @@
+# germany extra militarization
+germany_army_production = {
+	allowed = { original_tag = GER }
+	enable = { always = yes }
+	abort = { always = no }
+
+	# prepare more units
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 30
+	}
+
+	# focus on military factories
+	ai_strategy = {
+		type = added_military_to_civilian_factory_ratio
+		value = 15
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = infantry
+		value = 30
+	}
+
+}
+
+# -- other stuff
+ 
 GER_army_composition = {
 	allowed = { original_tag = GER }
 	enable = { always = yes }
 
 	abort_when_not_enabled = yes
-
-	## Land troops
-	ai_strategy = {
-		type = role_ratio
-		id = infantry
-		value = 120
-	}
-
-	ai_strategy = {
-		type = role_ratio
-		id = cyclist
-		value = 10
-	}
-
-	ai_strategy = {
-		type = role_ratio
-		id = mountaineers
-		value = 5
-	}
 
 	# we're also scared of France and Russia
 	ai_strategy = {

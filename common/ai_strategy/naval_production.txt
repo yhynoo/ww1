@@ -1,0 +1,22 @@
+at_lease_one = {
+	enable = { always = yes }
+	abort = { always = no }
+
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = convoy
+		value = 1
+	}
+}
+
+# navy-focused nations
+extra_dockyards = {
+	allowed = { or = { tag = ENG tag = JAP tag = USA } }
+	enable = { always = yes }
+	abort = { always = no }
+
+	ai_strategy = {
+		type = dockyard_to_military_factory_ratio
+		value = 60
+	}
+}

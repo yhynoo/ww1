@@ -1,0 +1,118 @@
+# BASIC PRODUCTION
+
+default_unit_production = {
+	allowed = { not = { or = { tag = ENG tag = ITA tag = JAP tag = TUR } } }
+    enable = { always = yes }
+	abort = { always = no }
+
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 65
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = garrison
+		value = 15
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = cyclist
+		value = 10
+	}
+}
+
+thinner_unit_production = {
+    allowed = { or = { tag = ENG tag = ITA tag = JAP tag = TUR } }
+    enable = { always = yes }
+    abort = { always = no }
+
+    ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 35
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = garrison
+		value = 50
+	}
+}
+
+marines_production = {
+    allowed = { or = { tag = AST tag = ENG tag = ITA tag = JAP } }
+    enable = { always = yes }
+    abort = { always = no }
+
+    ai_strategy = {
+		type = role_ratio
+		id = marines 
+		value = 5
+	}
+}
+
+mountain_production = {
+    allowed = { or = { tag = AUS tag = ITA } }
+    enable = { always = yes }
+    abort = { always = no }
+
+    ai_strategy = {
+		type = role_ratio
+		id = mountaineers
+		value = 5
+	}
+}
+
+## WAR ADJUSTMENTS
+
+war_mobilization = {
+	allowed = { always = yes }
+	enable = { 
+		or = {
+			threat > 0.1
+			and = { has_war = yes has_civil_war = no }
+		}
+	}
+	abort_when_not_enabled = yes
+
+	# add infantry
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 45
+	}
+
+	# make more guns
+	ai_strategy = {
+		type = added_military_to_civilian_factory_ratio
+		value = 30
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = infantry
+		value = 30
+	}
+}
+
+civil_war_adjustment = {
+	allowed = { always = yes }
+	enable = { has_civil_war = yes }
+	abort_when_not_enabled = yes
+
+	# drop infantry, make cheaper units instead
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = -30
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = garrison
+		value = 60
+	}
+}

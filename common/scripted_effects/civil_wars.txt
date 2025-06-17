@@ -1,23 +1,14 @@
-mexican_civil_war = {
-    random_country = {
-        limit = { original_tag = MEX has_government = communism }
-        declare_war_on = { target = COL type = topple_government }
-    }
-}
-
 east_civil_war = {
     random_country = {
         limit = { original_tag = SOV has_government = communism }
         set_cosmetic_tag = SOC
 
-        every_country = {
-            limit = { not = { original_tag = SOV } }
-            every_core_state = {
-                if = {
-                    limit = { is_controlled_by = PREV.PREV }
-                    transfer_state_to = PREV
-                }
-            }
+        set_popularities = { communism = 75 democratic = 20 monarchism = 5 }
+
+        add_ideas = {
+            closed_economy
+            war_economy
+            extensive_conscription
         }
     }
 
@@ -26,5 +17,12 @@ east_civil_war = {
         set_cosmetic_tag = SOO
 
         retire_character = SOV_nikolai_ii
+        set_popularities = { communism = 10 democratic = 35 monarchism = 55 }
+
+        add_ideas = {
+            closed_economy
+            war_economy
+            extensive_conscription
+        }
     }
 }

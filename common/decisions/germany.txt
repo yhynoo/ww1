@@ -136,9 +136,10 @@ greater_germany = {
         ai_will_do = {
             base = 0
             modifier = { 
+                has_war = no
                 or = {
                     not = { is_ally_with = AUS } 
-                    and = { date > 1916.1.1 not = { has_war = yes } }
+                    date > 1916.1.1
                 }    
                 add = 12
             }
@@ -187,7 +188,7 @@ afrika_amt = {
         cost = 75
 
         available = { controls_state = 541 }
-        ai_will_do = { base = 12 }
+        ai_will_do = { base = 9 }
 
         complete_effect = {
             541 = { add_resource = { type = chromium amount = 16 } }

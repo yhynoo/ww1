@@ -1,7 +1,6 @@
 contain_eastern_threats = {
     support_poland = {
         icon = generic_prepare_civil_war
-
         fire_only_once = yes
         cost = 50
 
@@ -12,7 +11,7 @@ contain_eastern_threats = {
 
         ai_will_do = {
             base = 3
-            modifier = { has_idea = idea_unrest_in_galicia add = 9 }
+            modifier = { has_idea = idea_unrest_in_galicia add = 6 }
         }
 
         complete_effect = {
@@ -26,7 +25,6 @@ contain_eastern_threats = {
     }
     support_ukraine = {
         icon = generic_prepare_civil_war
-
         fire_only_once = yes
         cost = 50
 
@@ -37,7 +35,7 @@ contain_eastern_threats = {
 
         ai_will_do = {
             base = 3
-            modifier = { has_idea = idea_unrest_in_galicia add = 6 }
+            modifier = { has_idea = idea_unrest_in_galicia add = 3 }
         }
 
         complete_effect = {
@@ -204,6 +202,8 @@ equal_development = {
         fire_only_once = yes
         cost = 75
 
+        ai_will_do = { base = 9 }
+
         available = { controls_state = 89 }
         complete_effect = {
             89 = { add_resource = { type = oil amount = 24 } }
@@ -213,6 +213,8 @@ equal_development = {
     tatra_trucks = {
         fire_only_once = yes
         cost = 75
+
+        ai_will_do = { base = 12 }
 
         available = { controls_state = 75 }
         complete_effect = {

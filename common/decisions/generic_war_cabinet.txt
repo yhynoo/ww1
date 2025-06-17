@@ -10,10 +10,7 @@ dc_war_cabinet = {
 
         ai_will_do = {
             base = 6
-            modifier = { 
-                surrender_progress > 0.3 
-                factor = 3
-            }
+            modifier = { surrender_progress > 0.3 add = 6 }
         }
 
         days_remove = 60
@@ -23,17 +20,19 @@ dc_war_cabinet = {
         }
     }
     organize_bomb_shelters = {
-        available = {
-            num_of_civilian_factories > 1
-        }
+        available = { num_of_civilian_factories > 1 }
         cost = 50
         days_remove = 60
 
         ai_will_do = {
-            base = 5
+            base = 3
             modifier = { 
-                has_war_support < 0.5
-                factor = 3
+                or = { has_war_support < 0.5 has_stability < 0.5 }
+                add = 6
+            }
+            modifier = { 
+                or = { has_war_support < 0.3 has_stability < 0.3 }
+                add = 9
             }
         }
         
@@ -53,17 +52,11 @@ dc_war_cabinet = {
             has_tech = early_trucks
         }
 
-        ai_will_do = {
-            base = 5
-        }
+        ai_will_do = { base = 3 }
 
         complete_effect = {
             add_stability = -0.05
-            add_equipment_to_stockpile = {
-                type = motorized_equipment
-                amount = 250
-                producer = ROOT
-            }
+            add_equipment_to_stockpile = { type = motorized_equipment amount = 250 producer = ROOT  }
         }
     }
 }
