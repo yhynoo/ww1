@@ -109,6 +109,20 @@ country_event = {
                 transfer_state_to = FROM
             }
         }
+
+        ai_chance = { 
+            base = 2
+            modifier = { has_truce_with = FROM factor = 0.5 }
+
+            # small countries
+            modifier = {
+                and = {
+                    FROM = { original_tag = SOV }
+                    ROOT = { or = { tag = POL tag = UBD tag = UKR } }
+                }
+                factor = 0
+            }
+        }
     }
     option = {
         name = "We did not fight for nothing."
@@ -117,6 +131,14 @@ country_event = {
             create_wargoal = {
                 target = ROOT
                 type = take_state_focus
+            }
+        }
+
+        ai_chance = { 
+            base = 1
+            modifier = {
+                has_government = authoritarianism
+                factor = 3
             }
         }
     }

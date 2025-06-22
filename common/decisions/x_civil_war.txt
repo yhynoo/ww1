@@ -57,9 +57,14 @@ civil_war_decisions = {
         ai_will_do = { 
             base = 9
             modifier = { surrender_progress > 0.1 factor = 2 }
+
+            # mexico won't do it:
+            modifier = { original_tag = MEX add = -6 }
         }
 
-        complete_effect = {
+        days_remove = 7
+        remove_effect = {
+            # it takes a moment before it can start.
             FROM = { country_event = { id = x_civil_war.1 hours = 6 random_hours = 6 } }
         }
 
@@ -74,13 +79,15 @@ civil_war_decisions = {
         targets_dynamic = yes
         target_trigger = { 
             not = { has_war_with = FROM }
-            any_core_state = { is_owned_and_controlled_by = FROM not = { is_core_of = FROM } }
+            any_core_state = { is_controlled_by = FROM }
 
             or = {
                 has_idea = idea_aftermath_of_civil_war
-                FROM = { has_idea = idea_aftermath_of_civil_war }
+                FROM = { or = { has_idea = idea_aftermath_of_civil_war has_civil_war = yes } }
             }
         }
+
+        ai_will_do = { base = 9 }
 
         complete_effect = {
             FROM = { country_event = { id = x_civil_war.4 hours = 6 random_hours = 6 } }

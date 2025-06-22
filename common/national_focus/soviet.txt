@@ -968,6 +968,11 @@
         }
         
         completion_reward = {
+            # start war and do setup
+            start_civil_war = { ruling_party = communism ideology = ROOT size = 0.4 }
+            east_civil_war = yes
+
+            # event
             news_event = { id = soviet_civil_war.1 hours = 3 }
 
             if = {

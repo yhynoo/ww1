@@ -4,18 +4,14 @@ on_actions = {
             if = {
                 limit = { original_tag = FROM }         # if root has the same tag as FROM, it is a civil war.
 
-                # countries or generic?
                 if = {
-                    limit = { FROM = { tag = MEX is_dynamic_country = no } }
-                    # event is not needed here, as it's launched via on_actions/startup.txt
-                }
-                else_if = {
-                    limit = { FROM = { tag = SOV } }
-                    # event is not needed here, as it's launched via the focus tree
-                    east_civil_war = yes
-                }
-                else = {
-                    news_event = { id = x_civil_war_start.1 hours = 6 random_hours = 6 } 
+                    not = {
+                        FROM = { or = { 
+                            tag = MEX 
+                            tag = SOV 
+                        } }
+                    } 
+                    news_event = { id = x_civil_war_start.1 hours = 6 random_hours = 6 }        # generic message
                 }
 
                 # adjust ideologies.
@@ -30,6 +26,14 @@ on_actions = {
                     FROM = {
                         declare_war_on = { target = PREV type = topple_government }
                     }
+                }
+
+                every_country = {
+                    limit = { 
+                        has_war_with = FROM
+                        or = { is_faction_leader = yes is_in_faction = no }
+                    }
+                   ROOT = { declare_war_on = { target = PREV type = topple_government } }
                 }
             }
         }

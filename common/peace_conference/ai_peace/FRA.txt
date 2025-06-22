@@ -1,0 +1,56 @@
+peace_ai_desires = {
+
+    FRA_always_take_algeria_and_belgium = {
+        peace_ai_desires = {
+            peace_action_type = take_states
+            enable = {
+                original_tag = FRA
+                FROM.FROM.FROM = {
+                    or = {
+                        is_core_of = ALG
+                        state = 6 state = 8 state = 28 state = 34       # also luxembourg and alsace and lothringen
+                    }
+                }
+            }
+            ai_desire = 100
+        }
+    }
+
+    FRA_always_release_GRE = {
+        peace_ai_desires = {
+            peace_action_type = liberate
+            enable = {
+                original_tag = FRA
+                FROM = { tag = GRE }
+            }
+            ai_desire = 100
+        }
+    }
+
+    FRA_war_goals = {
+        peace_ai_desires = {
+            peace_action_type = take_states
+            enable = {
+                original_tag = FRA
+                FROM.FROM.FROM = {
+                    not = {
+                        or = {
+                            state = 6 state = 8 state = 28 state = 34       # also luxembourg and alsace and lothringen
+                            state = 165 state = 172                         # spain
+                            state = 114 state = 117                         # mediterranean islands
+
+                            is_core_of = SWI
+                            state = 158 state = 159 state = 161             # north italy
+
+                            is_core_of = HOL
+                            state = 42 state = 51 state = 55 state = 56 state = 57      # west germany
+
+                            # state = 553 state = 554 state = 677             # lebanon and syria
+                        }
+                    }
+                }
+            }
+            ai_desire = -600
+        }
+    }
+}

@@ -15,12 +15,16 @@ on_actions = {
 
             if = {
                 limit = { tag = POL }
-                news_event = { id = poland_industrialists.1 days = 14 random_days = 7 }
             }
 
             if = {
                 limit = { tag = UKR not = { has_government = communism } }
                 news_event = { id = ukraine_vyshyvanyi.1 days = 14 random_days = 7 }
+            }
+
+            if = {
+                limit = { or = { num_of_civilian_factories < 3 num_of_military_factories < 2 } }
+                news_event = { id = x_industrialists.1 days = 7 random_days = 7 }
             }
         }
     }

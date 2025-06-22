@@ -1,0 +1,23 @@
+peace_ai_desires = {
+
+    # this works in reverse: by hard limiting taking states outside of their sphere of interest.
+    ENG_war_ambitions = {
+        peace_ai_desires = {
+            peace_action_type = take_states
+            enable = {
+                original_tag = ENG
+                FROM.FROM.FROM = {
+                    not = {
+                        or = {
+                            is_on_continent = africa
+                            is_on_continent = middle_east
+
+                            state = 164 state = 182 state = 187     # aegean and crete
+                        }
+                    }
+                }
+            }
+            ai_desire = -600
+        }
+    }
+}

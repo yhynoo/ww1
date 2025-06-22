@@ -1,0 +1,40 @@
+peace_ai_desires = {
+
+    # this works in reverse: by hard limiting taking states outside of their sphere of interest.
+    AUS_war_ambitions = {
+        peace_ai_desires = {
+            peace_action_type = take_states
+            enable = {
+                original_tag = AUS
+                FROM.FROM.FROM = {
+                    not = {
+                        or = {
+                            state = 78 state = 79 state = 442           # romania
+                            state = 81 state = 46
+
+                            state = 105 state = 107 state = 108         # serbia
+                            state = 106                                 # macedonia
+                            state = 44                                  # albania
+
+                            state = 48 state = 212                      # sofia
+
+                            state = 159 state = 160                     # venice
+                        }
+                    }
+                }
+            }
+            ai_desire = -600
+        }
+    }
+
+    AUS_habsburg_authority_peace = {
+        peace_action_type = puppet
+        enable = {
+            has_completed_focus = AUS_on_our_own
+
+            FROM = { tag = BUL }
+            FROM = { tag = GRE }
+        }
+        ai_desire = 100
+    }
+}

@@ -1,0 +1,52 @@
+peace_ai_desires = {
+
+    # this works in reverse: by hard limiting taking states outside of their sphere of interest.
+    SOV_war_ambitions = {
+        peace_ai_desires = {
+            peace_action_type = take_states
+            enable = {
+                original_tag = SOV
+                FROM.FROM.FROM = {
+                    not = {
+                        or = {
+                            state = 5 state = 85 state = 86                     # west poland
+                            state = 80 state = 88 state = 89 state = 91         # galicia
+
+                            is_core_of = HUN
+                            is_core_of = CRO
+
+                            is_core_of = POL
+                            is_core_of = UBD
+                            is_core_of = UKR
+
+                            state = 46 state = 77 state = 81                    # romania
+                            state = 105 state = 106 state = 107 state = 108     # serbia, montenegro and macedonia
+                            state = 404                                         # kosovo
+                            state = 48 state = 211 state = 212                  # thrace
+                            state = 184 state = 341                             
+
+                            state = 44                                          # albania
+
+                            is_core_of = MON
+                            state = 328 state = 619 state = 654                 # manchuria
+                            state = 72                                          # dalian
+                        }
+                    }
+                }
+            }
+            ai_desire = -600
+        }
+    }
+
+    SOV_always_keep_ukraine = {
+        peace_ai_desires = {
+            peace_action_type = { liberate puppet }
+            enable = {
+                original_tag = SOV
+                FROM = { original_tag = UKR }
+            }
+
+            ai_desire = -600
+        }
+    }
+}

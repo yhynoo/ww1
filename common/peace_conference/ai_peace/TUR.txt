@@ -1,0 +1,36 @@
+peace_ai_desires = {
+
+    # this works in reverse: by hard limiting taking states outside of their sphere of interest.
+    TUR_war_ambitions = {
+        peace_ai_desires = {
+            peace_action_type = take_states
+            enable = {
+                original_tag = TUR
+                FROM.FROM.FROM = {
+                    not = {
+                        or = {
+                            state = 78 state = 79 state = 442           # moldova
+                            state = 137                                 # crimea
+
+                            is_core_of = CRO                            # croatia and bosnia
+                            
+                            state = 229 state = 230 state = 232 state = 233     # caucasus
+                            state = 234 state = 235 state = 238                 # cis-caucasus
+
+                            state = 584 state = 585 state = 587                 # central asia
+                            state = 402 state = 405 state = 589
+
+                            state = 287 state = 617 state = 618                 # sinkiang
+                            is_core_of = MON                                    # mongolia
+
+                            # english middle east
+                            state = 183
+                            state = 656 state = 658 state = 659 state = 294
+                        }
+                    }
+                }
+            }
+            ai_desire = -600
+        }
+    }
+}

@@ -25,28 +25,21 @@ germany_army_production = {
 
 }
 
-# -- other stuff
- 
-GER_army_composition = {
+# don't waste too much stuff on africa
+germany_avoid_africa = {
 	allowed = { original_tag = GER }
-	enable = { always = yes }
-
+	enable = { not = { has_completed_focus = GER_afrika_amt } }
 	abort_when_not_enabled = yes
 
-	# we're also scared of France and Russia
 	ai_strategy = {
-		type = prepare_for_war
-		id = FRA
-		value = 50
-	}
-
-	ai_strategy = {
-		type = prepare_for_war
-		id = SOV
-		value = 20
+		type = front_unit_request
+		state_trigger = { is_on_continent = africa }
+		value = -60
 	}
 }
 
+# -- other stuff
+ 
 GER_protects_AUS = {
 	allowed = { original_tag = GER }
 	enable = { or = { is_ally_with = AUS has_guaranteed = AUS } }
@@ -68,33 +61,5 @@ GER_protects_UBD = {
 		type = support
 		id = UBD
 		value = 100
-	}
-}
-
-GER_second_line_airfields = {
-	allowed = { original_tag = GER }
-	enable = { has_war = yes }
-
-	abort_when_not_enabled = yes
-
-	ai_strategy = {
-		type = build_building
-		id = air_base
-		target = 50			# Baden
-		value = 2
-	}
-
-	ai_strategy = {
-		type = build_building
-		id = air_base
-		target = 86			# Posen
-		value = 1
-	}
-
-	ai_strategy = {
-		type = build_building
-		id = air_base
-		target = 763		# Königsberg
-		value = 2
 	}
 }

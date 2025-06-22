@@ -1,9 +1,9 @@
-add_namespace = poland_industrialists
+add_namespace = x_industrialists
 
 news_event = {
-    id = poland_industrialists.1
-    title = "Industrialists Join the War Effort!"
-    desc = poland_industrialists.1.d
+    id = x_industrialists.1
+    title = "Loyal Enterpreneurs Join the Effort!"
+    desc = x_industrialists.1.d
 
     is_triggered_only = yes
     trigger = { has_war = yes }
@@ -11,8 +11,8 @@ news_event = {
     option = {
         name = "Great."
         random_owned_controlled_state = {
-            add_building_construction = { type = arms_factory level = 1 instant_build = yes }
-            add_extra_state_shared_building_slots = 1
+            add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+            add_extra_state_shared_building_slots = 2
         }
         random_owned_controlled_state = {
             add_building_construction = { type = arms_factory level = 1 instant_build = yes }

@@ -2501,10 +2501,10 @@ NAI = {
 	TOO_INSIGNIFICANT_MAX_PENALTY = 350,						-- max penalty that will be applied for thinking a country is too insignificant
 
 	-- Calculating wanted nr of divisions
-	WANTED_UNITS_INDUSTRY_FACTOR = 1.8,                        -- (MOD: vanilla had 1.6) How many units a country wants is partially based on how much military industry that is available
-	WANTED_UNITS_THREAT_BASE = 0.7,                             -- If no threat, multiply min wanted units by this
-	WANTED_UNITS_THREAT_MAX = 6.0,                             -- Normalized threat is clamped to this
-	WANTED_UNITS_WAR_THREAT_FACTOR = 1.15,                       -- Factor threat with this if country is at war. this value is overriden by the value in ideology database if that value exceedes this.
+	WANTED_UNITS_INDUSTRY_FACTOR = 2.4,                        -- (MOD: vanilla had 1.6) How many units a country wants is partially based on how much military industry that is available
+	WANTED_UNITS_THREAT_BASE = 0.8,                             -- (MOD: vanilla had 0.7) If no threat, multiply min wanted units by this
+	WANTED_UNITS_THREAT_MAX = 4.0,                             -- Normalized threat is clamped to this
+	WANTED_UNITS_WAR_THREAT_FACTOR = 1.2,                       -- (MOD: vanilla had 1.1) Factor threat with this if country is at war. this value is overriden by the value in ideology database if that value exceedes this.
 	WANTED_UNITS_DANGEROUS_NEIGHBOR_FACTOR = 1.15,              -- Factor if has dangerous neighbor
 	WANTED_UNITS_MANPOWER_DIVISOR = 18000,                      -- Normalizing divisor for AI manpower. (for each x max available manpower, they want one division)
 	WANTED_UNITS_WEIGHT_FRONTS_WANT = 0.35,                      -- Weight of front needs when computing final nr wanted units
