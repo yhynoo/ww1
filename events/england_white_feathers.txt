@@ -8,7 +8,7 @@ country_event = {
     trigger = {
         tag = ENG
         not = { has_country_flag = exhaustion_fired }
-        and = { longest_war_length > 18 has_war_support < 0.35 }
+        and = { longest_war_length > 18 or = { has_war_support < 0.5 has_stability < 0.3 } }
     }
 
     immediate = { 
@@ -40,7 +40,7 @@ news_event = {
     desc = england_white_feathers.2.d
 
     is_triggered_only = yes
-    trigger = { has_war_support < 0.5 }
+    trigger = { or = { has_war_support < 0.5 has_stability < 0.3 } }
 
     option = {
         name = "Poor soul."

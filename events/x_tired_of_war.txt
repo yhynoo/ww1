@@ -14,7 +14,7 @@ country_event = {
         }
 
         not = { has_country_flag = exhaustion_fired }
-        and = { longest_war_length > 18 has_war_support < 0.35 }
+        and = { longest_war_length > 18 or = { has_war_support < 0.5 has_stability < 0.3 } }
     }
 
     immediate = { hidden_effect = { set_country_flag = exhaustion_fired } }
@@ -37,7 +37,7 @@ news_event = {
     desc = x_tired_of_war.2.d
 
     is_triggered_only = yes
-    trigger = { has_war_support < 0.5 }
+    trigger = { has_war_support < 0.35 }
 
     option = {
         name = "Very disturbing."

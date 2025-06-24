@@ -32,8 +32,14 @@ FRA_stay_at_home = {
 
 FRA_careful = {
 	allowed = { tag = FRA }
-	enable = { HOL = { is_guaranteed_by = GER } is_in_faction = no }
+	enable = { not = { is_ally_with = SOV } }
 	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = declare_war
+		id = GER
+		value = -100
+	}
 
 	ai_strategy = {
 		type = declare_war

@@ -445,7 +445,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 2
-            modifier = { has_war = no factor = 0 }
+            modifier = { or = { has_war = no has_stability < 0.5 } factor = 0 }
         }
 
         prerequisite = { focus = GRE_rationing }
@@ -934,7 +934,7 @@ focus_tree = {
     }
     focus = {
         id = GRE_over_the_edge
-        icon = GFX_focus_generic_over_the_edge
+        icon = GFX_focus_generic_authoritarian
 
         relative_position_id = GRE_state_reform
         x = 2
@@ -944,19 +944,15 @@ focus_tree = {
         prerequisite = { focus = GRE_state_reform }
         available = {
             has_civil_war = no
-            not = { has_government = communism }
-            communism > 0.3
+            not = { has_government = authoritarianism }
+            authoritarianism > 0.3
         }
         
         completion_reward = {
             start_civil_war = {
-                ruling_party = communism
+                ruling_party = authoritarianism
                 ideology = ROOT
                 size = 0.5
-            }
-
-            hidden_effect = {
-                set_popularities = { communism = 100 }
             }
         }
     }

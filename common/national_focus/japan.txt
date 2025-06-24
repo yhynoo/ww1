@@ -445,7 +445,7 @@
 
         ai_will_do = {
             base = 2
-            modifier = { has_war = no factor = 0 }
+            modifier = { or = { has_war = no has_stability < 0.5 } factor = 0 }
         }
 
         prerequisite = { focus = JAP_rationing }
@@ -908,6 +908,8 @@
         completion_reward = {
             add_timed_idea = { idea = idea_democratic_tendencies years = 1 }
             add_popularity = { ideology = democratic popularity = 0.1 }
+
+            hidden_effect = { country_event = { id = japan_taisho.1 days = 14 random_days = 70 } }
         }
     }
     focus = {

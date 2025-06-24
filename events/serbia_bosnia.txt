@@ -1,0 +1,59 @@
+add_namespace = serbia_bosnia
+
+country_event = {
+    id = serbia_bosnia.1
+    title = "[SER.GetName] Demands Bosnia"
+    desc = serbia_bosnia.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let them have it."
+        FROM = {
+            news_event = { id = serbia_bosnia.2 hours = 6 random_hours = 6 }
+            106 = { 
+                transfer_state_to = FROM
+                hidden_effect = { add_core_of = FROM }
+            }
+        }
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "We will never agree to this."
+        FROM = {
+            news_event = { id = serbia_bosnia.3 hours = 6 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = take_state_focus
+            }
+        }
+
+        ai_chance = { base = 3 }
+    }
+}
+
+news_event = {
+    id = serbia_bosnia.2
+    title = "[FROM.GetName] Yields Bosnia"
+    desc = serbia_bosnia.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = serbia_bosnia.3
+    title = "[FROM.GetName] Declines!"
+    desc = serbia_bosnia.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about this."
+    }
+}

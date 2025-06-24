@@ -445,7 +445,7 @@
 
         ai_will_do = {
             base = 2
-            modifier = { has_war = no factor = 0 }
+            modifier = { or = { has_war = no has_stability < 0.5 } factor = 0 }
         }
 
         prerequisite = { focus = UKR_rationing }

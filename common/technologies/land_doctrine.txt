@@ -1,0 +1,346 @@
+technologies = {
+
+    # MANEUVER
+
+    # maneuver: offensive
+
+    cyclist_exploitation = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        path = {
+			leads_to_tech = flexible_detachments 
+			research_cost_coeff = 1
+		}
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = -2 y = 1 }
+		}
+
+        # modifiers
+        army_speed_factor = 0.05
+        mod_cat_light_offensive = {
+            soft_attack = 0.05
+            breakthrough = 0.1
+        }
+        
+    }
+
+    flexible_detachments = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        path = {
+			leads_to_tech = infiltration_tactics 
+			research_cost_coeff = 1
+		}
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = -2 y = 3 }
+		}
+
+        # modifiers
+        experience_gain_army_factor = 0.1
+        planning_speed = 0.15
+    }
+
+    infiltration_tactics = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = -2 y = 5 }
+		}
+
+        # modifiers
+        army_attack_speed_factor = 0.15
+        mod_cat_infantry = { breakthrough = 0.1 max_organisation = 10 }
+    }
+
+    # maneuver: defensive
+
+    spot_defense = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        path = {
+			leads_to_tech = counterattack_doctrine 
+			research_cost_coeff = 1
+		}
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = 2 y = 1 }
+		}
+
+        # modifiers
+        mod_cat_infantry = { defense = 0.1 max_organisation = 10 }
+        field_hospital = { casualty_trickleback = 0.2 }
+    }
+
+    counterattack_doctrine = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        path = {
+			leads_to_tech = land_for_time 
+			research_cost_coeff = 1
+		}
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = 2 y = 3 }
+		}
+
+        coordination_bonus = 0.15
+        initiative_factor = 0.15
+    }
+
+    land_for_time = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = 2 y = 5 }
+		}
+
+        # modifiers
+        army_org_regain = 0.1
+        org_loss_when_moving = -0.15
+    }
+
+    # MASS WARFARE
+
+    # static: offensive
+
+    mass_warfare = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        path = {
+			leads_to_tech = feuerwalze_tactic 
+			research_cost_coeff = 1
+		}
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = -2 y = 1 }
+		}
+
+        # modifiers
+        mod_cat_infantry = { soft_attack = 0.1 default_morale = 0.15 }
+        combat_width_factor = -0.1
+
+    }
+
+    feuerwalze_tactic = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        path = {
+			leads_to_tech = strategic_offensive 
+			research_cost_coeff = 1
+		}
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = -2 y = 3 }
+		}
+
+        # modifier
+        mod_cat_artillery = { soft_attack = 0.15 breakthrough = 0.1 }
+    }
+
+    strategic_offensive = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = -2 y = 5 }
+		}
+
+        max_planning = 0.15
+        supply_consumption_factor = -0.2
+    }
+
+    # static: defensive
+
+    continuous_trenches = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        path = {
+			leads_to_tech = layered_defense 
+			research_cost_coeff = 1
+		}
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = 2 y = 1 }
+		}
+
+        # modifiers
+        engineer = { defense = 0.1 }
+        dig_in_speed_factor = 0.2
+    }
+
+    layered_defense = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        path = {
+			leads_to_tech = ground_denial 
+			research_cost_coeff = 1
+		}
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = 2 y = 3 }
+		}
+
+        mod_cat_infantry = { defense = 0.1 entrenchment = 0.1 }
+        army_org_factor = 0.1
+    }
+
+    ground_denial = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = 2 y = 5 }
+		}
+
+        max_dig_in_factor = 0.25
+        land_bunker_effectiveness_factor = 0.1
+    }
+
+    # MATERIAL
+
+    # material warfare: economy
+
+    militarized_management = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        path = {
+			leads_to_tech = workforce_coordination 
+			research_cost_coeff = 1
+		}
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = -2 y = 1 }
+		}
+
+        land_equipment_upgrade_xp_cost = -0.1
+        production_factory_efficiency_gain_factor = 0.25
+    }
+
+    workforce_coordination = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        path = {
+			leads_to_tech = all_for_the_front 
+			research_cost_coeff = 1
+		}
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = -2 y = 3 }
+		}
+
+        industrial_capacity_factory = 0.1
+        industry_repair_factor = 0.25
+    }
+
+    all_for_the_front = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = -2 y = 5 }
+		}
+
+        conversion_cost_civ_to_mil_factor = -0.5
+        consumer_goods_factor = -0.1
+    }
+
+    # material warfare: civil defense
+
+    citizen_militias = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        path = {
+			leads_to_tech = organized_civil_defense 
+			research_cost_coeff = 1
+		}
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = 2 y = 1 }
+		}
+
+        training_time_army_factor = -0.1
+        minimum_training_level = -0.25
+
+    }
+
+    organized_civil_defense = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        path = {
+			leads_to_tech = war_weariness_management 
+			research_cost_coeff = 1
+		}
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = 2 y = 3 }
+		}
+
+        # modifiers
+        land_reinforce_rate = 0.1
+        army_core_defence_factor = 0.1
+    }
+
+    war_weariness_management = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = 2 y = 5 }
+		}
+
+        weekly_casualties_war_support = 0.1
+        defensive_war_stability_factor = 0.15
+    }
+}

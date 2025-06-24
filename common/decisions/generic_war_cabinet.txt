@@ -59,4 +59,25 @@ dc_war_cabinet = {
             add_equipment_to_stockpile = { type = motorized_equipment amount = 250 producer = ROOT  }
         }
     }
+
+    # russia
+    change_petersburg = {
+        visible = { 
+            tag = SOV
+            has_war_with = GER
+        }
+
+        icon = generic_civil_support
+        fire_only_once = yes
+        cost = 5
+
+        ai_will_do = { base = 24 }
+
+        complete_effect = {
+            set_province_name = { id = 3151 name = "Petrograd" }
+
+            add_stability = 0.01
+            add_war_support = 0.01
+        }
+    }
 }

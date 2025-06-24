@@ -58,21 +58,36 @@ reach_out_to_french = {
                 transfer_state_to = GRE
             }
 
-            hidden_effect = { GRE = { load_oob = "GRE_1912" } }
+            hidden_effect = { 
+                GRE = { 
+                    load_oob = "GRE_1912"
+                    news_event = { id = x_industrialists.1 days = 7 random_days = 7 }
+                }
+            }
         }
     }
 }
 
 turanist_ambition = {
     salonika_declaration = {
-        cost = 50
+        icon = generic_form_nation
+        cost = 100
         fire_only_once = yes
 
         ai_will_do = { base = 12 }
 
         complete_effect = {
-            add_stability = 0.1
             news_event = { id = turkey_turanist.1 hours = 6 random_hours = 6 }
+
+            release_on_controlled = SER
+            remove_ideas = idea_unrest_in_serbia
+
+            hidden_effect = { 
+                SER = { 
+                    load_oob = "SER_1912"
+                    news_event = { id = x_industrialists.1 days = 7 random_days = 7 }
+                } 
+            }
         }
     }
     turanist_movement = {
