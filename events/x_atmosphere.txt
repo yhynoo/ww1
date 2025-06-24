@@ -14,11 +14,17 @@ country_event = {
 
     option = {
         name = "Historical"
-        ai_chance = { 
-            base = 3
+        ai_chance = {
+            base = 1
+
+            modifier = {
+                or = { tag = AUS tag = ITA tag = JAP tag = TUR }
+                add = 1
+            }
+
             modifier = { 
-                or = { tag = ITA tag = JAP tag = MAN tag = TUR }
-                factor = 0.5
+                or = { tag = ENG tag = FRA tag = GER tag = SOV tag = USA }
+                add = 2
             }
         }
     }

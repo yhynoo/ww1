@@ -12,7 +12,7 @@ country_event = {
         FROM = { 
             news_event = { id = italy_aegean.2 hours = 6 random_hours = 6 }
             every_state = {
-                limit = { or = { state = 182 state = 187 } is_owned_and_controlled_by = ROOT }      # add states.
+                limit = { or = { state = 182 state = 187 state = 164 } is_owned_and_controlled_by = ROOT }      # add states.
                 transfer_state_to = FROM
             }
         }

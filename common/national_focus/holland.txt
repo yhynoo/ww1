@@ -891,6 +891,11 @@
         mutually_exclusive = { focus = HOL_thorbeckes_legacy }
         prerequisite = { focus = HOL_political_ambitions }
         completion_reward = {
+            if = {
+                limit = { has_idea = idea_antwerp_affair }
+                remove_ideas = idea_antwerp_affair
+            }
+
             add_timed_idea = { idea = idea_monarchism_tendencies years = 1 }
             add_popularity = { ideology = monarchism popularity = 0.1 }
         }

@@ -32,13 +32,20 @@ news_event = {
     desc = austria_assassination.2.d
 
     is_triggered_only = yes
+    major = yes
 
     option = {
+        trigger = { tag = AUS }
+
         name = "This is a provocation!"
         add_war_support = 0.15
 
         create_wargoal = { target = SOV type = topple_government }
         hidden_effect = { add_named_threat = { threat = 5 name = "Okhrana Spies Captured" } }
+    }
+    option = {
+        trigger = { not = { tag = AUS } }
+        name = "Concerning."
     }
 }
 

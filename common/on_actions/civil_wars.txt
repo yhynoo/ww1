@@ -6,10 +6,12 @@ on_actions = {
 
                 if = {
                     not = {
-                        FROM = { or = { 
-                            tag = MEX 
-                            tag = SOV 
-                        } }
+                        FROM = { 
+                            or = { 
+                                original_tag = MEX 
+                                original_tag = SOV 
+                            } 
+                        }
                     } 
                     news_event = { id = x_civil_war_start.1 hours = 6 random_hours = 6 }        # generic message
                 }

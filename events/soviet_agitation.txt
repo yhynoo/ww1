@@ -8,7 +8,11 @@ country_event = {
     trigger = {
         tag = SOV
         not = { has_country_flag = exhaustion_fired }
-        and = { longest_war_length > 18 or = { has_war_support < 0.5 has_stability < 0.3 } }
+
+        or = {
+            surrender_progress > 0.2
+            and = { longest_war_length > 18 or = { has_war_support < 0.5 has_stability < 0.3 } }
+        }
     }
 
     immediate = { 

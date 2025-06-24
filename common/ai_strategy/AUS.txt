@@ -1,7 +1,6 @@
 # don't work for others, they will manage
 AUS_stay_at_home = {
 	allowed = { original_tag = AUS }
-
 	enable = { always = yes }
 	abort_when_not_enabled = yes
 
@@ -15,6 +14,18 @@ AUS_stay_at_home = {
 		type = dont_defend_ally_borders
 		id = TUR
 		value = 10
+	}
+}
+
+AUS_scared_of_ITA = {
+	allowed = { original_tag = AUS }
+	enable = { not = { has_non_aggression_pact_with = ITA } }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = ITA
+		value = 50
 	}
 }
 
