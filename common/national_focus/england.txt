@@ -49,16 +49,16 @@ focus_tree = {
         y = 1
         cost = 10
 
-        available = { has_idea = idea_colonial_army }
-
         ai_will_do = { 
             base = 0 
             modifier = { has_war = yes add = 3 }
         }
 
         prerequisite = { focus = ENG_focus_army }
+        available = { or = { has_idea = disarmed_nation has_idea = volunteer_only } }
+
         completion_reward = {
-            remove_ideas = idea_colonial_army
+            add_ideas = limited_conscription
         }
     }
     focus = {

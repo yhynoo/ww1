@@ -1,70 +1,22 @@
 add_namespace = soviet_agitation
 
-country_event = {
+news_event = {
     id = soviet_agitation.1
-    title = "Agitation in the Army"
+    title = "Outpost Assaulted in Central Asia"
     desc = soviet_agitation.1.d
 
-    trigger = {
+    trigger = { 
         tag = SOV
-        not = { has_country_flag = exhaustion_fired }
-
-        or = {
-            surrender_progress > 0.2
-            and = { longest_war_length > 18 or = { has_war_support < 0.5 has_stability < 0.3 } }
-        }
+        surrender_progress > 0.1 
+        or = { has_war_support < 0.5 has_stability < 0.5 }
     }
 
-    immediate = { 
-        hidden_effect = { 
-            set_country_flag = exhaustion_fired 
-            news_event = { id = soviet_agitation.2 days = 60 random_days = 30 } 
-        } 
-    }
-
-    option = {
-        name = "Execute the agitators."
-        add_political_power = -150
-
-        hidden_effect = { 
-            news_event = { id = soviet_agitation.3 days = 180 } 
-        }
-    }
-    option = {
-        name = "This should not bother us."
-        add_timed_idea = { idea = idea_agitation_in_army years = 1 }
-
-        ai_chance = {
-            base = 1
-            modifier = { has_country_flag = chose_alternative factor = 0 }
-        }
-    }
-}
-
-news_event = {
-    id = soviet_agitation.2
-    title = "Anarchists Spread Anti-War Slogans"
-    desc = soviet_agitation.2.d
-
-    is_triggered_only = yes
-    trigger = { or = { has_war_support < 0.5 has_stability < 0.3 } }
-
-    option = {
-        name = "We must do something about it."
-        add_popularity = { ideology = communism popularity = 0.05 }
-    }
-}
-
-news_event = {
-    id = soviet_agitation.3
-    title = "Outpost Assaulted in Central Asia"
-    desc = soviet_agitation.3.d
-
-    is_triggered_only = yes
-    trigger = { or = { has_war_support < 0.5 has_stability < 0.3 } }
+    fire_only_once = yes
 
     option = {
         name = "Very disturbing."
-        add_ideas = idea_army_is_done
+
+        add_war_support = -0.05
+        add_popularity = { ideology = communism popularity = 0.05 }
     }
 }
