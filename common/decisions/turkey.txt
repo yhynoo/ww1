@@ -195,6 +195,8 @@ tackle_the_debt = {
 
         available = { 
             not = { has_war_with = ENG }
+            or = { has_idea = idea_amassed_foreign_debt has_idea = idea_significant_foreign_debt }
+
             every_state = {
                 limit = { or = { state = 447 state = 452 state = 456 state = 457 state = 551 state = 552 } }
                 is_owned_and_controlled_by = TUR

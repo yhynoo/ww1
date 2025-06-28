@@ -5,15 +5,15 @@ on_actions = {
                 limit = { original_tag = FROM }         # if root has the same tag as FROM, it is a civil war.
 
                 if = {
-                    not = {
-                        FROM = { 
-                            or = { 
-                                original_tag = MEX 
-                                original_tag = SOV 
-                            } 
+                    limit = {
+                        FROM = {
+                            and = {
+                                not = { original_tag = MEX } 
+                                not = { original_tag = SOV }
+                            }
                         }
-                    } 
-                    news_event = { id = x_civil_war_start.1 hours = 6 random_hours = 6 }        # generic message
+                    }
+                    FROM = { news_event = { id = x_civil_war_start.1 hours = 6 random_hours = 6 } }       # generic message
                 }
 
                 # adjust ideologies.

@@ -29,3 +29,27 @@ news_event = {
         add_popularity = { ideology = ROOT popularity = 0.05 }
     }
 }
+
+news_event = {
+    id = x_war_support.3
+    title = "Agitation in the Army"
+    desc = x_war_support.3.d
+
+    trigger = {
+        not = { has_idea = idea_agitation }
+
+        has_war = yes
+        or = { has_stability < 0.3 has_war_support < 0.5 }
+        longest_war_length > 12
+    }
+
+    mean_time_to_happen = { 
+        months = 2
+        modifier = { communism > 0.1 factor = 0.5 }
+    }
+
+    option = {
+        name = "Worrying."
+        add_timed_idea = { idea = idea_agitation months = 6 }
+    }
+}

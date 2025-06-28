@@ -1,0 +1,106 @@
+add_namespace = germany_baltic
+
+news_event = {
+    id = germany_baltic.1
+    title = "Unrest in the Governorate of Livonia"
+    desc = germany_baltic.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    trigger = {
+        GER = { not = { has_war_with = SOV } }
+        any_state = {
+            is_core_of = UBD
+            is_controlled_by = SOV
+        }
+    }
+
+    option = {
+        name = "Disturbing."
+        
+        if = {
+            limit = { tag = GER }
+            hidden_effect = { country_event = { id = germany_baltic.2 days = 2 } }
+        }
+    }
+}
+
+country_event = {
+    id = germany_baltic.2
+    title = "Intervene in the Baltics?"
+    desc = germany_baltic.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is none of our business."
+        ai_chance = { base = 0 }
+    }
+    option = {
+        name = "Demand a protectorate."
+        SOV = { country_event = { id = germany_baltic.3 hours = 6 random_hours = 6 } }
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = germany_baltic.3
+    title = "[GER.GetName] Demands Baltic Autonomy"
+    desc = germany_baltic.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must accept their demands."
+
+        release = UBD
+        GER = { 
+            puppet = UBD
+            news_event = { id = germany_baltic.4 hours = 6 random_hours = 6 }
+        }
+
+        hidden_effect = { 
+            UBD = { 
+                load_oob = "UBD_1912"
+                set_popularities = { democratic = 45 monarchism = 40 communism = 15 }
+            } 
+        }
+        
+    }
+    option = {
+        name = "We will never agree to this."
+        FROM = { 
+            news_event = { id = germany_baltic.5 hours = 6 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = take_state_focus
+            }
+        }
+    }
+}
+
+news_event = {
+    id = germany_baltic.4
+    title = "[UBD.GetName] Established!"
+    desc = germany_baltic.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = germany_baltic.5
+    title = "[FROM.GetName] Declines!"
+    desc = germany_baltic.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about this."
+    }
+}

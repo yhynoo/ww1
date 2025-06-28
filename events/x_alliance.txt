@@ -25,6 +25,22 @@ country_event = {
 
             # if we're at war already, or we lead the faction - then it's more likely we will agree.
             modifier = { or = { is_faction_leader = yes has_war = yes } add = 2 }
+
+            # if ENG is ally with TUR - won't like SOV. if is ally with SOV - won't like TUR.
+            modifier = {
+                and = {
+                    tag = ENG is_ally_with = SOV
+                    FROM = { tag = TUR }
+                }
+                factor = 0
+            }
+            modifier = {
+                and = {
+                    tag = ENG is_ally_with = TUR
+                    FROM = { tag = SOV }
+                }
+                factor = 0
+            }
         }
     }
     option = {

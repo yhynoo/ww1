@@ -13,6 +13,7 @@ start_arab_independence_war = {
     
     # load troops
     YEM = { load_oob = "YEM_1912" }
+    news_event = { id = x_industrialists.1 days = 7 random_days = 7 }
 }
 
 # algeria
@@ -29,28 +30,9 @@ start_algerian_independence_war = {
     }
     
     # load troops
-    ALG = { load_oob = "ALG_1912" }
-}
-
-# baden
-start_badenian_independence_war = {
-    every_country = {
-        limit = { original_tag = GER not = { has_government = monarchism } }
-
-        # transfer states
-        every_controlled_state = {
-            limit = { state = 50 }        # add states
-            transfer_state_to = WUR
-        }
-
-        # declare war
-        declare_war_on = { target = WUR type = annex_everything }
-    }
-
-    # load troops
-    WUR = { 
-        load_oob = "WUR_1912"
-        add_ideas = { closed_economy partial_economic_mobilisation extensive_conscription }
+    ALG = { 
+        load_oob = "ALG_1912"
+        news_event = { id = x_industrialists.1 days = 7 random_days = 7 }
     }
 }
 
@@ -75,28 +57,8 @@ start_baltic_independence_war = {
     # load troops
     UBD = { 
         load_oob = "UBD_1912"
-        add_ideas = { limited_exports partial_economic_mobilisation extensive_conscription }
-    }
-}
 
-# bavaria
-start_bavarian_independence_war = {
-    every_country = {
-        limit = { original_tag = GER not = { has_government = monarchism } }
-
-        # transfer states
-        every_controlled_state = {
-            limit = { or = { state = 53 state = 54 } }        # add states
-            transfer_state_to = BAY
-        }
-
-        # declare war
-        declare_war_on = { target = BAY type = annex_everything }
-    }
-
-    # load troops
-    BAY = { 
-        load_oob = "BAY_1912"
+        news_event = { id = x_industrialists.1 days = 7 random_days = 7 }
         add_ideas = { limited_exports partial_economic_mobilisation extensive_conscription }
     }
 }
@@ -117,28 +79,8 @@ start_greek_independence_war = {
     # load troops
     GRE = { 
         load_oob = "GRE_1912"
-        add_ideas = { limited_exports partial_economic_mobilisation extensive_conscription }
-    }
-}
 
-# hanover - only independence from communist rebels
-start_hanover_independence_war = {
-    every_country = {
-        limit = { original_tag = GER not = { has_government = monarchism } }
-
-        # transfer states
-        every_controlled_state = {
-            limit = { or = { state = 59 state = 56 } }        # add states
-            transfer_state_to = HAN
-        }
-
-        # declare war
-        declare_war_on = { target = HAN type = annex_everything }
-    }
-
-    # load troops
-    HAN = { 
-        load_oob = "HAN_1912"
+        news_event = { id = x_industrialists.1 days = 7 random_days = 7 }
         add_ideas = { limited_exports partial_economic_mobilisation extensive_conscription }
     }
 }
@@ -157,7 +99,10 @@ start_mongolian_independence_war = {
     }
 
     # load troops
-    MON = { load_oob = "MON_1912" }
+    MON = { 
+        load_oob = "MON_1912"
+        news_event = { id = x_industrialists.1 days = 7 random_days = 7 }
+    }
 }
 
 # poland
@@ -181,6 +126,8 @@ start_polish_independence_war = {
     # load troops
     POL = { 
         load_oob = "POL_1912"
+        news_event = { id = x_industrialists.1 days = 7 random_days = 7 }
+
         add_ideas = { limited_exports partial_economic_mobilisation limited_conscription }
     }
 }
@@ -207,6 +154,8 @@ start_sicilian_independence_war = {
     TTS = { 
         load_oob = "TTS_1912"
         add_ideas = { closed_economy partial_economic_mobilisation limited_conscription }
+
+        news_event = { id = x_industrialists.1 days = 7 random_days = 7 }
     }
 }
 
@@ -227,6 +176,7 @@ start_south_african_independence_war = {
     SAF = { 
         load_oob = "SAF_1912"
         add_ideas = { closed_economy partial_economic_mobilisation extensive_conscription }
+        news_event = { id = x_industrialists.1 days = 7 random_days = 7 }
     }
 }
 
@@ -252,5 +202,6 @@ start_ukrainian_independence_war = {
     UKR = { 
         load_oob = "UKR_1912"
         add_ideas = { closed_economy partial_economic_mobilisation extensive_conscription }
+        news_event = { id = x_industrialists.1 days = 7 random_days = 7 }
     }
 }

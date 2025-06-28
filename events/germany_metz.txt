@@ -1,0 +1,19 @@
+add_namespace = germany_metz
+
+news_event = {
+    id = germany_metz.1
+    title = "'Through Metz to Paris'"
+    desc = germany_metz.1.d
+
+    trigger = {
+        tag = GER
+        has_war_with = FRA
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "To arms!"
+        add_war_support = 0.1
+        add_timed_idea = { idea = idea_metz_to_paris months = 3 }
+    }
+}

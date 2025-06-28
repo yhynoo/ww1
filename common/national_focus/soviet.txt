@@ -970,15 +970,10 @@
         completion_reward = {
             # start war and do setup
             start_civil_war = { ruling_party = communism ideology = ROOT size = 0.4 }
-            east_civil_war = yes
+            hidden_effect = { east_civil_war = yes }
 
             # event
             news_event = { id = soviet_civil_war.1 hours = 3 }
-
-            if = {
-                limit = { has_idea = idea_agitation_in_army }
-                remove_ideas = idea_agitation_in_army
-            }
         }
     }
     focus = { 
