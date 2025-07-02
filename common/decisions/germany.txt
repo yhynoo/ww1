@@ -58,7 +58,7 @@ oriental_investments = {
             modifier = { has_war_with = FRA add = 12 }
 
             # don't antagonize France if alternative path is on.
-            modifier = { has_country_flag = chose_alternative factor = 0 }
+            modifier = { and = { not = { has_war_with = FRA has_completed_focus = GER_on_our_own } factor = 0 }
         }
 
         complete_effect = {
@@ -144,6 +144,8 @@ greater_germany = {
                 add = 12
             }
         }
+
+        war_with_on_remove = AUS
 
         complete_effect = {
             if = {

@@ -1,40 +1,5 @@
 add_namespace = x_atmosphere
 
-# AI choice
-country_event = {
-    id = x_atmosphere.0
-    title = "AI chooses path"
-    desc = ""
-
-    is_triggered_only = yes
-
-    immediate = {
-        clr_country_flag = chose_alternative        # reset the flag first.
-    }
-
-    option = {
-        name = "Historical"
-        ai_chance = {
-            base = 1
-
-            modifier = {
-                or = { tag = AUS tag = ITA tag = JAP tag = TUR }
-                add = 1
-            }
-
-            modifier = { 
-                or = { tag = ENG tag = FRA tag = GER tag = SOV tag = USA }
-                add = 2
-            }
-        }
-    }
-    option = {
-        name = "Alternative"
-        ai_chance = { base = 1 }
-        set_country_flag = chose_alternative
-    }
-}
-
 # 1912
 
 news_event = {

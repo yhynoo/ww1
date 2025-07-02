@@ -743,11 +743,17 @@ focus_tree = {
         cost = 10
 
         prerequisite = { focus = TUR_international_affairs }
-        available = { is_subject = no }
+        available = { 
+            is_subject = no
+            and = { 
+                is_in_faction = yes 
+                not = { is_ally_with = FRA }
+            }
+        }
 
         ai_will_do = { 
-            base = 0
-            modifier = { has_country_flag = chose_alternative add = 2 }
+            base = 2
+            modifier = { or = { is_guaranteed_by = GER is_ally_with = GER } factor = 0 }
         }
 
         completion_reward = {
@@ -762,6 +768,11 @@ focus_tree = {
         x = -2
         y = 1
         cost = 10
+
+        ai_will_do = { 
+            base = 0
+            modifier = { threat > 0.2 add = 2 }
+        }
 
         prerequisite = { focus = TUR_expansionism }
         available = { is_subject = no }
@@ -795,11 +806,6 @@ focus_tree = {
         x = 0
         y = 1
         cost = 10
-
-        ai_will_do = { 
-            base = 1
-            modifier = { has_country_flag = chose_alternative factor = 0 }
-        }
 
         mutually_exclusive = { focus = TUR_adjust_the_government }
         prerequisite = { focus = TUR_political_ambitions }
@@ -893,9 +899,9 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = { 
-            base = 0
-            modifier = { has_country_flag = chose_alternative add = 2 }
+        ai_will_do = {
+            base = 1
+            modifier = { has_completed_focus = TUR_deterrence add = 2 }
         }
 
         mutually_exclusive = { focus = TUR_traditionalism }

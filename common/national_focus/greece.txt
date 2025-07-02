@@ -760,6 +760,11 @@ focus_tree = {
         prerequisite = { focus = GRE_expansionism }
         available = { is_subject = no }
 
+        ai_will_do = { 
+            base = 2
+            modifier = { has_war = yes factor = 2 }
+        }
+
         completion_reward = {
             add_timed_idea = { idea = idea_seek_alliances years = 1 }
         }
@@ -824,7 +829,7 @@ focus_tree = {
     }
     focus = {
         id = GRE_mobilize_the_masses
-        icon = GFX_focus_GRE_mobilize_the_masses
+        icon = GFX_focus_generic_mobilize_the_masses
 
         relative_position_id = GRE_traditionalism
         x = 1

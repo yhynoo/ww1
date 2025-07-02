@@ -170,12 +170,11 @@ turkey_alliances = {
         ai_will_do = { 
             base = 0
             modifier = {
-                and = { has_completed_focus = TUR_deterrence or = { FROM = { tag = FRA } FROM = { is_ally_with = FRA } } }
-                add = 12
-            }
-            modifier = {
-                and = { is_guaranteed_by = GER FROM = { tag = GER } }
-                add = 12
+                and = {
+                    has_completed_focus = TUR_deterrence
+                    or = { FROM = { tag = FRA } FROM = { is_ally_with = FRA } }
+                }
+                add = 6
             }
 
             modifier = { threat > 0.2 add = 6 } 

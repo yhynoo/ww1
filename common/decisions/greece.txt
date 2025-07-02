@@ -61,15 +61,7 @@ greece_alliances = {
 
         ai_will_do = { 
             base = 0
-
-            modifier = { 
-                and = { FROM = { tag = ENG }  not = { has_country_flag = chose_alternative } }
-                add = 12
-            }
-            modifier = { 
-                and = { FROM = { tag = GER } has_country_flag = chose_alternative }
-                add = 9
-            }
+            modifier = { threat > 0.2 add = 9 }
         }
 
         complete_effect = {

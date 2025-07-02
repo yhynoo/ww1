@@ -85,6 +85,10 @@ country_event = {
                     factor = 0.5
                 }
             }
+
+            hidden_effect = {
+                add_ai_strategy = { type = alliance tag = ROOT value = 60 }
+            }
         }
     }
     option = {
@@ -93,15 +97,6 @@ country_event = {
 
         ai_chance = { 
             base = 1
-
-            # if England invites and we're not edgy - we won't say no.
-            modifier = { 
-                and = { 
-                    FROM = { tag = ENG } 
-                    not = { has_country_flag = chose_alternative }
-                } 
-                factor = 0 
-            }
 
             # if we're France and Austria invites - we won't say no.
             modifier = {

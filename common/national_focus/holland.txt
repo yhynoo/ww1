@@ -741,7 +741,7 @@
         prerequisite = { focus = HOL_international_affairs }
         available = { 
             is_subject = no
-            6 = { is_owned_and_controlled_by = HOL }
+            controls_state = 6 
         }
 
         ai_will_do = { base = 2 }
@@ -762,6 +762,11 @@
         prerequisite = { focus = HOL_expansionism }
         available = { is_subject = no }
 
+        ai_will_do = { 
+            base = 0
+            modifier = { has_completed_focus = HOL_integrate_flanders add = 2 }
+        }
+
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }
@@ -778,6 +783,11 @@
         prerequisite = { focus = HOL_expansionism }
         available = { is_subject = no }
 
+        ai_will_do = { 
+            base = 0
+            modifier = { is_in_faction = yes add = 1 }
+        }
+
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }
@@ -792,7 +802,7 @@
         y = 1
         cost = 10
 
-        ai_will_do = { base = 3 }
+        ai_will_do = { base = 2 }
 
         mutually_exclusive = { focus = HOL_integrate_flanders }
         prerequisite = { focus = HOL_political_ambitions }
@@ -887,6 +897,7 @@
         cost = 10
 
         ai_will_do = { base = 1 }
+        available = { controls_state = 6 }
 
         mutually_exclusive = { focus = HOL_thorbeckes_legacy }
         prerequisite = { focus = HOL_political_ambitions }

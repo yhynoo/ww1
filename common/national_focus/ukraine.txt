@@ -761,6 +761,11 @@
         prerequisite = { focus = UKR_expansionism }
         available = { is_subject = no }
 
+        ai_will_do = { 
+            base = 0
+            modifier = { not = { is_in_faction = yes } add = 2 }
+        }
+
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }

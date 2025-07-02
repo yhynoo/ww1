@@ -95,16 +95,27 @@ manchurian_question = {
         available = { 
             any_state = {
                 or = { state = 328 state = 619 state = 654 state = 72 }
-                is_owned_and_controlled_by = JAP
+                not = { is_owned_and_controlled_by = SOV }
             }
-
-            can_declare_war_on = JAP
             has_war_support > 0.3 
         }
 
+        ai_will_do = {
+            base = 0
+            modifier = { and = { date > 1916.1.1 has_war = no } add = 9 }
+        }
+
         remove_effect = {
-            war_with_on_remove = JAP
-            create_wargoal = { target = JAP type = take_state_focus }
+            every_country = {
+                limit = {
+                    or = { controls_state = 328 controls_state = 619 controls_state = 654 controls_state = 72 }
+                }
+
+                SOV = { 
+                    war_with_on_remove = PREV
+                    create_wargoal = { target = PREV type = take_state_focus }
+                }
+            }
         }
     }
     develop_far_east = {
@@ -119,6 +130,9 @@ manchurian_question = {
                 is_owned_and_controlled_by = SOV
             }
         }
+
+        ai_will_do = { base = 9 }
+
         complete_effect = {
             random_state = {
                 limit = {
@@ -162,6 +176,8 @@ limited_autonomy = {
             any_owned_controlled_state = { is_core_of = POL }
         }
 
+        ai_will_do = { base = 6 }
+
         complete_effect = {
             add_ideas = idea_sokol_society
         }
@@ -173,6 +189,11 @@ limited_autonomy = {
         available = { 
             UKR = { exists = no }
             any_owned_controlled_state = { is_core_of = UKR }
+        }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { has_idea = idea_unrest_in_ukraine add = 3 }
         }
 
         complete_effect = {

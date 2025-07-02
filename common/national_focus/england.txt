@@ -766,8 +766,8 @@ focus_tree = {
         available = { is_subject = no }
 
         ai_will_do = { 
-            base = 3
-            modifier = { has_country_flag = chose_alternative factor = 0 }
+            base = 2
+            modifier = { has_completed_focus = ENG_abolish_lords factor = 0 }
         }
 
         completion_reward = {
@@ -791,7 +791,7 @@ focus_tree = {
 
         ai_will_do = { 
             base = 0
-            modifier = { has_country_flag = chose_alternative add = 2 }
+            modifier = { has_completed_focus = ENG_abolish_lords add = 1 }
         }
 
         completion_reward = {
@@ -822,7 +822,7 @@ focus_tree = {
 
         ai_will_do = { 
             base = 2
-            modifier = { has_country_flag = chose_alternative factor = 0 }
+            # modifier = { has_country_flag = chose_alternative factor = 0 }
         }
 
         mutually_exclusive = { focus = ENG_abolish_lords }
@@ -918,8 +918,8 @@ focus_tree = {
         cost = 10
 
         ai_will_do = { 
-            base = 0
-            modifier = { has_country_flag = chose_alternative add = 2 }
+            base = 1
+            # modifier = { has_country_flag = chose_alternative add = 2 }
         }
 
         mutually_exclusive = { focus = ENG_traditionalism }

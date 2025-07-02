@@ -744,10 +744,7 @@ focus_tree = {
         prerequisite = { focus = USA_international_affairs }
         available = { is_subject = no }
 
-        ai_will_do = { 
-            base = 2
-            modifier = { has_country_flag = chose_alternative factor = 0 }
-        }
+        ai_will_do = { base = 2 }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -767,7 +764,7 @@ focus_tree = {
 
         ai_will_do = { 
             base = 2
-            modifier = { has_country_flag = chose_alternative factor = 0 }
+            modifier = { has_completed_focus = USA_not_our_war factor = 0 }
         }
 
         completion_reward = {
@@ -788,7 +785,7 @@ focus_tree = {
 
         ai_will_do = { 
             base = 0
-            modifier = { has_country_flag = chose_alternative add = 2 }
+            modifier = { has_completed_focus = USA_not_our_war add = 1 }
         }
 
         completion_reward = {
@@ -806,8 +803,8 @@ focus_tree = {
         cost = 10
 
         ai_will_do = { 
-            base = 2
-            modifier = { has_country_flag = chose_alternative factor = 0 }
+            base = 0
+            modifier = { threat > 0.3 add = 2 }
         }
 
         mutually_exclusive = { focus = USA_not_our_war }
@@ -904,7 +901,7 @@ focus_tree = {
 
         ai_will_do = { 
             base = 0
-            modifier = { and = { threat > 0.2 has_country_flag = chose_alternative } add = 2 }
+            modifier = { threat > 0.3 add = 1 }
         }
 
         mutually_exclusive = { focus = USA_hearts_and_minds }

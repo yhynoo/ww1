@@ -746,11 +746,6 @@
             is_subject = no
         }
 
-        ai_will_do = { 
-            base = 2
-            modifier = { has_country_flag = chose_alternative factor = 0 }
-        }
-
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }
@@ -767,6 +762,11 @@
         prerequisite = { focus = MAN_expansionism }
         available = { is_subject = no }
 
+        ai_will_do = { 
+            base = 0
+            modifier = { threat > 0.2 add = 2 }
+        }
+
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }
@@ -780,13 +780,13 @@
         y = 1
         cost = 10
 
-        ai_will_do = { 
-            base = 0
-            modifier = { and = { is_in_faction = yes has_country_flag = chose_alternative } add = 2 }
-        }
-
         prerequisite = { focus = MAN_expansionism }
         available = { is_subject = no }
+
+        ai_will_do = { 
+            base = 0
+            modifier = { has_completed_focus = MAN_beiyang_army add = 2 }
+        }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -801,11 +801,6 @@
         x = 0
         y = 1
         cost = 10
-
-        ai_will_do = { 
-            base = 2
-            modifier = { has_country_flag = chose_alternative factor = 0 }
-        }
 
         mutually_exclusive = { focus = MAN_beiyang_army }
         prerequisite = { focus = MAN_political_ambitions }
@@ -898,11 +893,6 @@
         x = 4
         y = 1
         cost = 10
-
-        ai_will_do = { 
-            base = 0
-            modifier = { has_country_flag = chose_alternative add = 2 }
-        }
 
         mutually_exclusive = { focus = MAN_three_principles }
         prerequisite = { focus = MAN_political_ambitions }

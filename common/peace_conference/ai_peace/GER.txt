@@ -32,6 +32,16 @@ peace_ai_desires = {
             }
             ai_desire = -600
         }
+    }
 
+    GER_split_austria = {
+        peace_ai_desires = {
+            peace_action_type = { puppet }
+            enable = {
+                original_tag = GER
+                FROM = { or = { tag = CRO tag = HUN } }
+            }
+            ai_desire = 100
+        }
     }
 }

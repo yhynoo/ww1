@@ -768,7 +768,10 @@
         prerequisite = { focus = FRA_expansionism }
         available = { is_subject = no }
 
-        ai_will_do = { base = 2 }
+        ai_will_do = { 
+            base = 2
+            modifier = { has_war = yes factor = 2 }
+        }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -791,7 +794,7 @@
 
         ai_will_do = { 
             base = 0
-            modifier = { has_country_flag = chose_alternative add = 2 }
+            modifier = { has_completed_focus = FRA_support_the_legitimists add = 2 }
         }
 
         completion_reward = {
@@ -810,7 +813,7 @@
 
         ai_will_do = { 
             base = 2
-            modifier = { has_country_flag = chose_alternative factor = 0 }
+            # modifier = { has_country_flag = chose_alternative factor = 0 }
         }
 
         mutually_exclusive = { focus = FRA_support_the_legitimists }
@@ -905,10 +908,7 @@
         y = 1
         cost = 10
 
-        ai_will_do = { 
-            base = 0
-            modifier = { has_country_flag = chose_alternative add = 6 }
-        }
+        ai_will_do = { base = 1 }
 
         mutually_exclusive = { focus = FRA_republicanism }
         prerequisite = { focus = FRA_political_ambitions }

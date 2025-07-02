@@ -760,6 +760,11 @@ focus_tree = {
         prerequisite = { focus = SPA_expansionism }
         available = { is_subject = no }
 
+        ai_will_do = { 
+            base = 0
+            modifier = { has_completed_focus = SPA_traditionalism add = 2 }
+        }
+
         completion_reward = {
             add_timed_idea = { idea = idea_seek_alliances years = 1 }
         }

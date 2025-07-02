@@ -761,6 +761,11 @@
         prerequisite = { focus = POL_expansionism }
         available = { is_subject = no }
 
+        ai_will_do = { 
+            base = 0
+            modifier = { not = { is_in_faction = yes } add = 2 }
+        }
+
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }
@@ -791,7 +796,7 @@
         y = 1
         cost = 10
 
-        ai_will_do = { base = 3 }
+        ai_will_do = { base = 2 }
 
         mutually_exclusive = { focus = POL_restore_monarchy }
         prerequisite = { focus = POL_political_ambitions }

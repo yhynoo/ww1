@@ -76,14 +76,14 @@ france_alliances = {
         }
 
         ai_will_do = {
-            base = 3
-            modifier = { has_country_flag = chose_alternative add = 12 }
+            base = 0
+            modifier = {
+                and = { FROM = { tag = COL } has_completed_focus = FRA_on_our_own }
+                add = 9
+            }
             modifier = { 
-                and = {
-                    FROM = { tag = SOV }
-                    ENG = { has_government = communism }
-                }
-                add = 24
+                and = { FROM = { tag = SOV } ENG = { has_government = communism } }
+                add = 12
             }
         }
 
@@ -106,7 +106,13 @@ france_alliances = {
 
         ai_will_do = {
             base = 0
-            modifier = { and = { has_war = yes has_government = democratic ENG = { has_government = democratic } } add = 24 } 
+            modifier = { 
+                and = { 
+                    has_war = yes 
+                    has_government = democratic ENG = { has_government = democratic }
+                }
+                add = 12
+            } 
         }
 
         complete_effect = {
@@ -136,7 +142,10 @@ another_empire = {
             }
         }
 
-        ai_will_do = { base = 0 modifier = { has_war = no add = 6 } }
+        ai_will_do = { 
+            base = 0 
+            modifier = { or = { has_war = no ENG = { has_government = communism } } add = 6 }
+        }
 
         complete_effect = {
             news_event = { id = france_empire.4 hours = 6 random_hours = 6 }
@@ -151,10 +160,7 @@ another_empire = {
         }
 
         remove_effect = {
-            create_wargoal = {
-                target = RAJ
-                type = puppet_wargoal_focus
-            }
+            create_wargoal = { target = RAJ type = puppet_wargoal_focus }
         }
     }
     demand_carribean = {
@@ -190,6 +196,8 @@ let_them_eat_cake = {
         cost = 75
 
         available = { controls_state = 310 }
+        ai_will_do = { base = 9 }
+
         complete_effect = {
             310 = {
                 add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
@@ -202,6 +210,8 @@ let_them_eat_cake = {
     international_trade_missions = {
         fire_only_once = yes
         cost = 75
+
+        ai_will_do = { base = 6 }
 
         complete_effect = {
             add_ideas = idea_international_trade_missions

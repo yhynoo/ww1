@@ -2,7 +2,7 @@ AUS_hates_SOV = {
 	allowed = { original_tag = AUS }
 	enable = { 
 		has_idea = idea_unrest_in_galicia
-		not = { has_country_flag = chose_alternative }
+		is_in_faction = yes
 	}
 	abort_when_not_enabled = yes
 
@@ -10,17 +10,5 @@ AUS_hates_SOV = {
 		type = declare_war
 		id = SOV
 		value = 300
-	}
-}
-
-AUS_likes_FRA = {
-	allowed = { original_tag = AUS }
-	enable = { has_country_flag = chose_alternative }
-	abort_when_not_enabled = yes
-
-	ai_strategy = {
-		type = support
-		id = FRA
-		value = 100
 	}
 }

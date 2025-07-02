@@ -744,11 +744,6 @@
         prerequisite = { focus = JAP_international_affairs }
         available = { is_subject = no }
 
-        ai_will_do = { 
-            base = 2
-            modifier = { has_country_flag = chose_alternative factor = 0.5 }
-        }
-
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }
@@ -764,6 +759,11 @@
 
         prerequisite = { focus = JAP_expansionism }
         available = { is_subject = no }
+
+        ai_will_do = { 
+            base = 2
+            modifier = { has_war = yes factor = 2 }
+        }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -783,7 +783,7 @@
 
         ai_will_do = { 
             base = 0
-            modifier = { has_country_flag = chose_alternative add = 2 }
+            modifier = { is_in_faction = yes add = 1 }
         }
 
         completion_reward = {
@@ -799,11 +799,6 @@
         x = 0
         y = 1
         cost = 10
-
-        ai_will_do = { 
-            base = 1
-            modifier = { has_country_flag = chose_alternative factor = 2 }
-        }
 
         mutually_exclusive = { focus = JAP_adjust_the_government }
         prerequisite = { focus = JAP_political_ambitions }
@@ -896,11 +891,6 @@
         x = 4
         y = 1
         cost = 10
-
-        ai_will_do = { 
-            base = 2
-            modifier = { has_country_flag = chose_alternative factor = 0.5 }
-        }
 
         mutually_exclusive = { focus = JAP_korea }
         prerequisite = { focus = JAP_political_ambitions }

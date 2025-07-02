@@ -72,24 +72,9 @@ italy_alliances = {
         }
 
         ai_will_do = { 
-            base = 0
-            modifier = {
-                or = { 
-                    threat > 0.1
-                    has_war_with_major = yes
-                }
-                add = 12
-            }
-
-            modifier = { 
-                and = {
-                    FROM = { or = { tag = ENG tag = FRA } }
-                    has_country_flag = chose_alternative
-                }
-                factor = 0
-            }
-
-            modifier = { FROM = { is_ally_with = TUR } factor = 0 }     # but we'll never ally with Turkey.
+            base = 6
+            modifier = { threat > 0.3 add = 6 }
+            modifier = { has_completed_focus = ITA_on_our_own factor = 0 }
         }
 
         complete_effect = {

@@ -37,9 +37,10 @@ news_event = {
 
     trigger = {
         not = { has_idea = idea_agitation }
+        not = { has_idea = idea_young_officers }
 
         has_war = yes
-        or = { has_stability < 0.3 has_war_support < 0.5 }
+        has_war_support < 0.5
         longest_war_length > 12
     }
 
@@ -51,5 +52,56 @@ news_event = {
     option = {
         name = "Worrying."
         add_timed_idea = { idea = idea_agitation months = 6 }
+    }
+}
+
+news_event = {
+    id = x_war_support.4
+    title = "Dissent Among Young Officers"
+    desc = x_war_support.4.d
+
+    trigger = {
+        not = { has_idea = idea_agitation }
+        not = { has_idea = idea_young_officers }
+
+        has_war = yes
+        has_stability < 0.3
+        longest_war_length > 12
+    }
+
+    mean_time_to_happen = { 
+        months = 2
+        modifier = { authoritarianism > 0.1 factor = 0.5 }
+    }
+
+    option = {
+        name = "Worrying."
+        add_timed_idea = { idea = idea_young_officers months = 6 }
+    }
+}
+
+country_event = {
+    id = x_war_support.5
+    title = "Demand for Demobilization?"
+    desc = x_war_support.5.d
+
+    trigger = {
+        has_war = no
+        or = { has_idea = partial_economic_mobilisation has_idea = war_economy }
+    }
+
+    mean_time_to_happen = {
+        months = 6
+        modifier = { has_government = democratic factor = 0.5 }
+    }
+
+    option = {
+        name = "We shall return to civilian economy."
+        add_ideas = civilian_economy
+    }
+
+    option = {
+        name = "It is essential to remain mobilized."
+        add_stability = -0.1
     }
 }

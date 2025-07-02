@@ -17,11 +17,6 @@ focus_tree = {
         y = 0
         cost = 10
 
-        ai_will_do = {
-            base = 1
-            modifier = { has_war = yes factor = 3 }
-        }
-
         completion_reward = {
             add_command_power = 25
         }
@@ -65,7 +60,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = { base = 3 }
+        ai_will_do = { base = 2 }
 
         prerequisite = { focus = AUS_focus_army }
         completion_reward = {
@@ -472,8 +467,6 @@ focus_tree = {
 
         cost = 10
 
-        ai_will_do = { base = 2 }
-
         prerequisite = { focus = AUS_economic_development }
         bypass = {
 			custom_trigger_tooltip = {
@@ -532,7 +525,7 @@ focus_tree = {
 
         cost = 10
 
-        ai_will_do = { base = 3 }
+        ai_will_do = { base = 2 }
 
         prerequisite = { focus = AUS_infrastructure_effort }
 		completion_reward = {
@@ -670,11 +663,6 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 1
-            modifier = { has_country_flag = chose_alternative factor = 3 }
-        }
-
         available = { is_subject = no }
 
         prerequisite = { focus = AUS_political_ambitions }
@@ -696,11 +684,6 @@ focus_tree = {
             has_war_support > 0.3
         }
 
-        ai_will_do = {
-            base = 1
-            modifier = { has_country_flag = chose_alternative factor = 3 }
-        }
-
         prerequisite = { focus = AUS_international_affairs }
         completion_reward = {
             add_political_power = 100
@@ -719,7 +702,7 @@ focus_tree = {
         prerequisite = { focus = AUS_international_affairs }
         available = { is_subject = no }
 
-        ai_will_do = { base = 3 }
+        ai_will_do = { base = 2 }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -736,6 +719,11 @@ focus_tree = {
 
         prerequisite = { focus = AUS_expansionism }
         available = { is_subject = no }
+
+        ai_will_do = { 
+            base = 1
+            modifier = { has_war = yes factor = 2 }
+        }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -758,22 +746,15 @@ focus_tree = {
             has_government = monarchism
         }
 
-        ai_will_do = {
-            base = 0
-            modifier = { has_country_flag = chose_alternative add = 2 }
+        ai_will_do = { 
+            base = 1
+            modifier = { has_completed_focus = AUS_adjust_the_government factor = 0 }
         }
 
         completion_reward = {
             if = {
                 limit = { is_in_faction = yes }
                 leave_faction = yes
-            }
-
-            hidden_effect = {
-                if = {
-                    limit = { FRA = { is_in_faction = no } }
-                    FRA = { set_country_flag = chose_alternative }
-                }
             }
             
             custom_effect_tooltip = decision_effect_tooltip
@@ -882,11 +863,6 @@ focus_tree = {
         x = 4
         y = 1
         cost = 10
-
-        ai_will_do = { 
-            base = 1
-            modifier = { has_country_flag = chose_alternative factor = 0 }
-        }
 
         mutually_exclusive = { focus = AUS_traditionalism }
         prerequisite = { focus = AUS_political_ambitions }

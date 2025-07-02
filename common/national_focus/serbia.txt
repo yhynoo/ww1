@@ -760,6 +760,11 @@ focus_tree = {
         prerequisite = { focus = SER_expansionism }
         available = { is_subject = no }
 
+        ai_will_do = { 
+            base = 0
+            modifier = { not = { is_in_faction = yes } add = 2 }
+        }
+
         completion_reward = {
             add_timed_idea = { idea = idea_seek_alliances years = 1 }
         }
@@ -776,11 +781,6 @@ focus_tree = {
         prerequisite = { focus = SER_expansionism }
         available = { is_subject = no }
 
-        ai_will_do = { 
-            base = 2
-            modifier = { has_country_flag = chose_alternative factor = 0 }
-        }
-
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }
@@ -794,11 +794,6 @@ focus_tree = {
         x = 0
         y = 1
         cost = 10
-
-        ai_will_do = { 
-            base = 2
-            modifier = { has_country_flag = chose_alternative factor = 0 }
-        }
 
         mutually_exclusive = { focus = SER_adjust_the_government }
         prerequisite = { focus = SER_political_ambitions }
@@ -843,7 +838,7 @@ focus_tree = {
 
         prerequisite = { focus = SER_traditionalism }
         completion_reward = {
-            add_timed_idea = { idea = idea_south_slavic_unification years = 2 }
+            add_timed_idea = { idea = idea_mobilize_the_masses years = 2 }
 
             hidden_effect = {
                 news_event = { id = x_war_support.2 hours = 12 random_hours = 6 }
@@ -891,11 +886,6 @@ focus_tree = {
         x = 4
         y = 1
         cost = 10
-
-        ai_will_do = { 
-            base = 0
-            modifier = { has_country_flag = chose_alternative add = 2 }
-        }
 
         mutually_exclusive = { focus = SER_traditionalism }
         prerequisite = { focus = SER_political_ambitions }

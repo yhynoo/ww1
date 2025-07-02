@@ -741,10 +741,7 @@
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 1
-            modifier = { date < 1913.1.1 add = 5 }
-        }
+        ai_will_do = { base = 2 }
 
         prerequisite = { focus = ITA_international_affairs }
         available = { is_subject = no }
@@ -786,9 +783,9 @@
         prerequisite = { focus = ITA_expansionism }
         available = { is_subject = no }
 
-        ai_will_do = { 
+        ai_will_do = {
             base = 0
-            modifier = { has_country_flag = chose_alternative add = 2 }
+            modifier = { has_completed_focus = ITA_traditionalism add = 1 }
         }
 
         completion_reward = {
@@ -906,7 +903,7 @@
 
         ai_will_do = { 
             base = 1
-            modifier = { has_country_flag = chose_alternative factor = 0 }
+            modifier = { is_in_faction = yes factor = 0 }
         }
 
         mutually_exclusive = { focus = ITA_traditionalism }

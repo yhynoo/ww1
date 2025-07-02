@@ -76,14 +76,13 @@ manchukuo_alliances = {
 
         ai_will_do = { 
             base = 0
-
             modifier = { 
-                and = { FROM = { tag = ENG }  not = { has_country_flag = chose_alternative } }
+                and = { FROM = { tag = ENG } has_completed_focus = MAN_three_principles } 
                 add = 9
             }
             modifier = { 
-                and = { FROM = { tag = GER } has_country_flag = chose_alternative }
-                add = 12
+                and = { FROM = { tag = GER } has_completed_focus = MAN_beiyang_army } 
+                add = 9
             }
         }
 

@@ -9,8 +9,8 @@ aftermath_of_antwerp = {
         }
 
         ai_will_do = { 
-            base = 9
-            modifier = { has_completed_focus = HOL_integrate_flanders add = -9 }
+            base = 0
+            modifier = { has_completed_focus = HOL_thorbeckes_legacy add = 9 }
         }
 
         complete_effect = {
@@ -25,7 +25,10 @@ aftermath_of_antwerp = {
 
         ai_will_do = {
             base = 0
-            modifier = { has_completed_focus = HOL_integrate_flanders add = 9 }
+            modifier = { 
+                and = { has_completed_focus = HOL_integrate_flanders not = { has_government = monarchism } } 
+                add = 6
+            }
         }
 
         modifier = {

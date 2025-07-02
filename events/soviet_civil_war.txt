@@ -17,3 +17,57 @@ news_event = {
         }
     }
 }
+
+news_event = {
+    id = soviet_civil_war.2
+    title = "Uprising in the Baltics!"
+    desc = soviet_civil_war.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+
+        if = {
+            limit = { tag = SOV }
+            hidden_effect = { start_baltic_independence_war = yes }
+        }
+    }
+}
+
+news_event = {
+    id = soviet_civil_war.3
+    title = "Uprising in Poland!"
+    desc = soviet_civil_war.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+
+        if = {
+            limit = { tag = SOV }
+            hidden_effect = { start_polish_independence_war = yes }
+        }
+    }
+}
+
+news_event = {
+    id = soviet_civil_war.4
+    title = "Uprising in Ukraine!"
+    desc = soviet_civil_war.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+
+        if = {
+            limit = { tag = SOV }
+            hidden_effect = { start_ukrainian_independence_war = yes }
+        }
+    }
+}

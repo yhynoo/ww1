@@ -46,7 +46,7 @@ pacific_claims = {
         fire_only_once = yes
         cost = 50
 
-        ai_will_do = { base = 6 }
+        ai_will_do = { base = 9 }
 
         available = { controls_state = 648 }
         complete_effect = {
@@ -89,8 +89,12 @@ japan_alliances = {
         }
 
         ai_will_do = {
-            base = 0
-            modifier = { FROM = { tag = ENG } add = 9 }
+            base = 6
+            modifier = { 
+                and = { FROM = { tag = ENG } has_completed_focus = JAP_adjust_the_government } 
+                add = 3
+            }
+            modifier = { threat > 0.2 add = 3 }
         }
 
         complete_effect = {
@@ -111,10 +115,7 @@ asian_hegemony = {
             MON = { exists = no }
             can_declare_war_on = MAN
 
-            any_state = {
-                is_core_of = MON
-                is_controlled_by = MAN
-            }
+            any_state = { is_core_of = MON is_controlled_by = MAN }
         }
 
         ai_will_do = { base = 9 }
@@ -142,7 +143,10 @@ asian_hegemony = {
             RAJ = { is_subject = yes }
         }
 
-        ai_will_do = { base = 6 }
+        ai_will_do = { 
+            base = 6
+            modifier = { is_ally_with = USA add = 6 }
+        }
 
         complete_effect = {
             RAJ = {
