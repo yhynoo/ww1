@@ -15,7 +15,7 @@ entente_integration = {
         }
 
         complete_effect = {
-            GER = { country_event = { id = manchukuo_shandong.1 hours = 6 random_hours = 6 } }
+            GER = { country_event = { id = manchukuo_qingdao.1 hours = 6 random_hours = 6 } }
         }
     }
     develop_arms_industry = {
@@ -67,23 +67,20 @@ manchukuo_alliances = {
                 not = { has_war_with = ROOT }
                 or = { is_in_faction = no is_faction_leader = yes } 
             }
-
-            if = { 
-                limit = { FROM = { tag = USA } }
-                not = { has_idea = idea_isolationist_society }
-            }
         }
 
         ai_will_do = { 
             base = 0
             modifier = { 
                 and = { FROM = { tag = ENG } has_completed_focus = MAN_three_principles } 
-                add = 9
+                add = 6
             }
             modifier = { 
                 and = { FROM = { tag = GER } has_completed_focus = MAN_beiyang_army } 
                 add = 9
             }
+
+            modifier = { has_war = yes factor = 2 }
         }
 
         complete_effect = {
@@ -93,9 +90,36 @@ manchukuo_alliances = {
 }
 
 eight_banners = {
+    develop_manchuria = {
+        icon = generic_industry
+        fire_only_once = yes
+        cost = 75
+
+        available = {
+            any_state = {
+                or = { state = 328 state = 619 state = 654 state = 72 }
+                is_owned_and_controlled_by = MAN
+            }
+        }
+
+        ai_will_do = { base = 12 }
+
+        complete_effect = {
+            random_owned_controlled_state = {
+                limit = { state = 328 state = 619 state = 654 state = 72 }
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                add_extra_state_shared_building_slots = 1
+            }
+
+            random_owned_controlled_state = {
+                limit = { state = 328 state = 619 state = 654 state = 72 }
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+                add_extra_state_shared_building_slots = 1
+            }
+        }
+    }
     demand_dalian = {
         icon = generic_prepare_civil_war
-
         fire_only_once = yes
         cost = 100
 

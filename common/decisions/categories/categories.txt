@@ -1,11 +1,17 @@
 dc_war_cabinet = {
     visible = { has_war = yes }
-    priority = 5
+    priority = 6
 }
 
 dc_head_of_state_decisions = {
+    visible = { is_subject = no }
     visible_when_empty = yes
-    priority = 4
+    priority = 5
+}
+
+dc_dominion = {
+    visible = { is_subject = yes }
+    priority = 5
 }
 
 dc_public_support_decisions = {
@@ -57,6 +63,10 @@ american_industries = {
 
 another_empire = {
     visible = { has_completed_focus = FRA_on_our_own }
+}
+
+anti_colonial_effort = {
+    visible = { has_completed_focus = RAJ_on_our_own }
 }
 
 anticolonialism = {
@@ -144,6 +154,10 @@ let_them_eat_cake = {
 
 limited_autonomy = {
     visible = { has_completed_focus = SOV_limited_autonomy }
+}
+
+local_hegemony = {
+    visible = { has_completed_focus = RAJ_deterrence }
 }
 
 manchurian_question = {

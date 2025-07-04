@@ -746,6 +746,11 @@
             is_subject = no
         }
 
+        ai_will_do = {
+            base = 2
+            modifier = { has_completed_focus = MAN_beiyang_army factor = 0 }
+        }
+
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }
@@ -881,6 +886,11 @@
 
         prerequisite = { focus = MAN_strength_in_unity }
         completion_reward = {
+            if = {
+                limit = { has_idea = idea_warlordism }
+                remove_ideas = idea_warlordism
+            }
+
             add_ideas = idea_five_races_one_nation
         }
     }
@@ -897,8 +907,14 @@
         mutually_exclusive = { focus = MAN_three_principles }
         prerequisite = { focus = MAN_political_ambitions }
         completion_reward = {
-            remove_ideas = idea_enthusiasm_for_democracy
+            if = {
+                limit = { has_idea = idea_warlordism }
+                remove_ideas = idea_warlordism
+            }
+            
             add_timed_idea = { idea = idea_monarchism_tendencies years = 1 }
+
+            hidden_effect = { news_event = { id = manchukuo_workers.1 days = 42 random_days = 42 } }
         }
     }
     focus = {

@@ -1,0 +1,15 @@
+add_namespace = manchukuo_warlordism
+
+news_event = {
+    id = manchukuo_warlordism.1
+    title = "Local Warlords Draft Independent Armies"
+    desc = manchukuo_warlordism.1.d
+
+    is_triggered_only = yes
+    trigger = { not = { has_completed_focus = MAN_beiyang_army } }
+
+    option = {
+        name = "A disturbing development."
+        add_ideas = idea_warlordism
+    }
+}

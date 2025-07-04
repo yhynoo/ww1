@@ -786,7 +786,7 @@ focus_tree = {
 
         ai_will_do = { 
             base = 1
-            modifier = { has_completed_focus = GER_adjust_the_government factor = 0 }
+            modifier = { or = { has_completed_focus = GER_adjust_the_government has_war = yes } factor = 0 }
         }
 
         completion_reward = {

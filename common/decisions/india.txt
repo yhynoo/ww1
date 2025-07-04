@@ -1,0 +1,151 @@
+local_hegemony = {
+    align_afghanistan = {
+        icon = generic_prepare_civil_war
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            AFG = { is_subject = no }
+        }
+
+        complete_effect = {
+            AFG = { country_event = india_afghanistan.1 hours = 6 random_hours = 6 }
+        }
+    }
+    venture_into_arabia = {
+        icon = generic_prepare_civil_war
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            any_state = {
+                or = { state = 656 state = 658 state = 659 state = 294 }
+                not = { is_controlled_by = RAJ }
+            }
+        }
+
+        days_remove = 180
+        remove_effect = {
+            every_country = {
+                limit = {
+                    or = { state = 656 state = 658 state = 659 state = 294 }
+                }
+
+                ROOT = { 
+                    war_with_on_remove = PREV
+                    create_wargoal = { target = PREV type = take_state_focus }
+                }
+            }
+        }
+    }
+    demand_gulf_oil = {
+        icon = oil
+        cost = 75
+        fire_only_once = yes
+
+        available = {
+            or = {
+                PER = {
+                    controls_state = 412
+                    has_resource_rights = { state = 412 resources = { oil } }
+                }
+                PER = {
+                    controls_state = 413
+                    has_resource_rights = { state = 413 resources = { oil } }
+                }
+            }
+        }
+
+        complete_effect = {
+            PER = { country_event = india_oil.1 hours = 6 random_hours = 6 }
+        }
+    }
+}
+
+india_alliances = {
+    raj_offer_alliance = {
+        cost = 75
+        fire_only_once = yes
+
+        targets = { }
+        available = { }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.2 hours = 6 random_hours = 6 } }
+        }
+    }
+    raj_join_alliance = {
+        cost = 100
+        fire_only_once = yes
+
+        targets = { GER USA }
+        available = { 
+            is_in_faction = no
+            FROM = { 
+                not = { has_war_with = ROOT }
+                or = { is_in_faction = no is_faction_leader = yes } 
+            }
+
+            if = { 
+                limit = { FROM = { tag = USA } }
+                not = { has_idea = idea_isolationist_society }
+            }
+        }
+
+        ai_will_do = {
+            base = 6
+            modifier = { 
+                and = { FROM = { tag = USA } has_completed_focus = RAJ_on_our_own } 
+                add = 3
+            }
+            modifier = { threat > 0.2 add = 3 }
+        }
+
+        complete_effect = {
+            FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}
+
+anti_colonial_effort = {
+    liberate_malaya = {
+        icon = generic_prepare_civil_war
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            any_state = {
+                or = { state = 289 state = 614 state = 574 state = 333 state = 334 }
+                not = { is_controlled_by = RAJ }
+            }
+        }
+
+        days_remove = 180
+        remove_effect = {
+            every_country = {
+                limit = {
+                    or = { state = 289 state = 614 state = 574 state = 333 state = 334 }
+                }
+
+                ROOT = { 
+                    war_with_on_remove = PREV
+                    create_wargoal = { target = PREV type = take_state_focus }
+                }
+            }
+        }
+    }
+    seek_american_guarantees = {
+        icon = generic_civil_support
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            not = { is_guaranteed_by = USA }
+            USA = { has_completed_focus = USA_on_our_own }
+        }
+
+        complete_effect = {
+            USA = { country_event = india_guarantees.1 hours = 6 random_hours = 6 }
+        }
+    }
+}

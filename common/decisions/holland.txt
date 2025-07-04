@@ -97,7 +97,11 @@ voc_mentaliteit = {
 
         available = {
             not = { has_war_with = PER }
-            413 = { is_owned_and_controlled_by = PER }
+
+            PER = {
+                controls_state = 413
+                has_resource_rights = { state = 413 resources = { oil } }
+            }
         }
 
         ai_will_do = { base = 6 }

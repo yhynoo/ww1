@@ -82,7 +82,10 @@ france_alliances = {
                 add = 9
             }
             modifier = { 
-                and = { FROM = { tag = SOV } ENG = { has_government = communism } }
+                and = { 
+                    FROM = { tag = SOV } 
+                    ENG = { has_completed_focus = ENG_abolish_lords }
+                }
                 add = 12
             }
         }

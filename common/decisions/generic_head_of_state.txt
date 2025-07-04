@@ -12,17 +12,14 @@ dc_head_of_state_decisions = {
         }
 
         modifier = {
-            war_support_weekly = 0.01
-            weekly_manpower = 1200
+            war_support_weekly = 0.005
+            weekly_manpower = 600
         }
     }
     imprison_the_extremists = {
         icon = generic_civil_support
         visible = {
-            OR = {
-                has_government = monarchism
-                has_government = democratic
-            }
+            or = { has_government = monarchism has_government = democratic }
         }
         fire_only_once = no
         days_remove = 90
@@ -49,10 +46,7 @@ dc_head_of_state_decisions = {
     persecute_the_opposition = {
         icon = generic_civil_support
         visible = {
-            OR = {
-                has_government = authoritarianism
-                has_government = communism
-            }
+            or = { has_government = authoritarianism has_government = communism }
         }
         fire_only_once = no
         days_remove = 90

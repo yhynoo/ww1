@@ -1,16 +1,16 @@
-add_namespace = manchukuo_shandong
+add_namespace = manchukuo_qingdao
 
 country_event = {
-    id = manchukuo_shandong.1
+    id = manchukuo_qingdao.1
     title = "[MAN.GetName] Threatens Tsingtao"
-    desc = manchukuo_shandong.1.d
+    desc = manchukuo_qingdao.1.d
 
     is_triggered_only = yes
 
     option = {
         name = "We must agree."
         FROM = { 
-            news_event = { id = manchukuo_shandong.2 hours = 6 random_hours = 6 }
+            news_event = { id = manchukuo_qingdao.2 hours = 6 random_hours = 6 }
             431 = { transfer_state_to = FROM }
         }
 
@@ -19,7 +19,7 @@ country_event = {
     option = {
         name = "We will never agree to this."
         FROM = { 
-            news_event = { id = manchukuo_shandong.3 hours = 6 random_hours = 6 }
+            news_event = { id = manchukuo_qingdao.3 hours = 6 random_hours = 6 }
             create_wargoal = {
                 target = ROOT
                 type = take_state_focus
@@ -31,9 +31,9 @@ country_event = {
 }
 
 news_event = {
-    id = manchukuo_shandong.2
+    id = manchukuo_qingdao.2
     title = "Germans Leave their Shandong Outposts"
-    desc = manchukuo_shandong.2.d
+    desc = manchukuo_qingdao.2.d
 
     is_triggered_only = yes
     major = yes
@@ -44,9 +44,9 @@ news_event = {
 }
 
 news_event = {
-    id = manchukuo_shandong.3
+    id = manchukuo_qingdao.3
     title = "[FROM.GetName] Declines!"
-    desc = manchukuo_shandong.3.d
+    desc = manchukuo_qingdao.3.d
 
     is_triggered_only = yes
 
