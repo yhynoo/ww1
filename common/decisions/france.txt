@@ -84,7 +84,7 @@ france_alliances = {
             modifier = { 
                 and = { 
                     FROM = { tag = SOV } 
-                    ENG = { has_completed_focus = ENG_abolish_lords }
+                    ENG = { has_completed_focus = ENG_on_our_own }
                 }
                 add = 12
             }
@@ -109,13 +109,7 @@ france_alliances = {
 
         ai_will_do = {
             base = 0
-            modifier = { 
-                and = { 
-                    has_war = yes 
-                    has_government = democratic ENG = { has_government = democratic }
-                }
-                add = 12
-            } 
+            modifier = { has_completed_focus = FRA_traditionalism add = 9 } 
         }
 
         complete_effect = {
@@ -194,7 +188,6 @@ another_empire = {
 let_them_eat_cake = {
     develop_guyana = {
         icon = generic_construction
-
         fire_only_once = yes
         cost = 75
 

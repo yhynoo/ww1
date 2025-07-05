@@ -76,13 +76,13 @@ country_event = {
                 base = 1
                 modifier = { FROM = { has_guaranteed = ROOT } add = 2 }
 
-                # France: if we have Belgium and Alsace-Lorraine, we will likely stay neutral.
                 modifier = { 
-                    and = {
-                        tag = FRA  
-                        owns_state = 6 owns_state = 28 owns_state = 34
+                    or = {
+                        and = { tag = FRA has_completed_focus = FRA_adjust_government }
+                        and = { tag = TUR has_completed_focus = TUR_deterrence }
                     }
-                    factor = 0.5
+            
+                    factor = 0
                 }
             }
 
@@ -100,7 +100,12 @@ country_event = {
 
             # if we're France and Austria invites - we won't say no.
             modifier = {
-                and = { tag = FRA FROM = { tag = AUS } }
+                and = { 
+                    tag = FRA 
+                    or = {
+                        FROM = { tag = AUS }
+                        and = { FROM = { tag = ENG } has_completed_focus = FRA_traditionalism }
+                    }
                 factor = 0
             }
 

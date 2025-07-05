@@ -1,0 +1,87 @@
+add_namespace = usa_iww
+
+country_event = {
+    id = usa_iww.1
+    title = "Miners Strike in West Virginia"
+    desc = usa_iww.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They have a right to assemble."
+        add_stability = -0.05
+
+        hidden_effect = { news_event = { id = usa_iww.2 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = "Send in federal marshals."
+        add_political_power = -50
+
+        hidden_effect = { country_event = { id = usa_iww.3 days = 7 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = usa_iww.2
+    title = "Strikers Gain National Sympathy"
+    desc = usa_iww.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        add_popularity = { ideology = communism popularity = 0.05 }
+    }
+}
+
+country_event = {
+    id = usa_iww.3
+    title = "Gunfire at the Blair Mountain Line"
+    desc = usa_iww.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Suppress them with force."
+
+        add_political_power = -75
+        hidden_effect = { news_event = { id = usa_iww.4 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = "Investigate the coal barons instead."
+
+        hidden_effect = { news_event = { id = usa_iww.5 days = 7 random_days = 7 } }
+        add_popularity = { ideology = democratic popularity = -0.05 }
+    }
+}
+
+news_event = {
+    id = usa_iww.4
+    title = "Coal Wars Escalate in the United States"
+    desc = usa_iww.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The workers are a force to be reckoned with."
+
+        if = {
+            limit = { tag = USA }
+            start_civil_war = { ideology = communism size = 0.3 states = { 261 362 363 368 369 393 394 395 396 } }
+        }
+    }
+}
+
+news_event = {
+    id = usa_iww.5
+    title = "Congress Turns on Industry"
+    desc = usa_iww.5.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Public sentiment has shifted."
+        add_timed_ideas = { idea = idea_antimonopolist years = 1 }
+    }
+}

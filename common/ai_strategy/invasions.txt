@@ -29,7 +29,7 @@ entente_tsingtao = {
     }
 }
 
-# italy, if fighting turkey alone, can invade libya and albania
+# italy, if fighting turkey alone, can invade libya, greece and albania
 entente_libya = {
     allowed = { tag = ITA }
     enable = { is_in_faction = no has_war_with = TUR }
@@ -38,7 +38,7 @@ entente_libya = {
     ai_strategy = {
         type = invasion_unit_request
         state_trigger = { 
-            not = { or = { state = 661 state = 663 state = 44 } }
+            not = { or = { state = 661 state = 663 state = 44 state = 182 state = 185 state = 186 } }
         }
         value = -150
     }

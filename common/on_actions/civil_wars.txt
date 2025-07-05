@@ -7,10 +7,12 @@ on_actions = {
                 if = {
                     limit = {
                         FROM = {
-                            and = {
-                                not = { original_tag = MEX } 
-                                not = { original_tag = SOV }
-                            }
+                            not = { original_tag = MAN } 
+                            not = { original_tag = MEX } 
+
+                            not = { original_tag = SOV }
+
+                            not = { original_tag = USA } 
                         }
                     }
                     FROM = { news_event = { id = x_civil_war_start.1 hours = 6 random_hours = 6 } }       # generic message

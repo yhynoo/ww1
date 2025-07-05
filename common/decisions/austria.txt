@@ -72,10 +72,10 @@ austria_alliances = {
 
         ai_will_do = {
             base = 9
-            modifier = {
-                FROM = { tag = FRA }
-                factor = 6
-            }
+            modifier = { FROM = { tag = FRA } factor = 6 }
+
+            # don't want them on board if they are at war
+            modifier = { FROM = { tag = TUR has_war = yes } factor = 0 }
         }
 
         complete_effect = {

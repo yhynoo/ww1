@@ -90,7 +90,10 @@ country_event = {
             }
         }
 
-        ai_chance = { base = 1 }
+        ai_chance = {
+            base = 1 
+            modifier = { has_completed_focus = GER_traditionalism factor = 0 }
+        }
     }
     option = {
         name = "Or...?"
@@ -117,8 +120,8 @@ country_event = {
         }
 
         ai_chance = {
-            base = 6
-            modifier = { has_government = democratic add = -5 }
+            base = 3
+            modifier = { has_completed_focus = GER_adjust_the_government add = -2 }
         }
     }
 }

@@ -5,7 +5,11 @@ news_event = {
     title = "Airfield Opens in Soesterberg"
     desc = holland_soesterberg.1.d
 
-    is_triggered_only = yes
+    trigger = {
+        tag = HOL
+        date > 1912.7.1
+    }
+    fire_only_once = yes
 
     option = {
         name = "Wonderful."

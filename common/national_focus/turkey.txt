@@ -747,7 +747,14 @@ focus_tree = {
 
         ai_will_do = { 
             base = 2
-            modifier = { or = { is_guaranteed_by = GER is_ally_with = GER } factor = 0 }
+            modifier = { 
+                or = { 
+                    is_guaranteed_by = GER 
+                    is_ally_with = GER 
+                }
+                 
+                factor = 0
+            }
         }
 
         completion_reward = {

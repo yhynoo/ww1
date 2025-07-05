@@ -10,8 +10,12 @@ intervene_central_america = {
         }
 
         ai_will_do = { 
-            base = 6
-            modifier = { has_completed_focus = USA_on_our_own add = 6 }
+            base = 0
+            modifier = {
+                MEX = { has_civil_war = no has_government = democratic }
+                add = 9
+            }
+            modifier = { has_completed_focus = USA_on_our_own add = 3 }
         }
 
         complete_effect = {
@@ -38,6 +42,14 @@ intervene_central_america = {
         ai_will_do = {
             base = 6
             modifier = { has_completed_focus = USA_not_our_war factor = 0 }
+
+            modifier = {
+                or = {
+                    MEX = { has_civil_war = yes }
+                    MEX = { has_civil_war = no has_government = communism }
+                }
+                factor = 2
+            }
         }
 
         remove_effect = {
