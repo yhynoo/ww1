@@ -785,7 +785,14 @@ focus_tree = {
         }
 
         ai_will_do = { 
-            base = 1
+            base = 0
+            modifier = {
+                or = {
+                    not = { is_ally_with = AUS }
+                    and = { date > 1915.1.1 has_war = no }
+                }
+                add = 1
+            }
             modifier = { or = { has_completed_focus = GER_adjust_the_government has_war = yes } factor = 0 }
         }
 

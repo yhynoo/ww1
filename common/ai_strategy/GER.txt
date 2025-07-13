@@ -8,7 +8,7 @@ germany_army_production = {
 	ai_strategy = {
 		type = role_ratio
 		id = infantry
-		value = 30
+		value = 45
 	}
 
 	# focus on military factories
@@ -25,10 +25,38 @@ germany_army_production = {
 
 }
 
+# schlieffen
+germany_schlieffen = {
+	allowed = { original_tag = GER }
+	enable = { has_idea = idea_metz_to_paris }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = front_unit_request
+		tag = FRA
+		value = 200
+	}
+
+	ai_strategy = {
+		type = front_control
+		state_trigger = {
+			or = { state = 6 state = 16 state = 29 }
+		}
+		ordertype = front
+		priority = 3
+	}
+
+	ai_strategy = {
+		type = dont_defend_ally_borders
+		id = AUS
+		value = 100
+	}
+}
+
 # don't waste too much stuff on africa
 germany_avoid_africa = {
 	allowed = { original_tag = GER }
-	enable = { not = { has_completed_focus = GER_afrika_amt } }
+	enable = { always = yes }
 	abort_when_not_enabled = yes
 
 	ai_strategy = {

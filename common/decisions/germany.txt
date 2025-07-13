@@ -131,38 +131,85 @@ greater_germany = {
         cost = 150
         fire_only_once = yes
 
-        days_remove = 90
+        days_remove = 180
         available = { not = { has_war_with = AUS } }
 
         ai_will_do = {
             base = 0
             modifier = { 
-                has_war = no
-                or = {
-                    not = { is_ally_with = AUS } 
-                    date > 1916.1.1
-                }    
-                add = 12
+                and = {
+                    has_war = no
+                    or = {
+                        not = { is_ally_with = AUS } 
+                        date > 1916.1.1
+                    }   
+                } 
+                add = 9
             }
         }
 
         war_with_on_remove = AUS
 
         complete_effect = {
+            news_event = { id = germany_thousand.1 hours = 6 random_hours = 6 }
+            
             if = {
                 limit = { is_ally_with = AUS }
-                news_event = { id = germany_thousand.1 hours = 6 random_hours = 6 }
-
                 if = {
                     limit = { is_faction_leader = yes }
                     remove_from_faction = AUS
                 }
                 else = { leave_faction = yes }
             }
+
+            every_state = {
+                limit = {
+                    or = {
+                        state = 9 state = 69 state = 74 state = 75
+                        state = 80 state = 89 state = 91
+                        state = 4 state = 664 state = 152 state = 153 state = 39
+                        state = 102 state = 33
+                    }
+                }
+                add_claim_by = GER
+            }
         }
 
         remove_effect = {
-            create_wargoal = { target = AUS type = liberate_wargoal }
+            create_wargoal = { target = AUS type = take_claimed_state }
+        }
+    }
+    drang_nach_osten = {
+        icon = generic_prepare_civil_war
+        cost = 150
+        fire_only_once = yes
+
+        days_remove = 180
+        available = { not = { has_war_with = SOV } }
+
+        war_with_on_remove = SOV
+
+        ai_will_do = {
+            base = 0
+            modifier = { 
+                and = {
+                    has_war = no
+                    date > 1915.9.1
+                } 
+                add = 6
+            }
+        }
+
+        complete_effect = {
+            news_event = { id = germany_thousand.6 hours = 6 random_hours = 6 }
+            every_state = {
+                limit = { is_core_of = POL }
+                add_claim_by = GER
+            }
+        }
+
+        remove_effect = {
+            create_wargoal = { target = SOV type = take_claimed_state }
         }
     }
     aachen_treaty = {

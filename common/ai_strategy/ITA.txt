@@ -1,21 +1,16 @@
 ITA_dislikes_TUR = {
 	allowed = { tag = ITA }
 	enable = { has_completed_focus = ITA_deterrence }
-	abort_when_not_enabled = yes
+	abort = {
+		or = {
+			TUR = { is_in_faction = yes }
+			any_country = { has_guaranteed = TUR }
+		}
+	}
 
 	ai_strategy = {
 		type = declare_war
 		id = TUR
 		value = 150
-	}
-}
-
-ITA_second_line_airfields = {
-	allowed = { tag = ITA }
-	enable = { has_war = yes }
-	abort_when_not_enabled = yes
-
-	ai_strategy = {
-		type = build_building id = air_base target = 161 value = 2
 	}
 }

@@ -1,0 +1,42 @@
+add_namespace = soviet_orthodox
+
+country_event = {
+    id = soviet_orthodox.1
+    title = "One Empire — One Church?"
+    desc = soviet_orthodox.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Use the church influence."
+
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+        add_war_support = 0.05
+
+        hidden_effect = { 
+            random_list = {
+				50 = { news_event = { id = soviet_orthodox.2 days = 14 random_days = 28 } }
+                50 = { }
+			}
+        }
+    }
+    option = {
+        name = "Faith is a personal matter."
+        add_stability = 0.05
+    }
+}
+
+news_event = {
+    id = soviet_orthodox.2
+    title = "Concerns in Muslim Central Asia"
+    desc = soviet_orthodox.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is unfortunate."
+
+        add_stability = -0.05
+        add_war_support = -0.05
+    }
+}

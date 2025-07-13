@@ -788,7 +788,13 @@
 
         ai_will_do = {
             base = 0
-            modifier = { has_completed_focus = SOV_adjust_the_government add = 1 }
+            modifier = { 
+                and = {
+                    has_war = no
+                    date > 1915.7.1
+                }
+                add = 1 
+            }
         }
 
         completion_reward = {
@@ -833,8 +839,11 @@
 
         prerequisite = { focus = SOV_traditionalism }
         completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
-            hidden_effect = { set_country_flag = public_support_allowed }
+            add_political_power = 50
+            country_event = { id = soviet_orthodox.1 hours = 6 random_hours = 6 }
+
+            #custom_effect_tooltip = decision_effect_tooltip
+            #hidden_effect = { set_country_flag = public_support_allowed }
         }
     }
     focus = {
@@ -970,10 +979,10 @@
         completion_reward = {
             # start war and do setup
             start_civil_war = { ruling_party = communism ideology = ROOT size = 0.4 }
-            hidden_effect = { east_civil_war = yes }
+            hidden_effect = { winter_palace_war = yes }
 
             # event
-            news_event = { id = soviet_civil_war.1 hours = 3 }
+            news_event = { id = soviet_winter_palace.1 hours = 3 }
         }
     }
     focus = { 

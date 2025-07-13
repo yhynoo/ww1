@@ -747,7 +747,14 @@ focus_tree = {
         }
 
         ai_will_do = { 
-            base = 1
+            base = 0
+            modifier = {
+                or = {
+                    not = { is_ally_with = GER }
+                    FRA = { has_government = monarchism }
+                }
+                add = 1
+            }
             modifier = { has_completed_focus = AUS_adjust_the_government factor = 0 }
         }
 
@@ -795,8 +802,11 @@ focus_tree = {
 
         prerequisite = { focus = AUS_traditionalism }
         completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
-            hidden_effect = { set_country_flag = public_support_allowed }
+            add_political_power = 50
+            country_event = { id = austria_mosaic.1 hours = 6 random_hours = 6 }
+
+            #custom_effect_tooltip = decision_effect_tooltip
+            #hidden_effect = { set_country_flag = public_support_allowed }
         }
     }
     focus = {
@@ -815,10 +825,10 @@ focus_tree = {
 
         prerequisite = { focus = AUS_traditionalism }
         completion_reward = {
-            add_timed_idea = { idea = idea_mobilize_the_masses years = 2 }
+            add_timed_idea = { idea = idea_an_meine_volker years = 2 }
 
             hidden_effect = {
-                news_event = { id = x_war_support.2 hours = 12 random_hours = 6 }
+                news_event = { id = austria_volker.1 hours = 12 random_hours = 6 }
             }
         }
     }
@@ -935,7 +945,7 @@ focus_tree = {
     }
     focus = {
         id = AUS_embrace_modernity
-        icon = GFX_focus_generic_red_education
+        icon = GFX_focus_SOV_mobilize_the_masses
 
         relative_position_id = AUS_state_reform
         x = -1
@@ -943,8 +953,33 @@ focus_tree = {
         cost = 10
 
         prerequisite = { focus = AUS_state_reform }
+
+        available = {
+            any_owned_controlled_state = { is_core_of = HUN }
+            or = { has_idea = idea_dissatisfied_hungarians has_idea = idea_sabotage_in_hungary }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { has_idea = idea_sabotage_in_hungary add = 3 }
+        }
+
         completion_reward = {
-            add_research_slot = 1
+            release_on_controlled = HUN
+
+            if = {
+                limit = { has_idea = idea_dissatisfied_hungarians }
+                remove_ideas = idea_dissatisfied_hungarians
+            }
+
+            if = {
+                limit = { has_idea = idea_sabotage_in_hungary }
+                remove_ideas = idea_sabotage_in_hungary
+            }
+
+            hidden_effect = {
+                set_cosmetic_tag = AUS_alone
+            }
         }
     }
 }

@@ -848,8 +848,11 @@ focus_tree = {
 
         prerequisite = { focus = ENG_traditionalism }
         completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
-            hidden_effect = { set_country_flag = public_support_allowed }
+            add_political_power = 50
+            country_event = { id = england_women.1 hours = 6 random_hours = 6 }
+
+            #custom_effect_tooltip = decision_effect_tooltip
+            #hidden_effect = { set_country_flag = public_support_allowed }
         }
     }
     focus = {

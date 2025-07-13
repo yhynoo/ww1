@@ -1,5 +1,3 @@
-
-
 SOV_area_priority = {
 	allowed = { original_tag = SOV }
     enable = { not = { has_completed_focus = SOV_far_east_affairs } }
@@ -19,36 +17,23 @@ SOV_area_priority = {
 	}
 }
 
-SOV_second_line_airfields = {
+soviet_southern_offensive = {
 	allowed = { original_tag = SOV }
-	enable = { has_war = yes }
-
+	enable = { has_idea = idea_great_army_expansion }
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
-		type = build_building
-		id = air_base
-		target = 12		# Riga
-		value = 2
+		type = front_unit_request
+		tag = AUS
+		value = 200
 	}
 
 	ai_strategy = {
-		type = build_building
-		id = air_base
-		target = 202		# Kyiv
-		value = 1
-	}
-
-	ai_strategy = {
-		type = build_building
-		id = air_base
-		target = 229		# Baku
-		value = 1
-	}
-
-	# We need to commit way more troops.
-	ai_strategy = {
-		type = garrison
-		value = -100
+		type = front_control
+		state_trigger = {
+			or = { state = 80 state = 89 state = 91 state = 92 state = 93 }
+		}
+		ordertype = front
+		priority = 3
 	}
 }

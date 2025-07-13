@@ -1,0 +1,38 @@
+add_namespace = austria_mosaic
+
+country_event = {
+    id = austria_mosaic.1
+    title = "Ethnic Minorities in the Army"
+    desc = austria_mosaic.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Encourage formation of ethnic units."
+        add_idea = idea_ethnic_units            # adds 2% conscription and -10% army experience gain
+
+        hidden_effect = { 
+            random_list = {
+				50 = { news_event = { id = austria_mosaic.2 days = 14 random_days = 28 } }
+                50 = { }
+			}
+        }
+    }
+    option = {
+        name = "Intensify language courses."
+        add_stability = 0.05
+    }
+}
+
+news_event = {
+    id = austria_mosaic.2
+    title = "Tensions in the Chain of Command"
+    desc = austria_mosaic.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "What a mess."
+        add_war_support = -0.05
+    }
+}

@@ -1,0 +1,91 @@
+add_namespace = x_operations
+
+country_event = {
+    id = x_operations.1
+    title = "'Through Metz to Paris'"
+    desc = x_operations.1.d
+    
+    trigger = {
+        tag = GER
+        has_war_with = FRA
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "Execute the plan."
+        add_timed_idea = { idea = idea_metz_to_paris months = 3 }
+
+        hidden_effect = { country_event = { id = x_operations.2 months = 2 days = 21 } }
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "The situation does not warrant it now."
+        army_experience = 50
+
+        ai_chance = { base = 0 }
+    }
+}
+
+country_event = {
+    id = x_operations.2
+    title = "Stellungskrieg in the West?"
+    desc = x_operations.2.d
+    
+    trigger = {
+        tag = GER
+        has_war_with = FRA
+        not = { controls_state = 16 }       # we haven't reached paris
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "It is time to dig in."
+
+        add_popularity = { ideology = ROOT popularity = -0.05 }         # the government has failed
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "We must keep pushing ahead!"
+
+        modify_timed_idea = { idea = idea_metz_to_paris months = 3 }
+        add_war_support = -0.15                                         # the government has failed, but keeps us bleeding out?
+
+        ai_chance = { base = 0 }
+    }
+}
+
+# eastern front
+
+country_event = {
+    id = x_operations.3
+    title = "The Great Army Expansion Schedule"
+    desc = x_operations.3.d
+    
+    trigger = {
+        tag = SOV
+        has_war_support > 0.25
+
+        any_country = {
+            has_wargoal_against = SOV
+        }
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "Execute the schedule."
+
+        add_timed_idea = { idea = idea_great_army_expansion months = 6 }
+        add_political_power = -100
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "We should rather adopt a cautious approach."
+
+        add_popularity = { ideology = communism popularity = 0.05 }
+        add_war_support = -0.05
+
+        ai_chance = { base = 0 }
+    }
+}

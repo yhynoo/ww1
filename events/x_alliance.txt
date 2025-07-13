@@ -78,16 +78,15 @@ country_event = {
 
                 modifier = { 
                     or = {
-                        and = { tag = FRA has_completed_focus = FRA_adjust_government }
-                        and = { tag = TUR has_completed_focus = TUR_deterrence }
+                        and = { FROM = { tag = ENG } tag = FRA has_completed_focus = FRA_adjust_government }
+                        and = { FROM = { tag = GER } tag = TUR has_completed_focus = TUR_deterrence }
                     }
-            
                     factor = 0
                 }
             }
 
             hidden_effect = {
-                add_ai_strategy = { type = alliance tag = ROOT value = 60 }
+                add_ai_strategy = { type = alliance tag = FROM value = 60 }
             }
         }
     }
@@ -106,6 +105,7 @@ country_event = {
                         FROM = { tag = AUS }
                         and = { FROM = { tag = ENG } has_completed_focus = FRA_traditionalism }
                     }
+                }
                 factor = 0
             }
 

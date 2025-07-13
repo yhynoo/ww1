@@ -7,9 +7,7 @@ country_event = {
 
     trigger = {
         tag = TUR
-
         war_length_with = { tag = ITA months > 12 }
-        surrender_progress > 0
     }
     fire_only_once = yes
 
@@ -39,7 +37,12 @@ country_event = {
         name = "This is a chance to end this well."
 
         FROM = { news_event = { id = turkey_lausanne.3 hours = 6 random_hours = 6 } }
-        start_peace_conference = { tag = FROM score_factor = 0.2 }
+
+        if = {
+            limit = { surrender_progress > 0 }
+            white_peace = TUR
+        }
+        else = { start_peace_conference = { tag = TUR score_factor = 0.5 } }
 
         ai_chance = { base = 3 }
     } 

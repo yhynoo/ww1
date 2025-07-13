@@ -64,6 +64,11 @@ ideas = {
 						has_war = yes
 					}
 					has_war_support > 0.35
+
+					if = {
+						limit = { tag = AUS }
+						not = { has_idea = idea_ausgleich }
+					}
 				}
 			}
 
@@ -93,6 +98,11 @@ ideas = {
 			available = {
 				has_war = yes
 				has_war_support > 0.5
+
+				if = {
+					limit = { tag = AUS }
+					not = { has_idea = idea_ausgleich }
+				}
 			}
 
 			cost = 150

@@ -84,7 +84,10 @@ france_alliances = {
             modifier = { 
                 and = { 
                     FROM = { tag = SOV } 
-                    ENG = { has_completed_focus = ENG_on_our_own }
+                    or = {
+                        ENG = { has_completed_focus = ENG_on_our_own }
+                        and = { has_war = yes is_in_faction = no }
+                    }
                 }
                 add = 12
             }
@@ -110,6 +113,7 @@ france_alliances = {
         ai_will_do = {
             base = 0
             modifier = { has_completed_focus = FRA_traditionalism add = 9 } 
+            modifier = { has_war = yes factor = 2 }
         }
 
         complete_effect = {
