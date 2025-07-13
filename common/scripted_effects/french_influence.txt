@@ -1,0 +1,25 @@
+manage_french_influence = {
+    modify_country_flag = { flag = french_influence value = 1 }
+    if = {
+        limit = { 
+            and = {
+                has_country_flag = { flag = french_influence value > 0 }
+                not = { has_idea = idea_growing_french_influence } not = { has_idea = idea_significant_french_influence }
+            }
+        }
+        add_ideas = idea_growing_french_influence
+    }
+
+    if = {
+        limit = { 
+            and = {
+                has_country_flag = { flag = french_influence value > 1 }
+                not = { has_idea = idea_significant_french_influence }
+            }
+        }
+        swap_ideas = { 
+            remove_idea = idea_growing_french_influence
+            add_idea = idea_significant_french_influence
+        }
+    }
+}

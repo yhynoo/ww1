@@ -645,7 +645,7 @@ DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
 				NOT = { tag = SPC }
 				FROM = {
 					tag = SPC
-					has_completed_focus = SPR_regional_defense_council_of_aragon
+					has_completed_focus = SPA_regional_defense_council_of_aragon
 				}
 				NOT = { 
 					AND = {
@@ -677,7 +677,7 @@ DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
 				NOT = { tag = SPC }
 				FROM = {
 					tag = SPC
-					has_completed_focus = SPR_regional_defense_council_of_aragon
+					has_completed_focus = SPA_regional_defense_council_of_aragon
 				}
 				NOT = { 
 					AND = {
@@ -697,7 +697,7 @@ DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
 			limit = {
 				has_dlc = "La Resistance"
 				tag = POR
-				FROM = { original_tag = SPR }
+				FROM = { original_tag = SPA }
 				NOT = { has_global_flag = scw_over }
 			}
 			custom_trigger_tooltip = {
@@ -726,7 +726,7 @@ DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
 			limit = {
 				has_dlc = "Battle for the Bosporus"
 				tag = BUL
-				FROM = { original_tag = SPR }
+				FROM = { original_tag = SPA }
 				has_dlc = "La Resistance"
 				NOT = { has_global_flag = scw_over }
 				
@@ -752,9 +752,9 @@ DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
 				has_dlc = "Battle for the Bosporus"
 				NOT = { has_dlc = "La Resistance" }
 				tag = BUL
-				FROM = { original_tag = SPR }	
+				FROM = { original_tag = SPA }	
 				any_country = {
-					original_tag = SPR
+					original_tag = SPA
 					has_civil_war = yes
 				}
 			}
@@ -838,12 +838,12 @@ DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
 					has_government = communism
 					has_government = democratic
 				}
-				FROM = { original_tag = SPR }
+				FROM = { original_tag = SPA }
 				OR = {
 					NOT = { has_completed_focus = SOV_covert_support_for_spanish_poum }
 					AND = {
 						has_completed_focus = SOV_covert_support_for_spanish_poum
-						NOT = { has_global_flag = SPR_anarchist_uprising_flag }
+						NOT = { has_global_flag = SPA_anarchist_uprising_flag }
 					}
 				}
 			}
@@ -872,11 +872,11 @@ DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
 				has_dlc = "La Resistance"
 				original_tag = SOV
 				has_government = communism
-				FROM = { original_tag = SPR }
+				FROM = { original_tag = SPA }
 				has_completed_focus = SOV_covert_support_for_spanish_poum
 				NOT = { has_completed_focus = SOV_coup_detat }
-				has_global_flag = SPR_anarchist_uprising_flag
-				SPC = { has_completed_focus = SPR_the_anti_fascist_workers_revolution }
+				has_global_flag = SPA_anarchist_uprising_flag
+				SPC = { has_completed_focus = SPA_the_anti_fascist_workers_revolution }
 			}
 			custom_trigger_tooltip = {
 				tooltip = RULE_VOLUNTEERS_SOVIET_SCW_COVERT_POUM_TT
@@ -891,11 +891,11 @@ DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
 				has_dlc = "La Resistance"
 				original_tag = SOV
 				has_government = communism
-				FROM = { original_tag = SPR }
+				FROM = { original_tag = SPA }
 				has_completed_focus = SOV_covert_support_for_spanish_poum
 				has_completed_focus = SOV_coup_detat
-				has_global_flag = SPR_anarchist_uprising_flag
-				SPC = { has_completed_focus = SPR_the_anti_fascist_workers_revolution }
+				has_global_flag = SPA_anarchist_uprising_flag
+				SPC = { has_completed_focus = SPA_the_anti_fascist_workers_revolution }
 			}
 			custom_trigger_tooltip = {
 				tooltip = RULE_VOLUNTEERS_SOVIET_SCW_POUM_TT
@@ -915,7 +915,7 @@ DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
 					has_government = communism
 					has_government = democratic
 				}
-				FROM = { original_tag = SPR }
+				FROM = { original_tag = SPA }
 			}
 			custom_trigger_tooltip = {
 				tooltip = RULE_VOLUNTEERS_SOVIET_SCW_TT
@@ -944,7 +944,7 @@ DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
 					has_government = fascism
 					has_government = neutrality
 				}
-				FROM = { original_tag = SPR }
+				FROM = { original_tag = SPA }
 			}
 			custom_trigger_tooltip = {
 				tooltip = RULE_VOLUNTEERS_SOVIET_EXILES_SCW_TT
@@ -1005,7 +1005,7 @@ DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
 				}
 				FROM = {
 					tag = SPC
-					has_completed_focus = SPR_regional_defense_council_of_aragon
+					has_completed_focus = SPA_regional_defense_council_of_aragon
 	}
 			}
 			custom_trigger_tooltip = {

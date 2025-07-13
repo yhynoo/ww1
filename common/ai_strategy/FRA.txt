@@ -11,17 +11,11 @@ FRA_army_composition = {
 	}
 }
 
-# don't work for ITA or RUS, we need those troops at home
+# don't work for the russians, we need those troops at home
 FRA_stay_at_home = {
 	allowed = { tag = FRA }
 	enable = { always = yes }
 	abort_when_not_enabled = yes
-
-	ai_strategy = {
-		type = dont_defend_ally_borders
-		id = ITA
-		value = 100
-	}
 
     ai_strategy = {
 		type = dont_defend_ally_borders
@@ -56,5 +50,18 @@ FRA_careful_HOL = {
 		type = declare_war
 		id = HOL
 		value = -100
+	}
+}
+
+# don't waste too much stuff on africa
+france_avoid_africa = {
+	allowed = { original_tag = FRA }
+	enable = { always = yes }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = front_unit_request
+		state_trigger = { is_on_continent = africa }
+		value = -150
 	}
 }
