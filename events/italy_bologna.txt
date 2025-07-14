@@ -1,0 +1,40 @@
+add_namespace = italy_bologna
+
+country_event = {
+    id = italy_bologna.1
+    title = "Shots at a Communist Rally in Bologna"
+    desc = italy_bologna.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They is a mere incident."
+        add_political_power = -0.05
+    }
+    option = {
+        name = "Organize widespread arrests."
+        add_popularity = { ideology = ROOT popularity = 0.05 }
+
+        hidden_effect = { 
+            random_list = {
+				50 = { news_event = { id = italy_bologna.2 days = 14 random_days = 28 } }
+                50 = { }
+			}
+        }
+    }
+}
+
+news_event = {
+    id = italy_bologna.2
+    title = "Young Socialist Killed in the South"
+    desc = italy_bologna.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "What a tragedy."
+
+        add_stability = -0.05
+        add_popularity = { ideology = communism popularity = 0.05 }
+    }
+}

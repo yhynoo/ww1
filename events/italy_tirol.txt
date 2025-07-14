@@ -1,0 +1,48 @@
+add_namespace = italy_tirol
+
+country_event = {
+    id = italy_tirol.1
+    title = "Loyalty for South Tirol?"
+    desc = italy_tirol.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This would secure the southern front."
+        FROM = { 
+            news_event = { id = italy_tirol.2 hours = 6 random_hours = 6 }
+            39 = { transfer_state_to = FROM }
+        }
+
+        diplomatic_relation = { country = FROM relation = non_aggression_pact active = yes }
+    }
+    option = {
+        name = "Outrageous."
+        FROM = { news_event = { id = italy_tirol.3 hours = 6 random_hours = 6 } }
+    }
+}
+
+news_event = {
+    id = italy_tirol.2
+    title = "[FROM.GetName] Transfers South Tirol"
+    desc = italy_tirol.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A victory for Italy."
+    }
+}
+
+news_event = {
+    id = italy_tirol.3
+    title = "[FROM.GetName] Declines!"
+    desc = italy_tirol.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Disappointing."
+    }
+}

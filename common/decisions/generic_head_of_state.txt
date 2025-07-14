@@ -1,4 +1,5 @@
 dc_head_of_state_decisions = {
+    # war support
     encourage_voluntary_draft = {
         icon = generic_prepare_civil_war    
         days_remove = 90
@@ -16,139 +17,74 @@ dc_head_of_state_decisions = {
             weekly_manpower = 600
         }
     }
-    imprison_the_extremists = {
+
+    # propaganda
+    expand_state_information_auth = {
+        visible = { has_government = authoritarianism }
+
         icon = generic_civil_support
-        visible = {
-            or = { has_government = monarchism has_government = democratic }
-        }
-        fire_only_once = no
         days_remove = 90
-        cost = 75
+        cost = 50
 
         ai_will_do = {
             base = 3
-            modifier = { 
-                OR = { communism > 0.2 authoritarianism > 0.2 has_stability < 0.3 }
-                factor = 3
-            }
-            modifier = {
-                or = { has_idea = idea_communism_tendencies has_idea = idea_authoritarianism_tendencies }
-                factor = 0
-            }
+            modifier = { has_stability < 0.5 factor = 2 }
         }
 
         modifier = {
-            authoritarianism_drift = -0.1
-            communism_drift = -0.1
-            stability_weekly = -0.005
-        }
-    }
-    persecute_the_opposition = {
-        icon = generic_civil_support
-        visible = {
-            or = { has_government = authoritarianism has_government = communism }
-        }
-        fire_only_once = no
-        days_remove = 90
-        cost = 75
-
-        ai_will_do = {
-            base = 3
-            modifier = { 
-                OR = { democratic > 0.2 monarchism > 0.2 has_stability < 0.3 } 
-                factor = 3
-            }
-            modifier = {
-                or = { has_idea = idea_monarchism_tendencies has_idea = idea_democratic_tendencies }
-                factor = 0
-            }
-        }
-
-        modifier = {
-            monarchism_drift = -0.15
-            democratic_drift = -0.15
-            stability_weekly = -0.01
-        }
-    }
-
-    expand_official_information_democratic = {
-        visible = {
-            has_government = democratic
-        }
-        days_remove = 90
-        cost = 75
-
-        ai_will_do = {
-            base = 3
-            modifier = { has_stability < 0.4 factor = 2 }
-            modifier = { has_stability < 0.25 factor = 3 }
-
-            modifier = { or = { has_idea = idea_authoritarianism_tendencies has_idea = idea_communism_tendencies has_idea = idea_monarchism_tendencies } factor = 0 }
-        }
-
-        modifier = {
-            stability_weekly = 0.01
-            democratic_drift = 0.05
-        }
-    }
-    expand_official_information_monarchist = {
-        visible = {
-            has_government = monarchism
-        }
-        days_remove = 90
-        cost = 75
-
-        ai_will_do = {
-            base = 3
-            modifier = { has_stability < 0.4 factor = 2 }
-            modifier = { has_stability < 0.25 factor = 3 }
-
-            modifier = { or = { has_idea = idea_authoritarianism_tendencies has_idea = idea_communism_tendencies has_idea = idea_democratic_tendencies } factor = 0 }
-        }
-
-        modifier = {
-            stability_weekly = 0.01
-            monarchism_drift = 0.05
-        }
-    }
-    expand_official_information_communist = {
-        visible = {
-            has_government = communism
-        }
-        days_remove = 90
-        cost = 75
-
-        ai_will_do = {
-            base = 3
-            modifier = { has_stability < 0.4 factor = 2 }
-            modifier = { has_stability < 0.25 factor = 3 }
-
-            modifier = { or = { has_idea = idea_authoritarianism_tendencies has_idea = idea_democratic_tendencies has_idea = idea_monarchism_tendencies } factor = 0 }
-        }
-
-        modifier = {
-            stability_weekly = 0.01
-            communism_drift = 0.05
-        }
-    }
-    expand_official_information_authoritarian = {
-        visible = {
-            has_government = authoritarianism
-        }
-        days_remove = 90
-        cost = 75
-
-        ai_will_do = {
-            base = 3
-            modifier = { has_stability < 0.4 factor = 2 }
-            modifier = { has_stability < 0.25 factor = 3 }
-
-            modifier = { or = { has_idea = idea_communism_tendencies has_idea = idea_democratic_tendencies has_idea = idea_monarchism_tendencies } factor = 0 }
-        }
-
-        modifier = {
-            stability_weekly = 0.01
             authoritarianism_drift = 0.05
+            stability_weekly = 0.005
         }
     }
+    expand_state_information_com = {
+        visible = { has_government = communism }
+
+        icon = generic_civil_support
+        days_remove = 90
+        cost = 50
+
+        ai_will_do = {
+            base = 3
+            modifier = { has_stability < 0.5 factor = 2 }
+        }
+
+        modifier = {
+            communism_drift = 0.05
+            stability_weekly = 0.005
+        }
+    }
+    expand_state_information_dem = {
+        visible = { has_government = democratic }
+
+        icon = generic_civil_support
+        days_remove = 90
+        cost = 50
+
+        ai_will_do = {
+            base = 3
+            modifier = { has_stability < 0.5 factor = 2 }
+        }
+
+        modifier = {
+            democratic_drift = 0.05
+            stability_weekly = 0.005
+        }
+    }
+    expand_state_information_mon = {
+        visible = { has_government = monarchism }
+
+        icon = generic_civil_support
+        days_remove = 90
+        cost = 50
+
+        ai_will_do = {
+            base = 3
+            modifier = { has_stability < 0.5 factor = 2 }
+        }
+
+        modifier = {
+            monarchism_drift = 0.05
+            stability_weekly = 0.005
+        }
+    }    
 }

@@ -802,11 +802,8 @@ focus_tree = {
 
         prerequisite = { focus = AUS_traditionalism }
         completion_reward = {
-            remove_ideas = idea_dissatisfied_hungarians
-            country_event = { id = austria_mosaic.1 hours = 6 random_hours = 6 }
-
-            #custom_effect_tooltip = decision_effect_tooltip
-            #hidden_effect = { set_country_flag = public_support_allowed }
+            custom_effect_tooltip = decision_effect_tooltip
+            hidden_effect = { set_country_flag = public_support_allowed }
         }
     }
     focus = {
@@ -879,6 +876,8 @@ focus_tree = {
         completion_reward = {
             add_timed_idea = { idea = idea_democratic_tendencies years = 1 }
             add_popularity = { ideology = democratic popularity = 0.1 }
+
+            hidden_effect = { country_event = { id = austria_ausgleich.1 days = 28 random_days = 28 } }
         }
     }
     focus = {

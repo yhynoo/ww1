@@ -15,12 +15,30 @@ news_event = {
     }
 }
 
+news_event = {
+    id = x_atmosphere.2
+    title = "Arson in Brussels"     # an anarchist torched the french embassy: german false flag or genuine dissent?
+    desc = x_atmosphere.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Disturbing."
+
+        if = {
+            limit = { tag = HOL }
+            hidden_effect = { add_named_threat = { threat = 5 name = "Arson in Brussels!" } }
+        }
+    }
+}
+
 # 1913
 
 news_event = {
-    id = x_atmosphere.2
+    id = x_atmosphere.3
     title = "Danish Professor Discusses the Atom"
-    desc = x_atmosphere.2.d
+    desc = x_atmosphere.3.d
 
     is_triggered_only = yes
     major = yes
@@ -31,9 +49,9 @@ news_event = {
 }
 
 news_event = {
-    id = x_atmosphere.3
+    id = x_atmosphere.4
     title = "The Automobile — Reinvented!"
-    desc = x_atmosphere.3.d
+    desc = x_atmosphere.4.d
 
     is_triggered_only = yes
     major = yes
@@ -46,9 +64,9 @@ news_event = {
 # 1915
 
 news_event = {
-    id = x_atmosphere.4
+    id = x_atmosphere.5
     title = "A New Voice Across the Atlantic!"
-    desc = x_atmosphere.4.d
+    desc = x_atmosphere.5.d
 
     is_triggered_only = yes
     major = yes
@@ -59,9 +77,9 @@ news_event = {
 }
 
 news_event = {
-    id = x_atmosphere.5
+    id = x_atmosphere.6
     title = "Space and Time — Anew?"
-    desc = x_atmosphere.5.d
+    desc = x_atmosphere.6.d
 
     is_triggered_only = yes
     major = yes
@@ -74,9 +92,9 @@ news_event = {
 # 1917
 
 news_event = {
-    id = x_atmosphere.6
+    id = x_atmosphere.7
     title = "A Lavatory in a Gallery?"
-    desc = x_atmosphere.6.d
+    desc = x_atmosphere.7.d
 
     is_triggered_only = yes
     major = yes

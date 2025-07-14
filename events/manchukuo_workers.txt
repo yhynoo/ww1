@@ -2,94 +2,43 @@ add_namespace = manchukuo_workers
 
 country_event = {
     id = manchukuo_workers.1
-    title = "Guangzhou Administration Offices Attacked"
+    title = "Tax Administration Attacked in the South"
     desc = manchukuo_workers.1.d
 
     is_triggered_only = yes
-    trigger = { UKR = { exists = no } }
 
     option = {
-        name = "Seek appeasement."
-        add_political_power = -75
+        name = "Appease the workers."
 
-        hidden_effect = { news_event = { id = manchukuo_workers.2 days = 7 random_days = 7 } }
+        political_power = -50
+        add_popularity = { ideology = communism popularity = 0.05 }
     }
     option = {
         name = "Send in the army."
         add_stability = -0.05
 
-        hidden_effect = { country_event = { id = manchukuo_workers.3 days = 28 random_days = 7 } }
-    }
-}
-
-news_event = {
-    id = manchukuo_workers.2
-    title = "Egregious Communist Audacity?"
-    desc = manchukuo_workers.2.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Disgusting."
-        add_timed_idea = { idea = idea_communism_tendencies years = 1 }
-    }
-}
-
-country_event = {
-    id = manchukuo_workers.3
-    title = "An Intercepted Dispatch"
-    desc = manchukuo_workers.3.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Organize widespread arrests."
-        add_popularity = { ideology = authoritarianism popularity = 0.05 }
-
-        hidden_effect = { news_event = { id = manchukuo_workers.4 days = 7 random_days = 7 } }
-    }
-    option = {
-        name = "There is nothing to worry about."
-        add_stability = 0.05
-
-        hidden_effect = { news_event = { id = manchukuo_workers.5 days = 7 random_days = 7 } }
-    }
-}
-
-news_event = {
-    id = manchukuo_workers.4
-    title = "Chinese Workers' Movement Decapitated?"
-    desc = manchukuo_workers.4.d
-
-    is_triggered_only = yes
-    major = yes
-
-    option = {
-        name = "Interesting."
-
-        if = {
-            limit = { tag = MAN }
-            add_popularity = { ideology = communism popularity = -0.1 }
+        hidden_effect = { 
+            random_list = {
+				50 = { news_event = { id = manchukuo_workers.2 days = 14 random_days = 28 } }
+                50 = { }
+			}
         }
     }
 }
 
 news_event = {
-    id = manchukuo_workers.5
-    title = "Workers in the South Take Up Arms!"
-    desc = manchukuo_workers.5.d
+    id = manchukuo_workers.2
+    title = "Workers' Uprising in South China!"
+    desc = manchukuo_workers.2.d
 
     is_triggered_only = yes
 
     option = {
-        name = "Awful."
+        name = "We must restore order."
 
-        if = {
-            limit = { tag = MAN }
-            start_civil_war = { 
-                ideology = communism size = 0.4
-                states = { 591 592 593 594 595 599 600 602 }
-            }
+        start_civil_war = { 
+            ideology = communism size = 0.4
+            states = { 591 592 593 594 595 599 600 602 }
         }
     }
 }

@@ -833,7 +833,7 @@
     }
     focus = {
         id = ITA_mobilize_the_masses
-        icon = GFX_focus_generic_mobilize_the_masses
+        icon = GFX_focus_ITA_mobilize_the_masses
 
         relative_position_id = ITA_traditionalism
         x = 1
@@ -847,11 +847,12 @@
 
         prerequisite = { focus = ITA_traditionalism }
         completion_reward = {
-            add_timed_idea = { idea = idea_mobilize_the_masses years = 2 }
-
-            hidden_effect = {
-                news_event = { id = x_war_support.2 hours = 12 random_hours = 6 }
-            }
+            add_timed_idea = { idea = idea_arditi years = 2 }
+            
+            add_tech_bonus = {
+				name = arditi_bonus bonus = 1.0 uses = 1
+				technology = assault_mg
+			}
         }
     }
     focus = {
@@ -882,8 +883,8 @@
         cost = 10
 
         available = {
-            owns_state = 33
-            owns_state = 39
+            controls_state = 33
+            controls_state = 39
         }
 
         prerequisite = { focus = ITA_strength_in_unity }
@@ -929,7 +930,7 @@
     }
     focus = {
         id = ITA_open_the_economy
-        icon = GFX_focus_generic_open_the_economy
+        icon = GFX_focus_ITA_open_the_economy
 
         relative_position_id = ITA_adjust_the_government
         x = -1

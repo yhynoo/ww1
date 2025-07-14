@@ -20,14 +20,6 @@ avenge_libya = {
 
         complete_effect = {
             TUR = { country_event = { id = italy_libya.1 hours = 6 random_hours = 6 } }
-
-            every_state = {
-                limit = {
-                    or = { state = 273 state = 661 state = 663 }
-                    is_owned_by = TUR
-                }
-                add_claim_by = ITA
-            }
         }
     }
     demand_aegean = {
@@ -36,8 +28,8 @@ avenge_libya = {
         cost = 100
 
         ai_will_do = { 
-            base = 0
-            modifier = { or = { not = { any_country = { has_guaranteed = TUR } } TUR = { is_in_faction = no } } add = 9 }
+            base = 6
+            modifier = { has_war_with = TUR add = 3 }
         }
 
         available = {

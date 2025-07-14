@@ -1,59 +1,14 @@
 add_namespace = italy_aegean
 
-country_event = {
-    id = italy_aegean.1
-    title = "Italy Demands the Aegean Islands"
-    desc = italy_aegean.1.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "We must agree."
-        FROM = { 
-            news_event = { id = italy_aegean.2 hours = 6 random_hours = 6 }
-            every_state = {
-                limit = { or = { state = 182 state = 187 state = 164 } is_owned_and_controlled_by = ROOT }      # add states.
-                transfer_state_to = FROM
-            }
-        }
-
-        ai_chance = { base = 1 }
-    }
-    option = {
-        name = "We will never agree to this."
-        FROM = { 
-            news_event = { id = italy_aegean.3 hours = 6 random_hours = 6 }
-            create_wargoal = {
-                target = ROOT
-                type = take_state_focus
-            }
-        }
-
-        ai_chance = { base = 3 }
-    }
-}
-
 news_event = {
-    id = italy_aegean.2
-    title = "[ITA.GetName] Takes the Aegean Islands"
-    desc = italy_aegean.2.d
+    id = italy_aegean.1
+    title = "Italy Extends Claims to Aegean Islands"
+    desc = italy_aegean.1.d
 
     is_triggered_only = yes
     major = yes
 
     option = {
         name = "Concerning."
-    }
-}
-
-news_event = {
-    id = italy_aegean.3
-    title = "[FROM.GetName] Declines!"
-    desc = italy_aegean.3.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "We shall see about this."
     }
 }

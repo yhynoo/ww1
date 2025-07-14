@@ -833,7 +833,7 @@
     }
     focus = {
         id = HOL_mobilize_the_masses
-        icon = GFX_focus_generic_mobilize_the_masses
+        icon = GFX_focus_HOL_mobilize_the_masses
 
         relative_position_id = HOL_thorbeckes_legacy
         x = 1
@@ -847,7 +847,7 @@
 
         prerequisite = { focus = HOL_thorbeckes_legacy }
         completion_reward = {
-            add_timed_idea = { idea = idea_mobilize_the_masses years = 2 }
+            add_timed_idea = { idea = idea_maintain_the_pillars years = 2 }
 
             hidden_effect = {
                 news_event = { id = x_war_support.2 hours = 12 random_hours = 6 }
@@ -909,6 +909,8 @@
 
             add_timed_idea = { idea = idea_monarchism_tendencies years = 1 }
             add_popularity = { ideology = monarchism popularity = 0.1 }
+
+            hidden_effect = { country_event = { id = holland_eindhoven_fund.1 days = 42 random_days = 70 } }
         }
     }
     focus = {
@@ -927,7 +929,7 @@
     }
     focus = {
         id = HOL_open_the_economy
-        icon = GFX_focus_USA_american_industries
+        icon = GFX_focus_generic_open_the_economy
 
         relative_position_id = HOL_integrate_flanders
         x = -1

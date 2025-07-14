@@ -1,0 +1,38 @@
+add_namespace = holland_eindhoven
+
+country_event = {
+    id = holland_eindhoven.1
+    title = "Industrialists to Save Eindhoven?"
+    desc = holland_eindhoven.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "It's their own business."
+        add_popularity = { ideology = ROOT popularity = -0.05 }
+    }
+    option = {
+        name = "Establish the fund."
+        add_ideas = idea_eindhoven_fund
+
+        hidden_effect = { 
+            random_list = {
+				50 = { news_event = { id = holland_eindhoven.2 days = 14 random_days = 28 } }
+                50 = { }
+			}
+        }
+    }
+}
+
+news_event = {
+    id = holland_eindhoven.2
+    title = "Wallonians Develop the Mining Industry"
+    desc = holland_eindhoven.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Wonderful."
+        35 = { add_resource = { type = steel amount = 8 } }
+    }
+}

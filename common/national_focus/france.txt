@@ -839,11 +839,8 @@
 
         prerequisite = { focus = FRA_traditionalism }
         completion_reward = {
-            country_event = { id = france_commune.1 hours = 6 }
-            add_political_power = 50
-            
-            #custom_effect_tooltip = decision_effect_tooltip
-            #hidden_effect = { set_country_flag = public_support_allowed }
+            custom_effect_tooltip = decision_effect_tooltip
+            hidden_effect = { set_country_flag = public_support_allowed }
         }
     }
     focus = {
@@ -862,7 +859,7 @@
 
         prerequisite = { focus = FRA_traditionalism }
         completion_reward = {
-            add_timed_idea = { idea = idea_not_again years = 2 }
+            add_timed_idea = { idea = idea_sacred_union years = 2 }
 
             hidden_effect = {
                 news_event = { id = x_war_support.2 hours = 12 random_hours = 6 }
@@ -950,7 +947,6 @@
 
         prerequisite = { focus = FRA_adjust_the_government }
         completion_reward = {
-            remove_idea = idea_headless_rooster
             custom_effect_tooltip = decision_effect_tooltip
         }
     }

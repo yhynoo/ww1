@@ -1,0 +1,83 @@
+add_namespace = italy_lausanne
+
+country_event = {
+    id = italy_lausanne.1
+    title = "Treaty with [TUR.GetNameDef]?"
+    desc = italy_lausanne.1.d
+
+    fire_only_once = yes
+    trigger = {
+        war_length_with = { tag = TUR months > 6 }
+
+        # it must be one on one
+        not = { any_country = { is_ally_with = ITA } }
+        not = { any_country = { is_ally_with = TUR } }
+    }
+
+    option = {
+        name = "They must submit now."
+        TUR = { news_event = { id = italy_lausanne.2 hours = 6 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "We will keep pushing."
+        add_war_support = -0.1
+
+        ai_chance = { base = 0 }
+    }
+}
+
+country_event = {
+    id = italy_lausanne.2
+    title = "[ITA.GetName] Offers a Treaty"
+    desc = italy_lausanne.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We should agree."
+
+        white_peace = ITA
+        every_state = {
+            limit = { is_owned_by = TUR is_claimed_by = ITA }
+            transfer_state_to = ITA
+        }
+
+        hidden_effect = { FROM = { news_event = { id = italy_lausanne.3 hours = 6 random_hours = 6 } } }
+        ai_chance = { base = 3 }
+    }
+    option = {
+        name = "How dare they?"
+        add_war_support = 0.05
+
+        hidden_effect = { FROM = { news_event = { id = italy_lausanne.4 hours = 6 random_hours = 6 } } }
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = italy_lausanne.3
+    title = "Treaty of Lausanne Signed!"
+    desc = italy_lausanne.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = italy_lausanne.4
+    title = "[FROM.GetName] Declines!"
+    desc = italy_lausanne.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "It's their loss."
+        add_war_support = 0.05
+    }
+}
