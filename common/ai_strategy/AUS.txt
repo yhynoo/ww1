@@ -1,3 +1,23 @@
+# austria extra militarization
+austria_army_production = {
+	allowed = { original_tag = AUS }
+	enable = { always = yes }
+	abort = { always = no }
+
+	# prepare more units
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 30
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = infantry
+		value = 15
+	}
+}
+
 AUS_hates_SOV = {
 	allowed = { original_tag = AUS }
 	enable = { 
@@ -10,5 +30,20 @@ AUS_hates_SOV = {
 		type = declare_war
 		id = SOV
 		value = 300
+	}
+}
+
+AUS_focuses_on_alps = {
+	allowed = { original_tag = AUS }
+	enable = { 
+		not = { is_ally_with = ITA } 
+		not = { has_non_aggression_pact_with = ITA } 
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = ITA
+		value = 30
 	}
 }

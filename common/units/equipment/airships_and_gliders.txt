@@ -1,0 +1,167 @@
+equipments = {
+    airship_archetype = {
+        year = 1904
+        
+        is_archetype = yes
+        is_buildable = no
+        active = no
+
+        type = air_transport
+        group_by = archetype
+        interface_category = interface_category_air
+    }
+
+    airship_1904 = {
+        year = 1904
+        active = no
+
+        archetype = airship_archetype
+
+        allow_mission_type = {
+			recon
+		}
+
+        air_range = 850
+		maximum_speed = 40
+
+		air_agility = 5
+		air_attack = 0
+		air_defence = 0
+        air_superiority = 1
+
+		naval_strike_attack = 0
+		naval_strike_targetting = 10
+        surface_detection = 10
+		sub_detection = 2.5
+
+		reliability = 0.6
+
+        lend_lease_cost = 40
+		build_cost_ic = 680
+
+		resources = {
+			tungsten = 4
+			rubber = 1
+		}
+
+		manpower = 40
+		fuel_consumption = 0.2
+    }
+    airship_1914 = {
+        year = 1914
+        active = no
+
+        archetype = airship_archetype
+
+        allow_mission_type = {
+			recon
+            paradrop
+            air_supply
+            strategic_bomber
+		}
+
+        air_range = 1650
+		maximum_speed = 75
+
+		air_agility = 8
+		air_attack = 4
+		air_defence = 42
+        air_superiority = 8
+
+        air_bombing = 20
+		air_ground_attack = 6.8
+
+		naval_strike_attack = 4
+		naval_strike_targetting = 10
+        surface_detection = 10
+		sub_detection = 2.5
+
+		reliability = 0.8
+
+        lend_lease_cost = 45
+		build_cost_ic = 800
+
+		resources = {
+			tungsten = 6
+            aluminium = 1
+			rubber = 1
+		}
+
+		manpower = 50
+		fuel_consumption = 0.24
+    }
+    airship_1918 = {
+        year = 1918
+        active = no
+
+        parent = airship_1914
+        archetype = airship_archetype
+
+        air_range = 2250
+		maximum_speed = 110
+
+		air_agility = 9
+		air_attack = 8
+		air_defence = 58
+        air_superiority = 12
+
+        air_bombing = 36
+		air_ground_attack = 16.8
+
+		naval_strike_attack = 6
+		naval_strike_targetting = 12
+        surface_detection = 14
+		sub_detection = 4
+
+		reliability = 0.85
+
+        lend_lease_cost = 55
+
+		build_cost_ic = 960
+		resources = {
+			tungsten = 6
+            aluminium = 2
+			rubber = 1
+		}
+
+		manpower = 60
+		fuel_consumption = 0.26
+    }
+
+    # gliders
+    glider_equipment = {
+        year = 1904
+	
+		is_archetype = yes
+		is_buildable = no
+        active = no
+
+		type = infantry
+		group_by = archetype
+		interface_category = interface_category_land
+
+        reliability = 0.6
+
+        build_cost_ic = 0.8
+		resources = { tungsten = 1 }
+    }
+
+    glider_1912 = {
+		year = 1912
+	
+		archetype = glider_equipment
+		active = no
+	}
+
+    glider_1918 = {
+		year = 1918
+	
+		archetype = glider_equipment
+        parent = glider_1912
+		active = no
+
+        reliability = 0.9
+        build_cost_ic = 0.7
+        resources = { tungsten = 1 aluminium = 1 }
+	}
+}

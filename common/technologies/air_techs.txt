@@ -188,7 +188,7 @@ technologies = {
     }
 
     tac_bomber_1914 = {
-        enable_equipments = { tac_bomber_equipment_1 }
+        enable_equipments = { tac_bomber_equipment_0 }
         categories = { air_equipment }
 
         research_cost = 2
@@ -205,7 +205,7 @@ technologies = {
         }
     }
     tac_bomber_1917 = {
-        enable_equipments = { tac_bomber_equipment_2 }
+        enable_equipments = { tac_bomber_equipment_1 }
         categories = { air_equipment }
 
         research_cost = 2
@@ -217,15 +217,32 @@ technologies = {
         }
     }
 
-    seaplane_1912 = {
-        enable_equipments = { nav_bomber_equipment_1 }
+    # airships
+    airship_1904 = {
+        enable_equipments = { airship_1904 }
         categories = { air_equipment }
 
         research_cost = 2
+        start_year = 1904
+
+        path = {
+            leads_to_tech = alu_frames
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 0 y = @1904 }
+        }
+    }
+    alu_frames = {
+        categories = { air_equipment }
+
+        research_cost = 1
         start_year = 1912
 
         path = {
-            leads_to_tech = seaplane_1915
+            leads_to_tech = airship_1914
             research_cost_coeff = 1
         }
 
@@ -234,15 +251,97 @@ technologies = {
             position = { x = 0 y = @1912 }
         }
     }
-    seaplane_1915 = {
-        enable_equipments = { nav_bomber_equipment_2 }
+
+    airship_1914 = {
+        enable_equipments = { airship_1914 }
         categories = { air_equipment }
 
         research_cost = 2
+        start_year = 1914
+
+        path = {
+            leads_to_tech = airship_1918
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = observation_decks
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+    airship_1918 = {
+        enable_equipments = { airship_1918 }
+        categories = { air_equipment }
+
+        research_cost = 2
+        start_year = 1918
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 0 y = @1918 }
+        }
+    }
+
+    observation_decks = {
+        categories = { air_equipment }
+
+        research_cost = 1
+        start_year = 1914
+
+        path = {
+            leads_to_tech = aa_decks
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 2 y = @1914 }
+        }
+    }
+    aa_decks = {
+        categories = { air_equipment }
+
+        research_cost = 1
+        start_year = 1916
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 2 y = @1916 }
+        }
+    }
+
+    # gliders
+    glider_1912 = {
+        enable_equipments = { glider_1912 }
+        enable_subunits = { paratrooper }
+
+        categories = { air_equipment }
+
+        research_cost = 2
+        start_year = 1912
+
+        path = {
+            leads_to_tech = foldable_frames
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = air_techs_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+    foldable_frames = {
+        categories = { air_equipment }
+
+        research_cost = 1
         start_year = 1915
 
         path = {
-            leads_to_tech = seaplane_1918
+            leads_to_tech = glider_1918
             research_cost_coeff = 1
         }
 
@@ -251,8 +350,9 @@ technologies = {
             position = { x = 0 y = @1915 }
         }
     }
-    seaplane_1918 = {
-        enable_equipments = { nav_bomber_equipment_3 }
+
+    glider_1918 = {
+        enable_equipments = { glider_1918 }
         categories = { air_equipment }
 
         research_cost = 2
