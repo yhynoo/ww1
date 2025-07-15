@@ -1,5 +1,5 @@
 equipments = {
-    airship_archetype = {
+    airship_equipment = {
         year = 1904
         
         is_archetype = yes
@@ -9,17 +9,24 @@ equipments = {
         type = air_transport
         group_by = archetype
         interface_category = interface_category_air
+		interface_overview_category_index = 1
+
+		allow_mission_type = {
+			training
+            paradrop
+		}
+		forbid_mission_type = drop_nuke
+
+		sprite = medium_plane
+		picture = archetype_strat_bomber_equipment
+		air_map_icon_frame = 12
     }
 
     airship_1904 = {
         year = 1904
         active = no
 
-        archetype = airship_archetype
-
-        allow_mission_type = {
-			recon
-		}
+        archetype = airship_equipment
 
         air_range = 850
 		maximum_speed = 40
@@ -37,7 +44,7 @@ equipments = {
 		reliability = 0.6
 
         lend_lease_cost = 40
-		build_cost_ic = 680
+		build_cost_ic = 285
 
 		resources = {
 			tungsten = 4
@@ -51,10 +58,10 @@ equipments = {
         year = 1914
         active = no
 
-        archetype = airship_archetype
+        archetype = airship_equipment
 
-        allow_mission_type = {
-			recon
+		allow_mission_type = {
+			training
             paradrop
             air_supply
             strategic_bomber
@@ -79,7 +86,7 @@ equipments = {
 		reliability = 0.8
 
         lend_lease_cost = 45
-		build_cost_ic = 800
+		build_cost_ic = 325
 
 		resources = {
 			tungsten = 6
@@ -95,7 +102,7 @@ equipments = {
         active = no
 
         parent = airship_1914
-        archetype = airship_archetype
+        archetype = airship_equipment
 
         air_range = 2250
 		maximum_speed = 110
@@ -117,7 +124,7 @@ equipments = {
 
         lend_lease_cost = 55
 
-		build_cost_ic = 960
+		build_cost_ic = 345
 		resources = {
 			tungsten = 6
             aluminium = 2

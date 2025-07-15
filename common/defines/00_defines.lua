@@ -1358,9 +1358,9 @@ NAir = {
 	INTERCEPTION_DISTANCE_SCALE = 50, -- At this many pixels of path length, full interception efficiency is applied to air missions. Lerp from 0.
 	INTERCEPTION_DAMAGE_SCALE = 0.3, -- Multiply the interception damage with this value. Works as a cap when interception distance is at maximum.
 
-	MIN_PLANE_COUNT_PARADROP = 50,
+	MIN_PLANE_COUNT_PARADROP = 5,
 	MIN_PLANE_COUNT_AIR_SUPPLY = 1,
-	BASE_UNIT_WEIGHT_IN_TRANSPORT_PLANES = 45.0,
+	BASE_UNIT_WEIGHT_IN_TRANSPORT_PLANES = 10.0,
 
 	MANPOWER_LOSS_RATIO_PLANE_SHOT = 0.10,	-- The loss ratio of manpower for a shot plane.
 	
@@ -2568,7 +2568,7 @@ NAI = {
 	MIN_SUPPLY_USE_SANITY_CAP = 100,					-- Ignore supply cap if below this value when deciding on how many divisions to produce.
 	MAX_SUPPLY_DIVISOR = 1.75,							-- To make sure the AI does not overdeploy divisions. Higher number means more supply per unit.
 	MISSING_CONVOYS_BOOST_FACTOR = 50.0,				-- The more convoys a country is missing, the more resources it diverts to cover this.
-	TRANSPORTS_PER_PARATROOPER = 20,					-- Currently unused.
+	TRANSPORTS_PER_PARATROOPER = 1,						-- Currently unused.
 	MAX_MICRO_ATTACKS_PER_ORDER = 3,					-- AI goes through its orders and checks if there are situations to take advantage of
 	FALLBACK_LOSING_FACTOR = 1.0,						-- The lower this number, the longer the AI will hold the line before sending them to the fallback line
 	PRODUCTION_MAX_PROGRESS_TO_SWITCH_NAVAL = 0.1,		-- AI will not replace ships being built by newer types if progress is above this
