@@ -10,8 +10,6 @@ country_event = {
     option = {
         name = "Enforce order."
         add_political_power = -75
-
-        hidden_effect = { news_event = { id = england_transvaal.2 days = 14 random_days = 42 } }
     }
     option = {
         name = "This will diffuse."
@@ -19,6 +17,8 @@ country_event = {
             limit = { is_core_of = SAF is_owned_and_controlled_by = ENG }
             add_resistance = 20
         }
+
+        hidden_effect = { news_event = { id = england_transvaal.2 days = 14 random_days = 42 } }
     }
 }
 
@@ -28,7 +28,7 @@ news_event = {
     desc = england_transvaal.2.d
 
     is_triggered_only = yes
-    trigger = { 275 = { resistance > 20 } }
+    trigger = { 275 = { resistance > 15 } }
     major = yes
 
     immediate = {
@@ -44,7 +44,6 @@ news_event = {
         if = {
             limit = { tag = ENG }
             remove_ideas = idea_unrest_in_transvaal
-
             hidden_effect = { start_south_african_independence_war = yes }
         }
     }
