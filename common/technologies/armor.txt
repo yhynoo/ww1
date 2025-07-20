@@ -12,31 +12,61 @@ technologies = {
 
     # armored cars
 
-    modular_armament = {
+    adapted_suspension = {
         categories = { mechanized_tech }
 
         research_cost = 1
-        start_year = 1914
+        start_year = 1913
+
+        category_mobile_and_mobile_combat_sup = {
+            reliability = 0.05
+        }
 
         path = {
-            leads_to_tech = autocannon
+            leads_to_tech = trench_crossing
             research_cost_coeff = 1
         }
 
         folder = {
             name = armour_folder
-            position = { x = 0 y = @1914 }
+            position = { x = 0 y = 7 }
         }
     }
-    autocannon = {
-        categories = { mechanized_tech }
+    trench_crossing = {
+        categories = { armor_tech }
 
         research_cost = 1
-        start_year = 1917
+        start_year = 1915
+
+        category_tanks = {
+            maximum_speed = 0.05
+            breakthrough = 0.05
+        }
+
+        path = {
+            leads_to_tech = improved_tracks
+            research_cost_coeff = 1
+        }
 
         folder = {
             name = armour_folder
-            position = { x = 0 y = @1917 }
+            position = { x = 0 y = @1915 }
+        }
+    }
+    improved_tracks = {
+        categories = { armor_tech }
+
+        research_cost = 1
+        start_year = 1920
+
+        category_tanks = {
+            maximum_speed = 0.05
+            reliability = 0.05
+        }
+
+        folder = {
+            name = armour_folder
+            position = { x = 0 y = @1920 }
         }
     }
 
@@ -84,7 +114,7 @@ technologies = {
         start_year = 1915
 
         path = {
-            leads_to_tech = armored_car_1917
+            leads_to_tech = armored_car_1918
             research_cost_coeff = 1
         }
 
@@ -93,41 +123,27 @@ technologies = {
             position = { x = 0 y = @1915 }
         }
     }
-    armored_car_1917 = {
+    armored_car_1918 = {
         enable_equipments = { armored_car_equipment_2 }
         categories = { mechanized_tech }
 
         research_cost = 2
-        start_year = 1917
+        start_year = 1918
 
         folder = {
             name = armour_folder
-            position = { x = 0 y = @1917 }
+            position = { x = 0 y = @1918 }
         }
     }
 
-    adapted_suspension = {
+    modular_armament = {
         categories = { mechanized_tech }
 
-        research_cost = 1
-        start_year = 1912
-
-        path = {
-            leads_to_tech = differential_locking
-            research_cost_coeff = 1
-        }
-
-        folder = {
-            name = armour_folder
-            position = { x = 0 y = @1912 }
-        }
-    }
-    differential_locking = {
-        research_cost = 1
+        research_cost = 2
         start_year = 1915
 
         path = {
-            leads_to_tech = all_wheel_drive
+            leads_to_tech = autocannon
             research_cost_coeff = 1
         }
 
@@ -136,31 +152,15 @@ technologies = {
             position = { x = 0 y = @1915 }
         }
     }
-    all_wheel_drive = {
+    autocannon = {
         categories = { mechanized_tech }
 
-        research_cost = 1
-        start_year = 1916
-
-        path = {
-            leads_to_tech = dual_axle_suspension
-            research_cost_coeff = 1
-        }
+        research_cost = 2
+        start_year = 1918
 
         folder = {
             name = armour_folder
-            position = { x = 0 y = @1916 }
-        }
-    }
-    dual_axle_suspension = {
-        categories = { mechanized_tech }
-
-        research_cost = 1
-        start_year = 1919
-
-        folder = {
-            name = armour_folder
-            position = { x = 0 y = @1919 }
+            position = { x = 0 y = @1918 }
         }
     }
 
@@ -228,50 +228,6 @@ technologies = {
         folder = {
             name = armour_folder
             position = { x = 0 y = @1919 }
-        }
-    }
-
-    trench_crossing = {
-        categories = { armor_tech }
-
-        research_cost = 1
-        start_year = 1915
-
-        path = {
-            leads_to_tech = improved_tracks
-            research_cost_coeff = 1
-        }
-
-        folder = {
-            name = armour_folder
-            position = { x = 0 y = @1915 }
-        }
-    }
-    improved_tracks = {
-        categories = { armor_tech }
-
-        research_cost = 1
-        start_year = 1918
-
-        path = {
-            leads_to_tech = improved_engine
-            research_cost_coeff = 1
-        }
-
-        folder = {
-            name = armour_folder
-            position = { x = 0 y = 15 }
-        }
-    }
-    improved_engine = {
-        categories = { armor_tech }
-
-        research_cost = 1
-        start_year = 1920
-
-        folder = {
-            name = armour_folder
-            position = { x = 0 y = @1920 }
         }
     }
 }

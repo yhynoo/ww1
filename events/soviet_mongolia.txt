@@ -1,0 +1,64 @@
+add_namespace = soviet_mongolia
+
+country_event = {
+    id = soviet_mongolia.1
+    title = "Independence for Mongolia?"
+    desc = soviet_mongolia.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We cannot oppose them now."
+
+        hidden_event = {
+            SOV = { 
+                news_event = { id = soviet_mongolia.2 hours = 6 random_hours = 6 }
+                release = MON
+            }
+        }
+
+        every_owned_controlled_state = {
+            limit = { is_core_of = MON }
+            transfer_state_to = MON
+        }
+
+        SOV = { puppet = MON }
+    }
+    option = {
+        name = "We will stand on our own."
+
+        add_war_support = 0.05
+        SOV = { 
+            news_event = { id = soviet_mongolia.3 hours = 6 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = puppet_wargoal_focus
+            }
+        }
+    }
+}
+
+news_event = {
+    id = soviet_mongolia.2
+    title = "Mongolia Independent!"
+    desc = soviet_mongolia.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = soviet_mongolia.3
+    title = "[FROM.GetName] Declines!"
+    desc = soviet_mongolia.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about it."
+    }
+}

@@ -1,0 +1,55 @@
+add_namespace = turkey_salonika
+
+news_event = {
+    id = turkey_salonika.1
+    title = "The Salonika Declaration Announced!"
+    desc = turkey_salonika.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The Turks look to the East."
+
+        hidden_effect = {
+            if = { 
+                limit = { tag = TUR }
+                country_event = { id = turkey_salonika.2 days = 28 random_days = 14 }
+            }
+        }
+    }
+}
+
+country_event = {
+    id = turkey_salonika.2
+    title = "The Serbian Question"
+    desc = turkey_salonika.2.d
+
+    is_triggered_only = yes
+
+    trigger = {
+        has_stability < 0.5
+        SER = { exists = no }
+
+        any_state = {
+            is_core_of = SER
+            is_owned_and_controlled_by = TUR
+        }
+    }
+
+    option = {
+        name = "Let us grant their wish."
+        release_on_controlled = SER
+    }
+
+    option = {
+        name = "We shall never agree to this!"
+
+        hidden_effect = {
+            release_on_controlled = SER
+            SER = { load_oob = "SER_1912" }
+        }
+
+        declare_war_on = { target = SER type = annex_everything }
+    }
+}

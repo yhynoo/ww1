@@ -9,6 +9,7 @@ technologies = {
     @1918 = 16
     @1919 = 18
     @1920 = 20
+    @1921 = 22
 
     artillery_1904 = {
         enable_equipments = { artillery_equipment_1 }
@@ -18,7 +19,7 @@ technologies = {
         start_year = 1904
 
         path = {
-            leads_to_tech = artillery_1912
+            leads_to_tech = artillery_1914
             research_cost_coeff = 1
         }
 
@@ -27,73 +28,32 @@ technologies = {
             position = { x = 0 y = 0 }
         }
     }
-    artillery_1912 = {
+    artillery_1914 = {
         enable_equipments = { artillery_equipment_2 }
         categories = { artillery_tech }
 
         research_cost = 1.5
-        start_year = 1912
-
-        path = {
-            leads_to_tech = flash_spotting
-            research_cost_coeff = 1
-        }
-
-        folder = {
-            name = artillery_folder
-            position = { x = 0 y = @1912 }
-        }
-    }
-    flash_spotting = {
-        categories = { artillery_tech }
-
-        research_cost = 1
-        start_year = 1915
-
-        category_artillery = {
-            initiative = 0.05
-        }
-
-        path = {
-            leads_to_tech = artillery_1916
-            research_cost_coeff = 1
-        }
-
-        folder = {
-            name = artillery_folder
-            position = { x = 0 y = @1915 }
-        }
-    }
-    artillery_1916 = {
-        enable_equipments = { artillery_equipment_3 }
-        categories = { artillery_tech }
-
-        research_cost = 1.5
-        start_year = 1916
+        start_year = 1914
 
         path = {
             leads_to_tech = artillery_1918
             research_cost_coeff = 1
         }
-        path = {
-            leads_to_tech = aa_tech_1
-            research_cost_coeff = 1
-        }
 
         folder = {
             name = artillery_folder
-            position = { x = 0 y = @1916 }
+            position = { x = 0 y = @1914 }
         }
     }
     artillery_1918 = {
-        enable_equipments = { artillery_equipment_4 }
+        enable_equipments = { artillery_equipment_3 }
         categories = { artillery_tech }
 
         research_cost = 1.5
         start_year = 1918
 
         path = {
-            leads_to_tech = count_bat
+            leads_to_tech = split_trail_carriages
             research_cost_coeff = 1
         }
 
@@ -102,15 +62,11 @@ technologies = {
             position = { x = 0 y = @1918 }
         }
     }
-    count_bat = {
+    split_trail_carriages = {
         categories = { artillery_tech }
 
         research_cost = 1
         start_year = 1920
-
-        category_artillery = {
-            initiative = 0.1
-        }
 
         folder = {
             name = artillery_folder
@@ -142,7 +98,7 @@ technologies = {
 
         folder = {
             name = artillery_folder
-            position = { x = 2 y = @1916 }
+            position = { x = 0 y = @1916 }
         }
     }
     aa_tech_2 = {
@@ -153,27 +109,68 @@ technologies = {
         start_year = 1918
 
         path = {
-            leads_to_tech = aa_tech_3
+            leads_to_tech = elevation_motors
             research_cost_coeff = 1
         }
 
         folder = {
             name = artillery_folder
-            position = { x = 2 y = @1918 }
+            position = { x = 0 y = @1918 }
         }
     }
-    aa_tech_3 = {
-        categories = { artillery_tech anti_air_artillery }
+    elevation_motors = {
+        categories = { artillery_tech }
 
         research_cost = 1
-        start_year = 1920
-
-        static_anti_air_damage_factor = 0.1
-        static_anti_air_hit_chance_factor = 0.2
+        start_year = 1921
 
         folder = {
             name = artillery_folder
-            position = { x = 2 y = @1920 }
+            position = { x = 0 y = @1921 }
+        }
+    }
+
+    elevation_gear = {
+        categories = { artillery_tech }
+
+        research_cost = 1
+        start_year = 1912
+
+        path = {
+            leads_to_tech = indirect_fire
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+    indirect_fire = {
+        categories = { artillery_tech }
+
+        research_cost = 1
+        start_year = 1914
+
+        path = {
+            leads_to_tech = advanced_optics
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+    advanced_optics = {
+        categories = { artillery_tech }
+
+        research_cost = 1
+        start_year = 1918
+
+        folder = {
+            name = artillery_folder
+            position = { x = 0 y = @1918 }
         }
     }
 
@@ -229,7 +226,7 @@ technologies = {
         }
 
         path = {
-            leads_to_tech = mortar
+            leads_to_tech = trench_mortar
             research_cost_coeff = 1
         }
 
@@ -238,68 +235,6 @@ technologies = {
             position = { x = 0 y = @1912 }
         }
     }
-    mortar = {
-        categories = { artillery_tech infantry_weapons }
-
-        research_cost = 1.5
-        start_year = 1914
-
-        category_infantry_and_bicycle = {
-            soft_attack = 0.05
-            defense = 0.1
-        }
-
-        path = {
-            leads_to_tech = heavy_mortar
-            research_cost_coeff = 1
-        }
-        path = {
-            leads_to_tech = trench_mortar
-            research_cost_coeff = 1
-        }
-
-        folder = {
-            name = artillery_folder
-            position = { x = 0 y = @1914 }
-        }
-    }
-    heavy_mortar = {
-        categories = { artillery_tech }
-
-        research_cost = 1.5
-        start_year = 1916
-
-        category_artillery = {
-            soft_attack = 0.1
-            defense = 0.1
-        }
-
-        path = {
-            leads_to_tech = heavy_mortar_2
-            research_cost_coeff = 1
-        }
-
-        folder = {
-            name = artillery_folder
-            position = { x = 0 y = @1916 }
-        }
-    }
-    heavy_mortar_2 = {
-        categories = { artillery_tech }
-
-        research_cost = 1
-        start_year = 1919
-
-        category_artillery = {
-            breakthrough = 0.1
-        }
-
-        folder = {
-            name = artillery_folder
-            position = { x = 0 y = @1919 }
-        }
-    }
-
     trench_mortar = {
         categories = { artillery_tech infantry_weapons }
 
@@ -318,7 +253,7 @@ technologies = {
 
         folder = {
             name = artillery_folder
-            position = { x = 2 y = @1914 }
+            position = { x = 0 y = @1914 }
         }
     }
     trench_mortar_2 = {
@@ -329,11 +264,11 @@ technologies = {
         }
 
         research_cost = 1
-        start_year = 1917
+        start_year = 1918
 
         folder = {
             name = artillery_folder
-            position = { x = 2 y = @1917 }
+            position = { x = 0 y = @1918 }
         }
     }
 }

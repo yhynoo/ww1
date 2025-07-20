@@ -1,0 +1,60 @@
+add_namespace = soviet_afghans
+
+country_event = {
+    id = soviet_afghans.1
+    title = "[SOV.GetName] Offers Alignment"
+    desc = soviet_afghans.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We cannot oppose them now."
+
+        if = {
+            limit = { is_in_faction = yes }
+            leave_faction = yes
+        }
+
+        SOV = { 
+            news_event = { id = soviet_afghans.2 hours = 6 random_hours = 6 }
+            set_autonomy = { target = ROOT autonomous_state = autonomy_dominion }
+        }
+    }
+    option = {
+        name = "We will stand on our own."
+
+        add_war_support = 0.05
+        SOV = { 
+            news_event = { id = soviet_afghans.3 hours = 6 random_hours = 6 }
+            create_wargoal = {
+                target = ROOT
+                type = puppet_wargoal_focus
+            }
+        }
+    }
+}
+
+news_event = {
+    id = soviet_afghans.2
+    title = "Afghanistan Submits to [SOV.GetNameDef]"
+    desc = soviet_afghans.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = soviet_afghans.3
+    title = "[FROM.GetName] Declines!"
+    desc = soviet_afghans.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall see about it."
+    }
+}

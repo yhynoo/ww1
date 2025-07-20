@@ -1,7 +1,6 @@
 SOV_area_priority = {
 	allowed = { original_tag = SOV }
-    enable = { not = { has_completed_focus = SOV_far_east_affairs } }
-
+    enable = { not = { has_completed_focus = SOV_on_our_own } }
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
@@ -17,23 +16,25 @@ SOV_area_priority = {
 	}
 }
 
-soviet_southern_offensive = {
+SOV_serbian_unity = {
 	allowed = { original_tag = SOV }
-	enable = { has_idea = idea_great_army_expansion }
+
+    enable = { 
+		SER = { exists = yes }
+		has_completed_focus = SOV_slavic_unrest
+	}
+	
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
-		type = front_unit_request
-		tag = AUS
+		type = support
+		id = SER
 		value = 200
 	}
 
 	ai_strategy = {
-		type = front_control
-		state_trigger = {
-			or = { state = 80 state = 89 state = 91 state = 92 state = 93 }
-		}
-		ordertype = front
-		priority = 3
+		type = protect
+		id = SER
+		value = 100
 	}
 }

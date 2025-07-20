@@ -1,7 +1,6 @@
 slavic_unrest = {
     unrest_in_galicia = {
         icon = generic_prepare_civil_war
-
         cost = 100
         fire_only_once = yes
 
@@ -27,16 +26,20 @@ slavic_unrest = {
             }
         }
     }
-    mutual_guarantees_serbia = {
-        icon = generic_civil_support
+    schedule_xix = {
+        icon = generic_army_support
+        cost = 100
         fire_only_once = yes
-        cost = 75
 
-        available = { SER = { exists = yes not = { is_guaranteed_by = SOV } } }
-        ai_will_do = { base = 12 }
+        available = { has_war_support > 0.25 }
+        ai_will_do = { 
+            base = 6
+            modifier = { or = { AUS = { has_idea = idea_unrest_in_galicia } has_war_with = AUS } add = 6 }
+        }
 
         complete_effect = {
-            SER = { country_event = { id = soviet_serbia.1 hours = 6 random_hours = 6 } }
+            add_timed_idea = { idea = idea_schedule_xx months = 6 }
+            add_war_support = 0.05
         }
     }
 }
@@ -85,49 +88,58 @@ soviet_alliances = {
     }
 }
 
-manchurian_question = {
-    avenge_1905 = {
-        icon = generic_prepare_civil_war
+far_east_affairs = {
+    align_afghans = {
+        icon = generic_civil_support
         fire_only_once = yes
         cost = 100
 
-        days_remove = 180
-
-        available = { 
-            any_state = {
-                or = { state = 328 state = 619 state = 654 state = 72 }
-                not = { is_owned_and_controlled_by = SOV }
-            }
-            has_war_support > 0.3 
+        available = {
+            not = { has_war_with = AFG }
+            AFG = { exists = yes is_subject = no }
         }
 
         ai_will_do = {
             base = 0
-            modifier = { and = { date > 1916.1.1 has_war = no } add = 9 }
+            modifier = { AFG = { is_in_faction = no } add = 9 }
         }
 
-        remove_effect = {
-            every_country = {
-                limit = {
-                    or = { controls_state = 328 controls_state = 619 controls_state = 654 controls_state = 72 }
-                }
+        complete_effect = {
+            AFG = { country_event = { id = soviet_afghans.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    mongolian_independence = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
 
-                SOV = { 
-                    war_with_on_remove = PREV
-                    create_wargoal = { target = PREV type = take_state_focus }
-                }
+        available = {
+            MON = { exists = no }
+            can_declare_war_on = MAN
+
+            any_state = {
+                is_core_of = MON
+                is_owned_and_controlled_by = MAN
             }
+        }
+
+        ai_will_do = {
+            base = 6
+            modifier = { is_in_faction = yes add = 3 }
+        }
+
+        complete_effect = {
+            MAN = { country_event = { id = soviet_mongolia.1 hours = 6 random_hours = 6 } }
         }
     }
     develop_far_east = {
         icon = generic_construction
-
         fire_only_once = yes
-        cost = 100
+        cost = 75
 
         available = { 
             any_state = {
-                or = { state = 408 state = 409 state = 657 state = 560 state = 561 }
+                or = { state = 408 state = 409 state = 560 }
                 is_owned_and_controlled_by = SOV
             }
         }
@@ -137,72 +149,62 @@ manchurian_question = {
         complete_effect = {
             random_state = {
                 limit = {
-                    or = { state = 408 state = 409 state = 657 state = 560 state = 561 }
+                    or = { state = 408 state = 409 state = 560 }
                     is_owned_and_controlled_by = SOV
 
                     free_building_slots = {
                         building = industrial_complex
-                        size > 0
+                        size > 1
                         include_locked = no
                     }
                 }
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
-            }
-            random_state = {
-                limit = {
-                    or = { state = 408 state = 409 state = 657 state = 560 state = 561 }
-                    is_owned_and_controlled_by = SOV
-
-                    free_building_slots = {
-                        building = industrial_complex
-                        size > 0
-                        include_locked = no
-                    }
-                }
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
                 add_building_construction = { type = infrastructure level = 1 instant_build = yes }
             }
         }
     }
 }
 
-limited_autonomy = {
-    sokol_society = {
+stolypins_wake = {
+    expand_agrarian_administration_in_asia = {
+        icon = generic_civil_support
         fire_only_once = yes
         cost = 75
 
         available = { 
-            POL = { exists = no }
-            any_owned_controlled_state = { is_core_of = POL }
+            any_state = {
+                or = { state = 40 state = 402 state = 405 state = 584 state = 585 state = 587 state = 589 }
+                is_owned_and_controlled_by = SOV
+            }
         }
 
-        ai_will_do = { base = 6 }
-
         complete_effect = {
-            add_ideas = idea_sokol_society
+            add_stability = 0.05
+
+            random_state = {
+                limit = {
+                    or = { state = 40 state = 402 state = 405 state = 584 state = 585 state = 587 state = 589 }
+                    is_owned_and_controlled_by = SOV
+                }
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
+            random_state = {
+                limit = {
+                    or = { state = 40 state = 402 state = 405 state = 584 state = 585 state = 587 state = 589 }
+                    is_owned_and_controlled_by = SOV
+                }
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
         }
     }
-    prosvita = {
+    eight_hour_workday = {
+        icon = generic_civil_support
         fire_only_once = yes
-        cost = 75
-
-        available = { 
-            UKR = { exists = no }
-            any_owned_controlled_state = { is_core_of = UKR }
-        }
-
-        ai_will_do = { 
-            base = 6
-            modifier = { has_idea = idea_unrest_in_ukraine add = 3 }
-        }
+        cost = 50
 
         complete_effect = {
-            add_ideas = idea_prosvita
-            if = {
-                limit = { has_idea = idea_unrest_in_ukraine }
-                remove_ideas = idea_unrest_in_ukraine
-            }
+            add_stability = 0.05
+            add_popularity = { ideology = democratic popularity = 0.05 }
         }
     }
 }

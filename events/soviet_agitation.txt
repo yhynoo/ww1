@@ -2,15 +2,14 @@ add_namespace = soviet_agitation
 
 news_event = {
     id = soviet_agitation.1
-    title = "Outpost Assaulted in Central Asia"
+    title = "Outpost Attacked in Samara Governorate"
     desc = soviet_agitation.1.d
 
     trigger = { 
         tag = SOV
-        or = {
-            surrender_progress > 0.1 
-            longest_war_length > 12
-        }
+
+        or = { surrender_progress > 0.1 longest_war_length > 12 }
+        not = { has_completed_focus = SOV_strength_in_unity }
     }
 
     fire_only_once = yes
@@ -20,5 +19,32 @@ news_event = {
 
         add_war_support = -0.05
         add_popularity = { ideology = communism popularity = 0.05 }
+
+        hidden_effect = { id = soviet_agitation.2 days = 42 random_days = 42 }
+    }
+}
+
+country_event = {
+    id = soviet_agitation.2
+    title = "Milyukov's Dispatch"
+    desc = soviet_agitation.2.d
+
+    fire_only_once = yes
+    is_triggered_only = yes
+
+    trigger = {
+        has_completed_focus = SOV_adjust_the_government
+        is_in_faction = yes
+    }
+
+    option = {
+        name = "Announce it was a fake."
+        add_war_support = -0.1
+    }
+    option = {
+        name = "Confirm the dispath as authentic."
+
+        add_stability = -0.05
+        add_popularity = { ideology = communism popularity = 0.1 }
     }
 }

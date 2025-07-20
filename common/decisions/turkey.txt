@@ -1,4 +1,39 @@
-reach_out_to_french = {
+consolidate_the_empire = {
+    salonika_declaration = {
+        icon = generic_form_nation
+        cost = 100
+        fire_only_once = yes
+
+        ai_will_do = { base = 12 }
+
+        complete_effect = {
+            news_event = { id = turkey_salonika.1 hours = 6 random_hours = 6 }
+            remove_ideas = idea_unrest_in_adriatic
+        }
+    }
+    develop_iraq = {
+        icon = generic_construction
+        cost = 75
+        fire_only_once = yes
+
+        available = {
+            controls_state = 291
+        }
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            291 = {
+                add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
+
+            hidden_effect = { 291 = { add_extra_state_shared_building_slots = 1 } }
+        }
+    }
+}
+
+turanist_ambition = {
     sky_is_the_new_steppe = {
         icon = generic_industry
         cost = 100
@@ -30,64 +65,6 @@ reach_out_to_french = {
             }
 
             hidden_effect = { add_extra_state_shared_building_slots = 1 }
-        }
-    }
-    liberate_greece = {
-        icon = generic_form_nation
-        cost = 150
-        fire_only_once = yes
-
-        available = {
-            any_state = {
-                or = { state = 47 state = 182 state = 186 state = 187 }
-                is_owned_and_controlled_by = TUR
-            }
-        }
-
-        ai_will_do = { base = 6 }
-
-        complete_effect = {
-            remove_ideas = idea_unrest_in_greece
-            news_event = { id = turkey_greece.1 hours = 6 random_hours = 6 }
-
-            every_state = {
-                limit = {
-                    or = { state = 47 state = 182 state = 186 state = 187 }
-                    is_owned_and_controlled_by = TUR
-                }
-                transfer_state_to = GRE
-            }
-
-            hidden_effect = { 
-                GRE = { 
-                    load_oob = "GRE_1912"
-                    news_event = { id = x_industrialists.1 days = 7 random_days = 7 }
-                }
-            }
-        }
-    }
-}
-
-turanist_ambition = {
-    salonika_declaration = {
-        icon = generic_form_nation
-        cost = 100
-        fire_only_once = yes
-
-        ai_will_do = { base = 12 }
-
-        complete_effect = {
-            news_event = { id = turkey_turanist.1 hours = 6 random_hours = 6 }
-
-            release_on_controlled = SER
-            remove_ideas = idea_unrest_in_serbia
-
-            hidden_effect = { 
-                SER = { 
-                    load_oob = "SER_1912"
-                    news_event = { id = x_industrialists.1 days = 7 random_days = 7 }
-                } 
-            }
         }
     }
     turanist_movement = {
