@@ -1,0 +1,174 @@
+add_namespace = germany_wassmuss
+
+news_event = {
+    id = germany_wassmuss.1
+    title = "Wassmuss Arrives"
+    desc = germany_wassmuss.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Wonderful."
+
+        hidden_effect = { 
+            set_country_flag = wassmuss_in_gulf
+            country_event = { id = germany_wassmuss.2 days = 42 random_days = 28 }
+        }
+    }
+}
+
+# qashqai
+
+country_event = {
+    id = germany_wassmuss.2
+    title = "Among the Qashqai Tribes"
+    desc = germany_wassmuss.2.d
+
+    is_triggered_only = yes
+    trigger = { has_country_flag = wassmuss_in_gulf }
+
+    immediate = {
+        hidden_effect = {
+            news_event = { id = germany_wassmuss.4 days = 70 random_days = 14 }
+        }
+    }
+
+    option = {
+        trigger = { PER = { controls_state = 412 } }
+        name = "Access to oil for modern rifles."
+
+        news_event = { id = germany_wassmuss.3 hours = 6 random_hours = 6 }
+
+        PER = { give_resource_rights = { receiver = GER state = 412 } }
+        send_equipment = { equipment = infantry_equipment amount = 200 target = PER }
+
+        hidden_effect = { 
+            random_list = {
+				20 = { news_event = { id = germany_wassmuss.8 days = 14 random_days = 28 } }
+                80 = { }
+			}
+        }
+    }
+
+    option = {
+        trigger = { not = { PER = { controls_state = 412 } } }
+
+        name = "Develop cultural ties to Germany."
+        PER = { add_opinion_modifier = { target = GER modifier = medium_increase } }
+    }
+
+    option = {
+        name = "It's not worth the risk."
+    }
+}
+
+news_event = {
+    id = germany_wassmuss.3 
+    title = "Germany Secures Access to Oil"
+    desc = germany_wassmuss.3.d
+
+    is_triggered_only = yes
+    major = yes
+ 
+    option = {
+        name = "Interesting."
+    }
+}
+
+# codebooks
+
+country_event = {
+    id = germany_wassmuss.4
+    title = "The Codebook Satchel"
+    desc = germany_wassmuss.4.d
+
+    is_triggered_only = yes
+    trigger = { has_country_flag = wassmuss_in_gulf }
+
+    immediate = {
+        hidden_effect = {
+            country_event = { id = germany_wassmuss.5 days = 28 random_days = 14 }
+        }
+    }
+
+    option = {
+        name = "Awful."
+        ENG = { decryption = 1 }
+    }
+}
+
+# teheran
+
+country_event = {
+    id = germany_wassmuss.5
+    title = "The Teheran Gamble"
+    desc = germany_wassmuss.5.d
+
+    is_triggered_only = yes
+    trigger = { has_country_flag = wassmuss_in_gulf }
+
+    option = {
+        name = "Let him act."
+        PER = { country_event = { id = germany_wassmuss.6 days = 7 } }
+    }
+
+    option = {
+        name = "We should return him home."
+        hidden_effect = { clr_country_flag = wassmuss_in_gulf }
+    }
+}
+
+country_event = {
+    id = germany_wassmuss.6
+    title = "A Secretive Diplomat Arrives"
+    desc = germany_wassmuss.6.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a good offer."
+
+        GER = { 
+            news_event = { id = germany_wassmuss.7 hours = 6 random_hours = 6 }
+            set_autonomy = { target = ROOT autonomous_state = autonomy_dominion }
+        }
+    }
+    option = {
+        name = "Arrest him."
+
+        GER = { 
+            add_opinion_modifier = { target = PER modifier = medium_decrease }
+            
+            hidden_effect = { 
+                news_event = { id = germany_wassmuss.8 hours = 6 random_hours = 6 }
+                clr_country_flag = wassmuss_in_gulf
+            }
+        }
+    }
+}
+
+news_event = {
+    id = germany_wassmuss.7
+    title = "Teheran Aligns with [GER.GetNameDef]"
+    desc = germany_wassmuss.7.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = germany_wassmuss.8
+    title = "Wassmuss Disappears in Teheran"
+    desc = germany_wassmuss.8.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "The legend will live on."
+        add_ideas = idea_legend_of_desert_spy
+    }
+}

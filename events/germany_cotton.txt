@@ -1,0 +1,66 @@
+add_namespace = germany_cotton
+
+country_event = {
+    id = germany_cotton.1
+    title = "[GER.GetName] Asks for Egyptian Cotton"
+    desc = germany_cotton.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a good deal."
+        FROM = { 
+            news_event = { id = germany_cotton.2 hours = 6 random_hours = 6 }
+        }
+
+        give_resource_rights = { receiver = GER state = 447 }
+
+        if = {
+            limit = { has_idea = idea_amassed_foreign_debt }
+            swap_ideas = {
+                remove_idea = idea_amassed_foreign_debt
+                add_idea = idea_significant_foreign_debt
+            }
+        }
+        else_if = {
+            limit = { has_idea = idea_significant_foreign_debt }
+            remove_ideas = idea_significant_foreign_debt
+        }
+
+        ai_chance = { 
+            base = 0
+            modifier = { or = { has_idea = idea_amassed_foreign_debt has_idea = idea_significant_foreign_debt } add = 2 }
+        }
+    }
+    option = {
+        name = "We are not interested."
+        FROM = { news_event = { id = germany_cotton.3 hours = 6 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = germany_cotton.2
+    title = "[GER.GetName] Accesses Egyptian Cotton"
+    desc = germany_cotton.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = germany_cotton.3
+    title = "[FROM.GetName] Declines!"
+    desc = germany_cotton.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Disappointing."
+    }
+}

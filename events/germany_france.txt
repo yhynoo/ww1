@@ -1,0 +1,58 @@
+add_namespace = germany_france
+
+country_event = {
+    id = germany_france.1
+    title = "Withdraw Our Guarantees to France?"
+    desc = germany_france.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We are not a side in this conflict."
+        GER = { 
+            news_event = { id = germany_france.2 hours = 6 random_hours = 6 }
+            add_opinion_modifier = { target = ENG modifier = large_increase }
+        }
+
+        diplomatic_relation = { country = FRA relation = guarantee active = no }
+
+        ai_chance = { 
+            base = 0
+            modifier = { not = { has_idea = idea_naval_arms_race } add = 2 }
+        }
+    }
+    option = {
+        name = "We shall continue protecting the French."
+        GER = { news_event = { id = germany_france.3 hours = 6 random_hours = 6 } }
+
+        ai_chance = { 
+            base = 2
+            modifier = { FRA = { has_government = monarchism } factor = 0 }
+        }
+    }
+}
+
+news_event = {
+    id = germany_france.2
+    title = "[ENG.GetName] Withdraws Guarantees to France!"
+    desc = germany_france.2.d
+
+    is_triggered_only = yes
+    major = yes
+    
+    option = {
+        name = "Intriguing."
+    }
+}
+
+news_event = {
+    id = germany_france.3
+    title = "[FROM.GetName] Declines"
+    desc = germany_france.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "That's a shame."
+    }
+}
