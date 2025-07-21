@@ -1,4 +1,29 @@
 oriental_investments = {
+    unrest_in_algeria = {
+        icon = generic_prepare_civil_war
+
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            any_state = {
+                is_core_of = ALG
+                is_owned_by = FRA
+            }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = { has_war_with = FRA add = 6 }
+        }
+
+        complete_effect = {
+            FRA = {
+                add_timed_idea = { idea = idea_unrest_in_algeria years = 1 }
+                hidden_effect = { country_event = { id = france_algeria.1 hours = 6 random_hours = 6 } }
+            }
+        }
+    }
     egyptian_cotton = {
         icon = generic_industry
         cost = 75
@@ -66,31 +91,6 @@ germany_alliances = {
 
         complete_effect = {
             ENG = { country_event = germany_south_africa.1 hours = 6 random_hours = 6 }
-        }
-    }
-    unrest_in_algeria = {
-        icon = generic_prepare_civil_war
-
-        cost = 100
-        fire_only_once = yes
-
-        available = {
-            any_state = {
-                is_core_of = ALG
-                is_owned_by = FRA
-            }
-        }
-
-        ai_will_do = {
-            base = 3
-            modifier = { has_war_with = FRA add = 6 }
-        }
-
-        complete_effect = {
-            FRA = {
-                add_timed_idea = { idea = idea_unrest_in_algeria years = 1 }
-                hidden_effect = { country_event = { id = france_algeria.1 hours = 6 random_hours = 6 } }
-            }
         }
     }
     ger_offer_alliance = {
