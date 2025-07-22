@@ -39,8 +39,8 @@ ai_focus_military_advancements = {
 		supply_tech = 2.0
 
 		# normal countries don't do tanks or mountaineers.
-		armor_tech = 0.0
-		mountaineers_tech = 0.0
+		armor_tech = -10.0
+		mountaineers_tech = -10.0
 	}
 }
 
@@ -57,8 +57,8 @@ ai_focus_naval = {
 		screen_tech = 2.5
 
 		# regular countries don't do marines and aircraft carriers.
-		marines_tech = 0.0
-		aircraft_carrier_tech = 0.0
+		marines_tech = -10.0
+		aircraft_carrier_tech = -10.0
 	}
 }
 
@@ -71,6 +71,9 @@ ai_focus_naval_air = {
 ai_focus_aviation = {
 	research = {
 		air_doctrine = 20.0
-		air_equipment_tech = 2.0
+		air_equipment_tech = 5.0
+
+		# normal countries don't do airships
+		airship_tech = -10.0
 	}
 }
