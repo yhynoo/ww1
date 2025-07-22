@@ -68,8 +68,10 @@ soviet_alliances = {
         targets = { ENG FRA }
 
         ai_will_do = { 
-            base = 9
-            modifier = { FROM = { tag = ENG } add = 6 }
+            base = 0
+
+            modifier = { and = { FROM = { tag = ENG } has_war = no } add = 12 }     # before the war, prefer UK
+            modifier = { FROM = { tag = FRA } add = 9 }                             # during the war, go for France
 
             modifier = { FROM = { is_ally_with = TUR } factor = 0 }
         }
@@ -178,6 +180,8 @@ stolypins_wake = {
             }
         }
 
+        ai_will_do = { base = 6 }
+
         complete_effect = {
             add_stability = 0.05
 
@@ -205,6 +209,64 @@ stolypins_wake = {
         complete_effect = {
             add_stability = 0.05
             add_popularity = { ideology = democratic popularity = 0.05 }
+        }
+    }
+}
+
+workers_councils = {
+    agrarian_contributions = {
+        icon = generic_civil_support
+        days_remove = 90
+        cost = 50
+
+        modifier = {
+            consumer_goods_factor = -0.1
+            stability_weekly = -0.005
+        }
+    }
+    defensive_approach = {
+        icon = border_war
+        days_remove = 90
+        cost = 75
+
+        ai_will_do = {
+            base = 6
+            modifier = { surrender_progress > 0.1 add = 3 }
+        }
+
+        available = { has_war = yes }
+
+        modifier = {
+            army_morale_factor = 0.2
+            army_attack_factor = -0.25
+        }
+    }
+    offer_truce = {
+        visible = { 
+            has_war = yes
+            has_civil_war = no
+        }
+
+        icon = generic_form_nation
+        cost = 150
+        days_re_enable = 90
+
+        targets_dynamic = yes
+        target_trigger = {
+            FROM = {
+                has_war_with = ROOT
+                or = { is_faction_leader = yes is_in_faction = no }
+            }
+        }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { or = { surrender_progress > 0.15 has_war_support < 0.2 } factor = 2 }
+        }
+
+        days_remove = 7
+        remove_effect = {
+            FROM = { country_event = { id = x_civil_war.1 hours = 6 random_hours = 6 } }
         }
     }
 }

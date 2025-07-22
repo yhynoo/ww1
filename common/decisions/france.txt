@@ -27,7 +27,10 @@ antwerp_affair = {
 
         available = { 
             not = { has_war_with = GER }
-            GER = { controls_state = 34 } 
+            any_state = {
+                or = { state = 34 state = 28 }
+                is_controlled_by = GER
+            }
         }
 
         ai_will_do = {
@@ -112,7 +115,7 @@ france_alliances = {
 
         ai_will_do = {
             base = 0
-            modifier = { has_completed_focus = FRA_traditionalism add = 9 } 
+            modifier = { and = { has_completed_focus = FRA_traditionalism ENG = { has_government = democratic } } add = 9 } 
             modifier = { has_war = yes factor = 2 }
         }
 

@@ -74,36 +74,3 @@ news_event = {
         name = "Concerning."
     }
 }
-
-news_event = {
-    id = france_empire.5
-    title = "[FRA.GetName] To Avenge 1870?"
-    desc = france_empire.5.d
-
-    is_triggered_only = yes
-    major = yes
-
-    option = {
-        name = "Concerning."
-    }
-}
-
-news_event = {
-    id = france_empire.6
-    title = "Napoléon V Ascends to the French Throne!"
-    desc = france_empire.6.d
-
-    is_triggered_only = yes
-    major = yes
-
-    option = {
-        name = "Interesting."
-        trigger = { not = { tag = FRA } }
-    }
-    option = {
-        name = "Vive l'Empereur!"
-        trigger = { tag = FRA }
-
-        add_ideas = idea_for_the_emperor
-    }
-}

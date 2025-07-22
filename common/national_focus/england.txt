@@ -368,7 +368,7 @@ focus_tree = {
         id = ENG_economic_development
         icon = GFX_focus_generic_economic_development
 
-        x = 20
+        x = 21
         y = 0
         cost = 10
 
@@ -383,7 +383,7 @@ focus_tree = {
         icon = GFX_focus_generic_home_front
 
         relative_position_id = ENG_economic_development
-        x = -2
+        x = -3
         y = 1
 
         cost = 10
@@ -415,8 +415,32 @@ focus_tree = {
         }
     }
     focus = {
-        id = ENG_reclaim_land
-        icon = GFX_focus_generic_reclaim_land
+        id = ENG_fuel
+        icon = GFX_focus_generic_fuel
+
+        relative_position_id = ENG_home_front
+        x = 2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = ENG_home_front }
+        completion_reward = {
+            
+            add_tech_bonus = {
+				name = excavation_bonus bonus = 1.0 uses = 1
+				category = excavation_tech
+			}
+
+            add_tech_bonus = {
+				name = synthetic_bonus bonus = 1.0 uses = 1
+				category = synth_resources_tech
+			}
+        }
+    }
+    focus = {
+        id = ENG_land_reclamation
+        icon = GFX_focus_generic_land_reclamation
 
         relative_position_id = ENG_home_front
         x = -2
@@ -470,7 +494,7 @@ focus_tree = {
         icon = GFX_focus_generic_infrastructure_effort
 
         relative_position_id = ENG_economic_development
-        x = 2
+        x = 3
         y = 1
 
         cost = 10

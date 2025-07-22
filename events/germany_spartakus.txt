@@ -1,0 +1,39 @@
+add_namespace = germany_spartakus
+
+country_event = {
+    id = germany_spartakus.1
+    title = "Extremist Uprising in Germany!"
+    desc = germany_spartakus.1.d
+
+    fire_only_once = yes
+    is_triggered_only = yes
+
+    trigger = { 
+        tag = GER
+
+        not = { has_government = communism }
+        has_civil_war = no
+        communism > 0.35
+    }
+
+    option = {
+        name = "Workers of Germany, unite!"
+        start_civil_war = { 
+            ideology = ROOT ruling_party = communism size = 0.65 
+            navy_ratio = 1
+        }
+
+        # manage the war
+        hidden_effect = { germany_civil_war = yes }
+    }
+    option = {
+        name = "We must destroy these traitors."
+        start_civil_war = { 
+            ideology = communism size = 0.4
+            navy_ratio = 0
+        }
+
+        # manage the war
+        hidden_effect = { germany_civil_war = yes }
+    }
+}

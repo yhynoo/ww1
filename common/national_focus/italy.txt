@@ -363,7 +363,7 @@
         id = ITA_economic_development
         icon = GFX_focus_generic_economic_development
 
-        x = 20
+        x = 21
         y = 0
         cost = 10
 
@@ -378,7 +378,7 @@
         icon = GFX_focus_generic_home_front
 
         relative_position_id = ITA_economic_development
-        x = -2
+        x = -3
         y = 1
 
         cost = 10
@@ -410,8 +410,32 @@
         }
     }
     focus = {
-        id = ITA_reclaim_land
-        icon = GFX_focus_generic_reclaim_land
+        id = ITA_fuel
+        icon = GFX_focus_generic_fuel
+
+        relative_position_id = ITA_home_front
+        x = 2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = ITA_home_front }
+        completion_reward = {
+            
+            add_tech_bonus = {
+				name = excavation_bonus bonus = 1.0 uses = 1
+				category = excavation_tech
+			}
+
+            add_tech_bonus = {
+				name = synthetic_bonus bonus = 1.0 uses = 1
+				category = synth_resources_tech
+			}
+        }
+    }
+    focus = {
+        id = ITA_land_reclamation
+        icon = GFX_focus_generic_land_reclamation
 
         relative_position_id = ITA_home_front
         x = -2
@@ -465,7 +489,7 @@
         icon = GFX_focus_generic_infrastructure_effort
 
         relative_position_id = ITA_economic_development
-        x = 2
+        x = 3
         y = 1
 
         cost = 10
@@ -781,11 +805,20 @@
         cost = 10
 
         prerequisite = { focus = ITA_expansionism }
-        available = { is_subject = no }
+        available = { 
+            is_subject = no
+            not = { has_war_with = GER }
+        }
 
         ai_will_do = {
             base = 0
-            modifier = { and = { threat > 0.2 has_completed_focus = ITA_traditionalism } add = 1 }
+            modifier = { 
+                and = { 
+                    threat > 0.15 has_completed_focus = ITA_traditionalism 
+                    not = { GER = { is_ally_with = TUR } }
+                } 
+                add = 1 
+            }
         }
 
         completion_reward = {

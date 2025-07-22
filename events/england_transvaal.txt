@@ -31,20 +31,17 @@ news_event = {
     trigger = { 275 = { resistance > 15 } }
     major = yes
 
-    immediate = {
-        if = {
-            limit = { tag = ENG }
-            hidden_effect = { add_named_threat = { threat = 2 name = "Boer Uprising in Transvaal" } }
-        }
-    }
-
     option = {
         name = "Awful."
 
         if = {
             limit = { tag = ENG }
             remove_ideas = idea_unrest_in_transvaal
-            hidden_effect = { start_south_african_independence_war = yes }
+
+            hidden_effect = { 
+                start_south_african_independence_war = yes
+                add_named_threat = { threat = 2 name = "Boer Uprising in Transvaal" }
+            }
         }
     }
 }

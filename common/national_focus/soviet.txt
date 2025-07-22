@@ -363,7 +363,7 @@
         id = SOV_economic_development
         icon = GFX_focus_generic_economic_development
 
-        x = 20
+        x = 21
         y = 0
         cost = 10
 
@@ -378,7 +378,7 @@
         icon = GFX_focus_generic_home_front
 
         relative_position_id = SOV_economic_development
-        x = -2
+        x = -3
         y = 1
 
         cost = 10
@@ -410,8 +410,32 @@
         }
     }
     focus = {
-        id = SOV_reclaim_land
-        icon = GFX_focus_generic_reclaim_land
+        id = SOV_fuel
+        icon = GFX_focus_generic_fuel
+
+        relative_position_id = SOV_home_front
+        x = 2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = SOV_home_front }
+        completion_reward = {
+            
+            add_tech_bonus = {
+				name = excavation_bonus bonus = 1.0 uses = 1
+				category = excavation_tech
+			}
+
+            add_tech_bonus = {
+				name = synthetic_bonus bonus = 1.0 uses = 1
+				category = synth_resources_tech
+			}
+        }
+    }
+    focus = {
+        id = SOV_land_reclamation
+        icon = GFX_focus_generic_land_reclamation
 
         relative_position_id = SOV_home_front
         x = -2
@@ -465,7 +489,7 @@
         icon = GFX_focus_generic_infrastructure_effort
 
         relative_position_id = SOV_economic_development
-        x = 2
+        x = 3
         y = 1
 
         cost = 10
@@ -812,8 +836,8 @@
         cost = 10
 
         ai_will_do = { 
-            base = 1
-            # modifier = { has_country_flag = chose_alternative add = 2 }
+            base = 0
+            modifier = { has_war = yes add = 1 }
         }
 
         mutually_exclusive = { focus = SOV_adjust_the_government }
@@ -908,10 +932,7 @@
         y = 1
         cost = 10
 
-        ai_chance = {
-            base = 2
-            # modifier = { has_country_flag = chose_alternative factor = 0 }
-        }
+        ai_chance = { base = 2 }
 
         mutually_exclusive = { focus = SOV_traditionalism }
         prerequisite = { focus = SOV_political_ambitions }
@@ -961,25 +982,15 @@
         cost = 10
 
         prerequisite = { focus = SOV_state_reform }
-        available = {
-            has_civil_war = no
-            not = { has_government = communism }
-            
-            communism > 0.3
-        }
 
         ai_will_do = {
-            base = 3
-            modifier = { communism > 0.4 add = 5 }
+            base = 0
+            modifier = { surrender_progress > 0.1 add = 2 }
         }
         
         completion_reward = {
-            # start war and do setup
-            start_civil_war = { ruling_party = communism ideology = ROOT size = 0.4 }
-            hidden_effect = { winter_palace_war = yes }
-
-            # event
-            news_event = { id = soviet_winter_palace.1 hours = 3 }
+            add_popularity = { ideology = communism popularity = 0.05 }
+            custom_effect_tooltip = decision_effect_tooltip
         }
     }
     focus = { 

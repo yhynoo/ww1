@@ -26,19 +26,12 @@ country_event = {
             # if we're at war already, or we lead the faction - then it's more likely we will agree.
             modifier = { or = { is_faction_leader = yes has_war = yes } add = 2 }
 
-            # if ENG is ally with TUR - won't like SOV. if is ally with SOV - won't like TUR.
+            # if we're guaranteeing them: sure
+            modifier = { has_guaranteed = FROM factor = 3 }
+
+            # if ENG goes communist: no
             modifier = {
-                and = {
-                    tag = ENG is_ally_with = SOV
-                    FROM = { tag = TUR }
-                }
-                factor = 0
-            }
-            modifier = {
-                and = {
-                    tag = ENG is_ally_with = TUR
-                    FROM = { tag = SOV }
-                }
+                and = { has_completed_focus = ENG_abolish_lords not = { FROM = { has_government = communism } } }
                 factor = 0
             }
         }
@@ -73,14 +66,19 @@ country_event = {
             faction_leader = { add_to_faction = ROOT }
 
             ai_chance = {
-                base = 1
-                modifier = { FROM = { has_guaranteed = ROOT } add = 2 }
+                base = 2
+
+                # if we're guaranteeing them
+                modifier = { FROM = { has_guaranteed = ROOT } factor = 2 }
 
                 modifier = { 
-                    or = {
-                        and = { FROM = { tag = ENG } tag = FRA has_completed_focus = FRA_adjust_government }
-                        and = { FROM = { tag = GER } tag = TUR has_completed_focus = TUR_deterrence }
-                    }
+                    and = { FROM = { tag = ENG } tag = FRA has_completed_focus = FRA_adjust_government }
+                    factor = 0
+                }
+
+                # if we're Turkey and Germany asks
+                modifier = {
+                    and = { from = { tag = GER } has_completed_focus = TUR_adjust_the_government }
                     factor = 0
                 }
             }

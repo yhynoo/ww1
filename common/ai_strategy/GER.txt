@@ -17,45 +17,32 @@ germany_army_production = {
 		value = 15
 	}
 
+	# also, build airships
 	ai_strategy = {
-		type = equipment_production_factor
-		id = infantry
-		value = 30
+		type = unit_ratio
+		id = airship
+		value = 5
 	}
 
-	# look at france
 	ai_strategy = {
-		type = front_unit_request
-		tag = FRA
-		value = 150
+		type = equipment_production_factor
+		id = air_transport
+		value = 15
 	}
 }
 
-# schlieffen
-germany_schlieffen = {
+germany_focuses_on_france = {
 	allowed = { original_tag = GER }
-	enable = { has_idea = idea_metz_to_paris }
+	enable = { 
+		has_war_with = FRA
+		FRA = { has_capitulated = no }
+	}
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
 		type = front_unit_request
 		tag = FRA
-		value = 100
-	}
-
-	ai_strategy = {
-		type = front_control
-		state_trigger = {
-			or = { state = 6 state = 16 state = 29 }
-		}
-		ordertype = front
-		priority = 3
-	}
-
-	ai_strategy = {
-		type = dont_defend_ally_borders
-		id = AUS
-		value = 100
+		value = 200
 	}
 }
 

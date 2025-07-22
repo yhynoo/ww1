@@ -1,0 +1,28 @@
+add_namespace = germany_war_supplies
+
+country_event = {
+    id = germany_war_supplies.1
+    title = "Long-Term Supplies Inquiry"
+    desc = germany_war_supplies.1.d
+
+    fire_only_once = yes
+    is_triggered_only = yes
+
+    trigger = { 
+        tag = GER
+        longest_war_length > 6
+    }
+
+    option = {
+        name = "Let him organize the supplies."
+        add_ideas = idea_war_raw_materials_department
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "This is mere defeatism."
+        add_war_support = 0.05
+
+        ai_chance = { base = 0 }
+    }
+}
