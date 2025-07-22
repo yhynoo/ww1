@@ -14,8 +14,8 @@ china_civil_war = {
 germany_civil_war = {
     random_country = {
         limit = { original_tag = GER has_government = communism }
-        set_cosmetic_tag = GER_civil_war_reds
 
+        set_cosmetic_tag = GER_civil_war_reds
         set_popularities = { communism = 60 democratic = 35 monarchism = 5 }
 
         add_ideas = {
@@ -23,13 +23,21 @@ germany_civil_war = {
             war_economy
             extensive_conscription
         }
+
+        # diplomacy
+        leave_faction = yes
+        every_country = {
+            limit = { has_guaranteed = PREV }
+            diplomatic_relation = { country = PREV relation = guarantee active = no }
+        }
     }
 
     random_country = {
         limit = { original_tag = GER not = { has_government = communism } }
-        set_popularities = { authoritarianism = 25 democratic = 45 monarchism = 30 }
-        set_cosmetic_tag = GER_civil_war_republic
 
+        set_cosmetic_tag = GER_civil_war_republic
+        set_popularities = { authoritarianism = 25 democratic = 45 monarchism = 30 }
+        
         add_ideas = {
             closed_economy
             war_economy
@@ -41,14 +49,21 @@ germany_civil_war = {
 russia_civil_war = {
     random_country = {
         limit = { original_tag = SOV has_government = communism }
-        set_cosmetic_tag = SOV_civil_war_reds
 
+        set_cosmetic_tag = SOV_civil_war_reds
         set_popularities = { communism = 75 democratic = 20 monarchism = 5 }
 
         add_ideas = {
             closed_economy
             war_economy
             extensive_conscription
+        }
+
+        # diplomacy
+        leave_faction = yes
+        every_country = {
+            limit = { has_guaranteed = PREV }
+            diplomatic_relation = { country = PREV relation = guarantee active = no }
         }
     }
 

@@ -42,7 +42,10 @@ country_event = {
 
         ai_chance = {
             base = 1
-            modifier = { has_completed_focus = SOV_traditionalism factor = 0 }
+            modifier = { 
+                or = { has_completed_focus = SOV_traditionalism not = { surrender_progress > 0.05 } }
+                factor = 0 
+            }
         }
     }
     option = {
@@ -69,6 +72,8 @@ country_event = {
         tag = SOV
 
         not = { has_government = communism }
+        has_completed_focus = SOV_over_the_edge
+
         has_civil_war = no
         communism > 0.4
     }
