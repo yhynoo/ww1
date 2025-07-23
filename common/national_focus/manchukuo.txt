@@ -975,23 +975,9 @@
         cost = 10
 
         prerequisite = { focus = MAN_state_reform }
-        available = {
-            has_civil_war = no
-            not = { has_government = authoritarianism }
-            
-            authoritarianism > 0.3
-        }
         
         completion_reward = {
-            start_civil_war = {
-                ruling_party = authoritarianism
-                ideology = ROOT
-                size = 0.5
-            }
-
-            hidden_effect = {
-                set_popularities = { authoritarianism = 100 }
-            }
+            add_timed_idea = { idea = idea_authoritarianism_tendencies years = 2 }
         }
     }
     focus = {

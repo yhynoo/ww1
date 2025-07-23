@@ -847,10 +847,6 @@ focus_tree = {
         prerequisite = { focus = AUS_traditionalism }
         completion_reward = {
             add_timed_idea = { idea = idea_an_meine_volker years = 2 }
-
-            hidden_effect = {
-                news_event = { id = austria_volker.1 hours = 12 random_hours = 6 }
-            }
         }
     }
     focus = {
@@ -947,23 +943,9 @@ focus_tree = {
         cost = 10
 
         prerequisite = { focus = AUS_state_reform }
-        available = {
-            has_civil_war = no
-            not = { has_government = communism }
-            
-            communism > 0.3
-        }
         
         completion_reward = {
-            start_civil_war = {
-                ruling_party = communism
-                ideology = ROOT
-                size = 0.5
-            }
-
-            hidden_effect = {
-                set_popularities = { communism = 100 }
-            }
+            add_timed_idea = { idea = idea_communism_tendencies years = 2 }
         }
     }
     focus = {

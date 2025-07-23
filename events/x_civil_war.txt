@@ -35,62 +35,6 @@ news_event = {
 
 add_namespace = x_civil_war
 
-# truce
-
-country_event = {
-    id = x_civil_war.1
-    title = "[FROM.GetName] Asks for a Ceasefire"
-    desc = x_civil_war.1.d
-
-    is_triggered_only = yes
- 
-    option = {
-        name = "This is a chance to end this well."
-
-        FROM = { news_event = { id = x_civil_war.2 hours = 6 random_hours = 6 } }
-        start_peace_conference = { tag = FROM score_factor = 0.1 }
-
-        ai_chance = { 
-            base = 3
-            modifier = { longest_war_length > 12 add = 3 }
-        }
-    } 
-    option = {
-        name = "We will keep fighting."
-        FROM = { 
-            news_event = { id = x_civil_war.3 hours = 6 random_hours = 6 }
-            add_war_support = 0.1
-        }
-
-        ai_chance = { base = 1 }
-    }
-}
-
-news_event = {
-    id = x_civil_war.2
-    title = "[FROM.GetName] Signs Truce with [ROOT.GetName]"
-    desc = x_civil_war.2.d
-
-    is_triggered_only = yes
-    major = yes
-
-    option = {
-        name = "Interesting."
-    }
-}
-
-news_event = {
-    id = x_civil_war.3
-    title = "[FROM.GetName] Declines!"
-    desc = x_civil_war.3.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "So we shall continue beating them."
-    }
-}
-
 # cores
 
 country_event = {

@@ -1,0 +1,67 @@
+add_namespace = _armistice
+
+country_event = {
+    id = _armistice.1
+    title = "Time to Seek an Armistice?"
+    desc = _armistice.1.d
+
+    is_triggered_only = yes
+    trigger = { has_war = yes has_civil_war = no }
+
+    option = {
+        name = "Let us end this war."
+        every_enemy_country = {
+            limit = { 
+                or = { is_faction_leader = yes is_in_faction = no } 
+            }
+            country_event = { id = _armistice_offered.1 hours = 6 random_days = 7 }
+        }
+
+        ai_chance = {
+            base = 1
+            modifier = { original_tag = SOV add = 3 }
+        }
+    }
+
+    option = {
+        name = "We shall continue fighting."
+        add_war_support = 0.05
+
+        ai_chance = { base = 1 }
+        modifier = { surrender_progress > 0.1 factor = 0 }
+    }
+}
+
+country_event = {
+    id = _armistice.2
+    title = "The Stalemate Endures"
+    desc = _armistice.2.d
+
+    is_triggered_only = yes
+    trigger = { 
+        has_offensive_war = yes has_civil_war = no 
+    
+        not = { any_country = { has_war_together_with = ROOT } }            # only if we're alone.
+        not = { surrender_progress > 0.05 }
+        not = { any_enemy_country = { surrender_progress > 0.05 } }
+    }
+
+    option = {
+        name = "It is time to end this."
+        every_enemy_country = {
+            limit = { 
+                or = { is_faction_leader = yes is_in_faction = no } 
+            }
+            country_event = { id = _armistice_offered.1 hours = 6 random_days = 7 }
+        }
+
+        ai_chance = { base = 2 }
+    }
+
+    option = {
+        name = "We shall continue fighting."
+        add_political_power = -75
+
+        ai_chance = { base = 1 }
+    }
+}

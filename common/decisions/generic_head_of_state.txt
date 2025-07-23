@@ -1,6 +1,8 @@
 dc_head_of_state_decisions = {
     # war support
-    encourage_voluntary_draft = {
+    territorial_auxilliaries = {
+        visible = { not = { has_government = communism } }
+
         icon = generic_prepare_civil_war    
         days_remove = 90
         cost = 50
@@ -14,13 +16,32 @@ dc_head_of_state_decisions = {
 
         modifier = {
             war_support_weekly = 0.005
-            weekly_manpower = 600
+            manpower_weekly = 300
+        }
+    }
+    workers_militias = {
+        visible = { has_government = communism }
+
+        icon = generic_prepare_civil_war    
+        days_remove = 90
+        cost = 50
+    
+        available = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
+    
+        ai_will_do = {
+            base = 3
+            modifier = { and = { threat > 0.1 has_war_support < 0.3 } factor = 2 }
+        }
+
+        modifier = {
+            war_support_weekly = 0.005
+            training_time_factor = -0.1
         }
     }
 
     # propaganda
-    expand_state_information_auth = {
-        visible = { has_government = authoritarianism }
+    expand_information_services = {
+        visible = { or = { has_government = authoritarianism has_government = monarchism } }
 
         icon = generic_civil_support
         days_remove = 90
@@ -32,28 +53,14 @@ dc_head_of_state_decisions = {
         }
 
         modifier = {
-            authoritarianism_drift = 0.05
             stability_weekly = 0.005
         }
-    }
-    expand_state_information_com = {
-        visible = { has_government = communism }
 
-        icon = generic_civil_support
-        days_remove = 90
-        cost = 50
-
-        ai_will_do = {
-            base = 3
-            modifier = { has_stability < 0.5 factor = 2 }
-        }
-
-        modifier = {
-            communism_drift = 0.05
-            stability_weekly = 0.005
+        remove_effect = {
+            add_popularity = { ideology = ROOT popularity = 0.05 }
         }
     }
-    expand_state_information_dem = {
+    support_liberal_journalists = {
         visible = { has_government = democratic }
 
         icon = generic_civil_support
@@ -66,12 +73,15 @@ dc_head_of_state_decisions = {
         }
 
         modifier = {
-            democratic_drift = 0.05
             stability_weekly = 0.005
         }
+
+        remove_effect = {
+            add_popularity = { ideology = ROOT popularity = 0.05 }
+        }
     }
-    expand_state_information_mon = {
-        visible = { has_government = monarchism }
+    intensify_agitation = {
+        visible = { has_government = communism }
 
         icon = generic_civil_support
         days_remove = 90
@@ -83,41 +93,11 @@ dc_head_of_state_decisions = {
         }
 
         modifier = {
-            monarchism_drift = 0.05
             stability_weekly = 0.005
         }
-    }    
 
-    # not our war
-    ask_for_armistice = {
-        visible = { 
-            has_country_flag = war_of_another_government
-            has_civil_war = no
-        }
-
-        icon = generic_form_nation
-        cost = 150
-        days_re_enable = 90
-
-        targets_dynamic = yes
-        target_trigger = {
-            FROM = {
-                has_war_with = ROOT
-                or = { is_faction_leader = yes is_in_faction = no }
-            }
-        }
-
-        ai_will_do = { 
-            base = 6
-            modifier = { 
-                or = { has_war_support < 0.5 surrender_progress > 0.1 }
-                factor = 2 
-            }
-        }
-
-        days_remove = 7
         remove_effect = {
-            FROM = { country_event = { id = x_civil_war.1 hours = 6 random_hours = 6 } }
+            add_popularity = { ideology = ROOT popularity = 0.05 }
         }
     }
 }

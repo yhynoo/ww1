@@ -980,23 +980,9 @@
         cost = 10
 
         prerequisite = { focus = POL_state_reform }
-        available = {
-            has_civil_war = no
-            not = { has_government = communism }
-            
-            communism > 0.3
-        }
         
         completion_reward = {
-            start_civil_war = {
-                ruling_party = communism
-                ideology = ROOT
-                size = 0.5
-            }
-
-            hidden_effect = {
-                set_popularities = { communism = 100 }
-            }
+            add_timed_idea = { idea = idea_communism_tendencies years = 2 }
         }
     }
     focus = {

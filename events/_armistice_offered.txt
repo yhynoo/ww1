@@ -1,0 +1,56 @@
+add_namespace = _armistice_offered
+
+country_event = {
+    id = _armistice_offered.1
+    title = "[FROM.GetName] Asks for an Armistice"
+    desc = _armistice_offered.1.d
+
+    is_triggered_only = yes
+ 
+    option = {
+        name = "This is a chance to end this."
+
+        FROM = { news_event = { id = _armistice_offered.2 hours = 6 random_hours = 6 } }
+        start_peace_conference = { tag = FROM score_factor = 0.1 }
+
+        ai_chance = { 
+            base = 2
+            modifier = { longest_war_length > 12 add = 2 }
+        }
+    } 
+    option = {
+        name = "We will keep fighting."
+        FROM = { 
+            news_event = { id = _armistice_offered.3 hours = 6 random_hours = 6 }
+            add_political_power = -75
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = _armistice_offered.2
+    title = "[FROM.GetName] Signs an Armistice!"
+    desc = _armistice_offered.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Wonderful."
+    }
+}
+
+news_event = {
+    id = _armistice_offered.3
+    title = "[FROM.GetName] Declines!"
+    desc = _armistice_offered.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "So we shall continue fighting."
+        add_war_support = 0.05
+    }
+}
