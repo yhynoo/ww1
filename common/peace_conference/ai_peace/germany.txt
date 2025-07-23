@@ -1,0 +1,52 @@
+peace_ai_desires = {
+    # grabs
+    germany_wants_belgium_and_northern_france = {
+        peace_action_type = take_states
+        enable = {
+            original_tag = GER
+            ROOT.FROM.FROM.FROM = {
+                or = {
+                    state = 6 state = 34                    # Belgium
+                    state = 17 state = 18 state = 29        # Northern France
+                }
+            }
+        }
+        ai_desire = 100
+    }
+
+    drang_nach_osten = {
+        peace_action_type = take_states
+        enable = {
+            original_tag = GER
+            and = {
+                POL = { exists = no }
+                ROOT.FROM.FROM.FROM = { is_core_of = POL }
+            }
+        }
+        ai_desire = 90
+    }
+
+    germany_wants_south_africa = {
+        peace_action_type = take_states
+        enable = {
+            original_tag = GER
+            ROOT.FROM.FROM.FROM = { 
+                OR = {
+                    is_core_of = SAF 
+                    any_neighboring_state = { is_owned_by = GER }
+                }
+            }
+        }
+        ai_desire = 80
+    }
+
+    # puppet
+    germany_puppets_baltic_duchy = {
+        peace_action_type = puppet
+        enable = {
+            original_tag = GER
+            ROOT.FROM = { original_tag = UBD }
+        }
+        ai_desire = 200
+    }
+}

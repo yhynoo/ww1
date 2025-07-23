@@ -983,14 +983,24 @@
 
         prerequisite = { focus = SOV_state_reform }
 
+        available = {
+            not = { has_idea = idea_democratic_tendencies }
+        }
+
         ai_will_do = {
             base = 0
-            modifier = { surrender_progress > 0.1 add = 2 }
+            modifier = { surrender_progress > 0.05 add = 2 }
         }
         
         completion_reward = {
-            add_popularity = { ideology = communism popularity = 0.05 }
-            custom_effect_tooltip = decision_effect_tooltip
+            # disappear the old advisor
+            every_character = {
+                limit = { has_trait = democratic_advocate is_hired_as_advisor = yes }
+                remove_advisor_role = { slot = political_advisor }
+            }
+
+            # add new influence
+            add_timed_idea = { idea = idea_communism_tendencies years = 2 }
         }
     }
     focus = { 

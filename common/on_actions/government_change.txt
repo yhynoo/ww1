@@ -1,0 +1,17 @@
+on_actions = {
+    on_ruling_party_change = { 
+        effect = {
+            if = { 
+                limit = { has_war = yes } 
+                set_country_flag = war_of_another_government
+            }
+        } 
+    }
+
+    on_peace = {                # If we get to peace finally, it's time to remove this flag.
+        effect = { 
+            limit = { has_country_flag = war_of_another_government } 
+            clr_country_flag = war_of_another_government
+        }
+    }
+}

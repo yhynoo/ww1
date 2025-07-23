@@ -3,23 +3,22 @@ dc_economic_decisions = {
         available = { has_tech = synth_oil_0 }
 
         cost = 100
-
         icon = oil
-        days_remove = 90
         fire_only_once = yes
+
+        days_remove = 90
 
         ai_will_do = {
             base = 3
             modifier = { has_war = yes factor = 3 }
         }
 
-        complete_effect = {
+        remove_effect = {
             capital_scope = {
                 add_building_construction = { type = fuel_silo level = 1 instant_build = yes }
             }
             add_fuel = 5000
         }
-
     }
     industrial_war_effort = {
         icon = generic_industry
@@ -70,6 +69,53 @@ dc_economic_decisions = {
 
         modifier = {
             research_speed_factor = 0.05
+        }
+    }
+}
+
+# communist economy
+
+dc_communist_economic_decisions = {
+    wheat_requisitions = {
+        icon = generic_civil_support
+        days_remove = 90
+        cost = 50
+
+        ai_will_do = { 
+            base = 3
+            modifier = { has_stability > 0.5 factor = 2.5 }
+        }
+
+        modifier = {
+            consumer_goods_factor = -0.1
+            stability_weekly = -0.005
+        }
+    }
+    arrange_expropriations = {
+        icon = generic_industry
+        days_remove = 90
+        cost = 50
+
+        ai_will_do = { base = 3 }
+
+        modifier = {
+            communism_drift = 0.05
+            production_factory_max_efficiency_factor = -0.1
+        }
+    }
+    literacy_campaigns_communist = {
+        icon = generic_research
+        days_remove = 90
+        cost = 75
+
+        ai_will_do = {
+            base = 6
+            modifier = { has_war = yes factor = 0.5 }
+        }
+
+        modifier = {
+            research_speed_factor = 0.05
+            communism_drift = 0.025
         }
     }
 }

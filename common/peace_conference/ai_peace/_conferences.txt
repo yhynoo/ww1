@@ -1,0 +1,139 @@
+peace_ai_desires = {
+
+    # TAKING STATES - everyone wants some africa
+    expand_the_colonies = {
+        peace_action_type = take_states
+        enable = {
+            ROOT = { tag = ROOT.FROM }
+
+            ROOT.FROM.FROM.FROM = { 
+                is_on_continent = africa
+                OR = {
+                    is_coastal = yes
+                    is_one_state_island = yes
+                    any_neighboring_state = { is_owned_by = ROOT.FROM }
+                }
+            }
+        }
+        ai_desire = 120
+    }
+
+    # everyone can retake cores
+    take_our_cores = {
+        peace_action_type = { take_states }
+        enable = {
+            ROOT = { tag = ROOT.FROM }
+
+            # take our cores and claims
+            ROOT.FROM.FROM.FROM = { is_core_of = ROOT.FROM }
+        }
+        ai_desire = 100
+    }
+
+    # authoritarians and monarchists can take claims too
+    take_our_claims = {
+        peace_action_type = { take_states }
+        enable = {
+            ROOT = { tag = ROOT.FROM }
+            OR = { has_government = authoritarianism has_government = monarchism }
+
+            # take our cores and claims
+            ROOT.FROM.FROM.FROM = { is_claimed_by = ROOT.FROM }
+        }
+        ai_desire = 90
+    }
+
+    # authoritarians can also take what they control
+    take_our_controlled = {
+        peace_action_type = { take_states }
+        enable = {
+            ROOT = { tag = ROOT.FROM }
+            has_government = authoritarianism
+
+            # take our cores and claims
+            ROOT.FROM.FROM.FROM = { is_controlled_by = ROOT.FROM }
+        }
+        ai_desire = 80
+    }
+
+    dont_take_otherwise = {
+        peace_action_type = { take_states }
+        enable = {
+            ROOT = { tag = ROOT.FROM }
+
+            # don't take states we don't have claims or cores on
+            ROOT.FROM.FROM.FROM = {
+                NOT = { is_core_of = ROOT.FROM }
+                NOT = { is_claimed_by = ROOT.FROM }
+            }
+        }
+        ai_desire = -20
+    }
+
+    # LIBERATING
+    liberate_if_already_exists = {
+        peace_action_type = liberate
+        enable = {
+            ROOT.FROM = { pc_is_liberated = yes }
+            ROOT.FROM.FROM.FROM = { is_core_of = ROOT.FROM }
+        }
+
+        ai_desire = 100
+    }
+
+    dont_liberate_if_puppeted_or_authoritarian = {
+        peace_action_type = { liberate }
+        enable = { 
+            OR = {
+                has_government = authoritarianism
+                ROOT.FROM = { pc_is_puppeted = yes } 
+            }
+        }
+        ai_desire = -200
+    }
+
+    # PUPPET
+    dont_puppet_large_countries = {
+        peace_action_type = { puppet }
+        enable = {
+            OR = {
+                has_government = communism has_government = democratic              # Communists and democrats also don't puppet at all
+                ROOT.FROM.FROM = { check_variable = { num_owned_states > 10 } }
+            }
+        }
+        ai_desire = -200
+    }
+
+    continuous_puppet = {
+        peace_action_type = { puppet }
+        enable = {
+            ROOT.FROM = { pc_is_puppeted_by = ROOT }
+        }
+        ai_desire = 100
+    }
+
+    # forcing government
+    dont_force_governments_unless_democratic_or_communist = {
+        peace_action_type = force_government
+        enable = {
+            NOT = { has_government = communism has_government = democratic }
+        }
+        ai_desire = -100
+    }
+
+    # PUPPETS
+
+    puppets_dont_interfere_take_states = {
+        peace_action_type = take_states
+        enable = {
+            is_subject = yes
+            NOT = {
+                OR = {
+                    ROOT.FROM.FROM.FROM = { is_claimed_by = ROOT.FROM }
+                    ROOT.FROM.FROM.FROM = { is_core_of = ROOT.FROM }
+                }
+            }
+        }
+        ai_desire = -200
+    }
+}

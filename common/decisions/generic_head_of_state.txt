@@ -87,4 +87,37 @@ dc_head_of_state_decisions = {
             stability_weekly = 0.005
         }
     }    
+
+    # not our war
+    ask_for_armistice = {
+        visible = { 
+            has_country_flag = war_of_another_government
+            has_civil_war = no
+        }
+
+        icon = generic_form_nation
+        cost = 150
+        days_re_enable = 90
+
+        targets_dynamic = yes
+        target_trigger = {
+            FROM = {
+                has_war_with = ROOT
+                or = { is_faction_leader = yes is_in_faction = no }
+            }
+        }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { 
+                or = { has_war_support < 0.5 surrender_progress > 0.1 }
+                factor = 2 
+            }
+        }
+
+        days_remove = 7
+        remove_effect = {
+            FROM = { country_event = { id = x_civil_war.1 hours = 6 random_hours = 6 } }
+        }
+    }
 }

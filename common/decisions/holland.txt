@@ -64,6 +64,11 @@ holland_alliances = {
             }
         }
 
+        ai_will_do = {
+            base = 0
+            modifier = { and = { FROM = { tag = GER } has_government = monarchism } add = 9 }
+        }
+
         complete_effect = {
             FROM = { country_event = { id = x_alliance.1 hours = 6 random_hours = 6 } }
         }

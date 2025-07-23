@@ -1,0 +1,21 @@
+peace_ai_desires = {
+    # grabs
+    austria_wants_to_kill_serbia = {
+        peace_action_type = take_states
+        enable = {
+            original_tag = AUS
+            ROOT.FROM.FROM.FROM = { is_core_of = SER }          # to make Conrad finally shut up
+        }
+        ai_desire = 100
+    }
+
+    # puppet
+    austria_puppets_two_sicilies = {
+        peace_action_type = puppet
+        enable = {
+            original_tag = AUS
+            ROOT.FROM = { original_tag = TTS }
+        }
+        ai_desire = 200
+    }
+}
