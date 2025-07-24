@@ -9,4 +9,17 @@ on_actions = {
             }
         }
     }
+
+    on_annex = {
+        effect = {
+            if = {
+                limit = { 
+                    FROM = { tag = UKR has_government = communism }
+                }
+
+                # the hidden clean-up event
+                news_event = { id = soviet_ukraine.6 hours = 6 random_hours = 6 }
+            }
+        }
+    }
 }

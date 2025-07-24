@@ -1,0 +1,26 @@
+add_namespace = soviet_transamur
+
+country_event = {
+    id = soviet_transamur.1
+    title = "The Question of Trans-Amur Railway"
+    desc = soviet_transamur.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is an important project."
+        add_timed_idea = { idea = idea_trans_amur_railway years = 1 }
+
+        if = {
+            limit = { is_ai = yes }
+            build_railway = { start_province = 4677 target_province = 957 }
+        }
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "It is not the right time."
+
+        ai_chance = { base = 0 }
+    }
+}

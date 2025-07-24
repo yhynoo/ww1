@@ -26,20 +26,22 @@ slavic_unrest = {
             }
         }
     }
-    schedule_xx = {
-        icon = border_war
+    army_approvisation_plan = {
+        icon = generic_civil_support
         cost = 100
         fire_only_once = yes
 
-        available = { has_war_support > 0.25 }
         ai_will_do = { 
             base = 3
             modifier = { or = { AUS = { has_idea = idea_unrest_in_galicia } has_war_with = AUS } add = 9 }
         }
 
         complete_effect = {
-            add_timed_idea = { idea = idea_schedule_xx months = 6 }
-            add_war_support = 0.05
+            add_timed_idea = { idea = idea_army_approvisation_plan months = 6 }
+            add_tech_bonus = {
+				name = supply_bonus bonus = 1.0 uses = 2
+				category = supply_tech
+			}
         }
     }
 }
@@ -167,48 +169,43 @@ far_east_affairs = {
     }
 }
 
-stolypins_wake = {
-    expand_agrarian_administration_in_asia = {
-        icon = generic_civil_support
-        fire_only_once = yes
+agrarian_reform = {
+    agrarian_administration_in_asia = {
+        days_remove = 90
         cost = 75
 
-        available = { 
-            any_state = {
-                or = { state = 40 state = 402 state = 405 state = 584 state = 585 state = 587 state = 589 }
-                is_owned_and_controlled_by = SOV
-            }
+        ai_will_do = { 
+            base = 3 
+            modifier = { has_war = no factor = 2 }
         }
 
-        ai_will_do = { base = 6 }
+        modifier = {
+            stability_weekly = 0.005
+        }
 
-        complete_effect = {
-            add_stability = 0.05
+        remove_effect = {
+            random_owned_controlled_state = {
+                limit = { 
+                    or = { state = 40 state = 402 state = 405 state = 584 state = 585 state = 587 state = 589 } 
+                }
 
-            random_state = {
-                limit = {
-                    or = { state = 40 state = 402 state = 405 state = 584 state = 585 state = 587 state = 589 }
-                    is_owned_and_controlled_by = SOV
-                }
-                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
-            }
-            random_state = {
-                limit = {
-                    or = { state = 40 state = 402 state = 405 state = 584 state = 585 state = 587 state = 589 }
-                    is_owned_and_controlled_by = SOV
-                }
                 add_building_construction = { type = infrastructure level = 1 instant_build = yes }
             }
         }
     }
-    eight_hour_workday = {
-        icon = generic_civil_support
+    expand_ukrainian_cotton = {
+        icon = generic_industry
         fire_only_once = yes
         cost = 50
 
+        available = { or = { controls_state = 196 controls_state = 200 } }
+        ai_will_do = { base = 9 }
+
         complete_effect = {
-            add_stability = 0.05
-            add_popularity = { ideology = democratic popularity = 0.05 }
+            every_owned_state = {
+                limit = {  or = { state = 196 state = 200 } is_controlled_by = ROOT }
+                add_resource = { type = tungsten amount = 6 }
+            }
         }
     }
 }

@@ -1,0 +1,46 @@
+add_namespace = soviet_steppe
+
+news_event = {
+    id = soviet_steppe.1
+    title = "Makhno Escapes from Siberian Exile?"
+    desc = soviet_steppe.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Worrying."
+        add_stability = -0.025
+
+	    # next event
+        hidden_effect = { 
+            random = {
+                chance = 80
+                news_event = { id = soviet_steppe.2 days = 28 random_days = 14 } 
+            }
+        }
+    }
+}
+
+news_event = {
+    id = soviet_steppe.2
+    title = "Anarchy in the Steppe!"
+    desc = soviet_steppe.2.d
+
+    is_triggered_only = yes
+    trigger = { has_stability < 0.65 UKR = { exists = no } }
+
+    option = {
+        name = "To arms!"
+        add_war_support = 0.05
+
+        hidden_effect = {
+            UKR = { 
+                set_politics = { ruling_party = communism }
+                set_popularities = { communism = 70 democratic = 30 }
+            }
+
+            # start the war
+            start_ukrainian_independence_war = yes
+        }
+    }
+}
