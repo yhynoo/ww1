@@ -1,0 +1,17 @@
+USA_supports_dems = {
+    allowed = { NOT = { original_tag = USA } }
+    enable_reverse = { USA = { has_completed_focus = USA_hearts_and_minds } }
+    reversed = yes
+
+    enable = {
+        has_government = democratic
+        has_defensive_war = yes
+    }
+    abort_when_not_enabled = yes
+
+    ai_strategy = {
+        type = support
+        id = USA
+        value = 100
+    }
+}

@@ -1,0 +1,49 @@
+add_namespace = france_tours
+
+news_event = {
+    id = france_tours.1
+    title = "Another Scandal in War Ministry?"
+    desc = france_tours.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "It’s just a joke."
+        add_stability = -0.05
+
+        hidden_effect = { country_event = { id = france_tours.2 days = 30 random_days = 30 } }
+    }
+}
+
+country_event = {
+    id = france_tours.2
+    title = "Orleanists Gather in Tours"
+    desc = france_tours.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Invite them."
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+
+        #
+        hidden_effect = { random = { chance = 50 news_event = { id = france_tours.3 days = 30 random_days = 30 } } }
+    }
+    option = {
+        name = "They can do whatever they want."
+        add_stability = -0.05
+    }
+}
+
+news_event = {
+    id = france_tours.3
+    title = "Archbishop Speaks in the Senate"
+    desc = france_tours.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Interesting."
+        add_popularity = { ideology = monarchism popularity = 0.1 }
+    }
+}

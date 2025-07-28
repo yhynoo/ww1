@@ -1,0 +1,125 @@
+# focus decisions
+intervene_central_america = {
+    align_mexico = {
+        icon = generic_form_nation
+        fire_only_once = yes
+        cost = 150
+
+        available = {
+            any_country = { original_tag = MEX has_government = democratic }
+        }
+
+        ai_will_do = { 
+            base = 0
+            modifier = {
+                MEX = { has_civil_war = no has_government = democratic }
+                add = 9
+            }
+            modifier = { has_completed_focus = USA_on_our_own add = 3 }
+        }
+
+        complete_effect = {
+            MEX = { country_event = { id = _align.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    demand_colombia_withdraw = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            any_state = { is_core_of = MEX is_controlled_by = COL }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { not = { has_completed_focus = USA_not_our_war } add = 6 }
+        }
+
+        complete_effect = {
+            COL = { country_event = { id = usa_withdraw.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}
+
+anticolonialism = {
+    liberate_australia = {
+        icon = generic_civil_support
+        cost = 50
+        days_remove = 90
+
+        available = {
+            AST = { is_subject = yes }
+        }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { not = { is_ally_with = ENG } add = 3 }
+        }
+
+        complete_effect = {
+            AST = { news_event = { id = usa_australia.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    liberate_india = {
+        icon = generic_civil_support
+        cost = 50
+        days_remove = 90
+
+        available = {
+            RAJ = { is_subject = yes }
+        }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { not = { is_ally_with = ENG } add = 3 }
+        }
+
+        complete_effect = {
+            RAJ = { news_event = { id = usa_india.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    pacific_airfields = {
+        icon = generic_construction
+        fire_only_once = yes
+        cost = 50
+
+        ai_will_do = { base = 9 }
+
+        available = { controls_state = 327 controls_state = 632 }
+        complete_effect = {
+            327 = {
+                add_building_construction = { type = air_base level = 2 instant_build = yes }
+            }
+            632 = {
+                add_building_construction = { type = air_base level = 2 instant_build = yes }
+            }
+        }
+    }
+}
+
+american_industries = {
+    end_jim_crow = {
+        cost = 100
+        fire_only_once = yes
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            remove_ideas = idea_racial_tensions
+            add_popularity = { ideology = democratic popularity = 0.05 }
+
+            news_event = { id = usa_jim.1 hours = 6 random_hours = 6 }
+        }
+    }
+    introduce_tariffs = {
+        fire_only_once = yes
+        cost = 75
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            add_ideas = idea_tariffs
+        }
+    }
+}

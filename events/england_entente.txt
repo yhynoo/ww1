@@ -1,0 +1,40 @@
+add_namespace = england_entente
+
+news_event = {
+    id = england_entente.1
+    title = "[ENG.GetName] Announces Containment Measures"
+    desc = england_entente.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+country_event = {
+    id = england_entente.2
+    title = "End of the War in France"
+    desc = england_entente.2.d
+
+    trigger = {
+        tag = ENG
+        has_war = yes
+        
+        is_ally_with = FRA
+        FRA = { has_capitulated = yes }
+    }
+
+    fire_only_once = yes
+
+    option = {
+        name = "There is no point in continuing."
+        GER = { country_event = { id = _offer.1 days = 7 random_hours = 6 } }
+    }
+
+    option = {
+        name = "We shall keep fighting."
+        add_war_support = 0.05
+    }
+}

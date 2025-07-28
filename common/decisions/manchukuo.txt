@@ -1,0 +1,134 @@
+entente_integration = {
+    expel_germans = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            can_declare_war_on = GER
+            431 = { is_owned_by = GER }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { GER = { has_war = yes } add = 6 }
+        }
+
+        complete_effect = {
+            GER = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    labor_battalions = {
+        icon = generic_industry
+        fire_only_once = yes
+        cost = 100
+
+        available = { is_in_faction = yes }
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            if = {
+                limit = { is_in_faction = no }
+                custom_effect_tooltip = "This decision benefits our allies. We must have allies first."
+            }
+
+            every_country = {
+                limit = { is_ally_with = MAN }
+                news_event = { id = manchukuo_labor.1 hours = 6 random_hours = 6 }
+            }
+        }
+    }
+}
+
+eight_banners = {
+    establish_korea = {
+        icon = generic_form_nation
+        fire_only_once = yes
+        cost = 150
+
+        available = {
+            525 = { is_controlled_by = MAN }
+            527 = { is_controlled_by = MAN }
+        }
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            release_puppet_on_controlled = KOR
+        }
+    }
+    demand_dalian = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            72 = { 
+                NOT = { is_owned_by = MAN } 
+                controller = { can_declare_war_on = MAN }
+            }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { any_country = { onws_state = 72 has_war = yes } add = 12 }
+        }
+
+        complete_effect = {
+            72 = { controller = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } } }
+        }
+    }
+    extend_claims_to_taiwan = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        ai_will_do = { 
+            base = 6
+            modifier = { has_war_with = JAP add = 3 }
+        }
+
+        available = {
+            524 = { not = { is_owned_by = MAN } }
+        }
+
+        complete_effect = {
+            news_event = { id = manchukuo_taiwan.1 hours = 6 random_hours = 6 }
+
+            524 = { add_claim_by = MAN }
+        }
+    }
+}
+
+legacy_of_yuxian = {
+    develop_shanghai = {
+        icon = generic_construction
+        cost = 50
+        fire_only_once = yes
+
+        available = {
+            controls_state = 613
+        }
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            613 = {
+                add_building_construction = { type = naval_base level = 2 province = 7014 instant_build = yes }
+                add_building_construction = { type = dockyard level = 2 instant_build = yes }
+            }
+        }
+    }
+    expel_foreigners = {
+        icon = generic_civil_support
+        cost = 50
+        days_remove = 90
+
+        ai_will_do = { base = 6 }
+
+        modifier = {
+            monarchism_drift = 0.1
+            research_speed_factor = -0.1
+        }
+    }
+}

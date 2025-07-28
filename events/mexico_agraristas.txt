@@ -1,0 +1,30 @@
+add_namespace = mexico_agraristas
+
+country_event = {
+    id = mexico_agraristas.1
+    title = "Agrarianist Uprising"
+    desc = mexico_agraristas.1.d
+
+    fire_only_once = yes
+
+    trigger = { 
+        tag = MEX
+        has_civil_war = no
+        date > 1912.2.1
+    }
+
+    option = {
+        name = "Land and liberty!"
+        start_civil_war = { ideology = ROOT ruling_party = communism size = 0.65 }
+
+        # manage the war
+        hidden_effect = { mexican_civil_war = yes }
+    }
+    option = {
+        name = "We must hold out."
+        start_civil_war = { ideology = communism size = 0.45 }
+
+        # manage the war
+        hidden_effect = { mexican_civil_war = yes }
+    }
+}

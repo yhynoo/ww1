@@ -1,0 +1,123 @@
+avenge_libya = {
+    demand_libya = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        ai_will_do = { 
+            base = 0
+            modifier = { or = { not = { any_country = { has_guaranteed = TUR } } TUR = { is_in_faction = no } } add = 12 }
+        }
+
+        available = {
+            can_declare_war_on = TUR
+            any_state = {
+                is_claimed_by = ITA
+                is_owned_by = TUR
+            }
+        }
+
+        complete_effect = {
+            TUR = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    demand_aegean = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        ai_will_do = { 
+            base = 6
+            modifier = { has_war_with = TUR add = 3 }
+        }
+
+        available = {
+            any_state = {
+                or = { state = 182 state = 187 state = 164 }
+                not = { is_owned_by = ITA }
+            }
+        }
+
+        complete_effect = {
+            news_event = { id = italy_aegean.1 hours = 6 random_hours = 6 }
+
+            every_state = {
+                limit = {
+                    or = { state = 182 state = 187 state = 164 }
+                    not = { is_owned_by = ITA }
+                }
+                add_claim_by = ITA
+            }
+        }
+    }
+    develop_sicily = {
+        icon = generic_construction
+        fire_only_once = yes
+        cost = 75
+
+        ai_will_do = { base = 9 }
+
+        available = { controls_state = 115 }
+        complete_effect = {
+            115 = {
+                add_building_construction = { type = dockyard level = 2 instant_build = yes }
+                add_extra_state_shared_building_slots = 2
+            }
+        }
+    }
+}
+
+against_the_french = {
+    demand_tunisia = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            not = { has_war_with = FRA }
+            any_state = {
+                or = { state = 458 state = 665 }
+                is_controlled_by = FRA
+            }
+        }
+
+        ai_will_do = { 
+            base = 0
+            modifier = { FRA = { has_war = yes } add = 9 }
+        }
+
+        complete_effect = {
+            every_state = {
+                limit = { or = { state = 458 state = 665 } }
+                add_claim_by = ITA
+            }
+            FRA = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    annex_alps = {
+        icon = generic_form_nation
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            any_state = {
+                or = { state = 1 state = 32 }
+                is_controlled_by = ITA
+            }
+        }
+
+        ai_will_do = { 
+            base = 0 
+            modifier = { and = { controls_state = 1 controls_state = 32 } add = 12 }
+        }
+
+        complete_effect = {
+            every_controlled_state = {
+                limit = { or = { state = 1 state = 32 } }
+                add_core_of = ITA
+            }
+
+            news_event = { id = italy_alps.1 hours = 6 random_hours = 6 }
+        }
+    }
+}

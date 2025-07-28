@@ -1,0 +1,58 @@
+add_namespace = manchukuo_workers
+
+news_event = {
+    id = manchukuo_workers.1
+    title = "Agitation Spreads Among Textile Workers"
+    desc = manchukuo_workers.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Worrying."
+        add_popularity = { ideology = communism popularity = 0.05 }
+
+        hidden_effect = { country_event = { id = manchukuo_workers.2 days = 30 random_days = 30 } }
+    }
+}
+
+country_event = {
+    id = manchukuo_workers.2
+    title = "South China on Strike"
+    desc = manchukuo_workers.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Quash the unrest."
+        add_political_power = -75
+
+        #
+        hidden_effect = { random = { chance = 50 news_event = { id = manchukuo_workers.3 days = 30 random_days = 30 } } }
+    }
+    option = {
+        name = "Seek agreement with the moderates."
+        add_popularity = { ideology = communism popularity = 0.1 }
+    }
+}
+
+news_event = {
+    id = manchukuo_workers.3
+    title = "Workers Take to Arms in China!"
+    desc = manchukuo_workers.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Concerning."
+        add_war_support = 0.05
+
+        hidden_effect = {
+            start_civil_war = { ideology = communism states = { 325 591 592 593 594 595 596 599 600 602 } size = 0.4 }
+           
+            start_mongolian_independence_war = yes
+            china_civil_war = yes
+
+            SOV = { country_event = { id = soviet_tuva.1 days = 7 random_hours = 6 } }
+        }
+    }
+}

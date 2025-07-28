@@ -1,0 +1,51 @@
+add_namespace = turkey_armenia
+
+news_event = {
+    id = turkey_armenia.1
+    title = "Violence in Armenia and Assyria"
+    desc = turkey_armenia.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Awful."
+        add_stability = -0.05
+
+        hidden_effect = { country_event = { id = turkey_armenia.2 days = 30 random_days = 30 } }
+    }
+}
+
+country_event = {
+    id = turkey_armenia.2
+    title = "Liberals Demand an Investigation"
+    desc = turkey_armenia.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is absolutely crucial."
+        add_popularity = { ideology = democratic popularity = 0.1 }
+
+        #
+        hidden_effect = { random = { chance = 50 news_event = { id = turkey_armenia.3 days = 30 random_days = 30 } } }
+    }
+    option = {
+        name = "Silence the matter."
+        add_political_power = -75
+    }
+}
+
+news_event = {
+    id = turkey_armenia.3
+    title = "Young Officers: ’Slander is Treason!’"
+    desc = turkey_armenia.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Disgusting."
+        add_stability = -0.05
+
+        add_popularity = { ideology = authoritarianism popularity = 0.05 }
+    }
+}

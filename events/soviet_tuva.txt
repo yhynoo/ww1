@@ -1,0 +1,64 @@
+add_namespace = soviet_tuva
+
+country_event = {
+    id = soviet_tuva.1
+    title = "What About Tuva?"      # China has a civil war: should we snatch Tuva for ourselves, or rather support Mongolia?
+    desc = soviet_tuva.1.d
+
+    is_triggered_only = yes
+    trigger = { MAN = { controls_state = 329 } }
+
+    option = {
+        name = "Let us claim Tuva for ourselves."
+        329 = { transfer_state_to = SOV }
+
+        news_event = { id = soviet_tuva.2 hours = 6 random_hours = 6 }
+        ai_chance = { base = 2 }
+    }
+
+    option = {
+        name = "We will support the Mongols."
+        send_equipment = { equipment = infantry_equipment amount = 600 target = MON }
+
+        MON = { news_event = { id = soviet_tuva.3 hours = 6 random_hours = 6 } }
+        ai_chance = { base = 1 }
+    }
+
+    option = {
+        name = "Don't interfere."
+        add_war_support = -0.05
+        
+        ai_chance = { base = 0 }
+    }
+}
+
+news_event = {
+    id = soviet_tuva.2
+    title = "[SOV.GetName] Takes Tuva"
+    desc = soviet_tuva.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "An imperialist adventure."
+
+        if = {
+            limit = { tag = MAN }
+            add_opinion_modifier = { target = SOV modifier = major_decrease }
+        }
+    }
+}
+
+news_event = {
+    id = soviet_tuva.3
+    title = "[SOV.GetName] Sends Equipment"
+    desc = soviet_tuva.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Wonderful."
+        add_opinion_modifier = { target = SOV modifier = major_increase }
+    }
+}

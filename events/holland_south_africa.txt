@@ -1,0 +1,31 @@
+add_namespace = holland_south_africa
+
+news_event = {
+    id = holland_south_africa.1
+    title = "Arson in Bloemfontein"
+    desc = holland_south_africa.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Disturbing."
+        add_stability = -0.05
+
+        #
+        hidden_effect = { news_event = { id = holland_south_africa.2 days = 30 random_days = 30 } }
+    }
+}
+
+news_event = {
+    id = holland_south_africa.2
+    title = "Another Boer War?"
+    desc = holland_south_africa.2.d
+
+    is_triggered_only = yes
+    trigger = { has_stability < 0.5 }
+
+    option = {
+        name = "Haven't they had enough yet?"
+        hidden_effect = { start_south_african_independence_war = yes }
+    }
+}

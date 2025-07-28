@@ -1,0 +1,54 @@
+add_namespace = england_dockers
+
+news_event = {
+    id = england_dockers.1
+    title = "Suffragettes Attack Mailboxes?"
+    desc = england_dockers.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Confused young ladies."
+        add_stability = -0.05
+
+        hidden_effect = { country_event = { id = england_dockers.2 days = 30 random_days = 30 } }
+    }
+}
+
+country_event = {
+    id = england_dockers.2
+    title = "Southampton Workers Threaten Strike"
+    desc = england_dockers.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Seek agreement with the moderates."
+        add_popularity = { ideology = communism popularity = 0.05 }
+    }
+    option = {
+        name = "Dismiss them."
+        add_political_power = -50
+
+        #
+        hidden_effect = { random = { chance = 50 news_event = { id = england_dockers.3 days = 30 random_days = 30 } } }
+
+    }
+}
+
+news_event = {
+    id = england_dockers.3
+    title = "Unrest in South England!"
+    desc = england_dockers.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Awful."
+        add_war_support = 0.05
+
+        hidden_effect = {
+            start_civil_war = { ideology = communism states = { 122 123 127 132 338 } size = 0.3 }
+        }
+    }
+}

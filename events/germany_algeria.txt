@@ -1,0 +1,36 @@
+add_namespace = germany_algeria
+
+news_event = {
+    id = germany_algeria.1
+    title = "Outpost in the Atlas Attacked"
+    desc = germany_algeria.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Disturbing."
+        add_stability = -0.05
+
+        #
+        hidden_effect = { 
+            news_event = { id = germany_algeria.2 days = 30 random_days = 30 }
+            ALG = { add_named_threat = { threat = 2 name = "Outpost in the Atlas Attacked" } }
+        }
+    }
+}
+
+news_event = {
+    id = germany_algeria.2
+    title = "Algerian War of Independence"
+    desc = germany_algeria.2.d
+
+    is_triggered_only = yes
+    trigger = { has_stability < 0.5 }
+
+    option = {
+        name = "To arms!"
+        add_war_support = 0.05
+
+        hidden_effect = { start_algerian_independence_war = yes }
+    }
+}

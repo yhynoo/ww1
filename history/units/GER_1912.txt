@@ -1,0 +1,247 @@
+division_template = {
+	name = "Infanterie-Division"
+	division_names_group = GER_INF_01
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+        infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+        artillery_brigade = { x = 3 y = 0 }
+	}
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
+}
+
+division_template = {
+	name = "Radfahrtruppen"
+	division_names_group = GER_INF_02
+    
+	regiments = {
+		bicycle_battalion = { x = 0 y = 0 }
+		bicycle_battalion = { x = 0 y = 1 }
+        bicycle_battalion = { x = 1 y = 0 }
+		bicycle_battalion = { x = 1 y = 1 }
+        bicycle_battalion = { x = 2 y = 0 }
+		bicycle_battalion = { x = 2 y = 1 }
+	}
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
+}
+
+division_template = {
+	name = "Kolonialverbände"
+	division_names_group = GER_GAR_01
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+	}
+    priority = 0
+}
+
+# units
+units = {
+
+    # East (4 divs.)
+
+    division = {
+		location = 6332
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+
+    division = {
+		location = 6558
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+    division = {
+		location = 6558
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+
+    division = {
+		location = 3295
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+
+    # West (20 divs.)
+    division = {
+		location = 3516
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+    division = {
+		location = 3516
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+
+    division = {
+		location = 587
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+    division = {
+		location = 587
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+
+    division = {
+		location = 9575
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+    division = {
+		location = 9575
+		division_template = "Radfahrtruppen"
+        start_experience_factor = 0.5
+    }
+
+    division = {
+		location = 9444
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+    division = {
+		location = 9444
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+    division = {
+		location = 9444
+		division_template = "Radfahrtruppen"
+        start_experience_factor = 0.5
+    }
+
+    division = {
+		location = 9559
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+    division = {
+		location = 9559
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+
+    division = {
+		location = 9503
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }   
+
+    division = {
+		location = 9517
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }  
+
+    division = {
+		location = 1346
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+    division = {
+		location = 1346
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+
+    division = {
+		location = 678
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+    division = {
+		location = 678
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }  
+
+    division = {
+		location = 6583
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }  
+    division = {
+		location = 6583
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }  
+    division = {
+		location = 6583
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }  
+
+    ## RESERVE (4 divs.)
+
+    division = {
+		location = 9347
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+    
+    division = {
+		location = 6521
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+
+    division = {
+		location = 692
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+
+    division = {
+		location = 6469
+		division_template = "Infanterie-Division"
+        start_experience_factor = 0.5
+    }
+
+    ## COLONIAL (2 divs.)
+    division = {
+		location = 4879
+		division_template = "Kolonialverbände"
+        start_experience_factor = 0.5
+    }
+    division = {
+		location = 10000
+		division_template = "Kolonialverbände"
+        start_experience_factor = 0.5
+    }
+
+}
+
+air_wings = {
+    64 = {
+        fighter_equipment_0 = {
+            owner = "GER"
+            amount = 24
+        }
+
+        airship_1904 = {
+            owner = "GER"
+            amount = 5
+        }
+    }
+
+    42 = {
+        airship_1904 = {
+            owner = "GER"
+            amount = 5
+        }
+    }
+}

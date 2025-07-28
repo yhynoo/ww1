@@ -1,0 +1,77 @@
+AUS_INF_01 = {
+	name = "Infanterie-Division"
+
+	for_countries = { AUS }
+	can_use = { always = yes }
+
+	division_types = { "infantry" "motorized" }
+	#link_numbering_with = { AUS_INF_01 }
+
+	fallback_name = "%d. Division"
+
+	ordered = {
+		1 = { "%d. Division" }
+		2 = { "%d. Division" }
+		3 = { "%d. Division" }
+		4 = { "%d. Division" }
+		5 = { "%d. Division" }
+		6 = { "%d. Division" }
+	}
+}
+
+AUS_CAV_01 = {
+	name = "Schnelle Division"
+
+	for_countries = { AUS }
+	can_use = { always = yes }
+
+	division_types = { "cyclist" "mechanized" "light_armor" "heavy_armor" }
+	link_numbering_with = { AUS_INF_01 }
+	fallback_name = "%d. Schnelle Division"
+
+	ordered = {
+		1 = { "%d. Schnelle Division" }
+		2 = { "%d. Schnelle Division" }
+		3 = { "%d. Schnelle Division" }
+		4 = { "%d. Schnelle Division" }
+		5 = { "%d. Schnelle Division" }
+		6 = { "%d. Schnelle Division" }
+	}
+}
+
+AUS_MNT_01 = {
+	name = "Landesschützen"
+
+	for_countries = { AUS }
+	can_use = { always = yes }
+
+	division_types = { "mountaineers" }
+	fallback_name = "%d. Landesschützen-Division"
+
+	ordered = {
+		1 = { "%d. Tiroler Landesschützen-Division" }
+		2 = { "%d. Landesschützen-Division" }
+		3 = { "%d. Kroatische Landesschützen-Division" }
+		4 = { "%d. Innsbrucker Gebirgs-Div." }
+		5 = { "%d. Gebirgs-Division" }
+		6 = { "%d. Trienter Landesschützen-Division" }
+	}
+}
+
+AUS_INF_02 = {
+	name = "Honvéd - Landwehr"
+	for_countries = { AUS }
+
+	can_use = { always = yes }
+	division_types = { "infantry" }
+	fallback_name = "%d. Honvéd Hadosztály"
+
+	ordered = {
+		1 = { "%d. Honvéd Hadosztály" }
+		2 = { "%d. Katonai Kerület" }
+		6 = { "%d. Kraljevsko Hrvatsko Domobr." }
+		11 = { "%d. Slovansko Domobranstvo" }
+		16 = { "%d. Katonai Kerület" }
+		19 = { "%d. Kraljevsko Slav.-Hrv. Domobr." }
+	}
+}

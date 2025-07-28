@@ -1,0 +1,55 @@
+add_namespace = soviet_far_east
+
+country_event = {
+    id = soviet_far_east.1
+    title = "[FROM.GetName] Demands Harbin Access"
+    desc = soviet_far_east.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We can arrange this."
+
+        FROM = {
+            news_event = { id = soviet_far_east.2 hours = 6 random_hours = 6 }
+
+            hidden_effect = {
+                every_state = {
+                    limit = { or = { state = 328 state = 619 } }
+                    transfer_state_to = FER
+                    add_core_of = FER
+                }
+            }
+        }
+
+        puppet = FER
+        FER = { give_military_access = SOV }
+
+        hidden_effect = {
+            FER = { 
+                set_politics = { ruling_party = monarchism elections_allowed = no }
+                set_popularities = { monarchism = 100 }
+            }
+        }
+    }
+
+    option = {
+        name = "It is our land."
+        add_war_support = 0.1
+
+        FROM = { create_wargoal = { target = ROOT type = liberate_wargoal } }
+    }
+}
+
+news_event = {
+    id = soviet_far_east.2
+    title = "[SIB.GetName] Established"
+    desc = soviet_far_east.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "An important achievement of [SOV.Adjective] diplomacy."
+    }
+}

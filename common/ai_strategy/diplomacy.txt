@@ -1,0 +1,309 @@
+# Austria
+austria_central_powers = {
+    allowed = { original_tag = AUS }
+    enable = {
+        AND = {
+            has_government = monarchism
+            not = { has_completed_focus = AUS_on_our_own } 
+        }
+    }
+    abort_when_not_enabled = yes
+
+    ai_strategy = {
+        type = alliance   id = GER    value = 100
+    }
+}
+
+austria_vienna = {
+    allowed = { original_tag = AUS }
+    enable = { 
+        has_completed_focus = AUS_on_our_own
+        FRA = { has_government = monarchism }
+    }
+
+    ai_strategy = {
+        type = alliance   id = FRA    value = 100
+    }
+
+    ai_strategy = {
+        type = alliance   id = SPA    value = 60
+    }
+}
+
+# Colombia
+colombia_against_mexico = {
+    allowed = { original_tag = COL }
+    enable = { always = yes }
+
+    ai_strategy = {
+        type = antagonize   id = MEX    value = 100
+    }
+}
+
+# England
+england_entente = {
+    allowed = { original_tag = ENG }
+    enable = { not = { has_completed_focus = ENG_on_our_own } }
+
+    ai_strategy = {
+        type = alliance
+        id = FRA
+        value = 150
+    }
+
+    ai_strategy = {
+        type = alliance   
+        id = JAP    
+        value = 100
+    }
+
+    ai_strategy = {
+        type = alliance
+        id = SOV
+        value = 80
+    }
+}
+
+# France
+france_entente = {
+    allowed = { original_tag = FRA }
+    enable = { not = { has_completed_focus = FRA_adjust_the_government } }
+
+    ai_strategy = {
+        type = alliance   
+        id = ENG    
+        value = 120
+    }
+}
+
+france_versailles = {
+    allowed = { original_tag = FRA }
+    enable = { is_faction_leader = yes }
+
+    ai_strategy = {
+        type = alliance
+        id = SOV
+        value = 150
+    }
+
+    ai_strategy = {
+        type = alliance   
+        id = ITA    
+        value = 100
+    }
+
+    ai_strategy = {
+        type = alliance
+        id = SPA
+        value = 60
+    }
+}
+
+france_vienna = {
+    allowed = { original_tag = FRA }
+    enable = { 
+        AUS = { is_faction_leader = yes }
+        AND = { is_in_faction = no has_government = monarchism }
+    }
+
+    ai_strategy = {
+        type = alliance   id = AUS    value = 100
+    }
+}
+
+# Germany
+germany_central_powers = {
+    allowed = { original_tag = GER }
+    enable = { always = yes }
+
+    ai_strategy = {
+        type = alliance   id = AUS    value = 100
+    }
+
+    ai_strategy = {
+        type = alliance   id = ITA    value = 100
+    }
+
+    ai_strategy = {
+        type = alliance   id = TUR    value = 100
+    }
+}
+
+germany_protects_baltics = {
+    allowed = { original_tag = GER }
+    enable = { UBD = { exists = yes } }
+
+    ai_strategy = {
+        type = protect   id = UBD    value = 60
+    }
+}
+
+# Italy
+italy_central_powers = {
+    allowed = { original_tag = ITA }
+    enable = { 
+        not = { GER = { is_ally_with = TUR } } has_completed_focus = ITA_on_our_own
+        threat > 0.3
+    }
+
+    ai_strategy = {
+        type = alliance   id = GER    value = 100
+    }
+}
+
+italy_entente = {
+    allowed = { original_tag = ITA }
+    enable = { 
+        AND = {
+            not = { ENG = { is_ally_with = TUR } }
+            not = { has_completed_focus = ITA_on_our_own } ENG = { war_length_with = { tag = AUS months > 6 } }
+        }
+    }
+
+    ai_strategy = {
+        type = alliance   id = ENG    value = 100
+    }
+}
+
+# Japan
+japan_entente = {
+    allowed = { original_tag = JAP }
+    enable = { has_completed_focus = JAP_deterrence }
+
+    ai_strategy = {
+        type = alliance   
+        id = ENG    
+        value = 200
+    }
+
+    ai_strategy = {
+        type = alliance   
+        id = FRA    
+        value = 60
+    }
+}
+
+# Manchukuo
+manchukuo_central_powers = {
+    allowed = { original_tag = MAN }
+    enable = { has_completed_focus = MAN_beiyang_army }
+
+    ai_strategy = {
+        type = alliance   
+        id = GER    
+        value = 30
+    }
+}
+
+manchukuo_entente = {
+    allowed = { original_tag = MAN }
+    enable = { has_completed_focus = MAN_deterrence }
+
+    ai_strategy = {
+        type = alliance   
+        id = ENG    
+        value = 60
+    }
+}
+
+# Mexico
+mexico_against_colombia = {
+    allowed = { original_tag = MEX }
+    enable = { always = yes }
+
+    ai_strategy = {
+        type = antagonize   id = COL    value = 100
+    }
+}
+
+# Turkey
+turkey_central_powers = {
+    allowed = { original_tag = TUR }
+    enable = { 
+        AND = {
+            not = { GER = { is_ally_with = ITA } }
+            OR = {
+                has_country_flag = cotton_deal 
+                GER = { war_length_with = { tag = SOV months > 6 } }
+            }
+        }
+    }
+
+    ai_strategy = {
+        type = alliance   id = GER    value = 60
+    }
+}
+
+turkey_entente = {
+    allowed = { original_tag = TUR }
+    enable = { 
+        AND = { is_in_faction = no GER = { is_ally_with = ITA } }
+        threat > 0.4
+    }
+
+    ai_strategy = {
+        type = alliance   id = FRA    value = 100
+    }
+
+    ai_strategy = {
+        type = alliance   id = ENG    value = 60
+    }
+
+    # we really hate the Germans for allying with Italy.
+    ai_strategy = {
+        type = alliance   id = GER    value = -200
+    }
+}
+
+# Soviet
+soviet_entente = {
+    allowed = { original_tag = SOV }
+    enable = { not = { has_government = communism } }
+
+    ai_strategy = {
+        type = alliance   id = ENG    value = 100
+    }
+
+    ai_strategy = {
+        type = alliance   id = FRA    value = 100
+    }
+}
+
+# USA
+usa_entente_support = {
+    allowed = { original_tag = USA }
+    enable = { 
+        has_completed_focus = USA_hearts_and_minds
+        OR = {
+            ENG = { has_war_with = GER }
+            FRA = { has_war_with = GER }
+        }
+    }
+
+    ai_strategy = {
+        type = support   id = ENG    value = 100
+    }
+
+    ai_strategy = {
+        type = support   id = FRA    value = 100
+    }
+}
+
+usa_entente_join = {
+    allowed = { original_tag = USA }
+    enable = {
+        has_completed_focus = USA_seek_alliances
+        OR = {
+            ENG = { war_length_with = { tag = GER months > 36 } }
+            FRA = { war_length_with = { tag = GER months > 36 } }
+        }
+    }
+
+    ai_strategy = {
+        type = alliance   id = ENG    value = 100
+    }
+
+    ai_strategy = {
+        type = alliance   id = FRA    value = 100
+    }
+}

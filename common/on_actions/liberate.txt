@@ -1,0 +1,21 @@
+on_actions = {
+    on_state_control_changed = {
+        effect = {
+            if = {
+                limit = { tag = GER }
+
+                # Warsaw
+                if = {
+                    limit = { FROM.FROM = { state = 10 } }
+                    country_event = { id = _liberate.1 hours = 6 random_hours = 6 }
+                }
+
+                # Riga
+                if = {
+                    limit = { FROM.FROM = { state = 12 } }
+                    country_event = { id = _liberate.2 hours = 6 random_hours = 6 }
+                }
+            }
+        }
+    }
+}

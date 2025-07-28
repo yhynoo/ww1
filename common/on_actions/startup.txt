@@ -1,0 +1,34 @@
+on_actions = {
+    on_startup = {
+        effect = {
+
+            # flavor events
+            AUS = {
+                # 1916
+                news_event = { id = austria_emperor.1 months = 58 days = 28 }
+            }
+
+            GER = {
+                # 1912
+                country_event = { id = germany_egypt.1 months = 11 days = 5 }
+            }
+
+            # atmosphere events
+            USA = {
+                # 1912
+                news_event = { id = _atmosphere.1 months = 3 days = 15 }
+                news_event = { id = _atmosphere.2 months = 6 days = 19 }
+
+                # 1913
+                news_event = { id = _atmosphere.3 months = 13 days = 17 }
+                news_event = { id = _atmosphere.4 months = 20 days = 23 }
+
+                # 1915
+                news_event = { id = _atmosphere.5 months = 45 days = 21 }
+                
+                # 1918
+                news_event = { id = _atmosphere.6 months = 75 random_days = 30 }
+            }
+        }
+    }
+}

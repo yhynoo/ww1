@@ -1,0 +1,67 @@
+FRA_army_composition = {
+	allowed = { original_tag = FRA }
+	enable = { always = yes }
+	abort_when_not_enabled = yes
+	
+	# we're also scared of Germany
+	ai_strategy = {
+		type = prepare_for_war
+		id = GER
+		value = 30
+	}
+}
+
+# don't work for the russians, we need those troops at home
+FRA_stay_at_home = {
+	allowed = { tag = FRA }
+	enable = { always = yes }
+	abort_when_not_enabled = yes
+
+    ai_strategy = {
+		type = dont_defend_ally_borders
+		id = SOV
+		value = 100
+	}
+}
+
+FRA_careful_GER = {
+	allowed = { tag = FRA }
+	enable = { is_in_faction = no }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = declare_war
+		id = GER
+		value = -50
+	}
+}
+
+FRA_careful_HOL = {
+	allowed = { tag = FRA }
+	enable = { 
+		or = {
+			has_government = democratic
+			or = { HOL = { is_guaranteed_by = GER } HOL = { is_ally_with = GER } }
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = declare_war
+		id = HOL
+		value = -100
+	}
+}
+
+# don't waste too much stuff on africa
+france_avoid_africa = {
+	allowed = { original_tag = FRA }
+	enable = { always = yes }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = front_unit_request
+		state_trigger = { is_on_continent = africa }
+		value = -150
+	}
+}

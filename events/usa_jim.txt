@@ -1,0 +1,31 @@
+add_namespace = usa_jim
+
+news_event = {
+    id = usa_jim.1
+    title = "United States Abolish Jim Crow Laws"
+    desc = usa_jim.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+
+        #
+        if = { limit = { tag = USA } hidden_effect = { news_event = { id = usa_jim.2 days = 30 random_days = 30 } } }
+    }
+}
+
+news_event = {
+    id = usa_jim.2
+    title = "Clashes in Lafayette"
+    desc = usa_jim.2.d
+
+    is_triggered_only = yes
+    trigger = { has_stability < 0.5 }
+
+    option = {
+        name = "Awful."
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+    }
+}

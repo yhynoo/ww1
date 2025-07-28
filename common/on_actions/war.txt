@@ -1,0 +1,25 @@
+on_actions = {
+    on_war = {
+        effect = {
+            if = {
+                limit = { has_civil_war = no }
+
+                # pre-launch the stalemate event
+                country_event = { id = _armistice.2 days = 180 random_days = 30 }
+            }
+        }
+    }
+
+    on_annex = {
+        effect = {
+            if = {
+                limit = { 
+                    FROM = { tag = UKR has_government = communism }
+                }
+
+                # the hidden clean-up event
+                news_event = { id = soviet_ukraine.4 hours = 6 random_hours = 6 }
+            }
+        }
+    }
+}

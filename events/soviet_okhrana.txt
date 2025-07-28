@@ -1,0 +1,43 @@
+add_namespace = soviet_okhrana
+
+news_event = {
+    id = soviet_okhrana.1
+    title = "Tax Office in Tarnów Assaulted"
+    desc = soviet_okhrana.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Worrying."
+        add_stability = -0.05
+
+        #
+        hidden_effect = { 
+            news_event = { id = soviet_okhrana.2 days = 30 random_days = 30 } 
+            SOV = { add_named_threat = { threat = 2 name = "Tax Office in Tarnów Assaulted" } }
+        }
+    }
+}
+
+news_event = {
+    id = soviet_okhrana.2
+    title = "Archduke Dies from Okhrana Hands?"
+    desc = soviet_okhrana.2.d
+
+    is_triggered_only = yes
+    trigger = { AUS = { has_government = monarchism } }
+    major = yes
+
+    option = {
+        name = "Horrifying."
+
+        if = {
+            limit = { tag = AUS }
+
+            add_war_support = 0.1
+            create_wargoal = { target = SOV type = topple_government }
+
+            hidden_effect = { SOV = { add_named_threat = { threat = 10 name = "Archduke Franz Ferdinand Assassinated" } } }
+        }
+    }
+}

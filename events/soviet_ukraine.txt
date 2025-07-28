@@ -1,0 +1,72 @@
+add_namespace = soviet_ukraine
+
+news_event = {
+    id = soviet_ukraine.1
+    title = "Unrest in Ukraine"
+    desc = soviet_ukraine.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Disturbing."
+        add_popularity = { ideology = communism popularity = 0.05 }
+
+        hidden_effect = { country_event = { id = soviet_ukraine.2 days = 30 random_days = 30 } }
+    }
+}
+
+country_event = {
+    id = soviet_ukraine.2
+    title = "Arson in Yekaterinoslav"
+    desc = soviet_ukraine.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Send the troops."
+        add_political_power = -75
+
+        #
+        hidden_effect = { news_event = { id = soviet_ukraine.3 days = 30 random_days = 30 } }
+    }
+    option = {
+        name = "Appease the peasants’ delegates."
+        add_popularity = { ideology = communism popularity = 0.05 }
+    }
+}
+
+news_event = {
+    id = soviet_ukraine.3
+    title = "Anarchy in the Steppe!"
+    desc = soviet_ukraine.3.d
+
+    is_triggered_only = yes
+    trigger = { has_stability < 0.5 }
+
+    option = {
+        name = "To arms!"
+        add_war_support = 0.05
+
+        hidden_effect = { 
+            UKR = { 
+                set_politics = { ruling_party = communism elections_allowed = no } 
+                set_popularities = { communism = 65 democratic = 30 monarchism = 5 }
+            }
+            start_ukrainian_independence_war = yes 
+
+            SOV = { add_named_threat = { threat = 3 name = "Anarchy in the Steppe" } }
+        }
+    }
+}
+
+news_event = {
+    id = soviet_ukraine.4
+    hidden = yes
+
+    immediate = {
+        UKR = { 
+            set_politics = { ruling_party = monarchism elections_allowed = no } 
+            set_popularities = { communism = 25 democratic = 30 monarchism = 45 }
+        }
+    }
+}

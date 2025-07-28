@@ -1,0 +1,38 @@
+add_namespace = france_versailles
+
+country_event = {
+    id = france_versailles.1
+    title = "Versailles Accords"
+    desc = france_versailles.1.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+    
+    trigger = {
+        tag = FRA
+        has_war_with = GER
+        
+        or = {
+            ENG = { not = { has_idea = idea_containment } }
+            has_government = monarchist
+
+            and = {
+                is_in_faction = no
+                war_length_with = { tag = GER months > 3 }
+            }
+        }
+    }
+
+    option = {
+        name = "We need to take our destiny in our own hands."
+
+        add_war_support = 0.05
+        create_faction = "Versailles Accords"
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "We don't need this."
+        ai_chance = { base = 0 }
+    }
+}

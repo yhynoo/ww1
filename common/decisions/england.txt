@@ -1,0 +1,193 @@
+mediterranean_expansion_eng = {
+    jaffa_unrest = {
+        icon = generic_prepare_civil_war
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            TUR = { owns_state = 454 }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { has_war_with = TUR add = 12 }
+        }
+
+        complete_effect = {
+            TUR = {
+                add_timed_idea = { idea = idea_unrest_in_arab_lands years = 1 }
+                hidden_effect = { country_event = { id = england_arabs.1 hours = 6 random_hours = 6 } }
+            }
+        }
+    }
+    malta_cyprus = {
+        icon = generic_construction
+        cost = 75
+        fire_only_once = yes
+
+        available = {
+            any_state = {
+                or = { state = 116 state = 183 }
+                is_owned_and_controlled_by = ENG
+            }
+        }
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            if = {
+                limit = { 116 = { is_owned_and_controlled_by = ENG } }
+                116 = { add_building_construction = { type = naval_base level = 2 province = 12003 instant_build = yes } }
+            }
+            if = {
+                limit = { 183 = { is_owned_and_controlled_by = ENG } }
+                183 = { add_building_construction = { type = naval_base level = 2 province = 7193 instant_build = yes } }
+            }
+        }
+    }
+    arab_office = {
+        icon = generic_civil_support
+        cost = 50
+        fire_only_once = yes
+
+        ai_will_do = { base = 6 }
+        complete_effect = {
+            news_event = { id = england_arab_office.1 days = 7 random_hours = 6 }
+        }
+    }
+    close_arab_office = {
+        icon = generic_civil_support
+        fire_only_once = yes
+
+        visible = { has_country_flag = arab_office_active }
+
+        complete_effect = {
+            hidden_effect = { clr_country_flag = arab_office_active }
+        }
+    }
+}
+
+affirm_the_entente = {
+    announce_containment = {
+        icon = generic_prepare_civil_war
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            threat > 0.2
+            has_war_support > 0.5
+        }
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            add_ideas = idea_containment
+            news_event = { id = england_entente.1 hours = 6 random_hours = 6 }
+        }
+    }
+}
+
+change_alliances = {
+    demand_east_indies = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            any_state = {
+                or = { state = 289 state = 614 state = 286 state = 670 state = 671 }
+                owner = { not = { tag = ENG } }
+            }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = { RAJ = { is_subject_of = ENG } factor = 3 }
+        }
+
+        complete_effect = {
+            every_state = {
+                limit = { or = { state = 289 state = 614 state = 286 state = 670 state = 671 } }
+                add_claim_by = ENG
+            }
+
+            every_country = {
+                limit = {
+                    or = { controls_state = 289 controls_state = 614 controls_state = 286 controls_state = 670 controls_state = 671 }
+                    not = { has_war_with = ENG }
+                }
+                country_event = { id = _demand.1 hours = 6 random_hours = 6 }
+            }
+        }
+    }
+    intervene_congo = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        days_remove = 180
+
+        available = { 
+            any_state = {
+                or = { state = 295 state = 576 state = 538 }
+                is_owned_and_controlled_by = FRA
+            }
+
+            can_declare_war_on = FRA
+            has_war_support > 0.3 
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { 
+                any_neighbor_state = { or = { state = 295 state = 576 state = 538 } }
+                add = 6
+            }
+        }
+
+        complete_effect = {
+            every_state = {
+                limit = { or = { state = 295 state = 576 state = 538 } }
+                add_claim_by = ENG
+            }
+
+            news_event = { id = england_congo.1 hours = 6 random_hours = 6 }
+        }
+
+        remove_effect = {
+            war_with_on_remove = FRA
+            create_wargoal = { target = FRA type = take_claimed_state }
+        }
+    }
+}
+
+peoples_act = {
+    appease_unions_eng = {
+        cost = 50
+        days_remove = 90
+
+        ai_will_do = { base = 6 }
+
+        modifier = {
+            industrial_capacity_factory = 0.1
+            communism_drift = 0.05
+        }
+    }
+    release_saf = {
+        icon = generic_form_nation
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            SAF = { exists = no }
+            any_state = { is_core_of = SAF is_controlled_by = ENG }
+        }
+
+        ai_will_do = { base = 12 }
+
+        complete_effect = {
+            hidden_effect = { release_puppet_on_controlled = SAF }
+            news_event = { id = england_south_africa.1 hours = 6 random_hours = 6 }
+        }
+    }
+}

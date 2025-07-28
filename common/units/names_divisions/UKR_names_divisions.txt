@@ -1,0 +1,39 @@
+UKR_INF_01 = {
+	name = "Lehion Striltsiv"
+
+	for_countries = { UKR }
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+	fallback_name = "%d-yi Lehion Striltsiv"
+
+	ordered = {
+		1 = { "%d-yi 'Kyivskyi' Leh. Striltsiv" }
+		2 = { "%d-yi 'Odeskyi' Leh. Str." }
+        3 = { "%d-yi Leh. Str. 'Hetman Mazepa'"}
+        6 = { "%d-yi Lehion Striltsiv" }
+        8 = { "%d-yi 'Tavriiskyi' Leh. Striltsiv" }
+        11 = { "%d-yi 'Dniprovskyi' Leh. Str." }
+	}
+}
+
+UKR_GAR_01 = {
+	name = "Dobrovoltskyi Kurin'"
+
+	for_countries = { UKR }
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+	fallback_name = "%d-yi Dobrovoltskyi Kurin'"
+
+    link_numbering_with = { UKR_INF_01 }
+
+	ordered = {
+        2 = { "%d-yi 'Hlukhivskyi' Dobr. Kurin'" }
+        5 = { "%d-yi 'Kozatskyi' Dobrovoltskyi Kurin'" }
+        6 = { "%d-yi Dobrovoltskyi Kurin'" }
+        10 = { "%d-yi 'Lvivskyi' Dobr. Kurin'" }
+        14 = { "%d-yi Dobrovoltskyi Kurin'" }
+        15 = { "%d-yi 'Mykolaivskyi' Dobr. Kurin'" }
+	}
+}

@@ -1,0 +1,183 @@
+oriental_investments = {
+    unrest_in_algeria = {
+        icon = generic_prepare_civil_war
+
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            any_state = { is_core_of = ALG is_owned_by = FRA }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = { has_war_with = FRA add = 6 }
+        }
+
+        complete_effect = {
+            FRA = {
+                add_timed_idea = { idea = idea_unrest_in_algeria years = 1 }
+                hidden_effect = { country_event = { id = germany_algeria.1 hours = 6 random_hours = 6 } }
+            }
+        }
+    }
+    egyptian_cotton = {
+        icon = generic_industry
+        cost = 75
+        fire_only_once = yes
+
+        available = {
+            not = { has_war_with = TUR }
+            447 = { is_owned_and_controlled_by = TUR }
+        }
+
+        ai_will_do = { 
+            base = 9
+            modifier = { has_war = yes add = 6 }
+        }
+
+        complete_effect = {
+            TUR = { country_event = { id = germany_cotton.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    wassmuss_in_the_gulf = {
+        icon = generic_civil_support
+        cost = 50
+        fire_only_once = yes
+
+        available = {
+            not = { has_war_with = PER }
+        }
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            news_event = { id = germany_wassmuss.1 days = 7 random_hours = 6 }
+        }
+    }
+    recall_wassmuss = {
+        icon = generic_civil_support
+        fire_only_once = yes
+
+        visible = { has_country_flag = wassmuss_in_gulf }
+
+        complete_effect = {
+            hidden_effect = { clr_country_flag = wassmuss_in_gulf }
+        }
+    }
+}
+
+a_place_in_the_sun = {
+    demand_south_africa = {
+        icon = generic_prepare_civil_war
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            not = { has_war_with = ENG }
+            any_state = { 
+                or = { state = 275 state = 542 state = 544 state = 545 state = 681 }
+                is_owned_and_controlled_by = ENG
+            }
+        }
+
+        ai_will_do = { 
+            base = 3
+            modifier = { and = { date > 1914.10.1 has_war = no } add = 6 }
+        }
+
+        complete_effect = {
+            every_state = { 
+                limit = { or = { state = 275 state = 542 state = 544 state = 545 state = 681 } }
+                add_claim_by = GER
+            }
+
+            ENG = { country_event = _demand.1 hours = 6 random_hours = 6 }
+        }
+    }
+    support_baltic_germans = {
+        icon = generic_prepare_civil_war
+        cost = 125
+        fire_only_once = yes
+
+        available = {
+            UBD = { exists = no }
+            any_state = {
+                is_core_of = UBD
+                is_controlled_by = SOV
+            }
+        }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { and = { date > 1915.4.1 has_war = no } add = 6 }
+        }
+
+        complete_effect = {
+            add_war_support = 0.05
+            news_event = { id = germany_east.1 hours = 6 random_hours = 6 }
+        }
+    }
+}
+
+approach_the_uk = {
+    treaty_of_singapore = {
+        icon = generic_form_nation
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            ENG = { not = { has_war_with = GER } }
+        }
+
+        complete_effect = {
+            ENG = { country_event = { id = germany_naval.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    ask_to_withdraw_french_guarantees = {
+        icon = generic_prepare_civil_war
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            ENG = { has_guaranteed = FRA }
+        }
+
+        complete_effect = {
+            ENG = { country_event = { id = germany_approach_uk.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}
+
+afrika_amt = {
+    develop_south_west_africa = {
+        icon = generic_construction
+        fire_only_once = yes
+        cost = 75
+
+        available = { controls_state = 541 }
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            541 = { 
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                add_resource = { type = chromium amount = 8 } 
+            }
+        }
+    }
+    tanganyika_cotton = {
+        icon = generic_industry
+        fire_only_once = yes
+        cost = 50
+
+        available = { controls_state = 546 }
+        ai_will_do = { 
+            base = 0
+            modifier = { has_war = yes add = 6 }
+        }
+
+        complete_effect = {
+            546 = { add_resource = { type = tungsten amount = 12 } }
+        }
+    }
+}

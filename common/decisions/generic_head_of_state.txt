@@ -1,0 +1,104 @@
+dc_head_of_state_decisions = {
+    # war support
+    territorial_auxilliaries = {
+        visible = { not = { has_government = communism } }
+
+        icon = generic_prepare_civil_war    
+        days_remove = 90
+        cost = 50
+    
+        available = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
+    
+        ai_will_do = {
+            base = 3
+            modifier = { and = { threat > 0.1 has_war_support < 0.3 } factor = 2 }
+            modifier = { has_war_support > 0.8 factor = 0 }
+        }
+
+        modifier = {
+            war_support_weekly = 0.005
+            manpower_weekly = 300
+        }
+    }
+    workers_militias = {
+        visible = { has_government = communism }
+
+        icon = generic_prepare_civil_war    
+        days_remove = 90
+        cost = 50
+    
+        available = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
+    
+        ai_will_do = {
+            base = 3
+            modifier = { and = { threat > 0.1 has_war_support < 0.3 } factor = 2 }
+        }
+
+        modifier = {
+            war_support_weekly = 0.005
+            training_time_factor = -0.1
+        }
+    }
+
+    # propaganda
+    expand_information_services = {
+        visible = { or = { has_government = authoritarianism has_government = monarchism } }
+
+        icon = generic_civil_support
+        days_remove = 90
+        cost = 50
+
+        ai_will_do = {
+            base = 3
+            modifier = { has_stability < 0.5 factor = 2 }
+        }
+
+        modifier = {
+            stability_weekly = 0.005
+        }
+
+        remove_effect = {
+            add_popularity = { ideology = ROOT popularity = 0.05 }
+        }
+    }
+    support_liberal_journalists = {
+        visible = { has_government = democratic }
+
+        icon = generic_civil_support
+        days_remove = 90
+        cost = 50
+
+        ai_will_do = {
+            base = 3
+            modifier = { has_stability < 0.5 factor = 2 }
+        }
+
+        modifier = {
+            stability_weekly = 0.005
+        }
+
+        remove_effect = {
+            add_popularity = { ideology = ROOT popularity = 0.05 }
+        }
+    }
+    intensify_agitation = {
+        visible = { has_government = communism }
+
+        icon = generic_civil_support
+        days_remove = 90
+        cost = 50
+
+        ai_will_do = {
+            base = 3
+            modifier = { has_stability < 0.5 factor = 2 }
+        }
+
+        modifier = {
+            stability_weekly = 0.005
+        }
+
+        remove_effect = {
+            add_popularity = { ideology = ROOT popularity = 0.05 }
+        }
+    }
+}

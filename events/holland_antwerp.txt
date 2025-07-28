@@ -1,0 +1,38 @@
+add_namespace = holland_antwerp
+
+country_event = {
+    id = holland_antwerp.1
+    title = "[HOL.GetName] Asks Us to Take Over"
+    desc = holland_antwerp.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a good deal."
+        FROM = { 
+            news_event = { id = holland_antwerp.2 hours = 6 random_hours = 6 }
+            remove_ideas = idea_antwerp_affair
+        }
+
+        6 = { transfer_state_to = FRA }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "We are not interested."
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = holland_antwerp.2
+    title = "[HOL.GetName] Withdraws"
+    desc = holland_antwerp.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}

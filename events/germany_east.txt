@@ -1,0 +1,114 @@
+add_namespace = germany_east
+
+news_event = {
+    id = germany_east.1
+    title = "Germany Stirs Up Unrest in the Baltics"
+    desc = germany_east.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    immediate = {
+        hidden_effect = { 
+            news_event = { id = germany_east.2 days = 30 random_days = 30 }
+            SOV = { news_event = { id = germany_east.5 days = 90 random_days = 30 } }
+        }
+    }
+
+    option = {
+        name = "Worrying."
+        hidden_effect = { SOV = { set_country_flag = baltic_unrest } }
+    }
+}
+
+country_event = {
+    id = germany_east.2
+    title = "Dramatic Appeals from Riga"
+    desc = germany_east.2.d
+
+    is_triggered_only = yes
+    trigger = { 
+        SOV = { has_country_flag = baltic_unrest }
+        can_declare_war_on = SOV
+
+        any_state = {
+            is_core_of = UBD
+            is_controlled_by = SOV
+        }
+    }
+
+    option = {
+        name = "Demand a protectorate."
+        SOV = { country_event = { id = germany_east.3 hours = 6 random_hours = 6 } }
+    }
+    option = {
+        name = "We must not get involved now."
+        add_political_power = -50
+    }
+}
+
+country_event = {
+    id = germany_east.3
+    title = "[GER.GetName] Demands a Baltic State"
+    desc = germany_east.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must accept their terms."
+        add_popularity = { ideology = ROOT popularity = -0.05 }
+
+        release_on_controlled = UBD
+        GER = { 
+            news_event = { id = germany_east.4 hours = 6 random_hours = 6 }
+            puppet = UBD 
+        }
+
+        hidden_effect = { clr_country_flag = baltic_unrest }
+    }
+    option = {
+        name = "No way."
+        add_war_support = 0.05
+
+        GER = { create_wargoal = { target = SOV type = liberate_wargoal } }
+    }
+}
+
+news_event = {
+    id = germany_east.4
+    title = "[UBD.GetName] Established!"
+    desc = germany_east.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = germany_east.5
+    title = "Baltic War of Independence!"
+    desc = germany_east.5.d
+
+    is_triggered_only = yes
+    trigger = { 
+        UBD = { exists = no }
+        SOV = { has_country_flag = baltic_unrest }
+    }
+
+    immediate = {
+        hidden_effect = { start_baltic_independence_war = yes }
+    }
+
+    option = {
+        name = "To arms!"
+        add_war_support = 0.05
+    }
+
+    option = {
+        name = "8Continue as [UBD.GetNameDef]"
+        UBD = { change_tag_from = ROOT }
+    }
+}

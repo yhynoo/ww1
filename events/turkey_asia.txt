@@ -1,0 +1,36 @@
+add_namespace = turkey_asia
+
+country_event = {
+    id = turkey_asia.1
+    title = "Asian Muslims Demand Autonomy"
+    desc = turkey_asia.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = Infiltrate their group."
+        add_political_power = -50
+
+        #
+        hidden_effect = { random = { chance = 50 news_event = { id = turkey_asia.2 days = 30 random_days = 30 } } }
+    }
+    option = {
+        name = "Send them home."
+        add_stability = -0.05
+    }
+}
+
+news_event = {
+    id = turkey_asia.2
+    title = "[TUR.GetAdjective] Agents Arrested in Samarkand"
+    desc = turkey_asia.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "What a coincidence."
+        add_war_support = 0.05
+
+        create_wargoal = { target = TUR type = topple_government }
+    }
+}

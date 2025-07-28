@@ -1,0 +1,42 @@
+add_namespace = turkey_achaean
+
+news_event = {
+    id = turkey_achaean.1
+    title = "Achaean League Formed in Athens"
+    desc = turkey_achaean.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Worrying."
+        add_stability = -0.05
+
+        hidden_effect = { set_country_flag = greeks_angry }
+    }
+}
+
+country_event = {
+    id = turkey_achaean.2
+    title = "Greek War of Independence"
+    desc = turkey_achaean.2.d
+
+    is_triggered_only = yes
+    trigger = { 
+        has_country_flag = greeks_angry
+        or = { has_surrender_progress > 0.1 has_stability < 0.25 }
+    }
+
+    immediate = {
+        hidden_effect = { start_greek_independence_war = yes }
+    }
+
+    option = {
+        name = "To arms!"
+        add_war_support = 0.05
+    }
+
+    option = {
+        name = "8Continue as [GRE.GetNameDef]"
+        GRE = { change_tag_from = ROOT }
+    }
+}

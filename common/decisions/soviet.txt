@@ -1,0 +1,162 @@
+slavic_unrest = {
+    unrest_in_galicia = {
+        icon = generic_prepare_civil_war
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            any_state = {
+                or = { state = 80 state = 89 state = 91 }
+                is_owned_and_controlled_by = AUS
+            }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = { date > 1914.4.1 add = 9 }
+
+            # if it's too late, don't do it.
+            modifier = { and = { date > 1915.1.1 is_in_faction = no } factor = 0 }
+        }
+
+        complete_effect = {
+            AUS = {
+                add_timed_idea = { idea = idea_unrest_in_galicia years = 1 }
+                hidden_effect = { country_event = { id = soviet_okhrana.1 days = 15 random_days = 30 } }
+            }
+        }
+    }
+    army_approvisation_plan = {
+        icon = generic_civil_support
+        cost = 100
+        fire_only_once = yes
+
+        ai_will_do = { 
+            base = 3
+            modifier = { or = { AUS = { has_idea = idea_unrest_in_galicia } has_war_with = AUS } add = 9 }
+        }
+
+        complete_effect = {
+            add_timed_idea = { idea = idea_army_approvisation_plan months = 6 }
+            add_tech_bonus = {
+				name = supply_bonus bonus = 1.0 uses = 2
+				category = supply_tech
+			}
+        }
+    }
+}
+
+far_east_affairs = {
+    align_afghans = {
+        icon = generic_civil_support
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            can_declare_war_on = AFG
+            AFG = { exists = yes is_subject = no }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { AFG = { is_in_faction = no } add = 9 }
+        }
+
+        complete_effect = {
+            AFG = { country_event = { id = _align.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    harbin_section = {
+        icon = generic_form_nation
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            can_declare_war_on = MAN
+            any_state = {
+                or = { state = 328 state = 619 }
+                is_controlled_by = MAN
+            }
+        }
+
+        ai_will_do = {
+            base = 6
+            modifier = { MAN = { has_war = yes } add = 3 }
+        }
+
+        complete_effect = {
+            MAN = { country_event = { id = soviet_far_east.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    develop_far_east = {
+        icon = generic_construction
+        fire_only_once = yes
+        cost = 75
+
+        available = { 
+            any_state = {
+                or = { state = 408 state = 409 state = 560 }
+                is_owned_and_controlled_by = SOV
+            }
+        }
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            random_controlled_state = {
+                limit = {
+                    or = { state = 408 state = 409 state = 560 }
+
+                    free_building_slots = {
+                        building = industrial_complex
+                        size > 1
+                        include_locked = no
+                    }
+                }
+                add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
+        }
+    }
+}
+
+agrarian_reform = {
+    agrarian_administration_in_asia = {
+        days_remove = 90
+        cost = 75
+
+        ai_will_do = { 
+            base = 3 
+            modifier = { has_war = no factor = 2 }
+        }
+
+        modifier = {
+            stability_weekly = 0.005
+        }
+
+        remove_effect = {
+            random_owned_controlled_state = {
+                limit = { 
+                    or = { state = 40 state = 402 state = 405 state = 584 state = 585 state = 587 state = 589 } 
+                }
+
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
+        }
+    }
+    expand_ukrainian_cotton = {
+        icon = generic_industry
+        fire_only_once = yes
+        cost = 50
+
+        available = { or = { controls_state = 196 controls_state = 200 } }
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            every_owned_state = {
+                limit = {  or = { state = 196 state = 200 } is_controlled_by = ROOT }
+                add_resource = { type = tungsten amount = 6 }
+            }
+        }
+    }
+}

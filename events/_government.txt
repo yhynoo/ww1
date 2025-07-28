@@ -1,0 +1,86 @@
+add_namespace = _government
+
+country_event = {
+    id = _government.1
+    title = "Threat of a Coup in the Capital!"
+    desc = _government.1.d
+
+    trigger = {
+        has_civil_war = no
+        OR = {
+            AND = { authoritarianism > 0.5   NOT = { has_government = authoritarianism } }
+            AND = { communism > 0.5          NOT = { has_government = communism }        }
+        }
+    }
+
+    option = {
+        name = "We must step down."
+        if = {
+            limit = { authoritarianism > 0.5 }
+            set_politics = { ruling_party = authoritarianism elections_allowed = no }
+        }
+        if = {
+            limit = { communism > 0.5 }
+            set_politics = { ruling_party = communism elections_allowed = no }
+        }
+
+        hidden_effect = { 
+            if = { limit = { has_war = yes } country_event = { id = _armistice.1 days = 7 random_days = 7 } } 
+        }
+    }
+    option = {
+        name = "We must defend our country!"
+        if = {
+            limit = { authoritarianism > 0.5 }
+            start_civil_war = { ideology = authoritarianism size = party_popularity@authoritarianism }
+        }
+        if = {
+            limit = { communism > 0.5 }
+            start_civil_war = { ideology = communism size = party_popularity@communism }
+        }
+    }
+}
+
+country_event = {
+    id = _government.2
+    title = "Time to Adjust the Government?"
+    desc = _government.2.d
+
+    trigger = {
+        has_civil_war = no
+        OR = {
+            AND = { democratic > 0.5     NOT = { has_government = democratic } }
+            AND = { monarchism > 0.5     NOT = { has_government = monarchism } }
+        }
+    }
+
+    option = {
+        name = "We must step down."
+        if = {
+            limit = { democratic > 0.5 }
+            set_politics = { ruling_party = democratic elections_allowed = yes }
+        }
+        if = {
+            limit = { monarchism > 0.5 }
+            set_politics = { ruling_party = monarchism elections_allowed = no }
+        }
+
+        hidden_effect = { 
+            if = { limit = { has_war = yes } country_event = { id = _armistice.1 days = 7 random_days = 7 } } 
+        }
+    }
+    option = {
+        name = "We will not agree to this."
+        add_political_power = -75
+
+        if = {
+            limit = { democratic > 0.5 }
+            add_popularity = { ideology = democratic popularity = -0.05 }
+        }
+        if = {
+            limit = { monarchism > 0.5 }
+            add_popularity = { ideology = monarchism popularity = -0.05 }
+        }
+        
+    }
+}

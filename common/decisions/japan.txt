@@ -1,0 +1,173 @@
+pacific_claims = {
+    demand_tsingtao = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            can_declare_war_on = GER
+            any_state = {
+                or = { state = 431 state = 633 state = 647 state = 684 }
+                is_owned_by = GER
+            }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { GER = { has_war = yes } add = 9 }
+        }
+
+        complete_effect = {
+            every_state = {
+                limit = { or = { state = 431 state = 633 state = 647 state = 684 } }
+                add_claim_by = JAP
+            }
+
+            GER = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    demand_far_east = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            can_declare_war_on = SOV
+            any_state = {
+                or = { state = 408 state = 409 state = 655 }
+                is_owned_by = SOV
+            }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { SOV = { surrender_progress > 0.1 } add = 9 }
+        }
+
+        complete_effect = {
+            every_state = {
+                or = { state = 408 state = 409 state = 655 }
+                add_claim_by = JAP
+            }
+
+            SOV = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    develop_okinawa = {
+        icon = generic_construction
+        fire_only_once = yes
+        cost = 75
+
+        ai_will_do = { base = 9 }
+
+        available = { controls_state = 526 }
+        complete_effect = {
+            526 = {
+                add_building_construction = { type = naval_base level = 2 province = 11932 instant_build = yes }
+                add_building_construction = { type = dockyard level = 2 instant_build = yes }
+
+                add_extra_state_shared_building_slots = 2
+            }
+        }
+    }
+}
+
+asian_hegemony = {
+    assert_singapore = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 75
+
+        available = {
+            any_state = {
+                or = { state = 333 state = 336 }
+                not = { is_controlled_by = JAP }
+            }
+        }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { is_ally_with = ENG factor = 0 }
+        }
+
+        complete_effect = {
+            every_state = {
+                limit = { or = { state = 333 state = 336 } }
+                add_claim_by = JAP
+            }
+
+            news_event = { id = japan_singapore.1 hours = 6 random_hours = 6 }
+        }
+    }
+    help_india = {
+        icon = generic_civil_support
+        cost = 50
+        days_remove = 90
+
+        available = {
+            RAJ = { is_subject = yes }
+        }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { is_ally_with = USA add = 6 }
+        }
+
+        complete_effect = {
+            RAJ = { news_event = { id = japan_india.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}
+
+twenty_one_demands = {
+    send_the_demands = {
+        icon = generic_civil_support
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            can_declare_war_on = MAN
+            any_state = {
+                or = { 
+                    state = 72 state = 654 state = 619 state = 328
+                    state = 592 state = 593 state = 594
+                }
+                is_owned_and_controlled_by = MAN
+            }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { 
+                or = { 
+                    has_government = monarchism 
+                    strength_ratio = { tag = MAN ratio > 1 } 
+                }
+                add = 9
+            }
+        }
+
+        complete_effect = {
+            MAN = { country_event = { id = japan_demands.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    introduce_advisors = {
+        icon = generic_form_nation
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            can_declare_war_on = MAN
+            MAN = { is_subject = no }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { strength_ratio = { tag = MAN ratio > 2 } add = 12 }
+        }
+
+        complete_effect = {
+            MAN = { news_event = { id = _align.1 hours = 6 random_hours = 6 } }
+        }        
+    }
+}
