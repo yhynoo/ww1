@@ -129,12 +129,25 @@ germany_central_powers = {
     }
 }
 
-germany_protects_baltics = {
+germany_helps_manchu = {
+    allowed = { original_tag = GER }
+    enable = { MAN = { has_war_with = FRA } }
+
+    ai_strategy = {
+        type = support   id = UBD    value = 60
+    }
+}
+
+germany_helps_ubd = {
     allowed = { original_tag = GER }
     enable = { UBD = { exists = yes } }
 
     ai_strategy = {
         type = protect   id = UBD    value = 60
+    }
+
+    ai_strategy = {
+        type = alliance   id = UBD    value = 10
     }
 }
 
@@ -142,7 +155,7 @@ germany_protects_baltics = {
 italy_central_powers = {
     allowed = { original_tag = ITA }
     enable = { 
-        not = { GER = { is_ally_with = TUR } } has_completed_focus = ITA_on_our_own
+        has_completed_focus = ITA_on_our_own
         threat > 0.3
     }
 
@@ -155,13 +168,24 @@ italy_entente = {
     allowed = { original_tag = ITA }
     enable = { 
         AND = {
-            not = { ENG = { is_ally_with = TUR } }
-            not = { has_completed_focus = ITA_on_our_own } ENG = { war_length_with = { tag = AUS months > 6 } }
+            not = { has_completed_focus = ITA_on_our_own } 
+            ENG = { war_length_with = { tag = AUS months > 6 } }
         }
     }
 
     ai_strategy = {
         type = alliance   id = ENG    value = 100
+    }
+}
+
+italy_wont_like_turkey = {
+    allowed = { NOT = { original_tag = ITA } }
+    enable = { is_ally_with = TUR }
+
+    reversed = yes
+
+    ai_strategy = {
+        type = alliance   id = ITA    value = -150
     }
 }
 
@@ -220,38 +244,53 @@ mexico_against_colombia = {
 turkey_central_powers = {
     allowed = { original_tag = TUR }
     enable = { 
-        AND = {
-            not = { GER = { is_ally_with = ITA } }
-            OR = {
-                has_country_flag = cotton_deal 
-                GER = { war_length_with = { tag = SOV months > 6 } }
-            }
+        OR = {
+            has_country_flag = cotton_deal 
+            GER = { war_length_with = { tag = SOV months > 6 } }
         }
     }
 
     ai_strategy = {
-        type = alliance   id = GER    value = 60
+        type = alliance   id = GER    value = 100
     }
 }
 
 turkey_entente = {
     allowed = { original_tag = TUR }
     enable = { 
-        AND = { is_in_faction = no GER = { is_ally_with = ITA } }
-        threat > 0.4
+        AND = {
+            or = { has_government = democratic GER = { is_ally_with = ITA } }
+            threat > 0.4
+        }
     }
 
     ai_strategy = {
-        type = alliance   id = FRA    value = 100
+        type = alliance   id = FRA    value = 200
     }
 
     ai_strategy = {
-        type = alliance   id = ENG    value = 60
+        type = alliance   id = ENG    value = 120
     }
 
     # we really hate the Germans for allying with Italy.
     ai_strategy = {
         type = alliance   id = GER    value = -200
+    }
+}
+
+turkey_wont_like_italy_or_russia = {
+    allowed = { NOT = { original_tag = TUR } }
+    enable = { 
+        any_country = {
+            OR = { original_tag = ITA original_tag = SOV }
+            is_ally_with = ROOT
+        }
+    }
+
+    reversed = yes
+
+    ai_strategy = {
+        type = alliance   id = TUR    value = -150
     }
 }
 
@@ -261,11 +300,42 @@ soviet_entente = {
     enable = { not = { has_government = communism } }
 
     ai_strategy = {
-        type = alliance   id = ENG    value = 100
+        type = alliance   id = ENG    value = 200
     }
 
     ai_strategy = {
-        type = alliance   id = FRA    value = 100
+        type = alliance   id = FRA    value = 120
+    }
+}
+
+soviet_wont_like_austria_and_turkey = {
+    allowed = { NOT = { original_tag = SOV } }
+    enable = { 
+        any_country = {
+            OR = { original_tag = AUS original_tag = TUR }
+            is_ally_with = ROOT
+        }
+    }
+
+    reversed = yes
+
+    ai_strategy = {
+        type = alliance   id = SOV    value = -150
+    }
+}
+
+# Baltic German State
+
+baltics_and_germany = {
+    allowed = { NOT = { original_tag = GER } }
+    enable = { always = yes }
+
+    reversed = yes
+
+    ai_strategy = {
+        type = alliance             # it's reversed - so UBD should not want to ally anyone other than Germany
+        id = UBD
+        value = -100
     }
 }
 

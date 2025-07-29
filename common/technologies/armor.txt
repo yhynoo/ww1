@@ -13,7 +13,7 @@ technologies = {
     # armored cars
 
     adapted_suspension = {
-        categories = { mechanized_tech }
+        categories = { mechanized_tech armor_tech }
 
         research_cost = 1
         start_year = 1913
@@ -33,12 +33,17 @@ technologies = {
         }
     }
     trench_crossing = {
-        categories = { mechanized_tech }
+        categories = { mechanized_tech armor_tech}
 
         research_cost = 1
         start_year = 1915
 
         category_tanks = {
+            maximum_speed = 0.05
+            breakthrough = 0.05
+        }
+
+        category_mobile_and_mobile_combat_sup = {
             maximum_speed = 0.05
             breakthrough = 0.05
         }
@@ -54,12 +59,17 @@ technologies = {
         }
     }
     improved_tracks = {
-        categories = { mechanized_tech }
+        categories = { mechanized_tech armor_tech }
 
         research_cost = 1
         start_year = 1920
 
         category_tanks = {
+            maximum_speed = 0.05
+            reliability = 0.05
+        }
+
+        category_mobile_and_mobile_combat_sup = {
             maximum_speed = 0.05
             reliability = 0.05
         }
@@ -147,16 +157,31 @@ technologies = {
             research_cost_coeff = 1
         }
 
+        category_mobile_and_mobile_combat_sup = {
+            soft_attack = 0.1
+            reliability = 0.05
+        }
+
         folder = {
             name = armour_folder
             position = { x = 0 y = @1915 }
         }
     }
     autocannon = {
-        categories = { mechanized_tech }
+        categories = { mechanized_tech armor_tech }
 
         research_cost = 2
         start_year = 1918
+
+        category_tanks = {
+            soft_attack = 0.15
+            ap_attack = 0.1
+        }
+
+        category_mobile_and_mobile_combat_sup = {
+            soft_attack = 0.1
+            ap_attack = 0.05
+        }
 
         folder = {
             name = armour_folder

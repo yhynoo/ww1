@@ -40,10 +40,14 @@ country_event = {
     option = {
         name = "Demand a protectorate."
         SOV = { country_event = { id = germany_east.3 hours = 6 random_hours = 6 } }
+
+        ai_chance = { base = 4 }
     }
     option = {
         name = "We must not get involved now."
         add_political_power = -50
+
+        ai_chance = { base = 1 }
     }
 }
 
@@ -65,12 +69,14 @@ country_event = {
         }
 
         hidden_effect = { clr_country_flag = baltic_unrest }
+        ai_chance = { base = 1 }
     }
     option = {
         name = "No way."
         add_war_support = 0.05
 
         GER = { create_wargoal = { target = SOV type = liberate_wargoal } }
+        ai_chance = { base = 2 }
     }
 }
 
