@@ -31,10 +31,17 @@ country_event = {
     option = {
         name = "There is no point in continuing."
         GER = { country_event = { id = _offer.1 days = 7 random_hours = 6 } }
+
+        ai_chance = { 
+            base = 3
+            modifier = { SOV = { has_civil_war = yes } factor = 2 }
+        }
     }
 
     option = {
         name = "We shall keep fighting."
         add_war_support = 0.05
+
+        ai_chance = { base = 1 }
     }
 }

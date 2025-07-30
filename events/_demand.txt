@@ -52,7 +52,14 @@ country_event = {
             modifier = { has_completed_focus = HOL_thorbeckes_legacy factor = 0 }
         }
 
-        hidden_effect = { FROM = { add_named_threat = { threat = 3 name = "[ROOT.GetName] Ignores [FROM.GetAdjective] Demands" } } }
+        hidden_effect = { 
+            FROM = { add_named_threat = { threat = 3 name = "[ROOT.GetName] Ignores [FROM.GetAdjective] Demands" } }
+        
+            if = { 
+                limit = { tag = HOL }
+                set_country_flag = ignored_france
+            }
+        }
     }
 }
 

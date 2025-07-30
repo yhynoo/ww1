@@ -1,11 +1,32 @@
 default_armor_strategy = {
-	allowed = { or = { tag = ENG tag = FRA tag = GER tag = USA } }
-	enable = { or = { has_tech = heavy_1916 has_tech = light_1916 } }
+	allowed = { 
+		or = { 
+			original_tag = ENG 
+			original_tag = FRA 
+			original_tag = GER 
+			original_tag = USA 
+		}
+	}
+	enable = { 
+		AND = {
+			num_of_military_factories > 15
+			OR = { 
+				has_tech = heavy_1916 
+				has_tech = light_1916
+			} 
+		}
+	}
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
-		type = role_ratio
+		type = unit_ratio
 		id = armor
 		value = 15
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = armor
+		value = 25
 	}
 }

@@ -3,7 +3,7 @@ standard_armor = {
 
     standard_armor_1916 = {
         enable = { 
-            or = { has_tech = heavy_1916 }
+            has_tech = heavy_1916
             not = { num_of_military_factories < 10 }
         }
         upgrade_prio = { base = 1 }
@@ -14,15 +14,15 @@ standard_armor = {
                 recon = 1
             }
             regiments = {
-                infantry = 5
+                infantry = 6
                 heavy_armor = 1
             }
         }
     }
 
-    standard_armor_1918 = {
+    standard_armor_1919 = {
         enable = { 
-            has_tech = heavy_1916
+            has_tech = heavy_1919
             not = { num_of_military_factories < 20 }
         }
         upgrade_prio = { base = 2 }

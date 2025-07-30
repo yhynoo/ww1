@@ -129,12 +129,21 @@ germany_central_powers = {
     }
 }
 
+germany_helps_holland = {
+    allowed = { original_tag = GER }
+    enable = { HOL = { has_country_flag = ignored_france } }
+
+    ai_strategy = {
+        type = protect   id = HOL    value = 200
+    }
+}
+
 germany_helps_manchu = {
     allowed = { original_tag = GER }
     enable = { MAN = { has_war_with = FRA } }
 
     ai_strategy = {
-        type = support   id = UBD    value = 60
+        type = support   id = MAN    value = 60
     }
 }
 
@@ -179,13 +188,12 @@ italy_entente = {
 }
 
 italy_wont_like_turkey = {
-    allowed = { NOT = { original_tag = ITA } }
+    allowed = { original_tag = ITA }
     enable = { is_ally_with = TUR }
-
     reversed = yes
 
     ai_strategy = {
-        type = alliance   id = ITA    value = -150
+        type = alliance   id = ITA    value = -600
     }
 }
 
@@ -253,6 +261,10 @@ turkey_central_powers = {
     ai_strategy = {
         type = alliance   id = GER    value = 100
     }
+
+    ai_strategy = {
+        type = diplo_action_acceptance    id = GER    value = 20     target = join_allies
+    }
 }
 
 turkey_entente = {
@@ -271,26 +283,20 @@ turkey_entente = {
     ai_strategy = {
         type = alliance   id = ENG    value = 120
     }
-
-    # we really hate the Germans for allying with Italy.
-    ai_strategy = {
-        type = alliance   id = GER    value = -200
-    }
 }
 
 turkey_wont_like_italy_or_russia = {
-    allowed = { NOT = { original_tag = TUR } }
+    allowed = { original_tag = TUR }
     enable = { 
-        any_country = {
-            OR = { original_tag = ITA original_tag = SOV }
-            is_ally_with = ROOT
+        OR = { 
+            is_ally_with = ITA 
+            is_ally_with = SOV
         }
     }
-
     reversed = yes
 
     ai_strategy = {
-        type = alliance   id = TUR    value = -150
+        type = alliance   id = TUR    value = -600
     }
 }
 
@@ -309,18 +315,19 @@ soviet_entente = {
 }
 
 soviet_wont_like_austria_and_turkey = {
-    allowed = { NOT = { original_tag = SOV } }
+    allowed = { original_tag = SOV }
     enable = { 
-        any_country = {
-            OR = { original_tag = AUS original_tag = TUR }
-            is_ally_with = ROOT
+        OR = { 
+            is_ally_with = AUS 
+            is_ally_with = TUR
         }
     }
 
     reversed = yes
+    enable_reverse = { always = yes }
 
     ai_strategy = {
-        type = alliance   id = SOV    value = -150
+        type = alliance   id = SOV    value = -600
     }
 }
 
@@ -335,7 +342,7 @@ baltics_and_germany = {
     ai_strategy = {
         type = alliance             # it's reversed - so UBD should not want to ally anyone other than Germany
         id = UBD
-        value = -100
+        value = -300
     }
 }
 

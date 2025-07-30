@@ -820,7 +820,10 @@
         y = 1
         cost = 10
 
-        ai_will_do = { base = 2 }
+        ai_will_do = { 
+            base = 1 
+            modifier = { has_country_flag = ignored_france factor = 0 }
+        }
 
         mutually_exclusive = { focus = HOL_integrate_flanders }
         prerequisite = { focus = HOL_political_ambitions }
@@ -910,11 +913,11 @@
         y = 1
         cost = 10
 
-        ai_will_do = { base = 1 }
         available = { controls_state = 6 }
 
         mutually_exclusive = { focus = HOL_thorbeckes_legacy }
         prerequisite = { focus = HOL_political_ambitions }
+
         completion_reward = {
             if = {
                 limit = { has_idea = idea_antwerp_affair }

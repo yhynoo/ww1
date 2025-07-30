@@ -804,6 +804,11 @@
             not = { has_war_with = GER }
         }
 
+        ai_will_do = {
+            base = 1 
+            modifier = { GER = { is_ally_with = TUR } factor = 0 }
+        }
+
         completion_reward = {
             diplomatic_relation = { country = FRA relation = non_aggression_pact active = no }
             custom_effect_tooltip = decision_effect_tooltip
