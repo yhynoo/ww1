@@ -9,3 +9,20 @@ ENG_british_expeditionary_force = {
 		value = 200
 	}
 }
+
+ENG_extra_aviation = {
+	allowed = { original_tag = ENG }
+	enable = { always = yes }
+
+	ai_strategy = {
+		type = unit_ratio
+		id = fighter
+		value = 100
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = fighter
+		value = 150
+	}
+}

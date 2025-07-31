@@ -1,4 +1,4 @@
-at_lease_one = {
+at_least_one_convoy = {
 	enable = { always = yes }
 	abort = { always = no }
 
@@ -6,6 +6,36 @@ at_lease_one = {
 		type = equipment_production_min_factories
 		id = convoy
 		value = 1
+	}
+}
+
+default_naval_production = {
+	enable = { always = yes }
+	abort = { always = no }
+
+	# equipment
+	ai_strategy = {
+		type = unit_ratio
+		id = capital_ship
+		value = 0
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = screen_ship
+		value = 60
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = submarine
+		value = 60
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = convoy
+		value = 120
 	}
 }
 

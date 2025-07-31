@@ -10,7 +10,13 @@ country_event = {
     option = {
         name = "This is a chance to end this."
 
-        FROM = { news_event = { id = _offer.2 hours = 6 random_hours = 6 } }
+        hidden_effect = { 
+            FROM = { 
+                news_event = { id = _offer.2 hours = 6 random_hours = 6 } 
+                leave_faction = yes
+            }
+        }
+
         start_peace_conference = { tag = FROM score_factor = 0.1 }
 
         ai_chance = { 
@@ -22,10 +28,7 @@ country_event = {
         name = "No."
         add_political_power = -75
         
-        FROM = { 
-            news_event = { id = _offer.3 hours = 6 random_hours = 6 }
-        }
-
+        hidden_effect = { FROM = { news_event = { id = _offer.3 hours = 6 random_hours = 6 } } }
         ai_chance = { base = 1 }
     }
 }

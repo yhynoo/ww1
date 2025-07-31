@@ -806,12 +806,12 @@
 
         ai_will_do = {
             base = 0
-            modifier = { 
-                and = {
-                    has_war = no
-                    date > 1915.7.1
+            modifier = {
+                OR = {
+                    not = { has_completed_focus = SOV_slavic_unrest }
+                    and = { has_war = no date > 1915.7.1 }
                 }
-                add = 1 
+                add = 2
             }
         }
 

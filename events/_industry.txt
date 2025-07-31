@@ -1,0 +1,27 @@
+add_namespace = _industry
+
+news_event = {
+    id = _industry.1
+    title = "Industrial Growth in [ROOT.GetNameDef]"
+    desc = _industry.1.d
+
+    trigger = {
+        has_war = no
+        num_of_factories < 3
+    }
+
+    mean_time_to_happen = { months = 1 }
+
+    option = {
+        name = "True heroes of our country."
+        capital_scope = {
+            add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+            add_extra_state_shared_building_slots = 2
+        }
+
+        random_owned_controlled_state = {
+            add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            add_extra_state_shared_building_slots = 1
+        }
+    }
+}

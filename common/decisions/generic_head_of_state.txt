@@ -1,7 +1,10 @@
 dc_head_of_state_decisions = {
     # war support
     territorial_auxilliaries = {
-        visible = { not = { has_government = communism } }
+        visible = { 
+            is_subject = no
+            not = { has_government = communism } 
+        }
 
         icon = generic_prepare_civil_war    
         days_remove = 90
@@ -21,7 +24,10 @@ dc_head_of_state_decisions = {
         }
     }
     workers_militias = {
-        visible = { has_government = communism }
+        visible = { 
+            is_subject = no
+            has_government = communism
+        }
 
         icon = generic_prepare_civil_war    
         days_remove = 90
@@ -42,7 +48,10 @@ dc_head_of_state_decisions = {
 
     # propaganda
     expand_information_services = {
-        visible = { or = { has_government = authoritarianism has_government = monarchism } }
+        visible = { 
+            is_subject = no
+            or = { has_government = authoritarianism has_government = monarchism }
+        }
 
         icon = generic_civil_support
         days_remove = 90
@@ -62,7 +71,10 @@ dc_head_of_state_decisions = {
         }
     }
     support_liberal_journalists = {
-        visible = { has_government = democratic }
+        visible = { 
+            is_subject = no
+            has_government = democratic
+        }
 
         icon = generic_civil_support
         days_remove = 90
@@ -82,7 +94,10 @@ dc_head_of_state_decisions = {
         }
     }
     intensify_agitation = {
-        visible = { has_government = communism }
+        visible = { 
+            is_subject = no
+            has_government = communism
+        }
 
         icon = generic_civil_support
         days_remove = 90
@@ -99,6 +114,76 @@ dc_head_of_state_decisions = {
 
         remove_effect = {
             add_popularity = { ideology = ROOT popularity = 0.05 }
+        }
+    }
+
+    # puppet decisions
+    empower_loyalists = {
+        visible = { is_subject = yes }
+
+        icon = generic_civil_support
+        days_remove = 90
+        cost = 50
+
+        ai_will_do = { 
+            base = 6
+            modifier = { has_idea = idea_underground_state factor = 0 }
+        }
+
+        modifier = {
+            stability_weekly = 0.005
+            master_ideology_drift = 0.05
+        }
+    }
+    develop_independents = {
+        visible = { 
+            is_subject = yes
+            not = { has_idea = idea_underground_state }
+        }
+
+        icon = generic_prepare_civil_war
+        days_remove = 90
+        cost = 50
+
+        modifier = {
+            stability_weekly = -0.005
+        }
+
+        ai_will_do = { 
+            base = 3
+            modifier = { OVERLORD = { has_stability < 0.5 } add = 6 }
+        }
+
+        remove_effect = {
+            add_autonomy_score = { value = 100 }
+            OVERLORD = { add_stability = -0.025 }
+
+            random = {
+                chance = 25
+                add_ideas = idea_underground_state
+            }
+        }
+    }
+    launch_independence_war = {
+        visible = { 
+            is_subject = yes
+            has_idea = idea_underground_state
+        }
+
+        icon = generic_form_nation
+        fire_only_once = yes
+        cost = 100
+
+        ai_will_do = {
+            base = 0
+            modifier = { OVERLORD = { has_war = yes } add = 6 }
+        }
+
+        complete_effect = {
+            OVERLORD = {
+                hidden_effect = { set_autonomy = { target = ROOT autonomous_state = autonomy_free } }
+                declare_war_on = { target = ROOT type = annex_everything }
+            }
         }
     }
 }

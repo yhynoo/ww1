@@ -6,7 +6,8 @@ standard_armor = {
             has_tech = heavy_1916
             not = { num_of_military_factories < 10 }
         }
-        upgrade_prio = { base = 1 }
+
+        upgrade_prio = { base = 3 }
 
         target_template = {
             support = {
@@ -25,7 +26,8 @@ standard_armor = {
             has_tech = heavy_1919
             not = { num_of_military_factories < 20 }
         }
-        upgrade_prio = { base = 2 }
+
+        upgrade_prio = { base = 3 }
 
         target_template = {
             support = {
@@ -42,7 +44,9 @@ standard_armor = {
 
 light_armor = {
     role = armor
-    available_for = { FRA USA }
+    available_for = { ENG FRA GER USA }
+
+    upgrade_prio = { base = 3 }
 
     light_armor_1916 = {
         enable = { 

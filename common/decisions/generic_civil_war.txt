@@ -81,13 +81,13 @@ civil_war_decisions = {
             not = { has_war_with = FROM }
             any_core_state = { is_controlled_by = FROM }
 
-            or = {
-                has_idea = idea_aftermath_of_civil_war
-                FROM = { or = { has_idea = idea_aftermath_of_civil_war has_civil_war = yes } }
-            }
+            FROM = { has_civil_war = yes }
         }
 
-        ai_will_do = { base = 6 }
+        ai_will_do = { 
+            base = 6
+            modifier = { FROM = { original_tag = SOV } add = 3 }
+        }
 
         complete_effect = {
             FROM = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }

@@ -11,6 +11,23 @@ FRA_army_composition = {
 	}
 }
 
+FRA_extra_aviation = {
+	allowed = { original_tag = ENG }
+	enable = { always = yes }
+
+	ai_strategy = {
+		type = unit_ratio
+		id = fighter
+		value = 100
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = fighter
+		value = 150
+	}
+}
+
 # don't work for the russians, we need those troops at home
 FRA_stay_at_home = {
 	allowed = { tag = FRA }
@@ -32,7 +49,7 @@ FRA_careful_GER = {
 	ai_strategy = {
 		type = declare_war
 		id = GER
-		value = -50
+		value = -60
 	}
 }
 
@@ -49,7 +66,7 @@ FRA_careful_HOL = {
 	ai_strategy = {
 		type = declare_war
 		id = HOL
-		value = -100
+		value = -60
 	}
 }
 
