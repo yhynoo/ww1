@@ -41,33 +41,69 @@ colombia_against_mexico = {
 }
 
 # England
-england_entente = {
+england_alliance_with_france = {
     allowed = { original_tag = ENG }
-    enable = { not = { has_completed_focus = ENG_on_our_own } }
+    enable = { 
+        not = { 
+            has_completed_focus = ENG_on_our_own has_completed_focus = ENG_abolish_lords
+            has_country_flag = english_neutrality
+        }
+        FRA = { has_government = democratic }
+    }
 
     ai_strategy = {
         type = alliance
         id = FRA
         value = 150
     }
+}
 
-    ai_strategy = {
-        type = alliance   
-        id = JAP    
-        value = 100
+england_extend_the_entente = {
+    allowed = { original_tag = ENG }
+    enable = {
+        has_war = yes
+        has_completed_focus = ENG_seek_alliances
     }
 
     ai_strategy = {
         type = alliance
         id = SOV
-        value = 80
+        value = 50
+    }
+
+    ai_strategy = {
+        type = alliance   
+        id = JAP    
+        value = 50
+    }
+
+    ai_strategy = {
+        type = alliance
+        id = ITA
+        value = 30
+    }
+}
+
+england_extra_provisions_for_turkey = {
+    allowed = {
+        allowed = { original_tag = ENG }
+        enable = { has_country_flag = england_likes_turkey }
+    }
+
+    ai_strategy = {
+        type = alliance
+        id = TUR
+        value = 30
     }
 }
 
 # France
 france_entente = {
     allowed = { original_tag = FRA }
-    enable = { not = { has_completed_focus = FRA_adjust_the_government } }
+    enable = { 
+        not = { has_country_flag = french_neutrality }
+        not = { has_completed_focus = FRA_adjust_the_government }
+    }
 
     ai_strategy = {
         type = alliance   
@@ -103,7 +139,10 @@ france_vienna = {
     allowed = { original_tag = FRA }
     enable = { 
         AUS = { is_faction_leader = yes }
-        AND = { is_in_faction = no has_government = monarchism }
+        AND = { 
+            not = { has_country_flag = french_neutrality }
+            is_in_faction = no has_government = monarchism 
+        }
     }
 
     ai_strategy = {
@@ -131,10 +170,13 @@ germany_central_powers = {
 
 germany_helps_holland = {
     allowed = { original_tag = GER }
-    enable = { HOL = { has_country_flag = ignored_france } }
+    enable = { 
+        FRA = { not = { has_country_flag = french_neutrality } }
+        HOL = { has_country_flag = ignored_france }
+    }
 
     ai_strategy = {
-        type = protect   id = HOL    value = 200
+        type = protect   id = HOL    value = 100
     }
 }
 
@@ -164,26 +206,38 @@ germany_helps_ubd = {
 italy_central_powers = {
     allowed = { original_tag = ITA }
     enable = { 
-        has_completed_focus = ITA_on_our_own
-        threat > 0.3
+        AND = { 
+            has_completed_focus = ITA_on_our_own 
+            not = { has_completed_focus = ITA_traditionalism }
+        }
+        threat > 0.5
     }
 
     ai_strategy = {
-        type = alliance   id = GER    value = 100
+        type = alliance   id = GER    value = 90
     }
 }
 
-italy_entente = {
+italy_entente_or_versailles = {
     allowed = { original_tag = ITA }
     enable = { 
+        has_completed_focus = ITA_traditionalism
+
         AND = {
             not = { has_completed_focus = ITA_on_our_own } 
-            ENG = { war_length_with = { tag = AUS months > 6 } }
+            or = {
+                ENG = { war_length_with = { tag = AUS months > 6 } }
+                FRA = { war_length_with = { tag = AUS months > 6 } }
+            }
         }
     }
 
     ai_strategy = {
-        type = alliance   id = ENG    value = 100
+        type = alliance   id = ENG    value = 90
+    }
+
+    ai_strategy = {
+        type = alliance   id = FRA    value = 90
     }
 }
 
@@ -248,6 +302,58 @@ mexico_against_colombia = {
     }
 }
 
+# Soviet
+soviet_entente = {
+    allowed = { original_tag = SOV }
+    enable = { not = { has_government = communism } }
+
+    ai_strategy = {
+        type = alliance   id = ENG    value = 200
+    }
+
+    ai_strategy = {
+        type = alliance   id = FRA    value = 120
+    }
+}
+
+soviet_likes_serbia_and_manchuria = {
+    allowed = { original_tag = SOV }
+    enable = { 
+        OR = { 
+            original_tag = FER
+            original_tag = SER
+        }
+    }
+
+    reversed = yes
+    enable_reverse = { always = yes }
+
+    ai_strategy = {
+        type = protect   id = SOV    value = 300
+    }
+
+    ai_strategy = {
+        type = support   id = SOV    value = 100
+    }
+}
+
+soviet_wont_like_austria_and_turkey = {
+    allowed = { original_tag = SOV }
+    enable = { 
+        OR = { 
+            is_ally_with = AUS 
+            is_ally_with = TUR
+        }
+    }
+
+    reversed = yes
+    enable_reverse = { always = yes }
+
+    ai_strategy = {
+        type = alliance   id = SOV    value = -600
+    }
+}
+
 # Turkey
 turkey_central_powers = {
     allowed = { original_tag = TUR }
@@ -263,7 +369,7 @@ turkey_central_powers = {
     }
 
     ai_strategy = {
-        type = diplo_action_acceptance    id = GER    value = 20     target = join_allies
+        type = diplo_action_acceptance    id = GER    value = 60     target = join_allies
     }
 }
 
@@ -297,37 +403,6 @@ turkey_wont_like_italy_or_russia = {
 
     ai_strategy = {
         type = alliance   id = TUR    value = -600
-    }
-}
-
-# Soviet
-soviet_entente = {
-    allowed = { original_tag = SOV }
-    enable = { not = { has_government = communism } }
-
-    ai_strategy = {
-        type = alliance   id = ENG    value = 200
-    }
-
-    ai_strategy = {
-        type = alliance   id = FRA    value = 120
-    }
-}
-
-soviet_wont_like_austria_and_turkey = {
-    allowed = { original_tag = SOV }
-    enable = { 
-        OR = { 
-            is_ally_with = AUS 
-            is_ally_with = TUR
-        }
-    }
-
-    reversed = yes
-    enable_reverse = { always = yes }
-
-    ai_strategy = {
-        type = alliance   id = SOV    value = -600
     }
 }
 

@@ -35,15 +35,12 @@ AUS_hates_SOV = {
 
 AUS_focuses_on_alps = {
 	allowed = { original_tag = AUS }
-	enable = { 
-		not = { is_ally_with = ITA } 
-		not = { has_non_aggression_pact_with = ITA } 
-	}
+	enable = { can_declare_war_on = ITA }
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
-		type = front_unit_request
+		type = prepare_for_war
 		tag = ITA
-		value = 150
+		value = 50
 	}
 }

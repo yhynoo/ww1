@@ -109,8 +109,14 @@ a_place_in_the_sun = {
         }
 
         ai_will_do = { 
-            base = 3
-            modifier = { and = { date > 1914.10.1 has_war = no } add = 6 }
+            base = 0
+            modifier = { 
+                or = {
+                    and = { date > 1914.10.1 has_war = no } 
+                    FRA = { has_country_flag = french_neutrality }
+                }
+                add = 12
+            }
         }
 
         complete_effect = {
@@ -121,6 +127,28 @@ a_place_in_the_sun = {
 }
 
 approach_the_uk = {
+    appease_the_french = {
+        icon = generic_form_nation
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            not = { has_war_with = FRA }
+
+            AND = {
+                8 = { is_controlled_by = GER }
+                28 = { is_controlled_by = GER }
+                34 = { is_controlled_by = GER }
+            }
+        }
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            FRA = { country_event = { id = germany_appease_french.1 hours = 6 random_hours = 6 } }
+        }
+
+    }
     treaty_of_singapore = {
         icon = generic_form_nation
         cost = 150
@@ -129,6 +157,8 @@ approach_the_uk = {
         available = {
             ENG = { not = { has_war_with = GER } }
         }
+
+        ai_will_do = { base = 9 }
 
         complete_effect = {
             ENG = { country_event = { id = germany_naval.1 hours = 6 random_hours = 6 } }
@@ -142,6 +172,8 @@ approach_the_uk = {
         available = {
             ENG = { has_guaranteed = FRA }
         }
+
+        ai_will_do = { base = 6 }
 
         complete_effect = {
             ENG = { country_event = { id = germany_approach_uk.1 hours = 6 random_hours = 6 } }

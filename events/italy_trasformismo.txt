@@ -1,0 +1,35 @@
+add_namespace = italy_trasformismo
+
+news_event = {
+    id = italy_trasformismo.1
+    title = "End of Trasformismo?"
+    desc = italy_trasformismo.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A change is coming."
+        add_popularity = { ideology = communism popularity = 0.05 }
+
+        hidden_effect = { country_event = { id = italy_trasformismo.2 days = 30 random_days = 30 } }
+    }
+}
+
+country_event = {
+    id = italy_trasformismo.2
+    title = "Alliance with Turati?"
+    desc = italy_trasformismo.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Why would we hasten our end?"
+        add_stability = -0.1
+    }
+    option = {
+        name = "This is a good move."
+
+        promote_character = ITA_filippo_turati
+        add_popularity = { ideology = communism popularity = 0.1 }
+    }
+}

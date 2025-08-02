@@ -15,7 +15,7 @@ news_event = {
     }
 }
 
-country_event = {
+news_event = {
     id = turkey_achaean.2
     title = "Greek War of Independence"
     desc = turkey_achaean.2.d
@@ -27,16 +27,11 @@ country_event = {
     }
 
     immediate = {
-        hidden_effect = { start_greek_independence_war = yes }
+        hidden_effect = { greek_independence = yes }
     }
 
     option = {
         name = "To arms!"
-        add_war_support = 0.05
-    }
-
-    option = {
-        name = "8Continue as [GRE.GetNameDef]"
-        GRE = { change_tag_from = ROOT }
+        declare_war_on = { target = GRE type = annex_everything }
     }
 }

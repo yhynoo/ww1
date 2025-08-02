@@ -9,7 +9,7 @@ news_event = {
 
     option = {
         name = "Worrying."
-        add_stability = -0.05
+        add_stability = -0.025
 
         #
         hidden_effect = { 
@@ -38,8 +38,8 @@ news_event = {
 
         if = {
             limit = { tag = AUS } 
-            
-            add_stability = -0.1
+            add_stability = -0.05
+
             hidden_effect = { country_event = { id = soviet_okhrana.3 days = 7 random_days = 7 } }
         }
     }
@@ -63,7 +63,7 @@ country_event = {
     option = {
         name = "This means war!"
 
-        add_war_support = 0.1
+        add_war_support = 0.25
         declare_war_on = { target = SOV type = topple_government }
     }
 

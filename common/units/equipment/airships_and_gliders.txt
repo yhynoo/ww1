@@ -14,12 +14,16 @@ equipments = {
 		allow_mission_type = {
 			training
             strategic_bomber
+			naval_bomber
+			port_strike
 		}
-		forbid_mission_type = drop_nuke
+		forbid_mission_type = { drop_nuke }
 
 		sprite = medium_plane
 		picture = archetype_strat_bomber_equipment
 		air_map_icon_frame = 12
+
+		carrier_capable = no
     }
 
     airship_1904 = {
@@ -36,9 +40,12 @@ equipments = {
 		air_defence = 0
         air_superiority = 1
 
-		naval_strike_attack = 0
-		naval_strike_targetting = 10
-        surface_detection = 10
+		air_bombing = 6
+		air_ground_attack = 2.2
+
+		naval_strike_attack = 2.8
+		naval_strike_targetting = 12
+        surface_detection = 20
 		sub_detection = 2.5
 
 		reliability = 0.6
@@ -65,8 +72,10 @@ equipments = {
             paradrop
             air_supply
 			strategic_bomber
+			naval_bomber
+			port_strike
 		}
-		forbid_mission_type = drop_nuke
+		forbid_mission_type = { drop_nuke }
 
         air_range = 1650
 		maximum_speed = 75
@@ -79,9 +88,9 @@ equipments = {
         air_bombing = 20
 		air_ground_attack = 6.8
 
-		naval_strike_attack = 4
-		naval_strike_targetting = 10
-        surface_detection = 10
+		naval_strike_attack = 7.1
+		naval_strike_targetting = 12
+        surface_detection = 25
 		sub_detection = 2.5
 
 		reliability = 0.8
@@ -116,9 +125,9 @@ equipments = {
         air_bombing = 36
 		air_ground_attack = 16.8
 
-		naval_strike_attack = 6
-		naval_strike_targetting = 12
-        surface_detection = 14
+		naval_strike_attack = 8.2
+		naval_strike_targetting = 16
+        surface_detection = 28
 		sub_detection = 4
 
 		reliability = 0.85

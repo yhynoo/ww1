@@ -2,7 +2,7 @@ add_namespace = turkey_salonika
 
 news_event = {
     id = turkey_salonika.1
-    title = "Salonika Declaration"
+    title = "The Salonika Declaration"
     desc = turkey_salonika.1.d
 
     is_triggered_only = yes
@@ -10,5 +10,47 @@ news_event = {
 
     option = {
         name = "The Turks look to the east."
+    }
+}
+
+country_event = {
+    id = turkey_salonika.2
+    title = "Serbs Demand Independence"
+    desc = turkey_salonika.2.d
+
+    is_triggered_only = yes
+
+    trigger = {
+        AND = { controls_state = 107 controls_state = 108 }
+    }
+
+    option = {
+        name = "They must not test our generosity."
+        hidden_effect = { random = { chance = 80 news_event = { id = turkey_salonika.3 days = 30 random_days = 30 } } }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Accept Serbian demands."
+        release = SER
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = turkey_salonika.3
+    title = "Serbian War of Independence!"
+    desc = turkey_salonika.3.d
+
+    is_triggered_only = yes
+
+    immediate = {
+        hidden_effect = { serbian_independence = yes }
+    }
+
+    option = {
+        name = "To arms!"
+        declare_war_on = { target = SER type = annex_everything }
     }
 }

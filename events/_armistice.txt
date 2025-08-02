@@ -89,7 +89,7 @@ news_event = {
         not = { has_idea = idea_anti_war_demonstrations }
 
         # war must be long enough
-        longest_war_length > 18
+        longest_war_length > 24
     }
 
     mean_time_to_happen = { months = 1 }
@@ -106,11 +106,17 @@ country_event = {
     desc = _armistice.4.d
 
     trigger = {
-        has_war = yes
-        has_idea = idea_anti_war_demonstrations
+        has_war = yes has_idea = idea_anti_war_demonstrations
+        is_faction_leader = yes
     }
 
-    mean_time_to_happen = { months = 6 }
+    mean_time_to_happen = { 
+        months = 6
+
+        # time modifiers
+        modifier = { surrender_progress > 0.2 factor = 0.5 }
+        modifier = { surrender_progress > 0.35 factor = 0.5 }
+    }
 
     option = {
         name = "The time has come to sign an armistice."
@@ -118,12 +124,11 @@ country_event = {
             limit = { 
                 or = { is_faction_leader = yes is_in_faction = no } 
             }
-            country_event = { id = _offer.1 hours = 6 random_days = 7 }
+            country_event = { id = _offer_faction_leader.1 hours = 6 random_days = 7 }
         }
 
         ai_chance = { 
             base = 2
-
             modifier = { 
                 or = { has_government = monarchism has_government = authoritarianism }
                 factor = 0.5

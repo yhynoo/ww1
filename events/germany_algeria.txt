@@ -25,12 +25,14 @@ news_event = {
     desc = germany_algeria.2.d
 
     is_triggered_only = yes
-    trigger = { has_stability < 0.5 }
+    trigger = { has_stability < 0.8 }
+
+    immediate = {
+        hidden_effect = { algerian_independence = yes }
+    }
 
     option = {
         name = "To arms!"
-        add_war_support = 0.05
-
-        hidden_effect = { start_algerian_independence_war = yes }
+        declare_war_on = { target = ALG type = annex_everything }
     }
 }

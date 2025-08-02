@@ -5,21 +5,18 @@ country_event = {
     title = "Versailles Accords"
     desc = france_versailles.1.d
 
-    is_triggered_only = yes
     fire_only_once = yes
     
     trigger = {
         tag = FRA
-        has_war_with = GER
+        and = {
+            is_in_faction = no
+            war_length_with = { tag = GER months > 1 }
+        }
         
         or = {
             ENG = { not = { has_idea = idea_containment } }
-            has_government = monarchist
-
-            and = {
-                is_in_faction = no
-                war_length_with = { tag = GER months > 3 }
-            }
+            has_government = monarchist 
         }
     }
 

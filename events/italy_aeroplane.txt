@@ -1,0 +1,23 @@
+add_namespace = italy_aeroplane
+
+country_event = {
+    id = italy_aeroplane.1
+    title = "‘The Pope's Aeroplane’"
+    desc = italy_aeroplane.1.d
+
+    fire_only_once = yes
+    trigger = {
+        tag = ITA
+        date > 1912.7.1
+    }
+
+    option = {
+        name = "Condemn the writer."
+        add_political_power = -25
+    }
+
+    option = {
+        name = "It's just art."
+        add_popularity = { ideology = communism popularity = 0.05 }
+    }
+}

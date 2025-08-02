@@ -1,0 +1,101 @@
+algerian_independence = {
+    FRA = {
+        every_owned_state = {
+            limit = { is_core_of = ALG }
+            set_state_owner_to = ALG
+        }
+
+        every_controlled_state = {
+            limit = { or = { state = 459 state = 514 state = 665  } }
+            set_state_controller_to = ALG
+        }
+    }
+
+    ALG = { 
+        load_oob = "ALG_1912" 
+        add_ideas = { closed_economy partial_economic_mobilisation }
+    }
+}
+
+baltic_independence = {
+    every_country_with_original_tag = {
+        original_tag_to_check = SOV
+
+        every_owned_state = {
+            limit = { is_core_of = UBD }
+            set_state_owner_to = UBD
+        }
+
+        every_controlled_state = {
+            limit = { or = { state = 12 state = 13 } }
+            set_state_controller_to = UBD
+        }
+    }
+
+    UBD = {
+        load_oob = "UBD_1912" 
+        add_ideas = { extensive_conscription closed_economy partial_economic_mobilisation }
+    }
+}
+
+greek_independence = {
+    TUR = {
+        every_owned_state = {
+            limit = { 
+                is_core_of = GRE
+                not = { or = { state = 341 } }          # without Constantinople
+            }
+            set_state_owner_to = GRE
+        }
+
+        every_controlled_state = {
+            limit = { or = { state = 182 state = 185 state = 186 } }
+            set_state_controller_to = GRE
+        }
+    }
+
+    GRE = { 
+        load_oob = "GRE_1912" 
+        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
+    }
+}
+
+serbian_independence = {
+    TUR = {
+        every_owned_state = {
+            limit = { is_core_of = SER }
+            set_state_owner_to = SER
+        }
+
+        every_controlled_state = {
+            limit = { or = { state = 107 state = 108 } }
+            set_state_controller_to = SER
+        }
+    }
+
+    SER = { 
+        load_oob = "SER_1912" 
+        add_ideas = { limited_conscription limited_exports low_economic_mobilisation }
+    }
+}
+
+ukrainian_independence = {
+    every_country_with_original_tag = {
+        original_tag_to_check = SOV
+
+        every_owned_state = {
+            limit = { is_core_of = UKR }
+            set_state_owner_to = UKR
+        }
+
+        every_controlled_state = {
+            limit = { or = { state = 137 state = 192 state = 196 state = 197 state = 200 state = 226 } }
+            set_state_controller_to = UKR
+        }
+    }
+
+    UKR = {
+        load_oob = "UKR_1912" 
+        add_ideas = { limited_conscription closed_economy low_economic_mobilisation }
+    }
+}

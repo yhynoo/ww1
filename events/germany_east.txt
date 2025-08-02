@@ -95,7 +95,7 @@ news_event = {
 
 news_event = {
     id = germany_east.5
-    title = "Baltic War of Independence!"
+    title = "Baltic War of Independence"
     desc = germany_east.5.d
 
     is_triggered_only = yes
@@ -105,16 +105,14 @@ news_event = {
     }
 
     immediate = {
-        hidden_effect = { start_baltic_independence_war = yes }
+        hidden_effect = { baltic_independence = yes }
     }
 
     option = {
         name = "To arms!"
-        add_war_support = 0.05
-    }
-
-    option = {
-        name = "8Continue as [UBD.GetNameDef]"
-        UBD = { change_tag_from = ROOT }
+        every_country_with_original_tag = {
+            original_tag_to_check = SOV
+            declare_war_on = { target = UBD type = annex_everything }
+        }
     }
 }

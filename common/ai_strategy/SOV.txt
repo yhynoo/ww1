@@ -15,25 +15,3 @@ SOV_area_priority = {
 		value = -300
 	}
 }
-
-SOV_and_her_friends = {
-	allowed = { original_tag = SOV }
-	enable = { original_tag = FER original_tag = SER }
-
-	reversed = yes
-    enable_reverse = { has_completed_focus = SOV_expansionism }
-	
-	abort_when_not_enabled = yes
-
-	ai_strategy = {
-		type = protect
-		id = SOV
-		value = 180
-	}
-
-	ai_strategy = {
-		type = support
-		id = SOV
-		value = 60
-	}
-}

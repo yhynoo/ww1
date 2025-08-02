@@ -9,12 +9,10 @@ country_event = {
 
     option = {
         name = "We are not a side in this conflict."
-        GER = { 
-            news_event = { id = germany_approach_uk.2 hours = 6 random_hours = 6 }
-            add_opinion_modifier = { target = ENG modifier = large_increase }
-        }
+        GER = { news_event = { id = germany_approach_uk.2 hours = 6 random_hours = 6 } }
 
         diplomatic_relation = { country = FRA relation = guarantee active = no }
+        hidden_effect = { set_country_flag = english_neutrality }
 
         ai_chance = { 
             base = 0

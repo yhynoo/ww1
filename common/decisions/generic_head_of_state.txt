@@ -1,9 +1,35 @@
 dc_head_of_state_decisions = {
+    # heroes
+    honor_the_heroes = {
+        visible = { 
+            is_subject = no
+            not = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
+        }
+
+        icon = generic_nationalism    
+        days_remove = 90
+        cost = 50
+
+        available = { has_war = yes }
+
+        ai_will_do = {
+            base = 3
+            modifier = { and = { threat > 0.1 has_war_support < 0.3 } factor = 2 }
+            modifier = { has_war_support > 0.8 factor = 0 }
+        }
+
+        modifier = {
+            war_support_weekly = 0.005
+            resistance_growth_on_our_occupied_states = 0.1
+        }
+    }
+
     # war support
     territorial_auxilliaries = {
         visible = { 
             is_subject = no
             not = { has_government = communism } 
+            available = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
         }
 
         icon = generic_prepare_civil_war    

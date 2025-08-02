@@ -25,3 +25,28 @@ news_event = {
         }
     }
 }
+
+news_event = {
+    id = _industry.2
+    title = "Emergency Armories in [ROOT.capital.GetCapitalVictoryPointName]"
+    desc = _industry.2.d
+
+    trigger = {
+        has_war = yes
+        num_of_military_factories < 2
+
+        not = { has_country_flag = emergency_arms }
+    }
+
+    mean_time_to_happen = { months = 1 }
+
+    option = {
+        name = "They are dearly welcome."
+        capital_scope = {
+            add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+            add_extra_state_shared_building_slots = 2
+        }
+
+        hidden_effect = { set_country_flag = emergency_arms }
+    }
+}

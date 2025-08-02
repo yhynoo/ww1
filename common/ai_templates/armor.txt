@@ -1,5 +1,6 @@
 standard_armor = {
     role = armor
+    available_for = { ENG FRA GER USA }
 
     standard_armor_1916 = {
         enable = { 
@@ -7,16 +8,14 @@ standard_armor = {
             not = { num_of_military_factories < 10 }
         }
 
-        upgrade_prio = { base = 3 }
-
         target_template = {
             support = {
                 artillery = 1
                 recon = 1
             }
             regiments = {
-                infantry = 6
-                heavy_armor = 1
+                infantry = 5
+                heavy_armor = 2
             }
         }
     }
@@ -27,10 +26,11 @@ standard_armor = {
             not = { num_of_military_factories < 20 }
         }
 
-        upgrade_prio = { base = 3 }
+        upgrade_prio = { base = 2 }
 
         target_template = {
             support = {
+                anti_air = 1
                 artillery = 1
                 recon = 1
             }
@@ -45,8 +45,6 @@ standard_armor = {
 light_armor = {
     role = armor
     available_for = { ENG FRA GER USA }
-
-    upgrade_prio = { base = 3 }
 
     light_armor_1916 = {
         enable = { 
