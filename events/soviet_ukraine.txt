@@ -44,22 +44,18 @@ news_event = {
     is_triggered_only = yes
     trigger = { has_stability < 0.8 }
 
-    immediate = {
-        hidden_effect = {
-            ukrainian_independence = yes
-            UKR = { 
-                set_politics = { ruling_party = communism elections_allowed = no } 
-                set_popularities = { communism = 65 democratic = 30 monarchism = 5 }
-            }
-        }
-    }
-
     option = {
         name = "To arms!"
         remove_ideas = idea_unrest_in_ukraine
 
         hidden_effect = { 
             SOV = { add_named_threat = { threat = 3 name = "Anarchy in the Steppe" } }   
+
+            ukrainian_independence = yes
+            UKR = { 
+                set_politics = { ruling_party = communism elections_allowed = no } 
+                set_popularities = { communism = 65 democratic = 30 monarchism = 5 }
+            }
         }
 
         every_country_with_original_tag = {

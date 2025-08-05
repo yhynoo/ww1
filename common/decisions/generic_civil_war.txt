@@ -79,8 +79,12 @@ civil_war_decisions = {
         targets_dynamic = yes
         target_trigger = { 
             not = { has_war_with = FROM }
-            any_core_state = { is_controlled_by = FROM }
-
+            or = { 
+                any_state = { 
+                    or = { is_core_of = ROOT is_claimed_by = ROOT }
+                    is_controlled_by = FROM
+                }
+            }
             FROM = { has_civil_war = yes }
         }
 

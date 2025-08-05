@@ -27,12 +27,10 @@ news_event = {
     is_triggered_only = yes
     trigger = { has_stability < 0.8 }
 
-    immediate = {
-        hidden_effect = { algerian_independence = yes }
-    }
-
     option = {
         name = "To arms!"
+
+        hidden_effect = { algerian_independence = yes }
         declare_war_on = { target = ALG type = annex_everything }
     }
 }

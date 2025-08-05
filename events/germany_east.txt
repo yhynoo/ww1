@@ -104,12 +104,10 @@ news_event = {
         SOV = { has_country_flag = baltic_unrest }
     }
 
-    immediate = {
-        hidden_effect = { baltic_independence = yes }
-    }
-
     option = {
         name = "To arms!"
+
+        hidden_effect = { baltic_independence = yes }
         every_country_with_original_tag = {
             original_tag_to_check = SOV
             declare_war_on = { target = UBD type = annex_everything }

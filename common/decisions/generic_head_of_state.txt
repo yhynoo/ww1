@@ -29,7 +29,7 @@ dc_head_of_state_decisions = {
         visible = { 
             is_subject = no
             not = { has_government = communism } 
-            available = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
+            or = { has_idea = volunteer_only has_idea = limited_conscription }
         }
 
         icon = generic_prepare_civil_war    
@@ -53,6 +53,7 @@ dc_head_of_state_decisions = {
         visible = { 
             is_subject = no
             has_government = communism
+            or = { has_idea = volunteer_only has_idea = limited_conscription }
         }
 
         icon = generic_prepare_civil_war    

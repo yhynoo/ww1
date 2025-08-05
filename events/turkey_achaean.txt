@@ -26,12 +26,10 @@ news_event = {
         or = { has_surrender_progress > 0.1 has_stability < 0.25 }
     }
 
-    immediate = {
-        hidden_effect = { greek_independence = yes }
-    }
-
     option = {
         name = "To arms!"
+
+        hidden_effect = { greek_independence = yes }
         declare_war_on = { target = GRE type = annex_everything }
     }
 }

@@ -340,7 +340,7 @@ technologies = {
             research_cost_coeff = 1
         }
         path = {
-            leads_to_tech = duckboards
+            leads_to_tech = support_trenches
             research_cost_coeff = 1
         }
 
@@ -362,7 +362,7 @@ technologies = {
             position = { x = 0 y = @1914 }
         }
     }
-    duckboards = {
+    support_trenches = {
         categories = { field_engineering_tech }
 
         research_cost = 1
@@ -390,11 +390,11 @@ technologies = {
             research_cost_coeff = 1
         }
         path = {
-            leads_to_tech = listening_posts
+            leads_to_tech = interlocking_fire_sectors
             research_cost_coeff = 1
         }
         path = {
-            leads_to_tech = miners_tunnels
+            leads_to_tech = sapping
             research_cost_coeff = 1
         }
 
@@ -403,26 +403,27 @@ technologies = {
             position = { x = 1 y = @1916 }
         }
     }
-    listening_posts = {
+    interlocking_fire_sectors = {
         categories = { field_engineering_tech }
 
         research_cost = 1
         start_year = 1917
 
-        recon_factor_while_entrenched = 0.2
+        land_bunker_effectiveness_factor = 0.1
+        army_defence_factor = 0.1
 
         folder = {
             name = electronics_folder
             position = { x = 0 y = @1917 }
         }
     }
-    miners_tunnels = {
+    sapping = {
         categories = { field_engineering_tech }
 
         research_cost = 1
         start_year = 1917
 
-        land_bunker_effectiveness_factor = 0.05
+        recon_factor_while_entrenched = 0.2
         initiative_factor = 0.1
 
         folder = {
