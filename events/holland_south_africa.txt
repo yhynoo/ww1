@@ -7,25 +7,106 @@ news_event = {
 
     is_triggered_only = yes
 
+    immediate = {
+        hidden_effect = { 
+            HOL = { country_event = { id = holland_south_africa.2 months = 1 random_days = 7 } }
+            ENG = { country_event = { id = holland_south_africa.4 months = 2 random_days = 30 } }
+        }
+    }
+
     option = {
         name = "Disturbing."
-        add_stability = -0.05
+        add_timed_idea = { idea = idea_unrest_in_transvaal years = 1 }    
+    }
+}
 
-        #
-        hidden_effect = { news_event = { id = holland_south_africa.2 days = 30 random_days = 30 } }
+country_event = {
+    id = holland_south_africa.2
+    title = "Opportunity for Influence"
+    desc = holland_south_africa.2.d
+
+    is_triggered_only = yes
+    trigger = { SAF = { exists = no } }
+
+    option = {
+        name = "Let us get involved."           # when SAF becomes independent, it will be a Dutch puppet state.
+        random = {
+            chance = 50
+            ENG = { news_event = { id = holland_south_africa.3 days = 7 random_days = 28 } }
+        }
+
+        hidden_effect = { set_country_flag = involved_in_saf }
+    }
+
+    option = {
+        name = "This kind of involvement is too much."
+        add_war_support = -0.05
     }
 }
 
 news_event = {
-    id = holland_south_africa.2
-    title = "Another Boer War?"
-    desc = holland_south_africa.2.d
+    id = holland_south_africa.3
+    title = "The Dutch Interfere in South Africa"
+    desc = holland_south_africa.3.d
 
     is_triggered_only = yes
-    trigger = { has_stability < 0.5 }
+    trigger = { SAF = { exists = no } }
 
     option = {
+        name = "How dare they!"
+        create_wargoal = { target = HOL type = topple_government }
+    }
+}
+
+country_event = {
+    id = holland_south_africa.4
+    title = "Botha's Offer"
+    desc = holland_south_africa.4.d
+
+    is_triggered_only = yes
+    trigger = { SAF = { exists = no } }
+
+    option = {
+        name = "This will calm the situation."
+        
+        remove_ideas = idea_unrest_in_transvaal
+        release_puppet_on_controlled = SAF
+
+        hidden_effect = {
+            SAF = { 
+                promote_character = SAF_louis_botha 
+                set_popularities = { democratic = 90 monarchism = 10 }
+            }
+        }
+    }
+
+    option = {
+        name = "Ignore him."
+        add_stability = -0.025
+
+        hidden_effect = { news_event = { id = holland_south_africa.5 months = 1 random_days = 7 } }
+    }
+}
+
+news_event = {
+    id = holland_south_africa.5
+    title = "Another Boer War?"
+    desc = holland_south_africa.5.d
+
+    is_triggered_only = yes
+    trigger = { SAF = { exists = no } }
+
+    option = {
+        hidden_effect = { 
+            south_african_independence = yes 
+
+            if = {
+                limit = { HOL = { has_country_flag = involved_in_saf } }
+                HOL = { puppet = SAF }
+            }
+        }
+
         name = "Haven't they had enough yet?"
-        hidden_effect = { start_south_african_independence_war = yes }
+        declare_war_on = { target = SAF type = annex_everything }
     }
 }

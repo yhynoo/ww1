@@ -11,6 +11,17 @@ division_template = {
 	}
 }
 
+division_template = {
+	name = "Volunteer Troops"
+	division_names_group = SAF_INF_02
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+	}
+}
+
 # units
 units = {
     division = {
@@ -20,25 +31,23 @@ units = {
     }
 	division = {
 		location = 10400
-		division_template = "Infantry Division"
-        start_equipment_factor = 0.5
+		division_template = "Volunteer Troops"
     }
 
     division = {
-		location = 10668
-		division_template = "Infantry Division"
-        start_equipment_factor = 0.7
-    }
-
-    division = {
-		location = 1688
+		location = 12064
 		division_template = "Infantry Division"
         start_equipment_factor = 0.6
     }
 
-    division = {
-		location = 2171
-		division_template = "Infantry Division"
-        start_equipment_factor = 0.5
+	division = {
+		location = 10668
+		division_template = "Volunteer Troops"
     }
+
+	division = {
+		location = 1688
+		division_template = "Volunteer Troops"
+    }
+
 }

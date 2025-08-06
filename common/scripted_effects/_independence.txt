@@ -60,6 +60,25 @@ greek_independence = {
     }
 }
 
+south_african_independence = {
+    ENG = {
+        every_state = {
+            limit = { is_core_of = SAF }
+            set_state_owner_to = SAF
+        }
+
+        every_controlled_state = {
+            limit = { or = { state = 275 state = 686 } }
+            set_state_controller_to = SAF
+        }
+    }
+
+    SAF = { 
+        load_oob = "SAF_1912" 
+        add_ideas = { limited_conscription limited_exports low_economic_mobilisation }
+    }
+}
+
 serbian_independence = {
     TUR = {
         every_owned_state = {

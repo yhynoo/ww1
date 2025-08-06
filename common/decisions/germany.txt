@@ -76,7 +76,7 @@ a_place_in_the_sun = {
         available = {
             not = { has_war_with = ENG }
             any_state = { 
-                or = { state = 275 state = 542 state = 544 state = 545 state = 681 }
+                or = { state = 275 state = 542 state = 544 state = 545 state = 681 state = 686 state = 687 }
                 is_owned_and_controlled_by = ENG
             }
         }
@@ -88,7 +88,10 @@ a_place_in_the_sun = {
 
         complete_effect = {
             every_state = { 
-                limit = { or = { state = 275 state = 542 state = 544 state = 545 state = 681 } }
+                limit = { 
+                    or = { state = 275 state = 542 state = 544 state = 545 state = 681 state = 686 state = 687 } 
+                    is_owned_by = ENG
+                }
                 add_claim_by = GER
             }
 
