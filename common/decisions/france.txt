@@ -38,8 +38,8 @@ antwerp_affair = {
 
         ai_will_do = {
             base = 0
-            modifier = { date > 1914.6.1 add = 12 }
-            modifier = { and = { is_in_faction = no GER = { has_war = no } } factor = 0.5 }
+            modifier = { date > 1914.6.1 add = 6 }
+            modifier = { num_faction_members > 2 factor = 2 }
         }
 
         complete_effect = {
@@ -49,6 +49,53 @@ antwerp_affair = {
             hidden_effect = {
                 GER = { country_event = { id = france_wallonia.1 days = 14 } }
             }
+        }
+    }
+}
+
+establish_entente = {
+    greece_for_aid = {
+        icon = generic_form_nation
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            not = { has_war_with = TUR }
+            AND = {
+                47 = { is_controlled_by = TUR }
+                186 = { is_controlled_by = TUR }
+            }
+        }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { is_ally_with = TUR factor = 0 }
+        }
+
+        complete_effect = { TUR = { country_event = { id = france_greece.1 hours = 6 random_hours = 6 } } }
+    }
+    form_the_entente = {
+        icon = generic_nationalism
+        cost = 75
+        fire_only_once = yes
+
+        ai_will_do = {
+            base = 6
+            modifier = {
+                AND = {
+                    any_state = {
+                        or = { state = 28 state = 34 }
+                        is_owned_and_controlled_by = GER
+                    }
+                    threat > 0.1
+                }
+                factor = 2.5
+            }
+        }
+
+        complete_effect = {
+            create_faction = "Entente"
+            news_event = { id = france_entente.1 hours = 6 random_hours = 6 }
         }
     }
 }

@@ -13,10 +13,23 @@ news_event = {
     }
 }
 
-country_event = {
+news_event = {
     id = england_entente.2
-    title = "End of the War in France"
+    title = "London Encourages Our War Engagement"
     desc = england_entente.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Right."
+        add_war_support = 0.05
+    }
+}
+
+country_event = {
+    id = england_entente.3
+    title = "End of the War in France"
+    desc = england_entente.3.d
 
     trigger = {
         tag = ENG

@@ -1,6 +1,9 @@
 ENG_british_expeditionary_force = {
 	allowed = { original_tag = ENG }
-	enable = { is_ally_with = FRA }
+	enable = { 
+		has_war_with = GER
+		or = { is_ally_with = FRA has_military_access_to = FRA }
+	}
 	abort_when_not_enabled = yes
 
 	ai_strategy = {

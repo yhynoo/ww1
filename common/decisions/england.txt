@@ -85,30 +85,32 @@ affirm_the_entente = {
         ai_will_do = { base = 12 }
 
         complete_effect = {
-            add_ideas = idea_containment
+            swap_ideas = {
+                remove_idea = idea_mansion_house
+                add_idea = idea_containment
+            }
             news_event = { id = england_entente.1 hours = 6 random_hours = 6 }
         }
     }
-    greece_for_aid = {
-        icon = generic_form_nation
-        cost = 150
+    seek_us_engagement = {
+        icon = generic_civil_support
+        cost = 50
         fire_only_once = yes
 
         available = {
-            not = { has_war_with = TUR }
-
-            AND = {
-                47 = { is_controlled_by = TUR }
-                186 = { is_controlled_by = TUR }
+            has_war = yes
+            USA = {
+                is_in_faction = no
+                not = { has_war_with = ENG }
             }
         }
 
-        ai_will_do = { 
-            base = 9 
-            modifier = { is_ally_with = TUR factor = 0 }
+        ai_will_do = {
+            base = 3
+            modifier = { threat > 0.5 add = 6 }
         }
 
-        complete_effect = { id = england_greece.1 hours = 6 random_hours = 6 }
+        complete_effect = { USA = { news_event = { id = england_entente.2 hours = 6 random_hours = 6 } } }
     }
 }
 

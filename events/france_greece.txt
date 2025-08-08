@@ -1,0 +1,51 @@
+add_namespace = france_greece
+
+country_event = {
+    id = france_greece.1
+    title = "[FRA.GetName] Offers Aid for Greece"
+    desc = france_greece.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a good deal."
+        FROM = { 
+            news_event = { id = france_greece.2 hours = 6 random_hours = 6 }
+            hidden_effect = { set_country_flag = france_likes_turkey }
+        }
+
+        if = {
+            limit = { has_idea = idea_amassed_foreign_debt }
+            remove_ideas = idea_amassed_foreign_debt
+        }
+        else_if = {
+            limit = { has_idea = idea_significant_foreign_debt }
+            remove_ideas = idea_significant_foreign_debt
+        }
+        else = {
+            49 = { add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+            341 = { add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+        }
+
+        every_controlled_state = {
+            limit = { or = { state = 47 state = 182 state = 186 state = 187 state = 164 } }
+            transfer_state_to = GRE
+        }
+    }
+    option = {
+        name = "We are not interested."
+    }
+}
+
+news_event = {
+    id = france_greece.2
+    title = "Paris Wins a Mediterranean Ally?"
+    desc = france_greece.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}

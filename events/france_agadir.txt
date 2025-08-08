@@ -1,0 +1,23 @@
+add_namespace = france_agadir
+
+news_event = {
+    id = france_agadir.1
+    title = "Echoes of Agadir Fade Away"
+    desc = france_agadir.1.d
+
+    trigger = {
+        tag = FRA
+        FRA = {
+            controls_state = 6
+            controls_state = 34
+        }
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "Wonderful."
+        add_political_power = 50
+
+        remove_ideas = idea_echoes_of_agadir
+    }
+}

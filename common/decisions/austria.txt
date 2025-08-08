@@ -1,4 +1,37 @@
 contain_eastern_threats = {
+    demand_serbia = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        available = { 
+            can_declare_war_on = TUR
+            any_state = {
+                is_core_of = SER
+                is_owned_and_controlled_by = TUR
+            }
+        }
+
+        ai_will_do = { 
+            base = 9
+            modifier = { 
+                or = {
+                    has_war = yes
+                    TUR = { is_in_faction = yes }
+                }
+                factor = 0.5 
+            } 
+        }
+
+        complete_effect = {
+            every_state = {
+                limit = { is_core_of = SER }
+                add_claim_by = AUS
+            }
+
+            TUR = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
+        }
+    }
     expand_defenses_in_carpathians = {
         icon = border_war
         fire_only_once = yes
@@ -42,32 +75,23 @@ contain_eastern_threats = {
 }
 
 second_vienna_treaty = {
-    demand_serbia = {
-        icon = generic_prepare_civil_war
-        fire_only_once = yes
+    wallachian_oil = {
+        icon = oil
         cost = 100
+        fire_only_once = yes
 
-        available = { 
-            any_state = {
-                is_core_of = SER
-
-                can_declare_war_on = TUR
-                is_owned_and_controlled_by = TUR
-            }
+        available = {
+            not = { has_war_with = TUR }
+            46 = { is_owned_and_controlled_by = TUR }
         }
 
         ai_will_do = { 
             base = 9
-            modifier = { TUR = { is_in_faction = yes } factor = 0.5 } 
+            modifier = { has_war = yes add = 6 }
         }
 
         complete_effect = {
-            every_state = {
-                limit = { is_core_of = SER }
-                add_claim_by = AUS
-            }
-
-            TUR = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
+            TUR = { country_event = { id = austria_oil.1 hours = 6 random_hours = 6 } }
         }
     }
     two_sicilies = {

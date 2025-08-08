@@ -757,7 +757,7 @@
         }
     }
     focus = {
-        id = FRA_antwerp_affair
+        id = FRA_echoes_of_agadir
         icon = GFX_focus_generic_deterrence
 
         relative_position_id = FRA_international_affairs
@@ -766,7 +766,7 @@
         cost = 10
 
         prerequisite = { focus = FRA_international_affairs }
-        available = { is_subject = no has_idea = idea_antwerp_affair }
+        available = { is_subject = no has_idea = idea_echoes_of_agadir }
 
         ai_will_do = { base = 3 }
 
@@ -776,7 +776,7 @@
     }
     focus = {
         id = FRA_seek_alliances
-        icon = GFX_focus_generic_seek_alliances
+        icon = GFX_focus_generic_on_our_own
 
         relative_position_id = FRA_expansionism
         x = -2
@@ -787,11 +787,12 @@
         available = { is_subject = no }
 
         ai_will_do = { 
-            base = 2
-            modifier = { has_war = yes factor = 2 }
+            base = 4
+            modifier = { has_completed_focus = FRA_adjust_the_government factor = 0 }
         }
 
         completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
             add_timed_idea = { idea = idea_seek_alliances years = 2 }
         }
     }
@@ -811,8 +812,8 @@
         }
 
         ai_will_do = { 
-            base = 0
-            modifier = { has_completed_focus = FRA_adjust_the_government add = 2 }
+            base = 1
+            modifier = { has_completed_focus = FRA_traditionalism factor = 0 }
         }
 
         completion_reward = {
@@ -831,7 +832,7 @@
 
         ai_will_do = { 
             base = 2
-            # modifier = { has_country_flag = chose_alternative factor = 0 }
+            modifier = { has_completed_focus = FRA_on_our_own factor = 0 }
         }
 
         mutually_exclusive = { focus = FRA_adjust_the_government }
@@ -925,7 +926,7 @@
 
         ai_will_do = { 
             base = 1
-            modifier = { is_ally_with = ENG factor = 0 }
+            modifier = { has_completed_focus = FRA_seek_alliances factor = 0 }
         }
 
         mutually_exclusive = { focus = FRA_traditionalism }
