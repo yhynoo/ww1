@@ -27,7 +27,10 @@ country_event = {
             transfer_state_to = ENG
         }
 
-        hidden_effect = { set_country_flag = france_likes_turkey }
+        hidden_effect = { 
+            set_country_flag = egypt_deal 
+            FROM = { add_ai_strategy = { type = protect id = ROOT value = 60 } }
+        }
 
         ai_chance = {
             base = 3

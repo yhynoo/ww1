@@ -17,7 +17,9 @@ contain_eastern_threats = {
             modifier = { 
                 or = {
                     has_war = yes
-                    TUR = { is_in_faction = yes }
+                    TUR = { 
+                        or = { is_in_faction = yes has_country_flag = cotton_deal }
+                    }
                 }
                 factor = 0.5 
             } 

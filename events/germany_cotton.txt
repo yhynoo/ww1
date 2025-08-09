@@ -30,7 +30,10 @@ country_event = {
             modifier = { or = { has_idea = idea_amassed_foreign_debt has_idea = idea_significant_foreign_debt } add = 4 }
         }
 
-        hidden_effect = { set_country_flag = cotton_deal }
+        hidden_effect = { 
+            set_country_flag = cotton_deal 
+            FROM = { add_ai_strategy = { type = protect id = ROOT value = 60 } }
+        }
     }
     option = {
         name = "We are not interested."

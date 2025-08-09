@@ -358,12 +358,12 @@ focus_tree = {
         }
     }
 
-    ## economic branch
+        ## economic branch
     focus = {
         id = USA_economic_development
         icon = GFX_focus_generic_economic_development
 
-        x = 21
+        x = 22
         y = 0
         cost = 10
 
@@ -378,7 +378,7 @@ focus_tree = {
         icon = GFX_focus_generic_home_front
 
         relative_position_id = USA_economic_development
-        x = -3
+        x = -4
         y = 1
 
         cost = 10
@@ -414,30 +414,6 @@ focus_tree = {
         icon = GFX_focus_generic_fuel
 
         relative_position_id = USA_home_front
-        x = 2
-        y = 1
-
-        cost = 10
-
-        prerequisite = { focus = USA_home_front }
-        completion_reward = {
-            
-            add_tech_bonus = {
-				name = excavation_bonus bonus = 1.0 uses = 1
-				category = excavation_tech
-			}
-
-            add_tech_bonus = {
-				name = synthetic_bonus bonus = 1.0 uses = 1
-				category = synth_resources_tech
-			}
-        }
-    }
-    focus = {
-        id = USA_industrial_expansion
-        icon = GFX_focus_generic_industrial_expansion
-
-        relative_position_id = USA_home_front
         x = -2
         y = 1
 
@@ -445,15 +421,13 @@ focus_tree = {
 
         prerequisite = { focus = USA_home_front }
         completion_reward = {
-            add_ideas = idea_industrial_expansion
-            
+            add_tech_bonus = {
+				name = synthetic_bonus bonus = 1.0 uses = 1
+				category = synth_resources_tech
+			}
+
             random_owned_controlled_state = {
-                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
-                add_extra_state_shared_building_slots = 2
-            }
-            random_owned_controlled_state = {
-                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
-                add_extra_state_shared_building_slots = 2
+                add_resource = { type = oil amount = 4 }
             }
         }
     }
@@ -485,166 +459,62 @@ focus_tree = {
     }
 
     focus = {
-        id = USA_infrastructure_effort
-        icon = GFX_focus_generic_infrastructure_effort
+        id = USA_extraction_effort
+        icon = GFX_focus_generic_extraction_effort
 
         relative_position_id = USA_economic_development
-        x = 3
+        x = 0
         y = 1
 
         cost = 10
 
-        ai_will_do = { base = 2 }
+        ai_will_do = { 
+            base = 1 
+            modifier = { num_of_factories < 15 add = 1 }
+        }
 
         prerequisite = { focus = USA_economic_development }
-        bypass = {
-			custom_trigger_tooltip = {
-				tooltip = infrastructure_effort_tt
-				all_owned_state = {			
-					free_building_slots = {
-						building = infrastructure
-						size < 1
-					}
-				}
-			}
-		}
+        mutually_exclusive = { focus = USA_technology_effort }
+
 		completion_reward = {
-			random_owned_controlled_state = {
-				limit = {
-					free_building_slots = {
-						building = infrastructure
-						size > 0
-					}
-					OR = {
-						is_in_home_area = yes
-						NOT = {
-							owner = {
-								any_owned_state = {
-									free_building_slots = {
-										building = infrastructure
-										size > 0
-									}
-									is_in_home_area = yes
-								}
-							}
-						}
-					}
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}
-			}
-			random_owned_controlled_state = {
-				limit = {
-					free_building_slots = {
-						building = infrastructure
-						size > 1
-					}
-					OR = {
-						is_in_home_area = yes
-						NOT = {
-							owner = {
-								any_owned_state = {
-									free_building_slots = {
-										building = infrastructure
-										size > 1
-									}
-									is_in_home_area = yes
-								}
-							}
-						}
-					}
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 2
-					instant_build = yes
-				}
-			}
-            add_tech_bonus = {
-				name = industrial_bonus
-				bonus = 1.0
-				uses = 2
-				category = industry
-			}
+            random_core_state = {
+                limit = { is_controlled_by = ROOT }
+
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                add_resource = { type = steel amount = 4 }
+            }
+
+            random_core_state = {
+                limit = { is_controlled_by = ROOT }
+
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                add_resource = { type = steel amount = 4 }
+            }
 		}
     }
     focus = {
         id = USA_construct_civilian
         icon = GFX_focus_generic_construct_civilian
 
-        relative_position_id = USA_infrastructure_effort
-        x = -2
+        relative_position_id = USA_extraction_effort
+        x = 1
         y = 1
 
         cost = 10
 
         ai_will_do = { base = 3 }
 
-        prerequisite = { focus = USA_infrastructure_effort }
+        prerequisite = { focus = USA_extraction_effort }
 		completion_reward = {
+            add_ideas = idea_industrial_expansion
 			random_owned_controlled_state = {
 				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = yes
-					}
+					free_building_slots = { building = industrial_complex size > 0 include_locked = yes }
+					is_core_of = ROOT
 				}
+
 				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = industrial_complex
-					level = 2
-					instant_build = yes
-				}
-			}
-		}
-    }
-    focus = {
-        id = USA_construct_military
-        icon = GFX_focus_generic_construct_military
-
-        relative_position_id = USA_infrastructure_effort
-        x = 0
-        y = 1
-
-        cost = 10
-
-        ai_will_do = { base = 2 }
-
-        prerequisite = { focus = USA_infrastructure_effort }
-		completion_reward = {
-			random_owned_controlled_state = {
-				limit = {
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = yes
-					}
-					OR = {
-						is_in_home_area = yes
-						NOT = {
-							owner = {
-								any_owned_state = {
-									free_building_slots = {
-										building = arms_factory
-										size > 0
-										include_locked = yes
-									}
-									is_in_home_area = yes
-								}
-							}
-						}
-					}
-				}
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = arms_factory
-					level = 2
-					instant_build = yes
-				}
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
 			}
 		}
     }
@@ -652,39 +522,149 @@ focus_tree = {
         id = USA_expand_mining
         icon = GFX_focus_generic_expand_mining
 
-        relative_position_id = USA_infrastructure_effort
+        relative_position_id = USA_extraction_effort
+        x = -2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = USA_extraction_effort }
+        completion_reward = {
+            random_owned_controlled_state = {
+                add_resource = { type = aluminium amount = 8 }
+                add_resource = { type = chromium amount = 4 }
+            }
+        }
+    }
+
+    focus = {
+        id = USA_technology_effort
+        icon = GFX_focus_generic_embrace_modernity
+
+        relative_position_id = USA_economic_development
+        x = 4
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { 
+            base = 1 
+            modifier = { 
+                not = { num_of_factories < 15 }
+                add = 1
+            }
+        }
+
+        prerequisite = { focus = USA_economic_development }
+        mutually_exclusive = { focus = USA_extraction_effort }
+
+		completion_reward = {
+            add_tech_bonus = { 
+                name = industrial_bonus bonus = 1.0 uses = 2
+				category = industry_tech
+			}
+
+            random_core_state = {
+                limit = { is_controlled_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
+		}
+    }
+    focus = {
+        id = USA_advanced_manufacturing
+        icon = GFX_focus_generic_advanced_manufacturing
+
+        relative_position_id = USA_technology_effort
+        x = -1
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 3 }
+
+        prerequisite = { focus = USA_technology_effort }
+		completion_reward = {
+            add_ideas = idea_efficiency_studies
+			random_core_state = {
+				limit = {
+                    is_controlled_by = ROOT
+				}
+				
+                add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+            }
+		}
+    }
+    focus = {
+        id = USA_research_grants
+        icon = GFX_focus_generic_research_grants
+
+        relative_position_id = USA_technology_effort
         x = 2
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = USA_infrastructure_effort }
+        prerequisite = { focus = USA_technology_effort }
         completion_reward = {
-            random_owned_controlled_state = {
-                add_resource = { type = steel amount = 8 }
-            }
-            random_owned_controlled_state = {
-                add_resource = { type = aluminium amount = 4 }
-            }
+            add_research_slot = 1
         }
     }
+
     focus = {
         id = USA_steady_growth
         icon = GFX_focus_generic_steady_growth
 
-        relative_position_id = USA_construct_military
-        x = 0
+        relative_position_id = USA_construct_civilian
+        x = -1
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 4 }
+
+        prerequisite = { 
+            focus = USA_construct_civilian 
+            focus = USA_advanced_manufacturing
+        }
+
+        available = {
+            has_stability > 0.4
+        }
+
+        completion_reward = {
+            add_ideas = idea_steady_growth
+        }
+    }
+    focus = {
+        id = USA_war_industry
+        icon = GFX_focus_generic_war_industry
+
+        relative_position_id = USA_construct_civilian
+        x = 3
         y = 1
 
         cost = 10
 
         prerequisite = { 
-            focus = USA_construct_civilian
-            focus = USA_construct_military
-            focus = USA_expand_mining
+            focus = USA_construct_civilian 
+            focus = USA_advanced_manufacturing
         }
+
+        available = {
+            has_war_support > 0.2
+        }
+
         completion_reward = {
-            add_ideas = idea_steady_growth
+            random_owned_controlled_state = {
+				limit = {
+					free_building_slots = { building = arms_factory size > 0 include_locked = yes }
+					is_core_of = ROOT
+				}
+
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+			}
         }
     }
 

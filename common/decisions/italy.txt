@@ -83,7 +83,10 @@ against_the_french = {
 
         ai_will_do = { 
             base = 0
-            modifier = { FRA = { has_war = yes } add = 9 }
+            modifier = { 
+                and = { FRA = { has_war = yes } has_war_support > 0.5 }
+                add = 12 
+            }
         }
 
         complete_effect = {

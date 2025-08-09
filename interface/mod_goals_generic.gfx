@@ -1,14 +1,14 @@
 spriteTypes = {	
 	SpriteType = {
 		name = "GFX_focus_generic_budget"
-		texturefile = "gfx/interface/goals/goal_generic_construct_military.dds"
+		texturefile = "gfx/interface/goals/goal_generic_build_tank.dds"
 	}
 	spriteType = {
         name = GFX_focus_generic_budget_shine
-        texturefile = gfx/interface/goals/goal_generic_construct_military.dds
+        texturefile = gfx/interface/goals/goal_generic_build_tank.dds
         effectFile = gfx/FX/buttonstate.lua
         animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_construct_military.dds
+            animationmaskfile = gfx/interface/goals/goal_generic_build_tank.dds
             animationtexturefile = gfx/interface/goals/shine_overlay.dds
             animationrotation = -90.0
             animationlooping = no
@@ -20,7 +20,7 @@ spriteTypes = {
             animationtexturescale = { x = 1.0 y = 1.0 }
         }
         animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_construct_military.dds
+            animationmaskfile = gfx/interface/goals/goal_generic_build_tank.dds
             animationtexturefile = gfx/interface/goals/shine_overlay.dds
             animationrotation = 90.0
             animationlooping = no
@@ -633,41 +633,6 @@ spriteTypes = {
     }
 
 	SpriteType = {
-		name = "GFX_focus_generic_industrial_expansion"
-		texturefile = "gfx/interface/goals/focus_SWE_beneath_sticks_and_stone.dds"
-	}
-	spriteType = {
-        name = GFX_focus_generic_industrial_expansion_shine
-        texturefile = gfx/interface/goals/focus_SWE_beneath_sticks_and_stone.dds
-        effectFile = gfx/FX/buttonstate.lua
-        animation = {
-            animationmaskfile = gfx/interface/goals/focus_SWE_beneath_sticks_and_stone.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = -90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        animation = {
-            animationmaskfile = gfx/interface/goals/focus_SWE_beneath_sticks_and_stone.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = 90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        legacy_lazy_load = no
-    }
-
-	SpriteType = {
 		name = "GFX_focus_generic_rationing"
 		texturefile = "gfx/interface/goals/goal_generic_consumer_goods.dds"
 	}
@@ -773,11 +738,11 @@ spriteTypes = {
     }
 
 	SpriteType = {
-		name = "GFX_focus_generic_infrastructure_effort"
+		name = "GFX_focus_generic_extraction_effort"
 		texturefile = "gfx/interface/goals/goal_generic_construction2.dds"
 	}
 	spriteType = {
-        name = GFX_focus_generic_infrastructure_effort_shine
+        name = GFX_focus_generic_extraction_effort_shine
         texturefile = gfx/interface/goals/goal_generic_construction2.dds
         effectFile = gfx/FX/buttonstate.lua
         animation = {
@@ -829,41 +794,6 @@ spriteTypes = {
         }
         animation = {
             animationmaskfile = gfx/interface/goals/goal_generic_production2.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = 90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        legacy_lazy_load = no
-    }
-
-	SpriteType = {
-		name = "GFX_focus_generic_construct_military"
-		texturefile = "gfx/interface/goals/goal_generic_military_production.dds"
-	}
-	spriteType = {
-        name = GFX_focus_generic_construct_military_shine
-        texturefile = gfx/interface/goals/goal_generic_military_production.dds
-        effectFile = gfx/FX/buttonstate.lua
-        animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_military_production.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = -90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_military_production.dds
             animationtexturefile = gfx/interface/goals/shine_overlay.dds
             animationrotation = 90.0
             animationlooping = no
@@ -934,6 +864,111 @@ spriteTypes = {
         }
         animation = {
             animationmaskfile = gfx/interface/goals/goal_generic_construction.dds
+            animationtexturefile = gfx/interface/goals/shine_overlay.dds
+            animationrotation = 90.0
+            animationlooping = no
+            animationtime = 0.75
+            animationdelay = 0
+            animationblendmode = "add"
+            animationtype = "scrolling"
+            animationrotationoffset = { x = 0.0 y = 0.0 }
+            animationtexturescale = { x = 1.0 y = 1.0 }
+        }
+        legacy_lazy_load = no
+    }
+
+    SpriteType = {
+		name = "GFX_focus_generic_research_grants"
+		texturefile = "gfx/interface/goals/focus_research2.dds"
+	}
+	spriteType = {
+        name = GFX_focus_generic_research_grants_shine
+        texturefile = gfx/interface/goals/focus_research2.dds
+        effectFile = gfx/FX/buttonstate.lua
+        animation = {
+            animationmaskfile = gfx/interface/goals/focus_research2.dds
+            animationtexturefile = gfx/interface/goals/shine_overlay.dds
+            animationrotation = -90.0
+            animationlooping = no
+            animationtime = 0.75
+            animationdelay = 0
+            animationblendmode = "add"
+            animationtype = "scrolling"
+            animationrotationoffset = { x = 0.0 y = 0.0 }
+            animationtexturescale = { x = 1.0 y = 1.0 }
+        }
+        animation = {
+            animationmaskfile = gfx/interface/goals/focus_research2.dds
+            animationtexturefile = gfx/interface/goals/shine_overlay.dds
+            animationrotation = 90.0
+            animationlooping = no
+            animationtime = 0.75
+            animationdelay = 0
+            animationblendmode = "add"
+            animationtype = "scrolling"
+            animationrotationoffset = { x = 0.0 y = 0.0 }
+            animationtexturescale = { x = 1.0 y = 1.0 }
+        }
+        legacy_lazy_load = no
+    }
+
+    	SpriteType = {
+		name = "GFX_focus_generic_advanced_manufacturing"
+		texturefile = "gfx/interface/goals/goal_generic_production.dds"
+	}
+	spriteType = {
+        name = GFX_focus_generic_advanced_manufacturing_shine
+        texturefile = gfx/interface/goals/goal_generic_production.dds
+        effectFile = gfx/FX/buttonstate.lua
+        animation = {
+            animationmaskfile = gfx/interface/goals/goal_generic_production.dds
+            animationtexturefile = gfx/interface/goals/shine_overlay.dds
+            animationrotation = -90.0
+            animationlooping = no
+            animationtime = 0.75
+            animationdelay = 0
+            animationblendmode = "add"
+            animationtype = "scrolling"
+            animationrotationoffset = { x = 0.0 y = 0.0 }
+            animationtexturescale = { x = 1.0 y = 1.0 }
+        }
+        animation = {
+            animationmaskfile = gfx/interface/goals/goal_generic_production.dds
+            animationtexturefile = gfx/interface/goals/shine_overlay.dds
+            animationrotation = 90.0
+            animationlooping = no
+            animationtime = 0.75
+            animationdelay = 0
+            animationblendmode = "add"
+            animationtype = "scrolling"
+            animationrotationoffset = { x = 0.0 y = 0.0 }
+            animationtexturescale = { x = 1.0 y = 1.0 }
+        }
+        legacy_lazy_load = no
+    }
+
+    	SpriteType = {
+		name = "GFX_focus_generic_war_industry"
+		texturefile = "gfx/interface/goals/goal_war_industry.dds"
+	}
+	spriteType = {
+        name = GFX_focus_generic_war_industry_shine
+        texturefile = gfx/interface/goals/goal_war_industry.dds
+        effectFile = gfx/FX/buttonstate.lua
+        animation = {
+            animationmaskfile = gfx/interface/goals/goal_war_industry.dds
+            animationtexturefile = gfx/interface/goals/shine_overlay.dds
+            animationrotation = -90.0
+            animationlooping = no
+            animationtime = 0.75
+            animationdelay = 0
+            animationblendmode = "add"
+            animationtype = "scrolling"
+            animationrotationoffset = { x = 0.0 y = 0.0 }
+            animationtexturescale = { x = 1.0 y = 1.0 }
+        }
+        animation = {
+            animationmaskfile = gfx/interface/goals/goal_war_industry.dds
             animationtexturefile = gfx/interface/goals/shine_overlay.dds
             animationrotation = 90.0
             animationlooping = no
