@@ -24,7 +24,7 @@ central_powers_acceptance = {
     ai_strategy = {
         type = alliance
         id = GER
-        value = 100
+        value = 20
     }
 }
 
@@ -49,7 +49,7 @@ central_powers_invite = {
     ai_strategy = {
         type = alliance
         id = GER
-        value = 100
+        value = 25
     }
 }
 
@@ -92,7 +92,7 @@ entente_acceptance = {
     ai_strategy = {
         type = alliance
         id = FRA
-        value = 100
+        value = 20
     }
 }
 
@@ -115,7 +115,10 @@ entente_invite = {
             }
             and = {                                                             # usa
                 has_completed_focus = USA_hearts_and_minds
-                has_war_support > 0.55 
+                and = { 
+                    has_war_support > 0.55
+                    FRA = { war_length_with = GER > 24 }
+                }
             }
         }
     }
@@ -127,7 +130,7 @@ entente_invite = {
     ai_strategy = {
         type = alliance
         id = FRA
-        value = 100
+        value = 25
     }
 }
 
@@ -151,61 +154,37 @@ greece_and_her_lands = {
     ai_strategy = {
         type = alliance
         id = GRE
-        value = 100
+        value = 25
     }
 }
 
 italy_and_france = {
     allowed = { original_tag = ITA }
     enable = {
-        war_length_with = { tag = FRA months > 3 }
-        not = { has_government = communism }
-    }
-    abort_when_not_enabled = yes
-
-    reversed = yes
-    enable_reverse = {
         has_completed_focus = ITA_on_our_own
         has_war_support > 0.5
     }
+    abort_when_not_enabled = yes
 
     ai_strategy = {
-        type = alliance
-        id = ITA
-        value = 100
-    }
-
-    ai_strategy = {
-        type = support
-        id = ITA
-        value = 100
+        type = contain
+        id = FRA
+        value = 15
     }
 }
 
-italy_and_tirol = {
+italy_and_austria = {
     allowed = { original_tag = ITA }
     enable = {
-        war_length_with = { tag = AUS months > 6 }
-        not = { has_government = communism }
+        and = { has_completed_focus = ITA_traditionalism has_war_support > 0.5 }
+        not = { has_country_flag = neutral_italy }
     }
     abort_when_not_enabled = yes
 
-    reversed = yes
-    enable_reverse = {
-        has_completed_focus = ITA_traditionalism
-        has_war_support > 0.5
-    }
-
     ai_strategy = {
-        type = alliance
-        id = ITA
-        value = 100
-    }
-
-    ai_strategy = {
-        type = support
-        id = ITA
-        value = 100
+        type = contain
+        id = AUS
+        value = 15
     }
 }
 
@@ -221,7 +200,7 @@ japan_and_islands = {
     abort_when_not_enabled = yes
 
     ai_strategy = {
-        type = declare_war
+        type = conquer
         id = GER
         value = 100
     }
@@ -231,93 +210,56 @@ japan_and_islands = {
 
 austria_hates_russia = {
     allowed = { original_tag = AUS }
-    enable = { or = { original_tag = SOV is_ally_with = SOV } }
-    abort_when_not_enabled = yes
-
-    reversed = yes
+    enable = { always = yes }
 
     ai_strategy = {
-        type = antagonize
-        id = AUS
-        value = 300
+        type = contain
+        id = SOV
+        value = 50
     }
-}
-
-italy_hates_austria = {
-    allowed = { original_tag = ITA }
-    enable = { or = { original_tag = AUS is_ally_with = AUS } }
-    abort_when_not_enabled = yes
-
-    enable_reverse = {                                          # unless we get our claims, we won't back up Austrians.
-        has_completed_focus = ITA_traditionalism
-        not = { has_country_flag = neutral_italy }
-    }
-    reversed = yes
-
-    ai_strategy = {
-        type = antagonize
-        id = ITA
-        value = 300
-    }
-}
-
-italy_hates_turkey = {
-    allowed = { original_tag = ITA }
-    enable = { or = { original_tag = TUR is_ally_with = TUR } }
-    abort_when_not_enabled = yes
-
-    enable_reverse = { always = yes }
-    reversed = yes
-
-    ai_strategy = {
-        type = antagonize
-        id = ITA
-        value = 300
-    }
-}
-
-russia_hates_austria_and_turkey = {                     # due to south-east europe
-    allowed = { original_tag = SOV }
-    enable = { 
-        or = { 
-            original_tag = AUS is_ally_with = AUS 
-            original_tag = TUR is_ally_with = TUR 
-        } 
-    }
-
-    reversed = yes
 
     ai_strategy = {
         type = antagonize
         id = SOV
-        value = 300
+        value = 60
     }
 }
 
-turkey_hates_italy = {
-    allowed = { original_tag = TUR }
-    enable = { or = { original_tag = ITA is_ally_with = ITA } }
-    abort_when_not_enabled = yes
-
-    reversed = yes
+italy_hates = {
+    allowed = { original_tag = SOV }
+    enable = { always = yes }
 
     ai_strategy = {
-        type = antagonize
+        type = conquer
         id = TUR
-        value = 300
+        value = 30
     }
 }
 
-turkey_hates_russia = {
-    allowed = { original_tag = TUR }
-    enable = { or = { original_tag = SOV is_ally_with = SOV } }
-    abort_when_not_enabled = yes
-
-    reversed = yes
+tsar_hates = {
+    allowed = { original_tag = SOV }
+    enable = { always = yes }
 
     ai_strategy = {
         type = antagonize
-        id = TUR
-        value = 300
+        id = AUS
+        value = 50
+    }
+}
+
+turkey_hates = {
+    allowed = { original_tag = TUR }
+    enable = { always = yes }
+
+    ai_strategy = {
+        type = contain
+        id = ITA
+        value = 50
+    }
+
+    ai_strategy = {
+        type = contain
+        id = SOV
+        value = 30
     }
 }
