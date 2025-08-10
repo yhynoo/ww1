@@ -10,31 +10,43 @@ focus_tree = {
 
     ## military branch
     focus = {
-        id = GER_adjust_budget
+        id = GER_adjust_the_military
         icon = GFX_focus_generic_budget
 
         x = 7
         y = 0
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = { has_war = yes factor = 3 }
+        }
+
         completion_reward = {
-            add_command_power = 25
+            add_command_power = 50
+            add_war_support = 0.05
+
+            hidden_effect = {
+                random_list = {
+                    50: { country_event = { id = _army.1 days = 30 random_days = 120 } }
+                    25: { country_event = { id = _army.2 days = 30 random_days = 120 } }
+                    25: { }
+                }
+            }
         }
     }
     focus = {
         id = GER_focus_army
         icon = GFX_focus_generic_army
 
-        relative_position_id = GER_adjust_budget
+        relative_position_id = GER_adjust_the_military
         x = -2
         y = 1
         cost = 10
 
-        ai_will_do = { base = 2 }
-
-        prerequisite = { focus = GER_adjust_budget }
+        prerequisite = { focus = GER_adjust_the_military }
         completion_reward = {
-            army_experience = 25
+            army_experience = 50
         }
     }
     focus = {
@@ -46,13 +58,16 @@ focus_tree = {
         y = 1
         cost = 10
 
-        available = { or = { has_idea = disarmed_nation has_idea = volunteer_only } }
-
-        ai_will_do = { base = 2 }
+        available = {
+            or = {
+                has_idea = disarmed_nation
+                has_idea = volunteer_only
+            }   
+        }
 
         prerequisite = { focus = GER_focus_army }
         completion_reward = {
-            add_ideas = limited_conscription
+            upgrade_conscription_law = yes
         }
     }
     focus = {
@@ -66,9 +81,9 @@ focus_tree = {
 
         prerequisite = { focus = GER_focus_army }
         completion_reward = {
-            army_experience = 50
+            army_experience = 75
             add_doctrine_cost_reduction = {
-				name = land_doc_bonus cost_reduction = 0.5 uses = 1
+				name = land_doc_bonus cost_reduction = 0.5 uses = 2
 				category = land_doctrine
 			}
         }
@@ -85,7 +100,7 @@ focus_tree = {
         prerequisite = { focus = GER_focus_army }
         completion_reward = {
             add_tech_bonus = {
-				name = infantry_bonus bonus = 1.0 uses = 1
+				name = infantry_bonus bonus = 1.0 uses = 2
 				category = infantry_weapons_tech
 			}
         }
@@ -102,7 +117,7 @@ focus_tree = {
         prerequisite = { focus = GER_equipment_effort }
         completion_reward = {
             add_tech_bonus = {
-				name = artillery_bonus bonus = 1.0 uses = 1
+				name = artillery_bonus bonus = 1.0 uses = 2
 				category = artillery_tech
 			}
         }
@@ -118,9 +133,9 @@ focus_tree = {
 
         prerequisite = { focus = GER_equipment_effort }
         completion_reward = {
-            air_experience = 25
+            air_experience = 50
             add_tech_bonus = {
-				name = fighter_bonus bonus = 1.0 uses = 1
+				name = aircraft_bonus bonus = 1.0 uses = 2
 				category = air_equipment_tech
 			}
         }
@@ -137,7 +152,7 @@ focus_tree = {
         prerequisite = { focus = GER_equipment_effort }
         completion_reward = {
             add_tech_bonus = {
-				name = armor_bonus bonus = 1.0 uses = 1
+				name = armor_bonus bonus = 1.0 uses = 2
 				category = armor_tech
 			}
         }
@@ -166,7 +181,7 @@ focus_tree = {
         id = GER_focus_navy
         icon = GFX_focus_generic_navy
 
-        relative_position_id = GER_adjust_budget
+        relative_position_id = GER_adjust_the_military
         x = 2
         y = 1
         cost = 10
@@ -178,9 +193,9 @@ focus_tree = {
 			}
 		}
 
-        prerequisite = { focus = GER_adjust_budget }
+        prerequisite = { focus = GER_adjust_the_military }
         completion_reward = {
-            navy_experience = 25
+            navy_experience = 50
         }
     }
     focus = {
@@ -201,9 +216,9 @@ focus_tree = {
 
         prerequisite = { focus = GER_focus_navy }
         completion_reward = {
-            navy_experience = 50
+            navy_experience = 75
             add_doctrine_cost_reduction = {
-				name = navy_doc_bonus cost_reduction = 0.5 uses = 1
+				name = navy_doc_bonus cost_reduction = 0.5 uses = 2
 				category = naval_doctrine
 			}
         }
@@ -340,7 +355,7 @@ focus_tree = {
         }
     }
 
-        ## economic branch
+    ## economic branch
     focus = {
         id = GER_economic_development
         icon = GFX_focus_generic_economic_development

@@ -80,7 +80,7 @@ country_event = {
 
 news_event = {
     id = _armistice.3
-    title = "Anti-War Demonstrations"
+    title = "Demonstrations Against War"
     desc = _armistice.3.d
 
     trigger = {
@@ -89,7 +89,7 @@ news_event = {
         not = { has_idea = idea_anti_war_demonstrations }
 
         # war must be long enough
-        longest_war_length > 24
+        longest_war_length > 18
     }
 
     mean_time_to_happen = { months = 1 }
@@ -111,7 +111,7 @@ country_event = {
     }
 
     mean_time_to_happen = { 
-        months = 6
+        months = 3
 
         # time modifiers
         modifier = { surrender_progress > 0.2 factor = 0.5 }

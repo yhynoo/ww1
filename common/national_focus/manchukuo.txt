@@ -10,7 +10,7 @@
 
     ## military branch
     focus = {
-        id = MAN_adjust_budget
+        id = FRA_adjust_the_military
         icon = GFX_focus_generic_budget
 
         x = 7
@@ -23,148 +23,153 @@
         }
 
         completion_reward = {
-            add_command_power = 25
+            add_command_power = 50
+            add_war_support = 0.05
+
+            hidden_effect = {
+                random_list = {
+                    50: { country_event = { id = _army.1 days = 30 random_days = 120 } }
+                    25: { country_event = { id = _army.2 days = 30 random_days = 120 } }
+                    25: { }
+                }
+            }
         }
     }
     focus = {
-        id = MAN_focus_army
+        id = FRA_focus_army
         icon = GFX_focus_generic_army
 
-        relative_position_id = MAN_adjust_budget
+        relative_position_id = FRA_adjust_the_military
         x = -2
         y = 1
         cost = 10
 
-        prerequisite = { focus = MAN_adjust_budget }
+        prerequisite = { focus = FRA_adjust_the_military }
         completion_reward = {
-            army_experience = 25
+            army_experience = 50
         }
     }
     focus = {
-        id = MAN_extend_conscription
+        id = FRA_extend_conscription
         icon = GFX_focus_generic_extend_conscription
 
-        relative_position_id = MAN_focus_army
+        relative_position_id = FRA_focus_army
         x = -4
         y = 1
         cost = 10
 
-        available = { or = { has_idea = disarmed_nation has_idea = volunteer_only } }
+        available = {
+            or = {
+                has_idea = disarmed_nation
+                has_idea = volunteer_only
+            }   
+        }
 
-        prerequisite = { focus = MAN_focus_army }
+        prerequisite = { focus = FRA_focus_army }
         completion_reward = {
-            add_ideas = limited_conscription
+            upgrade_conscription_law = yes
         }
     }
     focus = {
-        id = MAN_army_maneuvers
+        id = FRA_army_maneuvers
         icon = GFX_focus_generic_army_maneuvers
 
-        relative_position_id = MAN_focus_army
+        relative_position_id = FRA_focus_army
         x = -2
         y = 1
         cost = 10
 
-        prerequisite = { focus = MAN_focus_army }
+        prerequisite = { focus = FRA_focus_army }
         completion_reward = {
-            army_experience = 50
+            army_experience = 75
             add_doctrine_cost_reduction = {
-				name = land_doc_bonus
-				cost_reduction = 0.5
-				uses = 1
+				name = land_doc_bonus cost_reduction = 0.5 uses = 2
 				category = land_doctrine
 			}
         }
     }
     focus = {
-        id = MAN_equipment_effort
+        id = FRA_equipment_effort
         icon = GFX_focus_generic_equipment_effort
 
-        relative_position_id = MAN_focus_army
+        relative_position_id = FRA_focus_army
         x = 0
         y = 1
         cost = 10
 
-        prerequisite = { focus = MAN_focus_army }
+        prerequisite = { focus = FRA_focus_army }
         completion_reward = {
             add_tech_bonus = {
-				name = infantry_bonus
-				bonus = 1.0
-				uses = 1
+				name = infantry_bonus bonus = 1.0 uses = 2
 				category = infantry_weapons_tech
 			}
         }
     }
     focus = {
-        id = MAN_artillery
+        id = FRA_artillery
         icon = GFX_focus_generic_artillery
 
-        relative_position_id = MAN_equipment_effort
+        relative_position_id = FRA_equipment_effort
         x = -2
         y = 1
         cost = 10
 
-        prerequisite = { focus = MAN_equipment_effort }
+        prerequisite = { focus = FRA_equipment_effort }
         completion_reward = {
             add_tech_bonus = {
-				bonus = 1.0
-				uses = 1
+				name = artillery_bonus bonus = 1.0 uses = 2
 				category = artillery_tech
 			}
         }
     }
     focus = {
-        id = MAN_aircraft
+        id = FRA_aircraft
         icon = GFX_focus_generic_aircraft
 
-        relative_position_id = MAN_equipment_effort
+        relative_position_id = FRA_equipment_effort
         x = 0
         y = 1
         cost = 10
 
-        prerequisite = { focus = MAN_equipment_effort }
+        prerequisite = { focus = FRA_equipment_effort }
         completion_reward = {
-            air_experience = 25
+            air_experience = 50
             add_tech_bonus = {
-				name = fighter_bonus
-				bonus = 1.0
-				uses = 1
+				name = aircraft_bonus bonus = 1.0 uses = 2
 				category = air_equipment_tech
 			}
         }
     }
     focus = {
-        id = MAN_armor
+        id = FRA_armor
         icon = GFX_focus_generic_armor
 
-        relative_position_id = MAN_equipment_effort
+        relative_position_id = FRA_equipment_effort
         x = 2
         y = 1
         cost = 10
 
-        prerequisite = { focus = MAN_equipment_effort }
+        prerequisite = { focus = FRA_equipment_effort }
         completion_reward = {
             add_tech_bonus = {
-				name = armor_bonus
-				bonus = 1.0
-				uses = 1
+				name = armor_bonus bonus = 1.0 uses = 2
 				category = armor_tech
 			}
         }
     }
     focus = {
-        id = MAN_modern_warfare
+        id = FRA_modern_warfare
         icon = GFX_focus_generic_modern_warfare
 
-        relative_position_id = MAN_aircraft
+        relative_position_id = FRA_aircraft
         x = 0
         y = 1
         cost = 10
 
         prerequisite = { 
-            focus = MAN_artillery
-            focus = MAN_aircraft
-            focus = MAN_armor
+            focus = FRA_artillery
+            focus = FRA_aircraft
+            focus = FRA_armor
         }
         completion_reward = {
             army_experience = 100
@@ -173,10 +178,10 @@
     }
 
     focus = {
-        id = MAN_focus_navy
+        id = FRA_focus_navy
         icon = GFX_focus_generic_navy
 
-        relative_position_id = MAN_adjust_budget
+        relative_position_id = FRA_adjust_the_military
         x = 2
         y = 1
         cost = 10
@@ -188,16 +193,16 @@
 			}
 		}
 
-        prerequisite = { focus = MAN_adjust_budget }
+        prerequisite = { focus = FRA_adjust_the_military }
         completion_reward = {
-            navy_experience = 25
+            navy_experience = 50
         }
     }
     focus = {
-        id = MAN_naval_exercises
+        id = FRA_naval_exercises
         icon = GFX_focus_generic_naval_exercises
 
-        relative_position_id = MAN_focus_navy
+        relative_position_id = FRA_focus_navy
         x = 0
         y = 1
         cost = 10
@@ -209,22 +214,20 @@
 			}
 		}
 
-        prerequisite = { focus = MAN_focus_navy }
+        prerequisite = { focus = FRA_focus_navy }
         completion_reward = {
-            navy_experience = 50
+            navy_experience = 75
             add_doctrine_cost_reduction = {
-				name = navy_doc_bonus
-				cost_reduction = 0.5
-				uses = 1
+				name = navy_doc_bonus cost_reduction = 0.5 uses = 2
 				category = naval_doctrine
 			}
         }
     }
     focus = {
-        id = MAN_expand_dockyards
+        id = FRA_expand_dockyards
         icon = GFX_focus_generic_expand_dockyards
 
-        relative_position_id = MAN_focus_navy
+        relative_position_id = FRA_focus_navy
         x = 2
         y = 1
         cost = 10
@@ -236,7 +239,7 @@
 			}
 		}
 
-        prerequisite = { focus = MAN_focus_navy }
+        prerequisite = { focus = FRA_focus_navy }
 		
 		completion_reward = {
 			navy_experience = 25
@@ -253,10 +256,10 @@
 		}
     }
     focus = {
-        id = MAN_high_seas
+        id = FRA_high_seas
         icon = GFX_focus_generic_high_seas
 
-        relative_position_id = MAN_expand_dockyards
+        relative_position_id = FRA_expand_dockyards
         x = 0
         y = 1
         cost = 10
@@ -268,21 +271,19 @@
 			}
 		}
 
-        prerequisite = { focus = MAN_expand_dockyards }
+        prerequisite = { focus = FRA_expand_dockyards }
         completion_reward = {
             add_tech_bonus = {
-				name = capital_ships_bonus
-				bonus = 1.0
-				uses = 1
+				name = capital_ships_bonus bonus = 1.0 uses = 1
 				category = capital_ship_tech
 			}
         }
     }
     focus = {
-        id = MAN_the_dark_deep
+        id = FRA_the_dark_deep
         icon = GFX_focus_generic_the_dark_deep
 
-        relative_position_id = MAN_expand_dockyards
+        relative_position_id = FRA_expand_dockyards
         x = 2
         y = 1
         cost = 10
@@ -294,21 +295,19 @@
 			}
 		}
 
-        prerequisite = { focus = MAN_expand_dockyards }
+        prerequisite = { focus = FRA_expand_dockyards }
         completion_reward = {
             add_tech_bonus = {
-				name = ss_bonus
-				bonus = 1.0
-				uses = 1
+				name = ss_bonus bonus = 1.0 uses = 1
 				category = submarines_tech
 			}
         }
     }
     focus = {
-        id = MAN_seaborne_operations
+        id = FRA_seaborne_operations
         icon = GFX_focus_generic_seaborne_operations
 
-        relative_position_id = MAN_naval_exercises
+        relative_position_id = FRA_naval_exercises
         x = 0
         y = 1
         cost = 10
@@ -320,22 +319,20 @@
 			}
 		}
 
-        prerequisite = { focus = MAN_naval_exercises }
+        prerequisite = { focus = FRA_naval_exercises }
         completion_reward = {
             add_tech_bonus = {
-				name = special_forces_bonus
-				bonus = 1.0
-				uses = 1
+				name = special_forces_bonus bonus = 1.0 uses = 1
 				technology = marines_1
                 technology = marines_2
 			}
         }
     }
     focus = {
-        id = MAN_rule_the_waves
+        id = FRA_rule_the_waves
         icon = GFX_focus_generic_rule_the_waves
 
-        relative_position_id = MAN_high_seas
+        relative_position_id = FRA_high_seas
         x = 0
         y = 1
         cost = 10
@@ -348,9 +345,9 @@
 		}
 
         prerequisite = { 
-            focus = MAN_seaborne_operations
-            focus = MAN_high_seas
-            focus = MAN_the_dark_deep
+            focus = FRA_seaborne_operations
+            focus = FRA_high_seas
+            focus = FRA_the_dark_deep
         }
         completion_reward = {
             navy_experience = 100
@@ -358,7 +355,7 @@
         }
     }
 
-        ## economic branch
+    ## economic branch
     focus = {
         id = MAN_economic_development
         icon = GFX_focus_generic_economic_development

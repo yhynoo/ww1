@@ -24,7 +24,10 @@ country_event = {
 
         AUS = { 
             has_war = yes 
-            not = { has_war_with = ITA }
+            not = { 
+                has_war_with = ITA 
+                is_ally_with = ITA
+            }
         }
 
         any_state = {
@@ -37,9 +40,10 @@ country_event = {
     mean_time_to_happen = { months = 6 }
 
     option = {
-        name = "Demand Tirol."
-        trigger = {
-            39 = { is_owned_and_controlled_by = AUS }
+        name = "Demand Tirol and Trieste."
+        any_state = {
+            or = { state = 33 state = 39 }
+            is_owned_and_controlled_by = AUS
         }
 
         AUS = { country_event = { id = italy_alps.3 hours = 6 random_hours = 6 } }
@@ -48,26 +52,21 @@ country_event = {
     option = {
         name = "Extend our claims to Dalmatia."
         trigger = {
-            any_state = {
-                or = { state = 33 state = 103 } 
-                is_owned_and_controlled_by = AUS 
-            }
+            103 = { is_owned_and_controlled_by = AUS }
         }
 
-        every_state = {
-            limit = {
-                or = { state = 33 state = 103 }
-                is_owned_and_controlled_by = AUS
-            }
-            add_claim_by = ITA
-        }
-
+        103 = { add_claim_by = ITA }
         AUS = { country_event = { id = italy_alps.3 hours = 6 random_hours = 6 } }
     }
 
     option = {
         name = "It is dishonorable to treat a former ally like this."
         add_war_support = -0.05
+
+        ai_chance = {
+            base = 0
+            modifier = { has_completed_focus = ITA_adjust_the_government add = 4 }
+        }
     }
 }
 

@@ -10,7 +10,7 @@ focus_tree = {
 
     ## military branch
     focus = {
-        id = AUS_adjust_budget
+        id = AUS_adjust_the_military
         icon = GFX_focus_generic_budget
 
         x = 7
@@ -18,21 +18,30 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            add_command_power = 25
+            add_command_power = 50
+            add_war_support = 0.05
+
+            hidden_effect = {
+                random_list = {
+                    50: { country_event = { id = _army.1 days = 30 random_days = 120 } }
+                    25: { country_event = { id = _army.2 days = 30 random_days = 120 } }
+                    25: { }
+                }
+            }
         }
     }
     focus = {
         id = AUS_focus_army
         icon = GFX_focus_generic_army
 
-        relative_position_id = AUS_adjust_budget
+        relative_position_id = AUS_adjust_the_military
         x = -2
         y = 1
         cost = 10
 
-        prerequisite = { focus = AUS_adjust_budget }
+        prerequisite = { focus = AUS_adjust_the_military }
         completion_reward = {
-            army_experience = 25
+            army_experience = 50
         }
     }
     focus = {
@@ -44,11 +53,16 @@ focus_tree = {
         y = 1
         cost = 10
 
-        available = { or = { has_idea = disarmed_nation has_idea = volunteer_only } }
+        available = {
+            or = {
+                has_idea = disarmed_nation
+                has_idea = volunteer_only
+            }   
+        }
 
         prerequisite = { focus = AUS_focus_army }
         completion_reward = {
-            add_ideas = limited_conscription
+            upgrade_conscription_law = yes
         }
     }
     focus = {
@@ -64,11 +78,12 @@ focus_tree = {
 
         prerequisite = { focus = AUS_focus_army }
         completion_reward = {
-            remove_ideas = idea_archaic_army
             add_doctrine_cost_reduction = {
-				name = land_doc_bonus cost_reduction = 0.5 uses = 1
+				name = land_doc_bonus cost_reduction = 0.5 uses = 2
 				category = land_doctrine
 			}
+
+            remove_ideas = idea_archaic_army
         }
     }
     focus = {
@@ -83,9 +98,7 @@ focus_tree = {
         prerequisite = { focus = AUS_focus_army }
         completion_reward = {
             add_tech_bonus = {
-				name = infantry_bonus
-				bonus = 1.0
-				uses = 1
+				name = infantry_bonus bonus = 1.0 uses = 2
 				category = infantry_weapons_tech
 			}
         }
@@ -102,8 +115,7 @@ focus_tree = {
         prerequisite = { focus = AUS_equipment_effort }
         completion_reward = {
             add_tech_bonus = {
-				bonus = 1.0
-				uses = 1
+				name = artillery_bonus bonus = 1.0 uses = 2
 				category = artillery_tech
 			}
         }
@@ -119,11 +131,9 @@ focus_tree = {
 
         prerequisite = { focus = AUS_equipment_effort }
         completion_reward = {
-            air_experience = 25
+            air_experience = 50
             add_tech_bonus = {
-				name = fighter_bonus
-				bonus = 1.0
-				uses = 1
+				name = aircraft_bonus bonus = 1.0 uses = 2
 				category = air_equipment_tech
 			}
         }
@@ -140,9 +150,7 @@ focus_tree = {
         prerequisite = { focus = AUS_equipment_effort }
         completion_reward = {
             add_tech_bonus = {
-				name = armor_bonus
-				bonus = 1.0
-				uses = 1
+				name = armor_bonus bonus = 1.0 uses = 2
 				category = armor_tech
 			}
         }
@@ -171,7 +179,7 @@ focus_tree = {
         id = AUS_focus_navy
         icon = GFX_focus_generic_navy
 
-        relative_position_id = AUS_adjust_budget
+        relative_position_id = AUS_adjust_the_military
         x = 2
         y = 1
         cost = 10
@@ -183,9 +191,9 @@ focus_tree = {
 			}
 		}
 
-        prerequisite = { focus = AUS_adjust_budget }
+        prerequisite = { focus = AUS_adjust_the_military }
         completion_reward = {
-            navy_experience = 25
+            navy_experience = 50
         }
     }
     focus = {
@@ -206,11 +214,9 @@ focus_tree = {
 
         prerequisite = { focus = AUS_focus_navy }
         completion_reward = {
-            navy_experience = 50
+            navy_experience = 75
             add_doctrine_cost_reduction = {
-				name = navy_doc_bonus
-				cost_reduction = 0.5
-				uses = 1
+				name = navy_doc_bonus cost_reduction = 0.5 uses = 2
 				category = naval_doctrine
 			}
         }
@@ -266,9 +272,7 @@ focus_tree = {
         prerequisite = { focus = AUS_expand_dockyards }
         completion_reward = {
             add_tech_bonus = {
-				name = capital_ships_bonus
-				bonus = 1.0
-				uses = 1
+				name = capital_ships_bonus bonus = 1.0 uses = 1
 				category = capital_ship_tech
 			}
         }
@@ -292,9 +296,7 @@ focus_tree = {
         prerequisite = { focus = AUS_expand_dockyards }
         completion_reward = {
             add_tech_bonus = {
-				name = ss_bonus
-				bonus = 1.0
-				uses = 1
+				name = ss_bonus bonus = 1.0 uses = 1
 				category = submarines_tech
 			}
         }
@@ -318,9 +320,7 @@ focus_tree = {
         prerequisite = { focus = AUS_naval_exercises }
         completion_reward = {
             add_tech_bonus = {
-				name = special_forces_bonus
-				bonus = 1.0
-				uses = 1
+				name = special_forces_bonus bonus = 1.0 uses = 1
 				technology = marines_1
                 technology = marines_2
 			}
