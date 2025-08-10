@@ -22,10 +22,13 @@ focus_tree = {
             add_war_support = 0.05
 
             hidden_effect = {
-                random_list = {
-                    50: { country_event = { id = _army.1 days = 30 random_days = 120 } }
-                    25: { country_event = { id = _army.2 days = 30 random_days = 120 } }
-                    25: { }
+                random = {
+                    chance = 50
+                    country_event = { id = _army.1 days = 30 random_days = 120 }
+                }
+                random = {
+                    chance = 50
+                    country_event = { id = _army.2 days = 30 random_days = 120 }
                 }
             }
         }
@@ -630,6 +633,17 @@ focus_tree = {
 
         completion_reward = {
             add_ideas = idea_steady_growth
+
+            hidden_effect = {
+                random = {
+                    chance = 25
+                    country_event = { id = _growth.1 days = 30 random_days = 60 }
+                }
+                random = {
+                    chance = 25
+                    country_event = { id = _growth.2 days = 30 random_days = 60 }
+                }
+            }
         }
     }
     focus = {

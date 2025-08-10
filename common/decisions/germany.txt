@@ -59,10 +59,10 @@ oriental_investments = {
         icon = generic_civil_support
         fire_only_once = yes
 
-        visible = { has_country_flag = wassmuss_in_gulf }
+        visible = { has_country_flag = intrigue }
 
         complete_effect = {
-            hidden_effect = { clr_country_flag = wassmuss_in_gulf }
+            hidden_effect = { clr_country_flag = intrigue }
         }
     }
 }
@@ -139,10 +139,9 @@ approach_the_uk = {
         available = {
             not = { has_war_with = FRA }
 
-            AND = {
-                8 = { is_controlled_by = GER }
-                28 = { is_controlled_by = GER }
-                34 = { is_controlled_by = GER }
+            any_state = {
+                or = { state = 8 state = 28 state = 34 }
+                is_owned_and_controlled_by = GER
             }
         }
 
@@ -152,21 +151,6 @@ approach_the_uk = {
             FRA = { country_event = { id = germany_appease_french.1 hours = 6 random_hours = 6 } }
         }
 
-    }
-    treaty_of_singapore = {
-        icon = generic_form_nation
-        cost = 150
-        fire_only_once = yes
-
-        available = {
-            ENG = { not = { has_war_with = GER } }
-        }
-
-        ai_will_do = { base = 9 }
-
-        complete_effect = {
-            ENG = { country_event = { id = germany_naval.1 hours = 6 random_hours = 6 } }
-        }
     }
     ask_to_withdraw_french_guarantees = {
         icon = generic_prepare_civil_war

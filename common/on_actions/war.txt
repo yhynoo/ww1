@@ -6,6 +6,22 @@ on_actions = {
 
                 # pre-launch the stalemate event
                 country_event = { id = _armistice.2 days = 180 random_days = 30 }
+
+                # flavor events
+                random = {
+                    chance = 25
+                    country_event = { id = _war_outbreak.1 days = 15 random_days = 180 }
+                }
+
+                random = {
+                    chance = 25
+                    country_event = { id = _war_outbreak.2 days = 15 random_days = 180 }
+                }
+
+                random = {
+                    chance = 25
+                    country_event = { id = _war_outbreak.3 days = 15 random_days = 180 }
+                }
             }
         }
     }

@@ -82,7 +82,10 @@ affirm_the_entente = {
             has_war_support > 0.4
         }
 
-        ai_will_do = { base = 12 }
+        ai_will_do = { 
+            base = 0
+            modifier = { has_guaranteed = FRA add = 12 }
+        }
 
         complete_effect = {
             swap_ideas = {
@@ -110,7 +113,9 @@ affirm_the_entente = {
             modifier = { threat > 0.5 add = 6 }
         }
 
-        complete_effect = { USA = { news_event = { id = england_entente.2 hours = 6 random_hours = 6 } } }
+        complete_effect = { 
+            USA = { news_event = { id = england_entente.2 hours = 6 random_hours = 6 } } 
+        }
     }
 }
 

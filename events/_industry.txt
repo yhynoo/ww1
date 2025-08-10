@@ -50,3 +50,57 @@ news_event = {
         hidden_effect = { set_country_flag = emergency_arms }
     }
 }
+
+# growth
+add_namespace = _growth
+
+country_event = {
+    id = _growth.1
+    title = "What About the Colonies?"
+    desc = _growth.1.d
+
+    is_triggered_only = yes
+    trigger = { 
+        any_controlled_state = { is_in_home_area = no }
+    }
+
+    option = {
+        name = "This is a welcome initiative."
+        
+        random_owned_controlled_state = {
+            limit = { is_in_home_area = no }
+            add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+        }
+
+        random_owned_controlled_state = {
+            limit = { is_in_home_area = no }
+            add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+        }
+    }
+
+    option = {
+        name = "Let us use their vigor in our homeland."
+
+        random_owned_controlled_state = {
+            limit = { is_in_home_area = yes }
+            add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+        }
+    }
+}
+
+news_event = {
+    id = _growth.2
+    title = "An Unexpected Discovery?"
+    desc = _growth.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        
+        add_tech_bonus = {
+            name = construction_bonus bonus = 1.0 uses = 2
+            category = construction_tech
+        }
+    }
+}

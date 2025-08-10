@@ -75,7 +75,6 @@ country_event = {
     }
 }
 
-
 # anti-war demonstrations
 
 news_event = {
@@ -97,52 +96,5 @@ news_event = {
     option = {
         name = "Worrying."
         add_timed_idea = { idea = idea_anti_war_demonstrations months = 6 }
-    }
-}
-
-country_event = {
-    id = _armistice.4
-    title = "End the War, At All Cost!"
-    desc = _armistice.4.d
-
-    trigger = {
-        has_war = yes has_idea = idea_anti_war_demonstrations
-        is_faction_leader = yes
-    }
-
-    mean_time_to_happen = { 
-        months = 3
-
-        # time modifiers
-        modifier = { surrender_progress > 0.2 factor = 0.5 }
-        modifier = { surrender_progress > 0.35 factor = 0.5 }
-    }
-
-    option = {
-        name = "The time has come to sign an armistice."
-        every_enemy_country = {
-            limit = { 
-                or = { is_faction_leader = yes is_in_faction = no } 
-            }
-            country_event = { id = _offer_faction_leader.1 hours = 6 random_days = 7 }
-        }
-
-        ai_chance = { 
-            base = 2
-            modifier = { 
-                or = { has_government = monarchism has_government = authoritarianism }
-                factor = 0.5
-            }
-        }
-    }
-
-    option = {
-        name = "We shall continue fighting."
-        add_political_power = -75
-
-        ai_chance = { 
-            base = 1 
-            modifier = { surrender_progress > 0.1 factor = 0.5 }
-        }
     }
 }

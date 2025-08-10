@@ -1,9 +1,8 @@
-antwerp_affair = {
+echoes_of_agadir = {
     demand_flanders = {
         icon = generic_prepare_civil_war
-
         fire_only_once = yes
-        cost = 75
+        cost = 100
 
         available = { 
             can_declare_war_on = HOL
@@ -24,9 +23,8 @@ antwerp_affair = {
     }
     demand_wallonie = {
         icon = generic_prepare_civil_war
-
         fire_only_once = yes
-        cost = 75
+        cost = 100
 
         available = { 
             can_declare_war_on = GER
@@ -37,9 +35,18 @@ antwerp_affair = {
         }
 
         ai_will_do = {
-            base = 0
-            modifier = { date > 1914.6.1 add = 6 }
-            modifier = { num_faction_members > 2 factor = 2 }
+            base = 3
+            modifier = {
+                and = {
+                    date > 1914.6.1 
+                    and = { is_faction_leader = yes has_government = democratic }
+                }
+                add = 9
+            }
+            modifier = {
+                has_government = monarchism
+                add = 3
+            }
         }
 
         complete_effect = {
@@ -48,6 +55,21 @@ antwerp_affair = {
             # the 'opportunity' event
             hidden_effect = {
                 GER = { country_event = { id = france_wallonia.1 days = 14 } }
+            }
+        }
+    }
+    expand_cotton_morocco = {
+        icon = generic_construction
+        fire_only_once = yes
+        cost = 75
+
+        available = { controls_state = 462 }
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            462 = {
+                add_resource = { type = tungsten amount = 4 }
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
             }
         }
     }
@@ -183,22 +205,22 @@ let_them_eat_cake = {
             }
         }
     }
-    offer_investments_in_spain = {
-        days_remove = 30
-        cost = 50
-        icon = generic_construction
+    ecole_royale_de_la_marine = {
+        icon = generic_naval
+        fire_only_once = yes
+        cost = 75
 
-        available = {
-            not = { has_idea = idea_aid_to_spain }
+        available = { 
+            any_owned_controlled_state = { is_coastal = yes }
         }
-
-        ai_will_do = {
-            base = 6
-            modifier = { not = { SPA = { has_idea = idea_significant_french_influence } } add = 3 }
-        }
+        ai_will_do = { base = 9 }
 
         complete_effect = {
-            SPA = { country_event = { id = france_spain.1 hours = 6 random_hours = 6 } }
+            add_tech_bonus = {
+				name = capital_ships_bonus bonus = 0.5 uses = 2
+				category = naval_equipment_tech
+			}
+            navy_experience = 50
         }
     }
 }

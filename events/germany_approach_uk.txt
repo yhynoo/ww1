@@ -12,19 +12,20 @@ country_event = {
         GER = { news_event = { id = germany_approach_uk.2 hours = 6 random_hours = 6 } }
 
         diplomatic_relation = { country = FRA relation = guarantee active = no }
-        hidden_effect = { set_country_flag = english_neutrality }
-
-        ai_chance = { 
-            base = 0
-            modifier = { not = { has_idea = idea_naval_arms_race } add = 2 }
-        }
+        ai_chance = { base = 1 }
     }
     option = {
         name = "We shall continue protecting the French."
 
         ai_chance = { 
-            base = 2
-            modifier = { FRA = { has_government = monarchism } factor = 0 }
+            base = 4
+            modifier = {
+                or = { 
+                    not = { has_government = democratic }
+                    FRA = { not = { has_government = democratic } } 
+                } 
+                factor = 0
+            }
         }
     }
 }
