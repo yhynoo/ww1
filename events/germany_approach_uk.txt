@@ -9,7 +9,10 @@ country_event = {
 
     option = {
         name = "We are not a side in this conflict."
-        GER = { news_event = { id = germany_approach_uk.2 hours = 6 random_hours = 6 } }
+        GER = { 
+            news_event = { id = germany_approach_uk.2 hours = 6 random_hours = 6 }
+            remove_ideas = idea_tirpitz_plan
+        }
 
         diplomatic_relation = { country = FRA relation = guarantee active = no }
         ai_chance = { base = 1 }

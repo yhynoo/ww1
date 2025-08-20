@@ -60,6 +60,24 @@ greek_independence = {
     }
 }
 
+moroccan_independence = {
+    FRA = {
+        every_owned_state = {
+            limit = { is_core_of = MOR }
+            set_state_owner_to = MOR
+        }
+
+        462 = {
+            set_state_controller_to = MOR
+        }
+    }
+
+    MOR = { 
+        load_oob = "MOR_1912" 
+        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
+    }
+}
+
 south_african_independence = {
     ENG = {
         every_state = {

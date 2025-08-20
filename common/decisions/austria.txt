@@ -13,7 +13,7 @@ contain_eastern_threats = {
         }
 
         ai_will_do = { 
-            base = 9
+            base = 6
             modifier = { 
                 or = {
                     has_war = yes
@@ -23,6 +23,14 @@ contain_eastern_threats = {
                 }
                 factor = 0.5 
             } 
+            modifier = {
+                GRE = {
+                    exists = yes
+                    is_in_faction = no
+                }
+                add = 1.5
+            }
+            modifier = { has_completed_focus = AUS_adjust_the_government factor = 0.25 }
         }
 
         complete_effect = {

@@ -83,7 +83,10 @@ entente_acceptance = {
             }
             and = {                                                             # usa
                 has_completed_focus = USA_hearts_and_minds
-                has_war_support > 0.55 
+                and = { 
+                    has_war_support > 0.55
+                    FRA = { war_length_with = GER > 24 }
+                }
             }
         }
     }
@@ -158,21 +161,6 @@ greece_and_her_lands = {
     }
 }
 
-italy_and_france = {
-    allowed = { original_tag = ITA }
-    enable = {
-        has_completed_focus = ITA_on_our_own
-        has_war_support > 0.5
-    }
-    abort_when_not_enabled = yes
-
-    ai_strategy = {
-        type = contain
-        id = FRA
-        value = 15
-    }
-}
-
 italy_and_austria = {
     allowed = { original_tag = ITA }
     enable = {
@@ -200,9 +188,9 @@ japan_and_islands = {
     abort_when_not_enabled = yes
 
     ai_strategy = {
-        type = conquer
+        type = contain
         id = GER
-        value = 100
+        value = 60
     }
 }
 

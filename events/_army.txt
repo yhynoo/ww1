@@ -23,7 +23,8 @@ country_event = {
         army_experience = 10
         add_tech_bonus = {
             name = infantry_bonus bonus = 0.5 uses = 1
-            category = air_equipment_tech
+            category = infantry_weapons_tech
+            category = artillery_tech
         }
     }
 }
@@ -104,5 +105,68 @@ country_event = {
     option = {
         name = "Good for them."
         custom_effect_tooltip = "No immediate effect."
+    }
+}
+
+# civil war
+
+add_namespace = _civil_war_tired
+
+news_event = {
+    id = _civil_war_tired.1
+    title = "Distrust in the Leadership Spreads"
+    desc = _civil_war_tired.1.d
+
+    trigger = { 
+        has_civil_war = yes 
+        not = {
+            has_idea = idea_encroaching_weariness
+            has_idea = idea_hopeless_endurance
+        }
+
+        any_other_country = {
+            original_tag = ROOT
+
+            war_length_with = { tag = ROOT months > 6 }
+            surrender_progress < 0.5
+        }
+    }
+
+    option = { 
+        name = "When will it end?"
+        add_war_support = -0.1
+        add_ideas = idea_encroaching_weariness
+    }
+}
+
+news_event = {
+    id = _civil_war_tired.2
+    title = "When Is It Enough?"
+    desc = _civil_war_tired.2.d
+
+    trigger = { 
+        has_civil_war = yes 
+        has_idea = idea_encroaching_weariness
+
+        not = {
+            has_idea = idea_hopeless_endurance
+        }
+
+        any_other_country = {
+            original_tag = ROOT
+
+            war_length_with = { tag = ROOT months > 12 }
+            surrender_progress < 0.5
+        }
+    }
+
+    option = { 
+        name = "Let us all just go home."
+        add_war_support = -0.15
+
+        swap_ideas = {
+            remove_idea = idea_encroaching_weariness
+            add_idea = idea_hopeless_endurance
+        }
     }
 }

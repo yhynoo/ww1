@@ -68,34 +68,42 @@ oriental_investments = {
 }
 
 a_place_in_the_sun = {
-    demand_south_africa = {
+    demand_east_africa = {
         icon = generic_prepare_civil_war
         cost = 150
         fire_only_once = yes
 
         available = {
             not = { has_war_with = ENG }
-            any_state = { 
-                or = { state = 275 state = 542 state = 544 state = 545 state = 681 state = 686 state = 687 }
-                is_owned_and_controlled_by = ENG
+            any_state = {
+                or = { state = 542 state = 545 }
+                is_owned_by = ENG
             }
         }
 
         ai_will_do = { 
             base = 3
-            modifier = { and = { date > 1914.10.1 has_war = no } add = 6 }
+            modifier = { 
+                and = {
+                    date > 1914.7.1 
+                    has_war = no 
+                } 
+                add = 6
+            }
         }
 
         complete_effect = {
-            every_state = { 
+            every_state = {
                 limit = { 
-                    or = { state = 275 state = 542 state = 544 state = 545 state = 681 state = 686 state = 687 } 
-                    is_owned_by = ENG
+                    or  = { state = 542 state = 545 }
+                    not = { is_owned_by = GER }
                 }
                 add_claim_by = GER
             }
 
-            ENG = { country_event = _demand.1 hours = 6 random_hours = 6 }
+            ENG = {
+                country_event = { id = _demand.1 hours = 6 random_hours = 6 }
+            }
         }
     }
     support_baltic_germans = {
@@ -140,7 +148,7 @@ approach_the_uk = {
             not = { has_war_with = FRA }
 
             any_state = {
-                or = { state = 8 state = 28 state = 34 }
+                or = { state = 28 state = 34 }
                 is_owned_and_controlled_by = GER
             }
         }

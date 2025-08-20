@@ -7,7 +7,7 @@ FRA_army_composition = {
 	ai_strategy = {
 		type = prepare_for_war
 		id = GER
-		value = 30
+		value = 60
 	}
 }
 
@@ -18,26 +18,13 @@ FRA_extra_aviation = {
 	ai_strategy = {
 		type = unit_ratio
 		id = fighter
-		value = 100
+		value = 200
 	}
 
 	ai_strategy = {
 		type = equipment_production_factor
 		id = fighter
-		value = 150
-	}
-}
-
-# don't work for the russians, we need those troops at home
-FRA_stay_at_home = {
-	allowed = { tag = FRA }
-	enable = { always = yes }
-	abort_when_not_enabled = yes
-
-    ai_strategy = {
-		type = dont_defend_ally_borders
-		id = SOV
-		value = 100
+		value = 250
 	}
 }
 
@@ -66,19 +53,6 @@ FRA_careful_HOL = {
 	ai_strategy = {
 		type = declare_war
 		id = HOL
-		value = -60
-	}
-}
-
-# don't waste too much stuff on africa
-france_avoid_africa = {
-	allowed = { original_tag = FRA }
-	enable = { always = yes }
-	abort_when_not_enabled = yes
-
-	ai_strategy = {
-		type = front_unit_request
-		state_trigger = { is_on_continent = africa }
-		value = -150
+		value = -20
 	}
 }

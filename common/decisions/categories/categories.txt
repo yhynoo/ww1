@@ -3,6 +3,11 @@ dc_head_of_state_decisions = {
     priority = 5
 }
 
+dc_struggle_decisions = {
+    visible_when_empty = yes
+    priority = 4
+}
+
 dc_public_support_decisions = {
     visible = { has_country_flag = public_support_allowed }
     priority = 3
@@ -29,6 +34,16 @@ civil_war_decisions = {
             any_neighbor_country = { has_civil_war = yes }
             has_idea = idea_aftermath_of_civil_war
         }
+    }
+}
+
+_second_scramble = {
+    visible = { 
+        or = { original_tag = GER original_tag = ITA original_tag = SAF original_tag = TUR }
+        is_subject = no
+
+        not = { has_war_with = GER }
+        GER = { has_country_flag = africa_open }
     }
 }
 

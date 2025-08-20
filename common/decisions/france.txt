@@ -63,13 +63,18 @@ echoes_of_agadir = {
         fire_only_once = yes
         cost = 75
 
-        available = { controls_state = 462 }
+        available = { controls_state = 461 }
         ai_will_do = { base = 9 }
 
         complete_effect = {
-            462 = {
-                add_resource = { type = tungsten amount = 4 }
+            461 = {
+                add_resource = { type = tungsten amount = 8 }
                 add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
+
+            if = {
+                limit = { has_idea = idea_unrest_in_morocco }
+                remove_ideas = idea_unrest_in_morocco
             }
         }
     }
@@ -83,6 +88,8 @@ establish_entente = {
 
         available = {
             not = { has_war_with = TUR }
+            GRE = { exists = no }
+            
             AND = {
                 47 = { is_controlled_by = TUR }
                 186 = { is_controlled_by = TUR }
@@ -113,6 +120,7 @@ establish_entente = {
                 }
                 factor = 2.5
             }
+            modifier = { has_defensive_war = yes factor = 10000 }
         }
 
         complete_effect = {

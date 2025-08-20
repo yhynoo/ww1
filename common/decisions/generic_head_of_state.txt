@@ -213,4 +213,96 @@ dc_head_of_state_decisions = {
             }
         }
     }
+
+    # armistice decisions
+    withdraw_from_war = {
+        visible = { 
+            or = { has_idea = idea_anti_war_demonstrations has_capitulated = yes }
+            has_civil_war = no
+            
+            and = {
+                is_faction_leader = no
+                any_country = { has_war_together_with = ROOT }
+            }
+        }
+
+        icon = generic_form_nation
+        days_re_enable = 90
+        cost = 150
+
+        available = { has_capitulated = no }
+
+        ai_will_do = {
+            base = 6
+            modifier = { 
+                or = { 
+                    has_war_support < 0.2
+                    surrender_progress > 0.5
+                }
+                add = 6
+            }
+        }
+
+        targets_dynamic = yes
+        target_trigger = { 
+            FROM = {
+                has_war_with = ROOT
+                or = { 
+                    is_faction_leader = yes 
+                    not = { any_country = { has_war_together_with = FROM } }
+                }
+            }
+        }
+
+        days_remove = 7
+
+        remove_effect = {
+            FROM = { country_event = _offer.1 hours = 6 random_hours = 6 }
+        }
+    }
+    offer_armistice = {
+        visible = { 
+            or = { has_idea = idea_anti_war_demonstrations has_capitulated = yes }
+            has_civil_war = no
+
+            or = {
+                is_faction_leader = yes
+                not = { any_country = { has_war_together_with = ROOT } }
+            }
+        }
+
+        available = { has_capitulated = no }
+
+        icon = generic_form_nation
+        days_re_enable = 90
+        cost = 150
+
+        ai_will_do = {
+            base = 6
+            modifier = { 
+                or = { 
+                    has_war_support < 0.2
+                    surrender_progress > 0.5
+                }
+                add = 6
+            }
+        }
+
+        targets_dynamic = yes
+        target_trigger = { 
+            FROM = {
+                has_war_with = ROOT
+                or = { 
+                    is_faction_leader = yes 
+                    not = { any_country = { has_war_together_with = FROM } }
+                }
+            }
+        }
+
+        days_remove = 7
+
+        remove_effect = {
+            FROM = { country_event = _offer_faction_leader.1 hours = 6 random_hours = 6 }
+        }
+    }
 }
