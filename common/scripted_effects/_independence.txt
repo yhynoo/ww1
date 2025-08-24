@@ -38,6 +38,20 @@ baltic_independence = {
     }
 }
 
+croatian_independence = {
+    AUS = {
+        every_owned_state = {
+            limit = { or = { state = 103 state = 104 state = 109 } }
+            transfer_state_to = CRO
+        }
+    }
+
+    CRO = { 
+        load_oob = "CRO_1912" 
+        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
+    }
+}
+
 greek_independence = {
     TUR = {
         every_owned_state = {
@@ -56,6 +70,25 @@ greek_independence = {
 
     GRE = { 
         load_oob = "GRE_1912" 
+        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
+    }
+}
+
+hungarian_independence = {
+    AUS = {
+        every_owned_state = {
+            limit = { is_core_of = HUN }
+            set_state_owner_to = HUN
+        }
+
+        every_controlled_state = {
+            limit = { or = { state = 43 state = 45 state = 76 state = 154 state = 155 } }
+            set_state_controller_to = HUN
+        }
+    }
+
+    HUN = { 
+        load_oob = "HUN_1912" 
         add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
     }
 }

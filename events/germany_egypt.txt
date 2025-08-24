@@ -6,15 +6,24 @@ country_event = {
     desc = germany_egypt.1.d
 
     is_triggered_only = yes
+    trigger = { TUR = { controls_state = 447 } }
 
     option = {
         name = "Exhibit the queen in Berlin."
         add_political_power = 25
+
+        hidden_effect = {
+            TUR = {
+                add_ai_strategy = { type = befriend id = FRA value = 20 }
+                add_ai_strategy = { type = befriend id = ENG value = 15 }
+            }
+        }
     }
     option = {
         name = "Leave her in Egypt."
-        TUR = { 
-            add_opinion_modifier = { target = GER modifier = large_increase } 
+        TUR = {
+            add_opinion_modifier = { target = GER modifier = medium_increase } 
+            hidden_effect = { set_country_flag = we_like_germany }
         }
     }
 }

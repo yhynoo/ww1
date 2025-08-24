@@ -28,12 +28,15 @@ intervene_central_america = {
         cost = 100
 
         available = {
-            any_state = { is_core_of = MEX is_controlled_by = COL }
+            any_state = { 
+                is_core_of = MEX 
+                is_controlled_by = COL 
+            }
         }
 
         ai_will_do = {
             base = 0
-            modifier = { not = { has_completed_focus = USA_not_our_war } add = 6 }
+            modifier = { not = { has_completed_focus = USA_adjust_the_government } add = 6 }
         }
 
         complete_effect = {
@@ -43,10 +46,30 @@ intervene_central_america = {
     }
 }
 
-anticolonialism = {
+adapt_wilsonianism = {
+    demand_azores = {
+        icon = generic_naval
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            can_declare_war_on = SPA
+            469 = { is_owned_by = SPA }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { has_war_with = GER add = 9 }
+        }
+
+        complete_effect = {
+            469 = { add_claim_by = USA }
+            SPA = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
+        }
+    }
     liberate_australia = {
-        icon = generic_civil_support
-        cost = 50
+        icon = generic_political_discourse
+        cost = 75
         days_remove = 90
 
         available = {
@@ -62,65 +85,59 @@ anticolonialism = {
             AST = { news_event = { id = usa_australia.1 hours = 6 random_hours = 6 } }
         }
     }
-    liberate_india = {
-        icon = generic_civil_support
+    aid_to_eastern_europe = {
+        icon = generic_industry
         cost = 50
         days_remove = 90
 
-        available = {
-            RAJ = { is_subject = yes }
+        targets = { POL UKR }
+        target_non_existing = yes
+
+        ai_will_do = {
+            base = 0
+            modifier = { FROM = { has_government = ROOT } add = 6 }
         }
 
-        ai_will_do = { 
-            base = 6
-            modifier = { not = { is_ally_with = ENG } add = 3 }
+        available = { 
+            FROM = { exists = yes } 
+            has_equipment = { infantry_equipment > 599 }
         }
 
         complete_effect = {
-            RAJ = { news_event = { id = usa_india.1 hours = 6 random_hours = 6 } }
-        }
-    }
-    pacific_airfields = {
-        icon = generic_construction
-        fire_only_once = yes
-        cost = 50
-
-        ai_will_do = { base = 9 }
-
-        available = { controls_state = 327 controls_state = 632 }
-        complete_effect = {
-            327 = {
-                add_building_construction = { type = air_base level = 2 instant_build = yes }
-            }
-            632 = {
-                add_building_construction = { type = air_base level = 2 instant_build = yes }
-            }
+            add_war_support = 0.025
+            send_equipment = { equipment = infantry_equipment amount = 600 target = FROM }
         }
     }
 }
 
 american_industries = {
-    end_jim_crow = {
-        cost = 100
-        fire_only_once = yes
-
-        ai_will_do = { base = 6 }
-
-        complete_effect = {
-            remove_ideas = idea_racial_tensions
-            add_popularity = { ideology = democratic popularity = 0.05 }
-
-            news_event = { id = usa_jim.1 hours = 6 random_hours = 6 }
-        }
-    }
-    introduce_tariffs = {
+    anti_trust_laws = {
         fire_only_once = yes
         cost = 75
+
+        available = {
+            has_government = democratic
+        }
 
         ai_will_do = { base = 9 }
 
         complete_effect = {
-            add_ideas = idea_tariffs
+            add_ideas = idea_anti_trust_laws
+            add_popularity = { ideology = communism popularity = 0.05 }
+        }
+    }
+    support_the_unions = {
+        cost = 50
+        days_remove = 90
+
+        ai_will_do = { base = 6 }
+
+        modifier = {
+            communism_drift = 0.05
+            if = {
+                limit = { not = { has_government = communism } }
+                stability_weekly = -0.005
+            }
         }
     }
 }

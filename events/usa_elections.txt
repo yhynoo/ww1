@@ -1,0 +1,118 @@
+add_namespace = usa_elections
+
+country_event = {
+    id = usa_elections.1
+    title = "The Election of 1912"
+    desc = usa_elections.1.d
+
+    is_triggered_only = yes
+    trigger = {
+        tag = USA
+        has_government = democratic
+
+        date > 1912.1.1         date < 1913.1.1
+    }
+
+    option = {
+        name = "Woodrow Wilson."
+
+        add_popularity = { ideology = democratic popularity = 0.025 }
+        promote_character = USA_woodrow_wilson
+
+        ai_chance = { base = 4 }
+        hidden_effect = { set_country_flag = usa_wilsonian }
+    }
+    option = {
+        name = "Theodore Roosevelt."
+        add_stability = 0.05
+
+        ai_chance = { base = 1 }
+        hidden_effect = { set_country_flag = usa_alternative }
+    }
+}
+
+country_event = {
+    id = usa_elections.2
+    title = "The Election of 1916"
+    desc = usa_elections.2.d
+
+    is_triggered_only = yes
+    trigger = {
+        tag = USA
+        has_government = democratic
+
+        date > 1916.1.1         date < 1917.1.1
+    }
+
+    option = {
+        name = "Woodrow Wilson."
+
+        if = {
+            limit = { has_country_leader = { character = USA_woodrow_wilson ruling_only = yes } }
+            add_stability = 0.05
+        }
+        else = {
+            add_popularity = { ideology = democratic popularity = 0.025 }
+            promote_character = USA_woodrow_wilson
+        }
+
+        ai_chance = { 
+            base = 0 
+            modifier = { has_country_flag = usa_wilsonian add = 1 }
+        }
+    }
+    option = {
+        name = "Henry Ford"
+        
+        add_popularity = { ideology = monarchism popularity = 0.025 }
+        promote_character = USA_henry_ford
+
+        ai_chance = { 
+            base = 0 
+            modifier = { has_country_flag = usa_alternative add = 1 }
+        }
+    }
+}
+
+country_event = {
+    id = usa_elections.3
+    title = "The Election of 1920"
+    desc = usa_elections.3.d
+
+    is_triggered_only = yes
+    trigger = {
+        tag = USA
+        has_government = democratic
+
+        date > 1920.1.1         date < 1921.1.1
+    }
+
+    option = {
+        name = "Warren Harding."
+
+        add_popularity = { ideology = democratic popularity = 0.025 }
+        promote_character = USA_warren_harding
+
+        ai_chance = { 
+            base = 0 
+            modifier = { has_country_flag = usa_wilsonian add = 1 }
+        }
+    }
+    option = {
+        name = "Henry Ford"
+
+        if = {
+            limit = { has_country_leader = { character = USA_henry_ford ruling_only = yes } }
+            add_stability = 0.05
+        }
+        else = {
+            add_popularity = { ideology = monarchism popularity = 0.025 }
+            promote_character = USA_henry_ford
+        }
+        
+        ai_chance = { 
+            base = 0 
+            modifier = { has_country_flag = usa_alternative add = 1 }
+        }
+    }
+}

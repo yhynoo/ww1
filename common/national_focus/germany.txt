@@ -777,7 +777,7 @@ focus_tree = {
     }
     focus = {
         id = GER_on_our_own
-        icon = GFX_focus_generic_across_the_sea
+        icon = GFX_focus_GER_on_our_own
 
         relative_position_id = GER_expansionism
         x = 1
@@ -787,6 +787,7 @@ focus_tree = {
         prerequisite = { focus = GER_expansionism }
         available = { 
             is_subject = no
+            has_war = no
         }
 
         ai_will_do = { 
@@ -820,7 +821,7 @@ focus_tree = {
         prerequisite = { focus = GER_political_ambitions }
         completion_reward = {
             add_stability = 0.05
-            news_event = { id = germany_airships.1 hours = 12 random_hours = 6 }
+            hidden_effect = { news_event = { id = germany_airships.1 days = 15 random_days = 15 } }
         }
     }
     focus = {
@@ -906,11 +907,14 @@ focus_tree = {
 
         mutually_exclusive = { focus = GER_traditionalism }
         prerequisite = { focus = GER_political_ambitions }
+
+        available = {
+            has_war = no
+        }
+
         completion_reward = {
             add_timed_idea = { idea = idea_democratic_tendencies years = 1 }
             add_popularity = { ideology = democratic popularity = 0.05 }
-
-            hidden_effect = { country_event = { id = germany_wheat.1 days = 42 random_days = 70 } }
         }
     }
     focus = {
@@ -928,8 +932,8 @@ focus_tree = {
         }
     }
     focus = {
-        id = GER_afrika_amt
-        icon = GFX_focus_GER_afrika_amt
+        id = GER_open_the_economy
+        icon = GFX_focus_GER_open_the_economy
 
         relative_position_id = GER_adjust_the_government
         x = -1
@@ -941,7 +945,7 @@ focus_tree = {
             custom_effect_tooltip = decision_effect_tooltip
 
             random_owned_controlled_state = {
-                limit = { is_on_continent = africa }
+                limit = { is_core_of = GER }
 
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
@@ -976,7 +980,7 @@ focus_tree = {
     }
     focus = {
         id = GER_embrace_modernity
-        icon = GFX_focus_generic_red_education
+        icon = GFX_focus_AUS_embrace_modernity
 
         relative_position_id = GER_state_reform
         x = -1
@@ -985,7 +989,8 @@ focus_tree = {
 
         prerequisite = { focus = GER_state_reform }
         completion_reward = {
-            add_research_slot = 1
+            add_political_power = 50
+            country_event = { id = germany_afrika.1 hours = 3 }
         }
     }
 }

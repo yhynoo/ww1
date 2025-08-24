@@ -34,6 +34,41 @@ spriteTypes = {
         legacy_lazy_load = no
     }
 
+    SpriteType = {
+		name = "GFX_focus_GER_on_our_own"
+		texturefile = "gfx/interface/goals/focus_ger_end_weltpolitik.dds"
+	}
+	spriteType = {
+        name = GFX_focus_GER_on_our_own_shine
+        texturefile = gfx/interface/goals/focus_ger_end_weltpolitik.dds
+        effectFile = gfx/FX/buttonstate.lua
+        animation = {
+            animationmaskfile = gfx/interface/goals/focus_ger_end_weltpolitik.dds
+            animationtexturefile = gfx/interface/goals/shine_overlay.dds
+            animationrotation = -90.0
+            animationlooping = no
+            animationtime = 0.75
+            animationdelay = 0
+            animationblendmode = "add"
+            animationtype = "scrolling"
+            animationrotationoffset = { x = 0.0 y = 0.0 }
+            animationtexturescale = { x = 1.0 y = 1.0 }
+        }
+        animation = {
+            animationmaskfile = gfx/interface/goals/focus_ger_end_weltpolitik.dds
+            animationtexturefile = gfx/interface/goals/shine_overlay.dds
+            animationrotation = 90.0
+            animationlooping = no
+            animationtime = 0.75
+            animationdelay = 0
+            animationblendmode = "add"
+            animationtype = "scrolling"
+            animationrotationoffset = { x = 0.0 y = 0.0 }
+            animationtexturescale = { x = 1.0 y = 1.0 }
+        }
+        legacy_lazy_load = no
+    }
+
 	SpriteType = {
 		name = "GFX_focus_GER_mobilize_the_masses"
 		texturefile = "gfx/interface/goals/focus_ger_return_of_the_kaiser.dds"
@@ -70,15 +105,15 @@ spriteTypes = {
     }
 
 	SpriteType = {
-		name = "GFX_focus_GER_afrika_amt"
-		texturefile = "gfx/interface/goals/goal_generic_intelligence_exchange.dds"
+		name = "GFX_focus_GER_open_the_economy"
+		texturefile = "gfx/interface/goals/focus_ger_economy.dds"
 	}
 	spriteType = {
-        name = GFX_focus_GER_afrika_amt_shine
-        texturefile = gfx/interface/goals/goal_generic_intelligence_exchange.dds
+        name = GFX_focus_GER_open_the_economy_shine
+        texturefile = gfx/interface/goals/focus_ger_economy.dds
         effectFile = gfx/FX/buttonstate.lua
         animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_intelligence_exchange.dds
+            animationmaskfile = gfx/interface/goals/focus_ger_economy.dds
             animationtexturefile = gfx/interface/goals/shine_overlay.dds
             animationrotation = -90.0
             animationlooping = no
@@ -90,7 +125,7 @@ spriteTypes = {
             animationtexturescale = { x = 1.0 y = 1.0 }
         }
         animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_intelligence_exchange.dds
+            animationmaskfile = gfx/interface/goals/focus_ger_economy.dds
             animationtexturefile = gfx/interface/goals/shine_overlay.dds
             animationrotation = 90.0
             animationlooping = no

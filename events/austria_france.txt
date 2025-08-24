@@ -1,0 +1,36 @@
+add_namespace = austria_france
+
+country_event = {
+    id = austria_france.1
+    title = "Vienna Offers a Defense Aggreement"
+    desc = austria_france.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Sounds good."
+        diplomatic_relation = { country = AUS relation = non_aggression_pact active = yes }
+
+        #
+        hidden_effect = { news_event = { id = austria_france.2 days = 30 random_days = 30 } }
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "We are not interested."
+        add_war_support = 0.025
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = austria_france.2
+    title = "France Agrees to Defence Agreement"
+    desc = austria_france.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Wonderful."
+    }
+}

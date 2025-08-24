@@ -3,8 +3,14 @@ ideas = {
     country = {
         idea_isolationist_society = {
             modifier = {
-                production_speed_arms_factory_factor = -0.25
-                production_speed_dockyard_factor = -0.25
+                production_speed_arms_factory_factor = -0.4
+                consumer_goods_factor = 0.25
+            }
+        }
+
+        idea_lusitania = {
+            modifier = {
+                war_support_factor = 0.15
             }
         }
 
@@ -16,24 +22,24 @@ ideas = {
         }
 
         # focus tree
-        idea_uncle_sam = {
+        idea_four_minute_men = {
             modifier = {
-                send_volunteers_tension = -0.1
-                send_volunteer_factor = 0.25
+                war_support_weekly = 0.005
+                consumer_goods_factor = 0.05
             }
         }
 
         idea_arsenal_of_liberty = {
             modifier = {
                 political_power_factor = 0.1
-                conversion_cost_civ_to_mil_factor = -0.25
+                send_volunteer_factor = 0.25
             }
         }
 
-        idea_tariffs = {
+        idea_anti_trust_laws = {
             modifier = {
-                trade_opinion_factor = -0.25
-                consumer_goods_factor = -0.25
+                production_factory_max_efficiency_factor = 0.05
+                production_factory_efficiency_gain_factor = 0.15
             }
         }
     }

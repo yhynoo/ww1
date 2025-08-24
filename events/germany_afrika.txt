@@ -1,0 +1,42 @@
+add_namespace = germany_afrika 
+
+country_event = {
+    id = germany_afrika.1
+    title = "Aftermath of the Hottentot Tragedy"
+    desc = germany_afrika.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Defend von Trotha."
+        add_popularity = { ideology = monarchism value = 0.05 }
+    }
+    option = {
+        name = "Admit guilt and introduce local administrators."
+
+        add_stability = -0.05
+        491 = { add_core_of = GER }
+
+        hidden_effect = {
+            if = {
+                limit = { monarchism > 0.25 }
+                news_event = { id = germany_afrika.2 days = 15 random_days = 15 }
+            }
+        }
+    }
+}
+
+news_event = {
+    id = germany_afrika.2
+    title = "Ehrhardt’s Demonstration"
+    desc = germany_afrika.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Worrying."
+
+        add_popularity = { ideology = monarchism value = 0.05 }
+        add_political_power = -100
+    }
+}

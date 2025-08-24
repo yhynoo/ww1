@@ -1,0 +1,46 @@
+add_namespace = usa_lusitania
+
+country_event = {
+    id = usa_lusitania.1
+    title = "Navy to Expand Submarine Warfare?"
+    desc = usa_lusitania.1.d
+
+    trigger = {
+        tag = GER
+        war_length_with = { tag = ENG months > 12 }
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "Gott Strafe England!"
+        add_timed_idea = idea_atlantic_submarine_warfare
+
+        hidden_effect = { 
+            random = { 
+                chance = 80 
+                USA = { news_event = { id = usa_lusitania.2 days = 30 random_days = 180 } }
+            }
+        }
+        ai_chance = { base = 4 }
+    }
+    option = {
+        name = "This is too risky."
+        add_political_power = -25
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = usa_lusitania.2
+    title = "Lusitania Lost in a Submarine Attack!"
+    desc = usa_lusitania.2.d
+
+    is_triggered_only = yes
+    trigger = { not = { has_war_with = GER } }
+
+    option = {
+        name = "They will pay."
+        add_timed_idea = { idea = idea_lusitania }
+    }
+}

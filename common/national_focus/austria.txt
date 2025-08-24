@@ -758,10 +758,13 @@ focus_tree = {
         cost = 10
 
         prerequisite = { focus = AUS_expansionism }
-        available = { is_subject = no }
+        available = { 
+            is_ally_with = GER
+            is_subject = no
+        }
 
         ai_will_do = { 
-            base = 2
+            base = 2 
             modifier = { is_in_faction = yes factor = 0 }
         }
 
@@ -782,7 +785,7 @@ focus_tree = {
 
         available = { 
             is_subject = no
-            has_government = monarchism
+            not = { has_war_together_with = GER }
         }
 
         ai_will_do = { 
@@ -797,7 +800,19 @@ focus_tree = {
         }
 
         completion_reward = {
+            if = {
+                limit = { is_ally_with = GER }
+                leave_faction = yes
+            }
+
             custom_effect_tooltip = decision_effect_tooltip
+
+            hidden_effect = {
+                add_ai_strategy = { type = alliance id = GER value = -75 }
+                add_ai_strategy = { type = contain id = GER value = 25 }
+
+                news_event = { id = austria_anschluss.1 days = 60 random_days = 120 }
+            }
         }
     }
 
@@ -815,7 +830,8 @@ focus_tree = {
         mutually_exclusive = { focus = AUS_adjust_the_government }
         prerequisite = { focus = AUS_political_ambitions }
         completion_reward = {
-            add_stability = 0.05
+            news_event = { id = austria_sturgkh.1 hours = 3 }
+            add_stability = -0.05
         }
     }
     focus = {
@@ -903,9 +919,6 @@ focus_tree = {
         prerequisite = { focus = AUS_political_ambitions }
         completion_reward = {
             add_timed_idea = { idea = idea_democratic_tendencies years = 1 }
-            add_popularity = { ideology = democratic popularity = 0.05 }
-
-            hidden_effect = { country_event = { id = austria_ausgleich.1 months = 1 random_days = 30 } }
         }
     }
     focus = {
@@ -923,7 +936,7 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_equal_development
+        id = AUS_open_the_economy
         icon = GFX_focus_generic_open_the_economy
 
         relative_position_id = AUS_adjust_the_government
@@ -963,7 +976,7 @@ focus_tree = {
     }
     focus = {
         id = AUS_embrace_modernity
-        icon = GFX_focus_SOV_mobilize_the_masses
+        icon = GFX_focus_AUS_embrace_modernity
 
         relative_position_id = AUS_state_reform
         x = -1
@@ -973,8 +986,8 @@ focus_tree = {
         prerequisite = { focus = AUS_state_reform }
 
         available = {
+            has_idea = idea_dissatisfied_hungarians
             any_owned_controlled_state = { is_core_of = HUN }
-            or = { has_idea = idea_dissatisfied_hungarians has_idea = idea_sabotage_in_hungary }
         }
 
         ai_will_do = {
@@ -983,23 +996,14 @@ focus_tree = {
         }
 
         completion_reward = {
-            if = {
-                limit = { has_government = democratic }
-                release_on_controlled = HUN
-            }
-            else = { release_puppet_on_controlled = HUN }
+            remove_ideas = idea_dissatisfied_hungarians
 
-            if = {
-                limit = { has_idea = idea_dissatisfied_hungarians }
-                remove_ideas = idea_dissatisfied_hungarians
-            }
+            hidden_effect = { 
+                set_cosmetic_tag = AUS_alone 
 
-            if = {
-                limit = { has_idea = idea_sabotage_in_hungary }
-                remove_ideas = idea_sabotage_in_hungary
+                news_event = { id = austria_ausgleich.1 hours = 3 }
+                country_event = { id = austria_hungary.1 days = 15 random_days = 30 }
             }
-
-            hidden_effect = { set_cosmetic_tag = AUS_alone }
         }
     }
 }

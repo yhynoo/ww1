@@ -742,7 +742,7 @@ focus_tree = {
         }
     }
     focus = {
-        id = USA_central_america
+        id = USA_deterrence
         icon = GFX_focus_generic_deterrence
 
         relative_position_id = USA_international_affairs
@@ -772,8 +772,8 @@ focus_tree = {
         available = { is_subject = no }
 
         ai_will_do = { 
-            base = 2
-            modifier = { has_completed_focus = USA_not_our_war factor = 0 }
+            base = 0
+            modifier = { has_country_flag = usa_wilsonian add = 1 }
         }
 
         completion_reward = {
@@ -782,7 +782,7 @@ focus_tree = {
     }
     focus = {
         id = USA_on_our_own
-        icon = GFX_focus_generic_change_alliances
+        icon = GFX_focus_USA_on_our_own
 
         relative_position_id = USA_expansionism
         x = 1
@@ -790,11 +790,14 @@ focus_tree = {
         cost = 10
 
         prerequisite = { focus = USA_expansionism }
-        available = { is_subject = no }
+        available = { 
+            is_subject = no
+            has_country_leader = { character = USA_woodrow_wilson ruling_only = yes }
+        }
 
         ai_will_do = { 
             base = 0
-            modifier = { has_completed_focus = USA_not_our_war add = 1 }
+            modifier = { has_country_flag = usa_wilsonian add = 2 }
         }
 
         completion_reward = {
@@ -804,8 +807,8 @@ focus_tree = {
     }
 
     focus = {
-        id = USA_hearts_and_minds
-        icon = GFX_focus_generic_adjust_the_government
+        id = USA_traditionalism
+        icon = GFX_focus_USA_traditionalism
 
         relative_position_id = USA_political_ambitions
         x = 0
@@ -814,10 +817,14 @@ focus_tree = {
 
         ai_will_do = { 
             base = 0
-            modifier = { threat > 0.2 add = 2 }
+            modifier = { has_country_flag = usa_wilsonian add = 2 }
         }
 
-        mutually_exclusive = { focus = USA_not_our_war }
+        mutually_exclusive = { focus = USA_adjust_the_government }
+        available = {
+            threat > 0.5
+        }
+
         prerequisite = { focus = USA_political_ambitions }
         completion_reward = {
             remove_ideas = idea_isolationist_society 
@@ -827,7 +834,7 @@ focus_tree = {
         id = USA_public_support
         icon = GFX_focus_generic_public_support
 
-        relative_position_id = USA_hearts_and_minds
+        relative_position_id = USA_traditionalism
         x = -1
         y = 1
         cost = 10
@@ -837,17 +844,14 @@ focus_tree = {
             modifier = { has_war = no factor = 0 }
         }
 
-        prerequisite = { focus = USA_hearts_and_minds }
-        completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
-            hidden_effect = { set_country_flag = public_support_allowed }
-        }
+        prerequisite = { focus = USA_traditionalism }
+        add_popularity = { ideology = democratic popularity = 0.05 }
     }
     focus = {
         id = USA_mobilize_the_masses
         icon = GFX_focus_USA_mobilize_the_masses
 
-        relative_position_id = USA_hearts_and_minds
+        relative_position_id = USA_traditionalism
         x = 1
         y = 1
         cost = 10
@@ -857,9 +861,9 @@ focus_tree = {
             modifier = { has_war = no factor = 0 }
         }
 
-        prerequisite = { focus = USA_hearts_and_minds }
+        prerequisite = { focus = USA_traditionalism }
         completion_reward = {
-            add_timed_idea = { idea = idea_uncle_sam years = 2 }
+            add_timed_idea = { idea = idea_four_minute_men years = 2 }
         }
     }
     focus = {
@@ -896,8 +900,8 @@ focus_tree = {
     }
 
     focus = {
-        id = USA_not_our_war
-        icon = GFX_focus_USA_not_our_war
+        id = USA_adjust_the_government
+        icon = GFX_focus_generic_red_reform
 
         relative_position_id = USA_political_ambitions
         x = 4
@@ -906,16 +910,14 @@ focus_tree = {
 
         ai_will_do = { 
             base = 0
-
-            modifier = { threat > 0.2 add = 1 }
-            modifier = { has_completed_focus = USA_seek_alliances factor = 0 }
+            modifier = { has_country_flag = usa_alternative add = 2 }
         }
 
-        mutually_exclusive = { focus = USA_hearts_and_minds }
+        mutually_exclusive = { focus = USA_traditionalism }
         prerequisite = { focus = USA_political_ambitions }
         completion_reward = {
-            add_timed_idea = { idea = idea_authoritarianism_tendencies years = 1 }
-            add_popularity = { ideology = authoritarianism popularity = 0.05 }
+            add_timed_idea = { idea = idea_communism_tendencies years = 1 }
+            add_popularity = { ideology = communism popularity = 0.05 }
 
             hidden_effect = { country_event = { id = usa_savannah.1 days = 42 random_days = 70 } }
         }
@@ -924,38 +926,40 @@ focus_tree = {
         id = USA_state_reform
         icon = GFX_focus_generic_state_reform
 
-        relative_position_id = USA_not_our_war
+        relative_position_id = USA_adjust_the_government
         x = 2
         y = 1
         cost = 10
 
-        prerequisite = { focus = USA_not_our_war }
+        prerequisite = { focus = USA_adjust_the_government }
         completion_reward = {
             add_timed_idea = { idea = idea_state_reform years = 1 }
         }
     }
     focus = {
-        id = USA_american_industries
-        icon = GFX_focus_USA_american_industries
+        id = usa_open_the_economy
+        icon = GFX_focus_generic_open_the_economy
 
-        relative_position_id = USA_not_our_war
+        relative_position_id = USA_adjust_the_government
         x = -1
         y = 1
         cost = 10
 
-        prerequisite = { focus = USA_not_our_war }
+        prerequisite = { focus = USA_adjust_the_government }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
             
             random_owned_controlled_state = {
+                limit = { is_core_of = USA }
+
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
 			}
         }
     }
     focus = {
-        id = USA_gods_order
-        icon = GFX_focus_USA_gods_order
+        id = USA_over_the_edge
+        icon = GFX_focus_USA_over_the_edge
 
         relative_position_id = USA_state_reform
         x = 2
@@ -963,6 +967,10 @@ focus_tree = {
         cost = 10
 
         prerequisite = { focus = USA_state_reform }
+
+        available = {
+            has_idea = idea_racial_tensions
+        }
 
         ai_will_do = {
             base = 0
@@ -975,7 +983,7 @@ focus_tree = {
     }
     focus = {
         id = USA_embrace_modernity
-        icon = GFX_focus_generic_embrace_modernity
+        icon = GFX_focus_USA_embrace_modernity
 
         relative_position_id = USA_state_reform
         x = -1
@@ -984,7 +992,12 @@ focus_tree = {
 
         prerequisite = { focus = USA_state_reform }
         completion_reward = {
-            add_research_slot = 1
+            remove_ideas = idea_racial_tensions
+            news_event = { id = usa_tensions.1 hours = 3 }
+
+            hidden_effect = {
+                news_event = { id = usa_tensions.2 days = 30 random_days = 30 }
+            }
         }
     }
 }

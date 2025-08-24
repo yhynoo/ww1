@@ -42,7 +42,10 @@ turanist_ambition = {
             FRA = { has_opinion = { target = TUR value > 49 } }
         }
 
-        ai_will_do = { base = 12 }
+        ai_will_do = {
+            base = 12 
+            modifier = { has_idea = we_like_germany factor = 0 }
+        }
 
         complete_effect = {
             add_ideas = idea_sky_steppe

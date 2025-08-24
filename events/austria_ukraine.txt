@@ -2,7 +2,7 @@ add_namespace = austria_ukraine
 
 news_event = {
     id = austria_ukraine.1
-    title = "[UKR.GetName] Established!"        # after taking kyiv, austria proclaims an ukrainian puppet state.
+    title = "Vienna Voices Support for Ukrainians"       
     desc = austria_ukraine.1.d
 
     is_triggered_only = yes
@@ -10,5 +10,49 @@ news_event = {
 
     option = {
         name = "Interesting."
+    }
+}
+
+country_event = {
+    id = austria_ukraine.2
+    title = "Arson in Yekaterinoslav"
+    desc = austria_ukraine.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Send the troops."
+        add_political_power = -75
+
+        #
+        hidden_effect = { news_event = { id = austria_ukraine.3 days = 30 random_days = 30 } }
+    }
+    option = {
+        name = "Appease the peasants’ delegates."
+        add_popularity = { ideology = communism popularity = 0.05 }
+    }
+}
+
+news_event = {
+    id = austria_ukraine.3
+    title = "Anarchy in the Steppe!"
+    desc = austria_ukraine.3.d
+
+    is_triggered_only = yes
+    trigger = { has_stability < 0.8 }
+
+    option = {
+        name = "To arms!"
+        remove_ideas = idea_unrest_in_ukraine
+
+        hidden_effect = { 
+            SOV = { add_named_threat = { threat = 3 name = "Anarchy in the Steppe" } }   
+            ukrainian_independence = yes
+        }
+
+        every_country_with_original_tag = {
+            original_tag_to_check = SOV
+            declare_war_on = { target = UKR type = annex_everything }
+        }
     }
 }

@@ -42,91 +42,91 @@ contain_eastern_threats = {
             TUR = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
         }
     }
-    expand_defenses_in_carpathians = {
-        icon = border_war
+    support_ukrainian_independence = {
+        icon = generic_form_nation
         fire_only_once = yes
         cost = 75
 
-        available = {
-            controls_state = 76
-        }
-
-        ai_will_do = { base = 12 }
-
-        complete_effect = {
-            71 = { add_building_construction = { type = bunker province = 3581 level = 2 instant_build = yes } }
-            75 = { add_building_construction = { type = bunker province = 6590 level = 2 instant_build = yes } }
-        }
-    }
-    establish_ukraine = {
-        icon = generic_form_nation
-        fire_only_once = yes
-        cost = 50
-
         available = { 
             UKR = { exists = no }
-            controls_state = 202
         }
 
-        ai_will_do = { base = 9 }
+        ai_will_do = {
+            base = 6
+            modifier = { has_war_with = SOV add = 6 }
+        }
 
         complete_effect = {
-            release_puppet_on_controlled = UKR
-            news_event = { id = austria_ukraine.1 hours = 6 random_hours = 6 }
+            SOV = { add_timed_idea = { idea = idea_unrest_in_ukraine months = 6 } }
+            news_event = { id = austria_ukraine.1 hours = 3 }
 
-            # allies help
             hidden_effect = {
-                every_allied_country = {
-                    every_controlled_state = { limit = { is_core_of = UKR } transfer_state_to = UKR }
-                }
+                SOV = { country_event = { id = austria_ukraine.2 days = 30 random_days = 60 } }
             }
+        }
+    }
+    arm_ukrainians = {
+        icon = generic_industry
+        days_remove = 90
+        cost = 50
+
+        available = {
+            UKR = { exists = yes }
+            has_equipment = { infantry_equipment > 599 }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { UKR = { has_war_with = SOV } add = 9 }
+        }
+
+        complete_effect = {
+            add_war_support = 0.025
+            send_equipment = { equipment = infantry_equipment amount = 600 target = UKR }
         }
     }
 }
 
-second_vienna_treaty = {
-    wallachian_oil = {
-        icon = oil
-        cost = 100
+denounce_adventurism = {
+    guarantees_to_france = {
+        icon = generic_civil_support
         fire_only_once = yes
+        cost = 100
 
         available = {
-            not = { has_war_with = TUR }
-            46 = { is_owned_and_controlled_by = TUR }
+            not = { has_war_with = FRA }
+            not = { is_ally_with = FRA }
         }
 
-        ai_will_do = { 
-            base = 9
-            modifier = { has_war = yes add = 6 }
+        ai_will_do = {
+            base = 0
+            modifier = { FRA = { has_government = ROOT } }
         }
 
         complete_effect = {
-            TUR = { country_event = { id = austria_oil.1 hours = 6 random_hours = 6 } }
+            FRA = { country_event = { id = austria_france.1 hours = 6 random_hours = 6 } }
         }
     }
-    two_sicilies = {
-        icon = generic_form_nation
+    expand_landesschutze = {
+        icon = generic_prepare_civil_war
         fire_only_once = yes
-        cost = 100
+        cost = 75
 
-        available = {
-            TTS = { exists = no }
-
-            can_declare_war_on = ITA
-            any_state = { is_core_of = TTS is_controlled_by = ITA }
+        ai_will_do = {
+            base = 9
         }
 
-        ai_will_do = { 
-            base = 6
-            modifier = { is_ally_with = FRA factor = 1.5 }
-        }
+        complete_effect = {
+            add_timed_idea = { idea = idea_landesschutze months = 6 }
 
-        days_remove = 180
-        remove_effect = {
-            puppet = TTS
-            hidden_effect = { 
-                start_sicilian_independence_war = yes
-                news_event = { id = austria_sicily.1 hours = 6 random_hours = 6 }
+            add_tech_bonus = {
+				name = special_forces_bonus bonus = 1.0 uses = 1
+				technology = mountaineers_2
+                technology = mountaineers_3
+			}
+
+            hidden_effect = {
+                add_ai_strategy = { type = role_ratio id = mountaineers value = 30 }
             }
         }
     }
@@ -135,24 +135,25 @@ second_vienna_treaty = {
 equal_development = {
     galician_oil = {
         icon = oil
-        cost = 75
-        fire_only_once = yes
 
-        available = { controls_state = 89 }
+        fire_only_once = yes
+        cost = 75
+
         ai_will_do = { base = 9 }
 
+        available = { controls_state = 89 }
         complete_effect = {
-            89 = { add_resource = { type = oil amount = 12 } }
+            89 = { add_resource = { type = oil amount = 24 } }
         }
+        
     }
     tatra_trucks = {
-        icon = generic_industry
-        cost = 75
         fire_only_once = yes
-        
-        available = { controls_state = 75 }
+        cost = 75
+
         ai_will_do = { base = 12 }
 
+        available = { controls_state = 75 }
         complete_effect = {
             75 = {
                 add_building_construction = { type = industrial_complex level = 2 instant_build = yes }

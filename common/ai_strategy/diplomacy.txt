@@ -71,10 +71,8 @@ entente_acceptance = {
             has_idea = idea_containment                                         # england
             original_tag = GRE                                                  # greece
             and = {                                                             # italy
-                and = { 
-                    not = { has_country_flag = neutral_italy }
-                    not = { has_completed_focus = ITA_on_our_own }
-                }
+                not = { has_country_flag = neutral_italy }
+                not = { has_completed_focus = ITA_on_our_own }
                 FRA = { war_length_with = { tag = AUS months > 6 } }
             }
             and = {                                                             # russia
@@ -82,10 +80,10 @@ entente_acceptance = {
                 or = { has_government = democratic has_government = monarchism }
             }
             and = {                                                             # usa
-                has_completed_focus = USA_hearts_and_minds
+                has_completed_focus = USA_traditionalism
                 and = { 
                     has_war_support > 0.55
-                    FRA = { war_length_with = GER > 24 }
+                    FRA = { war_length_with = GER months > 24 }
                 }
             }
         }
@@ -95,7 +93,7 @@ entente_acceptance = {
     ai_strategy = {
         type = alliance
         id = FRA
-        value = 20
+        value = 25
     }
 }
 
@@ -106,10 +104,8 @@ entente_invite = {
             has_idea = idea_containment                                         # england
             original_tag = GRE                                                  # greece
             and = {                                                             # italy
-                and = { 
-                    not = { has_country_flag = neutral_italy }
-                    not = { has_completed_focus = ITA_on_our_own }
-                }
+                not = { has_country_flag = neutral_italy }
+                not = { has_completed_focus = ITA_on_our_own }
                 FRA = { war_length_with = { tag = AUS months > 6 } }
             }
             and = {                                                             # russia
@@ -117,10 +113,10 @@ entente_invite = {
                 or = { has_government = democratic has_government = monarchism }
             }
             and = {                                                             # usa
-                has_completed_focus = USA_hearts_and_minds
+                has_completed_focus = USA_traditionalism
                 and = { 
                     has_war_support > 0.55
-                    FRA = { war_length_with = GER > 24 }
+                    FRA = { war_length_with = GER months > 24 }
                 }
             }
         }
@@ -133,7 +129,7 @@ entente_invite = {
     ai_strategy = {
         type = alliance
         id = FRA
-        value = 25
+        value = 30
     }
 }
 

@@ -1,0 +1,18 @@
+add_namespace = usa_volunteers
+
+country_event = {
+    id = usa_volunteers.1
+    title = "American Volunteers in Mexico"
+    desc = usa_volunteers.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They are free to act as they wish."
+        add_popularity = { ideology = communism popularity = 0.025 }
+    }
+    option = {
+        name = "We must stop them."
+        add_war_support = -0.05
+    }
+}

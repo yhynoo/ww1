@@ -139,29 +139,25 @@ a_place_in_the_sun = {
 }
 
 approach_the_uk = {
-    appease_the_french = {
+    align_china = {
         icon = generic_form_nation
         cost = 150
         fire_only_once = yes
 
         available = {
-            not = { has_war_with = FRA }
-
-            any_state = {
-                or = { state = 28 state = 34 }
-                is_owned_and_controlled_by = GER
-            }
+            MAN = { is_subject = no }
+            not = { has_war_with = MAN }
         }
 
         ai_will_do = { base = 6 }
 
         complete_effect = {
-            FRA = { country_event = { id = germany_appease_french.1 hours = 6 random_hours = 6 } }
+            MAN = { country_event = { id = _align.1 hours = 6 random_hours = 6 } }
         }
 
     }
-    ask_to_withdraw_french_guarantees = {
-        icon = generic_prepare_civil_war
+    discard_tirpitz_plan = {
+        icon = generic_naval
         cost = 100
         fire_only_once = yes
 
@@ -177,20 +173,20 @@ approach_the_uk = {
     }
 }
 
-afrika_amt = {
-    develop_south_west_africa = {
-        icon = generic_construction
+eberts_appointment = {
+    eberts_agrarian_reform = {
+        icon = generic_civil_support
         fire_only_once = yes
         cost = 75
 
-        available = { controls_state = 541 }
         ai_will_do = { base = 9 }
 
+        available = {
+            democratic > 0.4
+        }
+
         complete_effect = {
-            541 = { 
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-                add_resource = { type = chromium amount = 8 } 
-            }
+            add_ideas = idea_agrarian_reform
         }
     }
     tanganyika_cotton = {
@@ -205,7 +201,7 @@ afrika_amt = {
         }
 
         complete_effect = {
-            546 = { add_resource = { type = tungsten amount = 12 } }
+            546 = { add_resource = { type = tungsten amount = 18 } }
         }
     }
 }
