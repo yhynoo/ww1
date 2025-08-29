@@ -27,23 +27,26 @@ default_area_priority = {
 	}
 }
 
-french_europe_area_priority = {
-	allowed = { tag = FRA }
+african_operations = {
+	allowed = { or = { tag = FRA tag = ITA } }
 	enable = { 
-		not = { has_war_with = ALG }
-		not = { has_war_with = MOR }
+		or = {
+			and = { 
+				tag = FRA
+				has_war_with = MOR
+			}
+			and = { 
+				tag = ITA
+				has_war_with = TUR
+				not = { has_war_with = AUS }
+			}
+		}
 	}
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
 		type = area_priority
-		id = europe
-		value = 60
-	}
-
-	ai_strategy = {
-		type = area_priority
 		id = africa
-		value = -120
+		value = 200
 	}
 }

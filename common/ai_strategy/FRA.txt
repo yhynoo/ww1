@@ -43,10 +43,8 @@ FRA_careful_GER = {
 FRA_careful_HOL = {
 	allowed = { tag = FRA }
 	enable = { 
-		or = {
-			has_government = democratic
-			or = { HOL = { is_guaranteed_by = GER } HOL = { is_ally_with = GER } }
-		}
+		has_war_support < 0.5
+		or = { HOL = { is_guaranteed_by = GER } HOL = { is_ally_with = GER } }
 	}
 	abort_when_not_enabled = yes
 

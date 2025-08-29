@@ -1,4 +1,4 @@
-mediterranean_expansion_eng = {
+eng_mediterranean_expansion = {
     jaffa_unrest = {
         icon = generic_prepare_civil_war
         cost = 100
@@ -14,112 +14,76 @@ mediterranean_expansion_eng = {
         }
 
         complete_effect = {
+            news_event = { id = england_jaffa.1 hours = 3 }
             TUR = {
-                add_timed_idea = { idea = idea_unrest_in_arab_lands years = 1 }
-                hidden_effect = { country_event = { id = england_arabs.1 hours = 6 random_hours = 6 } }
+                add_stability = -0.025
+                hidden_effect = { country_event = { id = england_jaffa.2 days = 30 random_days = 30 } }
             }
         }
     }
     malta_cyprus = {
         icon = generic_construction
-        cost = 75
+        cost = 100
         fire_only_once = yes
 
         available = {
-            any_state = {
-                or = { state = 116 state = 183 }
-                is_owned_and_controlled_by = ENG
-            }
+            116 = { is_owned_and_controlled_by = ENG }
         }
 
         ai_will_do = { base = 9 }
 
         complete_effect = {
+            add_tech_bonus = {
+				name = capital_ships_bonus bonus = 0.5 uses = 2
+				category = naval_equipment_tech
+			}
+
             if = {
                 limit = { 116 = { is_owned_and_controlled_by = ENG } }
                 116 = { add_building_construction = { type = naval_base level = 2 province = 12003 instant_build = yes } }
             }
-            if = {
-                limit = { 183 = { is_owned_and_controlled_by = ENG } }
-                183 = { add_building_construction = { type = naval_base level = 2 province = 7193 instant_build = yes } }
-            }
-        }
-    }
-    arab_office = {
-        icon = generic_civil_support
-        cost = 50
-        fire_only_once = yes
-
-        ai_will_do = { 
-            base = 6
-            modifier = { is_ally_with = TUR factor = 0 }
-        }
-
-        complete_effect = {
-            news_event = { id = england_arab_office.1 days = 7 random_hours = 6 }
-        }
-    }
-    close_arab_office = {
-        icon = generic_civil_support
-        fire_only_once = yes
-
-        visible = { has_country_flag = arab_office_active }
-
-        complete_effect = {
-            hidden_effect = { clr_country_flag = arab_office_active }
-        }
-    }
-}
-
-affirm_the_entente = {
-    announce_containment = {
-        icon = generic_prepare_civil_war
-        cost = 75
-        fire_only_once = yes
-
-        available = {
-            has_war = no
-            has_war_support > 0.4
-        }
-
-        ai_will_do = { 
-            base = 0
-            modifier = { has_guaranteed = FRA add = 12 }
-        }
-
-        complete_effect = {
-            swap_ideas = {
-                remove_idea = idea_mansion_house
-                add_idea = idea_containment
-            }
-            news_event = { id = england_entente.1 hours = 6 random_hours = 6 }
-        }
-    }
-    seek_us_engagement = {
-        icon = generic_civil_support
-        cost = 50
-        fire_only_once = yes
-
-        available = {
-            has_war = yes
-            USA = {
-                is_in_faction = no
-                not = { has_war_with = ENG }
-            }
-        }
-
-        ai_will_do = {
-            base = 3
-            modifier = { threat > 0.5 add = 6 }
-        }
-
-        complete_effect = { 
-            USA = { news_event = { id = england_entente.2 hours = 6 random_hours = 6 } } 
         }
     }
 }
 
 change_alliances = {
+    establish_arabia = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 150
+
+        days_remove = 90
+        available = {
+            YEM = { exists = no }
+            can_declare_war_on = TUR
+        }
+
+        ai_will_do = { 
+            base = 9 
+            modifier = { has_war = no }
+        }
+
+        complete_effect = {
+            news_event = { id = england_arabia.1 hours = 6 random_hours = 6 }
+        }
+
+        remove_effect = {
+            hidden_effect = { arab_independence = yes }
+            puppet = YEM
+
+            hidden_effect = {
+                YEM = {
+                    set_cosmetic_tag = YEM_arab
+                    set_popularities = { monarchism = 100 }
+                    set_politics = { ruling_party = monarchism elections_allowed = no }
+                }
+                every_country_with_original_tag = {
+                    original_tag_to_check = TUR
+                    declare_war_on = { target = YEM type = annex_everything }
+                }
+            }
+        }
+    }
     demand_east_indies = {
         icon = generic_prepare_civil_war
         fire_only_once = yes
@@ -152,59 +116,29 @@ change_alliances = {
             }
         }
     }
-    intervene_congo = {
-        icon = generic_prepare_civil_war
+    eng_align_afghanistan = {
+        icon = generic_civil_support
         fire_only_once = yes
-        cost = 100
+        cost = 75
 
-        days_remove = 180
-
-        available = { 
-            any_state = {
-                or = { state = 295 state = 576 state = 538 }
-                is_owned_and_controlled_by = FRA
-            }
-
-            can_declare_war_on = FRA
-            has_war_support > 0.3 
+        available = {
+            can_declare_war_on = AFG
+            AFG = { exists = yes is_subject = no }
         }
 
         ai_will_do = {
             base = 0
-            modifier = { 
-                any_neighbor_state = { or = { state = 295 state = 576 state = 538 } }
-                add = 6
-            }
+            modifier = { AFG = { is_in_faction = no } add = 9 }
         }
 
         complete_effect = {
-            every_state = {
-                limit = { or = { state = 295 state = 576 state = 538 } }
-                add_claim_by = ENG
-            }
-
-            news_event = { id = england_congo.1 hours = 6 random_hours = 6 }
-        }
-
-        remove_effect = {
-            war_with_on_remove = FRA
-            create_wargoal = { target = FRA type = take_claimed_state }
+            diplomatic_relation = { country = AFG relation = guarantee active = no }
+            AFG = { country_event = { id = _align.1 hours = 6 random_hours = 6 } }
         }
     }
 }
 
 peoples_act = {
-    appease_unions_eng = {
-        cost = 50
-        days_remove = 90
-
-        ai_will_do = { base = 6 }
-
-        modifier = {
-            industrial_capacity_factory = 0.1
-            communism_drift = 0.05
-        }
-    }
     release_saf = {
         icon = generic_form_nation
         cost = 100
@@ -215,11 +149,22 @@ peoples_act = {
             any_state = { is_core_of = SAF is_controlled_by = ENG }
         }
 
-        ai_will_do = { base = 12 }
+        ai_will_do = { base = 9 }
 
         complete_effect = {
-            hidden_effect = { release_puppet_on_controlled = SAF }
-            news_event = { id = england_south_africa.1 hours = 6 random_hours = 6 }
+            release_puppet_on_controlled = SAF
+            hidden_effect = { news_event = { id = england_south_africa.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    wage_adjustments = {
+        cost = 75
+        days_remove = 90
+
+        ai_will_do = { base = 6 }
+
+        modifier = {
+            production_factory_efficiency_gain_factor = 0.25
+            stability_weekly = 0.005
         }
     }
 }

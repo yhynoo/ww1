@@ -2,40 +2,18 @@ add_namespace = germany_airships
 
 news_event = {
     id = germany_airships.1
-    title = "Airship Parade in Johannisthal"
+    title = "Airship Show in Friedrichshafen"
     desc = germany_airships.1.d
 
     is_triggered_only = yes
 
     option = {
-        name = "Wonderful."
+        name = "What a sight."
 
         # bonus for airship technology
         add_tech_bonus = {
             name = airships_bonus bonus = 1.0 uses = 1
 			technology = airship_1914
-        }
-
-        hidden_effect = { 
-            news_event = { id = germany_airships.2 months = 2 random_days = 30 }
-        }
-    }
-}
-
-news_event = {
-    id = germany_airships.2
-    title = "An Experimental Glider Unit Formed"
-    desc = germany_airships.2.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Interesting."
-
-        # bonus for glider technology
-        add_tech_bonus = {
-            name = gliders_bonus bonus = 1.0 uses = 1
-			technology = glider_1914
         }
     }
 }

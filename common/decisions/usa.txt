@@ -47,26 +47,6 @@ intervene_central_america = {
 }
 
 adapt_wilsonianism = {
-    demand_azores = {
-        icon = generic_naval
-        fire_only_once = yes
-        cost = 100
-
-        available = {
-            can_declare_war_on = SPA
-            469 = { is_owned_by = SPA }
-        }
-
-        ai_will_do = {
-            base = 0
-            modifier = { has_war_with = GER add = 9 }
-        }
-
-        complete_effect = {
-            469 = { add_claim_by = USA }
-            SPA = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
-        }
-    }
     liberate_australia = {
         icon = generic_political_discourse
         cost = 75

@@ -2,68 +2,20 @@ add_namespace = germany_turnip
 
 news_event = {
     id = germany_turnip.1
-    title = "The Turnip Winter"
+    title = "The Turnip Winter Approaching"
     desc = germany_turnip.1.d
 
     trigger = { 
         tag = GER
         has_war = yes 
         date > 1916.10.1
+
+        not = { has_idea = idea_agrarian_reform }
     }
     fire_only_once = yes
 
     option = {
-        name = "That is not good."
+        name = "We must endure."
         add_timed_idea = { idea = idea_turnip_winter months = 6 }
-
-        hidden_effect = {
-            country_event = { id = germany_turnip.2 days = 180 random_days = 30 }
-        }
-    }
-}
-
-country_event = {
-    id = germany_turnip.2
-    title = "Oberste Heeresleitung Queitly Defiant"
-    desc = germany_turnip.2.d
-
-    is_triggered_only = yes
-    trigger = { 
-        has_war = yes
-        has_stability < 0.5 
-        has_completed_focus = GER_mobilize_the_masses
-    }
-
-    option = {
-        name = "Invite them to the government."
-
-        add_popularity = { ideology = authoritarianism popularity = 0.1 }
-        add_timed_idea = { idea = idea_authoritarianism_tendencies years = 2 }
-
-        hidden_effect = {
-            news_event = { id = germany_turnip.3 days = 30 random_days = 30 }
-        }
-    }
-
-    option = {
-        name = "Is this treason?"
-
-        retire_character = GER_erich_ludendorff
-        add_war_support = -0.05
-    }
-}
-
-news_event = {
-    id = germany_turnip.3
-    title = "Ludendorff's Address"
-    desc = germany_turnip.3.d
-
-    fire_only_once = yes
-
-    option = {
-        name = "Will the Army take the lead?"
-        
-        add_popularity = { ideology = authoritarianism popularity = 0.05 }
-        add_political_power = 50
     }
 }

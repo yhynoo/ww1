@@ -4,12 +4,17 @@ central_powers_acceptance = {
     allowed = {
         OR = {
             original_tag = AUS
+            original_tag = HOL
             original_tag = TUR
         }
     }
     enable = {
         or = {
             original_tag = AUS
+            and = {
+                original_tag = HOL
+                has_country_flag = ignored_france
+            }
             and = { 
                 original_tag = TUR
                 or = { 
@@ -33,6 +38,10 @@ central_powers_invite = {
     enable = {
         or = {
             original_tag = AUS
+            and = {
+                original_tag = HOL
+                has_country_flag = ignored_france
+            }
             and = {
                 original_tag = TUR
                 or = { 
@@ -68,7 +77,7 @@ entente_acceptance = {
     }
     enable = {
         or = {
-            has_idea = idea_containment                                         # england
+            has_completed_focus = ENG_seek_alliances                            # england
             original_tag = GRE                                                  # greece
             and = {                                                             # italy
                 not = { has_country_flag = neutral_italy }
@@ -101,7 +110,7 @@ entente_invite = {
     allowed = { original_tag = FRA }
     enable = {
         or = {
-            has_idea = idea_containment                                         # england
+            has_completed_focus = ENG_seek_alliances                            # england
             original_tag = GRE                                                  # greece
             and = {                                                             # italy
                 not = { has_country_flag = neutral_italy }

@@ -10,7 +10,11 @@ news_event = {
 
     option = {
         name = "A victory for Weizmann."
-        hidden_effect = { country_event = { id = england_jaffa.2 days = 30 random_days = 30 } }
+        
+        if = {
+            limit = { tag = TUR }
+            add_timed_idea = { idea = idea_unrest_in_arab_lands years = 1 }
+        }
     }
 }
 
@@ -22,31 +26,20 @@ country_event = {
     is_triggered_only = yes
 
     option = {
-        name = "Welcome them as guests."
-        add_popularity = { ideology = democratic popularity = 0.05 }
+        name = "Support the local Arab sheikhs."
 
-        #
-        hidden_effect = { random = { chance = 50 news_event = { id = england_jaffa.3 days = 30 random_days = 30 } } }
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+        add_political_power = -50
     }
     option = {
         name = "This will diffuse."
         add_stability = -0.05
 
-        hidden_effect = { start_arab_independence_war = yes }
-    }
-}
-
-news_event = {
-    id = england_jaffa.3
-    title = "Tel-Aviv Flourishes"
-    desc = england_jaffa.3.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Great."
-
-        set_province_name = { id = 4206 name = "Tel-Aviv" }
-        add_stability = 0.05
+        hidden_effect = { 
+            random = {
+                chance = 50
+                start_arab_independence_war = yes 
+            }
+        }
     }
 }

@@ -2,52 +2,59 @@ add_namespace = france_greece
 
 country_event = {
     id = france_greece.1
-    title = "[FRA.GetName] Offers Aid for Greece"
+    title = "France Demands Greek Autonomy"
     desc = france_greece.1.d
 
     is_triggered_only = yes
 
     option = {
-        name = "This is a good deal."
-        FROM = { 
-            news_event = { id = france_greece.2 hours = 6 random_hours = 6 }
-            hidden_effect = { set_country_flag = france_likes_turkey }
-        }
-
-        if = {
-            limit = { has_idea = idea_amassed_foreign_debt }
-            remove_ideas = idea_amassed_foreign_debt
-        }
-        else_if = {
-            limit = { has_idea = idea_significant_foreign_debt }
-            remove_ideas = idea_significant_foreign_debt
-        }
-        else = {
-            49 = { add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
-            341 = { add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
-        }
+        name = "We must accept their demands."
 
         every_controlled_state = {
-            limit = { or = { state = 47 state = 182 state = 186 state = 187 state = 164 } }
+            limit = { 
+                or = { state = 47 state = 164 state = 182 state = 186 state = 187 }
+            }
             transfer_state_to = GRE
+            hidden_effect = { GRE = { load_oob = "GRE_1912" } }
+        }
+
+        FRA = { 
+            news_event = { id = france_greece.2 hours = 6 random_hours = 6 }
+            give_guarantee = GRE
+        }
+
+        ai_chance = {
+            base = 1
+            modifier = { strength_ratio = { tag = FROM ratio > 2 } factor = 2 }
         }
     }
-    option = {
-        name = "We are not interested."
-    }
 
-    hidden_effect = { set_country_flag = greece_deal }
+    option = {
+        name = "Ignore them."
+        add_war_support = 0.05
+        
+        FROM = { create_wargoal = { target = ROOT type = take_claimed_state } }
+
+        ai_chance = {
+            base = 2
+            modifier = { strength_ratio = { tag = FROM ratio < 0.5 } factor = 0.5 }
+        }
+
+        hidden_effect = { 
+            FROM = { add_named_threat = { threat = 3 name = "[ROOT.GetName] Ignores [FROM.GetAdjective] Demands" } }
+        }
+    }
 }
 
 news_event = {
     id = france_greece.2
-    title = "Paris Wins a Mediterranean Ally?"
+    title = "Greece Independent!"
     desc = france_greece.2.d
 
     is_triggered_only = yes
     major = yes
 
     option = {
-        name = "Interesting."
+        name = "They owe it to the French."
     }
 }

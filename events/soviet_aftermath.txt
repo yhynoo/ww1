@@ -2,31 +2,19 @@ add_namespace = soviet_aftermath
 
 country_event = {
     id = soviet_aftermath.1
-    title = "The Aftermath of Stolypin's Assassination"
+    title = "The Language Act of [GetYear]"
     desc = soviet_aftermath.1.d
 
-    fire_only_once = yes
-    trigger = {
-        tag = SOV
-        date > 1912.2.1
-    }
+    is_triggered_only = yes
 
     option = {
         name = "Admit overreach."
-        add_popularity = { ideology = monarchism popularity = 0.05 }
-
-        ai_chance = { base = 1 }
+        add_popularity = { ideology = monarchism value = 0.05 }
     }
-
     option = {
-        name = "Maintain the course."
+        name = "Engage in further reforms."
 
         add_stability = -0.05
-        swap_ideas = {
-            remove_idea = idea_agrarian_state
-            add_idea = idea_agrarian_development
-        }
-
-        ai_chance = { base = 3 }
+        add_ideas = idea_limited_autonomy
     }
 }

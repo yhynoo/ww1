@@ -271,8 +271,6 @@ dc_head_of_state_decisions = {
             }
         }
 
-        available = { has_capitulated = no }
-
         icon = generic_form_nation
         days_re_enable = 90
         cost = 150
@@ -286,6 +284,7 @@ dc_head_of_state_decisions = {
                 }
                 add = 6
             }
+            modifier = { has_capitulated = yes add = 24 }
         }
 
         targets_dynamic = yes

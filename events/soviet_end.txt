@@ -1,0 +1,32 @@
+add_namespace = soviet_end
+
+country_event = {
+    id = soviet_end.1
+    title = "The End of the Russian Empire?"
+    desc = soviet_agitation.1.d
+
+    fire_only_once = yes
+
+    trigger = { 
+        tag = SOV
+        not = { has_government = communism }
+
+        has_civil_war = no
+        communism > 0.4
+    }
+
+    option = {
+        name = "All power to the councils!"
+        start_civil_war = { ideology = monarchism ruling_party = communism size = 0.5 }
+
+        # manage the war
+        hidden_effect = { russia_civil_war = yes }
+    }
+    option = {
+        name = "We must hold out."
+        start_civil_war = { ideology = communism size = 0.6 }
+
+        # manage the war
+        hidden_effect = { russia_civil_war = yes }
+    }
+}

@@ -1,3 +1,24 @@
+arab_independence = {
+    TUR = {
+        every_owned_state = {
+            limit = { or = { state = 454 state = 455 state = 553 state = 554 state = 677 state = 679 } }
+
+            add_core_of = YEM
+            set_state_owner_to = YEM
+        }
+
+        every_controlled_state = {
+            limit = { or = { state = 554 state = 677 } }
+            set_state_controller_to = YEM
+        }
+    }
+
+    YEM = { 
+        load_oob = "YEM_1913" 
+        add_ideas = { closed_economy partial_economic_mobilisation }
+    }
+}
+
 algerian_independence = {
     FRA = {
         every_owned_state = {
@@ -145,6 +166,25 @@ serbian_independence = {
 
     SER = { 
         load_oob = "SER_1912" 
+        add_ideas = { limited_conscription limited_exports low_economic_mobilisation }
+    }
+}
+
+sicilian_independence = {
+    ITA = {
+        every_owned_state = {
+            limit = { is_core_of = TTS }
+            set_state_owner_to = TTS
+        }
+
+        every_controlled_state = {
+            limit = { or = { state = 114 state = 117 state = 156 } }
+            set_state_controller_to = TTS
+        }
+    }
+
+    TTS = { 
+        load_oob = "TTS_1912" 
         add_ideas = { limited_conscription limited_exports low_economic_mobilisation }
     }
 }

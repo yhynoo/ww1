@@ -173,22 +173,8 @@ approach_the_uk = {
     }
 }
 
-eberts_appointment = {
-    eberts_agrarian_reform = {
-        icon = generic_civil_support
-        fire_only_once = yes
-        cost = 75
-
-        ai_will_do = { base = 9 }
-
-        available = {
-            democratic > 0.4
-        }
-
-        complete_effect = {
-            add_ideas = idea_agrarian_reform
-        }
-    }
+afrika_amt = {
+    # here comes the mittelafrika focus later
     tanganyika_cotton = {
         icon = generic_industry
         fire_only_once = yes
@@ -201,7 +187,10 @@ eberts_appointment = {
         }
 
         complete_effect = {
-            546 = { add_resource = { type = tungsten amount = 18 } }
+            546 = { 
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                add_resource = { type = tungsten amount = 12 } 
+            }
         }
     }
 }

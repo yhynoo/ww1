@@ -765,7 +765,7 @@
     }
     focus = {
         id = FRA_seek_alliances
-        icon = GFX_focus_generic_on_our_own
+        icon = GFX_focus_generic_seek_alliances
 
         relative_position_id = FRA_expansionism
         x = -2
@@ -773,21 +773,29 @@
         cost = 10
 
         prerequisite = { focus = FRA_expansionism }
-        available = { is_subject = no }
+        available = { 
+            is_subject = no
+            is_in_faction = no
+            
+            if = {
+                limit = { has_government = democratic }
+                threat > 0.1
+            }
+        }
 
         ai_will_do = { 
-            base = 4
+            base = 3
             modifier = { has_completed_focus = FRA_adjust_the_government factor = 0 }
         }
 
         completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
-            add_timed_idea = { idea = idea_seek_alliances years = 2 }
+            create_faction = "Entente"
+            news_event = { id = france_entente.1 hours = 3 }
         }
     }
     focus = {
         id = FRA_on_our_own
-        icon = GFX_focus_generic_across_the_sea
+        icon = GFX_focus_generic_on_our_own
 
         relative_position_id = FRA_expansionism
         x = 1
@@ -898,6 +906,10 @@
         y = 1
         cost = 10
 
+        available = {
+            has_government = democratic
+        }
+
         prerequisite = { focus = FRA_strength_in_unity }
         completion_reward = {
             add_ideas = idea_liberte
@@ -906,7 +918,7 @@
 
     focus = {
         id = FRA_adjust_the_government
-        icon = GFX_focus_generic_internal_stability
+        icon = GFX_focus_FRA_embrace_modernity
 
         relative_position_id = FRA_political_ambitions
         x = 4
@@ -921,8 +933,8 @@
         mutually_exclusive = { focus = FRA_traditionalism }
         prerequisite = { focus = FRA_political_ambitions }
         completion_reward = {
+            add_stability = -0.05
             add_timed_idea = { idea = idea_monarchism_tendencies years = 1 }
-            add_popularity = { ideology = monarchism popularity = 0.05 }
 
             hidden_effect = { country_event = { id = france_tours.1 days = 14 random_days = 14 } }
         }
@@ -952,6 +964,7 @@
 
         prerequisite = { focus = FRA_adjust_the_government }
         completion_reward = {
+            add_popularity = { ideology = monarchism popularity = 0.05 }
             custom_effect_tooltip = decision_effect_tooltip
         }
     }
@@ -977,16 +990,21 @@
     }
     focus = {
         id = FRA_embrace_modernity
-        icon = GFX_focus_generic_red_education
+        icon = GFX_focus_AUS_embrace_modernity
 
         relative_position_id = FRA_state_reform
         x = -1
         y = 1
         cost = 10
 
+        available = {
+            has_government = monarchism
+        }
+
         prerequisite = { focus = FRA_state_reform }
         completion_reward = {
-            add_research_slot = 1
+            country_event = { id = france_exile.1 hours = 3 }
+            promote_character = FRA_philippe_dorleans
         }
     }
 }

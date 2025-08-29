@@ -767,7 +767,13 @@ focus_tree = {
 
         ai_will_do = { 
             base = 2
-            modifier = { has_completed_focus = GER_on_our_own factor = 0 }
+            modifier = { 
+                or = { 
+                    has_completed_focus = GER_on_our_own
+                    has_completed_focus = GER_adjust_the_government 
+                }
+                factor = 0
+            }
         }
 
         completion_reward = {
@@ -793,7 +799,7 @@ focus_tree = {
         ai_will_do = { 
             base = 0
             modifier = {
-                ENG = { not = { has_government = democratic } }
+                has_government = democratic
                 add = 2
             }
         }
@@ -913,8 +919,8 @@ focus_tree = {
         }
 
         completion_reward = {
+            add_stability = -0.05
             add_timed_idea = { idea = idea_democratic_tendencies years = 1 }
-            add_popularity = { ideology = democratic popularity = 0.05 }
         }
     }
     focus = {
@@ -943,13 +949,7 @@ focus_tree = {
         prerequisite = { focus = GER_adjust_the_government }
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
-
-            random_owned_controlled_state = {
-                limit = { is_core_of = GER }
-
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-			}
+            add_popularity = { ideology = democratic popularity = 0.05 }
         }
     }
     focus = {
@@ -989,8 +989,8 @@ focus_tree = {
 
         prerequisite = { focus = GER_state_reform }
         completion_reward = {
+            country_event = { id = germany_trotha.1 hours = 3 }
             add_political_power = 50
-            country_event = { id = germany_afrika.1 hours = 3 }
         }
     }
 }

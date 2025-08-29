@@ -12,11 +12,15 @@ country_event = {
     }
     fire_only_once = yes
 
+    mean_time_to_happen = { 
+        months = 6
+        modifier = { has_stability < 0.5 factor = 0.5 }
+    }
+
     option = {
         name = "This will fade away."
         add_stability = -0.05
-
-        ai_chance = { base = 0 }
+        add_war_support = -0.1
     }
 
     option = {
@@ -29,8 +33,6 @@ country_event = {
                 news_event = { id = france_agadir.2 days = 15 random_days = 30 }
             }
         }
-
-        ai_chance = { base = 1 }
     }
 }
 
@@ -54,27 +56,5 @@ news_event = {
         }
         
         declare_war_on = { target = MOR type = annex_everything }
-    }
-}
-
-news_event = {
-    id = france_agadir.3
-    title = "Echoes of Agadir Fade Away"
-    desc = france_agadir.3.d
-
-    trigger = {
-        tag = FRA
-        FRA = {
-            controls_state = 6
-            controls_state = 34
-        }
-    }
-    fire_only_once = yes
-
-    option = {
-        name = "Wonderful."
-        add_political_power = 50
-
-        remove_ideas = idea_echoes_of_agadir
     }
 }

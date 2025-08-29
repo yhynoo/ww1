@@ -1,0 +1,41 @@
+add_namespace = england_white_feathers
+
+country_event = {
+    id = england_white_feathers.1
+    title = "‘The Women Say: Go!’"
+    desc = england_white_feathers.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Encourage the initiative."
+        add_timed_idea = { idea = idea_white_feathers months = 6 }
+        
+        hidden_effect = { news_event = { id = england_white_feathers.2 days = 60 random_days = 60 } }
+        ai_chance = { base = 1 }
+    }
+
+    option = {
+        name = "Who cares what they say?"
+
+        add_political_power = -25
+        add_popularity = { ideology = communism popularity = 0.05 }
+
+        ai_chance = { base = 0 }
+    }
+}
+
+news_event = {
+    id = england_white_feathers.2
+    title = "Another Young Veteran Dead; Asquith Out?"
+    desc = england_white_feathers.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Awful."
+
+        promote_character = ENG_david_lloyd_george
+        remove_ideas = england_white_feathers
+    }
+}
