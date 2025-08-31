@@ -809,14 +809,14 @@ spriteTypes = {
 
 	SpriteType = {
 		name = "GFX_focus_generic_expand_mining"
-		texturefile = "gfx/interface/goals/focus_generic_mining_industry.dds"
+		texturefile = "gfx/interface/goals/focus_generic_steel.dds"
 	}
 	spriteType = {
         name = GFX_focus_generic_expand_mining_shine
-        texturefile = gfx/interface/goals/focus_generic_mining_industry.dds
+        texturefile = gfx/interface/goals/focus_generic_steel.dds
         effectFile = gfx/FX/buttonstate.lua
         animation = {
-            animationmaskfile = gfx/interface/goals/focus_generic_mining_industry.dds
+            animationmaskfile = gfx/interface/goals/focus_generic_steel.dds
             animationtexturefile = gfx/interface/goals/shine_overlay.dds
             animationrotation = -90.0
             animationlooping = no
@@ -828,7 +828,7 @@ spriteTypes = {
             animationtexturescale = { x = 1.0 y = 1.0 }
         }
         animation = {
-            animationmaskfile = gfx/interface/goals/focus_generic_mining_industry.dds
+            animationmaskfile = gfx/interface/goals/focus_generic_steel.dds
             animationtexturefile = gfx/interface/goals/shine_overlay.dds
             animationrotation = 90.0
             animationlooping = no
@@ -913,11 +913,11 @@ spriteTypes = {
     }
 
     	SpriteType = {
-		name = "GFX_focus_generic_advanced_manufacturing"
+		name = "GFX_focus_generic_women_at_work"
 		texturefile = "gfx/interface/goals/goal_generic_production.dds"
 	}
 	spriteType = {
-        name = GFX_focus_generic_advanced_manufacturing_shine
+        name = GFX_focus_generic_women_at_work_shine
         texturefile = gfx/interface/goals/goal_generic_production.dds
         effectFile = gfx/FX/buttonstate.lua
         animation = {
@@ -947,7 +947,7 @@ spriteTypes = {
         legacy_lazy_load = no
     }
 
-    	SpriteType = {
+    SpriteType = {
 		name = "GFX_focus_generic_war_industry"
 		texturefile = "gfx/interface/goals/goal_war_industry.dds"
 	}
@@ -969,6 +969,41 @@ spriteTypes = {
         }
         animation = {
             animationmaskfile = gfx/interface/goals/goal_war_industry.dds
+            animationtexturefile = gfx/interface/goals/shine_overlay.dds
+            animationrotation = 90.0
+            animationlooping = no
+            animationtime = 0.75
+            animationdelay = 0
+            animationblendmode = "add"
+            animationtype = "scrolling"
+            animationrotationoffset = { x = 0.0 y = 0.0 }
+            animationtexturescale = { x = 1.0 y = 1.0 }
+        }
+        legacy_lazy_load = no
+    }
+
+    SpriteType = {
+		name = "GFX_focus_generic_telegraph"
+		texturefile = "gfx/interface/goals/focus_telegraph.dds"
+	}
+	spriteType = {
+        name = GFX_focus_generic_telegraph_shine
+        texturefile = gfx/interface/goals/focus_telegraph.dds
+        effectFile = gfx/FX/buttonstate.lua
+        animation = {
+            animationmaskfile = gfx/interface/goals/focus_telegraph.dds
+            animationtexturefile = gfx/interface/goals/shine_overlay.dds
+            animationrotation = -90.0
+            animationlooping = no
+            animationtime = 0.75
+            animationdelay = 0
+            animationblendmode = "add"
+            animationtype = "scrolling"
+            animationrotationoffset = { x = 0.0 y = 0.0 }
+            animationtexturescale = { x = 1.0 y = 1.0 }
+        }
+        animation = {
+            animationmaskfile = gfx/interface/goals/focus_telegraph.dds
             animationtexturefile = gfx/interface/goals/shine_overlay.dds
             animationrotation = 90.0
             animationlooping = no
@@ -1476,11 +1511,11 @@ spriteTypes = {
     }
 
 	SpriteType = {
-		name = "GFX_focus_generic_embrace_modernity"
+		name = "GFX_focus_efficiency_studies"
 		texturefile = "gfx/interface/goals/focus_research.dds"
 	}
 	spriteType = {
-        name = GFX_focus_generic_embrace_modernity_shine
+        name = GFX_focus_efficiency_studies_shine
         texturefile = gfx/interface/goals/focus_research.dds
         effectFile = gfx/FX/buttonstate.lua
         animation = {

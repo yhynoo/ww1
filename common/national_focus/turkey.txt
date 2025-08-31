@@ -359,7 +359,7 @@ focus_tree = {
         }
     }
 
-    ## economic branch
+## economic branch
     focus = {
         id = TUR_economic_development
         icon = GFX_focus_generic_economic_development
@@ -374,27 +374,13 @@ focus_tree = {
             add_stability = 0.05
         }
     }
-    focus = {
-        id = TUR_home_front
-        icon = GFX_focus_generic_home_front
-
-        relative_position_id = TUR_economic_development
-        x = -4
-        y = 1
-
-        cost = 10
-
-        prerequisite = { focus = TUR_economic_development }
-        completion_reward = {
-            add_stability = 0.05
-        }
-    }
+    
     focus = {
         id = TUR_rationing
         icon = GFX_focus_generic_rationing
 
-        relative_position_id = TUR_home_front
-        x = 0
+        relative_position_id = TUR_economic_development
+        x = -4
         y = 1
 
         cost = 10
@@ -404,9 +390,10 @@ focus_tree = {
             modifier = { has_war = no factor = 0 }
         }
 
-        prerequisite = { focus = TUR_home_front }
+        prerequisite = { focus = TUR_economic_development }
         completion_reward = {
-            add_stability = -0.1
+            add_stability = -0.05
+            add_war_support = -0.05
             add_ideas = idea_rationing
         }
     }
@@ -414,13 +401,13 @@ focus_tree = {
         id = TUR_fuel
         icon = GFX_focus_generic_fuel
 
-        relative_position_id = TUR_home_front
+        relative_position_id = TUR_rationing
         x = -2
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = TUR_home_front }
+        prerequisite = { focus = TUR_rationing }
         completion_reward = {
             add_tech_bonus = {
 				name = synthetic_bonus bonus = 1.0 uses = 1
@@ -434,34 +421,33 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_austerity_measures
-        icon = GFX_focus_generic_austerity_measures
+        id = TUR_women_at_work
+        icon = GFX_focus_generic_women_at_work
 
         relative_position_id = TUR_rationing
-        x = 0
+        x = 1
         y = 1
 
         cost = 10
 
         ai_will_do = {
-            base = 2
-            modifier = { or = { has_war = no has_stability < 0.5 } factor = 0 }
+            base = 1
+            modifier = { has_stability < 0.25 factor = 0 }
+        }
+
+        available = { 
+            has_war = yes
         }
 
         prerequisite = { focus = TUR_rationing }
         completion_reward = {
-            add_war_support = -0.1
-            add_stability = -0.2
-
-            swap_ideas = {
-                remove_idea = idea_rationing
-                add_idea = idea_austerity_measures
-            }
+            add_stability = -0.05
+            add_ideas = idea_women_at_work
         }
     }
 
     focus = {
-        id = TUR_extraction_effort
+        id = TUR_infrastructure_effort
         icon = GFX_focus_generic_extraction_effort
 
         relative_position_id = TUR_economic_development
@@ -470,27 +456,21 @@ focus_tree = {
 
         cost = 10
 
-        ai_will_do = { 
-            base = 1 
-            modifier = { num_of_factories < 15 add = 1 }
-        }
+        ai_will_do = { base = 2 }
 
         prerequisite = { focus = TUR_economic_development }
-        mutually_exclusive = { focus = TUR_technology_effort }
-
 		completion_reward = {
-            random_core_state = {
-                limit = { is_controlled_by = ROOT }
+            add_tech_bonus = {
+				name = construction_bonus bonus = 1.0 uses = 2
+				category = construction_tech
+                category = supply_tech
+			}
 
-				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
-                add_resource = { type = steel amount = 4 }
-            }
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes }
 
-            random_core_state = {
-                limit = { is_controlled_by = ROOT }
-
-				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
-                add_resource = { type = steel amount = 4 }
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                add_extra_state_shared_building_slots = 2
             }
 		}
     }
@@ -498,15 +478,15 @@ focus_tree = {
         id = TUR_construct_civilian
         icon = GFX_focus_generic_construct_civilian
 
-        relative_position_id = TUR_extraction_effort
-        x = 1
+        relative_position_id = TUR_infrastructure_effort
+        x = 0
         y = 1
 
         cost = 10
 
         ai_will_do = { base = 3 }
 
-        prerequisite = { focus = TUR_extraction_effort }
+        prerequisite = { focus = TUR_infrastructure_effort }
 		completion_reward = {
             add_ideas = idea_industrial_expansion
 			random_owned_controlled_state = {
@@ -524,93 +504,43 @@ focus_tree = {
         id = TUR_expand_mining
         icon = GFX_focus_generic_expand_mining
 
-        relative_position_id = TUR_extraction_effort
-        x = -2
+        relative_position_id = TUR_infrastructure_effort
+        x = 3
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = TUR_extraction_effort }
+        prerequisite = { focus = TUR_infrastructure_effort }
+        mutually_exclusive = { focus = TUR_efficiency_studies }
+
         completion_reward = {
             random_owned_controlled_state = {
-                add_resource = { type = aluminium amount = 8 }
-                add_resource = { type = chromium amount = 4 }
+                limit = { is_in_home_area = yes }
+                
+                add_resource = { type = steel amount = 12 }
+                add_resource = { type = aluminium amount = 6 }
             }
         }
     }
 
     focus = {
-        id = TUR_technology_effort
-        icon = GFX_focus_generic_embrace_modernity
+        id = TUR_efficiency_studies
+        icon = GFX_focus_efficiency_studies
 
-        relative_position_id = TUR_economic_development
-        x = 4
-        y = 1
-
-        cost = 10
-
-        ai_will_do = { 
-            base = 1 
-            modifier = { 
-                not = { num_of_factories < 15 }
-                add = 1
-            }
-        }
-
-        prerequisite = { focus = TUR_economic_development }
-        mutually_exclusive = { focus = TUR_extraction_effort }
-
-		completion_reward = {
-            add_tech_bonus = { 
-                name = industrial_bonus bonus = 1.0 uses = 2
-				category = industry_tech
-			}
-
-            random_core_state = {
-                limit = { is_controlled_by = ROOT }
-				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
-            }
-		}
-    }
-    focus = {
-        id = TUR_advanced_manufacturing
-        icon = GFX_focus_generic_advanced_manufacturing
-
-        relative_position_id = TUR_technology_effort
-        x = -1
+        relative_position_id = TUR_infrastructure_effort
+        x = 6
         y = 1
 
         cost = 10
 
         ai_will_do = { base = 3 }
 
-        prerequisite = { focus = TUR_technology_effort }
+        prerequisite = { focus = TUR_infrastructure_effort }
+        mutually_exclusive = { focus = TUR_expand_mining }
+
 		completion_reward = {
             add_ideas = idea_efficiency_studies
-			random_core_state = {
-				limit = {
-                    is_controlled_by = ROOT
-				}
-				
-                add_extra_state_shared_building_slots = 1
-				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-            }
 		}
-    }
-    focus = {
-        id = TUR_research_grants
-        icon = GFX_focus_generic_research_grants
-
-        relative_position_id = TUR_technology_effort
-        x = 2
-        y = 1
-
-        cost = 10
-
-        prerequisite = { focus = TUR_technology_effort }
-        completion_reward = {
-            add_research_slot = 1
-        }
     }
 
     focus = {
@@ -618,7 +548,7 @@ focus_tree = {
         icon = GFX_focus_generic_steady_growth
 
         relative_position_id = TUR_construct_civilian
-        x = -1
+        x = 2
         y = 1
 
         cost = 10
@@ -626,8 +556,7 @@ focus_tree = {
         ai_will_do = { base = 4 }
 
         prerequisite = { 
-            focus = TUR_construct_civilian 
-            focus = TUR_advanced_manufacturing
+            focus = TUR_construct_civilian
         }
 
         available = {
@@ -654,18 +583,17 @@ focus_tree = {
         icon = GFX_focus_generic_war_industry
 
         relative_position_id = TUR_construct_civilian
-        x = 3
+        x = -2
         y = 1
 
         cost = 10
 
         prerequisite = { 
-            focus = TUR_construct_civilian 
-            focus = TUR_advanced_manufacturing
+            focus = TUR_construct_civilian
         }
 
         available = {
-            has_war_support > 0.2
+            has_war_support > 0.4
         }
 
         completion_reward = {
@@ -677,6 +605,33 @@ focus_tree = {
 
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+			}
+        }
+    }
+
+    focus = {
+        id = TUR_telegraph
+        icon = GFX_focus_generic_telegraph
+
+        relative_position_id = TUR_economic_development
+        x = 4
+        y = 1
+
+        cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
+
+        prerequisite = { focus = TUR_economic_development }
+        available = { has_tech = tech_telegraph }
+
+        completion_reward = {
+            add_political_power = 50
+            add_tech_bonus = {
+				name = communications_bonus bonus = 1.0 uses = 2
+				category = communications_tech
 			}
         }
     }

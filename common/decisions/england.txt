@@ -1,4 +1,24 @@
 eng_mediterranean_expansion = {
+    malta_cyprus = {
+        icon = generic_naval
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            116 = { is_owned_and_controlled_by = ENG }
+        }
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            add_tech_bonus = {
+				name = capital_ships_bonus bonus = 0.5 uses = 2
+				category = naval_equipment_tech
+			}
+
+            116 = { add_building_construction = { type = naval_base level = 2 province = 12003 instant_build = yes } }
+        }
+    }
     jaffa_unrest = {
         icon = generic_prepare_civil_war
         cost = 100
@@ -18,29 +38,6 @@ eng_mediterranean_expansion = {
             TUR = {
                 add_stability = -0.025
                 hidden_effect = { country_event = { id = england_jaffa.2 days = 30 random_days = 30 } }
-            }
-        }
-    }
-    malta_cyprus = {
-        icon = generic_construction
-        cost = 100
-        fire_only_once = yes
-
-        available = {
-            116 = { is_owned_and_controlled_by = ENG }
-        }
-
-        ai_will_do = { base = 9 }
-
-        complete_effect = {
-            add_tech_bonus = {
-				name = capital_ships_bonus bonus = 0.5 uses = 2
-				category = naval_equipment_tech
-			}
-
-            if = {
-                limit = { 116 = { is_owned_and_controlled_by = ENG } }
-                116 = { add_building_construction = { type = naval_base level = 2 province = 12003 instant_build = yes } }
             }
         }
     }
@@ -152,7 +149,9 @@ peoples_act = {
         ai_will_do = { base = 9 }
 
         complete_effect = {
+            add_stability = 0.05
             release_puppet_on_controlled = SAF
+            
             hidden_effect = { news_event = { id = england_south_africa.1 hours = 6 random_hours = 6 } }
         }
     }

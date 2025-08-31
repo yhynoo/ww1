@@ -2,7 +2,7 @@ add_namespace = germany_trotha
 
 country_event = {
     id = germany_trotha.1
-    title = "The Empire’s Hero or a Disgrace?"
+    title = "The Empire’s Dishonor in Africa"
     desc = germany_trotha.1.d
 
     is_triggered_only = yes
@@ -12,10 +12,10 @@ country_event = {
         add_popularity = { ideology = monarchism value = 0.05 }
     }
     option = {
-        name = "Admit our guilt and establish local administration."
+        name = "Admit our guilt."
 
         add_stability = -0.05
-        491 = { add_core_of = GER }
+        add_timed_idea = { idea = idea_lessons_of_the_empire years = 2 }
 
         hidden_effect = {
             if = {
