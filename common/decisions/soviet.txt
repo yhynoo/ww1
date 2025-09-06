@@ -1,4 +1,66 @@
 slavic_unrest = {
+    insurgencies_in_south_east_europe = {
+        icon = generic_form_nation
+        cost = 150
+        fire_only_once = yes
+
+        available = {
+            or = {
+                and = {
+                    GRE = { exists = no }
+                    any_state = { is_core_of = GRE is_owned_and_controlled_by = TUR }
+                }
+                and = {
+                    SER = { exists = no }
+                    any_state = { is_core_of = SER is_owned_and_controlled_by = TUR }
+                }
+            }
+            can_declare_war_on = TUR
+        }
+
+        days_remove = 90
+        war_with_on_remove = TUR
+
+        ai_will_do = {
+            base = 6
+            modifier = { 
+                or = { 
+                    has_war_with = TUR 
+                    and = { has_war = no date > 1916.1.1 } 
+                }
+                add = 6
+            }
+        }
+
+        complete_effect = {
+            news_event = { id = soviet_southeast.1 hours = 6 random_hours = 6 }
+        }
+
+        remove_effect = {
+            if = {
+                limit = { GRE = { exists = no } }
+
+                hidden_effect = { greek_independence = yes }
+                give_guarantee = GRE
+
+                every_country_with_original_tag = {
+                    original_tag_to_check = TUR
+                    declare_war_on = { target = GRE type = annex_everything }
+                }
+            }
+            if = {
+                limit = { SER = { exists = no } }
+
+                hidden_effect = { serbian_independence = yes }
+                give_guarantee = SER
+
+                every_country_with_original_tag = {
+                    original_tag_to_check = TUR
+                    declare_war_on = { target = SER type = annex_everything }
+                }
+            }
+        }
+    }
     unrest_in_galicia = {
         icon = generic_prepare_civil_war
         cost = 100
@@ -33,27 +95,6 @@ slavic_unrest = {
                     value = 90
                 }
             }
-        }
-    }
-    army_expansion_plan = {
-        icon = generic_civil_support
-        cost = 100
-        fire_only_once = yes
-
-        ai_will_do = { 
-            base = 3
-            modifier = { or = { AUS = { has_idea = idea_unrest_in_galicia } has_war_with = AUS } add = 9 }
-        }
-
-        complete_effect = {
-            add_timed_idea = { idea = idea_army_expansion_plan months = 6 }
-            add_tech_bonus = {
-				name = supply_bonus bonus = 1.0 uses = 2
-				
-                category = supply_tech
-                category = communications_tech
-                category = field_engineering_tech
-			}
         }
     }
 }
