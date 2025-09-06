@@ -4,15 +4,32 @@ start_arab_independence_war = {
         # transfer states
         every_controlled_state = {
             limit = { or = { state = 454 state = 553 } }        # add states
-            transfer_state_to = YEM
+
+            division_template = {
+                name = "Arab Troops"
+                division_names_group = YEM_INF_01
+                regiments = {
+                    infantry = { x = 0 y = 0 }
+                    infantry = { x = 0 y = 1 }
+                    infantry = { x = 1 y = 0 }
+                    infantry = { x = 1 y = 1 }
+                }
+            }
+
+            random = {
+                chance = 50
+
+                transfer_state_to = YEM
+                create_unit = {
+                    division = "name = \"Arab Troops\" division_template = \"Arab Troops\""
+                    owner = YEM
+                }
+            }
         }
 
         # declare war
         declare_war_on = { target = YEM type = annex_everything }
     }
-    
-    # load troops
-    YEM = { load_oob = "YEM_1912" }
 }
 
 # mongolia

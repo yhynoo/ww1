@@ -3,7 +3,17 @@ FRA_army_composition = {
 	enable = { always = yes }
 	abort_when_not_enabled = yes
 
+	# prepare more units
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 40
+	}
 
+	ai_strategy = {
+		type = added_military_to_civilian_factory_ratio
+		value = 25
+	}
 	
 	# we're also scared of Germany
 	ai_strategy = {
@@ -20,13 +30,13 @@ FRA_extra_aviation = {
 	ai_strategy = {
 		type = unit_ratio
 		id = fighter
-		value = 250
+		value = 100
 	}
 
 	ai_strategy = {
 		type = equipment_production_factor
 		id = fighter
-		value = 180
+		value = 50
 	}
 
 	ai_strategy = {
@@ -38,7 +48,12 @@ FRA_extra_aviation = {
 
 FRA_careful_GER = {
 	allowed = { tag = FRA }
-	enable = { is_in_faction = no }
+	enable = { 
+		or = { 
+			is_in_faction = no 
+			num_faction_members < 2
+		}
+	}
 	abort_when_not_enabled = yes
 
 	ai_strategy = {

@@ -84,3 +84,87 @@ country_event = {
         
     }
 }
+
+# stability
+add_namespace = _stability
+
+news_event = {
+    id = _stability.0
+    hidden = yes
+    immediate = { clr_country_flag = stability_issues }
+}
+
+country_event = {
+    id = _stability.1
+    title = "Do We Still Have a Country?"
+    desc = _stability.1.d
+
+    trigger = {
+        has_stability < 0.25
+        not = { has_country_flag = stability_issues }
+    }
+
+    mean_time_to_happen = { months = 3 }
+
+    immediate = {
+        hidden_effect = { set_country_flag = stability_issues }
+        news_event = { id = _stability.0 days = 30 random_days = 60 }
+    }
+
+    option = {
+        name = "Introduce extraordinary measures."
+
+        add_political_power = -100
+        add_stability = 0.05
+    }
+    option = {
+        name = "Wait it out."
+        add_popularity = { ideology = ROOT popularity = -0.05 }
+    }
+}
+
+news_event = {
+    id = _stability.2
+    title = "Appointees Out on the Streets"
+    desc = _stability.2.d
+
+    trigger = {
+        has_stability < 0.2
+        not = { has_country_flag = stability_issues }
+    }
+
+    mean_time_to_happen = { months = 3 }
+
+    immediate = {
+        hidden_effect = { set_country_flag = stability_issues }
+        news_event = { id = _stability.0 days = 30 random_days = 60 }
+    }
+
+    option = {
+        name = "Outrageous."
+        add_popularity = { ideology = ROOT popularity = -0.1 }
+    }
+}
+
+news_event = {
+    id = _stability.3
+    title = "Mayor of [random_owned_controlled_state.GetCapitalVictoryPointName] Disappears"        # fraud suspicion
+    desc = _stability.3.d
+
+    trigger = {
+        has_stability < 0.15
+        not = { has_country_flag = stability_issues }
+    }
+
+    mean_time_to_happen = { months = 3 }
+
+    immediate = {
+        hidden_effect = { set_country_flag = stability_issues }
+        news_event = { id = _stability.0 days = 30 random_days = 60 }
+    }
+
+    option = {
+        name = "Degenerate."
+        add_popularity = { ideology = ROOT popularity = -0.1 }
+    }
+}

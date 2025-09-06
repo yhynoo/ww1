@@ -870,6 +870,8 @@
         completion_reward = {
             add_timed_idea = { idea = idea_democratic_tendencies years = 1 }
             add_popularity = { ideology = democratic popularity = 0.05 }
+
+            hidden_effect = { id = soviet_aftermath.1 days = 15 random_days = 30 }
         }
     }
     focus = {
@@ -888,7 +890,7 @@
     }
     focus = {
         id = SOV_agrarian_reform
-        icon = GFX_focus_SOV_agrarian_reform
+        icon = GFX_focus_AUS_embrace_modernity
 
         relative_position_id = SOV_adjust_the_government
         x = -1
@@ -897,7 +899,7 @@
 
         prerequisite = { focus = SOV_adjust_the_government }
         completion_reward = {
-            remove_ideas = idea_agrarian_state
+            add_popularity = { ideology = democratic popularity = 0.05 }
             custom_effect_tooltip = decision_effect_tooltip
         }
     }
@@ -923,25 +925,21 @@
     }
     focus = { 
         id = SOV_embrace_modernity
-        icon = GFX_focus_AUS_embrace_modernity
+        icon = GFX_focus_generic_red_education
 
         relative_position_id = SOV_state_reform
         x = -1
         y = 1
         cost = 10
 
-        available = {
-            has_government = democratic
-        }
-
-        ai_will_do = {
-            has_completed_focus = SOV_over_the_edge factor = 0
-        }
-
         prerequisite = { focus = SOV_state_reform }
         completion_reward = {
-            add_political_power = 75
-            add_ideas = idea_limited_autonomy
+            add_research_slot = 1
+
+            add_tech_bonus = {
+				name = industry_bonus bonus = 0.5 uses = 2
+				category = industry_tech
+			}
         }
     }
 }

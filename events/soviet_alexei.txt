@@ -1,0 +1,29 @@
+add_namespace = soviet_alexei
+
+country_event = {
+    id = soviet_alexei.1
+    title = "Tsarevich Alexei’s Healing"
+    desc = soviet_alexei.1.d
+
+    trigger = {
+        tag = SOV
+        date > 1912.4.1
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "The court doctors should learn about this."
+
+        # bonus for airship technology
+        add_tech_bonus = {
+            name = field_hospital_bonus bonus = 0.5 uses = 1
+
+			technology = tech_field_hospital
+            technology = tech_field_hospital2
+        }
+    }
+    option = {
+        name = "The Divine watches over the Empire."
+        add_political_power = 25
+    }
+}

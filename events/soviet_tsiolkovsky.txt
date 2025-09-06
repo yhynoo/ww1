@@ -1,0 +1,45 @@
+add_namespace = soviet_tsiolkovsky
+
+country_event = {
+    id = soviet_tsiolkovsky.1
+    title = "Tsiolkovsky’s Airship Designs"
+    desc = soviet_tsiolkovsky.1.d
+
+    trigger = {
+        tag = SOV
+        date > 1914.1.1
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "Admiral Kolchak should hear about this."
+
+        # bonus for airship technology
+        add_tech_bonus = {
+            name = airships_bonus bonus = 1.0 uses = 1
+			category = airship_tech
+        }
+    }
+    option = {
+        name = "This is a wasted effort."
+        air_experience = 25
+    }
+}
+
+news_event = {
+    id = soviet_tsiolkovsky.2
+    title = "The Tallinn-Vladivostok Flight"
+    desc = soviet_tsiolkovsky.2.d
+
+    trigger = {
+        tag = SOV
+        date > 1914.5.1
+        has_tech = airship_1904
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "An achievement beyond admiration."
+        add_political_power = 50
+    }
+}
