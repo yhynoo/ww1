@@ -1,0 +1,67 @@
+add_namespace = soviet_entente
+
+country_event = {
+    id = soviet_entente.1
+    title = "[SOV.GetName]: Formalize the Entente?"
+    desc = soviet_entente.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a good idea."
+
+        create_faction = "Entente"
+        add_to_faction = FROM
+
+        ai_chance = {
+            base = 2
+
+            modifier = { 
+                or = {
+                    FROM = { has_government = communism } 
+                    or = { is_ally_with = AUS is_ally_with = TUR }
+                }
+                factor = 0
+            }
+        }
+
+        hidden_effect = {
+            add_ai_strategy = { type = alliance id = FROM value = 300 }
+            FROM = { add_ai_strategy = { type = alliance id = ROOT value = 300 } }
+        }
+    }
+
+    option = {
+        name = "An alliance with them is a burden."
+        if = {
+            limit = { has_guaranteed = FROM }
+            diplomatic_relation = { country = FROM relation = guarantee active = no }
+        }
+
+        FROM = { 
+            news_event = { id = soviet_entente.2 hours = 6 random_hours = 6 }
+            if = {
+                limit = { has_guaranteed = ROOT }
+                diplomatic_relation = { country = ROOT relation = guarantee active = no }
+            }
+        }
+
+        ai_chance = {
+            base = 1
+            modifier = { has_government = democratic factor = 0.5 }
+        }
+    }
+}
+
+news_event = {
+    id = soviet_entente.2
+    title = "[FROM.GetName] Abandons Us!"
+    desc = soviet_entente.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A dangerous disgrace."
+        add_popularity = { ideology = ROOT popularity = -0.1 }
+    }
+}
