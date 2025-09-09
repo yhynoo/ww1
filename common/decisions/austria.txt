@@ -19,17 +19,12 @@ contain_eastern_threats = {
             modifier = { 
                 or = {
                     has_war = yes
-                    TUR = { 
-                        or = { is_in_faction = yes has_country_flag = cotton_deal }
-                    }
+                    TUR = { or = { is_in_faction = yes has_country_flag = cotton_deal } }
                 }
                 factor = 0.5 
             } 
             modifier = {
-                GRE = {
-                    exists = yes
-                    is_in_faction = no
-                }
+                GRE = { exists = yes is_in_faction = no }
                 add = 1.5
             }
             modifier = { has_completed_focus = AUS_adjust_the_government factor = 0.25 }
@@ -40,7 +35,6 @@ contain_eastern_threats = {
                 limit = { is_core_of = SER }
                 add_claim_by = AUS
             }
-
             TUR = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
         }
     }

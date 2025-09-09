@@ -688,7 +688,7 @@ focus_tree = {
 
         prerequisite = { focus = USA_international_affairs }
         completion_reward = {
-            remove_idea = idea_isolationist_society
+            remove_ideas = idea_isolationist_society
             add_timed_idea = { idea = idea_expansionism years = 1 }
         }
     }
@@ -796,7 +796,10 @@ focus_tree = {
         }
 
         prerequisite = { focus = USA_traditionalism }
-        add_popularity = { ideology = democratic popularity = 0.05 }
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+            hidden_effect = { set_country_flag = public_support_allowed }
+        }
     }
     focus = {
         id = USA_mobilize_the_masses

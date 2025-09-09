@@ -257,7 +257,7 @@ dc_head_of_state_decisions = {
         days_remove = 7
 
         remove_effect = {
-            FROM = { country_event = _offer.1 hours = 6 random_hours = 6 }
+            FROM = { country_event = { id = _offer.1 hours = 6 random_hours = 6 } }
         }
     }
     offer_armistice = {
@@ -301,7 +301,7 @@ dc_head_of_state_decisions = {
         days_remove = 7
 
         remove_effect = {
-            FROM = { country_event = _offer_faction_leader.1 hours = 6 random_hours = 6 }
+            FROM = { country_event = { id = _offer_faction_leader.1 hours = 6 random_hours = 6 } }
         }
     }
 }

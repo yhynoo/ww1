@@ -1,4 +1,3 @@
-# focus decisions
 intervene_central_america = {
     align_mexico = {
         icon = generic_form_nation
@@ -114,10 +113,14 @@ american_industries = {
 
         modifier = {
             communism_drift = 0.05
+        }
+
+        remove_effect = {
             if = {
                 limit = { not = { has_government = communism } }
-                stability_weekly = -0.005
+                add_stability_weekly = -0.05
             }
+            else = { add_stability = 0.025 }
         }
     }
 }

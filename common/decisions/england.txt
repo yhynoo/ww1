@@ -89,7 +89,10 @@ change_alliances = {
         available = {
             any_state = {
                 or = { state = 289 state = 614 state = 286 state = 670 state = 671 }
-                owner = { not = { tag = ENG } }
+                owner = { 
+                    not = { tag = ENG }
+                    not = { has_war_with = ENG }
+                }
             }
         }
 

@@ -866,7 +866,7 @@
             add_timed_idea = { idea = idea_democratic_tendencies years = 1 }
             add_popularity = { ideology = democratic popularity = 0.05 }
 
-            hidden_effect = { id = soviet_aftermath.1 days = 15 random_days = 30 }
+            hidden_effect = { country_event = { id = soviet_aftermath.1 days = 15 random_days = 30 } }
         }
     }
     focus = {
@@ -930,11 +930,6 @@
         prerequisite = { focus = SOV_state_reform }
         completion_reward = {
             add_research_slot = 1
-
-            add_tech_bonus = {
-				name = industry_bonus bonus = 0.5 uses = 2
-				category = industry_tech
-			}
         }
     }
 }
