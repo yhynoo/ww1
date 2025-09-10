@@ -1,0 +1,39 @@
+add_namespace = japan_taisho
+
+news_event = {
+    id = japan_taisho.1
+    title = "Taishō’s Address to the Diet"
+    desc = japan_taisho.1.d
+
+    trigger = {
+        tag = JAP
+        date > 1913.1.1
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "His Majesty had a worse day."
+        add_stability = -0.05
+
+        hidden_effect = { country_event = { id = japan_taisho.2 days = 7 random_days = 7 } }
+    }
+}
+
+country_event = {
+    id = japan_taisho.2
+    title = "Hearsay About Taishō’s Address Spreads"
+    desc = japan_taisho.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We should use this opportunity."
+
+        add_popularity = { ideology = authoritarianism popularity = 0.05 }
+        add_timed_idea = { idea = idea_taisho_sick years = 2 }
+    }
+    option = {
+        name = "There is no need to worry."
+        add_political_power = -50
+    }
+}

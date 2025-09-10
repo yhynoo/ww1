@@ -782,6 +782,7 @@
 
         prerequisite = { focus = JAP_traditionalism }
         completion_reward = {
+            add_war_support = 0.05
             custom_effect_tooltip = decision_effect_tooltip
             hidden_effect = { set_country_flag = public_support_allowed }
         }
@@ -853,6 +854,8 @@
         completion_reward = {
             add_timed_idea = { idea = idea_monarchism_tendencies years = 1 }
             add_popularity = { ideology = monarchism popularity = 0.05 }
+
+            hidden_effect = { country_event = { id = japan_heijo.1 days = 30 random_days = 60 } }
         }
     }
     focus = {
@@ -910,27 +913,32 @@
     }
     focus = {
         id = JAP_embrace_modernity
-        icon = GFX_focus_JAP_embrace_modernity
+        icon = GFX_focus_AUS_embrace_modernity
 
         relative_position_id = JAP_state_reform
         x = -1
         y = 1
         cost = 10
 
+        available = {
+            any_state = {
+                or = { state = 328 state = 619 state = 654 state = 72 }
+                is_owned_and_controlled_by = JAP
+            }
+        }
+
         prerequisite = { focus = JAP_state_reform }
         completion_reward = {
             every_state = {
                 limit = {
-                    or = {
-                        state = 524 state = 525 state = 527                 # korea and taiwan
-                        state = 328 state = 619 state = 654 state = 72      # manchuria
-                        state = 408 state = 409 state = 655                 # far east
-                        state = 333 state = 336
-                    }
-                    is_controlled_by = JAP
+                    or = { state = 328 state = 619 state = 654 state = 72 }
+                    is_owned_and_controlled_by = JAP
                 }
                 add_core_of = JAP
             }
+
+            news_event = { id = japan_annexations.1 hours = 3 }
+            hidden_effect = { country_event = { id = japan_annexations.2 days = 7 } }
         }
     }
 }

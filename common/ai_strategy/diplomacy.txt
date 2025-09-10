@@ -71,6 +71,7 @@ entente_acceptance = {
             original_tag = ENG
             original_tag = GRE
             original_tag = ITA
+            original_tag = JAP
             original_tag = SOV
             original_tag = USA
         }
@@ -83,6 +84,13 @@ entente_acceptance = {
                 not = { has_country_flag = neutral_italy }
                 not = { has_completed_focus = ITA_on_our_own }
                 FRA = { war_length_with = { tag = AUS months > 6 } }
+            }
+            and = {                                                             # japan
+                original_tag = JAP
+                and = {
+                    threat > 0.2
+                    not = { has_completed_focus = JAP_on_our_own }
+                }                                              
             }
             and = {                                                             # russia
                 original_tag = SOV 
@@ -116,6 +124,13 @@ entente_invite = {
                 not = { has_country_flag = neutral_italy }
                 not = { has_completed_focus = ITA_on_our_own }
                 FRA = { war_length_with = { tag = AUS months > 6 } }
+            }
+            and = {                                                             # japan
+                original_tag = JAP
+                and = {
+                    threat > 0.2
+                    not = { has_completed_focus = JAP_on_our_own }
+                }                                              
             }
             and = {                                                             # russia
                 original_tag = SOV 

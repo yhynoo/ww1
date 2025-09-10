@@ -1,0 +1,31 @@
+add_namespace = japan_annexations
+
+news_event = {
+    id = japan_annexations.1
+    title = "[JAP.GetName] Annexes Manchurian Territories"
+    desc = japan_annexations.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Worrying."
+    }
+}
+
+country_event = {
+    id = japan_annexations.2
+    title = "The Question of Administration"
+    desc = japan_annexations.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let the Army deal with it."
+        add_popularity = { ideology = authoritarianism popularity = 0.1 }
+    }
+    option = {
+        name = "Manchuria needs civilian oversight."
+        add_stability = 0.05
+    }
+}

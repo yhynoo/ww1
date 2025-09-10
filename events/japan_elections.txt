@@ -1,0 +1,106 @@
+add_namespace = japan_elections
+
+country_event = {
+    id = japan_elections.1
+    title = "The Election of 1912"
+    desc = japan_elections.1.d
+
+    is_triggered_only = yes
+    trigger = {
+        tag = JAP
+        has_government = democratic
+
+        date > 1912.1.1         date < 1913.1.1
+    }
+
+    option = {
+        name = "Katsura Tarō."
+
+        add_popularity = { ideology = monarchism popularity = 0.025 }
+        promote_character = JAP_katsura_taro
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "Saionji Kinmochi."
+        add_stability = 0.05
+
+        ai_chance = { base = 2 }
+    }
+}
+
+country_event = {
+    id = japan_elections.2
+    title = "The Election of 1916"
+    desc = japan_elections.2.d
+
+    is_triggered_only = yes
+    trigger = {
+        tag = JAP
+        has_government = democratic
+
+        date > 1916.1.1         date < 1917.1.1
+    }
+
+    option = {
+        name = "Saionji Kinmochi."
+
+        if = {
+            limit = { has_country_leader = { character = JAP_saionji_kinmochi ruling_only = yes } }
+            add_stability = 0.05
+        }
+        else = {
+            add_popularity = { ideology = democratic popularity = 0.025 }
+            promote_character = JAP_saionji_kinmochi
+        }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Terauchi Masatake."
+        
+        add_popularity = { ideology = authoritarianism popularity = 0.025 }
+        promote_character = JAP_terauchi_masatake
+
+        ai_chance = { 
+            base = 1
+            modifier = { authoritarianism > 0.25 add = 2 }
+        }
+    }
+}
+
+country_event = {
+    id = japan_elections.3
+    title = "The Election of 1920"
+    desc = japan_elections.3.d
+
+    is_triggered_only = yes
+    trigger = {
+        tag = JAP
+        has_government = democratic
+
+        date > 1920.1.1         date < 1921.1.1
+    }
+
+    option = {
+        name = "Hara Takashi."
+
+        add_popularity = { ideology = democratic popularity = 0.025 }
+        promote_character = JAP_hara_takashi
+
+        ai_chance = { 
+            base = 1
+        }
+    }
+    option = {
+        name = "Kiyoura Keigo."
+
+        add_stability = 0.05
+        promote_character = JAP_kiyoura_keigo
+
+        ai_chance = { 
+            base = 1
+            modifier = { monarchism > 0.25 add = 2 }
+        }
+    }
+}

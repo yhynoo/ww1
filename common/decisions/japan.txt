@@ -1,4 +1,4 @@
-pacific_claims = {
+area_of_security = {
     demand_tsingtao = {
         icon = generic_prepare_civil_war
         fire_only_once = yes
@@ -27,33 +27,6 @@ pacific_claims = {
             GER = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
         }
     }
-    demand_far_east = {
-        icon = generic_prepare_civil_war
-        fire_only_once = yes
-        cost = 100
-
-        available = {
-            can_declare_war_on = SOV
-            any_state = {
-                or = { state = 408 state = 409 state = 655 }
-                is_owned_by = SOV
-            }
-        }
-
-        ai_will_do = {
-            base = 0
-            modifier = { SOV = { surrender_progress > 0.1 } add = 9 }
-        }
-
-        complete_effect = {
-            every_state = {
-                limit = { or = { state = 408 state = 409 state = 655 } }
-                add_claim_by = JAP
-            }
-
-            SOV = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
-        }
-    }
     develop_okinawa = {
         icon = generic_construction
         fire_only_once = yes
@@ -61,28 +34,41 @@ pacific_claims = {
 
         ai_will_do = { base = 9 }
 
-        available = { controls_state = 526 }
+        available = { controls_state = 526 controls_state = 648 }
         complete_effect = {
             526 = {
-                add_building_construction = { type = naval_base level = 2 province = 11932 instant_build = yes }
                 add_building_construction = { type = dockyard level = 2 instant_build = yes }
+                add_building_construction = { type = naval_base level = 1 province = 11932 instant_build = yes }
 
                 add_extra_state_shared_building_slots = 2
             }
+            648 = {
+                add_building_construction = { type = naval_base level = 1 province = 13026 instant_build = yes }
+            }
         }
+    }
+    annex_taiwan = {
+        icon = generic_form_nation
+        fire_only_once = yes
+        cost = 50
+
+        ai_will_do = { base = 12 }
+        available = { controls_state = 524 }
+
+        complete_effect = { 524 = { add_core_of = JAP } }
     }
 }
 
-asian_hegemony = {
-    assert_singapore = {
+dominate_the_pacific = {
+    demand_singapore = {
         icon = generic_prepare_civil_war
         fire_only_once = yes
-        cost = 75
+        cost = 100
 
         available = {
             any_state = {
                 or = { state = 333 state = 336 }
-                not = { is_controlled_by = JAP }
+                not = { is_owned_by = JAP }
             }
         }
 
@@ -92,30 +78,29 @@ asian_hegemony = {
         }
 
         complete_effect = {
-            every_state = {
-                limit = { or = { state = 333 state = 336 } }
-                add_claim_by = JAP
+            every_country = {
+                limit = { or = { owns_state = 333 owns_state = 336 } }
+                country_event = { id = _demand.1 hours = 6 random_hours = 6 }
             }
-
-            news_event = { id = japan_singapore.1 hours = 6 random_hours = 6 }
         }
     }
-    help_india = {
+    approach_the_american_question = {
         icon = generic_civil_support
-        cost = 50
-        days_remove = 90
+        fire_only_once = yes
+        cost = 75
 
         available = {
-            RAJ = { is_subject = yes }
+            not = { has_war_with = USA }
         }
 
-        ai_will_do = { 
+        ai_will_do = {
             base = 6
-            modifier = { is_ally_with = USA add = 6 }
+            modifier = { threat < 0.5 factor = 0 }
         }
 
         complete_effect = {
-            RAJ = { news_event = { id = japan_india.1 hours = 6 random_hours = 6 } }
+            add_war_support = 0.05
+            country_event = { id = japan_usa.1 hours = 6 random_hours = 6 }
         }
     }
 }

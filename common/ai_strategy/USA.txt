@@ -1,3 +1,22 @@
+USA_isolate = {
+    allowed = { original_tag = USA }
+    enable = { 
+        or = {
+            has_idea = idea_isolationist_society
+            date < 1917.7.1
+            not = { has_idea = idea_lusitania } 
+        }
+    }
+    abort_when_not_enabled = yes
+    reversed = yes
+
+    ai_strategy = {
+        type = alliance
+        id = USA
+        value = -60
+    }
+}
+
 USA_supports_dems = {
     allowed = { NOT = { original_tag = USA } }
     enable_reverse = { USA = { has_completed_focus = USA_traditionalism } }
