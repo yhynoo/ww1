@@ -11,7 +11,7 @@ default_area_priority = {
 	ai_strategy = {
 		type = area_priority
 		id = middle_east
-		value = 30
+		value = -30
 	}
 
 	ai_strategy = {
@@ -25,6 +25,12 @@ default_area_priority = {
 		id = africa
 		value = -200
 	}
+
+	ai_strategy = {
+		type = area_priority
+		id = australia
+		value = -200
+	}
 }
 
 african_operations = {
@@ -33,7 +39,7 @@ african_operations = {
 		or = {
 			and = { 
 				tag = FRA
-				has_war_with = MOR
+				or = { has_war_with = MOR has_war_with = ALG }
 			}
 			and = { 
 				tag = ITA

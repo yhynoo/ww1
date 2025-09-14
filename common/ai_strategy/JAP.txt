@@ -1,4 +1,16 @@
+JAP_hates_GER = {
+	allowed = { original_tag = JAP }
+	enable = { 
+		not = { is_ally_with = GER }
+	}
+	abort_when_not_enabled = yes
 
+	ai_strategy = {
+		type = declare_war
+		id = GER
+		value = 200
+	}
+}
 
 JAP_avoids_europe = {
 	allowed = { original_tag = JAP }
