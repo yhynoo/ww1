@@ -1,0 +1,14 @@
+add_namespace = manchukuo_treaties
+
+news_event = {
+    id = manchukuo_treaties.1
+    title = "[MAN.GetName] Withdraws from Trade Treaties"
+    desc = manchukuo_treaties.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "How dare they."
+        create_wargoal = { target = MAN type = topple_government }
+    }
+}

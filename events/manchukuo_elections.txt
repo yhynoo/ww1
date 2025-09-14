@@ -1,0 +1,132 @@
+add_namespace = manchukuo_elections
+
+country_event = {
+    id = manchukuo_elections.1
+    title = "The Election of 1913"
+    desc = manchukuo_elections.1.d
+
+    is_triggered_only = yes
+    trigger = {
+        tag = MAN
+        has_government = democratic
+        not = { has_idea = idea_uneasy_agreement }
+
+        date > 1913.1.1         date < 1914.1.1
+    }
+
+    option = {
+        name = "Sun Yat-Sen."
+
+        if = {
+            limit = { has_country_leader = { character = MAN_sun_yat_sen ruling_only = yes } }
+            add_stability = 0.05
+        }
+        else = {
+            add_popularity = { ideology = democratic popularity = 0.025 }
+            promote_character = MAN_sun_yat_sen
+        }
+
+        ai_chance = { 
+            base = 0
+            modifier = { has_country_flag = manchukuo_warlord add = 1 }
+        }
+    }
+    option = {
+        name = "Yuan Shikai."
+        if = {
+            limit = { has_country_leader = { character = MAN_yuan_shikai ruling_only = yes } }
+            add_stability = 0.05
+        }
+        else = {
+            add_war_support = 0.05
+            promote_character = MAN_yuan_shikai
+        }
+
+        ai_chance = { 
+            base = 0
+            modifier = { has_country_flag = manchukuo_democratic add = 1 }
+        }
+    }
+}
+
+country_event = {
+    id = manchukuo_elections.2
+    title = "The Election of 1917"
+    desc = manchukuo_elections.2.d
+
+    is_triggered_only = yes
+    trigger = {
+        tag = MAN
+        has_government = democratic
+        not = { has_idea = idea_uneasy_agreement }
+
+        date > 1917.1.1         date < 1918.1.1
+    }
+
+    option = {
+        name = "Sun Yat-Sen."
+
+        if = {
+            limit = { has_country_leader = { character = MAN_sun_yat_sen ruling_only = yes } }
+            add_stability = 0.05
+        }
+        else = {
+            add_popularity = { ideology = democratic popularity = 0.025 }
+            promote_character = MAN_sun_yat_sen
+        }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Tang Shaoyi."
+        
+        if = {
+            limit = { has_country_leader = { character = MAN_tang_shaoyi ruling_only = yes } }
+            add_stability = 0.05
+        }
+        else = {
+            add_popularity = { ideology = monarchism popularity = 0.025 }
+            promote_character = MAN_tang_shaoyi
+        }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = manchukuo_elections.3
+    title = "The Election of 1921"
+    desc = manchukuo_elections.3.d
+
+    is_triggered_only = yes
+    trigger = {
+        tag = JAP
+        has_government = democratic
+        not = { has_idea = idea_uneasy_agreement }
+
+        date > 1921.1.1         date < 1922.1.1
+    }
+
+    option = {
+        name = "Wang Jingwei."
+
+        add_popularity = { ideology = democratic popularity = 0.025 }
+        promote_character = MAN_wang_jingwei
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Tang Shaoyi."
+        
+        if = {
+            limit = { has_country_leader = { character = MAN_tang_shaoyi ruling_only = yes } }
+            add_stability = 0.05
+        }
+        else = {
+            add_popularity = { ideology = monarchism popularity = 0.025 }
+            promote_character = MAN_tang_shaoyi
+        }
+
+        ai_chance = { base = 1 }
+    }
+}

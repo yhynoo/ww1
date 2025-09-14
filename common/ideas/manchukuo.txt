@@ -1,18 +1,39 @@
 # scenario ideas
 ideas = {
     country = {
-        idea_memories_of_humiliation = {
+        idea_unequal_treaties = {
             modifier = {
-                opinion_gain_monthly_factor = -0.25
-                political_power_factor = -0.1
+                consumer_goods_factor = 0.35
+                civilian_intel_to_others = 50.0                
+            }
+        }
+        idea_uneasy_agreement = {
+            modifier = {
+                stability_factor = -0.05
+                democratic_drift = -0.05
             }
         }
 
         # focus
+        idea_yuans_loans = {
+            modifier = {
+                consumer_goods_factor = 0.1
+                production_speed_industrial_complex_factor = 0.25
+            }
+        }
         idea_five_races_one_nation = {
             modifier = {
                 political_power_factor = 0.1
                 resistance_growth_on_our_occupied_states = 0.2
+            }
+        }
+
+        # other
+
+        idea_warlordism = {
+            modifier = {
+                stability_factor = -0.25
+                conscription_factor = -0.35
             }
         }
     }
