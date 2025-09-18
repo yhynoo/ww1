@@ -4,20 +4,28 @@ china_civil_war = {
         set_popularities = { communism = 85 democratic = 10 monarchism = 5 }
         set_cosmetic_tag = MAN_workers
 
-        add_ideas = {
-            closed_economy
-            partial_economic_mobilisation
+        if = {
+            limit = { is_ai = yes }
+            add_ideas = {
+                closed_economy
+                partial_economic_mobilisation
+            }
         }
     }
 
     random_country = {
-        limit = { original_tag = MAN not = { has_government = communism } }
+        limit = { 
+            original_tag = MAN
+            not = { has_government = communism }
+        }
         set_popularities = { communism = 10 democratic = 65 monarchism = 35 }
-        set_cosmetic_tag = MAN_state
 
-        add_ideas = {
-            closed_economy
-            partial_economic_mobilisation
+        if = {
+            limit = { is_ai = yes }
+            add_ideas = {
+                closed_economy
+                partial_economic_mobilisation
+            }
         }
     }
 }
