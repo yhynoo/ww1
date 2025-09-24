@@ -859,6 +859,11 @@
         prerequisite = { focus = ITA_strength_in_unity }
         completion_reward = {
             add_ideas = idea_eia_eia_alala
+
+            every_state = {
+                limit = { or = { state = 33 state = 39 state = 103 } }
+                add_core_of = ROOT
+            }
         }
     }
 
@@ -881,8 +886,6 @@
         completion_reward = {
             add_timed_idea = { idea = idea_democratic_tendencies years = 1 }
             add_popularity = { ideology = democratic popularity = 0.05 }
-
-            hidden_effect = { news_event = { id = italy_trasformismo.1 months = 1 random_days = 30 } }
         }
     }
     focus = {
@@ -940,7 +943,7 @@
     }
     focus = {
         id = ITA_embrace_modernity
-        icon = GFX_focus_generic_red_education
+        icon = GFX_focus_AUS_embrace_modernity
 
         relative_position_id = ITA_state_reform
         x = -1
@@ -949,7 +952,8 @@
 
         prerequisite = { focus = ITA_state_reform }
         completion_reward = {
-            add_research_slot = 1
+            news_event = { id = italy_trasformismo.1 hours = 3 }
+            add_popularity = { ideology = democratic popularity = 0.05 }
         }
     }
 }

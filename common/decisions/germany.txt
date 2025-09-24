@@ -107,27 +107,21 @@ a_place_in_the_sun = {
 
         available = {
             UBD = { exists = no }
-            any_state = {
-                is_core_of = UBD
-                is_controlled_by = SOV
-            }
+            any_state = { is_core_of = UBD is_controlled_by = SOV }
         }
 
         ai_will_do = { 
             base = 0
             modifier = { 
-                or = {
-                    and = { date > 1914.10.1 has_war = no } 
-                    FRA = { has_country_flag = french_neutrality }
-                }
+                and = { date > 1914.10.1 has_war = no }
                 add = 12
             }
             modifier = { has_war_with = SOV add = 9 }
         }
 
         complete_effect = {
-            add_war_support = 0.05
-            news_event = { id = germany_east.1 hours = 6 random_hours = 6 }
+            SOV = { add_timed_idea = { idea = idea_unrest_in_baltics months = 6 } }
+            news_event = { id = germany_east.1 hours = 3 }
         }
     }
 }

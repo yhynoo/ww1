@@ -2,7 +2,7 @@ add_namespace = holland_shell
 
 country_event = {
     id = holland_shell.1
-    title = "[HOL.GetName] Asks for Khuzestan Oil"
+    title = "[HOL.GetName] Asks for Iraqi Oil"
     desc = holland_shell.1.d
 
     is_triggered_only = yes
@@ -11,23 +11,26 @@ country_event = {
         name = "We must agree to this."
         FROM = { news_event = { id = holland_shell.2 hours = 6 random_hours = 6 } }
 
-        give_resource_rights = { receiver = HOL state = 413 }
+        give_resource_rights = { receiver = HOL state = 291 }
+        manage_turkish_debt = yes
 
         ai_chance = { 
-            base = 1
+            base = 0
+            modifier = { 
+                or = { has_idea = idea_amassed_foreign_debt has_idea = idea_significant_foreign_debt } 
+                add = 2 
+            }
         }
     }
     option = {
         name = "Ignore them."
-        HOL = { create_wargoal = { target = PER type = puppet_wargoal_focus } }
-
         ai_chance = { base = 1 }
     }
 }
 
 news_event = {
     id = holland_shell.2
-    title = "[HOL.GetName] Accesses Khuzestan Oil"
+    title = "Dutch Shell Accesses Iraqi Oil"
     desc = holland_shell.2.d
 
     is_triggered_only = yes

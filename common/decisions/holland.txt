@@ -10,11 +10,11 @@ aftermath_of_antwerp = {
 
         ai_will_do = { 
             base = 0
-            modifier = { has_completed_focus = HOL_thorbeckes_legacy add = 9 }
+            modifier = { has_completed_focus = HOL_traditionalism add = 9 }
         }
 
         complete_effect = {
-            FRA = { country_event = { id = holland_antwerp.1 hours = 6 random_hours = 6 } }
+            FRA = { country_event = { id = holland_withdraw.1 hours = 6 random_hours = 6 } }
         }
     }
     escalate_tensions = {
@@ -26,7 +26,7 @@ aftermath_of_antwerp = {
         ai_will_do = {
             base = 0
             modifier = { 
-                and = { has_completed_focus = HOL_integrate_flanders not = { has_government = monarchism } } 
+                and = { has_completed_focus = HOL_adjust_the_government not = { has_government = monarchism } } 
                 add = 6
             }
         }
@@ -34,6 +34,12 @@ aftermath_of_antwerp = {
         modifier = {
             war_support_weekly = 0.01
             monarchism_drift = 0.05
+        }
+
+        complete_effect = {
+            hidden_effect = {
+                random = { chance = 25 news_event = { id = holland_oostende.1 random_days = 60 } }
+            }
         }
     }
 }
@@ -64,18 +70,18 @@ voc_mentaliteit = {
         fire_only_once = yes
 
         available = {
-            not = { has_war_with = PER }
+            not = { has_war_with = TUR }
 
-            PER = {
-                controls_state = 413
-                has_resources_rights = { state = 413 resources = { oil } }
+            TUR = {
+                controls_state = 291
+                has_resources_rights = { state = 291 resources = { oil } }
             }
         }
 
         ai_will_do = { base = 6 }
 
         complete_effect = {
-            PER = { country_event = { id = holland_shell.1 hours = 6 random_hours = 6 } }
+            TUR = { country_event = { id = holland_shell.1 hours = 6 random_hours = 6 } }
         }
     }
     develop_den_helder = {

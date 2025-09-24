@@ -1,4 +1,4 @@
-ITA_dislikes_TUR = {
+italy_war_for_libya = {
 	allowed = { tag = ITA }
 	enable = { has_completed_focus = ITA_deterrence }
 	abort = {
@@ -12,5 +12,17 @@ ITA_dislikes_TUR = {
 		type = declare_war
 		id = TUR
 		value = 150
+	}
+
+	# add tactics for the invasion of libya here:
+	ai_strategy = {
+		type = naval_invasion_focus
+		value = 30
+	}
+
+	ai_strategy = {
+		type = invasion_unit_request
+		area = libyan_invasion_area
+		value = 300
 	}
 }

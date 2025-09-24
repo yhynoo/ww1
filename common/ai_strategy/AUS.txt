@@ -16,13 +16,6 @@ austria_army_production = {
 		id = infantry
 		value = 15
 	}
-
-	# planning the positions
-	ai_strategy = {
-		type = prepare_for_war
-		id = ITA
-		value = 50
-	}
 }
 
 AUS_hates_SOV = {
@@ -42,12 +35,12 @@ AUS_hates_SOV = {
 
 AUS_focuses_on_alps = {
 	allowed = { original_tag = AUS }
-	enable = { has_war_with = ITA }
+	enable = { not = { is_ally_with = ITA } }
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
 		type = front_unit_request
 		tag = ITA
-		value = 300
+		value = 200
 	}
 }

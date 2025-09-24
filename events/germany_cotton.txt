@@ -12,27 +12,13 @@ country_event = {
         FROM = { news_event = { id = germany_cotton.2 hours = 6 random_hours = 6 } }
 
         give_resource_rights = { receiver = GER state = 447 }
-
-        if = {
-            limit = { has_idea = idea_amassed_foreign_debt }
-            swap_ideas = {
-                remove_idea = idea_amassed_foreign_debt
-                add_idea = idea_significant_foreign_debt
-            }
-        }
-        else_if = {
-            limit = { has_idea = idea_significant_foreign_debt }
-            remove_ideas = idea_significant_foreign_debt
-        }
+        manage_turkish_debt = yes
 
         ai_chance = { 
             base = 0
             modifier = { has_country_flag = we_like_germany add = 2 }
             modifier = { 
-                or = { 
-                    has_idea = idea_amassed_foreign_debt 
-                    has_idea = idea_significant_foreign_debt 
-                } 
+                or = { has_idea = idea_amassed_foreign_debt has_idea = idea_significant_foreign_debt } 
                 add = 2 
             }
         }

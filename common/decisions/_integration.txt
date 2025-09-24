@@ -1,0 +1,1606 @@
+dc_integration = {
+    _integration_afghanistan = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 125
+
+        visible = {
+            any_state = {
+                or = { state = 267 state = 415 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 267 controls_state = 415 
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 267 state = 415 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 267 } not = { controls_state = 415 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 267 state = 415 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 267 state = 415 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_albania = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 75
+
+        visible = {
+            any_state = {
+                or = { state = 44 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 44
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        44 = {
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 44 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 44 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 44 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_alsace = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 75
+
+        visible = {
+            any_state = {
+                or = { state = 28 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 28
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        28 = {
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 28 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 28 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 28 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_armenia = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 100
+
+        visible = {
+            any_state = {
+                or = { state = 352 state = 353 state = 354 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 352 controls_state = 353 controls_state = 354
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 352 state = 353 state = 354 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 352 } not = { controls_state = 353 } not = { controls_state = 354 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 352 state = 353 state = 354 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 352 state = 353 state = 354 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_austria = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 150
+
+        visible = {
+            any_state = {
+                or = { state = 4 state = 39 state = 152 state = 153 state = 664 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 4 controls_state = 39 controls_state = 152 controls_state = 153 controls_state = 664
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 4 state = 39 state = 152 state = 153 state = 664 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 4 } not = { controls_state = 39 } not = { controls_state = 152 } not = { controls_state = 153 } not = { controls_state = 664 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 4 state = 39 state = 152 state = 153 state = 664 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 4 state = 39 state = 152 state = 153 state = 664 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_baden = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 100
+
+        visible = {
+            any_state = {
+                or = { state = 50 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 50
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        50 = {
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 50 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 50 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 50 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_baltic_north = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 100
+
+        visible = {
+            any_state = {
+                or = { state = 12 state = 13 state = 188 state = 191 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 12 controls_state = 13 controls_state = 188 controls_state = 191
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 12 state = 13 state = 188 state = 191 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 12 } not = { controls_state = 13 } not = { controls_state = 188 } not = { controls_state = 191 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 12 state = 13 state = 188 state = 191 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 12 state = 13 state = 188 state = 191 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_baltic_south = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 100
+
+        visible = {
+            any_state = {
+                or = { state = 11 state = 189 state = 190 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 11 controls_state = 189 controls_state = 190
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 11 state = 189 state = 190 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 11 } not = { controls_state = 189 } not = { controls_state = 190 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 11 state = 189 state = 190 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 11 state = 189 state = 190 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_bayern = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 150
+
+        visible = {
+            any_state = {
+                or = { state = 52 state = 53 state = 54 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 52 controls_state = 53 controls_state = 54
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 52 state = 53 state = 54 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 52 } not = { controls_state = 53 } not = { controls_state = 54 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 52 state = 53 state = 54 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 52 state = 53 state = 54 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_belgium = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 125
+
+        visible = {
+            any_state = {
+                or = { state = 6 state = 34 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 6 controls_state = 34 
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 6 state = 34 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 6 } not = { controls_state = 34 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 6 state = 34 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 6 state = 34 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_crimea = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 75
+
+        visible = {
+            any_state = {
+                or = { state = 137 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 137
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        137 = {
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 137 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 137 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 137 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_czechia = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 100
+
+        visible = {
+            any_state = {
+                or = { state = 9 state = 69 state = 74 state = 75 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 9 controls_state = 69 controls_state = 74 controls_state = 75
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 9 state = 69 state = 74 state = 75 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 9 } not = { controls_state = 69 } not = { controls_state = 74 } not = { controls_state = 75 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 9 state = 69 state = 74 state = 75 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 9 state = 69 state = 74 state = 75 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_galicia = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 100
+
+        visible = {
+            any_state = {
+                or = { state = 80 state = 89 state = 91 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 80 controls_state = 89 controls_state = 91 
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 80 state = 89 state = 91 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 80 } not = { controls_state = 89 } not = { controls_state = 91 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 80 state = 89 state = 91 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 80 state = 89 state = 91 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_greece = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 150
+
+        visible = {
+            any_state = {
+                or = { state = 47 state = 182 state = 186 state = 187 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 47 controls_state = 182 controls_state = 186 controls_state = 187
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 47 state = 182 state = 186 state = 187 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 47 } not = { controls_state = 182 } not = { controls_state = 186 } not = { controls_state = 187 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 47 state = 182 state = 186 state = 187 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 47 state = 182 state = 186 state = 187 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_illyria = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 100
+
+        visible = {
+            any_state = {
+                or = { state = 103 state = 104 state = 109 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 103 controls_state = 104 controls_state = 109
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 103 state = 104 state = 109 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 103 } not = { controls_state = 104 } not = { controls_state = 109 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 103 state = 104 state = 109 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 103 state = 104 state = 109 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_ionia = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 150
+
+        visible = {
+            any_state = {
+                or = { state = 164 state = 339 state = 340 state = 341 state = 342 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 164 controls_state = 339 controls_state = 340 controls_state = 341 controls_state = 342
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 164 state = 339 state = 340 state = 341 state = 342 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 164 } not = { controls_state = 339 } not = { controls_state = 340 } not = { controls_state = 341 } not = { controls_state = 342 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 164 state = 339 state = 340 state = 341 state = 342 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 164 state = 339 state = 340 state = 341 state = 342 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_manchuria = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 100
+
+        visible = {
+            any_state = {
+                or = { state = 328 state = 619 state = 654 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 328 controls_state = 619 controls_state = 654
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 328 state = 619 state = 654 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 328 } not = { controls_state = 619 } not = { controls_state = 654 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 328 state = 619 state = 654 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 328 state = 619 state = 654 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_mesopotamia = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 150
+
+        visible = {
+            any_state = {
+                or = { state = 291 state = 350 state = 676 state = 680 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 291 controls_state = 350 controls_state = 676 controls_state = 580
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 291 state = 350 state = 676 state = 680 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 291 } not = { controls_state = 350 } not = { controls_state = 676 } not = { controls_state = 680 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 291 state = 350 state = 676 state = 680 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 291 state = 350 state = 676 state = 680 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_moldova = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 100
+
+        visible = {
+            any_state = {
+                or = { state = 78 state = 79 state = 442 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 78 controls_state = 79 controls_state = 442
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 78 state = 79 state = 442 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 78 } not = { controls_state = 79 } not = { controls_state = 442 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 78 state = 79 state = 442 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 78 state = 79 state = 442 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_mongolia = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 100
+
+        visible = {
+            any_state = {
+                or = { state = 329 state = 330 state = 513 state = 559 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 329 controls_state = 330 controls_state = 513 controls_state = 559
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 329 state = 330 state = 513 state = 559 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 329 } not = { controls_state = 330 } not = { controls_state = 513 } not = { controls_state = 559 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 329 state = 330 state = 513 state = 559 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 329 state = 330 state = 513 state = 559 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_netherlands = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 125
+
+        visible = {
+            any_state = {
+                or = { state = 7 state = 35 state = 36 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 7 controls_state = 35 controls_state = 36 
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 7 state = 35 state = 36 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 7 } not = { controls_state = 35 } not = { controls_state = 36 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 7 state = 35 state = 36 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 7 state = 35 state = 36 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_poland_central = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 150
+
+        visible = {
+            any_state = {
+                or = { state = 10 state = 87 state = 90 state = 92 state = 98 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 10 controls_state = 87 controls_state = 90 controls_state = 92 controls_state = 98
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 10 state = 87 state = 90 state = 92 state = 98 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 10 } not = { controls_state = 87 } not = { controls_state = 90 } not = { controls_state = 92 } not = { controls_state = 98 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 10 state = 87 state = 90 state = 92 state = 98 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 10 state = 87 state = 90 state = 92 state = 98 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_poland_west = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 100
+
+        visible = {
+            any_state = {
+                or = { state = 85 state = 86 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 85 controls_state = 86 
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 85 state = 86 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 85 } not = { controls_state = 86 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 85 state = 86 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 85 state = 86 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_prussia = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 75
+
+        visible = {
+            any_state = {
+                or = { state = 5 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 5
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        5 = {
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 5 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 5 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 5 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_rhineland = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 150
+
+        visible = {
+            any_state = {
+                or = { state = 8 state = 42 state = 51 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 8 controls_state = 42 controls_state = 51
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 8 state = 42 state = 51 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 8 } not = { controls_state = 42 } not = { controls_state = 51 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 8 state = 42 state = 51 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 8 state = 42 state = 51 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_serbia = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 150
+
+        visible = {
+            any_state = {
+                or = { state = 105 state = 107 state = 108 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 105 controls_state = 107 controls_state = 108
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 105 state = 107 state = 108 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 105 } not = { controls_state = 107 } not = { controls_state = 108 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 105 state = 107 state = 108 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 105 state = 107 state = 108 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_tibet = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 75
+
+        visible = {
+            any_state = {
+                or = { state = 332 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 332
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        332 = {
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 332 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 332 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 332 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_transcaucasia = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 125
+
+        visible = {
+            any_state = {
+                or = { state = 229 state = 230 state = 231 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 229 controls_state = 230 controls_state = 231
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 229 state = 230 state = 231 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 229 } not = { controls_state = 230 } not = { controls_state = 231 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 229 state = 230 state = 231 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 229 state = 230 state = 231 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_veneto = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 75
+
+        visible = {
+            any_state = {
+                or = { state = 160 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 160
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        160 = {
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 160 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 160 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 160 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_wallachia = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 100
+
+        visible = {
+            any_state = {
+                or = { state = 46 state = 81 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 46 controls_state = 81 
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 46 state = 81 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 46 } not = { controls_state = 81 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 46 state = 81 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 46 state = 81 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_xinjiang = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 100
+
+        visible = {
+            any_state = {
+                or = { state = 287 state = 617 state = 618 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 287 controls_state = 617 controls_state = 618
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 287 state = 617 state = 618 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 287 } not = { controls_state = 617 } not = { controls_state = 618 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 287 state = 617 state = 618 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 287 state = 617 state = 618 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+}
