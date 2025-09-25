@@ -308,110 +308,6 @@ dc_integration = {
         }
     }
 
-    _integration_baltic_north = {
-        icon = generic_form_nation
-        days_remove = 180
-        cost = 100
-
-        visible = {
-            any_state = {
-                or = { state = 12 state = 13 state = 188 state = 191 }
-                _integration_visibility_trigger = yes
-            }
-        }
-
-        available = {
-            has_stability > 0.5
-            custom_trigger_tooltip = {
-                tooltip = integration_trigger_tooltip
-
-                # trigger
-                controls_state = 12 controls_state = 13 controls_state = 188 controls_state = 191
-            }
-        }
-
-        cancel_trigger = {
-            hidden_trigger = {
-                or = {
-                    # visibility
-                    not = {
-                        any_state = {
-                            or = { state = 12 state = 13 state = 188 state = 191 }
-                            _integration_visibility_trigger = yes
-                        }
-                    }
-
-                    # availability
-                    not = { has_stability > 0.5 }
-                    not = { controls_state = 12 } not = { controls_state = 13 } not = { controls_state = 188 } not = { controls_state = 191 }
-                }
-            }
-        }
-
-        highlight_states = {
-            highlight_state_targets = { state = 12 state = 13 state = 188 state = 191 }
-        }
-
-        remove_effect = {
-            every_state = {
-                limit = { or = { state = 12 state = 13 state = 188 state = 191 } }
-                add_core_of = ROOT
-            }
-        }
-    }
-
-    _integration_baltic_south = {
-        icon = generic_form_nation
-        days_remove = 180
-        cost = 100
-
-        visible = {
-            any_state = {
-                or = { state = 11 state = 189 state = 190 }
-                _integration_visibility_trigger = yes
-            }
-        }
-
-        available = {
-            has_stability > 0.5
-            custom_trigger_tooltip = {
-                tooltip = integration_trigger_tooltip
-
-                # trigger
-                controls_state = 11 controls_state = 189 controls_state = 190
-            }
-        }
-
-        cancel_trigger = {
-            hidden_trigger = {
-                or = {
-                    # visibility
-                    not = {
-                        any_state = {
-                            or = { state = 11 state = 189 state = 190 }
-                            _integration_visibility_trigger = yes
-                        }
-                    }
-
-                    # availability
-                    not = { has_stability > 0.5 }
-                    not = { controls_state = 11 } not = { controls_state = 189 } not = { controls_state = 190 }
-                }
-            }
-        }
-
-        highlight_states = {
-            highlight_state_targets = { state = 11 state = 189 state = 190 }
-        }
-
-        remove_effect = {
-            every_state = {
-                limit = { or = { state = 11 state = 189 state = 190 } }
-                add_core_of = ROOT
-            }
-        }
-    }
-
     _integration_bayern = {
         icon = generic_form_nation
         days_remove = 180
@@ -516,6 +412,58 @@ dc_integration = {
         }
     }
 
+    _integration_courland = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 100
+
+        visible = {
+            any_state = {
+                or = { state = 11 state = 189 state = 190 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 11 controls_state = 189 controls_state = 190
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 11 state = 189 state = 190 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 11 } not = { controls_state = 189 } not = { controls_state = 190 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 11 state = 189 state = 190 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 11 state = 189 state = 190 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
     _integration_crimea = {
         icon = generic_form_nation
         days_remove = 180
@@ -614,6 +562,58 @@ dc_integration = {
         remove_effect = {
             every_state = {
                 limit = { or = { state = 9 state = 69 state = 74 state = 75 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_estonia = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 100
+
+        visible = {
+            any_state = {
+                or = { state = 12 state = 13 state = 188 state = 191 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 12 controls_state = 13 controls_state = 188 controls_state = 191
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 12 state = 13 state = 188 state = 191 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 12 } not = { controls_state = 13 } not = { controls_state = 188 } not = { controls_state = 191 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 12 state = 13 state = 188 state = 191 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 12 state = 13 state = 188 state = 191 } }
                 add_core_of = ROOT
             }
         }
@@ -1087,7 +1087,7 @@ dc_integration = {
         }
     }
 
-    _integration_poland_central = {
+    _integration_poland = {
         icon = generic_form_nation
         days_remove = 180
         cost = 150
@@ -1139,7 +1139,7 @@ dc_integration = {
         }
     }
 
-    _integration_poland_west = {
+    _integration_posen = {
         icon = generic_form_nation
         days_remove = 180
         cost = 100
@@ -1341,6 +1341,58 @@ dc_integration = {
         remove_effect = {
             every_state = {
                 limit = { or = { state = 105 state = 107 state = 108 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    _integration_slovenia = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 75
+
+        visible = {
+            any_state = {
+                or = { state = 33 state = 102 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 33 controls_state = 102 
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 33 state = 102 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 33 } not = { controls_state = 102 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 33 state = 102 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 33 state = 102 } }
                 add_core_of = ROOT
             }
         }

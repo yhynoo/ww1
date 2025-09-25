@@ -1,17 +1,7 @@
 default_armor_strategy = {
-	allowed = { 
-		or = { 
-			original_tag = ENG 
-			original_tag = FRA 
-			original_tag = GER 
-			original_tag = USA 
-		}
-	}
 	enable = { 
-		AND = {
-			num_of_military_factories > 15
-			has_tech = heavy_1916
-		}
+		num_of_military_factories > 15
+		has_tech = heavy_1916
 	}
 	abort_when_not_enabled = yes
 

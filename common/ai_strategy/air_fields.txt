@@ -1,9 +1,13 @@
 second_line_airfields = {
 	enable = { 
-		has_war = yes
+		or = {
+			has_war = yes
+			has_tech = fighter_1914 has_tech = cas_1914 has_tech = airship_1914
+		}
 		any_state = {
 			or = {
-				state = 16 state = 34 state = 50						# western front
+				state = 16 state = 17 state = 34 state = 50				# western front
+				state = 56
 
 				state = 66 state = 80 									# central europe
 				state = 190 state = 95 state = 202 state = 192			# eastern front
@@ -19,20 +23,45 @@ second_line_airfields = {
 	}
 	abort_when_not_enabled = yes
 
+	# WESTERN FRONT
+	ai_strategy = {
+		type = build_building id = air_base value = 3
+		target = 16
+	}
+
+	ai_strategy = {
+		type = build_building id = air_base value = 1
+		target = 17
+	}
+
 	ai_strategy = {
 		type = build_building id = air_base value = 2
 		target = 34
 	}
 
 	ai_strategy = {
+		type = build_building id = air_base value = 3
+		target = 50
+	}
+
+	ai_strategy = {
+		type = build_building id = air_base value = 1
+		target = 56
+	}
+
+	# CENTRAL EUROPE
+
+	ai_strategy = {
 		type = build_building id = air_base value = 2
-		target = 67
+		target = 66
 	}
 
 	ai_strategy = {
 		type = build_building id = air_base value = 2
 		target = 80
 	}
+
+	# EASTERN FRONT
 
 	ai_strategy = {
 		type = build_building id = air_base value = 2
@@ -41,7 +70,7 @@ second_line_airfields = {
 
 	ai_strategy = {
 		type = build_building id = air_base value = 2
-		target = 96
+		target = 95
 	}
 
 	ai_strategy = {
@@ -51,8 +80,10 @@ second_line_airfields = {
 
 	ai_strategy = {
 		type = build_building id = air_base value = 2
-		target = 78
+		target = 192
 	}
+
+	# SPAIN AND ALPS
 
 	ai_strategy = {
 		type = build_building id = air_base value = 2
@@ -69,10 +100,14 @@ second_line_airfields = {
 		target = 172
 	}
 
+	# SLOVENIA
+
 	ai_strategy = {
 		type = build_building id = air_base value = 2
 		target = 102
 	}
+
+	# MEDITERRANEAN
 
 	ai_strategy = {
 		type = build_building id = air_base value = 2

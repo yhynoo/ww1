@@ -1,64 +1,23 @@
-# germany extra militarization
-germany_army_production = {
+germany_adjustments = {
 	allowed = { original_tag = GER }
 	enable = { always = yes }
-	abort = { always = no }
 
-	# prepare more units
 	ai_strategy = {
-		type = role_ratio
-		id = infantry
-		value = 45
-	}
-
-	# focus on military factories
-	ai_strategy = {
-		type = added_military_to_civilian_factory_ratio
-		value = 15
-	}
-
-	# also, build airships
-	ai_strategy = {
-		type = unit_ratio
+		type = equipment_production_min_factories
 		id = strategic_bomber
-		value = 60
+		value = 1
 	}
 
-	ai_strategy = {
-		type = equipment_production_factor
-		id = strategic_bomber
-		value = 60
-	}
-
-	# and submarines
 	ai_strategy = {
 		type = equipment_production_min_factories
 		id = submarine
 		value = 2
 	}
-}
 
-germany_focuses_on_france = {
-	allowed = { original_tag = GER }
-	enable = { has_war_with = FRA }
-	abort_when_not_enabled = yes
-
+	# planning the positions
 	ai_strategy = {
 		type = front_unit_request
-		tag = FRA
-		value = 200
-	}
-}
-
-# don't waste too much stuff on africa
-germany_avoid_africa = {
-	allowed = { original_tag = GER }
-	enable = { always = yes }
-	abort_when_not_enabled = yes
-
-	ai_strategy = {
-		type = front_unit_request
-		state_trigger = { is_on_continent = africa }
-		value = -100
+		area = western_front
+		value = 180
 	}
 }

@@ -6,12 +6,18 @@ default_air_production = {
 	ai_strategy = {
 		type = unit_ratio
 		id = fighter
-		value = 200
+		value = 250
 	}
 
 	ai_strategy = {
 		type = unit_ratio
 		id = cas
+		value = 100
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = strategic_bomber
 		value = 25
 	}
 
@@ -19,32 +25,29 @@ default_air_production = {
     ai_strategy = {
 		type = equipment_production_factor
 		id = fighter
-		value = 200
+		value = 250
 	}
 
 	ai_strategy = {
 		type = equipment_production_factor
 		id = cas
-		value = 25
+		value = 100
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = strategic_bomber
+		value = 50
 	}
 }
 
-# greater fighter production during the war
+# greater aircraft production when tech is there
 war_air_production = {
-	enable = {
-		or = { has_tech = fighter_1914 has_tech = cas_1914 }
-	}
+	enable = { or = { has_tech = fighter_1914 has_tech = cas_1914 } }
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
-		type = equipment_production_factor
-		id = fighter
-		value = 200
-	}
-
-	ai_strategy = {
-		type = equipment_production_factor
-		id = cas
-		value = 75
+		type = air_factory_balance
+		value = 50
 	}
  }

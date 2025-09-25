@@ -1,32 +1,13 @@
-ENG_british_expeditionary_force = {
-	allowed = { original_tag = ENG }
-	enable = { 
-		has_war_with = GER
-		or = { is_ally_with = FRA has_military_access_to = FRA }
+england_western_front = {
+	allowed = { 
+		or = { tag = AST tag = ENG }
 	}
+	enable = { has_war_with = GER is_ally_with = FRA }
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
 		type = front_unit_request
-		strategic_region = 19
-		value = 200
-	}
-}
-
-ENG_extra_aviation = {
-	allowed = { original_tag = ENG }
-	enable = { always = yes }
-	abort = { always = no }
-
-	ai_strategy = {
-		type = unit_ratio
-		id = fighter
-		value = 100
-	}
-
-	ai_strategy = {
-		type = equipment_production_factor
-		id = fighter
-		value = 150
+		area = western_front
+		value = 120
 	}
 }
