@@ -11,6 +11,10 @@ on_actions = {
                     add_popularity = { ideology = ROOT popularity = -0.25 }
                 }
 
+                # remove advisors
+                _manage_advisors = yes
+                FROM = { _manage_advisors = yes }
+
                 # can't magically peace out
                 every_country = {
                     limit = { 

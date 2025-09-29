@@ -50,21 +50,6 @@ avenge_libya = {
             }
         }
     }
-    develop_sicily = {
-        icon = generic_construction
-        fire_only_once = yes
-        cost = 75
-
-        ai_will_do = { base = 9 }
-
-        available = { controls_state = 115 }
-        complete_effect = {
-            115 = {
-                add_building_construction = { type = dockyard level = 2 instant_build = yes }
-                add_extra_state_shared_building_slots = 2
-            }
-        }
-    }
 }
 
 against_the_french = {
@@ -97,78 +82,74 @@ against_the_french = {
             FRA = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
         }
     }
-    annex_alps = {
-        icon = generic_form_nation
+    trieste_for_non_aggression = {
+        icon = generic_nationalism
         fire_only_once = yes
         cost = 100
 
-        available = {
-            any_state = {
-                or = { state = 1 state = 32 }
-                is_controlled_by = ITA
-            }
-        }
-
-        ai_will_do = { 
-            base = 0 
-            modifier = { and = { controls_state = 1 controls_state = 32 } add = 12 }
+        available = { 33 = { is_owned_and_controlled_by = AUS } }
+        ai_will_do = {
+            base = 9
+            modifier = { is_ally_with = AUS factor = 0 }
         }
 
         complete_effect = {
-            every_controlled_state = {
-                limit = { or = { state = 1 state = 32 } }
-                add_core_of = ITA
+            AUS = { country_event = { id = italy_trieste.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    expand_aviation_industry = {
+        icon = generic_industry
+        fire_only_once = yes
+        cost = 100
+
+        available = { controls_state = 158 }
+        ai_will_do = { base = 12 }
+
+        complete_effect = {
+            158 = {
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+                add_extra_state_shared_building_slots = 1
             }
 
-            news_event = { id = italy_alps.1 hours = 6 random_hours = 6 }
+            add_tech_bonus = {
+				name = aircraft_bonus bonus = 1.0 uses = 2
+				category = air_equipment_tech
+			}
         }
     }
 }
 
 liberalize_the_economy = {
-    expand_our_trade = {
-        icon = generic_public_support
-        days_remove = 90
-        cost = 50
-
-        ai_will_do = { base = 6 }
-
-        modifier = {
-            trade_opinion_factor = 0.25
-            democratic_drift = 0.05
-        }
-    }
-    develop_the_south = {
+    develop_sicily = {
         icon = generic_construction
         fire_only_once = yes
-        cost = 100
+        cost = 75
 
         ai_will_do = { base = 9 }
 
-        available = { 
-            any_state = {
-                or = { state = 114 state = 115 state = 117 state = 156 }
-                is_controlled_by = ITA
+        available = { controls_state = 115 }
+        complete_effect = {
+            115 = {
+                add_building_construction = { type = dockyard level = 2 instant_build = yes }
+                add_extra_state_shared_building_slots = 2
+            }
+        }
+    }
+    acquire_ethiopia = {
+        icon = generic_form_nation
+        fire_only_once = yes
+        cost = 100
+
+        ai_will_do = { base = 6 }
+        available = {
+            not = { has_war_with = ENG }
+            ENG = {
+                controls_state = 271 controls_state = 550
             }
         }
 
         complete_effect = {
-            random_owned_controlled_state = {
-                limit = {
-                    or = { state = 114 state = 115 state = 117 state = 156 }
-                }
-
-                add_building_construction = { type = infrastructure level = 2 instant_build = yes }
-                add_extra_state_shared_building_slots = 1
-            }
-            random_owned_controlled_state = {
-                limit = {
-                    or = { state = 114 state = 115 state = 117 state = 156 }
-                }
-
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-                add_extra_state_shared_building_slots = 1
-            }
+            ENG = { country_event = { id = italy_ethiopia.1 hours = 6 random_hours = 6 } }
         }
     }
 }

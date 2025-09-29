@@ -53,27 +53,8 @@ add_namespace = _war_outbreak
 
 country_event = {
     id = _war_outbreak.1
-    title = "Defeatist Agitators Target Workers"
-    desc = _war_outbreak.1.d
-
-    is_triggered_only = yes
-    trigger = { not = { has_government = communism } }
-
-    option = {
-        name = "Deal with them harshly."
-        add_political_power = -25
-    }
-
-    option = {
-        name = "They are disgusting, but free to speak."
-        add_popularity = { ideology = communism popularity = 0.05 }
-    }
-}
-
-country_event = {
-    id = _war_outbreak.2
     title = "Civilian Supply Disruptions"
-    desc = _war_outbreak.2.d
+    desc = _war_outbreak.1.d
 
     is_triggered_only = yes
 
@@ -89,9 +70,9 @@ country_event = {
 }
 
 country_event = {
-    id = _war_outbreak.3
+    id = _war_outbreak.2
     title = "The Navy to Commission an Album?"
-    desc = _war_outbreak.3.d
+    desc = _war_outbreak.2.d
 
     is_triggered_only = yes
     trigger = { has_navy_size > 5 }

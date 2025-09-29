@@ -217,7 +217,7 @@ dc_head_of_state_decisions = {
     # armistice decisions
     withdraw_from_war = {
         visible = { 
-            or = { has_idea = idea_anti_war_demonstrations has_capitulated = yes }
+            or = { has_idea = idea_anti_war_demonstrations has_capitulated = yes has_war_support < 0.1 }
             has_civil_war = no
             
             and = {
@@ -262,7 +262,7 @@ dc_head_of_state_decisions = {
     }
     offer_armistice = {
         visible = { 
-            or = { has_idea = idea_anti_war_demonstrations has_capitulated = yes }
+            or = { has_idea = idea_anti_war_demonstrations has_capitulated = yes has_war_support < 0.1 }
             has_civil_war = no
 
             or = {

@@ -1,25 +1,34 @@
-# central powers
+# CENTRAL POWERS
 
 central_powers_acceptance = {
     allowed = {
         OR = {
             original_tag = AUS
             original_tag = HOL
+            original_tag = ITA
             original_tag = TUR
         }
     }
     enable = {
         or = {
-            original_tag = AUS
-            and = {
+            and = {                                                             # austria
+                original_tag = AUS  
+                not = { has_completed_focus = AUS_on_our_own }
+            }                                                
+            and = {                                                             # holland
                 original_tag = HOL
                 has_country_flag = ignored_france
             }
-            and = { 
+            and = {                                                             # italy
+                has_completed_focus = ITA_on_our_own
+                not = { GER = { is_ally_with = TUR } }                                
+            }
+            and = {                                                             # turkey
                 original_tag = TUR
+                not = { GER = { is_ally_with = ITA } }
                 or = { 
                     has_government = monarchism 
-                    and = { has_country_flag = cotton_deal owns_state = 447 }
+                    is_guaranteed_by = GER
                 }
             }
         }
@@ -37,16 +46,24 @@ central_powers_invite = {
     allowed = { original_tag = GER }
     enable = {
         or = {
-            original_tag = AUS
-            and = {
+            and = {                                                             # austria
+                original_tag = AUS  
+                not = { has_completed_focus = AUS_on_our_own }
+            }                                                
+            and = {                                                             # holland
                 original_tag = HOL
                 has_country_flag = ignored_france
             }
-            and = {
+            and = {                                                             # italy
+                has_completed_focus = ITA_on_our_own
+                not = { GER = { is_ally_with = TUR } }                                
+            }
+            and = {                                                             # turkey
                 original_tag = TUR
+                not = { GER = { is_ally_with = ITA } }
                 or = { 
                     has_government = monarchism 
-                    and = { has_country_flag = cotton_deal owns_state = 447 }
+                    is_guaranteed_by = GER
                 }
             }
         }
@@ -63,7 +80,7 @@ central_powers_invite = {
 }
 
 
-# entente
+# ENTENTE
 
 entente_acceptance = {
     allowed = {

@@ -711,6 +711,11 @@
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
+
+            every_state = {
+                limit = { or = { state = 80 state = 89 state = 91 } }
+                add_claim_by = SOV
+            }
         }
     }
     focus = {

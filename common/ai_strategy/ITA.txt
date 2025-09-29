@@ -13,16 +13,39 @@ italy_war_for_libya = {
 		id = TUR
 		value = 150
 	}
+}
 
-	# add tactics for the invasion of libya here:
-	ai_strategy = {
-		type = naval_invasion_focus
-		value = 60
-	}
+italy_invade_libya = {
+	allowed = { tag = ITA }
+	enable = {
+		has_war_with = TUR
+        any_enemy_country = {
+            or = { controls_state = 551 controls_state = 553 controls_state = 182 controls_state = 164 }
+        }
+    }
+    abort_when_not_enabled = yes
 
 	ai_strategy = {
-		type = invasion_unit_request
-		strategic_region = 225
-		value = 120
+        type = naval_invasion_focus
+        value = 120
+    }
+
+	# Aegean and Libya
+	ai_strategy = {
+        type = invasion_unit_request
+        strategic_region = 202
+        value = 300 
+    }
+
+    ai_strategy = {
+        type = invasion_unit_request
+        strategic_region = 225
+        value = 600 
+    }
+
+	ai_strategy = {
+		type = strike_force_home_base
+		id = 29
+		value = 600
 	}
 }

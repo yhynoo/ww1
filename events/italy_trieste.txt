@@ -1,0 +1,44 @@
+add_namespace = italy_trieste
+
+country_event = {
+    id = italy_trieste.1
+    title = "Trieste for Peace in the Alps?"
+    desc = italy_trieste.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must agree."
+        ITA = { diplomatic_relation = { country = AUS relation = non_aggression_pact active = yes } }
+        33 = { transfer_state_to = ITA }
+
+        news_event = { id = italy_trieste.2 hours = 6 random_hours = 6 }
+
+        ai_chance = { 
+            base = 1 
+            modifier = { has_war = yes factor = 3 }
+        }
+    }
+
+    option = {
+        name = "These disgusting traitors!"
+        
+        add_war_support = 0.05
+        ITA = { create_wargoal = { type = take_claimed_state target = AUS } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = italy_trieste.2
+    title = "[AUS.GetName] Transfers Trieste!"
+    desc = italy_trieste.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}

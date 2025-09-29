@@ -15,7 +15,7 @@ peace_ai_desires = {
                 }
             }
         }
-        ai_desire = 120
+        ai_desire = 20
     }
 
     # everyone can retake cores
@@ -67,7 +67,7 @@ peace_ai_desires = {
                 NOT = { is_claimed_by = ROOT.FROM }
             }
         }
-        ai_desire = -20
+        ai_desire = -600
     }
 
     # LIBERATING
@@ -93,13 +93,17 @@ peace_ai_desires = {
     }
 
     # PUPPET
+    monarchies_like_puppets = {
+        peace_action_type = { puppet }
+        enable = {
+            has_government = monarchism
+        }
+        ai_desire = 50
+    }
     dont_puppet_large_countries = {
         peace_action_type = { puppet }
         enable = {
-            OR = {
-                has_government = communism has_government = democratic              # Communists and democrats also don't puppet at all
-                ROOT.FROM.FROM = { check_variable = { num_owned_states > 10 } }
-            }
+            ROOT.FROM.FROM = { check_variable = { num_owned_states > 10 } }
         }
         ai_desire = -200
     }
@@ -109,7 +113,7 @@ peace_ai_desires = {
         enable = {
             ROOT.FROM = { pc_is_puppeted_by = ROOT }
         }
-        ai_desire = 100
+        ai_desire = 200
     }
 
     # forcing government

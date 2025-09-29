@@ -10,6 +10,8 @@ country_event = {
     option = {
         name = "We have enough troubles here."
         add_war_support = -0.05
+
+        ai_chance = { base = 2 }
     }
 
     option = {
@@ -19,8 +21,22 @@ country_event = {
         news_event = { id = spain_morocco.2 hours = 6 random_hours = 6 }
 
         hidden_effect = {
+            set_country_flag = pro_french
             290 = { set_state_owner_to = MOR }
         }
+
+        ai_chance = { base = 2 }
+    }
+
+    option = {
+        name = "Support the Moroccans instead."
+        send_equipment = { equipment = infantry_equipment amount = 600 target = MOR }
+
+        hidden_effect = {
+            set_country_flag = anti_french
+        }
+
+        ai_chance = { base = 1 }
     }
 }
 
@@ -30,7 +46,7 @@ news_event = {
     desc = spain_morocco.2.d
 
     is_triggered_only = yes
-    is_major = yes
+    major = yes
 
     option = {
         name = "Concerning."

@@ -1,76 +1,67 @@
 add_namespace = soviet_okhrana
 
-news_event = {
+country_event = {
     id = soviet_okhrana.1
-    title = "Tax Office in Czernowitz Assaulted"
+    title = "Military Train Accident in Czernowitz"
     desc = soviet_okhrana.1.d
 
     is_triggered_only = yes
+    immediate = { hidden_effect = { SOV = { add_named_threat = { threat = 2 name = "Train Accident in Czernowitz" } } } }
 
     option = {
-        name = "Worrying."
-        add_stability = -0.025
+        name = "Investigate the matter."
+        add_political_power = -50
 
-        #
-        hidden_effect = { 
-            news_event = { id = soviet_okhrana.2 days = 30 random_days = 30 } 
-            SOV = { add_named_threat = { threat = 2 name = "Tax Office in Czernowitz Assaulted" } }
-        }
+        hidden_effect = { news_event = { id = soviet_okhrana.2 days = 7 } }
+    }
+    option = {
+        name = "Dismiss it."
+        add_stability = -0.05
+
+        hidden_effect = { news_event = { id = soviet_okhrana.3 days = 14 random_days = 60 } }
     }
 }
 
 news_event = {
     id = soviet_okhrana.2
-    title = "Archduke Assassinated in Lemberg!"
+    title = "Okhrana Agents Suspected"      
     desc = soviet_okhrana.2.d
 
     is_triggered_only = yes
-    trigger = { 
-        AUS = { 
-            controls_state = 91
-            has_government = monarchism
-        }
-    }
-    major = yes
 
     option = {
-        name = "Horrifying."
-
-        if = {
-            limit = { tag = AUS } 
-            add_stability = -0.05
-
-            hidden_effect = { country_event = { id = soviet_okhrana.3 days = 7 random_days = 7 } }
-        }
+        name = "Is this an act of war?"
+        create_wargoal = { target = SOV type = topple_government }
     }
 }
 
 country_event = {
     id = soviet_okhrana.3
-    title = "Okhrana Involved in the Assassination?"
+    title = "Archduke Franz Ferdinand Assassinated!"    # in lemberg!
     desc = soviet_okhrana.3.d
 
     is_triggered_only = yes
+    immediate = { hidden_effect = { SOV = { add_named_threat = { threat = 15 name = "Archduke Franz Ferdinand Assassinated" } } } }
 
-    immediate = {
-        hidden_effect = {
-            if = {
-                SOV = { add_named_threat = { threat = 10 name = "Okhrana Involved in Archduke's Death" } }
-            }
-        }
+    trigger = { 
+        not = { has_war_with = SOV }
+        has_government = monarchism 
     }
 
     option = {
-        name = "This means war!"
+        name = "We must avenge his death!"
 
         add_war_support = 0.25
         declare_war_on = { target = SOV type = topple_government }
+
+        ai_chance = { base = 4 }
     }
-
     option = {
-        name = "We must endure in this dark hour."
+        name = "What a tragedy."
 
-        add_political_power = -150
-        add_popularity = { ideology = monarchism popularity = -0.1 }
+        add_popularity = { ideology = ROOT popularity = -0.15 }
+        add_timed_idea = { idea = idea_shame_of_lemberg years = 2 }
+
+        ai_chance = { base = 1 }
     }
 }

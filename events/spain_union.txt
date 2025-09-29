@@ -1,0 +1,50 @@
+add_namespace = spain_hispanic_union
+
+country_event = {
+    id = spain_hispanic_union.1
+    title = "[SPA.GetName] Offers Alliance"
+    desc = spain_hispanic_union.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a good idea."
+
+        SPA = { 
+            create_faction = "Hispanic Union"
+            add_to_faction = COL
+
+            every_state = {
+                limit = { or = { state = 315 state = 318 state = 319 state = 348 } }
+                add_claim_by = SPA
+            }
+        }
+
+        ai_chance = { base = 2 }
+
+        hidden_effect = {
+            add_ai_strategy = { type = alliance id = FROM value = 300 }
+            FROM = { add_ai_strategy = { type = alliance id = ROOT value = 300 } }
+        }
+    }
+
+    option = {
+        name = "An alliance with them is a burden."
+        FROM = { news_event = { id = spain_hispanic_union.2 hours = 6 random_hours = 6 } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = spain_hispanic_union.2
+    title = "[FROM.GetName] Declines!"
+    desc = spain_hispanic_union.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Such a shame."
+        add_war_support = -0.05
+    }
+}

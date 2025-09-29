@@ -10,7 +10,10 @@ country_event = {
     option = {
         name = "This is a good idea."
 
-        create_faction = "Entente"
+        if = { 
+            limit = { is_in_faction = no }
+            create_faction = "Entente"
+        }
         add_to_faction = FROM
 
         ai_chance = {

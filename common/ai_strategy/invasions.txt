@@ -1,5 +1,5 @@
 dont_naval_invade = {
-    enable = { not = { has_tech = marines_1 } }
+    enable = { always = yes }
     abort_when_not_enabled = yes
 
     ai_strategy = {
@@ -9,7 +9,7 @@ dont_naval_invade = {
 }
 
 dont_naval_invade_early = {
-    enable = { date < 1916.1.1 }
+    enable = { date < 1917.1.1 }
     abort_when_not_enabled = yes
 
     ai_strategy = {
@@ -51,7 +51,7 @@ invasions_on_finland = {
     ai_strategy = {
         type = invasion_unit_request
         state_trigger = { state = 111 }
-        value = 10
+        value = 20
     }
 }
 
@@ -65,13 +65,13 @@ invasions_on_germany = {
             is_controlled_by = GER
             or = { is_on_continent = asia is_on_continent = australia }
         }
-        value = 60
+        value = 100
     }
 
     ai_strategy = {
         type = invasion_unit_request
         area = north_sea_invasion_area
-        value = 20
+        value = 10
     }
 }
 
@@ -88,7 +88,7 @@ invasions_on_turkey = {
     ai_strategy = {
         type = invasion_unit_request
         area = mesopotamia_invasion_area
-        value = 30
+        value = 100
     }
 }
 

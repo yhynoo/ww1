@@ -167,20 +167,18 @@ afrika_amt = {
         days_remove = 90
         cost = 50
 
-        ai_will_do = { base = 6 }
+        ai_will_do = { base = 9 }
 
         available = {
             any_owned_state = {
-                is_on_continent = africa
-                not = { is_core_of = GER }
+                is_on_continent = africa not = { is_core_of = GER }
             }
         }
 
         remove_effect = {
-            random_owned_state = {
+            random_owned_controlled_state = {
                 limit = {
-                    is_on_continent = africa
-                    not = { is_core_of = GER }
+                    is_on_continent = africa not = { is_core_of = GER }
                 }
                 add_core_of = GER
             }
@@ -193,10 +191,7 @@ afrika_amt = {
         cost = 50
 
         available = { controls_state = 546 }
-        ai_will_do = { 
-            base = 0
-            modifier = { has_war = yes add = 6 }
-        }
+        ai_will_do = { base = 12 }
 
         complete_effect = {
             546 = { 

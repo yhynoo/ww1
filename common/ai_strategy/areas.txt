@@ -1,5 +1,8 @@
 default_area_priority = {
-	enable = { capital_scope = { is_on_continent = europe } }
+	enable = { 
+		capital_scope = { is_on_continent = europe } 
+		not = { tag = TUR }
+	}
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
@@ -17,6 +20,6 @@ default_area_priority = {
 	ai_strategy = {
 		type = area_priority
 		id = africa
-		value = -30
+		value = -90
 	}
 }

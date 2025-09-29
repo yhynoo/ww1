@@ -76,25 +76,48 @@ country_event = {
 }
 
 # anti-war demonstrations
+add_namespace = _anti-war
 
 news_event = {
-    id = _armistice.3
+    id = _anti-war.1
     title = "Demonstrations Against War"
-    desc = _armistice.3.d
+    desc = _anti-war.1.d
 
     trigger = {
         has_war = yes
-        or = { has_war_support < 0.3 has_stability < 0.3 }
-        not = { has_idea = idea_anti_war_demonstrations }
+        or = { has_war_support < 0.3 has_stability < 0.5 }
+        not = { has_idea = idea_anti_war_demonstrations has_idea = idea_army_mutinies }
 
         # war must be long enough
         longest_war_length > 18
     }
 
-    mean_time_to_happen = { months = 1 }
+    mean_time_to_happen = { months = 3 }
 
     option = {
         name = "Worrying."
         add_timed_idea = { idea = idea_anti_war_demonstrations months = 6 }
+    }
+}
+
+news_event = {
+    id = _anti-war.2
+    title = "Mutinees in the Army"
+    desc = _anti-war.2.d
+
+    trigger = {
+        has_war = yes
+        or = { has_war_support < 0.3 has_stability < 0.3 }
+        not = { has_idea = idea_anti_war_demonstrations has_idea = idea_army_mutinies }
+
+        # war must be long enough
+        longest_war_length > 24
+    }
+
+    mean_time_to_happen = { months = 3 }
+
+    option = {
+        name = "Awful."
+        add_timed_idea = { idea = idea_army_mutinies months = 3 }
     }
 }

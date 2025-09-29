@@ -381,8 +381,8 @@ NCountry = {
 	HEROES_BEING_KILLED_WAR_SUPPORT_PENALTY_SCALE = -0.03,			-- Scaling of war heroes manpower lost to war support impact, will be added weekly as a war support penalty
 	MAX_HEROES_BEING_KILLED_WEEKLY_WAR_SUPPORT_PENALTY = -0.012,	-- [MOD; vanilla had -0.006] Max penalty that will gained per week from war heroes manpower lost
 	HEROES_BEING_KILLED_WEEKLY_WAR_SUPPORT_PENALTY_DECAY = 0.002,	-- Weekly decay of war heroes manpower lost war support penalty
-	MAX_HEROES_BEING_KILLED_WAR_SUPPORT_IMPACT = -0.3,				-- Max total penalty from war heroes manpower lost
-	WAR_SUPPORT_FROM_CASUALTIES = 0.05,								-- [MOD; vanilla had 0.025] Base value (inverted) for calculating heroes being killed
+	MAX_HEROES_BEING_KILLED_WAR_SUPPORT_IMPACT = -0.5,				-- Max total penalty from war heroes manpower lost
+	WAR_SUPPORT_FROM_CASUALTIES = 0.1,								-- [MOD; vanilla had 0.025] Base value (inverted) for calculating heroes being killed
 
 	CONVOYS_BEING_RAIDED_WAR_SUPPORT_PENALTY_SCALE = -0.05,			-- Scaling of trade convoy raided to war support impact, will be added weekly as a war support penalty
 	MAX_CONVOYS_BEING_RAIDED_WEEKLY_WAR_SUPPORT_PENALTY = -0.006,	-- Max penalty that will gained per week from trade convoy raided

@@ -1,0 +1,115 @@
+engage_in_africa = {
+    align_morocco = {
+        icon = generic_form_nation
+        fire_only_once = yes
+        cost = 150
+
+        available = {
+            MOR = {
+                exists = yes
+                not = { has_war_with = SPA }
+            }
+        }
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            MOR = { country_event = { id = _align.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    demand_congo = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        ai_will_do = { 
+            base = 0
+            modifier = {
+                and = { has_country_flag = anti_french FRA = { has_war = yes } }
+                add = 9
+            }
+        }
+
+        available = {
+            can_declare_war_on = FRA
+            any_state = {
+                or = { state = 295 state = 538 state = 576 }
+                is_owned_by = FRA
+            }
+        }
+
+        complete_effect = {
+            every_state = {
+                limit = {
+                    or = { state = 295 state = 538 state = 576 }
+                    is_owned_by = FRA
+                }
+                add_claim_by = SPA
+            }
+            FRA = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    demand_southwest_africa = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        ai_will_do = { 
+            base = 0
+            modifier = {
+                and = { has_country_flag = pro_french GER = { has_war = yes } }
+                add = 9
+            }
+        }
+
+        available = {
+            can_declare_war_on = GER
+            541 = { is_owned_by = GER }
+        }
+
+        complete_effect = {
+            every_state = {
+                limit = {
+                    or = { state = 541 }
+                    is_owned_by = GER
+                }
+                add_claim_by = SPA
+            }
+            GER = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}
+across_the_atlantic = {
+    expand_naval_capabilities = {
+        icon = generic_construction
+        fire_only_once = yes
+        cost = 75
+
+        ai_will_do = { base = 9 }
+
+        available = { or = { controls_state = 112 controls_state = 178 controls_state = 469 } }
+        complete_effect = {
+            every_controlled_state = {
+                limit = { or = { state = 112 state = 178 state = 469 } }
+
+                add_building_construction = { type = dockyard level = 1 instant_build = yes }
+                add_extra_state_shared_building_slots = 1
+            }
+        }
+    }
+    alliance_with_colombia = {
+        icon = generic_nationalism
+        fire_only_once = yes
+        cost = 150
+
+        ai_will_do = { base = 6 }
+        available = { 
+            is_in_faction = no
+            COL = { is_in_faction = no }
+        }
+
+        complete_effect = {
+            COL = { country_event = { id = spain_hispanic_union.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}

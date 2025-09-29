@@ -1,0 +1,16 @@
+_manage_advisors = {
+    if = {
+        limit = { not = { has_government = democratic } }
+        deactivate_advisor = generic_democratic_advocate_dem
+    }
+
+    if = {
+        limit = { not = { has_government = communism } }
+        deactivate_advisor = generic_communist_agitator_com
+    }
+
+    if = {
+        limit = { not = { has_government = monarchism } }
+        deactivate_advisor = generic_conservative_thinker_mon
+    }
+}

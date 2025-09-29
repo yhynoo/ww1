@@ -1,0 +1,118 @@
+add_namespace = spain_elections
+
+country_event = {
+    id = spain_elections.1
+    title = "The Election of 1914"
+    desc = spain_elections.1.d
+
+    is_triggered_only = yes
+    trigger = {
+        tag = SPA
+        has_government = democratic
+
+        date > 1914.1.1         date < 1915.1.1
+    }
+
+    option = {
+        name = "Maintain ‘turnismo.’"
+        add_stability = 0.05
+
+        promote_character = SPA_eduardo_dato
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "Álvaro de Figueroa, the Count of Romanones."
+
+        add_popularity = { ideology = democratic popularity = 0.05 }
+        promote_character = SPA_alvaro_de_figueroa
+
+        ai_chance = { base = 0 }
+    }
+}
+
+country_event = {
+    id = spain_elections.2
+    title = "The Election of 1918"
+    desc = spain_elections.2.d
+
+    is_triggered_only = yes
+    trigger = {
+        tag = SPA
+        has_government = democratic
+
+        date > 1918.1.1         date < 1919.1.1
+    }
+
+    option = {
+        name = "Maintain ‘turnismo.’"
+        add_stability = 0.05
+
+        if = {
+            limit = { has_country_leader = { character = SPA_eduardo_dato ruling_only = yes } }
+            promote_character = SPA_alvaro_de_figueroa
+        }
+        else = {
+            promote_character = SPA_antonio_maura
+        }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        trigger = { has_country_leader = { character = SPA_eduardo_dato ruling_only = yes } }
+        name = "Antonio Maura."
+        
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+        promote_character = SPA_antonio_maura
+    }
+    option = {
+        trigger = { has_country_leader = { character = SPA_alvaro_de_figueroa ruling_only = yes } }
+        name = "Álvaro de Figueroa, the Count of Romanones."
+        
+        add_popularity = { ideology = democratic popularity = 0.05 }
+        promote_character = SPA_alvaro_de_figueroa
+    }
+}
+
+country_event = {
+    id = spain_elections.3
+    title = "The Election of 1922"
+    desc = spain_elections.3.d
+
+    is_triggered_only = yes
+    trigger = {
+        tag = SPA
+        has_government = democratic
+
+        date > 1922.1.1         date < 1923.1.1
+    }
+
+    option = {
+        name = "Maintain ‘turnismo.’"
+        add_stability = 0.05
+
+        if = {
+            limit = { has_country_leader = { character = SPA_alvaro_de_figueroa ruling_only = yes } }
+            promote_character = SPA_antonio_maura
+        }
+        else = {
+            promote_character = SPA_manuel_garcia_prieto
+        }
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        trigger = { has_country_leader = { character = SPA_alvaro_de_figueroa ruling_only = yes } }
+        name = "Manuel García Prieto."
+        
+        add_popularity = { ideology = democratic popularity = 0.05 }
+        promote_character = SPA_manuel_garcia_prieto
+    }
+    option = {
+        trigger = { has_country_leader = { character = SPA_antonio_maura ruling_only = yes } }
+        name = "Antonio Maura."
+        
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+        add_stability = -0.05
+    }
+}

@@ -2,7 +2,6 @@ china_civil_war = {
     random_country = {
         limit = { original_tag = MAN has_government = communism }
         set_popularities = { communism = 85 democratic = 10 monarchism = 5 }
-        set_cosmetic_tag = MAN_workers
 
         if = {
             limit = { is_ai = yes }
@@ -30,46 +29,10 @@ china_civil_war = {
     }
 }
 
-germany_civil_war = {
-    random_country = {
-        limit = { original_tag = GER has_government = communism }
-
-        set_cosmetic_tag = GER_civil_war_reds
-        set_popularities = { communism = 60 democratic = 35 monarchism = 5 }
-
-        add_ideas = {
-            closed_economy
-            war_economy
-            extensive_conscription
-        }
-
-        # diplomacy
-        leave_faction = yes
-        every_country = {
-            limit = { has_guaranteed = PREV }
-            diplomatic_relation = { country = PREV relation = guarantee active = no }
-        }
-    }
-
-    random_country = {
-        limit = { original_tag = GER not = { has_government = communism } }
-
-        set_cosmetic_tag = GER_civil_war_republic
-        set_popularities = { authoritarianism = 25 democratic = 45 monarchism = 30 }
-        
-        add_ideas = {
-            closed_economy
-            war_economy
-            extensive_conscription
-        }
-    }
-}
-
 mexican_civil_war = {
     random_country = {
         limit = { original_tag = MEX has_government = communism }
         set_popularities = { communism = 70 democratic = 30 }
-        set_cosmetic_tag = MEX_agrarianists
 
         add_ideas = {
             closed_economy
@@ -80,7 +43,6 @@ mexican_civil_war = {
     random_country = {
         limit = { original_tag = MEX not = { has_government = communism } }
         set_popularities = { communism = 15 democratic = 45 monarchism = 40 }
-        set_cosmetic_tag = MEX_democrats
 
         add_ideas = {
             closed_economy
