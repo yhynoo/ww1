@@ -151,6 +151,13 @@ ideas = {
 			cost = 150
 			removal_cost = -1
 
+			available = {
+				if = {
+					limit = { tag = COL }
+					not = { has_idea = idea_american_investors }
+				}
+			}
+
 			modifier = {
 				min_export = 0.5
 				industrial_capacity_factory = 0.1
@@ -179,6 +186,13 @@ ideas = {
 		limited_exports = {
 			cost = 150
 			removal_cost = -1
+
+			available = {
+				if = {
+					limit = { tag = COL }
+					not = { has_idea = idea_american_investors }
+				}
+			}
 
 			modifier = {
 				min_export = 0.25
@@ -230,6 +244,10 @@ ideas = {
 						has_government = authoritarianism
 						has_government = communism
 					}
+				}
+				if = {
+					limit = { tag = COL }
+					not = { has_idea = idea_american_investors }
 				}
 			}
 

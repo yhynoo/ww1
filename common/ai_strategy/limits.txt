@@ -33,18 +33,6 @@ too_early_for_marines = {
     }
 }
 
-too_early_for_gliders = {
-    enable = { not = { has_tech = glider_1914 } }
-    abort_when_not_enabled = yes
-
-    ai_strategy = {
-        type = role_ratio
-        id = paratroopers
-        value = -300
-    }
-}
-
-
 ### other
 other_limits = {
     enable = { always = yes }
@@ -59,6 +47,12 @@ other_limits = {
     ai_strategy = {
         type = role_ratio
         id = anti_armor
+        value = -1000
+    }
+
+    ai_strategy = {
+        type = role_ratio
+        id = paratroopers
         value = -1000
     }
 }

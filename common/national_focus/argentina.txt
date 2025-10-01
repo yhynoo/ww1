@@ -1,0 +1,926 @@
+focus_tree = {
+    id = ARG_focus
+
+    country = {
+        factor = 0
+        modifier = { add = 20 original_tag = ARG }
+    }
+
+    continuous_focus_position = { x = 200 y = 800 }
+
+    ## military branch
+    focus = {
+        id = ARG_adjust_the_military
+        icon = GFX_focus_generic_budget
+
+        x = 7
+        y = 0
+        cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = { has_war = yes factor = 3 }
+        }
+
+        completion_reward = {
+            add_command_power = 50
+            add_war_support = 0.05
+
+            hidden_effect = {
+                random = {
+                    chance = 50
+                    country_event = { id = _army.1 days = 30 random_days = 120 }
+                }
+                random = {
+                    chance = 50
+                    country_event = { id = _army.2 days = 30 random_days = 120 }
+                }
+            }
+        }
+    }
+    focus = {
+        id = ARG_focus_army
+        icon = GFX_focus_generic_army
+
+        relative_position_id = ARG_adjust_the_military
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ARG_adjust_the_military }
+        completion_reward = {
+            army_experience = 50
+        }
+    }
+    focus = {
+        id = ARG_extend_conscription
+        icon = GFX_focus_generic_extend_conscription
+
+        relative_position_id = ARG_focus_army
+        x = -4
+        y = 1
+        cost = 10
+
+        available = {
+            or = {
+                has_idea = disarmed_nation
+                has_idea = volunteer_only
+            }   
+        }
+
+        prerequisite = { focus = ARG_focus_army }
+        completion_reward = {
+            upgrade_conscription_law = yes
+        }
+    }
+    focus = {
+        id = ARG_army_maneuvers
+        icon = GFX_focus_generic_army_maneuvers
+
+        relative_position_id = ARG_focus_army
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ARG_focus_army }
+        completion_reward = {
+            army_experience = 75
+            add_doctrine_cost_reduction = {
+				name = land_doc_bonus cost_reduction = 0.5 uses = 2
+				category = land_doctrine
+			}
+        }
+    }
+    focus = {
+        id = ARG_equipment_effort
+        icon = GFX_focus_generic_equipment_effort
+
+        relative_position_id = ARG_focus_army
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ARG_focus_army }
+        completion_reward = {
+            add_tech_bonus = {
+				name = infantry_bonus bonus = 1.0 uses = 2
+				category = infantry_weapons_tech
+			}
+        }
+    }
+    focus = {
+        id = ARG_artillery
+        icon = GFX_focus_generic_artillery
+
+        relative_position_id = ARG_equipment_effort
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ARG_equipment_effort }
+        completion_reward = {
+            add_tech_bonus = {
+				name = artillery_bonus bonus = 1.0 uses = 2
+				category = artillery_tech
+			}
+        }
+    }
+    focus = {
+        id = ARG_aircraft
+        icon = GFX_focus_generic_aircraft
+
+        relative_position_id = ARG_equipment_effort
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ARG_equipment_effort }
+        completion_reward = {
+            air_experience = 50
+            add_tech_bonus = {
+				name = aircraft_bonus bonus = 1.0 uses = 2
+				category = air_equipment_tech
+			}
+        }
+    }
+    focus = {
+        id = ARG_armor
+        icon = GFX_focus_generic_armor
+
+        relative_position_id = ARG_equipment_effort
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ARG_equipment_effort }
+        completion_reward = {
+            add_tech_bonus = {
+				name = armor_bonus bonus = 1.0 uses = 2
+				category = armor_tech
+			}
+        }
+    }
+    focus = {
+        id = ARG_modern_warfare
+        icon = GFX_focus_generic_modern_warfare
+
+        relative_position_id = ARG_aircraft
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { 
+            focus = ARG_artillery
+            focus = ARG_aircraft
+            focus = ARG_armor
+        }
+        completion_reward = {
+            army_experience = 100
+            add_ideas = idea_modern_warfare
+        }
+    }
+
+    focus = {
+        id = ARG_focus_navy
+        icon = GFX_focus_generic_navy
+
+        relative_position_id = ARG_adjust_the_military
+        x = 2
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = ARG_adjust_the_military }
+        completion_reward = {
+            navy_experience = 50
+        }
+    }
+    focus = {
+        id = ARG_naval_exercises
+        icon = GFX_focus_generic_naval_exercises
+
+        relative_position_id = ARG_focus_navy
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = ARG_focus_navy }
+        completion_reward = {
+            navy_experience = 75
+            add_doctrine_cost_reduction = {
+				name = navy_doc_bonus cost_reduction = 0.5 uses = 2
+				category = naval_doctrine
+			}
+        }
+    }
+    focus = {
+        id = ARG_expand_dockyards
+        icon = GFX_focus_generic_expand_dockyards
+
+        relative_position_id = ARG_focus_navy
+        x = 2
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = ARG_focus_navy }
+		
+		completion_reward = {
+			navy_experience = 25
+			if = {
+				limit = { any_owned_state = { is_coastal = yes } }
+
+				random_owned_controlled_state = {
+					limit = { is_coastal = yes }
+
+					add_extra_state_shared_building_slots = 3
+					add_building_construction = { type = dockyard level = 3 instant_build = yes }
+				}
+			}		
+		}
+    }
+    focus = {
+        id = ARG_high_seas
+        icon = GFX_focus_generic_high_seas
+
+        relative_position_id = ARG_expand_dockyards
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = ARG_expand_dockyards }
+        completion_reward = {
+            add_tech_bonus = {
+				name = capital_ships_bonus bonus = 1.0 uses = 1
+				category = capital_ship_tech
+			}
+        }
+    }
+    focus = {
+        id = ARG_the_dark_deep
+        icon = GFX_focus_generic_the_dark_deep
+
+        relative_position_id = ARG_expand_dockyards
+        x = 2
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = ARG_expand_dockyards }
+        completion_reward = {
+            add_tech_bonus = {
+				name = ss_bonus bonus = 1.0 uses = 1
+				category = submarines_tech
+			}
+        }
+    }
+    focus = {
+        id = ARG_seaborne_operations
+        icon = GFX_focus_generic_seaborne_operations
+
+        relative_position_id = ARG_naval_exercises
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = ARG_naval_exercises }
+        completion_reward = {
+            add_tech_bonus = {
+				name = special_forces_bonus bonus = 1.0 uses = 1
+				technology = marines_1
+                technology = marines_2
+			}
+        }
+    }
+    focus = {
+        id = ARG_rule_the_waves
+        icon = GFX_focus_generic_rule_the_waves
+
+        relative_position_id = ARG_high_seas
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { 
+            focus = ARG_seaborne_operations
+            focus = ARG_high_seas
+            focus = ARG_the_dark_deep
+        }
+        completion_reward = {
+            navy_experience = 100
+            add_ideas = idea_rule_the_waves
+        }
+    }
+
+## economic branch
+    focus = {
+        id = ARG_economic_development
+        icon = GFX_focus_generic_economic_development
+
+        x = 22
+        y = 0
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        completion_reward = {
+            add_stability = 0.05
+        }
+    }
+    
+    focus = {
+        id = ARG_rationing
+        icon = GFX_focus_generic_rationing
+
+        relative_position_id = ARG_economic_development
+        x = -4
+        y = 1
+
+        cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
+
+        prerequisite = { focus = ARG_economic_development }
+        completion_reward = {
+            add_stability = -0.05
+            add_war_support = -0.05
+            add_ideas = idea_rationing
+        }
+    }
+    focus = {
+        id = ARG_fuel
+        icon = GFX_focus_generic_fuel
+
+        relative_position_id = ARG_rationing
+        x = -2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = ARG_rationing }
+        completion_reward = {
+            add_tech_bonus = {
+				name = synthetic_bonus bonus = 1.0 uses = 1
+				category = synth_resources_tech
+			}
+
+            random_owned_controlled_state = {
+                limit = { oil > 0 }
+                add_resource = { type = oil amount = 4 }
+            }
+        }
+    }
+    focus = {
+        id = ARG_women_at_work
+        icon = GFX_focus_generic_women_at_work
+
+        relative_position_id = ARG_rationing
+        x = 1
+        y = 1
+
+        cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = { has_stability < 0.25 factor = 0 }
+        }
+
+        available = { 
+            has_war = yes
+        }
+
+        prerequisite = { focus = ARG_rationing }
+        completion_reward = {
+            add_stability = -0.05
+            add_ideas = idea_women_at_work
+        }
+    }
+
+    focus = {
+        id = ARG_infrastructure_effort
+        icon = GFX_focus_generic_extraction_effort
+
+        relative_position_id = ARG_economic_development
+        x = 0
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        prerequisite = { focus = ARG_economic_development }
+		completion_reward = {
+            add_tech_bonus = {
+				name = construction_bonus bonus = 1.0 uses = 2
+				category = construction_tech
+                category = supply_tech
+			}
+
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes }
+
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                add_extra_state_shared_building_slots = 2
+            }
+		}
+    }
+    focus = {
+        id = ARG_construct_civilian
+        icon = GFX_focus_generic_construct_civilian
+
+        relative_position_id = ARG_infrastructure_effort
+        x = 0
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 3 }
+
+        prerequisite = { focus = ARG_infrastructure_effort }
+		completion_reward = {
+            add_timed_idea = { idea = idea_industrial_expansion years = 1 }
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = { building = industrial_complex size > 0 include_locked = yes }
+					is_core_of = ROOT
+				}
+
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+			}
+		}
+    }
+    focus = {
+        id = ARG_expand_mining
+        icon = GFX_focus_generic_expand_mining
+
+        relative_position_id = ARG_infrastructure_effort
+        x = 3
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = ARG_infrastructure_effort }
+        mutually_exclusive = { focus = ARG_efficiency_studies }
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes }
+                
+                add_resource = { type = steel amount = 12 }
+                add_resource = { type = aluminium amount = 6 }
+            }
+        }
+    }
+
+    focus = {
+        id = ARG_efficiency_studies
+        icon = GFX_focus_efficiency_studies
+
+        relative_position_id = ARG_infrastructure_effort
+        x = 6
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 3 }
+
+        prerequisite = { focus = ARG_infrastructure_effort }
+        mutually_exclusive = { focus = ARG_expand_mining }
+
+		completion_reward = {
+            add_ideas = idea_efficiency_studies
+		}
+    }
+
+    focus = {
+        id = ARG_steady_growth
+        icon = GFX_focus_generic_steady_growth
+
+        relative_position_id = ARG_construct_civilian
+        x = 2
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 4 }
+
+        prerequisite = { 
+            focus = ARG_construct_civilian
+        }
+
+        available = {
+            has_stability > 0.4
+        }
+
+        completion_reward = {
+            add_ideas = idea_steady_growth
+
+            hidden_effect = {
+                random = {
+                    chance = 25
+                    country_event = { id = _growth.1 days = 30 random_days = 60 }
+                }
+                random = {
+                    chance = 25
+                    country_event = { id = _growth.2 days = 30 random_days = 60 }
+                }
+            }
+        }
+    }
+    focus = {
+        id = ARG_war_industry
+        icon = GFX_focus_generic_war_industry
+
+        relative_position_id = ARG_construct_civilian
+        x = -2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { 
+            focus = ARG_construct_civilian
+        }
+
+        available = {
+            has_war_support > 0.4
+        }
+
+        completion_reward = {
+            random_owned_controlled_state = {
+				limit = {
+					free_building_slots = { building = arms_factory size > 0 include_locked = yes }
+					is_core_of = ROOT
+                    is_in_home_area = yes
+				}
+
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+			}
+        }
+    }
+
+    focus = {
+        id = ARG_telegraph
+        icon = GFX_focus_generic_telegraph
+
+        relative_position_id = ARG_economic_development
+        x = 4
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = ARG_economic_development }
+        available = { has_tech = tech_telegraph }
+
+        completion_reward = {
+            add_political_power = 50
+            add_tech_bonus = {
+				name = communications_bonus bonus = 1.0 uses = 2
+				category = communications_tech
+			}
+        }
+    }
+
+    ## political branch
+    focus = {
+        id = ARG_political_ambitions
+        icon = GFX_focus_generic_political_ambitions
+
+        relative_position_id = ARG_economic_development
+        x = -2
+        y = 5
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        completion_reward = {
+            add_political_power = 150
+        }
+    }
+    focus = {
+        id = ARG_international_affairs
+        icon = GFX_focus_generic_international_affairs
+
+        relative_position_id = ARG_political_ambitions
+        x = -4
+        y = 1
+        cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = { threat > 0.1 factor = 3 }
+        }
+
+        available = { is_subject = no }
+
+        prerequisite = { focus = ARG_political_ambitions }
+        completion_reward = {
+            add_timed_idea = { idea = idea_international_affairs years = 2 }
+        }
+    }
+    focus = {
+        id = ARG_expansionism
+        icon = GFX_focus_generic_expansionism
+
+        relative_position_id = ARG_international_affairs
+        x = -2
+        y = 1
+        cost = 10
+
+        available = { 
+            is_subject = no
+            has_war_support > 0.3
+        }
+
+        ai_will_do = {
+            base = 1
+            modifier = { threat > 0.2 factor = 3 }
+        }
+
+        prerequisite = { focus = ARG_international_affairs }
+        completion_reward = {
+            add_political_power = 100
+            add_timed_idea = { idea = idea_expansionism years = 1 }
+        }
+    }
+    focus = {
+        id = ARG_deterrence
+        icon = GFX_focus_generic_deterrence
+
+        relative_position_id = ARG_international_affairs
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ARG_international_affairs }
+        available = { is_subject = no }
+
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+    focus = {
+        id = ARG_seek_alliances
+        icon = GFX_focus_generic_seek_alliances
+
+        relative_position_id = ARG_expansionism
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ARG_expansionism }
+        available = { is_subject = no }
+
+        completion_reward = {
+            add_timed_idea = { idea = idea_seek_alliances years = 2 }
+        }
+    }
+    focus = {
+        id = ARG_on_our_own
+        icon = GFX_focus_generic_across_the_sea
+
+        relative_position_id = ARG_expansionism
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ARG_expansionism }
+        available = { is_subject = no }
+
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+
+    focus = {
+        id = ARG_traditionalism
+        icon = GFX_focus_ARG_traditionalism
+
+        relative_position_id = ARG_political_ambitions
+        x = 0
+        y = 1
+        cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = { has_government = monarchism factor = 2 }
+        }
+
+        mutually_exclusive = { focus = ARG_adjust_the_government }
+        prerequisite = { focus = ARG_political_ambitions }
+        completion_reward = {
+            add_stability = -0.05
+            add_popularity = { ideology = monarchism popularity = 0.05 }
+        }
+    }
+    focus = {
+        id = ARG_public_support
+        icon = GFX_focus_generic_public_support
+
+        relative_position_id = ARG_traditionalism
+        x = -1
+        y = 1
+        cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
+
+        prerequisite = { focus = ARG_traditionalism }
+        completion_reward = {
+            add_war_support = 0.05
+            custom_effect_tooltip = decision_effect_tooltip
+            hidden_effect = { set_country_flag = public_support_allowed }
+        }
+    }
+    focus = {
+        id = ARG_mobilize_the_masses
+        icon = GFX_focus_ARG_mobilize_the_masses
+
+        relative_position_id = ARG_traditionalism
+        x = 1
+        y = 1
+        cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
+
+        prerequisite = { focus = ARG_traditionalism }
+        completion_reward = {
+            add_timed_idea = { idea = idea_estancieros years = 2 }
+        }
+    }
+    focus = {
+        id = ARG_strength_in_unity
+        icon = GFX_focus_generic_strength_in_unity
+
+        relative_position_id = ARG_public_support
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { 
+            focus = ARG_public_support
+            focus = ARG_mobilize_the_masses
+        }
+        completion_reward = {
+            add_political_power = 50
+            add_timed_idea = { idea = idea_strength_in_unity years = 1 }
+        }
+    }
+    focus = {
+        id = ARG_the_everlasting_spirit
+        icon = GFX_focus_generic_the_everlasting_spirit
+
+        relative_position_id = ARG_strength_in_unity
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ARG_strength_in_unity }
+        completion_reward = {
+            add_ideas = idea_argentina_serena
+        }
+    }
+
+    focus = {
+        id = ARG_adjust_the_government
+        icon = GFX_focus_generic_adjust_the_government
+
+        relative_position_id = ARG_political_ambitions
+        x = 4
+        y = 1
+        cost = 10
+
+        available = {
+            has_country_leader = { character = ARG_roque_saenz_pena ruling_only = yes }
+        }
+
+        mutually_exclusive = { focus = ARG_traditionalism }
+        prerequisite = { focus = ARG_political_ambitions }
+        completion_reward = {
+            add_timed_idea = { idea = idea_democratic_tendencies years = 1 }
+            add_stability = 0.05
+        }
+    }
+    focus = {
+        id = ARG_state_reform
+        icon = GFX_focus_generic_state_reform
+
+        relative_position_id = ARG_adjust_the_government
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ARG_adjust_the_government }
+        completion_reward = {
+            add_timed_idea = { idea = idea_state_reform years = 1 }
+        }
+    }
+    focus = {
+        id = ARG_open_the_economy
+        icon = GFX_focus_generic_open_the_economy
+
+        relative_position_id = ARG_adjust_the_government
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ARG_adjust_the_government }
+        completion_reward = {
+            add_timed_idea = { idea = idea_open_the_economy years = 1 }
+
+            random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+        }
+    }
+    focus = {
+        id = ARG_over_the_edge
+        icon = GFX_focus_generic_over_the_edge
+
+        relative_position_id = ARG_state_reform
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ARG_state_reform }
+
+        ai_will_do = {
+            base = 0
+            modifier = { has_stability < 0.2 add = 1 }
+        }
+        
+        completion_reward = {
+            add_timed_idea = { idea = idea_communism_tendencies years = 2 }
+        }
+    }
+    focus = {
+        id = ARG_embrace_modernity
+        icon = GFX_focus_generic_red_education
+
+        relative_position_id = ARG_state_reform
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ARG_state_reform }
+        completion_reward = {
+            add_research_slot = 1
+        }
+    }
+}

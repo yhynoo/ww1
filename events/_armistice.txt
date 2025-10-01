@@ -85,18 +85,21 @@ news_event = {
 
     trigger = {
         has_war = yes
-        or = { has_war_support < 0.3 has_stability < 0.5 }
+        or = { 
+            and = {
+                has_war_support < 0.3 has_stability < 0.5
+                longest_war_length > 18
+            }
+            has_war_support < 0.2
+        }
         not = { has_idea = idea_anti_war_demonstrations has_idea = idea_army_mutinies }
-
-        # war must be long enough
-        longest_war_length > 18
     }
 
     mean_time_to_happen = { months = 3 }
 
     option = {
         name = "Worrying."
-        add_timed_idea = { idea = idea_anti_war_demonstrations months = 6 }
+        add_timed_idea = { idea = idea_anti_war_demonstrations months = 3 }
     }
 }
 

@@ -1,0 +1,83 @@
+add_namespace = argentina_saenz
+
+news_event = {
+    id = argentina_saenz.1
+    title = "Roque Sáenz Peña Dies"
+    desc = argentina_saenz.1.d
+
+    trigger = {
+        tag = ARG
+        date > 1914.8.1
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "Rest in peace."
+        retire_character = ARG_roque_saenz_pena
+
+        hidden_effect = { country_event = { id = argentina_saenz.2 days = 28 random_days = 14 } }
+    }
+}
+
+country_event = {
+    id = argentina_saenz.2
+    title = "Unrest Among the Estancieros"
+    desc = argentina_saenz.2.d
+
+    is_triggered_only = yes
+    immediate = { hidden_effect = { country_event = { id = argentina_saenz.3 days = 14 random_days = 60 } } }
+
+    option = {
+        name = "Offer concessions."
+
+        add_political_power = -75
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+
+        ai_chance = { 
+            base = 1 
+            modifier = { has_completed_focus = ARG_adjust_the_government factor = 0 }
+        }
+    }
+    option = {
+        name = "Dismiss them."
+        add_stability = -0.1
+
+        ai_chance = { 
+            base = 1 
+            modifier = { has_idea = idea_estancieros factor = 0 }
+        }
+    }
+}
+
+country_event = {
+    id = argentina_saenz.3
+    title = "Estancieros’ Uprising"
+    desc = argentina_saenz.3.d
+
+    is_triggered_only = yes
+    trigger = { 
+        has_civil_war = no
+        and = { has_government = democratic democratic < 0.5 }
+    }
+
+    option = {
+        name = "Uphold the democracy."
+
+        start_civil_war = { 
+            ideology = monarchism ruling_party = democratic size = 0.5
+            states = { state = 508 state = 511 state = 512 }
+        }
+    }
+
+    option = {
+        name = "Tierra, Orden y Tradición."
+        start_civil_war = { 
+            ideology = democracy ruling_party = monarchism size = 0.6
+            
+            states = all
+            states_filter = {
+                not = { or = { state = 508 state = 511 state = 512 } }
+            }
+        }
+    }
+}

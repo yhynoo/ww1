@@ -1,0 +1,71 @@
+add_namespace = argentina_demonstrations
+
+country_event = {
+    id = argentina_demonstrations.1
+    title = "‘Aliadophiles’ Gather in Buenos Aires"
+    desc = argentina_demonstrations.1.d
+
+    trigger = {
+        tag = ARG
+        and = { date > 1915.1.1 threat > 20 }
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "They have the right to do that."
+        add_war_support = 0.05
+
+        hidden_effect = { 
+            add_ai_strategy = { type = alliance tag = FRA value = 10 }
+        }
+
+        ai_chance = { 
+            base = 1 
+            modifier = { has_completed_focus = ARG_adjust_the_government factor = 0 }
+        }
+    }
+    option = {
+        name = "We must maintain our neutrality."
+        add_popularity = { ideology = communism popularity = 0.025 }
+
+        ai_chance = { 
+            base = 1 
+            modifier = { has_completed_focus = ARG_traditionalism factor = 0 }
+        }
+    }
+}
+
+country_event = {
+    id = argentina_demonstrations.2
+    title = "A ‘Germanophile’ Demonstration in the Capital"
+    desc = argentina_demonstrations.2.d
+
+    trigger = {
+        tag = ARG
+        and = { date > 1915.4.1 threat > 20 }
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "We must let them speak."
+        add_war_support = 0.05
+
+        hidden_effect = { 
+            add_ai_strategy = { type = alliance tag = GER value = 10 }
+        }
+
+        ai_chance = { 
+            base = 1 
+            modifier = { has_completed_focus = ARG_adjust_the_government factor = 0 }
+        }
+    }
+    option = {
+        name = "We are not a side in the European war."
+        add_popularity = { ideology = democratic popularity = 0.025 }
+
+        ai_chance = { 
+            base = 1 
+            modifier = { has_completed_focus = ARG_traditionalism factor = 0 }
+        }
+    }
+}

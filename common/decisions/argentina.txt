@@ -1,0 +1,131 @@
+naval_armaments = {
+    demands_in_antarctica = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 75
+
+        available = {
+            any_state = {
+                or = { state = 299 state = 507 }
+                not = { is_owned_by = ARG }
+            }
+        }
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            every_state = {
+                limit = {
+                    or = { state = 299 state = 507 }
+                    not = { is_owned_by = ARG }
+                }
+                add_claim_by = ARG
+            }
+
+            every_country = {
+                limit = { or = { owns_state = 299 owns_state = 507 } }
+                country_event = { id = _demand.1 hours = 6 random_hours = 6 }
+            }
+        }
+    }
+    encourage_the_arms_race = {
+        icon = generic_naval
+        cost = 50
+        days_remove = 90
+
+        ai_will_do = { base = 6 }
+
+        modifier = {
+            war_support_weekly = 0.005
+            industrial_capacity_dockyard = 0.25
+        }
+    }
+}
+
+the_southern_anchor = {
+    demands_in_south_atlantic = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 75
+
+        available = {
+            any_state = {
+                or = { state = 564 state = 653 }
+                not = { is_owned_by = ARG }
+            }
+        }
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            every_state = {
+                limit = {
+                    or = { state = 564 state = 653 }
+                    not = { is_owned_by = ARG }
+                }
+                add_claim_by = ARG
+            }
+
+            every_country = {
+                limit = { or = { owns_state = 564 owns_state = 653 } }
+                country_event = { id = _demand.1 hours = 6 random_hours = 6 }
+            }
+        }
+    }
+    infanteria_de_marina = {
+        icon = generic_civil_support
+        fire_only_once = yes
+        cost = 75
+
+        available = { has_tech = marines_1 }
+
+        complete_effect = {
+            navy_experience = 25
+
+            hidden_effect = {
+                division_template = {
+                    name = "Infantería de Marina"
+                    division_names_group = ARG_MAR_1
+                    priority = 2
+                    regiments = {
+                        marines = { x = 0 y = 0 }
+                        marines = { x = 0 y = 1 }
+                        marines = { x = 0 y = 2 }
+                        marines = { x = 0 y = 3 }
+                    }
+                }
+            }
+
+            every_state = {
+                limit = { or = { state = 278 state = 512 } }
+                custom_effect_tooltip = "An elite marine is created."
+
+                hidden_effect = {
+                    create_unit = {
+                        division = "name = \"Infantería de Marina\" division_template = \"Infantería de Marina\" start_experience_factor = 0.8"
+                        owner = ARG
+                    }
+                }
+            }
+        }
+    }
+    assert_claims_in_atacama = {
+        icon = generic_nationalism
+        fire_only_once = yes
+        cost = 50
+
+        available = { 302 = { is_owned_by = PRU } }
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            news_event = { id = argentina_atacama.1 hours = 6 }
+            302 = { add_core_of = ARG }
+
+            hidden_effect = {
+                add_ai_strategy = {
+                    type = declare_war  tag = PRU   value = 50
+                }
+            }
+        }
+    }
+}

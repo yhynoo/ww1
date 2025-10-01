@@ -339,6 +339,11 @@ technologies = {
             research_cost_coeff = 1
         }
 
+        category_airship = {
+            reliability = 0.15
+            air_range = 0.05
+        }
+
         folder = {
             name = air_techs_folder
             position = { x = 0 y = @1912 }
@@ -391,6 +396,11 @@ technologies = {
     self_sealing_gas_cells = {
         categories = { airship_tech }
 
+        category_airship = {
+            reliability = 0.1
+            air_defence = 0.05
+        }
+
         research_cost = 1
         start_year = 1919
 
@@ -400,18 +410,20 @@ technologies = {
         }
     }
 
-    # gliders
-    glider_1914 = {
-        enable_equipments = { glider_1912 }
-        enable_subunits = { paratrooper }
-
+    # other aerostats
+    spotting_troops = {
         categories = { airship_tech }
+
+        category_artillery = { 
+            defense = 0.05
+            recon = 0.15
+        }
 
         research_cost = 1.5
         start_year = 1914
 
         path = {
-            leads_to_tech = glider_1917
+            leads_to_tech = air_defence_installations
             research_cost_coeff = 1
         }
 
@@ -420,10 +432,14 @@ technologies = {
             position = { x = 0 y = @1914 }
         }
     }
-    glider_1917 = {
-        enable_equipments = { glider_1917 }
+    air_defence_installations = {
         categories = { airship_tech }
 
+        category_anti_air = { 
+            defense = 0.05
+            air_attack = 0.2
+        }
+        
         research_cost = 1.5
         start_year = 1917
 

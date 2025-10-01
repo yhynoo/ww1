@@ -59,20 +59,6 @@ baltic_independence = {
     }
 }
 
-croatian_independence = {
-    AUS = {
-        every_owned_state = {
-            limit = { or = { state = 103 state = 104 state = 109 } }
-            transfer_state_to = CRO
-        }
-    }
-
-    CRO = { 
-        load_oob = "CRO_1912" 
-        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
-    }
-}
-
 greek_independence = {
     TUR = {
         every_owned_state = {
@@ -105,6 +91,13 @@ hungarian_independence = {
         every_controlled_state = {
             limit = { or = { state = 43 state = 45 state = 76 state = 154 state = 155 } }
             set_state_controller_to = HUN
+        }
+
+        every_country_division = {
+            random = {
+                chance = 40
+                destroy_unit = yes
+            }
         }
     }
 

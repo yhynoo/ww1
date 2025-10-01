@@ -13,8 +13,8 @@ equipments = {
 
 		allow_mission_type = {
 			training
-            strategic_bomber
-			naval_bomber
+            air_supply
+			strategic_bomber
 			port_strike
 		}
 		forbid_mission_type = { drop_nuke }
@@ -29,7 +29,6 @@ equipments = {
     airship_1904 = {
         year = 1904
         active = no
-
         archetype = airship_equipment
 
         air_range = 850
@@ -69,13 +68,10 @@ equipments = {
 
 		allow_mission_type = {
 			training
-            paradrop
             air_supply
 			strategic_bomber
-			naval_bomber
 			port_strike
 		}
-		forbid_mission_type = { drop_nuke }
 
         air_range = 1650
 		maximum_speed = 75
@@ -144,41 +140,4 @@ equipments = {
 		manpower = 60
 		fuel_consumption = 0.26
     }
-
-    # gliders
-    glider_equipment = {
-        year = 1904
-	
-		is_archetype = yes
-		is_buildable = no
-        active = no
-
-		type = infantry
-		group_by = archetype
-		interface_category = interface_category_land
-
-        reliability = 0.6
-
-        build_cost_ic = 1.2
-		resources = { tungsten = 1 }
-    }
-
-    glider_1912 = {
-		year = 1912
-	
-		archetype = glider_equipment
-		active = no
-	}
-
-    glider_1917 = {
-		year = 1917
-	
-		archetype = glider_equipment
-        parent = glider_1912
-		active = no
-
-        reliability = 0.9
-        build_cost_ic = 1.6
-        resources = { tungsten = 1 aluminium = 1 }
-	}
 }

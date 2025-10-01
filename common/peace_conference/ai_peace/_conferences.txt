@@ -43,12 +43,12 @@ peace_ai_desires = {
         ai_desire = 90
     }
 
-    # authoritarians can also take what they control
+    # communism can also take what they control
     take_our_controlled = {
         peace_action_type = { take_states }
         enable = {
             ROOT = { tag = ROOT.FROM }
-            has_government = authoritarianism
+            has_government = communism
 
             # take our cores and claims
             ROOT.FROM.FROM.FROM = { is_controlled_by = ROOT.FROM }
@@ -63,8 +63,8 @@ peace_ai_desires = {
 
             # don't take states we don't have claims or cores on
             ROOT.FROM.FROM.FROM = {
-                NOT = { is_core_of = ROOT.FROM }
-                NOT = { is_claimed_by = ROOT.FROM }
+                NOT = { is_core_of = ROOT }
+                NOT = { is_claimed_by = ROOT }
             }
         }
         ai_desire = -600
@@ -78,7 +78,7 @@ peace_ai_desires = {
             ROOT.FROM.FROM.FROM = { is_core_of = ROOT.FROM }
         }
 
-        ai_desire = 100
+        ai_desire = 20
     }
 
     dont_liberate_if_puppeted_or_authoritarian = {
@@ -96,16 +96,20 @@ peace_ai_desires = {
     monarchies_like_puppets = {
         peace_action_type = { puppet }
         enable = {
+            not = {
+                ROOT.FROM = { exists = yes }
+                ROOT.FROM = { pc_is_liberated = yes }
+            }
             has_government = monarchism
         }
-        ai_desire = 50
+        ai_desire = 300
     }
     dont_puppet_large_countries = {
         peace_action_type = { puppet }
         enable = {
             ROOT.FROM.FROM = { check_variable = { num_owned_states > 10 } }
         }
-        ai_desire = -200
+        ai_desire = -150
     }
 
     continuous_puppet = {

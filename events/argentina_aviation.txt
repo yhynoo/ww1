@@ -1,0 +1,20 @@
+add_namespace = argentina_aviation
+
+news_event = {
+    id = argentina_aviation.1
+    title = "Aviation School Opens in El Palomar"
+    desc = argentina_aviation.1.d
+
+    trigger = {
+        tag = HOL
+        date > 1912.3.1
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "Wonderful."
+        
+        278 = { add_building_construction = { type = air_base level = 1 instant_build = yes } }
+        add_equipment_to_stockpile = { type = fighter_equipment_0 amount = 4 producer = FRA }
+    }
+}

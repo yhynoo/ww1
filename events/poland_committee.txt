@@ -1,0 +1,28 @@
+add_namespace = poland_committee
+
+country_event = {
+    id = poland_committee.1
+    title = "Liquidation Committee Established in Galicja"
+    desc = poland_committee.1.d
+
+    is_triggered_only = yes
+
+    immediate = {
+        hidden_effect = { set_country_flag = komisja_likwidacyjna }
+    }
+
+    option = {
+        name = "Ignacy Daszyński."
+        add_stability = 0.05
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "Wincenty Witos."
+
+        add_political_power = 50
+        promote_character = POL_wincenty_witos
+
+        ai_chance = { base = 2 }
+    }
+}

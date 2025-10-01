@@ -9,7 +9,7 @@ dc_head_of_state_decisions = {
 
         icon = generic_prepare_civil_war    
         days_remove = 90
-        cost = 75
+        cost = 50
     
         available = { or = { has_idea = disarmed_nation has_idea = volunteer_only has_idea = limited_conscription } }
     
@@ -33,7 +33,7 @@ dc_head_of_state_decisions = {
 
         icon = generic_prepare_civil_war    
         days_remove = 90
-        cost = 75
+        cost = 50
     
         available = { or = { has_idea = disarmed_nation has_idea = volunteer_only has_idea = limited_conscription } }
     
@@ -57,7 +57,7 @@ dc_head_of_state_decisions = {
 
         icon = generic_civil_support
         days_remove = 90
-        cost = 75
+        cost = 50
 
         ai_will_do = {
             base = 3
@@ -80,7 +80,7 @@ dc_head_of_state_decisions = {
 
         icon = generic_civil_support
         days_remove = 90
-        cost = 75
+        cost = 50
 
         ai_will_do = {
             base = 3
@@ -103,7 +103,7 @@ dc_head_of_state_decisions = {
 
         icon = generic_civil_support
         days_remove = 90
-        cost = 75
+        cost = 50
 
         ai_will_do = {
             base = 3
@@ -128,13 +128,13 @@ dc_head_of_state_decisions = {
 
         icon = generic_nationalism    
         days_remove = 90
-        cost = 50
+        cost = 25
 
         available = { has_war = yes }
 
         ai_will_do = {
-            base = 3
-            modifier = { and = { threat > 0.1 has_war_support < 0.3 } factor = 2 }
+            base = 6
+            modifier = { and = { threat > 0.1 has_war_support < 0.3 } add = 6 }
             modifier = { has_war_support > 0.8 factor = 0 }
         }
 
@@ -150,7 +150,7 @@ dc_head_of_state_decisions = {
 
         icon = generic_civil_support
         days_remove = 90
-        cost = 75
+        cost = 50
 
         ai_will_do = { 
             base = 6
@@ -170,7 +170,7 @@ dc_head_of_state_decisions = {
 
         icon = generic_prepare_civil_war
         days_remove = 90
-        cost = 75
+        cost = 50
 
         modifier = {
             stability_weekly = -0.005
@@ -199,7 +199,7 @@ dc_head_of_state_decisions = {
 
         icon = generic_form_nation
         fire_only_once = yes
-        cost = 100
+        cost = 75
 
         ai_will_do = {
             base = 0

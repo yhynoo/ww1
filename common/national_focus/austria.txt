@@ -485,7 +485,7 @@ focus_tree = {
 
         prerequisite = { focus = AUS_infrastructure_effort }
 		completion_reward = {
-            add_ideas = idea_industrial_expansion
+            add_timed_idea = { idea = idea_industrial_expansion years = 1 }
 			random_owned_controlled_state = {
 				limit = {
 					free_building_slots = { building = industrial_complex size > 0 include_locked = yes }
@@ -921,7 +921,10 @@ focus_tree = {
 
         ai_will_do = {
             base = 0
-            modifier = { surrender_progress > 0.1 add = 1 }
+            modifier = { 
+                or = { surrender_progress > 0.1 stability < 0.25 }
+                add = 2 
+            }
         }
         
         completion_reward = {
@@ -946,7 +949,7 @@ focus_tree = {
 
         ai_will_do = {
             base = 0
-            modifier = { has_idea = idea_sabotage_in_hungary add = 2 }
+            modifier = { has_idea = idea_dissatisfied_hungarians add = 2 }
         }
 
         completion_reward = {

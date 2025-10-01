@@ -1,0 +1,80 @@
+add_namespace = argentina_elections
+
+country_event = {
+    id = argentina_elections.1
+    title = "The Election of 1916"
+    desc = argentina_elections.1.d
+
+    is_triggered_only = yes
+    trigger = {
+        tag = ARG
+        has_government = democratic
+
+        date > 1916.1.1         date < 1917.1.1
+    }
+
+    option = {
+        name = "Hipólito Yrigoyen."
+        add_popularity = { ideology = communism popularity = 0.025 }
+        
+        promote_character = ARG_hipolito_yrigoyen
+        ai_chance = { 
+            base = 1 
+            modifier = { has_completed_focus = ARG_traditionalism factor = 0 }
+        }
+    }
+    option = {
+        name = "Lisandro de la Torre."
+
+        add_war_support = 0.05
+        promote_character = ARG_lisandro_de_la_torre
+
+        ai_chance = { 
+            base = 1 
+            modifier = { has_completed_focus = ARG_adjust_the_government factor = 0 }
+        }
+    }
+}
+
+country_event = {
+    id = argentina_elections.2
+    title = "The Election of 1922"
+    desc = argentina_elections.2.d
+
+    is_triggered_only = yes
+    trigger = {
+        tag = ARG
+        has_government = democratic
+
+        date > 1922.1.1         date < 1923.1.1
+    }
+
+    option = {
+        name = "Marcelo T. de Alvear."
+
+        add_popularity = { ideology = democratic popularity = 0.025 }
+        
+        promote_character = ARG_marcelo_de_alevear
+        ai_chance = { 
+            base = 1 
+            modifier = { has_completed_focus = ARG_traditionalism factor = 0 }
+        }
+    }
+    option = {
+        name = "Lisandro de la Torre."
+        
+        if = {
+            limit = { has_country_leader = { character = ARG_lisandro_de_la_torre ruling_only = yes } }
+            add_stability = 0.05
+        }
+        else = {
+            add_popularity = { ideology = monarchism popularity = 0.025 }
+            promote_character = ARG_lisandro_de_la_torre
+        }
+
+        ai_chance = { 
+            base = 1 
+            modifier = { has_completed_focus = ARG_adjust_the_government factor = 0 }
+        }
+    }
+}

@@ -57,7 +57,7 @@ news_event = {
 
 news_event = {
     id = _atmosphere.6
-    title = "A World-Wide Flu Epidemic"
+    title = "A World-Wide Epidemic"
     desc = _atmosphere.6.d
 
     is_triggered_only = yes
@@ -65,8 +65,6 @@ news_event = {
  
     option = { 
         name = "Horrible."
-
-        add_stability = -0.2
-        add_war_support = -0.15
+        add_timed_idea = { idea = idea_spanish_flu months = 18 }
     }
 }

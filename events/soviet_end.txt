@@ -2,8 +2,8 @@ add_namespace = soviet_end
 
 country_event = {
     id = soviet_end.1
-    title = "The End of the Russian Empire?"
-    desc = soviet_agitation.1.d
+    title = "The End of the Empire?"
+    desc = soviet_end.1.d
 
     fire_only_once = yes
 
@@ -28,5 +28,68 @@ country_event = {
 
         # manage the war
         hidden_effect = { russia_civil_war = yes }
+    }
+}
+
+news_event = {
+    id = soviet_end.2
+    title = "Uprising in the Baltics!"
+    desc = soviet_end.2.d
+
+    trigger = {
+        tag = SOV
+        has_civil_war = yes
+
+        UBD = { exists = no }
+        any_country_with_original_tag = {
+            original_tag_to_check = SOV
+            or = { controls_state = 12 controls_state = 13 }
+        }
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "We will take care of that."
+
+        hidden_effect = { 
+            baltic_independence = yes 
+            UBD = { set_rule = { can_join_factions = no } }
+        }
+        every_country_with_original_tag = {
+            original_tag_to_check = SOV
+            declare_war_on = { target = UBD type = take_claimed_state }
+        }
+    }
+}
+
+news_event = {
+    id = soviet_end.3
+    title = "Ukraine Declares Independence!"
+    desc = soviet_end.3.d
+
+    trigger = {
+        tag = SOV
+        has_civil_war = yes
+
+        UKR = { exists = no }
+        any_country_with_original_tag = {
+            original_tag_to_check = SOV
+            or = { controls_state = 137 controls_state = 192 controls_state = 196 controls_state = 197 controls_state = 200 controls_state = 226 }
+        }
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "This will not last long."
+
+        hidden_effect = { 
+            ukrainian_independence = yes
+            UKR = { set_rule = { can_join_factions = no } }
+        }
+
+        every_country_with_original_tag = {
+            original_tag_to_check = SOV
+            declare_war_on = { target = UKR type = take_claimed_state }
+        }
     }
 }

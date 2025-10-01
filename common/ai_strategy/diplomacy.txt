@@ -6,6 +6,7 @@ central_powers_acceptance = {
             original_tag = AUS
             original_tag = HOL
             original_tag = ITA
+            original_tag = MEX
             original_tag = TUR
         }
     }
@@ -22,6 +23,10 @@ central_powers_acceptance = {
             and = {                                                             # italy
                 has_completed_focus = ITA_on_our_own
                 not = { GER = { is_ally_with = TUR } }                                
+            }
+            and = {                                                             # mexico
+                original_tag = MEX
+                has_war_with = USA
             }
             and = {                                                             # turkey
                 original_tag = TUR
@@ -57,6 +62,10 @@ central_powers_invite = {
             and = {                                                             # italy
                 has_completed_focus = ITA_on_our_own
                 not = { GER = { is_ally_with = TUR } }                                
+            }
+            and = {                                                             # mexico
+                original_tag = MEX
+                has_war_with = USA
             }
             and = {                                                             # turkey
                 original_tag = TUR
@@ -156,8 +165,8 @@ entente_invite = {
             and = {                                                             # usa
                 has_completed_focus = USA_traditionalism
                 and = { 
-                    has_war_support > 0.55
-                    FRA = { war_length_with = { tag = GER months > 24 } }
+                    has_war_support > 0.6
+                    FRA = { war_length_with = { tag = GER months > 18 } }
                 }
             }
         }
@@ -175,6 +184,62 @@ entente_invite = {
 }
 
 # OTHER THINGS #
+
+# WILSONIANISM
+
+wilsonianism = {
+    allowed = { original_tag = USA }
+    enable = {
+        USA = { has_completed_focus = USA_on_our_own }
+
+        is_subject = no
+        is_in_faction = no
+
+        or = { tag = HUN tag = POL tag = SER tag = UKR }
+    }
+    abort_when_not_enabled = yes
+    reversed = yes
+
+    ai_strategy = {
+        type = protect
+        id = USA
+        value = 150
+    }
+}
+
+# SOUTH AMERICAN NEUTRALITY
+
+south_american_neutrality = {
+    allowed = { 
+        or = { original_tag = ARG original_tag = BRA original_tag = COL original_tag = MEX original_tag = PRU } 
+    }
+    enable = { not = { has_war_with = USA } }
+    abort_when_not_enabled = yes
+
+    ai_strategy = {
+        type = alliance
+        id = ENG
+        value = -300
+    }
+
+    ai_strategy = {
+        type = alliance
+        id = FRA
+        value = -300
+    }
+
+    ai_strategy = {
+        type = alliance
+        id = GER
+        value = -300
+    }
+
+    ai_strategy = {
+        type = alliance
+        id = USA
+        value = -300
+    }
+}
 
 # ambitions
 

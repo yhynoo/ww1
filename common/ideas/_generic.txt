@@ -109,7 +109,7 @@ ideas = {
         idea_open_the_economy = {
             modifier = {
                 trade_laws_cost_factor = -0.5
-                economy_cost_factor = -0.5
+                trade_opinion_factor = 0.25
             }
         }
 
@@ -131,15 +131,24 @@ ideas = {
         # war attrition
         idea_anti_war_demonstrations = {
             modifier = {
-                army_morale_factor = -0.1
-                war_support_weekly = -0.01
+                industrial_capacity_factory = -0.15
+                industrial_capacity_dockyard = -0.15
+                conscription_factor = -0.1
             }
         }
 
         idea_army_mutinies = {
             modifier = {
                 army_morale_factor = -0.25
-                army_attack_factor = -0.35
+                army_attack_factor = -0.5
+            }
+        }
+
+        idea_spanish_flu = {
+            modifier = {
+                war_support_weekly = -0.005
+                army_morale_factor = -0.2
+                conscription_factor = -0.5
             }
         }
     }

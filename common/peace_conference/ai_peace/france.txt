@@ -1,0 +1,14 @@
+peace_ai_desires = {
+    # grabs
+    africa = {
+        peace_action_type = take_states
+        enable = {
+            ROOT.FROM = { original_tag = FRA }
+            and = {
+                POL = { exists = no }
+                ROOT.FROM.FROM.FROM = { or = { is_core_of = ALG is_core_of = MOR } }
+            }
+        }
+        ai_desire = 150
+    }
+}
