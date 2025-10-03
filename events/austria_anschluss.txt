@@ -18,7 +18,7 @@ news_event = {
 
 country_event = {
     id = austria_anschluss.2
-    title = "Time for Greater Germany?" 
+    title = "Time for a Greater Germany?" 
     desc = austria_anschluss.2.d
 
     is_triggered_only = yes
@@ -40,7 +40,10 @@ country_event = {
 
         ai_chance = { 
             base = 4
-            modifier = { has_war = yes factor = 0 }
+            modifier = { 
+                or = { has_war = yes has_government = democratic }
+                factor = 0
+            }
         }
     }
     option = {

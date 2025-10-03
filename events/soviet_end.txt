@@ -12,7 +12,7 @@ country_event = {
         not = { has_government = communism }
 
         has_civil_war = no
-        communism > 0.4
+        or = { communism > 0.4 has_completed_focus = SOV_over_the_edge }
     }
 
     option = {
@@ -47,6 +47,7 @@ news_event = {
         }
     }
     fire_only_once = yes
+    mean_time_to_happen = { months = 3 }
 
     option = {
         name = "We will take care of that."
@@ -78,6 +79,7 @@ news_event = {
         }
     }
     fire_only_once = yes
+    mean_time_to_happen = { months = 3 }
 
     option = {
         name = "This will not last long."

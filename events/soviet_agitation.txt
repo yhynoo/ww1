@@ -8,7 +8,7 @@ news_event = {
     trigger = { 
         tag = SOV
 
-        or = { surrender_progress > 0.05 longest_war_length > 12 }
+        or = { surrender_progress > 0.1 longest_war_length > 12 }
         not = { has_completed_focus = SOV_strength_in_unity }
         
         controls_state = 214    # we must control Arkhangelsk, otherwise it makes no sense
@@ -34,7 +34,7 @@ country_event = {
     trigger = { 
         tag = SOV
         has_war_with = GER
-        or = { surrender_progress > 0.1 longest_war_length > 18 }
+        or = { surrender_progress > 0.15 longest_war_length > 18 }
     }
 
     option = {

@@ -20,26 +20,16 @@ news_event = {
 
 country_event = {
     id = england_jaffa.2
-    title = "Tensions in Jaffa"
+    title = "Uprising in Jaffa!"
     desc = england_jaffa.2.d
 
     is_triggered_only = yes
+    trigger = { has_stability < 0.6 }
 
     option = {
-        name = "Support the local Arab sheikhs."
+        name = "To arms!"
 
-        add_popularity = { ideology = monarchism popularity = 0.05 }
-        add_political_power = -50
-    }
-    option = {
-        name = "This will diffuse."
-        add_stability = -0.05
-
-        hidden_effect = { 
-            random = {
-                chance = 50
-                start_arab_independence_war = yes 
-            }
-        }
+        hidden_effect = { start_arab_independence_war = yes }
+        declare_war_on = { target = YEM type = annex_everything }
     }
 }

@@ -6,7 +6,7 @@ naval_armaments = {
 
         available = {
             any_state = {
-                or = { state = 299 state = 507 }
+                or = { state = 299 state = 507 state = 509 }
                 not = { is_owned_by = ARG }
             }
         }
@@ -16,14 +16,14 @@ naval_armaments = {
         complete_effect = {
             every_state = {
                 limit = {
-                    or = { state = 299 state = 507 }
+                    or = { state = 299 state = 507 state = 509 }
                     not = { is_owned_by = ARG }
                 }
                 add_claim_by = ARG
             }
 
             every_country = {
-                limit = { or = { owns_state = 299 owns_state = 507 } }
+                limit = { or = { owns_state = 299 owns_state = 507 owns_state = 509 } }
                 country_event = { id = _demand.1 hours = 6 random_hours = 6 }
             }
         }
@@ -98,7 +98,7 @@ the_southern_anchor = {
 
             every_state = {
                 limit = { or = { state = 278 state = 512 } }
-                custom_effect_tooltip = "An elite marine is created."
+                custom_effect_tooltip = "An elite marine unit is created."
 
                 hidden_effect = {
                     create_unit = {
