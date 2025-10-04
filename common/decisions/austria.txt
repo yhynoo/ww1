@@ -22,10 +22,6 @@ contain_eastern_threats = {
                     TUR = { or = { is_in_faction = yes has_country_flag = cotton_deal } }
                 }
                 factor = 0.5 
-            } 
-            modifier = {
-                GRE = { exists = yes is_in_faction = no }
-                add = 1.5
             }
             modifier = { has_completed_focus = AUS_adjust_the_government factor = 0.25 }
         }
@@ -53,32 +49,36 @@ contain_eastern_threats = {
         }
 
         complete_effect = {
-            SOV = { add_timed_idea = { idea = idea_unrest_in_ukraine months = 6 } }
             news_event = { id = austria_ukraine.1 hours = 3 }
+            SOV = { add_timed_idea = { idea = idea_unrest_in_ukraine months = 6 } }
 
             hidden_effect = {
                 SOV = { country_event = { id = austria_ukraine.2 days = 60 random_days = 14 } }
             }
         }
     }
-    arm_ukrainians = {
-        icon = generic_industry
-        days_remove = 90
-        cost = 50
-
-        available = {
-            UKR = { exists = yes }
-            has_equipment = { infantry_equipment > 599 }
-        }
+    defenses_in_the_east = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 75
 
         ai_will_do = {
             base = 0
-            modifier = { UKR = { has_war_with = SOV } add = 9 }
+            modifier = { has_war_with = SOV add = 9 }
         }
 
         complete_effect = {
-            add_war_support = 0.025
-            send_equipment = { equipment = infantry_equipment amount = 600 target = UKR }
+            if = {
+                limit = { controls_state = 76 }
+                custom_effect_tooltip = tt_defenses_east
+
+                hidden_effect = {
+                    76 = { add_building_construction = { type = supply_node level = 1 province = 6711 instant_build = yes } }
+                    build_railway = { start_province = 9660 target_province = 6711 }
+                }
+            }
+
+            add_timed_idea = { idea = idea_defenses_in_the_east years = 1 }
         }
     }
 }
@@ -103,27 +103,29 @@ denounce_adventurism = {
             FRA = { country_event = { id = austria_france.1 hours = 6 random_hours = 6 } }
         }
     }
-    expand_landesschutze = {
+    operational_directive_d = {
         icon = generic_prepare_civil_war
         fire_only_once = yes
         cost = 75
 
         ai_will_do = {
-            base = 9
+            base = 0
+            modifier = { has_war_with = GER add = 9 }
         }
 
         complete_effect = {
-            add_ideas = idea_landesschutze
 
-            add_tech_bonus = {
-				name = special_forces_bonus bonus = 1.0 uses = 1
-				technology = mountaineers_2
-                technology = mountaineers_3
-			}
+            if = {
+                limit = { controls_state = 4 controls_state = 9 }
+                custom_effect_tooltip = tt_directive_d
 
-            hidden_effect = {
-                add_ai_strategy = { type = role_ratio id = mountaineers value = 30 }
+                hidden_effect = {
+                    4 = { add_building_construction = { type = bunker level = 2 province = 732 instant_build = yes } }
+                    9 = { add_building_construction = { type = bunker level = 3 province = 11542 instant_build = yes } }
+                }
             }
+
+            add_timed_idea = { idea = idea_operational_directive_d years = 1 }
         }
     }
 }

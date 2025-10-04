@@ -1,44 +1,4 @@
 oriental_investments = {
-    unrest_in_algeria = {
-        icon = generic_prepare_civil_war
-        cost = 100
-        fire_only_once = yes
-
-        available = {
-            any_state = { is_core_of = ALG is_owned_by = FRA }
-        }
-
-        ai_will_do = {
-            base = 3
-            modifier = { has_war_with = FRA add = 6 }
-        }
-
-        complete_effect = {
-            FRA = {
-                add_timed_idea = { idea = idea_unrest_in_algeria years = 1 }
-                hidden_effect = { country_event = { id = germany_algeria.1 hours = 6 random_hours = 6 } }
-            }
-        }
-    }
-    egyptian_cotton = {
-        icon = generic_industry
-        cost = 75
-        fire_only_once = yes
-
-        available = {
-            not = { has_war_with = TUR }
-            447 = { is_owned_and_controlled_by = TUR }
-        }
-
-        ai_will_do = { 
-            base = 9
-            modifier = { has_war = yes add = 6 }
-        }
-
-        complete_effect = {
-            TUR = { country_event = { id = germany_cotton.1 hours = 6 random_hours = 6 } }
-        }
-    }
     arm_the_moroccans = {
         icon = generic_industry
         days_remove = 90
@@ -59,9 +19,25 @@ oriental_investments = {
             send_equipment = { equipment = infantry_equipment amount = 600 target = MOR }
         }
     }
-}
+    arabian_oil = {
+        icon = generic_industry
+        cost = 75
+        fire_only_once = yes
 
-a_place_in_the_sun = {
+        available = {
+            not = { has_war_with = TUR }
+            292 = { is_owned_and_controlled_by = TUR }
+        }
+
+        ai_will_do = { 
+            base = 9
+            modifier = { has_war = yes add = 6 }
+        }
+
+        complete_effect = {
+            TUR = { country_event = { id = germany_oil.1 hours = 6 random_hours = 6 } }
+        }
+    }
     demand_east_africa = {
         icon = generic_prepare_civil_war
         cost = 150
@@ -78,10 +54,7 @@ a_place_in_the_sun = {
         ai_will_do = { 
             base = 3
             modifier = { 
-                and = {
-                    date > 1914.7.1 
-                    has_war = no 
-                } 
+                and = { date > 1914.7.1 has_war = no } 
                 add = 6
             }
         }
@@ -90,7 +63,7 @@ a_place_in_the_sun = {
             every_state = {
                 limit = { 
                     or  = { state = 542 state = 545 }
-                    not = { is_owned_by = GER }
+                    is_owned_by = ENG
                 }
                 add_claim_by = GER
             }
@@ -100,34 +73,10 @@ a_place_in_the_sun = {
             }
         }
     }
-    support_baltic_germans = {
-        icon = generic_prepare_civil_war
-        cost = 125
-        fire_only_once = yes
-
-        available = {
-            UBD = { exists = no }
-            any_state = { is_core_of = UBD is_controlled_by = SOV }
-        }
-
-        ai_will_do = { 
-            base = 0
-            modifier = { 
-                and = { date > 1914.10.1 has_war = no }
-                add = 12
-            }
-            modifier = { has_war_with = SOV add = 9 }
-        }
-
-        complete_effect = {
-            SOV = { add_timed_idea = { idea = idea_unrest_in_baltics months = 6 } }
-            news_event = { id = germany_east.1 hours = 3 }
-        }
-    }
 }
 
-approach_the_uk = {
-    discard_tirpitz_plan = {
+end_weltpolitik = {
+    abandon_tirpitz_plan = {
         icon = generic_naval
         cost = 100
         fire_only_once = yes
@@ -142,49 +91,23 @@ approach_the_uk = {
             ENG = { country_event = { id = germany_approach_uk.1 hours = 6 random_hours = 6 } }
         }
     }
-    align_netherlands = {
-        icon = generic_form_nation
+    expand_in_the_east = {
+        icon = generic_prepare_civil_war
         cost = 100
         fire_only_once = yes
 
-        available = {
-            HOL = { is_subject = no }
-            can_declare_war_on = HOL
-        }
-
+        available = { can_declare_war_on = SOV }
         ai_will_do = { base = 6 }
 
-        complete_effect = {
-            HOL = { country_event = { id = _align.1 hours = 6 random_hours = 6 } }
-        }
+        days_remove = 90
 
+        remove_effect = {
+            create_wargoal = { target = SOV type = liberate }
+        }
     }
 }
 
 afrika_amt = {
-    train_administrators = {
-        icon = generic_civil_support
-        days_remove = 90
-        cost = 50
-
-        ai_will_do = { base = 9 }
-
-        available = {
-            any_owned_state = {
-                is_on_continent = africa not = { is_core_of = GER }
-            }
-        }
-
-        remove_effect = {
-            random_owned_controlled_state = {
-                limit = {
-                    is_on_continent = africa not = { is_core_of = GER }
-                }
-                add_core_of = GER
-            }
-            add_stability = 0.025
-        }
-    }
     tanganyika_cotton = {
         icon = generic_industry
         fire_only_once = yes
@@ -197,6 +120,23 @@ afrika_amt = {
             546 = { 
                 add_building_construction = { type = infrastructure level = 1 instant_build = yes }
                 add_resource = { type = tungsten amount = 12 } 
+            }
+        }
+    }
+    establish_mittelafrika = {
+        icon = generic_form_nation
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            541 = { is_owned_and_controlled_by = GER }
+        }
+
+        complete_effect = {
+            release_autonomy = { target = UGA autonomy_state = autonomy_dominion }
+            every_state = {
+                limit = { or = { state = 295 state = 538 state = 540 state = 541 state = 542 state = 545 state = 546 state = 548 state = 576 } }
+                add_core_of = UGA
             }
         }
     }

@@ -163,21 +163,26 @@ serbian_independence = {
     }
 }
 
-sicilian_independence = {
-    ITA = {
+syrian_independence = {
+    every_state = {
+        limit = { or = { state = 553 state = 554 state = 677 } }
+        add_core_of = SYR
+    }
+
+    TUR = {
         every_owned_state = {
-            limit = { is_core_of = TTS }
-            set_state_owner_to = TTS
+            limit = { is_core_of = SYR }
+            set_state_owner_to = SYR
         }
 
         every_controlled_state = {
-            limit = { or = { state = 114 state = 117 state = 156 } }
-            set_state_controller_to = TTS
+            limit = { or = { state = 554 state = 677 } }
+            set_state_controller_to = SYR
         }
     }
 
-    TTS = { 
-        load_oob = "TTS_1912" 
+    SYR = { 
+        load_oob = "SYR_1912" 
         add_ideas = { limited_conscription limited_exports low_economic_mobilisation }
     }
 }

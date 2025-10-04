@@ -74,31 +74,6 @@ start_polish_independence_war = {
     }
 }
 
-# sicily
-start_sicilian_independence_war = {
-    every_country_with_original_tag = {
-        original_tag_to_check = ITA
-
-        # transfer states
-        every_controlled_state = {
-            limit = { is_core_of = TTS }
-            transfer_state_to = TTS
-        }
-    }
-
-    # declare war
-    every_country_with_original_tag = {
-        original_tag_to_check = ITA
-        declare_war_on = { target = TTS type = annex_everything }
-    }
-
-    # load troops
-    TTS = { 
-        load_oob = "TTS_1912"
-        add_ideas = { closed_economy partial_economic_mobilisation limited_conscription }
-    }
-}
-
 # south africa
 start_south_african_independence_war = {
     ENG = {

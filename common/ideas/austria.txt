@@ -1,26 +1,5 @@
 ideas = {
     country = {
-        idea_archaic_army = {
-            modifier = {
-                experience_gain_army_factor = -0.3
-                planning_speed = -0.45
-            }
-        }
-
-        idea_dissatisfied_hungarians = {
-            modifier = {
-                stability_factor = -0.1
-                conscription_factor = -0.25
-            }
-        }
-
-        idea_anschluss = {
-            modifier = {
-                war_support_factor = -0.1
-                political_power_factor = -0.15
-            }
-        }
-
         # focus tree
         idea_gemeinsame_heeresleitung = {
             modifier = {
@@ -56,7 +35,21 @@ ideas = {
             }
         }
 
+        idea_anschluss = {
+            modifier = {
+                war_support_factor = -0.1
+                political_power_factor = -0.15
+            }
+        }
+
         # hungary
+        idea_dissatisfied_hungarians = {
+            modifier = {
+                stability_factor = -0.1
+                conscription_factor = -0.25
+            }
+        }
+
         idea_ausgleich = {
             modifier = {
                 stability_factor = -0.05
@@ -64,10 +57,31 @@ ideas = {
             }
         }
 
-        idea_landesschutze = {
+        # army
+        idea_archaic_army = {
             modifier = {
-                special_forces_training_time_factor = -0.25
-                special_forces_attack_factor = 0.1
+                experience_gain_army_factor = -0.3
+                planning_speed = -0.45
+            }
+        }
+
+        idea_defenses_in_the_east = {
+            modifier = {
+                war_support_factor = 0.1
+            }
+            targeted_modifier = {
+                tag = SOV
+                defense_bonus_against = 0.2
+            }
+        }
+
+        idea_operational_directive_d = {
+            modifier = {
+                war_support_factor = 0.05
+            }
+            targeted_modifier = {
+                tag = GER
+                defense_bonus_against = 0.1
             }
         }
     }

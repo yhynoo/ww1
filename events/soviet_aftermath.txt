@@ -1,26 +1,9 @@
 add_namespace = soviet_aftermath
 
-news_event = {
-    id = soviet_aftermath.1
-    title = "Aftermath of the Tragedy in Kyiv"      # Stolypin
-    desc = soviet_aftermath.1.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "The peasants expect true change."
-
-        add_stability = -0.05
-        add_popularity = { ideology = communism popularity = 0.05 }
-
-        hidden_effect = { country_event = { id = soviet_aftermath.2 days = 30 random_days = 30 } }
-    }
-}
-
 country_event = {
-    id = soviet_aftermath.2
+    id = soviet_aftermath.1
     title = "The ‘Zemstvo’ to Expand?"
-    desc = soviet_aftermath.2.d
+    desc = soviet_aftermath.1.d
 
     is_triggered_only = yes
 

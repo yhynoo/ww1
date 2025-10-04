@@ -1,60 +1,18 @@
 add_namespace = france_greece
 
-country_event = {
+news_event = {
     id = france_greece.1
-    title = "France Demands Greek Autonomy"
+    title = "French Arms and Experts Arrive"
     desc = france_greece.1.d
 
     is_triggered_only = yes
 
     option = {
-        name = "We must accept their demands."
+        name = "Wonderful."
 
-        every_controlled_state = {
-            limit = { 
-                or = { state = 47 state = 164 state = 182 state = 186 state = 187 }
-            }
-            transfer_state_to = GRE
-            hidden_effect = { GRE = { load_oob = "GRE_1912" } }
-        }
-
-        FRA = { 
-            news_event = { id = france_greece.2 hours = 6 random_hours = 6 }
-            give_guarantee = GRE
-        }
-
-        ai_chance = {
-            base = 1
-            modifier = { strength_ratio = { tag = FROM ratio > 2 } factor = 2 }
-        }
-    }
-
-    option = {
-        name = "Ignore them."
-        add_war_support = 0.05
+        army_experience = 50
+        air_experience = 25
         
-        FROM = { create_wargoal = { target = ROOT type = take_claimed_state } }
-
-        ai_chance = {
-            base = 2
-            modifier = { strength_ratio = { tag = FROM ratio < 0.5 } factor = 0.5 }
-        }
-
-        hidden_effect = { 
-            FROM = { add_named_threat = { threat = 3 name = "[ROOT.GetName] Ignores [FROM.GetAdjective] Demands" } }
-        }
-    }
-}
-
-news_event = {
-    id = france_greece.2
-    title = "Greece Independent!"
-    desc = france_greece.2.d
-
-    is_triggered_only = yes
-    major = yes
-
-    option = {
-        name = "They owe it to the French."
+        add_opinion_modifier = { target = FRA modifier = large_increase }
     }
 }

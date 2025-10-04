@@ -1,9 +1,9 @@
-add_namespace = soviet_far_east
+add_namespace = soviet_harbin
 
 country_event = {
-    id = soviet_far_east.1
+    id = soviet_harbin.1
     title = "[SOV.GetName] Demands Harbin Access"
-    desc = soviet_far_east.1.d
+    desc = soviet_harbin.1.d
 
     is_triggered_only = yes
 
@@ -11,7 +11,7 @@ country_event = {
         name = "We can arrange this."
 
         FROM = {
-            news_event = { id = soviet_far_east.2 hours = 6 random_hours = 6 }
+            news_event = { id = soviet_harbin.2 hours = 6 random_hours = 6 }
 
             hidden_effect = {
                 every_state = {
@@ -42,9 +42,9 @@ country_event = {
 }
 
 news_event = {
-    id = soviet_far_east.2
+    id = soviet_harbin.2
     title = "[FER.GetNameDefCap] Established"
-    desc = soviet_far_east.2.d
+    desc = soviet_harbin.2.d
 
     is_triggered_only = yes
     major = yes

@@ -1,36 +1,13 @@
 echoes_of_agadir = {
-    demand_flanders = {
+    demand_alsace_flanders_wallonia = {
         icon = generic_prepare_civil_war
         fire_only_once = yes
-        cost = 100
+        cost = 150
 
         available = { 
-            can_declare_war_on = HOL
             any_state = {
-                or = { is_core_of = FRA is_claimed_by = FRA }
-                is_controlled_by = HOL
-            }
-        }
-
-        ai_will_do = {
-            base = 0
-            modifier = { date > 1913.7.1 add = 9 }
-        }
-
-        complete_effect = {
-            HOL = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
-        }
-    }
-    demand_wallonie = {
-        icon = generic_prepare_civil_war
-        fire_only_once = yes
-        cost = 100
-
-        available = { 
-            can_declare_war_on = GER
-            any_state = {
-                or = { is_core_of = FRA is_claimed_by = FRA }
-                is_controlled_by = GER
+                or = { state = 6 state = 28 state = 39 }
+                not = { is_owned_by = FRA }
             }
         }
 
@@ -50,11 +27,25 @@ echoes_of_agadir = {
         }
 
         complete_effect = {
-            GER = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
-            
-            # the 'opportunity' event
-            hidden_effect = {
-                GER = { country_event = { id = france_wallonia.1 days = 14 } }
+            every_country = {
+                limit = { or = { owns_state = 6 owns_state = 28 owns_state = 39  } }
+                country_event = { id = _demand.1 hours = 6 random_hours = 6 }
+            }
+        }
+    }
+    service_aeronautique = {
+        icon = generic_air
+        fire_only_once = yes
+        cost = 75
+
+        ai_will_do = { base = 9 }
+
+        complete_effect = {
+            air_experience = 25
+
+            add_tech_bonus = {
+                name = air_bonus bonus = 1.0 uses = 1
+                category = air_equipment_tech
             }
         }
     }
@@ -69,13 +60,14 @@ echoes_of_agadir = {
                 is_owned_and_controlled_by = FRA
             }
         }
-        ai_will_do = { base = 9 }
+        ai_will_do = { base = 6 }
 
         complete_effect = {
             if = {
                 limit = { controls_state = 460 }
                 460 = {
-                    add_resource = { type = steel amount = 4 }
+                    add_resource = { type = steel amount = 6 }
+                    add_resource = { type = chromium amount = 2 }
                     add_building_construction = { type = infrastructure level = 1 instant_build = yes }
                 }
             }
@@ -87,77 +79,86 @@ echoes_of_agadir = {
                     add_building_construction = { type = infrastructure level = 1 instant_build = yes }
                 }
             }
-
-            if = {
-                limit = { has_idea = idea_unrest_in_morocco }
-                remove_ideas = idea_unrest_in_morocco
-            }
         }
     }
 }
 
-mediterranean_hegemony = {
-    establish_two_sicilies = {
+look_to_the_near_east = {
+    establish_arab_state = {
         icon = generic_prepare_civil_war
         fire_only_once = yes
         cost = 150
 
-        days_remove = 90
-        war_with_on_remove = ITA
-
         available = {
-            TTS = { exists = no }
-            
-            can_declare_war_on = ITA
-            has_war_support > 0.5
+            SYR = { exists = no }
         }
 
         ai_will_do = { 
-            base = 9 
-            modifier = { has_war = no }
+            base = 6
+            modifier = { has_war_with = TUR add = 6 }
         }
 
+        days_remove = 90
         complete_effect = {
-            news_event = { id = france_sicily.1 hours = 6 random_hours = 6 }
+            news_event = { id = france_arab_state.1 hours = 6 random_hours = 6 }
+            hidden_effect = { country_event = { id = france_teheran.1 days = 14 } }
         }
 
-        remove_effect = {
-            hidden_effect = { sicilian_independence = yes }
-            give_guarantee = TTS
-
-            hidden_effect = {
-                TTS = { 
-                    set_popularities = { monarchism = 100 }
-                    set_politics = { ruling_party = monarchism elections_allowed = no }
-                }
-                every_country_with_original_tag = {
-                    original_tag_to_check = ITA
-                    declare_war_on = { target = TTS type = annex_everything }
-                }
+        remove_effect = { 
+            custom_effect_tooltip = tt_arab_state
+            hidden_effect = { 
+                TUR = { news_event = { id = france_arab_state.2 hours = 6 random_hours = 6 } }
             }
         }
     }
-    liberate_greeks = {
-        icon = generic_form_nation
+    arm_the_greeks = {
+        icon = generic_industry
         fire_only_once = yes
         cost = 100
 
-        ai_will_do = { base = 6 }
+        ai_will_do = { base = 9 }
 
-        available = {
-            GRE = { exists = no }
-            TUR = { owns_state = 47 owns_state = 186 }
+        available = { 
+            GRE = { exists = yes } 
+            has_equipment = { infantry_equipment > 899 }
+            has_equipment = { fighter_equipment > 11 }
         }
 
         complete_effect = {
-            TUR = {
-                country_event = { id = france_greece.1 hours = 6 random_hours = 6 }
-            }
+            add_war_support = 0.05
+
+            send_equipment = { equipment = infantry_equipment amount = 900 target = GRE }
+            send_equipment = { equipment = fighter_equipment amount = 12 target = GRE }
+
+            hidden_effect = { GRE = { news_event = { id = france_greece.1 hours = 6 } } }
         }
     }
 }
 
 let_them_eat_cake = {
+    develop_indochina = {
+        icon = rubber
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            286 = { is_owned_and_controlled_by = FRA }
+        }
+
+        complete_effect = {
+            add_stability = 0.025
+        
+            286 = { 
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                add_resource = { type = rubber amount = 8 } 
+            }
+
+            every_controlled_state = {
+                limit = { or = { state = 286 state = 670 state = 671 } }
+                add_core_of = FRA
+            }
+        }
+    }
     develop_algeria = {
         icon = generic_naval
         fire_only_once = yes
@@ -176,20 +177,6 @@ let_them_eat_cake = {
                 add_building_construction = { type = naval_base level = 1 province = 1145 instant_build = yes } 
                 add_building_construction = { type = dockyard level = 1 instant_build = yes }
             }
-        }
-    }
-    appeal_to_the_church = {
-        icon = generic_civil_support
-        days_remove = 90
-        cost = 50
-
-        available = {
-            has_government = monarchism
-        }
-
-        modifier = {
-            stability_weekly = 0.005
-            consumer_goods_factor = 0.05
         }
     }
 }

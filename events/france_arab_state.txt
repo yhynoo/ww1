@@ -1,0 +1,56 @@
+add_namespace = france_arab_state
+
+news_event = {
+    id = france_arab_state.1
+    title = "Paris in Support of an Arab State?"       
+    desc = france_arab_state.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = france_arab_state.2
+    title = "Syrian Arabs Declare Independence!"
+    desc = france_arab_state.2.d
+
+    is_triggered_only = yes
+    trigger = {
+        any_state = {
+            or = { state = 553 state = 554 state = 677 }
+            is_controlled_by = TUR
+        }
+    }
+
+    immediate = {
+        hidden_effect = { FRA = { give_guarantee = SYR } }
+    }
+
+    option = {
+        name = "Let them have it."
+        every_controlled_state = {
+            limit = { 
+                or = { state = 553 state = 554 state = 677 }
+            }
+
+            hidden_effect = { add_core_of = SYR }
+            transfer_state_to = SYR
+        }
+
+        ai_chance = { base = 1 }
+    }
+
+    option = {
+        name = "No!"
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+
+        hidden_effect = { syrian_independence = yes }
+        declare_war_on = { target = SYR type = annex_everything }
+
+        ai_chance = { base = 2 }
+    }
+}

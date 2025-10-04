@@ -1,33 +1,28 @@
-add_namespace = germany_cotton 
+add_namespace = germany_oil 
 
 country_event = {
-    id = germany_cotton.1
-    title = "[GER.GetName] Asks for Egyptian Cotton"
-    desc = germany_cotton.1.d
+    id = germany_oil.1
+    title = "[GER.GetName] Asks for Arabian Oil"
+    desc = germany_oil.1.d
 
     is_triggered_only = yes
 
     option = {
         name = "This is a good deal."
         FROM = { 
-            news_event = { id = germany_cotton.2 hours = 6 random_hours = 6 }
+            news_event = { id = germany_oil.2 hours = 6 random_hours = 6 }
             give_guarantee = TUR
         }
 
-        give_resource_rights = { receiver = GER state = 447 }
+        give_resource_rights = { receiver = GER state = 292 }
         manage_turkish_debt = yes
 
         ai_chance = { 
             base = 0
             modifier = { 
                 or = { has_idea = idea_amassed_foreign_debt has_idea = idea_significant_foreign_debt } 
-                add = 4
+                add = 3
             }
-        }
-
-        hidden_effect = { 
-            set_country_flag = cotton_deal 
-            FROM = { add_ai_strategy = { type = protect id = ROOT value = 60 } }
         }
     }
     option = {
@@ -37,9 +32,9 @@ country_event = {
 }
 
 news_event = {
-    id = germany_cotton.2
-    title = "[GER.GetName] Accesses Egyptian Cotton"
-    desc = germany_cotton.2.d
+    id = germany_oil.2
+    title = "[GER.GetName] Accesses Arabian Oil"
+    desc = germany_oil.2.d
 
     is_triggered_only = yes
     major = yes
