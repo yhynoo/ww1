@@ -19,66 +19,71 @@ eng_mediterranean_expansion = {
             116 = { add_building_construction = { type = naval_base level = 2 province = 12003 instant_build = yes } }
         }
     }
-    jaffa_unrest = {
+    lawrence_of_arabia = {
         icon = generic_prepare_civil_war
-        cost = 100
+        fire_only_once = yes
+        cost = 75
+
+        available = { 
+            YEM = { exists = no }
+            TUR = { controls_state = 679 }
+        }
+
+        ai_will_do = {
+            base = 6
+            modifier = { has_war_with = TUR add = 6 }
+        }
+
+        complete_effect = {
+            news_event = { id = england_arabia.1 hours = 3 }
+            TUR = { add_timed_idea = { idea = idea_unrest_in_arab_lands months = 6 } }
+
+            hidden_effect = {
+                TUR = { country_event = { id = england_arabia.2 days = 60 random_days = 14 } }
+            }
+        }
+    }
+    support_aliyah = {
+        icon = generic_civil_support
+        cost = 50
         fire_only_once = yes
 
         available = {
-            TUR = { owns_state = 454 }
+            not = { owns_state = 454 }
         }
 
         ai_will_do = {
             base = 0
-            modifier = { has_war_with = TUR add = 12 }
+            modifier = { 
+                454 = { owner = { has_war_with = ENG } add = 12 }
+            }
         }
 
         complete_effect = {
-            news_event = { id = england_jaffa.1 hours = 3 }
-            TUR = {
-                add_stability = -0.025
-                hidden_effect = { country_event = { id = england_jaffa.2 days = 30 random_days = 30 } }
-            }
+            news_event = { id = england_aliyah.1 hours = 3 }
         }
     }
 }
 
-change_alliances = {
-    establish_arabia = {
-        icon = generic_prepare_civil_war
+expand_the_empire = {
+    align_afghanistan = {
+        icon = generic_civil_support
         fire_only_once = yes
-        cost = 150
+        cost = 75
 
-        days_remove = 90
         available = {
-            YEM = { exists = no }
-            can_declare_war_on = TUR
+            can_declare_war_on = AFG
+            AFG = { exists = yes is_subject = no }
         }
 
-        ai_will_do = { 
-            base = 9 
-            modifier = { has_war = no }
+        ai_will_do = {
+            base = 0
+            modifier = { AFG = { is_in_faction = no } add = 9 }
         }
 
         complete_effect = {
-            news_event = { id = england_arabia.1 hours = 6 random_hours = 6 }
-        }
-
-        remove_effect = {
-            hidden_effect = { arab_independence = yes }
-            puppet = YEM
-
-            hidden_effect = {
-                YEM = {
-                    set_cosmetic_tag = YEM_arab
-                    set_popularities = { monarchism = 100 }
-                    set_politics = { ruling_party = monarchism elections_allowed = no }
-                }
-                every_country_with_original_tag = {
-                    original_tag_to_check = TUR
-                    declare_war_on = { target = YEM type = annex_everything }
-                }
-            }
+            diplomatic_relation = { country = AFG relation = guarantee active = no }
+            AFG = { country_event = { id = _align.1 hours = 6 random_hours = 6 } }
         }
     }
     demand_east_indies = {
@@ -116,57 +121,44 @@ change_alliances = {
             }
         }
     }
-    eng_align_afghanistan = {
-        icon = generic_civil_support
-        fire_only_once = yes
-        cost = 75
-
-        available = {
-            can_declare_war_on = AFG
-            AFG = { exists = yes is_subject = no }
-        }
-
-        ai_will_do = {
-            base = 0
-            modifier = { AFG = { is_in_faction = no } add = 9 }
-        }
-
-        complete_effect = {
-            diplomatic_relation = { country = AFG relation = guarantee active = no }
-            AFG = { country_event = { id = _align.1 hours = 6 random_hours = 6 } }
-        }
-    }
 }
 
 peoples_act = {
-    release_saf = {
-        icon = generic_form_nation
+    saf_mines = {
+        icon = steel
         cost = 100
         fire_only_once = yes
 
         available = {
-            SAF = { exists = no }
-            any_state = { is_core_of = SAF is_controlled_by = ENG }
+            controls_state = 275
+            controls_state = 544
         }
 
         ai_will_do = { base = 9 }
 
         complete_effect = {
-            add_stability = 0.05
-            release_puppet_on_controlled = SAF
-            
-            hidden_effect = { news_event = { id = england_south_africa.1 hours = 6 random_hours = 6 } }
+            275 = {
+                add_resource = { type = steel amount = 2 }
+                add_resource = { type = chromium amount = 8 }
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
+
+            544 = {
+                add_resource = { type = chromium amount = 4 }
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
         }
     }
-    wage_adjustments = {
+    syndicate_of_coal = {
+        icon = generic_naval
+        fire_only_once = yes
         cost = 75
-        days_remove = 90
 
-        ai_will_do = { base = 6 }
+        ai_will_do = { base = 12 }
 
-        modifier = {
-            production_factory_efficiency_gain_factor = 0.25
-            stability_weekly = 0.005
+        complete_effect = {
+            add_popularity = { ideology = communism popularity = 0.05 }
+            add_ideas = idea_syndicate_of_coal
         }
     }
 }

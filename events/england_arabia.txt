@@ -2,13 +2,36 @@ add_namespace = england_arabia
 
 news_event = {
     id = england_arabia.1
-    title = "T. E. Lawrence Visits Damascus"
+    title = "T. E. Lawrence Seen in Damascus"
     desc = england_arabia.1.d
 
     is_triggered_only = yes
-    major = yes
 
     option = {
-        name = "Wonder what does he do there..."
+        name = "This is worrying."
+        add_stability = -0.025
+    }
+}
+
+news_event = {
+    id = england_arabia.2
+    title = "Arab Revolt in the Levant!"
+    desc = england_arabia.2.d
+
+    is_triggered_only = yes
+    trigger = { has_stability < 0.6 }
+
+    option = {
+        name = "To arms!"
+        remove_ideas = idea_unrest_in_arab_lands
+
+        hidden_effect = { 
+            arab_independence = yes
+        }
+
+        every_country_with_original_tag = {
+            original_tag_to_check = TUR
+            declare_war_on = { target = YEM type = annex_everything }
+        }
     }
 }

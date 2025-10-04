@@ -2,11 +2,11 @@ echoes_of_agadir = {
     demand_alsace_flanders_wallonia = {
         icon = generic_prepare_civil_war
         fire_only_once = yes
-        cost = 150
+        cost = 100
 
         available = { 
             any_state = {
-                or = { state = 6 state = 28 state = 39 }
+                or = { state = 6 state = 28 state = 34 }
                 not = { is_owned_by = FRA }
             }
         }
@@ -28,7 +28,7 @@ echoes_of_agadir = {
 
         complete_effect = {
             every_country = {
-                limit = { or = { owns_state = 6 owns_state = 28 owns_state = 39  } }
+                limit = { or = { owns_state = 6 owns_state = 28 owns_state = 34 } }
                 country_event = { id = _demand.1 hours = 6 random_hours = 6 }
             }
         }

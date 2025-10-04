@@ -755,7 +755,10 @@
 
         ai_will_do = { 
             base = 1
-            modifier = { has_completed_focus = FRA_traditionalism factor = 0 }
+            modifier = { 
+                or = { has_completed_focus = FRA_traditionalism date < 1917.1.1 }
+                factor = 0
+            }
         }
 
         completion_reward = {

@@ -1,20 +1,20 @@
 arab_independence = {
     TUR = {
         every_owned_state = {
-            limit = { or = { state = 454 state = 455 state = 553 state = 554 state = 677 state = 679 } }
+            limit = { or = { state = 446 state = 454 state = 455 state = 553 state = 679 } }
 
             add_core_of = YEM
             set_state_owner_to = YEM
         }
 
         every_controlled_state = {
-            limit = { or = { state = 554 state = 677 } }
+            limit = { or = { state = 454 state = 679 } }
             set_state_controller_to = YEM
         }
     }
 
     YEM = { 
-        load_oob = "YEM_1913" 
+        load_oob = "YEM_1912" 
         add_ideas = { closed_economy partial_economic_mobilisation }
     }
 }

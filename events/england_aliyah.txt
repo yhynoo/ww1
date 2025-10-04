@@ -1,0 +1,41 @@
+add_namespace = england_aliyah
+
+news_event = {
+    id = england_aliyah.1
+    title = "[ENG.GetName] Supports Aliyah"
+    desc = england_aliyah.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A victory for Weizmann."
+        
+        if = {
+            limit = { owns_state = 454 }
+            
+            add_stability = -0.05
+            add_popularity = { ideology = democratic popularity = 0.025 }
+        }
+    }
+}
+
+country_event = {
+    id = england_aliyah.2
+    title = "Unrest in Jaffa"
+    desc = england_aliyah.2.d
+
+    is_triggered_only = yes
+    trigger = { controls_state = 454 }
+
+    option = {
+        name = "Support local Arab leaders."
+        add_political_power = -50
+    }
+    option = {
+        name = "Suppress the unrest."
+
+        add_stability = 0.025
+        add_popularity = { ideology = democratic popularity = 0.05 }
+    }
+}
