@@ -11,35 +11,16 @@ news_event = {
     }
     fire_only_once = yes
 
-    immediate = {
-        hidden_effect = {
-            retire_character = MAN_hongxian_emperor
-            news_event = { id = manchukuo_yuan.2 days = 14 }        # return from exile
-        }
-    }
-
     option = {
-        trigger = { not = { has_government = monarchism } }
         name = "This is a sad day."
 
         if = {
             limit = { has_country_leader = { character = MAN_yuan_shikai ruling_only = yes } }
             promote_character = MAN_tang_shaoyi
+            hidden_effect = { news_event = { id = manchukuo_yuan.2 days = 60 } }
         }
 
-        hidden_effect = {
-            retire_character = MAN_yuan_shikai   
-        }
-    }
-    option = {
-        trigger = { has_government = monarchism }
-        name = "The Empire must continue."
-
-        promote_character = MAN_yuan_keding
-        hidden_effect = { 
-            retire_character = MAN_yuan_shikai
-            news_event = { id = manchukuo_yuan.3 days = 30 random_days = 30 } 
-        }
+        hidden_effect = { retire_character = MAN_yuan_shikai }
     }
 }
 

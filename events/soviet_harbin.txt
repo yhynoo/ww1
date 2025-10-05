@@ -11,8 +11,6 @@ country_event = {
         name = "We can arrange this."
 
         FROM = {
-            news_event = { id = soviet_harbin.2 hours = 6 random_hours = 6 }
-
             hidden_effect = {
                 every_state = {
                     limit = { or = { state = 328 state = 619 } }
@@ -38,18 +36,5 @@ country_event = {
         add_war_support = 0.1
 
         FROM = { create_wargoal = { target = ROOT type = liberate_wargoal } }
-    }
-}
-
-news_event = {
-    id = soviet_harbin.2
-    title = "[FER.GetNameDefCap] Established"
-    desc = soviet_harbin.2.d
-
-    is_triggered_only = yes
-    major = yes
-
-    option = {
-        name = "An achievement of [SOV.GetAdjective] diplomacy."
     }
 }

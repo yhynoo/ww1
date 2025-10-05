@@ -1,26 +1,6 @@
 oriental_investments = {
-    arm_the_moroccans = {
-        icon = generic_industry
-        days_remove = 90
-        cost = 50
-
-        available = {
-            MOR = { exists = yes }
-            has_equipment = { infantry_equipment > 599 }
-        }
-
-        ai_will_do = {
-            base = 0
-            modifier = { MOR = { has_war_with = FRA } add = 9 }
-        }
-
-        complete_effect = {
-            add_war_support = 0.025
-            send_equipment = { equipment = infantry_equipment amount = 600 target = MOR }
-        }
-    }
     arabian_oil = {
-        icon = generic_industry
+        icon = oil
         cost = 75
         fire_only_once = yes
 
@@ -38,8 +18,39 @@ oriental_investments = {
             TUR = { country_event = { id = germany_oil.1 hours = 6 random_hours = 6 } }
         }
     }
-    demand_east_africa = {
+    support_algeria = {
         icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            ALG = { exists = no }
+            FRA = { 
+                has_stability < 0.5 
+                any_controlled_state = { is_core_of = ALG }
+            }
+        }
+        cancel_trigger = { TUR = { has_stability > 0.5 } }
+
+        ai_will_do = { 
+            base = 3
+            modifier = { has_war_with = FRA add = 6 }
+        }
+
+        days_remove = 90
+        complete_effect = {
+            news_event = { id = germany_algeria.1 hours = 6 random_hours = 6 }
+        }
+
+        remove_effect = { 
+            custom_effect_tooltip = tt_algeria
+            hidden_effect = { 
+                FRA = { news_event = { id = germany_algeria.2 hours = 6 random_hours = 6 } }
+            }
+        }
+    }
+    demand_east_africa = {
+        icon = border_war
         cost = 150
         fire_only_once = yes
 

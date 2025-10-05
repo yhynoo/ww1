@@ -1,0 +1,54 @@
+add_namespace = soviet_greece
+
+news_event = {
+    id = soviet_greece.1
+    title = "Orthodox Unrest in Greece"       
+    desc = soviet_greece.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = soviet_greece.2
+    title = "Greeks Declare Independence!"
+    desc = soviet_greece.2.d
+
+    is_triggered_only = yes
+    trigger = {
+        any_state = {
+            or = { state = 182 state = 185 state = 186 }
+            is_controlled_by = TUR
+        }
+    }
+
+    immediate = {
+        hidden_effect = { SOV = { give_guarantee = GRE } }
+    }
+
+    option = {
+        name = "Let them have it."
+        every_controlled_state = {
+            limit = { 
+                or = { state = 47 state = 182 state = 186 state = 187 }
+            }
+            transfer_state_to = GRE
+        }
+
+        ai_chance = { base = 1 }
+    }
+
+    option = {
+        name = "No!"
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+
+        hidden_effect = { greek_independence = yes }
+        declare_war_on = { target = GRE type = annex_everything }
+
+        ai_chance = { base = 2 }
+    }
+}

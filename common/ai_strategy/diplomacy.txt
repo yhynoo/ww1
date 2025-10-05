@@ -120,7 +120,8 @@ entente_acceptance = {
             }
             and = {                                                             # russia
                 original_tag = SOV 
-                or = { has_government = democratic has_government = monarchism }
+                or = { has_government = democratic has_government = monarchism has_completed_focus = SOV_seek_alliances }
+                not = { has_truce_with = GER }
             }
             and = {                                                             # usa
                 has_completed_focus = USA_traditionalism
@@ -160,7 +161,8 @@ entente_invite = {
             }
             and = {                                                             # russia
                 original_tag = SOV 
-                or = { has_government = democratic has_government = monarchism }
+                or = { has_government = democratic has_government = monarchism has_completed_focus = SOV_seek_alliances }
+                not = { has_truce_with = GER }
             }
             and = {                                                             # usa
                 has_completed_focus = USA_traditionalism
@@ -207,37 +209,48 @@ wilsonianism = {
     }
 }
 
-# SOUTH AMERICAN NEUTRALITY
-
-south_american_neutrality = {
-    allowed = { 
-        or = { original_tag = ARG original_tag = BRA original_tag = COL original_tag = MEX original_tag = PRU } 
-    }
-    enable = { not = { has_war_with = USA } }
+usa_entente = {
+    allowed = { original_tag = USA }
+    enable = { USA = { has_completed_focus = USA_on_our_own } }
     abort_when_not_enabled = yes
 
     ai_strategy = {
         type = alliance
-        id = ENG
-        value = -300
-    }
-
-    ai_strategy = {
-        type = alliance
-        id = FRA
-        value = -300
-    }
-
-    ai_strategy = {
-        type = alliance
         id = GER
-        value = -300
+        value = -100
     }
+}
+
+# SOUTH AMERICAN NEUTRALITY
+
+argentine_neutrality = {
+    allowed = { original_tag = ARG }
+    enable = { 
+        not = { original_tag = FRA }
+        not = { ARG = { has_completed_focus = ARG_traditionalism } }
+    }
+    abort_when_not_enabled = yes
+
+    reversed = yes
 
     ai_strategy = {
         type = alliance
-        id = USA
-        value = -300
+        id = ARG
+        value = -100
+    }
+}
+
+mexican_neutrality = {
+    allowed = { original_tag = MEX }
+    enable = { not = { original_tag = GER } }
+    abort_when_not_enabled = yes
+
+    reversed = yes
+
+    ai_strategy = {
+        type = alliance
+        id = MEX
+        value = -100
     }
 }
 

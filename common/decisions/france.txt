@@ -91,10 +91,7 @@ look_to_the_near_east = {
 
         available = {
             SYR = { exists = no }
-            TUR = { 
-                or = { controls_state = 554 controls_state = 677 }
-                has_stability < 0.5
-            }
+            TUR = { has_stability < 0.5 }
         }
         cancel_trigger = { TUR = { has_stability > 0.5 } }
 

@@ -1,6 +1,6 @@
 add_namespace = france_agadir
 
-news_event = {
+country_event = {
     id = france_agadir.1
     title = "The Question of Moroccan Independence"
     desc = france_agadir.1.d
@@ -26,11 +26,7 @@ news_event = {
     option = {
         name = "No!"
 
-        hidden_effect = { 
-            moroccan_independence = yes
-            SPA = { country_event = { id = spain_morocco.1 days = 2 random_hours = 6 } }
-        }
-
+        hidden_effect = { moroccan_independence = yes }
         declare_war_on = { target = MOR type = annex_everything }
     }
 }

@@ -1,0 +1,52 @@
+add_namespace = germany_algeria
+
+news_event = {
+    id = germany_algeria.1
+    title = "Outposts in the Atlas Attacked"       
+    desc = germany_algeria.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Worrying."
+    }
+}
+
+news_event = {
+    id = germany_algeria.2
+    title = "Algeria Independent — With German Aid!"
+    desc = germany_algeria.2.d
+
+    is_triggered_only = yes
+    trigger = {
+        any_state = {
+            or = { state = 459 state = 665 }
+            is_controlled_by = FRA
+        }
+    }
+
+    immediate = {
+        hidden_effect = { GER = { give_guarantee = ALG } }
+    }
+
+    option = {
+        name = "Let them have it."
+        every_controlled_state = {
+            limit = { is_core_of = ALG }
+            transfer_state_to = ALG
+        }
+
+        ai_chance = { base = 1 }
+    }
+
+    option = {
+        name = "No!"
+        add_war_support = 0.05
+
+        hidden_effect = { algerian_independence = yes }
+        declare_war_on = { target = ALG type = annex_everything }
+
+        ai_chance = { base = 4 }
+    }
+}

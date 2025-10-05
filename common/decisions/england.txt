@@ -26,16 +26,13 @@ eng_mediterranean_expansion = {
 
         available = { 
             YEM = { exists = no }
-            TUR = { 
-                or = { controls_state = 454 controls_state = 679 controls_state = 689 }
-                has_stability < 0.5
-            }
+            TUR = { has_stability < 0.5 }
         }
         cancel_trigger = { TUR = { has_stability > 0.5 } }
 
         ai_will_do = {
-            base = 6
-            modifier = { war_length_with = { tag = TUR months > 12 } add = 6 }
+            base = 3
+            modifier = { war_length_with = { tag = TUR months > 12 } add = 9 }
         }
 
         days_remove = 90

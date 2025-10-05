@@ -1,66 +1,30 @@
 slavic_unrest = {
-    insurgencies_in_south_east_europe = {
-        icon = generic_form_nation
-        cost = 150
+    support_greeks = {
+        icon = generic_prepare_civil_war
         fire_only_once = yes
+        cost = 150
 
         available = {
-            or = {
-                and = {
-                    GRE = { exists = no }
-                    any_state = { is_core_of = GRE is_owned_and_controlled_by = TUR }
-                }
-                and = {
-                    SER = { exists = no }
-                    any_state = { is_core_of = SER is_owned_and_controlled_by = TUR }
-                }
-            }
+            GRE = { exists = no }
+            TUR = { has_stability < 0.5 }
+        }
+        cancel_trigger = { TUR = { has_stability > 0.5 } }
 
-            can_declare_war_on = TUR
-            has_war_support > 0.5
+        ai_will_do = { 
+            base = 6
+            modifier = { has_war_with = TUR add = 6 }
         }
 
         days_remove = 90
-        war_with_on_remove = TUR
-
-        ai_will_do = {
-            base = 6
-            modifier = { 
-                or = { 
-                    has_war_with = TUR 
-                    and = { has_war = no date > 1916.1.1 } 
-                }
-                add = 6
-            }
-            modifier = { is_ally_with = TUR factor = 0 }
-        }
-
         complete_effect = {
-            news_event = { id = soviet_southeast.1 hours = 6 random_hours = 6 }
+            news_event = { id = soviet_greece.1 hours = 6 random_hours = 6 }
+            hidden_effect = { country_event = { id = france_teheran.1 days = 14 } }
         }
 
-        remove_effect = {
-            if = {
-                limit = { GRE = { exists = no } }
-
-                hidden_effect = { greek_independence = yes }
-                give_guarantee = GRE
-
-                every_country_with_original_tag = {
-                    original_tag_to_check = TUR
-                    declare_war_on = { target = GRE type = annex_everything }
-                }
-            }
-            if = {
-                limit = { SER = { exists = no } }
-
-                hidden_effect = { serbian_independence = yes }
-                give_guarantee = SER
-
-                every_country_with_original_tag = {
-                    original_tag_to_check = TUR
-                    declare_war_on = { target = SER type = annex_everything }
-                }
+        remove_effect = { 
+            custom_effect_tooltip = tt_greeks
+            hidden_effect = { 
+                TUR = { news_event = { id = soviet_greece.2 hours = 6 random_hours = 6 } }
             }
         }
     }
@@ -200,6 +164,7 @@ agrarian_reform = {
 
                 192 = {
                     add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                    add_resource = { type = tungsten amount = 6 }
                     add_extra_state_shared_building_slots = 1
                 }
             }
@@ -208,15 +173,6 @@ agrarian_reform = {
                 limit = { controls_state = 196 }
 
                 196 = {
-                    add_building_construction = { type = infrastructure level = 1 instant_build = yes }
-                    add_resource = { type = tungsten amount = 6 }
-                }
-            }
-
-            if = {
-                limit = { controls_state = 200 }
-
-                200 = {
                     add_building_construction = { type = infrastructure level = 1 instant_build = yes }
                     add_resource = { type = tungsten amount = 6 }
                 }
@@ -233,11 +189,11 @@ agrarian_reform = {
         }
 
         complete_effect = {
-            add_stability = -0.025
+            add_stability = 0.05
         }
 
         modifier = {
-            democratic_drift = 0.05
+            democratic_drift = 0.025
         }
     }
 }

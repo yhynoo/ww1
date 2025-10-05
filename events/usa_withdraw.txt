@@ -9,13 +9,11 @@ country_event = {
 
     option = {
         name = "We must accept their demands."
-        FROM = { news_event = { id = usa_withdraw.2 hours = 6 random_hours = 6 } }
 
         every_controlled_state = {
             limit = { or = { is_claimed_by = MEX is_core_of = MEX } }
             transfer_state_to = MEX
         }
-
         white_peace = MEX
 
         ai_chance = { base = 1 }
@@ -29,18 +27,6 @@ country_event = {
             create_wargoal = { target = COL type = liberate_wargoal }
         }
 
-        ai_chance = { base = 3 }
-    }
-}
-
-news_event = {
-    id = usa_withdraw.2
-    title = "[FROM.GetName] Withdraws!"
-    desc = usa_withdraw.2.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Wonderful."
+        ai_chance = { base = 2 }
     }
 }

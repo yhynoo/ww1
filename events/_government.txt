@@ -146,31 +146,6 @@ news_event = {
 
     option = {
         name = "Outrageous."
-        add_popularity = { ideology = ROOT popularity = -0.1 }
-    }
-}
-
-news_event = {
-    id = _stability.3
-    title = "Mayor of [random_owned_controlled_state.GetCapitalVictoryPointName] Disappears"
-    desc = _stability.3.d
-
-    trigger = {
-        has_stability < 0.15
-        not = { has_country_flag = stability_issues }
-    }
-
-    mean_time_to_happen = { months = 3 }
-
-    immediate = {
-        hidden_effect = { 
-            set_country_flag = stability_issues
-            news_event = { id = _stability.0 days = 30 random_days = 60 }
-        }
-    }
-
-    option = {
-        name = "Degenerate."
-        add_popularity = { ideology = ROOT popularity = -0.1 }
+        add_popularity = { ideology = ROOT popularity = -0.05 }
     }
 }

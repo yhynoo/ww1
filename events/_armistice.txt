@@ -78,9 +78,9 @@ country_event = {
 # anti-war demonstrations
 add_namespace = _anti-war
 
-news_event = {
+country_event = {
     id = _anti-war.1
-    title = "Demonstrations Against War"
+    title = "Widespread Hunger"
     desc = _anti-war.1.d
 
     trigger = {
@@ -88,18 +88,26 @@ news_event = {
         or = { 
             and = {
                 has_war_support < 0.3 has_stability < 0.5
-                longest_war_length > 18
+                longest_war_length > 12
             }
-            has_war_support < 0.2
+            has_stability < 0.25
         }
-        not = { has_idea = idea_anti_war_demonstrations has_idea = idea_army_mutinies }
+        not = { has_idea = widespread_hunger has_idea = idea_army_mutinies has_idea = civilian_economy }
     }
 
     mean_time_to_happen = { months = 3 }
 
     option = {
-        name = "Worrying."
-        add_timed_idea = { idea = idea_anti_war_demonstrations months = 3 }
+        name = "Demobilize the economy."
+        add_ideas = civilian_economy
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "We must endure."
+        add_timed_idea = { idea = widespread_hunger months = 3 }
+
+        ai_chance = { base = 3 }
     }
 }
 
@@ -111,10 +119,10 @@ news_event = {
     trigger = {
         has_war = yes
         or = { has_war_support < 0.3 has_stability < 0.3 }
-        not = { has_idea = idea_anti_war_demonstrations has_idea = idea_army_mutinies }
+        not = { has_idea = widespread_hunger has_idea = idea_army_mutinies }
 
         # war must be long enough
-        longest_war_length > 24
+        longest_war_length > 18
     }
 
     mean_time_to_happen = { months = 3 }
