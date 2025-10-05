@@ -1,0 +1,56 @@
+add_namespace = england_dockers
+
+news_event = {
+    id = england_dockers.1
+    title = "Unrest in the Docks"
+    desc = england_dockers.1.d
+
+    trigger = {
+        tag = ENG
+        communism > 0.25
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "Disturbing."
+
+        add_stability = -0.05
+        add_popularity = { ideology = communism popularity = 0.05 }
+
+        hidden_effect = { country_event = { id = england_dockers.2 days = 14 random_days = 28 } }
+    }
+}
+
+country_event = {
+    id = england_dockers.2
+    title = "The Southampton Saturday"
+    desc = england_dockers.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Send in the navy troops."
+        add_political_power = -75
+
+        hidden_effect = { random = { chance = 50 news_event = { id = england_dockers.3 days = 7 } } }
+    }
+    option = {
+        name = "Agree to their demands."
+        add_popularity = { ideology = communism popularity = 0.05 }
+    }
+}
+
+news_event = {
+    id = england_dockers.3
+    title = "Clashes in the South; 16 Dead"
+    desc = england_dockers.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Very worrying."
+
+        add_stability = -0.05
+        add_popularity = { ideology = ROOT popularity = -0.05 }
+    }
+}

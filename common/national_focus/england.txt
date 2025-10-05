@@ -694,7 +694,7 @@ focus_tree = {
         }
     }
     focus = {
-        id = ENG_mediterranean_expansion
+        id = ENG_deterrence
         icon = GFX_focus_generic_across_the_sea
 
         relative_position_id = ENG_international_affairs
@@ -921,7 +921,7 @@ focus_tree = {
     }
     focus = {
         id = ENG_over_the_edge
-        icon = GFX_focus_ENG_over_the_edge
+        icon = GFX_focus_generic_over_the_edge
 
         relative_position_id = ENG_state_reform
         x = 2
@@ -935,15 +935,13 @@ focus_tree = {
         }
 
         completion_reward = {
-            every_country = {
-                limit = { is_subject_of = ROOT }
-                add_timed_idea = { idea = idea_controlled_decolonization years = 2 }
-            }
+            add_ideas = idea_world_union
+            news_event = { id = england_world_union.1 hours = 3 }
         }
     }
     focus = {
         id = ENG_embrace_modernity
-        icon = GFX_focus_AUS_embrace_modernity
+        icon = GFX_focus_ENG_over_the_edge
 
         relative_position_id = ENG_state_reform
         x = -1
@@ -957,8 +955,10 @@ focus_tree = {
         }
 
         completion_reward = {
-            add_ideas = idea_world_union
-            news_event = { id = england_world_union.1 hours = 3 }
+             every_country = {
+                limit = { is_subject_of = ROOT }
+                add_timed_idea = { idea = idea_controlled_decolonization years = 2 }
+            }
         }
     }
 }

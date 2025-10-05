@@ -26,20 +26,27 @@ eng_mediterranean_expansion = {
 
         available = { 
             YEM = { exists = no }
-            TUR = { controls_state = 679 }
+            TUR = { 
+                or = { controls_state = 454 controls_state = 679 controls_state = 689 }
+                has_stability < 0.5
+            }
         }
+        cancel_trigger = { TUR = { has_stability > 0.5 } }
 
         ai_will_do = {
             base = 6
-            modifier = { has_war_with = TUR add = 6 }
+            modifier = { war_length_with = { tag = TUR months > 12 } add = 6 }
         }
 
+        days_remove = 90
         complete_effect = {
-            news_event = { id = england_arabia.1 hours = 3 }
-            TUR = { add_timed_idea = { idea = idea_unrest_in_arab_lands months = 6 } }
+            news_event = { id = england_arabia.1 days = 2 }
+        }
 
-            hidden_effect = {
-                TUR = { country_event = { id = england_arabia.2 days = 60 random_days = 14 } }
+        remove_effect = { 
+            custom_effect_tooltip = tt_lawrence
+            hidden_effect = { 
+                TUR = { news_event = { id = england_arabia.2 hours = 6 random_hours = 6 } }
             }
         }
     }
