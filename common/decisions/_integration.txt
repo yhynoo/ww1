@@ -827,6 +827,58 @@ dc_integration = {
         }
     }
 
+    _integration_korea = {
+        icon = generic_form_nation
+        days_remove = 180
+        cost = 125
+
+        visible = {
+            any_state = {
+                or = { state = 525 state = 527 }
+                _integration_visibility_trigger = yes
+            }
+        }
+
+        available = {
+            has_stability > 0.5
+            custom_trigger_tooltip = {
+                tooltip = integration_trigger_tooltip
+
+                # trigger
+                controls_state = 525 controls_state = 527 
+            }
+        }
+
+        cancel_trigger = {
+            hidden_trigger = {
+                or = {
+                    # visibility
+                    not = {
+                        any_state = {
+                            or = { state = 525 state = 527 }
+                            _integration_visibility_trigger = yes
+                        }
+                    }
+
+                    # availability
+                    not = { has_stability > 0.5 }
+                    not = { controls_state = 525 } not = { controls_state = 527 }
+                }
+            }
+        }
+
+        highlight_states = {
+            highlight_state_targets = { state = 525 state = 527 }
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 525 state = 527 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
     _integration_manchuria = {
         icon = generic_form_nation
         days_remove = 180

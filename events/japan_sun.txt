@@ -1,0 +1,66 @@
+add_namespace = japan_sun
+
+news_event = {
+    id = japan_sun.1
+    title = "Sun Yat-Sen Arrives in Japan"
+    desc = japan_sun.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+country_event = {
+    id = japan_sun.2
+    title = "A Threat, or an Opportunity?"
+    desc = japan_sun.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We shall shelter him and his followers."
+
+        add_ideas = idea_suns_harbor
+        MAN = {
+            add_opinion_modifier = { target = JAP modifier = medium_decrease }    
+            add_ideas = idea_sun_in_exile
+        }
+
+        ai_chance = { base = 3 }
+    }
+    option = {
+        name = "Arrest him."
+
+        add_popularity = { ideology = democratic popularity = -0.05 }
+        MAN = { add_opinion_modifier = { target = JAP modifier = medium_increase } }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = japan_sun.3
+    title = "Sun Yat-Sen in Shanghai Docks"
+    desc = japan_sun.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+        
+        if = {
+            limit = { tag = JAP }
+            remove_ideas = idea_suns_harbor
+        }
+        if = {
+            limit = { tag = MAN }
+
+            add_popularity = { ideology = monarchism popularity = -0.05 }
+            remove_ideas = idea_sun_in_exile
+        }
+    }
+}

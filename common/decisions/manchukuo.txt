@@ -6,12 +6,15 @@ entente_integration = {
 
         available = {
             can_declare_war_on = GER
-            431 = { is_owned_by = GER }
+            431 = { is_owned_and_controlled_by = GER }
         }
 
         ai_will_do = {
-            base = 0
-            modifier = { GER = { has_war = yes } add = 6 }
+            base = 3
+            modifier = { 
+                and = { has_government = democratic GER = { has_war = yes } }
+                add = 6
+            }
         }
 
         complete_effect = {
@@ -60,6 +63,32 @@ eight_banners = {
             MON = { country_event = { id = _align.1 hours = 6 random_hours = 6 } }
         }
     }
+    cancel_unequal_treaties = {
+        icon = generic_industry
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            has_idea = idea_unequal_treaties
+        }
+
+        ai_will_do = {
+            base = 6
+            modifier = { is_in_faction = yes add = 3 }
+        }
+
+        complete_effect = {
+            remove_ideas = idea_unequal_treaties
+
+            every_country = {
+                limit = { 
+                    or = { tag = ENG tag = FRA tag = GER } 
+                    not = { is_ally_with = MAN }
+                }
+                news_event = { id = manchukuo_treaties.1 hours = 6 random_hours = 6 }
+            }
+        }
+    }
     demand_dalian = {
         icon = generic_prepare_civil_war
         fire_only_once = yes
@@ -79,28 +108,6 @@ eight_banners = {
 
         complete_effect = {
             72 = { controller = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } } }
-        }
-    }
-    cancel_unequal_treaties = {
-        icon = generic_industry
-        fire_only_once = yes
-        cost = 150
-
-        available = {
-            has_idea = idea_unequal_treaties
-        }
-
-        ai_will_do = {
-            base = 6
-        }
-
-        complete_effect = {
-            remove_ideas = idea_unequal_treaties
-
-            every_country = {
-                limit = { or = { tag = ENG tag = FRA tag = GER } }
-                news_event = { id = manchukuo_treaties.1 hours = 6 random_hours = 6 }
-            }
         }
     }
 }

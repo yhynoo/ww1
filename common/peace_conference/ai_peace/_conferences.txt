@@ -102,7 +102,7 @@ peace_ai_desires = {
             }
             has_government = monarchism
         }
-        ai_desire = 300
+        ai_desire = 100
     }
     dont_puppet_large_countries = {
         peace_action_type = { puppet }
@@ -127,6 +127,16 @@ peace_ai_desires = {
             NOT = { has_government = communism has_government = democratic }
         }
         ai_desire = -100
+    }
+
+    dont_force_governments_if_exists = {
+        peace_action_type = force_government
+        enable = {
+            ROOT.FROM = { exists = yes }
+            ROOT.FROM = { pc_is_liberated = yes }
+            ROOT.FROM = { pc_is_puppeted_by = ROOT }
+        }
+        ai_desire = -600
     }
 
     # PUPPETS

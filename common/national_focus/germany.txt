@@ -749,7 +749,10 @@ focus_tree = {
         ai_will_do = { 
             base = 0
             modifier = {
-                has_government = democratic
+                or = { 
+                    has_government = democratic
+                    and = { has_war = no date > 1915.7.1 }
+                }
                 add = 2
             }
         }

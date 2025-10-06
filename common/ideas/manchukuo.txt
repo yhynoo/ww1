@@ -2,14 +2,11 @@
 ideas = {
     country = {
         idea_unequal_treaties = {
-            modifier = {
-                consumer_goods_factor = 0.35
-                civilian_intel_to_others = 50.0                
-            }
+            # this is just to block the player from changing the economic laws.
         }
         idea_uneasy_agreement = {
             modifier = {
-                stability_factor = -0.05
+                stability_factor = -0.1
                 democratic_drift = -0.05
             }
         }
@@ -30,6 +27,18 @@ ideas = {
 
         # other
 
+        idea_textile_unrest = {
+            modifier = {
+                stability_factor = -0.05
+                communism_drift = 0.05
+            }
+        }
+        idea_sun_in_exile = {
+            modifier = {
+                political_power_factor = -0.15
+                democratic_drift = -0.05
+            }
+        }
         idea_warlordism = {
             modifier = {
                 stability_factor = -0.25

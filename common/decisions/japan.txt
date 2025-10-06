@@ -58,13 +58,19 @@ dominate_the_pacific = {
         available = {
             any_state = {
                 or = { state = 333 state = 336 }
-                not = { is_owned_by = JAP }
+                owner = {
+                    not = { tag = JAP }
+                    not = { has_war_with = JAP }
+                }
             }
         }
 
         ai_will_do = { 
-            base = 6
-            modifier = { is_ally_with = ENG factor = 0 }
+            base = 0
+            modifier = { 
+                is_ally_with = GER 
+                add = 9 
+            }
         }
 
         complete_effect = {
@@ -74,23 +80,51 @@ dominate_the_pacific = {
             }
         }
     }
-    approach_the_american_question = {
-        icon = generic_civil_support
+    demand_american_islands = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            any_state = {
+                or = { state = 629 state = 631 state = 632 }
+                is_owned_and_controlled_by = USA
+            }
+        }
+
+        ai_will_do = { 
+            base = 9
+            modifier = { is_ally_with = ENG factor = 0 }
+        }
+
+        complete_effect = {
+            USA = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    american_neutrality = {
+        icon = generic_form_nation
         fire_only_once = yes
         cost = 75
 
         available = {
-            not = { has_war_with = USA }
+            AST = { is_in_faction = no not = { has_war_with = JAP } }
+            USA = { is_in_faction = no not = { has_war_with = JAP } }
         }
 
         ai_will_do = {
             base = 6
-            modifier = { threat < 0.5 factor = 0 }
+            modifier = {
+                or = { USA = { is_faction_leader = yes } ENG = { has_government = communism } }
+                add = 6
+            }
         }
 
         complete_effect = {
             add_war_support = 0.05
-            country_event = { id = japan_usa.1 hours = 6 random_hours = 6 }
+            every_country = {
+                limit = { or = { tag = AST tag = USA } }
+            }
+            country_event = { id = japan_pacific_agreement.1 hours = 6 random_hours = 6 }
         }
     }
 }

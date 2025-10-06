@@ -107,6 +107,22 @@ hungarian_independence = {
     }
 }
 
+mongolian_independence = {
+    MAN = {
+        every_owned_state = {
+            limit = { is_core_of = MON }
+            set_state_owner_to = MON
+        }
+
+        330 = { set_state_controller_to = MON }
+    }
+
+    MON = { 
+        load_oob = "MON_1912" 
+        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
+    }
+}
+
 moroccan_independence = {
     FRA = {
         every_owned_state = {

@@ -17,7 +17,11 @@ news_event = {
         if = {
             limit = { has_country_leader = { character = MAN_yuan_shikai ruling_only = yes } }
             promote_character = MAN_tang_shaoyi
-            hidden_effect = { news_event = { id = manchukuo_yuan.2 days = 60 } }
+
+            hidden_effect = { 
+                news_event = { id = manchukuo_yuan.2 days = 60 } 
+                news_event = { id = japan_sun.3 days = 14 random_days = 14 }
+            }
         }
 
         hidden_effect = { retire_character = MAN_yuan_shikai }
@@ -30,9 +34,10 @@ news_event = {
     desc = manchukuo_yuan.2.d
 
     is_triggered_only = yes
+    trigger = { has_stability < 0.6 }
 
     option = {
-        name = "That's not very good."
+        name = "That's unfortunate."
         add_ideas = idea_warlordism
     }
 }

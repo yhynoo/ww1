@@ -34,7 +34,13 @@ oriental_investments = {
 
         ai_will_do = { 
             base = 3
-            modifier = { has_war_with = FRA add = 6 }
+            modifier = { 
+                or = {
+                    has_war_with = FRA
+                    and = { FRA = { has_war = yes } has_war = no date > 1916.1.1 }
+                } 
+                add = 6 
+            }
         }
 
         days_remove = 90
