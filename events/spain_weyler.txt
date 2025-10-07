@@ -57,15 +57,17 @@ country_event = {
         remove_ideas = idea_semana_tragica
 
         start_civil_war = { 
-            ideology = communism ruling_party = monarchism army_ratio = 0.5 navy_ratio = 1
+            ideology = communism ruling_party = monarchism army_ratio = 0.45 navy_ratio = 1
             states = { state = 165 state = 166 state = 167 state = 177 }
         }
+
+        ai_chance = { base = 1 }
     }
 
     option = {
         name = "¡Viva la anarquía!"
         start_civil_war = { 
-            ideology = monarchism ruling_party = communism army_ratio = 0.35 navy_ratio = 0
+            ideology = monarchism ruling_party = communism army_ratio = 0.4 navy_ratio = 0
             
             states = all
             states_filter = {
@@ -74,5 +76,7 @@ country_event = {
                 }
             }
         }
+
+        ai_chance = { base = 0 }
     }
 }

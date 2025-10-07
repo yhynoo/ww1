@@ -1,0 +1,113 @@
+defense_abilities = {
+    establish_mountain_troops = {
+        icon = generic_prepare_civil_war
+        cost = 50
+        fire_only_once = yes
+
+        ai_will_do = { base = 12 }
+
+        complete_effect = {
+            army_experience = 50
+            add_tech_bonus = {
+				name = special_forces_bonus bonus = 1.0 uses = 1
+				technology = mountaineers_1
+                technology = mountaineers_2
+			}
+
+            hidden_effect = {
+                add_ai_strategy = { type = role_ratio id = mountaineers value = 10 }
+            }
+        }
+    }
+    defenses_in_chiapas = {
+        icon = border_war
+        cost = 75
+        fire_only_once = yes
+
+        available = {
+            475 = { is_fully_controlled_by = ROOT }
+        }
+
+        ai_will_do = { 
+            base = 3
+            modifier = { has_war_with = COL add = 6 }
+        }
+
+        complete_effect = {
+            475 = { 
+                add_building_construction = { type = bunker province = 1900 level = 2 instant_build = yes }
+                add_building_construction = { type = bunker province = 1900 level = 1 instant_build = yes }
+            }
+            add_timed_idea = { idea = idea_chiapas_defenses months = 6 }
+        }
+    }
+}
+expansion_in_central_america = {
+    demand_belize = {
+        icon = generic_prepare_civil_war
+        cost = 75
+        fire_only_once = yes
+
+        available = {
+            311 = { is_controlled_by = ENG }
+            can_declare_war_on = ENG
+        }
+
+        ai_will_do = { base = 3 }
+
+        complete_effect = {
+            311 = { add_claim_by = MEX }
+            ENG = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    ultimatum_to_colombia = {
+        icon = generic_prepare_civil_war
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            can_declare_war_on = COL
+            or = {
+                has_war_support > 0.5
+                any_core_state = { is_owned_and_controlled_by = COL }
+            }
+        }
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            every_state = {
+                limit = { or = { state = 313 state = 312 state = 314 state = 317 } }
+                add_claim_by = MEX
+            }
+            COL = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    stage_cuba = {
+        icon = generic_form_nation
+        fire_only_once = yes
+        cost = 150
+
+        available = {
+            CUB = { exists = no }
+            USA = { controls_state = 315 }
+        }
+
+        ai_will_do = { 
+            base = 6
+            modifier = { has_war_with = USA add = 6 }
+        }
+
+        days_remove = 90
+        complete_effect = {
+            news_event = { id = mexico_uprising.1 hours = 6 random_hours = 6 }
+        }
+
+        remove_effect = { 
+            custom_effect_tooltip = tt_carribean_uprising
+            hidden_effect = { 
+                USA = { news_event = { id = mexico_uprising.2 hours = 6 random_hours = 6 } }
+            }
+        }
+    }
+}

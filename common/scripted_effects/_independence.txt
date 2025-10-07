@@ -59,6 +59,27 @@ baltic_independence = {
     }
 }
 
+cuban_independence = {
+    USA = {
+        every_owned_state = {
+            limit = { or = { state = 315 state = 318 state = 319 state = 348 } }
+
+            add_core_of = CUB
+            set_state_owner_to = CUB
+        }
+
+        every_controlled_state = {
+            limit = { or = { state = 315 state = 319 } }
+            set_state_controller_to = CUB
+        }
+    }
+
+    CUB = { 
+        load_oob = "CUB_1912" 
+        add_ideas = { limited_exports partial_economic_mobilisation }
+    }
+}
+
 greek_independence = {
     TUR = {
         every_owned_state = {

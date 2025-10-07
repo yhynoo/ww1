@@ -1,0 +1,56 @@
+add_namespace = mexico_uprising
+
+news_event = {
+    id = mexico_uprising.1
+    title = "American Governor in Havana Killed!"       
+    desc = mexico_uprising.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Worrying."
+    }
+}
+
+news_event = {
+    id = mexico_uprising.2
+    title = "Cuban Uprising!"
+    desc = mexico_uprising.2.d
+
+    is_triggered_only = yes
+    trigger = {
+        any_state = {
+            or = { state = 315 state = 319 }
+            is_controlled_by = USA
+        }
+    }
+
+    immediate = {
+        hidden_effect = { MEX = { give_guarantee = CUB } }
+    }
+
+    option = {
+        name = "It is not worth fighting for."
+        every_controlled_state = {
+            limit = { 
+                or = { state = 315 state = 318 state = 319 state = 348 }
+            }
+
+            hidden_effect = { add_core_of = CUB }
+            transfer_state_to = CUB
+        }
+
+        ai_chance = { base = 1 }
+    }
+
+    option = {
+        name = "To arms!"
+        add_war_support = 0.05
+
+        hidden_effect = { cuban_independence = yes }
+        declare_war_on = { target = CUB type = annex_everything }
+
+        ai_chance = { base = 2 }
+    }
+}

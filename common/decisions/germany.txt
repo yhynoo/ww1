@@ -168,11 +168,14 @@ afrika_amt = {
         }
 
         complete_effect = {
-            release_autonomy = { target = UGA autonomy_state = autonomy_dominion }
             every_state = {
                 limit = { or = { state = 295 state = 538 state = 540 state = 541 state = 542 state = 545 state = 546 state = 548 state = 576 } }
                 add_core_of = UGA
             }
+
+            # set it up
+            release_autonomy = { target = UGA autonomy_state = autonomy_dominion }
+            hidden_effect = { UGA = { add_popularity = { ideology = ROOT popularity = 0.5 } } }
         }
     }
 }

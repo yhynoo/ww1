@@ -1,7 +1,5 @@
 contain_eastern_threats = {
     demand_serbia = {
-        visible = { SER = { exists = no } }
-
         icon = generic_prepare_civil_war
         fire_only_once = yes
         cost = 100
@@ -12,7 +10,7 @@ contain_eastern_threats = {
             
             any_state = {
                 is_core_of = SER
-                is_owned_and_controlled_by = TUR
+                not = { is_controlled_by = AUS }
             }
         }
 
@@ -32,7 +30,12 @@ contain_eastern_threats = {
                 limit = { is_core_of = SER }
                 add_claim_by = AUS
             }
-            TUR = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
+            every_country = {
+                limit = {
+                    or = { controls_state = 105 controls_state = 107 controls_state = 108 }
+                    country_event = { id = _demand.1 hours = 6 random_hours = 6 }
+                }
+            }
         }
     }
     align_serbia = {

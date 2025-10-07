@@ -13,18 +13,14 @@ country_event = {
         date > 1912.2.1
     }
 
-    immediate = {
-        hidden_effect = {
-            USA = { country_event = { id = usa_volunteers.1 days = 7 random_days = 7 } }
-        }
-    }
-
     option = {
         name = "Land and liberty!"
         start_civil_war = { ideology = ROOT ruling_party = communism size = 0.65 }
 
         # manage the war
         hidden_effect = { mexican_civil_war = yes }
+
+        ai_chance = { base = 0 }
     }
     option = {
         name = "We must hold out."
@@ -32,5 +28,7 @@ country_event = {
 
         # manage the war
         hidden_effect = { mexican_civil_war = yes }
+
+        ai_chance = { base = 1 }
     }
 }

@@ -1,0 +1,74 @@
+add_namespace = mexico_church
+
+news_event = {
+    id = mexico_church.1
+    title = "Church and Caudillos: Alliance in Motion?"
+    desc = mexico_church.1.d
+
+    trigger = { 
+        tag = MEX
+        date > 1914.4.1
+        and = { has_government = democratic monarchism > 30 }
+    }
+
+    option = {
+        name = "Worrying."
+        hidden_effect = { 
+            country_event = { id = mexico_church.2 days = 14 random_days = 7 } 
+            country_event = { id = mexico_church.3 days = 60 random_days = 14 } 
+        }
+    }
+}
+
+country_event = {
+    id = mexico_church.2
+    title = "Deal with the... Devil?"
+    desc = mexico_church.2.d
+
+    is_triggered_only = yes
+    not = { has_government = monarchism }
+
+    option = {
+        name = "We must consider some concessions."
+
+        add_political_power = -75
+        add_ideas = idea_deal_with_the_devil
+
+        ai_chance = { base = 2 }
+    }
+    option = {
+        name = "Dismiss them."
+        add_popularity = { ideology = democratic popularity = 0.05 }
+
+        ai_chance = { base = 1 }
+    }
+}
+
+country_event = {
+    id = mexico_church.3
+    title = "Anti-Clerical Demonstrations in Sonora"
+    desc = mexico_church.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Ignore them."
+
+        add_stability = -0.05
+        add_popularity = { ideology = democratic popularity = 0.05 }
+
+        ai_chance = { 
+            base = 1
+            modifier = { has_government = monarchism factor = 0 }
+        }
+    }
+    option = {
+        name = "Arrest everyone."
+        add_political_power = -75
+
+        ai_chance = { 
+            base = 1
+            modifier = { has_government = democratic factor = 0 }
+        }
+    }
+}

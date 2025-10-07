@@ -1,14 +1,22 @@
 _starting_resistance = {
     every_owned_state = {
-        limit = {
-            not = { is_core_of = ROOT }
-        }
+        limit = { not = { is_core_of = ROOT } }
 
         start_resistance = yes
+
         random_list = {
+            1 = { add_resistance = 8 }
             1 = { add_resistance = 6 }
             2 = { add_resistance = 4 }
-            3 = { add_resistance = 2 }
+            4 = { add_resistance = 2 }
+        }
+        
+        # compliances
+        random_list = {
+            1 = { add_compliance = 12 }
+            1 = { add_compliance = 10 }
+            2 = { add_compliance = 8 }
+            3 = { add_compliance = 6 }
         }
     }
 }

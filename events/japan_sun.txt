@@ -35,7 +35,10 @@ country_event = {
         name = "Arrest him."
 
         add_popularity = { ideology = democratic popularity = -0.05 }
-        MAN = { add_opinion_modifier = { target = JAP modifier = medium_increase } }
+        MAN = { 
+            add_opinion_modifier = { target = JAP modifier = medium_increase } 
+            retire_character = MAN_sun_yat_sen
+        }
 
         ai_chance = { base = 1 }
     }

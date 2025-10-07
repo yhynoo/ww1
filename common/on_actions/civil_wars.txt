@@ -52,7 +52,11 @@ on_actions = {
     on_civil_war_end = {
         effect = {
             set_rule = { can_join_factions = yes }
-            drop_cosmetic_tag = yes
+
+            if = {
+                limit = { has_cosmetic_tag = generic_communism }
+                drop_cosmetic_tag = yes
+            }   
         }
     }
 }
