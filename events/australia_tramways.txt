@@ -1,0 +1,63 @@
+add_namespace = australia_tramways
+
+news_event = {
+    id = australia_tramways.1
+    title = "Tramways Workshop Strike"
+    desc = australia_tramways.1.d
+
+    trigger = {
+        tag = AST
+        date > 1917.8.1
+
+        not = { has_idea = idea_unionized_industry }
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "Agree to some concessions."
+        add_political_power = -75
+        add_popularity = { ideology = communism popularity = 0.05 }
+    }
+    option = {
+        name = "Ignore it."
+        add_stability = -0.05
+
+        hidden_effect = { 
+            news_event = { id = australia_tramways.1 days = 7 } 
+            country_event = { id = australia_tramways.1 days = 14 random_days = 7 }
+        }
+    }
+}
+
+news_event = {
+    id = australia_tramways.2
+    title = "The Strike Spreads"
+    desc = australia_tramways.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This does not sound good."
+
+        add_political_power = -50
+        add_stability = -0.05
+    }
+}
+
+news_event = {
+    id = australia_tramways.3
+    title = "Sydney Gatherings Attract 110,000 Men"
+    desc = australia_tramways.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must end this now."
+        add_political_power = -150
+        add_stability = -0.05
+    }
+    option = {
+        name = "Admit defeat."
+        add_ideas = { idea = idea_communism_tendencies years = 2 }
+    }
+}

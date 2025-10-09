@@ -46,6 +46,17 @@ ideas = {
 				conscription = 0.025
 			}
 
+			available = {
+				if = {
+					limit = { has_government = democratic }
+					has_war_support > 0.5
+				}
+				if = {
+					limit = { tag = AST }
+					not = { has_idea = idea_defense_act_1903 }
+				}
+			}
+
 			ai_will_do = {
    				factor = 1
 				modifier = {
@@ -66,13 +77,20 @@ ideas = {
 
 		extensive_conscription = {
 			available = {
-                OR = {
-                    has_war = yes
-                    AND = {
-                        not = { has_government = democratic }
-                        has_war_support > 0.5
-                    }
-                }
+                if = {
+					limit = { has_government = democratic }
+					has_war = yes
+				}
+				else = {
+					or = {
+						has_war = yes
+						has_war_support > 0.6
+					}
+				}
+				if = {
+					limit = { tag = AST }
+					not = { has_idea = idea_defense_act_1903 }
+				}
 			}
 
 			ai_will_do = {
@@ -109,13 +127,21 @@ ideas = {
 
 		service_by_requirement = {
 			available = {
-                OR = {
-                    has_war = yes
-                    AND = {
-                        not = { has_government = democratic }
-                        has_war_support > 0.8
-                    }
-                }
+				if = {
+					limit = { has_government = democratic }
+					has_war = yes
+				}
+				else = {
+					or = {
+						has_war = yes
+						has_war_support > 0.8
+					}
+				}
+
+				if = {
+					limit = { tag = AST }
+					not = { has_idea = idea_defense_act_1903 }
+				}
 			}
 
 			ai_will_do = {
@@ -155,6 +181,11 @@ ideas = {
 			available = {
 				has_war = yes
 				has_war_support > 0.5
+
+				if = {
+					limit = { tag = AST }
+					not = { has_idea = idea_defense_act_1903 }
+				}
 			}
 
 			ai_will_do = {
@@ -195,6 +226,11 @@ ideas = {
 			available = {
 				has_war = yes
 				has_war_support > 0.75
+
+				if = {
+					limit = { tag = AST }
+					not = { has_idea = idea_defense_act_1903 }
+				}
 			}
 
 			ai_will_do = {
