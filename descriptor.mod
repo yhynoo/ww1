@@ -46,5 +46,5 @@ replace_path="history/general"
 
 replace_path="map/strategicregions"
 
-supported_version="1.15.4"
+supported_version="1.16.10"
 picture="thumbnail.png"
