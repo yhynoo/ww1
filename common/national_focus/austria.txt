@@ -782,7 +782,7 @@ focus_tree = {
         prerequisite = { focus = AUS_political_ambitions }
         completion_reward = {
             add_popularity = { ideology = monarchism popularity = 0.05 }
-            add_stability = -0.05
+            add_war_support = 0.05
         }
     }
     focus = {
@@ -870,7 +870,8 @@ focus_tree = {
         mutually_exclusive = { focus = AUS_traditionalism }
         prerequisite = { focus = AUS_political_ambitions }
         completion_reward = {
-            add_timed_idea = { idea = idea_democratic_tendencies years = 1 }
+            add_popularity = { ideology = democratic popularity = 0.05 }
+            add_stability = -0.05
         }
     }
     focus = {
@@ -898,11 +899,13 @@ focus_tree = {
 
         prerequisite = { focus = AUS_adjust_the_government }
         completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
-
+            add_timed_idea = { idea = idea_equal_development years = 1 }
+            
             random_owned_controlled_state = {
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                limit = { is_core_of = HUN is_in_home_area = yes }
+                
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
 			}
         }
     }
@@ -941,17 +944,17 @@ focus_tree = {
         prerequisite = { focus = AUS_state_reform }
 
         available = {
-            has_idea = idea_dissatisfied_hungarians
+            has_idea = idea_dual_monarchy
             any_owned_state = { is_core_of = HUN }
         }
 
         ai_will_do = {
             base = 0
-            modifier = { has_idea = idea_dissatisfied_hungarians add = 2 }
+            modifier = { has_idea = idea_dual_monarchy add = 2 }
         }
 
         completion_reward = {
-            remove_ideas = idea_dissatisfied_hungarians
+            remove_ideas = idea_dual_monarchy
             set_cosmetic_tag = AUS_alone 
 
             hidden_effect = { 

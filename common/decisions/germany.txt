@@ -1,21 +1,24 @@
 oriental_investments = {
-    arabian_oil = {
-        icon = oil
-        cost = 75
+    arm_moroccans = {
+        icon = generic_industry
         fire_only_once = yes
+        cost = 100
 
-        available = {
-            not = { has_war_with = TUR }
-            687 = { is_owned_and_controlled_by = TUR }
-        }
+        ai_will_do = { base = 9 }
 
-        ai_will_do = { 
-            base = 9
-            modifier = { has_war = yes add = 6 }
+        available = { 
+            MOR = { exists = yes } 
+            has_equipment = { infantry_equipment > 899 }
+            has_equipment = { artilery_equipment > 59 }
         }
 
         complete_effect = {
-            TUR = { country_event = { id = germany_oil.1 hours = 6 random_hours = 6 } }
+            add_war_support = 0.05
+
+            send_equipment = { equipment = infantry_equipment amount = 900 target = MOR }
+            send_equipment = { equipment = fighter_equipment amount = 60 target = MOR }
+
+            hidden_effect = { MOR = { news_event = { id = germany_morocco.1 hours = 6 } } }
         }
     }
     support_algeria = {
@@ -55,6 +58,28 @@ oriental_investments = {
             }
         }
     }
+    arabian_oil = {
+        icon = oil
+        cost = 75
+        fire_only_once = yes
+
+        available = {
+            not = { has_war_with = TUR }
+            291 = { is_owned_and_controlled_by = TUR }
+        }
+
+        ai_will_do = { 
+            base = 9
+            modifier = { has_war = yes add = 6 }
+        }
+
+        complete_effect = {
+            TUR = { country_event = { id = germany_oil.1 hours = 6 random_hours = 6 } }
+        }
+    }
+}
+
+embrace_weltpolitik = {
     demand_east_africa = {
         icon = border_war
         cost = 150
@@ -90,24 +115,6 @@ oriental_investments = {
             }
         }
     }
-}
-
-end_weltpolitik = {
-    abandon_tirpitz_plan = {
-        icon = generic_naval
-        cost = 100
-        fire_only_once = yes
-
-        available = {
-            ENG = { has_guaranteed = FRA }
-        }
-
-        ai_will_do = { base = 6 }
-
-        complete_effect = {
-            ENG = { country_event = { id = germany_approach_uk.1 hours = 6 random_hours = 6 } }
-        }
-    }
     expand_in_the_east = {
         icon = generic_prepare_civil_war
         cost = 100
@@ -138,44 +145,6 @@ end_weltpolitik = {
 
         remove_effect = {
             create_wargoal = { target = SOV type = take_claimed_state }
-        }
-    }
-}
-
-afrika_amt = {
-    tanganyika_cotton = {
-        icon = generic_industry
-        fire_only_once = yes
-        cost = 50
-
-        available = { controls_state = 546 }
-        ai_will_do = { base = 12 }
-
-        complete_effect = {
-            546 = { 
-                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
-                add_resource = { type = tungsten amount = 12 } 
-            }
-        }
-    }
-    establish_mittelafrika = {
-        icon = generic_form_nation
-        fire_only_once = yes
-        cost = 100
-
-        available = {
-            541 = { is_owned_and_controlled_by = GER }
-        }
-
-        complete_effect = {
-            every_state = {
-                limit = { or = { state = 295 state = 538 state = 540 state = 541 state = 542 state = 545 state = 546 state = 548 state = 576 } }
-                add_core_of = UGA
-            }
-
-            # set it up
-            release_autonomy = { target = UGA autonomy_state = autonomy_dominion }
-            hidden_effect = { UGA = { add_popularity = { ideology = ROOT popularity = 0.5 } } }
         }
     }
 }

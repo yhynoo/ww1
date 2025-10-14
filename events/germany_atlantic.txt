@@ -13,7 +13,10 @@ country_event = {
 
     option = {
         name = "Gott Strafe England!"
-        add_timed_idea = { idea = idea_atlantic_submarine_warfare years = 2 }
+        swap_ideas = {
+            remove_idea = idea_tirpitz_plan
+            add_idea = idea_atlantic_submarine_warfare
+        }
 
         hidden_effect = { 
             random = { 
@@ -61,7 +64,12 @@ news_event = {
 
         if = {
             limit = { tag = USA }
-            add_war_support = 0.1
+            add_war_support = 0.15
+
+            add_opinion_modifier = {
+                target = GER
+                modifier = opinion_sinking_lusitania
+            }
         }
     }
 }
@@ -76,6 +84,9 @@ news_event = {
 
     option = {
         name = "Outrageous!"
-        create_wargoal = { target = GER type = topple_government }
+        add_opinion_modifier = {
+            target = GER
+            modifier = opinion_trade_fleet_attacks
+        }
     }
 }

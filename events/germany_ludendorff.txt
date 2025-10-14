@@ -1,0 +1,29 @@
+add_namespace = germany_ludendorff
+
+country_event = {
+    id = germany_ludendorff.1
+    title = "Ludendorff’s Appointment"
+    desc = germany_ludendorff.1.d
+
+    trigger = {
+        tag = GER
+        longest_war_length > 24
+        has_government = monarchism
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "This is the right choice."
+
+        promote_character = GER_erich_ludendorff
+        add_timed_idea = { idea = idea_ludendorffs_ohl years = 1 }
+
+        ai_chance = { base = 4 }
+    }
+    option = {
+        name = "We should maintain the Kaiser’s government."
+        add_stability = 0.05
+
+        ai_chance = { base = 1 }
+    }
+}

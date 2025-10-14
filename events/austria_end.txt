@@ -18,8 +18,8 @@ country_event = {
     immediate = {
         hidden_effect = {
             if = {
-                limit = { has_idea = idea_dissatisfied_hungarians }
-                remove_ideas = idea_dissatisfied_hungarians
+                limit = { has_idea = idea_dual_monarchy }
+                remove_ideas = idea_dual_monarchy
             }
             if = {
                 limit = {
@@ -99,19 +99,14 @@ country_event = {
         tag = GER
         not = { has_war_with = AUS }
         AUS = { has_war_with = HUN }
+
+        69 = { is_owned_and_controlled_by = AUS }
     }
     fire_only_once = yes
 
     option = {
         name = "We must not leave them to their fate."
-
-        every_state = {
-            limit = {
-                or = { state = 69 state = 74 }
-                is_owned_and_controlled_by = AUS
-            }
-            transfer_state_to = GER
-        }
+        69 = { transfer_state_to = GER }
 
         AUS = { create_wargoal = { target = GER type = take_claimed_state } }
         ai_chance = { base = 4 }
