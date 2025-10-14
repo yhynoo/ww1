@@ -110,7 +110,7 @@ contain_eastern_threats = {
 
 denounce_adventurism = {
     guarantees_to_france = {
-        icon = generic_civil_support
+        icon = generic_prepare_civil_war
         fire_only_once = yes
         cost = 100
 
@@ -128,61 +128,19 @@ denounce_adventurism = {
             FRA = { country_event = { id = austria_france.1 hours = 6 random_hours = 6 } }
         }
     }
-    operational_directive_d = {
-        icon = generic_prepare_civil_war
+    use_church_influence = {
+        icon = generic_civil_support
         fire_only_once = yes
-        cost = 75
+        cost = 50
 
         ai_will_do = {
             base = 0
             modifier = { has_war_with = GER add = 9 }
         }
 
-        complete_effect = {
-
-            if = {
-                limit = { controls_state = 4 controls_state = 9 }
-                custom_effect_tooltip = tt_directive_d
-
-                hidden_effect = {
-                    4 = { add_building_construction = { type = bunker level = 2 province = 732 instant_build = yes } }
-                    9 = { add_building_construction = { type = bunker level = 3 province = 11542 instant_build = yes } }
-                }
-            }
-
-            add_timed_idea = { idea = idea_operational_directive_d years = 1 }
+        modifier = {
+            war_support_weekly = 0.01
+            mobilization_speed = 0.25
         }
     }
 }
-
-equal_development = {
-    galician_oil = {
-        icon = oil
-
-        fire_only_once = yes
-        cost = 75
-
-        ai_will_do = { base = 9 }
-
-        available = { controls_state = 89 }
-        complete_effect = {
-            89 = { add_resource = { type = oil amount = 24 } }
-        }
-        
-    }
-    tatra_trucks = {
-        fire_only_once = yes
-        cost = 75
-
-        ai_will_do = { base = 12 }
-
-        available = { controls_state = 75 }
-        complete_effect = {
-            75 = {
-                add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
-                add_extra_state_shared_building_slots = 2
-            }
-        }
-    }
-}
-

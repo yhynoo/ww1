@@ -1,0 +1,44 @@
+add_namespace = austria_sudetenland
+
+country_event = {
+    id = austria_sudetenland.1
+    title = "Sudetenland Germans in Danger?"
+    desc = austria_sudetenland.1.d
+
+    trigger = { 
+        tag = GER
+        not = { has_war_with = AUS }
+        AUS = { has_war_with = HUN }
+
+        69 = { is_owned_and_controlled_by = AUS }
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "We must not leave them to their fate."
+        news_event = { id = austria_sudetenland.2 hours = 6 }
+
+        69 = { transfer_state_to = GER }
+        AUS = { create_wargoal = { target = GER type = take_claimed_state generator = { 69 } } }
+        ai_chance = { base = 4 }
+    }
+    option = {
+        name = "The Austrians will deal with that."
+        add_war_support = -0.025
+
+        ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = austria_sudetenland.2
+    title = "Germany Annexes Sudetenland"
+    desc = austria_sudetenland.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "What?"
+    }
+}

@@ -56,26 +56,6 @@ country_event = {
         ai_chance = { base = 1 }
     }
     option = {
-        name = "Okay, without Illyria."
-        trigger = {
-            any_state = {
-                or = { state = 103 state = 104 state = 109 }
-                is_owned_by = AUS
-            }
-        }
-        
-        release = HUN
-        every_owned_state = {
-            limit = { or = { state = 103 state = 104 state = 109 } }
-            add_claim_by = HUN
-        }
-
-        HUN = { create_wargoal = { target = AUS type = take_claimed_state } }
-        hidden_effect = { HUN = { load_oob = "HUN_1912" } }
-
-        ai_chance = { base = 0 }
-    }
-    option = {
         name = "Never!"
 
         hidden_effect = { 
@@ -92,37 +72,8 @@ country_event = {
 
 country_event = {
     id = austria_end.2
-    title = "Sudetenland Germans in Danger?"
-    desc = austria_end.2.d
-
-    trigger = { 
-        tag = GER
-        not = { has_war_with = AUS }
-        AUS = { has_war_with = HUN }
-
-        69 = { is_owned_and_controlled_by = AUS }
-    }
-    fire_only_once = yes
-
-    option = {
-        name = "We must not leave them to their fate."
-        69 = { transfer_state_to = GER }
-
-        AUS = { create_wargoal = { target = GER type = take_claimed_state } }
-        ai_chance = { base = 4 }
-    }
-    option = {
-        name = "The Austrians will deal with that."
-        add_war_support = -0.025
-
-        ai_chance = { base = 1 }
-    }
-}
-
-country_event = {
-    id = austria_end.3
     title = "Local Administration in Galicia-Lodomeria"
-    desc = austria_end.3.d
+    desc = austria_end.2.d
 
     trigger = { 
         tag = AUS
@@ -162,10 +113,25 @@ country_event = {
 
     option = {
         name = "Let them have it."
+
+        news_event = { id = austria_end.3 hours = 6 }
         add_stability = 0.05
     }
     option = {
         name = "These are lands of the crown."
         declare_war_on = { target = POL type = take_claimed_state }
+    }
+}
+
+news_event = {
+    id = austria_end.3
+    title = "Austrians Out of Galicia-Lodomeria?"
+    desc = austria_end.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
     }
 }
