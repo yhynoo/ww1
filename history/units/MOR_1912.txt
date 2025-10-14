@@ -8,6 +8,14 @@ division_template = {
 		infantry = { x = 1 y = 1 }
 	}
 }
+division_template = {
+	name = "Troupes Indigènes"
+	division_names_group = MOR_GAR_01
+	regiments = {
+		camelry = { x = 0 y = 0 }
+		camelry = { x = 0 y = 1 }
+	}
+}
 
 units = {
     division = {
@@ -28,12 +36,18 @@ units = {
 
     division = {
         location = 5046
-		division_template = "Division d'Infanterie"
+		division_template = "Troupes Indigènes"
     }
 
     division = {
         location = 10107
 		division_template = "Division d'Infanterie"
         start_equipment_factor = 0.8
+    }
+    
+    division = {
+        location = 10107
+		division_template = "Troupes Indigènes"
+        start_equipment_factor = 0.5
     }
 }
