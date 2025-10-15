@@ -14,10 +14,9 @@ country_event = {
 
     option = {
         name = "This is the right choice."
-
         promote_character = GER_erich_ludendorff
-        add_timed_idea = { idea = idea_ludendorffs_ohl years = 1 }
 
+        hidden_effect = { news_event = { id = germany_ludendorff.2 days = 14 random_days = 7 } }
         ai_chance = { base = 4 }
     }
     option = {
@@ -25,5 +24,21 @@ country_event = {
         add_stability = 0.05
 
         ai_chance = { base = 1 }
+    }
+}
+
+news_event = {
+    id = germany_ludendorff.2
+    title = "‘Durchhalten’"
+    desc = germany_ludendorff.2.d
+
+    is_triggered_only = yes
+    trigger = { has_stability > 0.5 }
+
+    option = {
+        name = "We shall endure."
+
+        add_war_support = 0.05
+        add_popularity = { ideology = monarchism popularity = 0.05 }
     }
 }
