@@ -742,7 +742,7 @@
     }
     focus = {
         id = SOV_on_our_own
-        icon = GFX_focus_SOV_on_our_own
+        icon = GFX_focus_generic_on_our_own
 
         relative_position_id = SOV_expansionism
         x = 1
@@ -782,10 +782,15 @@
             modifier = { date < 1914.1.1 factor = 0 }
         }
 
+        available = {
+            has_country_leader = { character = SOV_nikolai_ii ruling_only = yes }
+        }
+
         mutually_exclusive = { focus = SOV_adjust_the_government }
         prerequisite = { focus = SOV_political_ambitions }
         completion_reward = {
             add_stability = 0.05
+            add_popularity = { ideology = monarchism popularity = 0.05 }
         }
     }
     focus = {
@@ -864,7 +869,7 @@
 
         prerequisite = { focus = SOV_strength_in_unity }
         completion_reward = {
-            add_ideas = idea_autocrator
+            add_ideas = idea_one_and_indivisible
             remove_trait = {
                 character = SOV_nikolai_ii  ideology = absolutism   trait = trait_weakling 
             }
@@ -916,20 +921,24 @@
         cost = 10
 
         available = {
-            any_owned_state = {
-                or = { is_core_of = POL is_core_of = UBD is_core_of = UKR }
+            custom_trigger_tooltip = {
+                tooltip = tt_limited_autonomy
+
+                any_owned_state = {
+                    or = { is_core_of = POL is_core_of = UBD is_core_of = UKR }
+                    is_controlled_by = ROOT
+                }
             }
         }
 
         prerequisite = { focus = SOV_adjust_the_government }
         completion_reward = {
-            add_timed_idea = { idea = idea_limited_autonomy years = 1 }
+            add_timed_idea = { idea = idea_limited_autonomy years = 2 }
             
             random_owned_controlled_state = {
                 limit = { 
                     or = { is_core_of = POL is_core_of = UBD is_core_of = UKR }
                     is_in_home_area = yes
-                    industrial_complex > 0
                 }
                 
 				add_extra_state_shared_building_slots = 1
@@ -939,7 +948,6 @@
                 limit = { 
                     or = { is_core_of = POL is_core_of = UBD is_core_of = UKR }
                     is_in_home_area = yes
-                    industrial_complex > 0
                 }
                 
 				add_extra_state_shared_building_slots = 1
