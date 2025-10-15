@@ -12,4 +12,17 @@ on_actions = {
             }
         }
     }
+
+    on_ruling_party_change = {
+        effect = {
+            if = {
+                limit = {
+                    tag = SOV
+                    old_ideology_token = monarchism
+                }
+            }
+
+            news_event = { id = soviet_tsar.1 hours = 6 }
+        }
+    }
 }
