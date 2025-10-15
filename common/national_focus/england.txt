@@ -727,6 +727,7 @@ focus_tree = {
         }
 
         completion_reward = {
+            news_event = { id = england_entente.1 hours = 6 }
             remove_ideas = idea_mansion_house
         }
     }
@@ -742,34 +743,27 @@ focus_tree = {
         prerequisite = { focus = ENG_expansionism }
         available = { 
             is_subject = no
-            has_war = no
         }
 
         ai_will_do = { 
             base = 0
-            modifier = { has_completed_focus = ENG_abolish_lords add = 1 }
+            modifier = {
+                and = {
+                    date > 1917.1.1
+                    has_war = no
+                }
+                add = 2
+            }
         }
 
         completion_reward = {
-            if = {
-                limit = { is_faction_leader = yes }
-                dismantle_faction = yes
-            }
-            
-            hidden_effect = {
-                every_country = {
-                    limit = { is_guaranteed_by = ROOT }
-                    ENG = { diplomatic_relation = { country = PREV relation = guarantee active = no } }
-                }
-            }
-            
             custom_effect_tooltip = decision_effect_tooltip
         }
     }
 
     focus = {
         id = ENG_traditionalism
-        icon = GFX_focus_generic_internal_stability
+        icon = GFX_focus_ENG_traditionalism
 
         relative_position_id = ENG_political_ambitions
         x = 0
@@ -808,7 +802,6 @@ focus_tree = {
             
             hidden_effect = { 
                 set_country_flag = public_support_allowed
-                country_event = { id = england_white_feathers.1 days = 15 random_days = 30 }
             }
         }
     }
@@ -879,10 +872,11 @@ focus_tree = {
         }
 
         mutually_exclusive = { focus = ENG_traditionalism }
+
         prerequisite = { focus = ENG_political_ambitions }
         completion_reward = {
             add_stability = -0.05
-            add_timed_idea = { idea = idea_communism_tendencies years = 1 }
+            add_popularity = { ideology = democratic popularity = -0.05 }
         }
     }
     focus = {
@@ -900,7 +894,7 @@ focus_tree = {
         }
     }
     focus = {
-        id = ENG_peoples_act
+        id = ENG_open_the_economy
         icon = GFX_focus_generic_open_the_economy
 
         relative_position_id = ENG_abolish_lords
@@ -910,13 +904,14 @@ focus_tree = {
 
         prerequisite = { focus = ENG_abolish_lords }
         completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
+            add_timed_idea = { idea = idea_unionized_dockyards years = 1 }
 
             random_owned_controlled_state = {
-                limit = { is_in_home_area = yes }
-                add_extra_state_shared_building_slots = 1
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-            }
+                limit = { is_core_of = ROOT is_in_home_area = yes is_coastal = yes }
+
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = dockyard level = 2 instant_build = yes }
+			}
         }
     }
     focus = {
@@ -931,17 +926,20 @@ focus_tree = {
         prerequisite = { focus = ENG_state_reform }
 
         available = {
-            has_government = communism 
+            has_government = communism
+            any_country = { is_subject_of = ROOT }
         }
 
         completion_reward = {
-            add_ideas = idea_world_union
-            add_popularity = { ideology = communism popularity = 0.05 }
+            every_country = {
+                limit = { is_subject_of = ROOT }
+                add_timed_idea = { idea = idea_controlled_decolonization years = 2 }
+            }
         }
     }
     focus = {
         id = ENG_embrace_modernity
-        icon = GFX_focus_ENG_over_the_edge
+        icon = GFX_focus_generic_red_education
 
         relative_position_id = ENG_state_reform
         x = -1
@@ -950,15 +948,8 @@ focus_tree = {
 
         prerequisite = { focus = ENG_state_reform }
 
-        available = {
-            has_government = communism
-        }
-
         completion_reward = {
-             every_country = {
-                limit = { is_subject_of = ROOT }
-                add_timed_idea = { idea = idea_controlled_decolonization years = 2 }
-            }
+            add_research_slot = 1
         }
     }
 }

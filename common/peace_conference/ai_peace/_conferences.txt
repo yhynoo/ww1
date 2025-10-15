@@ -105,11 +105,11 @@ peace_ai_desires = {
         ai_desire = 100
     }
     dont_puppet_large_countries = {
-        peace_action_type = { puppet }
+        peace_action_type = { puppet force_government }
         enable = {
             ROOT.FROM.FROM = { check_variable = { num_owned_states > 10 } }
         }
-        ai_desire = -150
+        ai_desire = -300
     }
 
     continuous_puppet = {
@@ -122,7 +122,7 @@ peace_ai_desires = {
 
     # forcing government
     dont_force_governments_unless_democratic_or_communist = {
-        peace_action_type = force_government
+        peace_action_type = { force_government }
         enable = {
             NOT = { has_government = communism has_government = democratic }
         }
@@ -130,7 +130,7 @@ peace_ai_desires = {
     }
 
     dont_force_governments_if_exists = {
-        peace_action_type = force_government
+        peace_action_type = { force_government }
         enable = {
             ROOT.FROM = { exists = yes }
             ROOT.FROM = { pc_is_liberated = yes }
@@ -142,7 +142,7 @@ peace_ai_desires = {
     # PUPPETS
 
     puppets_dont_interfere_take_states = {
-        peace_action_type = take_states
+        peace_action_type = { take_states }
         enable = {
             is_subject = yes
             NOT = {

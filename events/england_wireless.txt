@@ -1,0 +1,18 @@
+add_namespace = england_wireless
+
+news_event = {
+    id = england_wireless.1
+    title = "Scandal in Imperial Wireless"
+    desc = england_wireless.1.d
+
+    trigger = {
+        tag = ENG
+        date > 1912.7.1
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "Yet another disappointment."
+        add_popularity = { ideology = ROOT popularity = -0.05 }
+    }
+}

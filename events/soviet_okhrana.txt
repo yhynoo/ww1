@@ -2,11 +2,11 @@ add_namespace = soviet_okhrana
 
 country_event = {
     id = soviet_okhrana.1
-    title = "Military Train Accident in Czernowitz"
+    title = "Military Train Accident in Krakau"
     desc = soviet_okhrana.1.d
 
     is_triggered_only = yes
-    immediate = { hidden_effect = { SOV = { add_named_threat = { threat = 2 name = "Train Accident in Czernowitz" } } } }
+    immediate = { hidden_effect = { SOV = { add_named_threat = { threat = 2 name = "Train Accident in Krakau" } } } }
 
     option = {
         name = "Investigate the matter."
@@ -41,7 +41,13 @@ country_event = {
     desc = soviet_okhrana.3.d
 
     is_triggered_only = yes
-    immediate = { hidden_effect = { SOV = { add_named_threat = { threat = 15 name = "Archduke Franz Ferdinand Assassinated!" } } } }
+    immediate = { 
+        hidden_effect = { 
+            SOV = {
+                add_named_threat = { threat = 10 name = "Assasination of Archduke Franz Ferdinand" } 
+            } 
+        }
+    }
 
     trigger = { 
         not = { has_war_with = SOV }

@@ -2,10 +2,17 @@ add_namespace = england_white_feathers
 
 country_event = {
     id = england_white_feathers.1
-    title = "‘The Women Say: Go!’"
+    title = "White Feathers"
     desc = england_white_feathers.1.d
 
-    is_triggered_only = yes
+    trigger = {
+        tag = ENG
+        has_war = yes
+
+        not = { has_idea = disarmed_nation }
+        not = { has_idea = volunteer_only }
+    }
+    mean_time_to_happen = { months = 3 }
 
     option = {
         name = "Encourage the initiative."
@@ -16,7 +23,7 @@ country_event = {
     }
 
     option = {
-        name = "Who cares what the women say?"
+        name = "This is dishonorable to everyone."
 
         add_political_power = -25
         add_popularity = { ideology = communism popularity = 0.05 }
@@ -25,17 +32,23 @@ country_event = {
     }
 }
 
-news_event = {
+country_event = {
     id = england_white_feathers.2
-    title = "Another Young Veteran Dead; Asquith Out?"
+    title = "Another Young Hero Dead; Gov't Out?"
     desc = england_white_feathers.2.d
 
     is_triggered_only = yes
 
     option = {
-        name = "Awful."
+        name = "It is time to end this."
 
+        remove_ideas = idea_white_feathers
         promote_character = ENG_david_lloyd_george
-        remove_ideas = england_white_feathers
+    }
+    option = {
+        name = "There is more good in it than it seems."
+        
+        add_political_power = -75
+        add_popularity = { ideology = ROOT popularity = -0.05 }
     }
 }

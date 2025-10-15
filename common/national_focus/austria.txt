@@ -898,6 +898,11 @@ focus_tree = {
         y = 1
         cost = 10
 
+        available = {
+            HUN = { exists = no }
+            any_owned_state = { is_core_of = HUN }
+        }
+
         prerequisite = { focus = AUS_adjust_the_government }
         completion_reward = {
             add_timed_idea = { idea = idea_equal_development years = 1 }

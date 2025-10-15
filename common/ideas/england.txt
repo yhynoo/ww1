@@ -1,10 +1,23 @@
 # country ideas
 ideas = {
     country = {
+        idea_naval_armaments = {
+            modifier = {
+                production_speed_dockyard_factor = 0.25
+                experience_gain_navy_factor = 0.15
+            }
+        }
         idea_mansion_house = {
             modifier = {
-                war_support_factor = -0.1
+                war_support_factor = -0.15
                 join_faction_tension = 0.25
+            }
+        }
+
+        idea_dockers_strike = {
+            modifier = {
+                production_factory_max_efficiency_factor = -0.5
+                communism_drift = 0.1
             }
         }
 
@@ -37,17 +50,10 @@ ideas = {
             }
         }
 
-        idea_syndicate_of_coal = {
+        idea_unionized_dockyards = {
             modifier = {
                 industrial_capacity_dockyard = 0.1
-                local_resources_factor = 0.05
-            }
-        }
-
-        idea_world_union = {
-            modifier = {
-                war_stability_factor = 0.1
-                non_core_manpower = 0.25
+                communism_drift = 0.05
             }
         }
 
