@@ -393,7 +393,7 @@ focus_tree = {
         completion_reward = {
             add_stability = -0.05
             add_war_support = -0.05
-            add_ideas = idea_rationing
+            add_timed_idea = { idea = idea_rationing years = 2 }
         }
     }
     focus = {
@@ -729,6 +729,10 @@ focus_tree = {
         completion_reward = {
             news_event = { id = england_entente.1 hours = 6 }
             remove_ideas = idea_mansion_house
+
+            hidden_effect = {
+                add_ai_strategy = { type = alliance id = FRA value = 100 }
+            }
         }
     }
     focus = {
