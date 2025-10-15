@@ -802,6 +802,10 @@
             modifier = { has_war = no factor = 0 }
         }
 
+        available = {
+            has_war = yes
+        }
+
         prerequisite = { focus = SOV_traditionalism }
         completion_reward = {
             add_war_support = 0.05
@@ -858,6 +862,9 @@
         prerequisite = { focus = SOV_strength_in_unity }
         completion_reward = {
             add_ideas = idea_autocrator
+            remove_trait = {
+                character = SOV_nikolai_ii  ideology = absolutism   trait = trait_weakling 
+            }
         }
     }
 
