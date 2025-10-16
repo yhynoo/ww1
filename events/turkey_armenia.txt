@@ -1,51 +1,44 @@
 add_namespace = turkey_armenia
 
-news_event = {
+country_event = {
     id = turkey_armenia.1
     title = "Testimonies of Violence in Armenia and Assyria"
     desc = turkey_armenia.1.d
 
-    is_triggered_only = yes
+    trigger = {
+        tag = TUR
+        monarchism < 0.5
+    }
+    fire_only_once = yes
 
     option = {
-        name = "Awful."
-        add_stability = -0.05
+        name = "Announce the findings."
+        add_timed_ideas = { idea = idea_testimonies_armenia years = 1 }
+    }
+    option = {
+        name = "Silence the matter."
 
-        hidden_effect = { country_event = { id = turkey_armenia.2 days = 30 random_days = 30 } }
+        add_political_power = -75
+        hidden_effect = { random = { chance = 50 news_event = { id = turkey_armenia.2 days = 30 random_days = 30 } } }
     }
 }
 
-country_event = {
+news_event = {
     id = turkey_armenia.2
-    title = "Liberals Demand an Investigation"
+    title = "Conservatives: ’Slander is Treason!’"
     desc = turkey_armenia.2.d
 
     is_triggered_only = yes
 
     option = {
-        name = "This is absolutely crucial."
-        add_popularity = { ideology = democratic popularity = 0.1 }
-
-        #
-        hidden_effect = { random = { chance = 50 news_event = { id = turkey_armenia.3 days = 30 random_days = 30 } } }
-    }
-    option = {
-        name = "Silence the matter."
-        add_political_power = -75
-    }
-}
-
-news_event = {
-    id = turkey_armenia.3
-    title = "Young Officers: ’Slander is Treason!’"
-    desc = turkey_armenia.3.d
-
-    is_triggered_only = yes
-
-    option = {
         name = "Disgusting."
-        add_stability = -0.05
 
-        add_popularity = { ideology = authoritarianism popularity = 0.05 }
+        add_stability = -0.1
+        add_popularity = { ideology = democratic popularity = -0.05 }
+
+        every_country = {
+            limit = { or = { tag = ENG tag = FRA tag = ENG } }
+            add_opinion_modifier = { target = TUR modifier = opinion_testimonies_armenia }
+        }
     }
 }

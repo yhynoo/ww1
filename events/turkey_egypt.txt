@@ -11,15 +11,7 @@ country_event = {
         name = "This is a good deal."
         FROM = { 
             news_event = { id = turkey_egypt.2 hours = 6 random_hours = 6 }
-
-            if = {
-                limit = { has_idea = idea_amassed_foreign_debt }
-                remove_ideas = idea_amassed_foreign_debt
-            }
-            else_if = {
-                limit = { has_idea = idea_significant_foreign_debt }
-                remove_ideas = idea_significant_foreign_debt
-            }
+            manage_turkish_debt = yes
         }
 
         every_state = {
@@ -27,9 +19,10 @@ country_event = {
             transfer_state_to = ENG
         }
 
+        add_opinion_modifier = { target = TUR modifier = opinion_sale_of_egypt }
+
         hidden_effect = { 
-            set_country_flag = egypt_deal 
-            FROM = { add_ai_strategy = { type = protect id = ROOT value = 60 } }
+            ENG = { add_ai_strategy = { type = protect id = TUR value = 60 } }
         }
 
         ai_chance = {
@@ -49,7 +42,7 @@ country_event = {
 
 news_event = {
     id = turkey_egypt.2
-    title = "[TUR.GetName] Sells Egypt!"
+    title = "The Sale of Egypt"
     desc = turkey_egypt.2.d
 
     is_triggered_only = yes

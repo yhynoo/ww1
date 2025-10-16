@@ -8,78 +8,63 @@ consolidate_the_empire = {
 
         complete_effect = {
             news_event = { id = turkey_salonika.1 hours = 6 random_hours = 6 }
+            
             remove_ideas = idea_unrest_in_adriatic
+            every_country = {
+                limit = { or = { tag = FRA tag = SER tag = SOV } }
+                add_opinion_modifier = { target = TUR modifier = opinion_salonika_declaration }
+            }
 
             hidden_effect = {
                 country_event = { id = turkey_salonika.2 days = 15 random_days = 30 }
             }
         }
     }
-    demand_algeria_and_tunisia = {
-        icon = generic_prepare_civil_war
-        cost = 100
-        fire_only_once = yes
-
-        ai_will_do = {
-            base = 0
-            modifier = { 
-                and = { is_ally_with = GER threat > 0.35 }
-                add = 6
-            }
-        }
-
-        available = {
-            not = { has_completed_focus = TUR_open_the_economy }
-            any_state = {
-                or = { 
-                    state = 458 state = 515 state = 557 state = 665
-                    is_core_of = ALG
-                }
-                owner = { 
-                    not = { tag = TUR }
-                    not = { has_war_with = TUR }
-                }
-            }
-        }
-
-        complete_effect = {
-            every_state = {
-                limit = { 
-                    or = { 
-                        state = 458 state = 515 state = 557 state = 665
-                        is_core_of = ALG 
-                    } 
-                }
-                add_claim_by = TUR
-            }
-
-            every_country = {
-                limit = {
-                    or = { 
-                        controls_state = 458 controls_state = 515 controls_state = 557 controls_state = 665
-                        any_controlled_state = { is_core_of = ALG }
-                    }
-                    not = { has_war_with = TUR }
-                }
-                country_event = { id = _demand.1 hours = 6 random_hours = 6 }
-            }
-        }
-    }
-    develop_iraq = {
+    develop_arabia = {
         icon = generic_construction
         cost = 75
         fire_only_once = yes
 
-        available = { controls_state = 291 }
+        available = { 
+            controls_state = 83 
+            controls_state = 416
+        }
+        
         ai_will_do = { base = 9 }
 
         complete_effect = {
-            291 = {
-                add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+            manage_turkish_debt = yes
+            
+            83 = {
                 add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                add_extra_state_shared_building_slots = 1
             }
+            416 = {
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                add_extra_state_shared_building_slots = 1
+            }
+        }
+    }
+    sell_egypt = {
+        fire_only_once = yes
+        cost = 75
 
-            hidden_effect = { 291 = { add_extra_state_shared_building_slots = 1 } }
+        available = { 
+            not = { has_war_with = ENG }
+            or = { has_idea = idea_amassed_foreign_debt has_idea = idea_significant_foreign_debt }
+
+            all_state = {
+                limit = { or = { state = 447 state = 452 state = 456 state = 457 state = 551 state = 552 } }
+                is_owned_and_controlled_by = TUR
+            }
+        }
+        ai_will_do = {
+            base = 0
+            modifier = { has_idea = idea_amassed_foreign_debt add = 6 }
+        }
+
+        complete_effect = {
+            ENG = { country_event = { id = turkey_egypt.1 hours = 6 random_hours = 6 } }
         }
     }
 }
@@ -95,11 +80,7 @@ turanist_ambition = {
             FRA = { has_opinion = { target = TUR value > 49 } }
         }
 
-        ai_will_do = {
-            base = 12 
-            modifier = { has_idea = we_like_germany factor = 0 }
-        }
-
+        ai_will_do = { base = 6 }
         complete_effect = {
             add_ideas = idea_sky_steppe
 
@@ -125,7 +106,7 @@ turanist_ambition = {
             base = 0
             modifier = { 
                 and = { 
-                    has_government = authoritarianism
+                    or = { has_government = communism has_government = monarchism }
                     has_war = no
                 } 
                 add = 9
@@ -136,59 +117,6 @@ turanist_ambition = {
             SOV = {
                 add_timed_idea = { idea = idea_unrest_in_central_asia years = 1 }
                 hidden_effect = { country_event = { id = turkey_asia.1 hours = 6 random_hours = 6 } }
-            }
-        }
-    }
-}
-
-tackle_the_debt = {
-    sell_egypt = {
-        fire_only_once = yes
-        cost = 75
-
-        available = { 
-            not = { has_war_with = ENG }
-            or = { has_idea = idea_amassed_foreign_debt has_idea = idea_significant_foreign_debt }
-
-            all_state = {
-                limit = { or = { state = 447 state = 452 state = 456 state = 457 state = 551 state = 552 } }
-                is_owned_and_controlled_by = TUR
-            }
-        }
-        ai_will_do = {
-            base = 0
-            modifier = { has_idea = idea_amassed_foreign_debt add = 9 }
-        }
-
-        complete_effect = {
-            ENG = { country_event = { id = turkey_egypt.1 hours = 6 random_hours = 6 } }
-        }
-    }
-    develop_aegean = {
-        icon = generic_construction
-
-        fire_only_once = yes
-        cost = 75
-
-        available = { controls_state = 339 }
-        ai_will_do = { base = 9 }
-
-        complete_effect = {
-            if = {
-                limit = { has_idea = idea_amassed_foreign_debt }
-                swap_ideas = {
-                    remove_idea = idea_amassed_foreign_debt
-                    add_idea = idea_significant_foreign_debt
-                }
-            }
-            else_if = {
-                limit = { has_idea = idea_significant_foreign_debt }
-                remove_ideas = idea_significant_foreign_debt
-            }
-
-            339 = {
-                add_building_construction = { type = dockyard level = 2 instant_build = yes }
-                add_extra_state_shared_building_slots = 2
             }
         }
     }

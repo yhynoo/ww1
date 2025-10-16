@@ -19,6 +19,25 @@ arab_independence = {
     }
 }
 
+armenian_independence = {
+    TUR = {
+        every_owned_state = {
+            limit = { is_core_of = ARM }
+            set_state_owner_to = ARM
+        }
+
+        every_controlled_state = {
+            limit = { or = { state = 353 state = 354 } }
+            set_state_controller_to = ARM
+        }
+    }
+
+    ARM = { 
+        load_oob = "ARM_1912" 
+        add_ideas = { closed_economy partial_economic_mobilisation }
+    }
+}
+
 algerian_independence = {
     FRA = {
         every_owned_state = {

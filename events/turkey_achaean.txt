@@ -1,0 +1,120 @@
+add_namespace = turkey_achaean
+
+news_event = {
+    id = turkey_achaean.1
+    title = "Achaean League Founded in Athens"
+    desc = turkey_achaean.1.d
+
+    trigger = {
+        tag = TUR
+        has_stability < 0.25
+
+        controls_state = 47
+
+        and = {
+            not = { has_country_flag = we_beat_the_greeks }
+            GRE = { exists = no }
+        }
+    }
+
+    mean_time_to_happen = { months = 2 }
+    fire_only_once = yes
+
+    option = {
+        name = "Worrying."
+
+        every_controlled_state = {
+            limit = { is_core_of = GRE }
+            add_resistance = 12
+        }
+
+        hidden_effect = { country_event = { id = turkey_achaean.2 months = 2 random_days = 14 } }
+    }
+}
+
+country_event = {
+    id = turkey_achaean.2
+    title = "Greeks and Armenians Take Up Arms!"
+    desc = turkey_achaean.2.d
+
+    is_triggered_only = yes
+    trigger = {
+        AND = {
+            any_state = {
+                or = { state = 182 state = 185 state = 186 }
+                is_controlled_by = TUR
+            }
+            any_state = {
+                or = { state = 353 state = 354 }
+                is_controlled_by = TUR
+            }
+        }
+    }
+
+    option = {
+        name = "We must concede."
+        add_popularity = { ideology = monarchism popularity = -0.15 }
+
+        every_controlled_state = {
+            limit = { 
+                or = { state = 47 state = 182 state = 186 state = 187 }
+            }
+            transfer_state_to = GRE
+        }
+        every_controlled_state = {
+            limit = { 
+                or = { state = 353 state = 354 }
+            }
+            transfer_state_to = ARM
+        }
+
+        hidden_effect = { 
+            ARM = { load_oob = "ARM_1912" }
+            GRE = { load_oob = "GRE_1912" } 
+        }
+        ai_chance = { base = 1 }
+    }
+
+    option = {
+        name = "War!"
+        add_war_support = 0.05
+
+        hidden_effect = { 
+            armenian_independence = yes
+            greek_independence = yes 
+            news_event = { id = turkey_achaean.3 days = 14 }
+        }
+        declare_war_on = { target = ARM type = annex_everything }
+        declare_war_on = { target = GRE type = annex_everything }
+
+        ai_chance = { base = 2 }
+    }
+}
+
+news_event = {
+    id = turkey_achaean.3
+    title = "Turkish Salvation Government"
+    desc = turkey_achaean.3.d
+
+    is_triggered_only = yes
+    trigger = {
+        tag = TUR
+
+        has_stability < 0.45
+        or = { communism > 0.2 has_idea = idea_dissent_in_the_army }
+
+        has_civil_war = no
+        not = { has_government = communism }
+    }
+
+    option = {
+        name = "Worrying."
+        start_civil_war = { 
+            ideology = communism size = 0.4 states = { 44 49 184 344 345 404 586 }
+        }
+
+        hidden_effect = {
+            turkish_civil_war = yes
+        }
+    }
+}

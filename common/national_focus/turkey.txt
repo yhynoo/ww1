@@ -707,7 +707,6 @@ focus_tree = {
         ai_will_do = { base = 2 }
 
         completion_reward = {
-            add_war_support = 0.05
             custom_effect_tooltip = decision_effect_tooltip
         }
     }
@@ -767,6 +766,10 @@ focus_tree = {
         cost = 10
 
         ai_will_do = { base = 2 }
+
+        available = {
+            has_government = monarchism
+        }
 
         mutually_exclusive = { focus = TUR_adjust_the_government }
         prerequisite = { focus = TUR_political_ambitions }
