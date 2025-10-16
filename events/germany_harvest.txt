@@ -1,0 +1,62 @@
+add_namespace = germany_harvest
+
+country_event = {
+    id = germany_harvest.1
+    title = "The Harvest of 1916"
+    desc = germany_harvest.1.d
+
+    trigger = {
+        tag = GER
+        and = {
+            date > 1916.7.1
+            date < 1916.10.1
+        }
+        not = { has_idea = civilian_economy }
+    }
+    mean_time_to_happen = { months = 1 }
+    fire_only_once = yes
+
+    option = {
+        name = "Demobilize the economy."
+        
+        custom_effect_tooltip = tt_demobilize_economy
+        hidden_effect = {
+            if = {
+                limit = { has_idea = idea_rationing }
+                remove_ideas = idea_rationing
+            }
+
+            add_timed_idea = { idea = idea_harvest_1916 months = 6 }
+            add_ideas = civilian_economy
+        }
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = "We must endure."
+        add_political_power = -50
+
+        hidden_effect = { news_event = { id = germany_harvest.2 days = 14 } }
+        ai_chance = { base = 2 }
+    }
+}
+
+news_event = {
+    id = germany_harvest.2
+    title = "‘Durchhalten!’"
+    desc = germany_harvest.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "If this is what it comes to..."
+
+        if = {
+            limit = { has_idea = idea_widespread_hunger }
+            modify_timed_idea = { idea = idea_widespread_hunger days = 180 }
+        }
+        else = {
+            add_timed_idea = { idea = idea_widespread_hunger days = 180 }
+        }
+    }
+}

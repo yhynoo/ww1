@@ -35,6 +35,9 @@ country_event = {
         tag = SOV
         has_war_with = GER
         or = { surrender_progress > 0.15 longest_war_length > 18 }
+
+        has_civil_war = no
+        not = { has_government = communism }
     }
 
     option = {

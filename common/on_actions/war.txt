@@ -29,12 +29,19 @@ on_actions = {
     on_annex = {
         effect = {
             if = {
-                limit = { 
-                    FROM = { tag = UKR has_government = communism }
+                limit = {   
+                    tag = TUR     
+                    FROM = { tag = GRE }
                 }
+                add_country_flag = we_beat_the_greeks
+            }
 
-                # the hidden clean-up event
-                news_event = { id = austria_ukraine.4 hours = 6 random_hours = 6 }
+            if = {
+                limit = {   
+                    tag = TUR     
+                    FROM = { tag = SER }
+                }
+                add_country_flag = we_beat_the_serbs
             }
         }
     }

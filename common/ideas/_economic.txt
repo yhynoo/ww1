@@ -27,6 +27,11 @@ ideas = {
 					has_war = yes
 					has_war_support > 0.25
 				}
+
+				if = {
+					limit = { has_idea = idea_harvest_1916 }
+					not = { has_idea = idea_harvest_1916 }
+				}
             }
 
 			cost = 150
@@ -69,6 +74,11 @@ ideas = {
 						limit = { tag = AUS }
 						not = { has_idea = idea_ausgleich }
 					}
+
+					if = {
+						limit = { has_idea = idea_harvest_1916 }
+						not = { has_idea = idea_harvest_1916 }
+					}
 				}
 			}
 
@@ -102,6 +112,11 @@ ideas = {
 				if = {
 					limit = { tag = AUS }
 					not = { has_idea = idea_ausgleich }
+				}
+
+				if = {
+					limit = { has_idea = idea_harvest_1916 }
+					not = { has_idea = idea_harvest_1916 }
 				}
 			}
 
