@@ -5,6 +5,9 @@ consolidate_the_empire = {
         fire_only_once = yes
 
         ai_will_do = { base = 9 }
+        available = {
+            has_idea = idea_unrest_in_adriatic
+        }
 
         complete_effect = {
             news_event = { id = turkey_salonika.1 hours = 6 random_hours = 6 }
@@ -51,13 +54,21 @@ consolidate_the_empire = {
 
         available = { 
             not = { has_war_with = ENG }
-            or = { has_idea = idea_amassed_foreign_debt has_idea = idea_significant_foreign_debt }
 
-            all_state = {
-                limit = { or = { state = 447 state = 452 state = 456 state = 457 state = 551 state = 552 } }
-                is_owned_and_controlled_by = TUR
+            custom_trigger_tooltip = {
+                tooltip = tt_sell_egypt
+
+                or = { has_idea = idea_amassed_foreign_debt has_idea = idea_significant_foreign_debt }
+                controls_state = 447 controls_state = 452 controls_state = 456 controls_state = 457 controls_state = 552 controls_state = 551
             }
         }
+
+        highlight_states = {
+            highlight_state_targets = {
+                state = 447 state = 452 state = 456 state = 457 state = 551 state = 552
+            }
+        }
+
         ai_will_do = {
             base = 0
             modifier = { has_idea = idea_amassed_foreign_debt add = 6 }
