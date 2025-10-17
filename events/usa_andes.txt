@@ -1,0 +1,42 @@
+add_namespace = usa_andes
+
+country_event = {
+    id = usa_andes.1
+    title = "Guarantees for Andean Chromium?"
+    desc = usa_andes.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a good deal."
+        FROM = { 
+            news_event = { id = usa_andes.2 hours = 6 random_hours = 6 }
+            give_guarantee = PRU
+        }
+
+        every_controlled_state = {
+            limit = { or = { state = 279 state = 506 } }
+            give_resource_rights = { receiver = USA resources = { chromium } }
+        }
+
+        hidden_effect = { 
+            USA = { add_ai_strategy = { type = protect id = PRU value = 60 } }
+        }
+    }
+    option = {
+        name = "We are not interested."
+    }
+}
+
+news_event = {
+    id = usa_andes.2
+    title = "Access to Andean Chromium"
+    desc = usa_andes.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        add_opinion_modifier = { target = PER modifier = opinion_accessed_chromium }
+    }
+}

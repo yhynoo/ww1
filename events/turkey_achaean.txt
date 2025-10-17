@@ -72,7 +72,10 @@ country_event = {
             ARM = { load_oob = "ARM_1912" }
             GRE = { load_oob = "GRE_1912" } 
         }
-        ai_chance = { base = 1 }
+        ai_chance = { 
+            base = 0
+            modifier = { has_government = democratic add = 2 }
+        }
     }
 
     option = {
@@ -87,7 +90,7 @@ country_event = {
         declare_war_on = { target = ARM type = annex_everything }
         declare_war_on = { target = GRE type = annex_everything }
 
-        ai_chance = { base = 2 }
+        ai_chance = { base = 1 }
     }
 }
 

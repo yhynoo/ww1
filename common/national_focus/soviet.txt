@@ -729,7 +729,10 @@
         cost = 10
 
         prerequisite = { focus = SOV_expansionism }
-        available = { is_subject = no }
+        available = { 
+            is_in_faction = no
+            is_subject = no 
+        }
 
         ai_will_do = { 
             base = 2
@@ -968,7 +971,12 @@
 
         ai_will_do = {
             base = 0
-            modifier = { surrender_progress > 0.15 add = 12 }
+            modifier = { surrender_progress > 0.15 add = 3 }
+
+            modifier = {
+                has_cosmetic_tag = SOV_civil_war_whites
+                factor = 0
+            }
         }
         
         completion_reward = {

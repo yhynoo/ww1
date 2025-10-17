@@ -1,4 +1,4 @@
-intervene_central_america = {
+monroe_doctrine = {
     align_mexico = {
         icon = generic_form_nation
         fire_only_once = yes
@@ -22,7 +22,7 @@ intervene_central_america = {
         }
     }
     demand_colombia_withdraw = {
-        icon = generic_prepare_civil_war
+        icon = border_war
         fire_only_once = yes
         cost = 100
 
@@ -39,8 +39,25 @@ intervene_central_america = {
         }
 
         complete_effect = {
-            give_guarantee = MEX
             COL = { country_event = { id = usa_withdraw.1 hours = 6 random_hours = 6 } }
+        }
+    }
+    andes_for_protection = {
+        icon = chromium
+        fire_only_once = yes
+        cost = 75
+
+        available = {
+            any_state = {
+                or = { state = 279 state = 506 }
+                is_owned_and_controlled_by = PRU
+            }
+        }
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            PRU = { country_event = { id = usa_andes.1 hours = 6 } }
         }
     }
 }
@@ -69,7 +86,7 @@ adapt_wilsonianism = {
         cost = 50
         days_remove = 90
 
-        targets = { HUN POL UKR }
+        targets = { POL UKR }
         target_non_existing = yes
 
         ai_will_do = {
@@ -85,42 +102,6 @@ adapt_wilsonianism = {
         complete_effect = {
             add_war_support = 0.025
             send_equipment = { equipment = infantry_equipment amount = 600 target = FROM }
-        }
-    }
-}
-
-american_industries = {
-    anti_trust_laws = {
-        fire_only_once = yes
-        cost = 75
-
-        available = {
-            has_government = democratic
-        }
-
-        ai_will_do = { base = 9 }
-
-        complete_effect = {
-            add_ideas = idea_anti_trust_laws
-            add_popularity = { ideology = communism popularity = 0.05 }
-        }
-    }
-    support_the_unions = {
-        cost = 50
-        days_remove = 90
-
-        ai_will_do = { base = 6 }
-
-        modifier = {
-            communism_drift = 0.05
-        }
-
-        remove_effect = {
-            if = {
-                limit = { not = { has_government = communism } }
-                add_stability_weekly = -0.05
-            }
-            else = { add_stability = 0.025 }
         }
     }
 }

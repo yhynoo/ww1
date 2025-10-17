@@ -1,0 +1,41 @@
+add_namespace = usa_aid
+
+country_event = {
+    id = usa_mexico.1
+    title = "Aid to Mexican Democrats?"
+    desc = usa_mexico.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Send them some old equipment."
+        add_political_power = -50
+
+        random_country = {
+            limit = { original_tag = MEX has_government = democratic }
+            
+            add_offsite_building = { type = arms_factory level = 1 }
+            add_offsite_building = { type = civilian_factory level = 1 }
+
+            # event
+            news_event = { id = usa_mexico.2 hours = 6 random_hours = 6 }
+        }
+    }
+    option = {
+        name = "It not our war."
+        add_war_support = -0.025
+    }
+}
+
+news_event = {
+    id = usa_mexico.2
+    title = "American Aid Arrives"
+    desc = usa_mexico.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They are most welcome."
+        add_opinion_modifier = { target = USA modifier = medium_increase }
+    }
+}

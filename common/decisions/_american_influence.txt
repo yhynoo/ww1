@@ -1,0 +1,159 @@
+american_influence = {
+    demand_access = {
+        visible = { original_tag = USA }
+        cost = 25
+
+        targets_dynamic = yes
+        target_trigger = {
+            FROM = {
+                or = { original_tag = MEX original_tag = COL }
+            }
+        }
+
+        available = {
+            not = {
+                any_state = { check_variable = { investment = 1 } }
+            }
+        }
+
+        ai_will_do = {
+            base = 3
+            modifier = { FROM = { has_government = democratic } factor = 2.5 }
+        }
+
+        complete_effect = {
+            random_state = {
+                limit = { 
+                    is_owned_and_controlled_by = FROM
+                    or = { 
+                        tungsten > 0 
+                        oil > 0 
+                        chromium > 0
+                    }
+                    not = { has_resources_rights = { receiver = USA } }
+                }
+
+                custom_effect_tooltip = tt_demand_access
+                set_variable = { investment = 1 }
+            }
+
+            hidden_effect = {
+                FROM = { country_event = { id = _american_influence.1 hours = 6 } }
+            }
+        }
+    }
+    
+    investment_in_progress = {
+        visible = {
+            original_tag = USA
+            any_state = { check_variable = { investment = 1 } }
+        }
+        available = {
+            always = no 
+        }
+
+        days_remove = 90
+        modifier = {
+            civilian_factory_use = 3
+            political_power_gain = -0.5
+        }
+
+        remove_effect = {
+            every_state = {
+                limit = { 
+                    check_variable = { investment = 1 } 
+                }
+
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                owner = { give_resource_rights = { receiver = USA state = PREV } }
+
+                # clear the variable.
+                set_variable = { investment = 0 }
+            }
+        }
+    }
+
+    expel_american_investors = {
+        visible = { 
+            not = { original_tag = USA } 
+            any_controlled_state = { has_resources_rights = { receiver = USA } }
+        }
+        cost = 100
+
+        ai_will_do = {
+            base = 0
+            modifier = { not = { has_government = democratic } add = 6 }
+        }
+
+        complete_effect = {
+            add_stability = -0.05
+            every_controlled_state = {
+                limit = { has_resources_rights = { receiver = USA } }
+                USA = { 
+                    remove_resource_rights = PREV 
+                    hidden_effect = { add_ai_strategy = { type = conquer tag = ROOT value = 15 } }
+                }
+            }
+
+            news_event = { id = _american_influence.3 hours = 6 }
+        }
+    }
+
+    sabotage_american_enterprises = {
+        visible = { 
+            not = { original_tag = USA }
+            any_controlled_state = { has_resources_rights = { receiver = USA } }
+        }
+        cost = 75
+
+        ai_will_do = {
+            base = 0
+            modifier = { not = { has_government = democratic } add = 7 }
+        }
+
+        complete_effect = {
+            add_stability = -0.025
+
+            random_controlled_state = {
+                limit = { has_resources_rights = { receiver = USA } }
+                save_event_target_as = target_state
+
+                USA = { 
+                    remove_resource_rights = PREV 
+                    news_event = { id = _american_influence.5 hours = 6 }
+                    hidden_effect = { add_ai_strategy = { type = conquer tag = ROOT value = 5 } }
+                }
+
+                random = {
+                    chance = 50
+                    damage_building = { type = infrastructure damage = 1 }
+                }
+            }
+        }
+    }
+
+    appoint_american_adminstrators = {
+        visible = { 
+            not = { original_tag = USA }
+            any_controlled_state = { has_resources_rights = { receiver = USA } }
+        }
+        cost = 50
+
+        days_remove = 90
+
+        ai_will_do = {
+            base = 0
+            modifier = { has_government = democratic add = 6 }
+        }
+
+        modifier = {
+            production_speed_buildings_factor = 0.1
+            democratic_drift = 0.025
+        }
+
+        complete_effect = {
+            USA = { hidden_effect = { add_ai_strategy = { type = protect tag = ROOT value = 10 } } }
+        }
+    }
+
+}

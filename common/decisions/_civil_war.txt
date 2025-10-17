@@ -21,6 +21,9 @@ civil_war_decisions = {
         ai_will_do = {
             base = 0
             modifier = { and = { has_war = no FROM = { has_government = ROOT } } add = 6 }
+
+            # Americans help Mexico
+            modifier = { has_opinion_modifier = opinion_american_arms factor = 2 }
         }
 
         available = {
@@ -59,7 +62,7 @@ civil_war_decisions = {
             modifier = { surrender_progress > 0.1 factor = 2 }
 
             # mexico won't do it:
-            modifier = { original_tag = MEX add = -6 }
+            modifier = { original_tag = MEX add = -24 }
         }
 
         days_remove = 7

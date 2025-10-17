@@ -3,8 +3,10 @@ USA_isolate = {
     enable = { 
         or = {
             has_idea = idea_isolationist_society
-            date < 1917.7.1
-            not = { has_idea = idea_lusitania } 
+            not = { 
+                has_idea = idea_lusitania 
+                not = { ENG = { has_war_with = GER } }
+            }
         }
     }
     abort_when_not_enabled = yes
@@ -13,7 +15,7 @@ USA_isolate = {
     ai_strategy = {
         type = alliance
         id = USA
-        value = -60
+        value = -30
     }
 }
 

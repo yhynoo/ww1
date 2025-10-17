@@ -123,10 +123,9 @@ entente_acceptance = {
                 not = { has_truce_with = GER }
             }
             and = {                                                             # usa
-                has_completed_focus = USA_traditionalism
-                and = { 
-                    has_war_support > 0.55
-                    FRA = { war_length_with = { tag = GER months > 24 } }
+                has_completed_focus = USA_on_our_own
+                and = {
+                    ENG = { war_length_with = { tag = GER months > 18 } }
                 }
             }
         }
@@ -163,10 +162,9 @@ entente_invite = {
                 not = { has_truce_with = GER }
             }
             and = {                                                             # usa
-                has_completed_focus = USA_traditionalism
-                and = { 
-                    has_war_support > 0.6
-                    FRA = { war_length_with = { tag = GER months > 18 } }
+                has_completed_focus = USA_on_our_own
+                and = {
+                    ENG = { war_length_with = { tag = GER months > 18 } }
                 }
             }
         }
@@ -191,26 +189,48 @@ wilsonianism = {
     allowed = { original_tag = USA }
     enable = {
         USA = { has_completed_focus = USA_on_our_own }
+        or = { tag = POL tag = UKR }
 
-        is_subject = no
-        is_in_faction = no
-
-        or = { tag = HUN tag = POL tag = SER tag = UKR }
+        any_enemy_country = {
+            has_government = communism
+        }
     }
     abort_when_not_enabled = yes
     reversed = yes
 
     ai_strategy = {
-        type = protect
+        type = support
         id = USA
-        value = 150
+        value = 60
     }
 }
 
 usa_entente = {
     allowed = { original_tag = USA }
-    enable = { USA = { has_completed_focus = USA_on_our_own } }
+    enable = {
+        or = {
+            has_idea = idea_lusitania
+            and = { has_completed_focus = USA_on_our_own has_completed_focus = USA_traditionalism }
+
+            any_country = {
+                original_tag = SOV
+                has_government = communism
+            }
+        }
+    }
     abort_when_not_enabled = yes
+
+    ai_strategy = {
+        type = alliance
+        id = ENG
+        value = 25
+    }
+
+    ai_strategy = {
+        type = alliance
+        id = FRA
+        value = 50
+    }
 
     ai_strategy = {
         type = alliance

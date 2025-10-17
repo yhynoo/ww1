@@ -2,7 +2,7 @@ add_namespace = usa_withdraw
 
 country_event = {
     id = usa_withdraw.1
-    title = "[USA.GetName] Demands We Leave Mexico"
+    title = "The U.S. Demands We Leave Central America"
     desc = usa_withdraw.1.d
 
     is_triggered_only = yes
@@ -14,6 +14,16 @@ country_event = {
             limit = { or = { is_claimed_by = MEX is_core_of = MEX } }
             transfer_state_to = MEX
         }
+        every_controlled_state = {
+            limit = { or = { state = 312 state = 313 state = 314 state = 317 } }
+            give_resource_rights = { receiver = USA state = THIS }
+        }
+
+        if = {
+            limit = { USA = { not_has_idea = idea_american_influence_central_america } }
+            USA = { add_ideas = idea_american_influence_central_america }
+        }
+
         white_peace = MEX
 
         ai_chance = { base = 1 }

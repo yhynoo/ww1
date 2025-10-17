@@ -36,6 +36,15 @@ civil_war_decisions = {
     }
 }
 
+# american influence in central america
+american_influence = {
+    visible = {
+        USA = { has_idea = idea_influence_in_central_america }
+        or = { original_tag = USA original_tag = MEX original_tag = COL }
+    }
+    priority = 4
+}
+
 # country specific
 a_place_in_the_sun = {
     visible = { has_completed_focus = GER_seek_alliances }
