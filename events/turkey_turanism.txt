@@ -1,0 +1,47 @@
+add_namespace = turkey_turanism
+
+news_event = {
+    id = turkey_turanism.1
+    title = "Turanist Activity in Central Asia"
+    desc = turkey_turanism.1.d
+
+    is_triggered_only = yes
+
+    immediate = {
+        country_event = { id = turkey_turanism.2 days = 14 random_days = 180 }
+    }
+
+    option = {
+        name = "Worrying."
+        add_opinion_modifier = {
+            target = TUR modifier = opinion_infiltrate_central_asia
+        }
+    }
+}
+
+country_event = {
+    id = turkey_turanism.2
+    title = "Muslims in Central Asia: Autonomy?"
+    desc = turkey_turanism.2.d
+
+    is_triggered_only = yes
+    trigger = { has_stability < 0.65 }
+
+    immediate = {
+        hidden_effect = {
+            every_state = {
+                limit = { or = { state = 405 state = 584 state = 585 state = 589 state = 647 } }
+                add_core_of = TMS
+            }
+        }
+    }
+
+    option = {
+        name = "Why not."
+        add_popularity = { ideology = democratic value = 0.05 }
+    }
+    option = {
+        name = "Our country is one and united."
+        add_political_power = -50
+    }
+}

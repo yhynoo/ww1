@@ -108,7 +108,7 @@ turanist_ambition = {
 
         available = {
             any_state = {
-                or = { state = 405 state = 584 state = 585 state = 587 }
+                or = { state = 405 state = 584 state = 585 state = 589 state = 647 }
                 is_owned_and_controlled_by = SOV
             }
         }
@@ -127,12 +127,7 @@ turanist_ambition = {
         complete_effect = {
             SOV = {
                 add_timed_idea = { idea = idea_unrest_in_central_asia years = 1 }
-                hidden_effect = { country_event = { id = turkey_asia.1 hours = 6 random_hours = 6 } }
-            }
-
-            every_state = {
-                limit = { or = { state = 405 state = 584 state = 585 state = 647 } }
-                add_core_of = TMS
+                hidden_effect = { country_event = { id = turkey_turanism.1 hours = 6 random_hours = 6 } }
             }
         }
     }
