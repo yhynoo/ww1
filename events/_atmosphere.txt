@@ -149,7 +149,7 @@ news_event = {
     option = {
         name = "This has little to do with ancient glory."
         if = {
-            limit = { owns_state = 47 } }
+            limit = { owns_state = 47 }
             add_war_support = -0.025
         }
     }
@@ -173,50 +173,12 @@ news_event = {
     }
 }
 
+# TAKEN - Russia
+
 news_event = {
     id = _taken.7
-    title = "[ROOT.GetAdjective] Colors on Hagia Sophia!"
-    desc = _taken.7.d
-
-    is_triggered_only = yes
-    fire_only_once = yes
-    major = yes
-
-    option = {
-        name = "The City is so quiet."
-        if = {
-            limit = { tag = TUR }
-            add_war_support = -0.05
-        }
-    }
-}
-
-# TAKEN - GERMANY
-
-news_event = {
-    id = _taken.8
-    title = "The Empire’s Port"
-    desc = _taken.8.d
-
-    is_triggered_only = yes
-    fire_only_once = yes
-    major = yes
-
-    option = {
-        name = "At least the girls will make some money."
-        if = {
-            limit = { tag = GER }
-            add_war_support = -0.05
-        }
-    }
-}
-
-# TAKEN - AUSTRIA
-
-news_event = {
-    id = _taken.9
     title = "Metropolis of the East"
-    desc = _taken.9.d
+    desc = _taken.7.d
 
     is_triggered_only = yes
     fire_only_once = yes
@@ -231,30 +193,12 @@ news_event = {
     }
 }
 
-news_event = {
-    id = _taken.10
-    title = "Door to the Steppe Open?"
-    desc = _taken.10.d
-
-    is_triggered_only = yes
-    fire_only_once = yes
-    major = yes
-
-    option = {
-        name = "It is time to harvest in Ukraine."
-        if = {
-            limit = { owns_state = 192 }
-            add_war_support = -0.025
-        }
-    }
-}
-
 # TAKEN - ENGLAND
 
 news_event = {
-    id = _taken.11
+    id = _taken.8
     title = "The Unthinkable!"
-    desc = _taken.11.d
+    desc = _taken.8.d
 
     is_triggered_only = yes
     fire_only_once = yes
