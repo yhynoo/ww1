@@ -3,18 +3,6 @@ ideas = {
 		law = yes
 		use_list_view = yes
 
-		disarmed_nation = {
-			cost = 150
-			removal_cost = -1
-			level = 7
-
-			modifier = {
-				conscription = 0.01
-			}
-
-			cancel_if_invalid = no
-		}
-
 		volunteer_only = {
 			cost = 150
 			removal_cost = -1
@@ -30,7 +18,7 @@ ideas = {
 			}
 
 			modifier = {
-				conscription = 0.015
+				conscription = 0.01
 			}
 
 			default = yes
@@ -51,9 +39,15 @@ ideas = {
 					limit = { has_government = democratic }
 					has_war_support > 0.5
 				}
+
 				if = {
 					limit = { tag = AST }
 					not = { has_idea = idea_defense_act_1903 }
+				}
+
+				if = {
+					limit = { original_tag = USA }
+					not = { has_idea = idea_isolationist_society }
 				}
 			}
 
@@ -87,9 +81,15 @@ ideas = {
 						has_war_support > 0.6
 					}
 				}
+
 				if = {
 					limit = { tag = AST }
 					not = { has_idea = idea_defense_act_1903 }
+				}
+
+				if = {
+					limit = { original_tag = USA }
+					not = { has_idea = idea_isolationist_society }
 				}
 			}
 
@@ -142,6 +142,11 @@ ideas = {
 					limit = { tag = AST }
 					not = { has_idea = idea_defense_act_1903 }
 				}
+
+				if = {
+					limit = { original_tag = USA }
+					not = { has_idea = idea_isolationist_society }
+				}
 			}
 
 			ai_will_do = {
@@ -185,6 +190,11 @@ ideas = {
 				if = {
 					limit = { tag = AST }
 					not = { has_idea = idea_defense_act_1903 }
+				}
+
+				if = {
+					limit = { original_tag = USA }
+					not = { has_idea = idea_isolationist_society }
 				}
 			}
 
@@ -230,6 +240,11 @@ ideas = {
 				if = {
 					limit = { tag = AST }
 					not = { has_idea = idea_defense_act_1903 }
+				}
+
+				if = {
+					limit = { original_tag = USA }
+					not = { has_idea = idea_isolationist_society }
 				}
 			}
 

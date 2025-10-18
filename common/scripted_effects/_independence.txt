@@ -78,6 +78,32 @@ baltic_independence = {
     }
 }
 
+caucasian_independence = {
+    every_state = {
+        limit = { or = { state = 229 state = 230 state = 231 state = 233 state = 646 } }
+        add_core_of = GEO
+    }
+
+    every_country_with_original_tag = {
+        original_tag_to_check = SOV
+
+        every_owned_state = {
+            limit = { is_core_of = GEO }
+            set_state_owner_to = GEO
+        }
+
+        every_controlled_state = {
+            limit = { or = { state = 229 state = 231 } }
+            set_state_controller_to = GEO
+        }
+    }
+
+    GEO = { 
+        load_oob = "GEO_1912" 
+        add_ideas = { limited_conscription limited_exports low_economic_mobilisation }
+    }
+}
+
 cuban_independence = {
     USA = {
         every_owned_state = {

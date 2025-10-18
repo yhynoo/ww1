@@ -32,6 +32,11 @@ ideas = {
 					limit = { has_idea = idea_harvest_1916 }
 					not = { has_idea = idea_harvest_1916 }
 				}
+
+				if = {
+					limit = { original_tag = USA }
+					not = { has_idea = idea_isolationist_society }
+				}
             }
 
 			cost = 150
@@ -76,6 +81,11 @@ ideas = {
 					}
 
 					if = {
+						limit = { original_tag = USA }
+						not = { has_idea = idea_isolationist_society }
+					}
+
+					if = {
 						limit = { has_idea = idea_harvest_1916 }
 						not = { has_idea = idea_harvest_1916 }
 					}
@@ -112,6 +122,11 @@ ideas = {
 				if = {
 					limit = { tag = AUS }
 					not = { has_idea = idea_ausgleich }
+				}
+
+				if = {
+					limit = { original_tag = USA }
+					not = { has_idea = idea_isolationist_society }
 				}
 
 				if = {

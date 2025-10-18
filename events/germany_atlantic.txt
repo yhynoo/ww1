@@ -64,7 +64,7 @@ news_event = {
 
         if = {
             limit = { tag = USA }
-            add_timed_idea = { idea_lusitania months = 6 }
+            add_timed_idea = { idea = idea_lusitania months = 6 }
 
             add_opinion_modifier = {
                 target = GER
@@ -84,9 +84,6 @@ news_event = {
 
     option = {
         name = "Outrageous!"
-        add_opinion_modifier = {
-            target = GER
-            modifier = opinion_trade_fleet_attacks
-        }
+        add_opinion_modifier = { target = GER modifier = opinion_trade_fleet_attacks }
     }
 }
