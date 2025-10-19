@@ -1,71 +1,28 @@
 units = {
     fleet = {
-        name = "K.u.K. Marine"
-        naval_base = 3924
+        name = "K.u.K. Marine"	
+        naval_base = 6626                # Trieste
 
+        # Adriatic
         task_force = {
-            name = "Adriatic Fleet"
-            location = 3924
-            ship = {
-                name = "SMS Tegetthoff"
-                definition = heavy_cruiser
-                equipment = {
-                    heavy_cruiser_1 = {
-                        amount = 1
-                        owner = AUS
-                    }
-                }
-            }
-            ship = {
-                name = "SMS Admiral Spaun"
-                definition = light_cruiser
-                equipment = {
-                    light_cruiser_1 = {
-                        amount = 1
-                        owner = AUS
-                    }
-                }
-            }
-            ship = {
-                name = "SMS Tátra"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = AUS
-                    }
-                }
-            }
-            ship = {
-                name = "SMS Balaton"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = AUS
-                    }
-                }
-            }
-            ship = {
-                name = "SMS Csepel"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = AUS
-                    }
-                }
-            }
-            ship = {
-                name = "SMS Orjen"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = AUS
-                    }
-                }
-            }
+            name = "K.u.K. Eskadre"      
+			location = 6626 	# Trieste 
+
+            # dreadnoughts
+            ship = { name = "Viribus Unitis" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = AUS } } }
+
+            # cruisers
+            ship = { name = "Kaiser Franz Joseph I" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = AUS } } }
+
+            # destroyers
+            ship = { name = "Saida" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = AUS } } }
+            ship = { name = "Admiral Spaun" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = AUS } } }
+            ship = { name = "Tátra" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = AUS } } }
+            ship = { name = "Triglav" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = AUS } } }
+
+            # subs
+            ship = { name = "U-1" definition = submarine equipment = { submarine_1 = { amount = 1 owner = AUS } } }
+            ship = { name = "U-2" definition = submarine equipment = { submarine_1 = { amount = 1 owner = AUS } } }
         }
     }
 }

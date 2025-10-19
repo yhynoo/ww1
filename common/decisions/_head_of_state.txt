@@ -11,7 +11,7 @@ dc_head_of_state_decisions = {
         days_remove = 90
         cost = 50
     
-        available = { or = { has_idea = disarmed_nation has_idea = volunteer_only has_idea = limited_conscription } }
+        available = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
     
         ai_will_do = {
             base = 3
@@ -35,7 +35,7 @@ dc_head_of_state_decisions = {
         days_remove = 90
         cost = 50
     
-        available = { or = { has_idea = disarmed_nation has_idea = volunteer_only has_idea = limited_conscription } }
+        available = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
     
         ai_will_do = {
             base = 3
@@ -129,7 +129,7 @@ dc_head_of_state_decisions = {
     honor_the_heroes = {
         visible = { 
             is_subject = no
-            not = { or = { has_idea = disarmed_nation has_idea = volunteer_only has_idea = limited_conscription } }
+            not = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
         }
 
         icon = generic_nationalism    

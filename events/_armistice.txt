@@ -14,18 +14,23 @@ country_event = {
             limit = { 
                 or = { is_faction_leader = yes is_in_faction = no } 
             }
-            country_event = { id = _offer.1 hours = 6 random_days = 7 }
+            if = {
+                limit = { is_faction_leader = yes }
+                country_event = { id = _offer_faction_leader.1 hours = 6 random_days = 7 }
+            }
+            else = {
+                country_event = { id = _offer.1 hours = 6 random_days = 7 }
+            }
         }
 
         ai_chance = { 
             base = 2
-
             modifier = { 
                 OR = { 
                     has_government = monarchism has_government = authoritarianism
                     has_war_support > 0.5
                 }
-                factor = 0
+                factor = 0.5
             }
         }
     }
@@ -37,6 +42,10 @@ country_event = {
         ai_chance = { 
             base = 1 
             modifier = { surrender_progress > 0.1 factor = 0.5 }
+            modifier = {
+                and = { tag = FRA not = { controls_state = 16 } }
+                factor = 0
+            }
         }
     }
 }

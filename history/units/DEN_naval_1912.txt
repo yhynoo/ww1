@@ -1,96 +1,34 @@
 units = {
     fleet = {
-        name = "Kongelige Danske Marine"
-        naval_base = 2144
+        name = "Kongelige Danske Marine"	
+        naval_base = 2144                # Kopenhagen
 
+        # Denmark
         task_force = {
-            name = "Dansk Eskadre"
-            location = 2144
-            ship = {
-                name = "HDMS Peder Skram"
-                definition = heavy_cruiser
-                equipment = {
-                    heavy_cruiser_1 = {
-                        amount = 1
-                        owner = DEN
-                    }
-                }
-            }
-            ship = {
-                name = "HDMS Delfinen"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = DEN
-                    }
-                }
-            }
-            ship = {
-                name = "HDMS Hvalrossen"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = DEN
-                    }
-                }
-            }
-            ship = {
-                name = "HDMS Havkatten"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = DEN
-                    }
-                }
-            }
-            ship = {
-                name = "HDMS Springeren"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = DEN
-                    }
-                }
-            }
+            name = "Dansk Eskadre"      
+			location = 2144 	        # Kopenhagen 
+
+            # cruisers
+            ship = { name = "Valkyrien" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = DEN } } }
+
+            # destroyers
+            ship = { name = "Hajen" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = DEN } } }
+            ship = { name = "Havhesten" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = DEN } } }
+            ship = { name = "Havørnen" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = DEN } } }
+            ship = { name = "Hvalrossen" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = DEN } } }
         }
 
+        # Sweden
         task_force = {
-            name = "Svensk Eskadre"
-            location = 6050
-            ship = {
-                name = "HDMS Sverige"
-                definition = heavy_cruiser
-                equipment = {
-                    heavy_cruiser_1 = {
-                        amount = 1
-                        owner = DEN
-                    }
-                }
-            }
-            ship = {
-                name = "HDMS Wrangel"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = DEN
-                    }
-                }
-            }
-            ship = {
-                name = "HDMS Ehrensköld"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = DEN
-                    }
-                }
-            }
+            name = "Svensk Eskadre"      
+			location = 6050 	        # Kopenhagen 
+
+            # cruisers
+            ship = { name = "Sverige" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = DEN } } }
+
+            # destroyers
+            ship = { name = "Delfinen" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = DEN } } }
+            ship = { name = "Flyvefisken" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = DEN } } }
         }
     }
 }
