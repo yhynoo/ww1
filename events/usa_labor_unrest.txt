@@ -1,0 +1,30 @@
+add_namespace = usa_labor_unrest
+
+country_event = {
+    id = usa_labor_unrest.1
+    title = "Labor Unrest in [unrest_target_state.GetName]"
+    desc = usa_labor_unrest.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They have the right to protest."
+
+        add_stability = -0.025
+        event_target:unrest_target_state = {
+            if = {
+                limit = { industrial_complex > 0 }
+                damage_building = { type = industrial_complex damage = 1 }
+            }
+            else = {
+                damage_building = { type = infrastructure damage = 1 }
+            }
+        }
+    }
+    option = {
+        name = "Quash the unrest with force."
+
+        add_political_power = -50
+        add_popularity = { ideology = ROOT popularity = -0.05 }
+    }
+}

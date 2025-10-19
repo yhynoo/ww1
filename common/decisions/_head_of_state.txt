@@ -1,28 +1,10 @@
 dc_head_of_state_decisions = {
     # war support
-    rename_petersburg = {
-        visible = {
-            tag = SOV
-            has_war_with = GER
-            controls_state = 195
-            has_government = monarchism
-        }
-
-        icon = generic_civil_support
-        cost = 10
-
-        ai_will_do = { base = 12 }
-
-        complete_effect = {
-            set_province_name = { id = 3151 name = "Petrograd" }
-            add_war_support = 0.05
-        }
-    }
     territorial_auxilliaries = {
         visible = { 
             is_subject = no
             not = { has_government = communism } 
-            or = { has_idea = disarmed_nation has_idea = volunteer_only has_idea = limited_conscription }
+            or = { has_idea = volunteer_only has_idea = limited_conscription }
         }
 
         icon = generic_prepare_civil_war    
@@ -46,7 +28,7 @@ dc_head_of_state_decisions = {
         visible = { 
             is_subject = no
             has_government = communism
-            or = { has_idea = disarmed_nation has_idea = volunteer_only has_idea = limited_conscription }
+            or = { has_idea = volunteer_only has_idea = limited_conscription }
         }
 
         icon = generic_prepare_civil_war    
@@ -103,6 +85,12 @@ dc_head_of_state_decisions = {
         ai_will_do = {
             base = 3
             modifier = { has_stability < 0.5 factor = 2 }
+
+            # for the USA:
+            modifier = { 
+                and = { has_country_flag = usa_wilsonian has_idea = idea_labor_unrest }
+                factor = 3
+            }
         }
 
         modifier = {
@@ -320,6 +308,37 @@ dc_head_of_state_decisions = {
 
         remove_effect = {
             FROM = { country_event = { id = _offer_faction_leader.1 hours = 6 random_hours = 6 } }
+        }
+    }
+
+    # american crackdowns
+    dealing_with_labor_unrest = {
+        icon = oppression
+
+        activate = { 
+            has_idea = idea_labor_unrest
+            not = { has_completed_focus = USA_adjust_the_government } 
+        }
+        available = { hidden_trigger = { always = no } }
+
+        cancel_trigger = {
+            communism < 0.05
+            has_completed_focus = USA_adjust_the_government
+        }
+
+        days_mission_timeout = 180
+        is_good = no
+
+        timeout_effect = {
+            hidden_effect = {
+                random_owned_controlled_state = {
+                    prioritize = { 261 358 359 360 382 383 393 395 }
+                    save_event_target_as = unrest_target_state
+                }
+            }
+
+            # main event
+            country_event = { id = usa_labor_unrest.1 hours = 6 }
         }
     }
 }

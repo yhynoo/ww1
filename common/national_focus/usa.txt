@@ -753,6 +753,7 @@ focus_tree = {
         available = { 
             is_subject = no
             has_country_leader = { character = USA_woodrow_wilson ruling_only = yes }
+            not = { has_idea = idea_isolationist_society }
         }
 
         ai_will_do = { 
@@ -883,7 +884,7 @@ focus_tree = {
         mutually_exclusive = { focus = USA_traditionalism }
         prerequisite = { focus = USA_political_ambitions }
         completion_reward = {
-            add_timed_idea = { idea = idea_communism_tendencies years = 1 }
+            remove_ideas = idea_labor_unrest
             add_popularity = { ideology = communism popularity = 0.05 }
 
             hidden_effect = { country_event = { id = usa_savannah.1 days = 42 random_days = 70 } }
@@ -914,6 +915,7 @@ focus_tree = {
 
         prerequisite = { focus = USA_adjust_the_government }
         completion_reward = {
+            add_popularity = { ideology = communism popularity = 0.05 }
             add_timed_idea = { idea = idea_anti_trust_laws years = 1 }
             
             random_owned_controlled_state = {
