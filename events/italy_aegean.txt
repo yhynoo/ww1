@@ -2,7 +2,7 @@ add_namespace = italy_aegean
 
 news_event = {
     id = italy_aegean.1
-    title = "Italy Extends Claims to the Aegean" # crete, aegean islands and dodecanese
+    title = "Italy Extends Claims to the Aegean"    # albania and the aegean islands
     desc = italy_aegean.1.d
 
     is_triggered_only = yes
@@ -10,5 +10,56 @@ news_event = {
 
     option = {
         name = "Worrying."
+    }
+}
+
+country_event = {
+    id = italy_aegean.2
+    title = "Shall We Demand Even More?"
+    desc = italy_aegean.2.d
+
+    trigger = {
+        tag = ITA
+        44 = { is_owned_and_controlled_by = ITA }
+
+        and = {
+            106 = { is_owned_and_controlled_by = TUR }
+            185 = { is_owned_and_controlled_by = TUR }
+            404 = { is_owned_and_controlled_by = TUR }
+        }
+    } 
+    fire_only_once = yes
+
+    option = {
+        name = "Let us try."
+
+        every_state = {
+            limit = { or = { state = 106 state = 185 state = 404 } }
+            add_claim_by = ITA
+        }
+
+        TUR = { country_event = { id = demand.1 hours = 6 } }
+        add_named_threat = { threat = 5 name = "Italian Encroachment in South-East Europe" }
+
+        hidden_effect = {
+            news_event = { italy_aegean.3 hours = 6 }
+        }
+    }
+    option = {
+        name = "It is not worth it."
+        add_war_support = -0.05
+    }
+}
+
+news_event = {
+    id = italy_aegean.3
+    title = "[ITA.GetName] Still Hungry!"
+    desc = italy_aegean.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "When will they stop?"
     }
 }
