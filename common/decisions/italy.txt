@@ -33,7 +33,7 @@ avenge_libya = {
 
         available = {
             any_state = {
-                or = { state = 182 state = 187 state = 164 }
+                or = { state = 44 state = 182 state = 187 state = 164 }
                 not = { is_owned_by = ITA }
             }
         }
@@ -43,114 +43,26 @@ avenge_libya = {
 
             every_state = {
                 limit = {
-                    or = { state = 182 state = 187 state = 164 }
+                    or = { state = 44 state = 182 state = 187 state = 164 }
                     not = { is_owned_by = ITA }
                 }
                 add_claim_by = ITA
             }
         }
     }
-}
-
-against_the_french = {
-    demand_tunisia = {
-        icon = generic_prepare_civil_war
-        fire_only_once = yes
-        cost = 100
-
-        available = {
-            not = { has_war_with = FRA }
-            any_state = {
-                or = { state = 458 state = 665 }
-                is_controlled_by = FRA
-            }
-        }
-
-        ai_will_do = { 
-            base = 0
-            modifier = { 
-                and = { FRA = { has_war = yes } has_war_support > 0.5 }
-                add = 12 
-            }
-        }
-
-        complete_effect = {
-            every_state = {
-                limit = { or = { state = 458 state = 665 } }
-                add_claim_by = ITA
-            }
-            FRA = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
-        }
-    }
-    trieste_for_non_aggression = {
-        icon = generic_nationalism
-        fire_only_once = yes
-        cost = 100
-
-        available = { 33 = { is_owned_and_controlled_by = AUS } }
-        ai_will_do = {
-            base = 9
-            modifier = { AUS = { has_war_with = HUN factor = 2 } }
-            modifier = { is_ally_with = AUS factor = 0 }
-        }
-
-        complete_effect = {
-            AUS = { country_event = { id = italy_trieste.1 hours = 6 random_hours = 6 } }
-        }
-    }
-    expand_aviation_industry = {
-        icon = generic_industry
-        fire_only_once = yes
-        cost = 100
-
-        available = { controls_state = 158 }
-        ai_will_do = { base = 12 }
-
-        complete_effect = {
-            158 = {
-                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
-                add_extra_state_shared_building_slots = 1
-            }
-
-            add_tech_bonus = {
-				name = aircraft_bonus bonus = 1.0 uses = 2
-				category = air_equipment_tech
-			}
-        }
-    }
-}
-
-liberalize_the_economy = {
-    develop_sicily = {
-        icon = generic_construction
+    develop_taranto = {
+        icon = generic_naval
         fire_only_once = yes
         cost = 75
 
         ai_will_do = { base = 9 }
 
-        available = { controls_state = 115 }
+        available = { controls_state = 156 }
         complete_effect = {
-            115 = {
+            156 = {
                 add_building_construction = { type = dockyard level = 2 instant_build = yes }
                 add_extra_state_shared_building_slots = 2
             }
-        }
-    }
-    acquire_ethiopia = {
-        icon = generic_form_nation
-        fire_only_once = yes
-        cost = 100
-
-        ai_will_do = { base = 6 }
-        available = {
-            not = { has_war_with = ENG }
-            ENG = {
-                controls_state = 271 controls_state = 550
-            }
-        }
-
-        complete_effect = {
-            ENG = { country_event = { id = italy_ethiopia.1 hours = 6 random_hours = 6 } }
         }
     }
 }

@@ -315,11 +315,15 @@ dc_head_of_state_decisions = {
     dealing_with_labor_unrest = {
         icon = oppression
 
-        activate = { 
+        activation = { 
             has_idea = idea_labor_unrest
             not = { has_completed_focus = USA_adjust_the_government } 
         }
-        available = { hidden_trigger = { always = no } }
+        available = { 
+            hidden_trigger = { 
+                always = no 
+            }
+        }
 
         cancel_trigger = {
             communism < 0.05

@@ -105,11 +105,6 @@ entente_acceptance = {
     enable = {
         or = {
             has_completed_focus = ENG_seek_alliances                            # england
-            original_tag = GRE                                                  # greece
-            and = {                                                             # italy
-                has_completed_focus = ITA_traditionalism
-                FRA = { war_length_with = { tag = AUS months > 6 } }
-            }
             and = {                                                             # japan
                 original_tag = JAP
                 and = {
@@ -144,11 +139,6 @@ entente_invite = {
     enable = {
         or = {
             has_completed_focus = ENG_seek_alliances                            # england
-            original_tag = GRE                                                  # greece
-            and = {                                                             # italy
-                has_completed_focus = ITA_traditionalism
-                FRA = { war_length_with = { tag = AUS months > 6 } }
-            }
             and = {                                                             # japan
                 original_tag = JAP
                 and = {
@@ -274,41 +264,6 @@ mexican_neutrality = {
 
 # ambitions
 
-greece_and_her_lands = {
-    allowed = { original_tag = GRE }
-    enable = {
-        war_length_with = { tag = TUR months > 6 }
-        not = { has_government = communism }
-    }
-    abort_when_not_enabled = yes
-
-    reversed = yes
-    enable_reverse = {
-        any_state = { is_core_of = GRE is_owned_by = TUR }
-    }
-
-    ai_strategy = {
-        type = alliance
-        id = GRE
-        value = 25
-    }
-}
-
-italy_and_austria = {
-    allowed = { original_tag = ITA }
-    enable = {
-        and = { has_completed_focus = ITA_traditionalism has_war_support > 0.5 }
-        not = { has_country_flag = neutral_italy }
-    }
-    abort_when_not_enabled = yes
-
-    ai_strategy = {
-        type = contain
-        id = AUS
-        value = 15
-    }
-}
-
 japan_and_islands = {
     allowed = { original_tag = JAP }
     enable = { 
@@ -347,18 +302,6 @@ austria_hates_russia = {
     }
 }
 
-italy_hates = {
-    allowed = { original_tag = SOV }
-    enable = { always = yes }
-    abort = { always = no }
-
-    ai_strategy = {
-        type = conquer
-        id = TUR
-        value = 30
-    }
-}
-
 russia_hates = {
     allowed = { original_tag = SOV }
     enable = { always = yes }
@@ -374,23 +317,5 @@ russia_hates = {
         type = protect
         id = SER
         value = 50
-    }
-}
-
-turkey_hates = {
-    allowed = { original_tag = TUR }
-    enable = { always = yes }
-    abort = { always = no }
-
-    ai_strategy = {
-        type = contain
-        id = ITA
-        value = 50
-    }
-
-    ai_strategy = {
-        type = contain
-        id = SOV
-        value = 30
     }
 }

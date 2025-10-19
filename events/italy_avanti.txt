@@ -1,0 +1,71 @@
+add_namespace = italy_avanti
+
+news_event = {
+    id = italy_avanti.1
+    title = "An Editorial in ‘Avanti’"
+    desc = italy_avanti.1.d
+
+    trigger = {
+        tag = ITA
+        has_war = no
+        FRA = { has_war_with = GER }
+    }
+    mean_time_to_happen = { months = 3 }
+
+    option = {
+        name = "The nation is eager to fight."
+        add_timed_idea = { idea = idea_war_enthusiasm months = 6 }
+
+        hidden_effect = {
+            country_event = {
+                id = italy_avanti.2 days = 14
+            }
+        }
+    }
+}
+
+country_event = {
+    id = italy_avanti.2
+    title = "Italy to Join the War?"
+    desc = italy_avanti.2.d
+
+    is_triggered_only = yes
+    trigger = { has_war = no }
+
+    option = {
+        name = "Down with Austria!"
+        declare_war_on = { target = AUS type = take_claimed_state }
+
+        ai_chance = {
+            base = 0
+            modifier = {
+                has_completed_focus = ITA_traditionalism add = 4
+            }
+        }
+    }
+
+    option = {
+        name = "Tunisia is ours!"
+        every_state = {
+            limit = { or = { state = 265 state = 458 } }
+            add_claim_by = ITA
+        }
+        declare_war_on = { target = FRA type = take_claimed_state }
+
+        ai_chance = {
+            base = 0
+            modifier = {
+                has_completed_focus = ITA_on_our_own add = 2
+            }
+        }
+    }
+
+    option = {
+        name = "War is nothing but tragedy."
+
+        add_political_power = -75
+        remove_ideas = idea_war_enthusiasm
+
+        ai_chance = { base = 1 }
+    }
+}
