@@ -32,6 +32,7 @@ replace_path="common/special_projects/prototype_rewards"
 replace_path="common/technologies"
 replace_path="common/technology_sharing"
 replace_path="common/unit_medals"
+replace_path="common/units/names"
 
 replace_path="events"
 
