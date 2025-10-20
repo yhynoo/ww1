@@ -1,126 +1,52 @@
 units = {
     fleet = {
-        name = "Koninklijke Marine"
-        naval_base = 3314
+        name = "Koninklijke Marine"	
+        naval_base = 3314                # Den Helder
 
+        # HOL Helder
         task_force = {
-            name = "Home Fleet"
-            location = 3314
-            ship = {
-                name = "Hr. Ms. De Zeven Provinciën"
-                definition = heavy_cruiser
-                equipment = {
-                    heavy_cruiser_1 = {
-                        amount = 1
-                        owner = HOL
-                    }
-                }
-            }
-            ship = {
-                name = "Hr. Ms. Java"
-                definition = light_cruiser
-                equipment = {
-                    light_cruiser_1 = {
-                        amount = 1
-                        owner = HOL
-                    }
-                }
-            }
-            ship = {
-                name = "Hr. Ms. Kortenaer"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = HOL
-                    }
-                }
-            }
-            ship = {
-                name = "Hr. Ms. Evertsen"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = HOL
-                    }
-                }
-            }
-            ship = {
-                name = "Hr. Ms. Van Ghent"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = HOL
-                    }
-                }
-            }
-            ship = {
-                name = "Hr. Ms. Piet Hein"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = HOL
-                    }
-                }
-            }
-            ship = {
-                name = "Hr. Ms. O-1"
-                definition = submarine
-                equipment = {
-                    submarine_1 = {
-                        amount = 1
-                        owner = HOL
-                    }
-                }
-            }
-            ship = {
-                name = "Hr. Ms. O-2"
-                definition = submarine
-                equipment = {
-                    submarine_1 = {
-                        amount = 1
-                        owner = HOL
-                    }
-                }
-            }
+            name = "Den Helder"      
+			location = 3314 	        # Den Helder 
+
+            # dreadnoughts
+            ship = { name = "De Zeven Provinciën" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = HOL } } }
+
+            # cruisers
+            ship = { name = "Koningin Wilhelmina der Nederlanden" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = HOL } } }
+            ship = { name = "Holland" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = HOL } } }
+
+            # destroyers
+            ship = { name = "Vos" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = HOL } } }
+            ship = { name = "G1" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = HOL } } }
+            ship = { name = "G2" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = HOL } } }
+        
+            # submarines
+            ship = { name = "O1" definition = submarine equipment = { submarine_1 = { amount = 1 owner = HOL } } }
+            ship = { name = "O2" definition = submarine equipment = { submarine_1 = { amount = 1 owner = HOL } } }
         }
 
+        # Indonesia
         task_force = {
-            name = "East Indies Squadron"
+            name = "Nederlandse Oost-Indië"
             location = 7381
-            ship = {
-                name = "Hr. Ms. Sumatra"
-                definition = light_cruiser
-                equipment = {
-                    light_cruiser_1 = {
-                        amount = 1
-                        owner = HOL
-                    }
-                }
-            }
-            ship = {
-                name = "Hr. Ms. Banckert"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = HOL
-                    }
-                }
-            }
-            ship = {
-                name = "Hr. Ms. Witte de With"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = HOL
-                    }
-                }
-            }
+
+            # cruisers
+            ship = { name = "Sumatra" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = HOL } } }
+
+            # destroyers
+            ship = { name = "Lynx" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = HOL } } }
+            ship = { name = "G5" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = HOL } } }
+        }
+
+        # Curacao
+        task_force = {
+            name = "Curacao"
+            location = 153
+
+             # destroyers
+            ship = { name = "Draak" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = HOL } } }
+            ship = { name = "G6" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = HOL } } }
+
         }
     }
 }

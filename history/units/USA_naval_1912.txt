@@ -1,200 +1,87 @@
 units = {
     fleet = {
-        name = "Atlantic Fleet"
-        naval_base = 6845
+        name = "United States Navy"	
+        naval_base = 788                  # Norfolk
 
+        # Atlantic
         task_force = {
-            name = "Atlantic Fleet"
-            location = 6845
-            ship = {
-                name = "USS Pennsylvania"
-                definition = heavy_cruiser
-                equipment = {
-                    heavy_cruiser_1 = {
-                        amount = 1
-                        owner = USA
-                    }
-                }
-            }
-            ship = {
-                name = "USS Arizona"
-                definition = heavy_cruiser
-                equipment = {
-                    heavy_cruiser_1 = {
-                        amount = 1
-                        owner = USA
-                    }
-                }
-            }
-            ship = {
-                name = "USS Alabama"
-                definition = light_cruiser
-                equipment = {
-                    light_cruiser_1 = {
-                        amount = 1
-                        owner = USA
-                    }
-                }
-            }
-            ship = {
-                name = "USS Maine"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = USA
-                    }
-                }
-            }
-            ship = {
-                name = "USS Dahlgren"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = USA
-                    }
-                }
-            }
-            ship = {
-                name = "USS Worden"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = USA
-                    }
-                }
-            }
-            ship = {
-                name = "USS Jarvis"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = USA
-                    }
-                }
-            }
-            ship = {
-                name = "USS Dace"
-                definition = submarine
-                equipment = {
-                    submarine_1 = {
-                        amount = 1
-                        owner = USA
-                    }
-                }
-            }
-            ship = {
-                name = "USS Shark"
-                definition = submarine
-                equipment = {
-                    submarine_1 = {
-                        amount = 1
-                        owner = USA
-                    }
-                }
-            }
+            name = "Atlantic Fleet"      
+			location = 788 	                # Norfolk 
+
+            # dreadnoughts
+            ship = { name = "South Carolina" definition = heavy_cruiser equipment = { heavy_cruiser_2 = { amount = 1 owner = USA } } }
+            ship = { name = "Indiana" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = USA } } }
+
+            # cruisers
+            ship = { name = "Arkansas" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = USA } } }
+            ship = { name = "Tennessee" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = USA } } }
+
+            # destroyers
+            ship = { name = "Chaunsey" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = USA } } }
+            ship = { name = "Dale" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = USA } } }
+            ship = { name = "Decatur" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = USA } } }
+            ship = { name = "Hopkins" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = USA } } }
+
+            ship = { name = "Hull" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = USA } } }
+            ship = { name = "Lawrence" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = USA } } }
+
+            # submarines
+            ship = { name = "A1" definition = submarine equipment = { submarine_1 = { amount = 1 owner = USA } } }
+            ship = { name = "A2" definition = submarine equipment = { submarine_1 = { amount = 1 owner = USA } } }
+            ship = { name = "A3" definition = submarine equipment = { submarine_1 = { amount = 1 owner = USA } } }
+            ship = { name = "A4" definition = submarine equipment = { submarine_1 = { amount = 1 owner = USA } } }
         }
-    }
-    fleet = {
-        name = "Pacific Fleet"
-        naval_base = 4180
 
+        # Pacific
         task_force = {
-            name = "Pacific Fleet"
-            location = 4180
-            ship = {
-                name = "USS Wyoming"
-                definition = heavy_cruiser
-                equipment = {
-                    heavy_cruiser_1 = {
-                        amount = 1
-                        owner = USA
-                    }
-                }
-            }
-            ship = {
-                name = "USS Florida"
-                definition = light_cruiser
-                equipment = {
-                    light_cruiser_1 = {
-                        amount = 1
-                        owner = USA
-                    }
-                }
-            }
-            ship = {
-                name = "USS South Carolina"
-                definition = light_cruiser
-                equipment = {
-                    light_cruiser_1 = {
-                        amount = 1
-                        owner = USA
-                    }
-                }
-            }
-            ship = {
-                name = "USS Oregon"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = USA
-                    }
-                }
-            }
-            ship = {
-                name = "USS Sampson"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = USA
-                    }
-                }
-            }
-            ship = {
-                name = "USS Foote"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = USA
-                    }
-                }
-            }
-            ship = {
-                name = "USS Preble"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = USA
-                    }
-                }
-            }
-            ship = {
-                name = "USS Barracuda"
-                definition = submarine
-                equipment = {
-                    submarine_1 = {
-                        amount = 1
-                        owner = USA
-                    }
-                }
-            }
-            ship = {
-                name = "USS Seal"
-                definition = submarine
-                equipment = {
-                    submarine_1 = {
-                        amount = 1
-                        owner = USA
-                    }
-                }
-            }
+            name = "Pacific Fleet"      
+			location = 9671 	        # San Francisco 
+
+            # dreadnoughts
+            ship = { name = "Delaware" definition = heavy_cruiser equipment = { heavy_cruiser_2 = { amount = 1 owner = USA } } }
+            ship = { name = "Kearsage" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = USA } } }
+
+            # cruisers
+            ship = { name = "Seattle" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = USA } } }
+
+            # destroyers
+            ship = { name = "Drayton" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = USA } } }
+            ship = { name = "Jouett" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = USA } } }
+            ship = { name = "Jenkins" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = USA } } }
+            ship = { name = "Warrington" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = USA } } }
+        }
+
+        # Hawaii
+        task_force = {
+            name = "Hawaii Squadron"      
+			location = 4180 	        # Honolulu
+
+            # cruisers
+            ship = { name = "South Dakota" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = USA } } }
+            ship = { name = "Detroit" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = USA } } }
+
+            # destroyers
+            ship = { name = "Ammen" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = USA } } }
+            ship = { name = "Henley" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = USA } } }
+        }
+
+        # Hawaii
+        task_force = {
+            name = "Asiatic Squadron"      
+			location = 10265 	        # Manila
+
+            # cruisers
+            ship = { name = "Charleston" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = USA } } }
+
+            # destroyers
+            ship = { name = "Octopus" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = USA } } }
+            ship = { name = "Salmon" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = USA } } }
+            ship = { name = "Snapper" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = USA } } }
+            ship = { name = "Sturgeon" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = USA } } }
+        
+            # submarines
+            ship = { name = "A5" definition = submarine equipment = { submarine_1 = { amount = 1 owner = USA } } }
+            ship = { name = "A6" definition = submarine equipment = { submarine_1 = { amount = 1 owner = USA } } }
         }
     }
 }

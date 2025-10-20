@@ -72,8 +72,11 @@ contain_eastern_threats = {
         }
 
         ai_will_do = {
-            base = 6
-            modifier = { has_war_with = SOV add = 6 }
+            base = 3
+            modifier = { 
+                or = { has_war_with = SOV has_idea = idea_unrest_in_galicia }
+                add = 6 
+            }
         }
 
         complete_effect = {

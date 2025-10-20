@@ -1,141 +1,30 @@
 units = {
     fleet = {
-        name = "Armada Española"
-        naval_base = 10024
+        name = "Armada Española"	
+        naval_base = 9979
 
         task_force = {
-            name = "Mediterranean Fleet"
-            location = 10024
-            ship = {
-                name = "Reina Victoria Eugenia"
-                definition = heavy_cruiser
-                equipment = {
-                    heavy_cruiser_1 = {
-                        amount = 1
-                        owner = SPA
-                    }
-                }
-            }
-            ship = {
-                name = "España"
-                definition = heavy_cruiser
-                equipment = {
-                    heavy_cruiser_1 = {
-                        amount = 1
-                        owner = SPA
-                    }
-                }
-            }
-            ship = {
-                name = "Numancia"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = SPA
-                    }
-                }
-            }
-            ship = {
-                name = "Tarragona"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = SPA
-                    }
-                }
-            }
-            ship = {
-                name = "Vasco"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = SPA
-                    }
-                }
-            }
-            ship = {
-                name = "Arapiles"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = SPA
-                    }
-                }
-            }
-            ship = {
-                name = "Isaac Peral"
-                definition = submarine
-                equipment = {
-                    submarine_1 = {
-                        amount = 1
-                        owner = SPA
-                    }
-                }
-            }
-            ship = {
-                name = "Celia"
-                definition = submarine
-                equipment = {
-                    submarine_1 = {
-                        amount = 1
-                        owner = SPA
-                    }
-                }
-            }
+            name = "Armada Mediterranea"      
+			location = 9979
+
+            # dreadnoughts
+            ship = { name = "España" definition = heavy_cruiser equipment = { heavy_cruiser_2 = { amount = 1 owner = MEX } } }
+            ship = { name = "Alfonso XIII" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = MEX } } }
+
+            # destroyers
+            ship = { name = "Estramadura" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = MEX } } }
+            ship = { name = "Hazor" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = MEX } } }
+            ship = { name = "Lepanto" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = MEX } } }
         }
 
         task_force = {
-            name = "Atlantic Fleet"
-            location = 11805
-            ship = {
-                name = "Carlos V"
-                definition = heavy_cruiser
-                equipment = {
-                    heavy_cruiser_1 = {
-                        amount = 1
-                        owner = SPA
-                    }
-                }
-            }
-            ship = {
-                name = "Almirante Cervera"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = SPA
-                    }
-                }
-            }
-            ship = {
-                name = "Méndez Núñez"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = SPA
-                    }
-                }
-            }
-        }
+            name = "Flota del Atlantico"      
+			location = 11805
 
-        task_force = {
-            name = "Ceuta Fleet"
-            location = 9945
-            ship = {
-                name = "Primera de línea"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = SPA
-                    }
-                }
-            }
+            ship = { name = "Cataluña" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = MEX } } }
+
+            # destroyers
+            ship = { name = "Audaz" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = MEX } } }
         }
     }
 }

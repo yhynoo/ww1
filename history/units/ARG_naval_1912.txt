@@ -1,81 +1,24 @@
 units = {
     fleet = {
-        name = "Armada Argentina"
+        name = "Armada Argentina"	
         naval_base = 12364
 
+        # Buenos Aires
         task_force = {
-            name = "Argentine Fleet"
-            location = 12364
-            ship = {
-                name = "ARA Rivadavia"
-                definition = heavy_cruiser
-                equipment = {
-                    heavy_cruiser_2 = {
-                        amount = 1
-                        owner = ARG
-                    }
-                }
-            }
-            ship = {
-                name = "ARA Moreno"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = ARG
-                    }
-                }
-            }
-            ship = {
-                name = "ARA Almirante Storni"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = ARG
-                    }
-                }
-            }
-            ship = {
-                name = "ARA Rosales"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = ARG
-                    }
-                }
-            }
-            ship = {
-                name = "ARA Santa Fe"
-                definition = destroyer
-                equipment = {
-                    destroyer_1 = {
-                        amount = 1
-                        owner = ARG
-                    }
-                }
-            }
-            ship = {
-                name = "ARA Santa Cruz"
-                definition = submarine
-                equipment = {
-                    submarine_1 = {
-                        amount = 1
-                        owner = ARG
-                    }
-                }
-            }
-            ship = {
-                name = "ARA Santiago del Estero"
-                definition = submarine
-                equipment = {
-                    submarine_1 = {
-                        amount = 1
-                        owner = ARG
-                    }
-                }
-            }
+            name = "Armada Argentina"      
+			location = 12364
+
+            # dreadnoughts
+            ship = { name = "Moreno" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = ARG } } }
+
+            # cruisers
+            ship = { name = "25 de Maio" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = ARG } } }
+
+            # destroyers
+            ship = { name = "Almirante Brown" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ARG } } }
+            ship = { name = "Espora" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ARG } } }
+            ship = { name = "Libertad" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ARG } } }
+            ship = { name = "San Martin" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ARG } } }
         }
     }
 }
