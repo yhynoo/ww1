@@ -1,7 +1,7 @@
 equipments = {
 
 	ship_hull_submarine = {
-		year = 1906
+		year = 1904
 
 		is_archetype = yes
 		is_buildable = no
@@ -75,7 +75,7 @@ equipments = {
 
 		fuel_consumption = 1
 		
-		build_cost_ic = 200
+		build_cost_ic = 320
 		resources = {
 			#oil = 1
 			steel = 1
@@ -91,7 +91,7 @@ equipments = {
 
 	ship_hull_submarine_1 = {
 		abbreviation = "heb"
-		year = 1906
+		year = 1904
 
 		archetype = ship_hull_submarine
 		priority = 2500
@@ -133,7 +133,7 @@ equipments = {
 		
 
 		
-		build_cost_ic = 225
+		build_cost_ic = 350
 		resources = {
 			#oil = 1
 			steel = 2
@@ -184,7 +184,7 @@ equipments = {
 
 
 		
-		build_cost_ic = 250
+		build_cost_ic = 420
 		resources = {
 			steel = 2
 		}
@@ -233,7 +233,7 @@ equipments = {
 		
 
 		
-		build_cost_ic = 275
+		build_cost_ic = 550
 		resources = {
 			steel = 3
 			chromium = 1
@@ -473,7 +473,7 @@ equipments = {
 	}
 
 	submarine_1 = {
-		year = 1906
+		year = 1922
 
 		archetype = ship_hull_submarine
 		priority = 2500
@@ -499,15 +499,17 @@ equipments = {
 		sub_detection = 0
 		surface_visibility = 1
 		sub_visibility = 30
-		naval_speed = 10
+		naval_speed = 13
 		reliability = 0.60
 		
-		naval_range = 800
+		naval_range = 2000
+		
 		max_strength = 10
-	
+		
+
 		fuel_consumption = 1
 		
-		build_cost_ic = 200
+		build_cost_ic = 250
 		resources = {
 			#oil = 1
 			steel = 1
@@ -517,13 +519,14 @@ equipments = {
 	}
 	
 	submarine_2 = {
-		year = 1912
+		year = 1936
 
 		archetype = ship_hull_submarine
 		priority = 2500
 		parent = submarine_1
 		module_slots = inherit
 
+		
 		default_modules = {
 			fixed_ship_torpedo_slot = ship_torpedo_sub_1
 			fixed_ship_engine_slot = sub_ship_engine_1
@@ -536,18 +539,22 @@ equipments = {
 		anti_air_attack = 0
 		
 		armor_value = 0
+
+		
 		surface_detection = 40
 		sub_detection = 0
 		surface_visibility = 1
 		sub_visibility = 25
-		naval_speed = 12
+		naval_speed = 17
 		reliability = 0.70
 
-		naval_range = 4000
+		naval_range = 2500
 		
 		max_strength = 20
 		
-		build_cost_ic = 225
+
+		
+		build_cost_ic = 250
 		resources = {
 			#oil = 1
 			steel = 2
@@ -555,7 +562,7 @@ equipments = {
 	}
 	
 	submarine_3 = {
-		year = 1916
+		year = 1940
 
 		archetype = ship_hull_submarine
 		priority = 2500
@@ -580,13 +587,16 @@ equipments = {
 		sub_detection = 0
 		surface_visibility = 1
 		sub_visibility = 15
-		naval_speed = 14
+		naval_speed = 18
 		reliability = 0.75
 		
-		naval_range = 5200
+		naval_range = 3000
 		
 		max_strength = 30
-		build_cost_ic = 250
+
+
+		
+		build_cost_ic = 350
 		resources = {
 			#oil = 2
 			steel = 2
@@ -594,7 +604,7 @@ equipments = {
 	}
 	
 	submarine_4 = {
-		year = 1920
+		year = 1944
 
 		archetype = ship_hull_submarine
 		priority = 2500
@@ -622,11 +632,13 @@ equipments = {
 		naval_speed = 18
 		reliability = 0.80
 
-		naval_range = 8000
+		naval_range = 3500
 		
 		max_strength = 35
 		
-		build_cost_ic = 275
+
+		
+		build_cost_ic = 400
 		resources = {
 			#oil = 2
 			steel = 3

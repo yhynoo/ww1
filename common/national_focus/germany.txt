@@ -62,7 +62,10 @@ focus_tree = {
         cost = 10
 
         available = {
-            has_idea = volunteer_only
+            or = {
+                has_idea = disarmed_nation
+                has_idea = volunteer_only
+            }   
         }
 
         prerequisite = { focus = GER_focus_army }

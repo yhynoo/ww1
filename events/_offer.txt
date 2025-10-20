@@ -82,7 +82,9 @@ country_event = {
         }
 
         hidden_effect = { 
-            FROM = { news_event = { id = _offer.2 hours = 6 random_hours = 6 } }
+            FROM = { 
+                news_event = { id = _offer.2 hours = 6 random_hours = 6 }
+            }
         }
 
         ai_chance = { 
@@ -95,16 +97,6 @@ country_event = {
         add_political_power = -75
         
         hidden_effect = { FROM = { news_event = { id = _offer.3 hours = 6 random_hours = 6 } } }
-        
-        ai_chance = { 
-            base = 1
-            modifier = {
-                and = {                         # If it's the French surrendering to Germany, Germans will always take it.
-                    tag = GER 
-                    FROM = { original_tag = FRA }
-                }
-                factor = 0
-            }
-        }
+        ai_chance = { base = 1 }
     }
 }

@@ -62,7 +62,10 @@
         cost = 10
 
         available = {
-            has_idea = volunteer_only
+            or = {
+                has_idea = disarmed_nation
+                has_idea = volunteer_only
+            }   
         }
 
         prerequisite = { focus = ITA_focus_army }
@@ -774,7 +777,7 @@
         prerequisite = { focus = ITA_political_ambitions }
         completion_reward = {
             add_war_support = 0.05
-            add_popularity = { ideology = monarchism popularity = 0.05 }
+            add_popularity = { idea = monarchism popularity = 0.05 }
         }
     }
     focus = {

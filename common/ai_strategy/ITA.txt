@@ -21,24 +21,24 @@ ITA_alliances = {
     }
 }
 
-ITA_expansion = {
+ITA_expansion_in_africa = {
 	allowed = { original_tag = ITA }
 	enable = {
 		has_completed_focus = ITA_deterrence
 	}
 	abort = {
-		or = {
-			TUR = { is_in_faction = yes }
-			any_country = { has_guarenteed = TUR }
-			not = { ITA = { any_claimed_state = { not = { is_owned_and_controlled_by = TUR } } } }
-		}
+		 not = { ITA = { any_claimed_state = { not = { is_owned_and_controlled_by = TUR } } } }
 	}
 
-	ai_strategy = {	type = conquer	     id = TUR		value = 250 }
-	ai_strategy = {	type = declare_war	 id = TUR       value = 150 }
+	ai_strategy = {
+        type = conquer	     id = TUR        	value = 100
+    }
 
 	# execution
-	ai_strategy = {	type = naval_invasion_focus			value = 250 }
+	ai_strategy = {
+		type = naval_invasion_focus				value = 250
+	}
+
 	ai_strategy = {
 		type = invasion_unit_request	value = 100
 		state_trigger = {

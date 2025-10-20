@@ -1,156 +1,500 @@
 units = {
     fleet = {
-        name = "Royal Navy"	
-        naval_base = 3501                   # Dover
+        name = "Home Fleet"
+        naval_base = 11064
 
-        # Home Fleet
         task_force = {
-            name = "Home Fleet"      
-			location = 3501 	            # Dover
+            name = "The Grand Fleet"
+            location = 11064
+            ship = {
+                name = "HMS Dreadnought"
+                definition = heavy_cruiser
+                equipment = {
+                    heavy_cruiser_2 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Warspite"
+                definition = heavy_cruiser
+                equipment = {
+                    heavy_cruiser_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
 
-            # dreadnoughts (5)
-            ship = { name = "Hercules" definition = heavy_cruiser equipment = { heavy_cruiser_2 = { amount = 1 owner = ENG } } }
-            ship = { name = "Illustrious" definition = heavy_cruiser equipment = { heavy_cruiser_2 = { amount = 1 owner = ENG } } }
-            ship = { name = "Irresistible" definition = heavy_cruiser equipment = { heavy_cruiser_2 = { amount = 1 owner = ENG } } }
+            ship = {
+                name = "HMS Southampton"
+                definition = light_cruiser
+                equipment = {
+                    light_cruiser_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Arethusa"
+                definition = light_cruiser
+                equipment = {
+                    light_cruiser_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
 
-            ship = { name = "Africa" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Dreadnought" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = ENG } } }
+            ship = {
+                name = "HMS Acasta"
+                definition = destroyer
+                equipment = {
+                    destroyer_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Ambuscade"
+                definition = destroyer
+                equipment = {
+                    destroyer_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Hardy"
+                definition = destroyer
+                equipment = {
+                    destroyer_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Garland"
+                definition = destroyer
+                equipment = {
+                    destroyer_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Opal"
+                definition = destroyer
+                equipment = {
+                    destroyer_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Swift"
+                definition = destroyer
+                equipment = {
+                    destroyer_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
 
-            # cruisers (4)
-            ship = { name = "Achilles" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Indomitable" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Inflexible" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Invincible" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = ENG } } }
-
-            # destroyers (16)
-            ship = { name = "Charger" definition = destroyer equipment = { destroyer_2 = { amount = 1 owner = ENG } } }
-            ship = { name = "Conflict" definition = destroyer equipment = { destroyer_2 = { amount = 1 owner = ENG } } }
-            ship = { name = "Dasher" definition = destroyer equipment = { destroyer_2 = { amount = 1 owner = ENG } } }
-            ship = { name = "Dove" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-
-            ship = { name = "Griffon" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Hardy" definition = destroyer equipment = { destroyer_2 = { amount = 1 owner = ENG } } }
-            ship = { name = "Hornet" definition = destroyer equipment = { destroyer_2 = { amount = 1 owner = ENG } } }
-            ship = { name = "Hasty" definition = destroyer equipment = { destroyer_2 = { amount = 1 owner = ENG } } }
-            
-            ship = { name = "Haughty" definition = destroyer equipment = { destroyer_2 = { amount = 1 owner = ENG } } }
-            ship = { name = "Havoc" definition = destroyer equipment = { destroyer_2 = { amount = 1 owner = ENG } } }
-            ship = { name = "Hornet" definition = destroyer equipment = { destroyer_2 = { amount = 1 owner = ENG } } }
-            ship = { name = "Ranger" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-           
-            ship = { name = "Salmon" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Seal" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Snapper" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Sprightly" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-
-            # subs (4)
-            ship = { name = "A1" definition = submarine equipment = { submarine_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "A2" definition = submarine equipment = { submarine_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "A3" definition = submarine equipment = { submarine_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "A4" definition = submarine equipment = { submarine_1 = { amount = 1 owner = ENG } } }
+            ship = {
+                name = "HMS E1"
+                definition = submarine
+                equipment = {
+                    submarine_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS E2"
+                definition = submarine
+                equipment = {
+                    submarine_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS E3"
+                definition = submarine
+                equipment = {
+                    submarine_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
         }
 
-        # Atlantic Fleet
         task_force = {
-            name = "Atlantic Fleet"      
-			location = 11064 	            # Scapa Flow
-
-            # dreadnoughts (2)
-            ship = { name = "Magnificent" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Victorious" definition = heavy_cruiser equipment = { heavy_cruiser_2 = { amount = 1 owner = ENG } } }
-
-            # cruisers (2)
-            ship = { name = "Argonaut" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Astraea" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = ENG } } }
-
-            # destroyers (6)
-            ship = { name = "Fury" definition = destroyer equipment = { destroyer_2 = { amount = 1 owner = ENG } } }
-            ship = { name = "Hope" definition = destroyer equipment = { destroyer_2 = { amount = 1 owner = ENG } } }
-            ship = { name = "Nemesis" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Nereide" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-
-            ship = { name = "Nymphe" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Viking" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-
-            # subs (4)
-            ship = { name = "A5" definition = submarine equipment = { submarine_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "A6" definition = submarine equipment = { submarine_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "A7" definition = submarine equipment = { submarine_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "A8" definition = submarine equipment = { submarine_1 = { amount = 1 owner = ENG } } }
-        }
-
-        # Mediterranean Fleet
-        task_force = {
-            name = "Mediterranean Fleet"      
-			location = 12003 	            # Malta
-
-            # dreadnoughts (4)
-            ship = { name = "Albion" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Empress of India" definition = heavy_cruiser equipment = { heavy_cruiser_2 = { amount = 1 owner = ENG } } }
-            ship = { name = "London" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Ocean" definition = heavy_cruiser equipment = { heavy_cruiser_2 = { amount = 1 owner = ENG } } }
-
-            # cruisers (2)
-            ship = { name = "Juno" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Venus" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = ENG } } }
-
-            # destroyers (12)
-            ship = { name = "Acheron" definition = destroyer equipment = { destroyer_2 = { amount = 1 owner = ENG } } }
-            ship = { name = "Archer" definition = destroyer equipment = { destroyer_2 = { amount = 1 owner = ENG } } }
-            ship = { name = "Attacker" definition = destroyer equipment = { destroyer_2 = { amount = 1 owner = ENG } } }
-            ship = { name = "Defender" definition = destroyer equipment = { destroyer_2 = { amount = 1 owner = ENG } } }
-
-            ship = { name = "Druid" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Hind" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Hydra" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Jackal" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-
-            ship = { name = "Sandfly" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Tigress" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Unity" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Victor" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-
-            # subs (2)
-            ship = { name = "A9" definition = submarine equipment = { submarine_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "A10" definition = submarine equipment = { submarine_1 = { amount = 1 owner = ENG } } }
+            name = "Channel Fleet"
+            location = 3501
+            ship = {
+                name = "HMS King George V"
+                definition = heavy_cruiser
+                equipment = {
+                    heavy_cruiser_2 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Thunderer"
+                definition = heavy_cruiser
+                equipment = {
+                    heavy_cruiser_2 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Galatea"
+                definition = light_cruiser
+                equipment = {
+                    light_cruiser_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Cleopatra"
+                definition = light_cruiser
+                equipment = {
+                    light_cruiser_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Laforey"
+                definition = destroyer
+                equipment = {
+                    destroyer_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Harpy"
+                definition = destroyer
+                equipment = {
+                    destroyer_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Vixen"
+                definition = destroyer
+                equipment = {
+                    destroyer_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS E4"
+                definition = submarine
+                equipment = {
+                    submarine_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS E5"
+                definition = submarine
+                equipment = {
+                    submarine_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS E6"
+                definition = submarine
+                equipment = {
+                    submarine_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
         }
     }
-
     fleet = {
-        name = "Hong Kong Squadron"
-        naval_base = 10062
+        name = "Mediterranean Fleet"
 
-        # Hong Kong Squadron
         task_force = {
-            name = "Hong Kong Squadron"      
-			location = 10062 	            # Hong Kong Squadron
+            name = "Mediterranean Fleet"
+            location = 12003
+            ship = {
+                name = "HMS Queen Elizabeth"
+                definition = heavy_cruiser
+                equipment = {
+                    heavy_cruiser_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Gloucester"
+                definition = light_cruiser
+                equipment = {
+                    light_cruiser_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Chatham"
+                definition = light_cruiser
+                equipment = {
+                    light_cruiser_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Aurora"
+                definition = light_cruiser
+                equipment = {
+                    light_cruiser_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
 
-            # dreadnoughts (1)
-            ship = { name = "Glory" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = ENG } } }
+            ship = {
+                name = "HMS Bulldog"
+                definition = destroyer
+                equipment = {
+                    destroyer_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Goshawk"
+                definition = destroyer
+                equipment = {
+                    destroyer_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Sturgeon"
+                definition = destroyer
+                equipment = {
+                    destroyer_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Midge"
+                definition = destroyer
+                equipment = {
+                    destroyer_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Scorpion"
+                definition = destroyer
+                equipment = {
+                    destroyer_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Hasty"
+                definition = destroyer
+                equipment = {
+                    destroyer_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
 
-            # cruisers (1)
-            ship = { name = "Diamond" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = ENG } } }
-
-            # destroyers (4)
-            ship = { name = "Erne" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Ettrick" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Exe" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Taku" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
+            ship = {
+                name = "HMS E7"
+                definition = submarine
+                equipment = {
+                    submarine_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS E8"
+                definition = submarine
+                equipment = {
+                    submarine_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS E9"
+                definition = submarine
+                equipment = {
+                    submarine_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS E10"
+                definition = submarine
+                equipment = {
+                    submarine_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS E11"
+                definition = submarine
+                equipment = {
+                    submarine_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
         }
     }
 
     fleet = {
         name = "Singapore Squadron"
-        naval_base = 12299
 
-        # Singapore Squadron
         task_force = {
-            name = "Singapore Squadron"      
-			location = 12299 	            # Singapore Squadron
+            name = "Singapore Squadron"
+            location = 12299
+            ship = {
+                name = "HMS Orion"
+                definition = heavy_cruiser
+                equipment = {
+                    heavy_cruiser_2 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Glasgow"
+                definition = light_cruiser
+                equipment = {
+                    light_cruiser_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
 
-            # destroyers (4)
-            ship = { name = "Arun" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
-            ship = { name = "Otter" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ENG } } }
+            ship = {
+                name = "HMS Tartar"
+                definition = destroyer
+                equipment = {
+                    destroyer_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Lizard"
+                definition = destroyer
+                equipment = {
+                    destroyer_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Jackal"
+                definition = destroyer
+                equipment = {
+                    destroyer_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS Racoon"
+                definition = destroyer
+                equipment = {
+                    destroyer_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+
+            ship = {
+                name = "HMS E12"
+                definition = submarine
+                equipment = {
+                    submarine_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
+            ship = {
+                name = "HMS E13"
+                definition = submarine
+                equipment = {
+                    submarine_1 = {
+                        amount = 1
+                        owner = ENG
+                    }
+                }
+            }
         }
     }
 }
