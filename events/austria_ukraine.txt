@@ -2,37 +2,15 @@ add_namespace = austria_ukraine
 
 news_event = {
     id = austria_ukraine.1
-    title = "Unrest Among Ukrainian Peasants"       
+    title = "Austrian Arms and Experts Arrive"
     desc = austria_ukraine.1.d
 
     is_triggered_only = yes
-    major = yes
 
     option = {
-        name = "Worrying."
-    }
-}
-
-news_event = {
-    id = austria_ukraine.2
-    title = "Anarchy in the Steppe!"
-    desc = austria_ukraine.2.d
-
-    is_triggered_only = yes
-    trigger = { has_stability < 0.6 }
-
-    option = {
-        name = "To arms!"
-        remove_ideas = idea_unrest_in_ukraine
-
-        hidden_effect = { 
-            SOV = { add_named_threat = { threat = 2 name = "Anarchy in the Steppe" } }   
-            ukrainian_independence = yes
-        }
-
-        every_country_with_original_tag = {
-            original_tag_to_check = SOV
-            declare_war_on = { target = UKR type = annex_everything }
-        }
+        name = "Wonderful."
+        army_experience = 50
+        
+        add_opinion_modifier = { target = AUS modifier = opinion_austrian_arms }
     }
 }

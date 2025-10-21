@@ -1,29 +1,44 @@
-TUR_likes_FRA = {
-    allowed = { tag = TUR }
-    enable = { has_completed_focus = TUR_on_our_own not = { has_war_with = FRA } }
-	abort_when_not_enabled = yes
+# DIPLOMACY
 
-    # focus on planes
-    ai_strategy = {
-        type = air_factory_balance
-        value = 50
+TUR_alliances = {
+    allowed = { original_tag = TUR }
+    enable = { 
+        and = {
+            or = { has_government = monarchism has_government = communism }
+            GER = { has_guaranteed = TUR }
+        }
     }
+    abort_when_not_enabled = yes
+
+    # alliances
+	ai_strategy = { type = alliance		id = GER		value = 40 }
+
+    # aggressive wargoals
+    ai_strategy = { type = conquer		id = ARM		value = 100 }
+    ai_strategy = { type = conquer		id = GRE		value = 100 }
+    ai_strategy = { type = conquer		id = SOV		value = 40 }
 }
 
-turkey_middle_east = {
+TUR_alliances_alternative = {
+    allowed = { original_tag = TUR }
+    enable = { has_government = democratic }
+    abort_when_not_enabled = yes
+
+    # alliances
+    ai_strategy = { type = alliance		id = FRA		value = 20 }
+    ai_strategy = { type = alliance		id = GER		value = -40 }
+
+    # aggressive wargoals: none
+}
+
+# ARMY
+
+TUR_middle_east = {
     allowed = { tag = TUR }
     enable = { is_ally_with = GER }
     abort_when_not_enabled = yes
 
-    ai_strategy = {
-		type = area_priority
-		id = europe
-		value = -100
-	}
-
-    ai_strategy = {
-		type = area_priority
-		id = middle_east
-		value = 180
-	}
+    # areas
+    ai_strategy = { type = area_priority    id = europe         value = -100 }
+    ai_strategy = { type = area_priority    id = middle_east    value = 200 }
 }

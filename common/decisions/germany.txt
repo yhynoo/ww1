@@ -9,14 +9,14 @@ oriental_investments = {
         available = { 
             MOR = { exists = yes } 
             has_equipment = { infantry_equipment > 899 }
-            has_equipment = { artilery_equipment > 59 }
+            has_equipment = { artillery_equipment > 59 }
         }
 
         complete_effect = {
             add_war_support = 0.05
 
             send_equipment = { equipment = infantry_equipment amount = 900 target = MOR }
-            send_equipment = { equipment = fighter_equipment amount = 60 target = MOR }
+            send_equipment = { equipment = artillery_equipment amount = 60 target = MOR }
 
             hidden_effect = { MOR = { news_event = { id = germany_morocco.1 hours = 6 } } }
         }
@@ -126,9 +126,12 @@ embrace_weltpolitik = {
         }
 
         ai_will_do = { 
-            base = 6
+            base = 3 
             modifier = { 
-                and = { date > 1915.4.1 has_war = no }
+                or = {
+                    and = { date > 1915.4.1 has_war = no }
+                    FRA = { not = { has_guaranteed = SOV } }
+                }
                 add = 6
             } 
         }

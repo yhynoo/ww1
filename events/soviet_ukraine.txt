@@ -1,0 +1,48 @@
+add_namespace = soviet_ukraine
+
+news_event = {
+    id = soviet_ukraine.1
+     title = "Unrest Among Ukrainian Peasants"       
+    desc = soviet_ukraine.1.d 
+
+    trigger = {
+        tag = SOV
+        has_stability < 0.4
+        UKR = { exists = no }
+    }
+
+    option = {
+        name = "Worrying."
+        add_timed_idea = { idea = idea_unrest_in_ukraine months = 6 }
+        hidden_effect = { 
+            random = {
+                chance = 50
+                news_event = { id = soviet_ukraine.2 days = 14 random_days = 60 } 
+            }
+        }
+    }
+}
+
+news_event = {
+    id = soviet_ukraine.2
+     title = "Anarchy in the Steppe!"
+    desc = soviet_ukraine.2.d 
+
+    is_triggered_only = yes
+    trigger = { has_stability < 0.5 }
+
+    option = {
+        name = "To arms!"
+        remove_ideas = idea_unrest_in_ukraine
+
+        hidden_effect = { 
+            SOV = { add_named_threat = { threat = 2 name = "Anarchy in the Steppe" } }   
+            ukrainian_independence = yes
+        }
+
+        every_country_with_original_tag = {
+            original_tag_to_check = SOV
+            declare_war_on = { target = UKR type = annex_everything }
+        }
+    }
+}

@@ -1,47 +1,58 @@
-germany_adjustments = {
+# DIPLOMACY
+
+GER_alliances = {
+	allowed = { original_tag = GER }
+	enable = { and = { is_faction_leader = yes has_government = monarchism } }
+	abort_when_not_enabled = yes
+
+	# alliances
+	ai_strategy = { type = alliance		id = AUS		value = 100 }
+	
+	if = {
+		limit = { has_completed_focus = GER_deterrence }
+		ai_strategy = { type = alliance		id = TUR		value = 40 }
+	}
+
+	# aggressive wargoals
+	ai_strategy = { type = conquer		id = ENG		value = 20 }
+	ai_strategy = { type = conquer		id = FRA		value = 40 }
+}
+
+# ARMY
+
+GER_airships = {
 	allowed = { original_tag = GER }
 	enable = { always = yes }
 
-	ai_strategy = {
-		type = equipment_production_min_factories
-		id = strategic_bomber
-		value = 1
-	}
-
-	ai_strategy = {
-		type = equipment_production_min_factories
-		id = submarine
-		value = 2
-	}
-
-	# planning the positions
-	ai_strategy = {
-		type = front_unit_request
-		area = western_front
-		value = 180
-	}
+	ai_strategy = { type = equipment_production_min_factories	id = strategic_bomber	value = 1 }
 }
 
-germany_z_vor = {
+GER_handelskrieg = {
 	allowed = { original_tag = GER }
-	enable = { has_war_with = ENG }
+	enable = { has_idea = idea_atlantic_submarine_warfare }
 	abort_when_not_enabled = yes
 
-	ai_strategy = {
-		type = naval_convoy_raid_region
-		id = 16
-		value = 100
-	}
+	# industry
+	ai_strategy = {	type = equipment_production_min_factories	id = submarine		value = 2 }
 
-	ai_strategy = {
-		type = naval_convoy_raid_region
-		id = 43
-		value = 100
-	}
+	# areas
+	ai_strategy = { type = naval_convoy_raid_region		id = 16		value = 100 }
+	ai_strategy = { type = naval_convoy_raid_region		id = 42		value = 100 }
+	ai_strategy = { type = naval_convoy_raid_region		id = 43		value = 100 }
+}
 
-	ai_strategy = {
-		type = naval_convoy_raid_region
-		id = 42
-		value = 100
-	}
+GER_militarisation = {
+	allowed = { original_tag = GER }
+	enable = { has_government = monarchism }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {	type = added_military_to_civilian_factory_ratio	value = 50 }
+	ai_strategy = {	type = role_ratio	id = infantry	value = 20 }
+}
+
+GER_schlieffen = {
+	allowed = { original_tag = GER }
+	enable = { always = yes }
+
+	ai_strategy = { type = front_unit_request	tag = FRA	value = 120 }
 }

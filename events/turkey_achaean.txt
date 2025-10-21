@@ -9,6 +9,11 @@ news_event = {
         tag = TUR
         has_stability < 0.25
 
+        or = {
+            has_war = no
+            and = { has_war = yes longest_war_length > 24 }
+        }
+        
         controls_state = 47
 
         and = {

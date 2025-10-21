@@ -1,32 +1,31 @@
-austria_adjustments = {
+AUS_alliances = {
 	allowed = { original_tag = AUS }
-	enable = { always = yes }
-
-	# planning the positions
-	ai_strategy = {
-		type = front_unit_request
-		area = alpine_front
-		value = 60
-	}
-
-	ai_strategy = {
-		type = front_unit_request
-		tag = ITA
-		value = 150
-	}
-}
-
-AUS_hates_SOV = {
-	allowed = { original_tag = AUS }
-	enable = { 
-		has_idea = idea_unrest_in_galicia
-		is_in_faction = yes
-	}
+	enable = { not = { has_completed_focus = AUS_on_our_own } }
 	abort_when_not_enabled = yes
 
-	ai_strategy = {
-		type = declare_war
-		id = SOV
-		value = 200
-	}
+	# alliances
+	ai_strategy = { type = alliance		id = GER		value = 100 }
+
+	# aggressive wargoals
+	ai_strategy = { type = conquer		id = SER		value = 40 }
+	ai_strategy = { type = conquer		id = SOV		value = 20 }
 }
+
+AUS_alliances_alternative = {
+	allowed = { original_tag = AUS }
+	enable = { has_completed_focus = AUS_on_our_own }
+
+	ai_strategy = { type = alliance		id = FRA		value = 20 }
+	ai_strategy = { type = alliance		id = GER		value = -200 }
+}
+
+# ARMY
+
+AUS_alps = {
+	allowed = { original_tag = AUS }
+	enable = { threat > 0.1 }
+
+	# planning the positions
+	ai_strategy = { type = prepare_for_war		id = ITA		value = 20 }
+	ai_strategy = { type = front_unit_request	tag = ITA		value = 200 }
+} 

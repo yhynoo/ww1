@@ -1,0 +1,17 @@
+on_actions = {
+    on_peaceconference_ended = {
+        effect = {
+
+            # losers get the loser trait
+            FROM = {
+                if = {
+                    limit = { has_country_flag = side_of_the_great_war }
+
+                    add_timed_idea = { idea = idea_loser_of_the_great_war years = 2 }
+                    clr_country_flag = side_of_the_great_war
+                }
+   
+            }
+        }
+    }
+}
