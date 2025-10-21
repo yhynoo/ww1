@@ -1,38 +1,73 @@
-USA_isolate = {
+# DIPLOMACY
+
+USA_alliances = {
     allowed = { original_tag = USA }
-    enable = { 
-        or = {
-            has_idea = idea_isolationist_society
-            not = { 
-                has_idea = idea_lusitania 
-                not = { ENG = { has_war_with = GER } }
-            }
+    enable = {
+        or = { 
+            ENG = { war_length_with = { tag = GER months > 24 } has_idea = idea_lusitania }
+            has_completed_focus = USA_traditionalism
         }
     }
     abort_when_not_enabled = yes
-    reversed = yes
 
-    ai_strategy = {
-        type = alliance
-        id = USA
-        value = -30
-    }
+    # alliances
+	ai_strategy = { type = alliance		id = ENG		value = 20 }
+    ai_strategy = { type = alliance		id = FRA		value = 40 }
 }
 
-USA_supports_dems = {
-    allowed = { NOT = { original_tag = USA } }
-    enable_reverse = { USA = { has_completed_focus = USA_traditionalism } }
-    reversed = yes
-
+USA_alternative_alliances = {
+    allowed = { original_tag = USA }
     enable = {
-        has_government = democratic
-        has_defensive_war = yes
+        has_completed_focus = USA_seek_alliances
+        is_faction_leader = yes
     }
     abort_when_not_enabled = yes
 
-    ai_strategy = {
-        type = support
-        id = USA
-        value = 100
+    # alliances
+	ai_strategy = { type = alliance		id = AUS		value = 20 }
+    ai_strategy = { type = alliance		id = JAP		value = 40 }
+
+    # contain
+	ai_strategy = { type = contain		id = ENG		value = 60 }
+}
+
+USA_isolation = {
+    allowed = { original_tag = USA }
+    enable = { has_idea = idea_isolationist_society }
+    abort_when_not_enabled = yes
+
+    reversed = yes
+    enable_reverse = { always = yes }
+
+    # support
+    ai_strategy = { type = alliance		id = USA		value = -100 }
+}
+
+USA_wilsonianism = {
+    allowed = { original_tag = USA }
+    enable = {
+        has_completed_focus = USA_on_our_own
+        has_government = democratic
     }
+    abort_when_not_enabled = yes
+
+    reversed = yes
+    enable_reverse = {
+        is_in_faction = no
+        has_government = democratic
+    }
+
+    # support
+    ai_strategy = { type = protect		id = USA		value = 20 }
+    ai_strategy = { type = support		id = USA		value = 60 }
+}
+
+# ARMY
+
+USA_western_front = {
+    allowed = { original_tag = USA }
+	enable = { is_ally_with = FRA }
+
+    # planning the positions
+	ai_strategy = { type = front_unit_request	tag = GER		    value = 120 }
 }

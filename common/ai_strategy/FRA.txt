@@ -1,84 +1,57 @@
-france_army_composition = {
-	allowed = { original_tag = FRA }
-	enable = { always = yes }
+# DIPLOMACY
+
+FRA_alliances = {
+    allowed = { original_tag = FRA }
+	enable = { and = { is_faction_leader = yes has_government = democratic } }
 	abort_when_not_enabled = yes
 
-	# prepare more units
-	ai_strategy = {
-		type = role_ratio
-		id = infantry
-		value = 30
+	# alliances
+	ai_strategy = { type = alliance		id = ENG		value = 40 }
+	
+	if = {
+		limit = { has_guarenteed = SOV }
+		ai_strategy = { type = alliance		id = SOV		value = 100 }
 	}
+
+	# aggressive wargoals in africa
+	ai_strategy = { type = conquer		id = ALG		value = 100 }
+	ai_strategy = { type = conquer		id = MOR		value = 100 }
+}
+
+FRA_attention = {
+    allowed = { original_tag = FRA }
+    enable = { not = { or = { is_ally_with = ENG is_ally_with = SOV } } }
+    abort_when_not_enabled = yes
+
+    ai_strategy = { type = avoid_starting_wars      value = -100 }
+}
+
+# ARMY
+
+FRA_aviation = {
+    allowed = { original_tag = FRA }
+	enable = { always = yes }
+
+    ai_strategy = { type = unit_ratio          id = fighter         value = 100 }
+    ai_strategy = { type = equipment_production_min_factories       id = fighter        value = 1 }    
+}
+
+FRA_africa = {
+	allowed = { original_tag = FRA }
+	enable = { 
+        or = { has_war_with = ALG  has_war_with = MOR }
+        not = { has_war_with = GER }
+    }
+    abort_when_not_enabled = yes
 
 	# planning the positions
-	ai_strategy = {
-		type = front_unit_request
-		area = western_front
-		value = 180
-	}
+	ai_strategy = { type = area_priority		id = africa		    value = 120 }
 }
 
-FRA_extra_aviation = {
-	allowed = { original_tag = FRA }
+FRA_western_front = {
+    allowed = { original_tag = FRA }
 	enable = { always = yes }
-	abort = { always = no }
 
-	ai_strategy = {
-		type = unit_ratio
-		id = fighter
-		value = 100
-	}
-
-	ai_strategy = {
-		type = equipment_production_factor
-		id = fighter
-		value = 50
-	}
-
-	ai_strategy = {
-		type = equipment_production_min_factories
-		id = fighter
-		value = 1
-	}
-}
-
-FRA_careful_GER = {
-	allowed = { tag = FRA }
-	enable = { or = { is_in_faction = no num_faction_members < 2 } }
-	abort_when_not_enabled = yes
-
-	ai_strategy = {
-		type = declare_war
-		id = GER
-		value = -60
-	}
-}
-
-FRA_focuses_on_GER = {
-	allowed = { tag = FRA }
-	enable = { has_war_with = GER }
-	abort_when_not_enabled = yes
-
-	ai_strategy = {
-		type = front_unit_request
-		tag = GER
-		value = 200
-	}
-}
-
-FRA_careful_HOL = {
-	allowed = { tag = FRA }
-	enable = {
-		or = {
-			has_war_support < 0.5
-			not = { is_ally_with = ENG } 
-		}
-	}
-	abort_when_not_enabled = yes
-
-	ai_strategy = {
-		type = declare_war
-		id = HOL
-		value = -30
-	}
+    # planning the positions
+	ai_strategy = { type = front_unit_request	tag = GER		    value = 120 }
 }

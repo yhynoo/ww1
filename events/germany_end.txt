@@ -1,0 +1,84 @@
+add_namespace = germany_end
+
+country_event = {
+    id = germany_end.1
+    title = "Opposition Demands Armistice!"
+    desc = germany_end.1.d
+
+    trigger = {
+        original_tag = GER
+        or = {
+            and = { not = { controls_state = 17 } not = { controls_state = 51 } }
+            surrender_progress > 0.15
+        }
+    }
+    fire_only_once = yes
+    mean_time_to_happen = { days = 14 }
+    immediate = { 
+        hidden_effect = { 
+            news_event = { id = germany_end.2 days = 7 random_days = 7 }
+            news_event = { id = germany_end.3 days = 21 random_days = 14 }
+        } 
+    }
+
+    option = {
+        name = "This war is lost."
+        every_enemy_country = {
+            limit = { or = { is_faction_leader = yes is_in_faction = no } }
+            country_event = { id = _offer_faction_leader.1 hours = 6 random_days = 7 }
+        }
+        ai_chance = { 
+            base = 2
+            modifier = { has_government = democratic factor = 3 }
+        }
+    }
+
+    option = {
+        name = "We shall continue fighting."
+
+        add_popularity = { ideology = ROOT popularity = -0.1 }
+        add_political_power = -75
+
+        ai_chance = { 
+            base = 1
+            modifier = { has_war_support > 0.5 factor = 2 }
+        }
+    }
+}
+
+news_event = {
+    id = germany_end.2
+    title = "Unrest in the Docks"
+    desc = germany_end.2.d
+
+    is_triggered_only = yes
+    trigger = { 
+        controls_state = 56
+        controls_state = 58
+    }
+
+    option = {
+        name = "Worrying."
+        add_popularity = { ideology = communism popularity = 0.05 }
+    }
+}
+
+news_event = {
+    id = germany_end.3
+    title = "Sailors’ Uprising"
+    desc = germany_end.3.d
+
+    is_triggered_only = yes
+    trigger = { 
+        not = { has_government = communism }
+        has_stability < 0.8 
+    }
+
+    option = {
+        name = "Traitors!"
+        start_civil_war = {
+            ideology = communism 
+            army_ratio = 0.2 navy_ratio = 0.8 states = { 56 58 59 }
+        }
+    }
+}

@@ -1,0 +1,12 @@
+# DIPLOMACY
+
+POL_isolation = {
+    allowed = { original_tag = POL }
+    enable = { has_global_flag = the_great_war_has_started }
+
+    reversed = yes
+    enable_reverse = { always = yes }
+
+    # don't ally anyone while the war is on
+    ai_strategy = { type = alliance		id = HUN		value = -60 }
+}

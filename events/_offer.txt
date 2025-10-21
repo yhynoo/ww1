@@ -32,7 +32,10 @@ country_event = {
         add_political_power = -75
         
         hidden_effect = { FROM = { news_event = { id = _offer.3 hours = 6 random_hours = 6 } } }
-        ai_chance = { base = 1 }
+        ai_chance = { 
+            base = 1
+            modifier = { FROM = { is_faction_leader = yes } factor = 0 }
+        }
     }
 }
 

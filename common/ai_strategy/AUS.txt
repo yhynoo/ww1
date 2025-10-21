@@ -21,11 +21,24 @@ AUS_alliances_alternative = {
 
 # ARMY
 
+AUS_militarisation = {
+	allowed = { original_tag = AUS }
+	enable = { has_government = monarchism }
+	abort_when_not_enabled = yes
+
+	# more infantry, less cyclists
+	ai_strategy = {	type = role_ratio	id = infantry		value = 25 }
+	ai_strategy = {	type = role_ratio	id = breakthrough	value = -5 }
+}
+
 AUS_alps = {
 	allowed = { original_tag = AUS }
-	enable = { threat > 0.1 }
+	enable = {
+		has_war = yes			# remember to guard the Alpine frontier.
+		threat > 0.1 
+	}
 
 	# planning the positions
 	ai_strategy = { type = prepare_for_war		id = ITA		value = 20 }
-	ai_strategy = { type = front_unit_request	tag = ITA		value = 200 }
+	ai_strategy = { type = front_unit_request	tag = ITA		value = 100 }
 } 

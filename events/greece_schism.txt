@@ -10,9 +10,19 @@ country_event = {
     option = {
         name = "Long live the King!"
         start_civil_war = { ruling_party = monarchism ideology = democratic size = 0.5 }
+
+        ai_chance = {
+            base = 1
+            modifier = { is_ally_with = FRA factor = 0 }
+        }
     }
     option = {
         name = "For Freedom!"
         start_civil_war = { ruling_party = democratic ideology = monarchism size = 0.5 }
+
+        ai_chance = {
+            base = 1
+            modifier = { is_ally_with = GER factor = 0 }
+        }
     }
 }

@@ -38,16 +38,20 @@ country_event = {
             add_claim_by = ITA
         }
 
-        TUR = { country_event = { id = demand.1 hours = 6 } }
+        TUR = { country_event = { id = _demand.1 hours = 6 } }
         add_named_threat = { threat = 5 name = "Italian Encroachment in South-East Europe" }
 
         hidden_effect = {
             news_event = { italy_aegean.3 hours = 6 }
         }
+
+        ai_chance = { base = 2 }
     }
     option = {
         name = "It is not worth it."
         add_war_support = -0.05
+
+        ai_chance = { base = 1 }
     }
 }
 

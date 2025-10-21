@@ -61,6 +61,12 @@ news_event = {
     desc = _the_great_war.2.d
 
     is_triggered_only = yes
+    trigger = {
+        not = { has_idea = idea_shame_of_lemberg }
+        not = { has_idea = idea_widespread_hunger }
+        not = { has_idea = idea_army_mutinies }
+        not = { has_idea = idea_spanish_flu }
+    }
 
     option = {
         name = "Avenge Agadir!"

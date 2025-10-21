@@ -1,0 +1,39 @@
+# DIPLOMACY
+
+MAN_alliances = {
+    allowed = { original_tag = MAN }
+    enable = { has_completed_focus = MAN_deterrence }
+    abort_when_not_enabled = yes
+
+    # alliances
+	ai_strategy = { type = alliance		id = ENG		value = 40 }
+	ai_strategy = { type = alliance		id = FRA		value = 20 }
+
+    # aggressive wargoals: none
+}
+
+MAN_attention = {
+    allowed = { original_tag = MAN }
+    enable = { or = { is_ally_with = ENG is_ally_with = FRA } }
+    abort_when_not_enabled = yes
+
+    ai_strategy = { type = avoid_starting_wars      value = -100 }
+}
+
+MAN_isolation = {
+    allowed = { original_tag = MAN }
+    enable = { always = yes }
+
+    # don't like Japan
+    ai_strategy = { type = antagonize		id = JAP		value = 20 }
+}
+
+# ARMY
+
+MAN_asia = {
+    allowed = { tag = MAN }
+    enable = { always = yes }
+
+    # areas
+    ai_strategy = { type = area_priority    id = europe         value = -200 }
+}

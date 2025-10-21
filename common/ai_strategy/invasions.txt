@@ -2,20 +2,14 @@ dont_naval_invade = {
     enable = { always = yes }
     abort_when_not_enabled = yes
 
-    ai_strategy = {
-        type = naval_invasion_focus
-        value = -60
-    }
+    ai_strategy = { type = naval_invasion_focus     value = -60 }
 }
 
 dont_naval_invade_early = {
     enable = { date < 1917.1.1 }
     abort_when_not_enabled = yes
 
-    ai_strategy = {
-        type = naval_invasion_focus
-        value = -60
-    }
+    ai_strategy = { type = naval_invasion_focus     value = -60 }
 }
 
 ## TARGETS
@@ -37,41 +31,6 @@ invasions_on_england = {
             is_controlled_by = ENG
         }
         value = 60
-    }
-}
-
-invasions_on_finland = {
-    enable = {
-        any_enemy_country = {
-            controls_state = 111
-        }
-    }
-    abort_when_not_enabled = yes
-
-    ai_strategy = {
-        type = invasion_unit_request
-        state_trigger = { state = 111 }
-        value = 20
-    }
-}
-
-invasions_on_germany = {
-    enable = { has_war_with = GER }
-    abort_when_not_enabled = yes
-
-    ai_strategy = {
-        type = invasion_unit_request
-        state_trigger = { 
-            is_controlled_by = GER
-            or = { is_on_continent = asia is_on_continent = australia }
-        }
-        value = 100
-    }
-
-    ai_strategy = {
-        type = invasion_unit_request
-        area = north_sea_invasion_area
-        value = 10
     }
 }
 
