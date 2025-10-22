@@ -1,80 +1,61 @@
+# SPECIFIC COUNTRIES
+
 arab_independence = {
-    TUR = {
-        every_owned_state = {
-            limit = { or = { state = 83 state = 292 state = 446 state = 454 state = 455 state = 416 } }
-
-            add_core_of = YEM
-            set_state_owner_to = YEM
-        }
-
-        every_controlled_state = {
-            limit = { or = { state = 416 state = 454 state = 455 } }
-            set_state_controller_to = YEM
-        }
+    every_state = {
+        limit = { or = { state = 446 state = 454 state = 455 state = 292 state = 291 state = 414 state = 83 state = 416 state = 293 } }
+        add_core_of = YEM
     }
 
-    YEM = { 
-        load_oob = "YEM_1912" 
-        add_ideas = { closed_economy partial_economic_mobilisation }
+    YEM = {
+        setup_uprising_troops = yes
+        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
+
+        ROOT = {
+            setup_uprising_country = yes
+            416 = { setup_uprising_state = yes }     # Asir
+        }
+
+        # extra units:
+        setup_uprising_tribal_units = yes
     }
 }
 
 armenian_independence = {
-    TUR = {
-        every_owned_state = {
-            limit = { is_core_of = ARM }
-            set_state_owner_to = ARM
-        }
+    ARM = {
+        setup_uprising_troops = yes
+        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
 
-        every_controlled_state = {
-            limit = { or = { state = 353 state = 354 } }
-            set_state_controller_to = ARM
+        ROOT = {
+            setup_uprising_country = yes
+            354 = { setup_uprising_state = yes }     # Kars
         }
-    }
-
-    ARM = { 
-        load_oob = "ARM_1912" 
-        add_ideas = { closed_economy partial_economic_mobilisation }
     }
 }
 
 algerian_independence = {
-    FRA = {
-        every_owned_state = {
-            limit = { is_core_of = ALG }
-            set_state_owner_to = ALG
+    ALG = {
+        setup_uprising_troops = yes
+        add_ideas = { limited_conscription closed_economy partial_economic_mobilisation }
+
+        ROOT = {
+            setup_uprising_country = yes
+            459 = { setup_uprising_state = yes }     # Algiers
         }
 
-        every_controlled_state = {
-            limit = { or = { state = 459 state = 514 state = 665  } }
-            set_state_controller_to = ALG
-        }
-    }
-
-    ALG = { 
-        load_oob = "ALG_1912" 
-        add_ideas = { closed_economy partial_economic_mobilisation }
+        # extra units:
+        setup_uprising_tribal_units = yes
     }
 }
 
 baltic_independence = {
-    every_country_with_original_tag = {
-        original_tag_to_check = SOV
-
-        every_owned_state = {
-            limit = { is_core_of = UBD }
-            set_state_owner_to = UBD
-        }
-
-        every_controlled_state = {
-            limit = { or = { state = 12 state = 13 } }
-            set_state_controller_to = UBD
-        }
-    }
-
     UBD = {
-        load_oob = "UBD_1912" 
-        add_ideas = { extensive_conscription closed_economy partial_economic_mobilisation }
+        setup_uprising_troops = yes
+        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
+
+        ROOT = {
+            setup_uprising_country = yes
+            12 = { setup_uprising_state = yes }     # Riga
+        }
     }
 }
 
@@ -84,205 +65,192 @@ caucasian_independence = {
         add_core_of = GEO
     }
 
-    every_country_with_original_tag = {
-        original_tag_to_check = SOV
+    GEO = {
+        setup_uprising_troops = yes
+        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
 
-        every_owned_state = {
-            limit = { is_core_of = GEO }
-            set_state_owner_to = GEO
+        ROOT = {
+            setup_uprising_country = yes
+            231 = { setup_uprising_state = yes }     # Baku
         }
-
-        every_controlled_state = {
-            limit = { or = { state = 229 state = 231 } }
-            set_state_controller_to = GEO
-        }
-    }
-
-    GEO = { 
-        load_oob = "GEO_1912" 
-        add_ideas = { limited_conscription limited_exports low_economic_mobilisation }
-    }
-}
-
-cuban_independence = {
-    USA = {
-        every_owned_state = {
-            limit = { or = { state = 315 state = 318 state = 319 state = 348 } }
-
-            add_core_of = CUB
-            set_state_owner_to = CUB
-        }
-
-        every_controlled_state = {
-            limit = { or = { state = 315 state = 319 } }
-            set_state_controller_to = CUB
-        }
-    }
-
-    CUB = { 
-        load_oob = "CUB_1912" 
-        add_ideas = { limited_exports partial_economic_mobilisation }
     }
 }
 
 greek_independence = {
-    TUR = {
-        every_owned_state = {
-            limit = { is_core_of = GRE }
-            set_state_owner_to = GRE
-        }
+    GRE = {
+        setup_uprising_troops = yes
+        add_ideas = { limited_conscription limited_exports low_economic_mobilisation }
 
-        every_controlled_state = {
-            limit = { or = { state = 182 state = 185 state = 186 } }
-            set_state_controller_to = GRE
+        ROOT = {
+            setup_uprising_country = yes
+            47 = { setup_uprising_state = yes }     # Athens
         }
-    }
-
-    GRE = { 
-        load_oob = "GRE_1912" 
-        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
     }
 }
 
 hungarian_independence = {
-    AUS = {
-        every_owned_state = {
-            limit = { is_core_of = HUN }
-            set_state_owner_to = HUN
-        }
-
-        every_controlled_state = {
-            limit = { or = { state = 43 state = 76 state = 82 state = 155 } }
-            set_state_controller_to = HUN
-        }
-
-        every_country_division = {
-            random = {
-                chance = 40
-                destroy_unit = yes
-            }
-        }
-    }
-
-    HUN = { 
-        load_oob = "HUN_1912" 
+    HUN = {
+        setup_uprising_troops = yes
         add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
+
+        ROOT = {
+            setup_uprising_country = yes
+            43 = { setup_uprising_state = yes }     # Budapest
+
+            # shrink the army.
+            every_country_division = { random = { chance = 40 destroy_unit = yes } }
+        }
     }
 }
 
 mongolian_independence = {
-    MAN = {
-        every_owned_state = {
-            limit = { is_core_of = MON }
-            set_state_owner_to = MON
-        }
-
-        330 = { set_state_controller_to = MON }
-    }
-
-    MON = { 
-        load_oob = "MON_1912" 
+    MON = {
+        setup_uprising_troops = yes
         add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
+
+        ROOT = {
+            setup_uprising_country = yes
+            330 = { setup_uprising_state = yes }     # Mongolia
+        }
     }
 }
 
 moroccan_independence = {
-    FRA = {
-        every_owned_state = {
-            limit = { is_core_of = MOR }
-            set_state_owner_to = MOR
+    MOR = {
+        setup_uprising_troops = yes
+        add_ideas = { limited_conscription low_economic_mobilisation }
+
+        ROOT = {
+            setup_uprising_country = yes
+            462 = { setup_uprising_state = yes }     # Agadir
         }
 
-        462 = {
-            set_state_controller_to = MOR
-        }
+        # extra units:
+        setup_uprising_tribal_units = yes
     }
+}
 
-    MOR = { 
-        load_oob = "MOR_1912" 
+polish_independence = {
+    POL = {
+        setup_uprising_troops = yes
         add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
+
+        ROOT = {
+            setup_uprising_country = yes
+            10 = { setup_uprising_state = yes }     # Warszawa
+        }
     }
 }
 
 south_african_independence = {
-    ENG = {
-        every_state = {
-            limit = { is_core_of = SAF }
-            set_state_owner_to = SAF
-        }
+    SAF = {
+        setup_uprising_troops = yes
+        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
 
-        every_controlled_state = {
-            limit = { or = { state = 275 state = 686 } }
-            set_state_controller_to = SAF
+        ROOT = {
+            setup_uprising_country = yes
+            275 = { setup_uprising_state = yes }     # Transvaal
         }
-    }
-
-    SAF = { 
-        load_oob = "SAF_1912" 
-        add_ideas = { limited_conscription limited_exports low_economic_mobilisation }
     }
 }
 
 serbian_independence = {
-    TUR = {
-        every_owned_state = {
-            limit = { is_core_of = SER }
-            set_state_owner_to = SER
-        }
+    SER = {
+        setup_uprising_troops = yes
+        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
 
-        every_controlled_state = {
-            limit = { or = { state = 107 state = 108 } }
-            set_state_controller_to = SER
+        ROOT = {
+            setup_uprising_country = yes
+            107 = { setup_uprising_state = yes }     # Serbia
         }
-    }
-
-    SER = { 
-        load_oob = "SER_1912" 
-        add_ideas = { limited_conscription limited_exports low_economic_mobilisation }
     }
 }
 
 syrian_independence = {
     every_state = {
-        limit = { or = { state = 553 state = 554 state = 677 } }
+        limit = { or = { state = 350 state = 411 state = 553 state = 554 } }
         add_core_of = SYR
     }
 
-    TUR = {
-        every_owned_state = {
-            limit = { is_core_of = SYR }
-            set_state_owner_to = SYR
-        }
+    SYR = {
+        setup_uprising_troops = yes
+        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
 
-        every_controlled_state = {
-            limit = { or = { state = 554 state = 677 } }
-            set_state_controller_to = SYR
+        ROOT = {
+            setup_uprising_country = yes
+            554 = { setup_uprising_state = yes }     # Damashek
         }
-    }
-
-    SYR = { 
-        load_oob = "SYR_1912" 
-        add_ideas = { limited_conscription limited_exports low_economic_mobilisation }
     }
 }
 
 ukrainian_independence = {
-    every_country_with_original_tag = {
-        original_tag_to_check = SOV
+    UKR = {
+        setup_uprising_troops = yes
+        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
 
-        every_owned_state = {
-            limit = { is_core_of = UKR }
-            set_state_owner_to = UKR
+        ROOT = {
+            setup_uprising_country = yes
+            192 = { setup_uprising_state = yes }     # Odessa
         }
+    }
+}
 
-        every_controlled_state = {
-            limit = { or = { state = 137 state = 192 state = 196 state = 197 state = 200 state = 226 } }
-            set_state_controller_to = UKR
+### UPRISING TROOPS SETUP HELPERS ###
+
+setup_uprising_country = {
+    every_controlled_state = {
+        limit = { is_core_of = PREV.PREV impassable = no }
+        set_state_owner_to = PREV.PREV
+
+        random = {
+            chance = 50
+            setup_uprising_state = yes
+        }
+    }
+}
+
+setup_uprising_state = {
+    if = {
+        limit = { not = { is_controlled_by = PREV.PREV } }
+        transfer_state_to = PREV.PREV
+    }
+
+    create_unit = {
+        division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\" start_experience_factor = 0.2" count = 2
+        owner = PREV.PREV
+    }
+}
+
+setup_uprising_tribal_units = {
+    division_template = {
+        name = "Tribal Troops"
+        regiments = {
+            camelry = { x = 0 y = 0 }      camelry = { x = 1 y = 0 }
+            camelry = { x = 0 y = 1 }      camelry = { x = 1 y = 1 }
         }
     }
 
-    UKR = {
-        load_oob = "UKR_1912"
-        add_ideas = { limited_conscription closed_economy low_economic_mobilisation }
+    every_controlled_state = {
+        limit = { impassable = no }
+        random = {
+            chance = 50
+            create_unit = {
+                division = "name = \"Tribal Troops\" division_template = \"Tribal Troops\" start_experience_factor = 0.2" count = 1
+                owner = PREV
+            }
+        }
+    }
+}
+
+setup_uprising_troops = {
+    if = {
+        limit = { not = { has_template = "Uprising Troops" } }
+        division_template = {
+            name = "Uprising Troops"
+            regiments = {
+                infantry = { x = 0 y = 0 }      infantry = { x = 1 y = 0 }
+                infantry = { x = 0 y = 1 }      infantry = { x = 1 y = 1 }
+            }
+        }
     }
 }

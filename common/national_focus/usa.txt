@@ -884,9 +884,9 @@ focus_tree = {
         mutually_exclusive = { focus = USA_traditionalism }
         prerequisite = { focus = USA_political_ambitions }
         completion_reward = {
-            remove_ideas = idea_labor_unrest
             add_popularity = { ideology = communism popularity = 0.05 }
-
+            add_stability = -0.05
+            
             hidden_effect = { country_event = { id = usa_savannah.1 days = 42 random_days = 70 } }
         }
     }

@@ -33,7 +33,15 @@ USA_alternative_alliances = {
 
 USA_isolation = {
     allowed = { original_tag = USA }
-    enable = { has_idea = idea_isolationist_society }
+    enable = { 
+        or = { 
+            has_idea = idea_isolationist_society 
+            and = { 
+                not = { has_idea = idea_lusitania } 
+                date < 1916.7.1
+            }
+        }
+    }
     abort_when_not_enabled = yes
 
     reversed = yes

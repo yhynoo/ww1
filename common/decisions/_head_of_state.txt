@@ -85,12 +85,6 @@ dc_head_of_state_decisions = {
         ai_will_do = {
             base = 3
             modifier = { has_stability < 0.5 factor = 2 }
-
-            # for the USA:
-            modifier = { 
-                and = { has_country_flag = usa_wilsonian has_idea = idea_labor_unrest }
-                factor = 3
-            }
         }
 
         modifier = {
@@ -264,85 +258,6 @@ dc_head_of_state_decisions = {
 
         remove_effect = {
             FROM = { country_event = { id = _offer.1 hours = 6 random_hours = 6 } }
-        }
-    }
-    offer_armistice = {
-        visible = { 
-            or = { has_idea = idea_widespread_hunger has_capitulated = yes has_war_support < 0.1 }
-            has_civil_war = no
-
-            or = {
-                is_faction_leader = yes
-                not = { any_country = { has_war_together_with = ROOT } }
-            }
-        }
-
-        icon = generic_form_nation
-        days_re_enable = 90
-        cost = 150
-
-        ai_will_do = {
-            base = 6
-            modifier = { 
-                or = { 
-                    has_war_support < 0.2
-                    surrender_progress > 0.5
-                }
-                add = 6
-            }
-            modifier = { has_capitulated = yes add = 24 }
-        }
-
-        targets_dynamic = yes
-        target_trigger = { 
-            FROM = {
-                has_war_with = ROOT
-                or = { 
-                    is_faction_leader = yes 
-                    not = { any_country = { has_war_together_with = FROM } }
-                }
-            }
-        }
-
-        days_remove = 7
-
-        remove_effect = {
-            FROM = { country_event = { id = _offer_faction_leader.1 hours = 6 random_hours = 6 } }
-        }
-    }
-
-    # american crackdowns
-    dealing_with_labor_unrest = {
-        icon = oppression
-
-        activation = { 
-            has_idea = idea_labor_unrest
-            not = { has_completed_focus = USA_adjust_the_government } 
-        }
-        available = { 
-            hidden_trigger = { 
-                always = no 
-            }
-        }
-
-        cancel_trigger = {
-            communism < 0.05
-            has_completed_focus = USA_adjust_the_government
-        }
-
-        days_mission_timeout = 180
-        is_good = no
-
-        timeout_effect = {
-            hidden_effect = {
-                random_owned_controlled_state = {
-                    prioritize = { 261 358 359 360 382 383 393 395 }
-                    save_event_target_as = unrest_target_state
-                }
-            }
-
-            # main event
-            country_event = { id = usa_labor_unrest.1 hours = 6 }
         }
     }
 }

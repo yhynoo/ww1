@@ -24,8 +24,8 @@ country_event = {
     option = {
         name = "This war is lost."
         every_enemy_country = {
-            limit = { or = { is_faction_leader = yes is_in_faction = no } }
-            country_event = { id = _offer_faction_leader.1 hours = 6 random_days = 7 }
+            limit = { is_faction_leader = yes }                             # only enemy factions should get this. smaller wars may continue.
+            country_event = { id = _offer.1 hours = 6 random_days = 7 }
         }
         ai_chance = { 
             base = 2

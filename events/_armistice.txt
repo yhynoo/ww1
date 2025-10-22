@@ -14,22 +14,16 @@ country_event = {
             limit = { 
                 or = { is_faction_leader = yes is_in_faction = no } 
             }
-            if = {
-                limit = { ROOT = { is_faction_leader = yes } }
-                country_event = { id = _offer_faction_leader.1 hours = 6 random_days = 7 }
-            }
-            else = { 
-                country_event = { id = _offer.1 hours = 6 random_days = 7 } 
-            }
+            country_event = { id = _offer.1 hours = 6 random_days = 7 } 
         }
 
         ai_chance = { 
-            base = 1
+            base = 2
+            modifier = { has_war_support > 0.5 factor = 0.5 }
+
+            # French surrender
             modifier = { 
-                OR = { 
-                    has_government = monarchism has_government = authoritarianism
-                    has_war_support > 0.5
-                }
+                and = { original_tag = FRA not = { controls_state = 16 } }
                 factor = 0
             }
         }
@@ -37,7 +31,7 @@ country_event = {
 
     option = {
         name = "We shall continue fighting."
-        add_political_power = -50
+        add_political_power = -75
 
         ai_chance = { 
             base = 2
@@ -69,13 +63,7 @@ country_event = {
             limit = { 
                 or = { is_faction_leader = yes is_in_faction = no } 
             }
-            if = {
-                limit = { ROOT = { is_faction_leader = yes } }
-                country_event = { id = _offer_faction_leader.1 hours = 6 random_days = 7 }
-            }
-            else = { 
-                country_event = { id = _offer.1 hours = 6 random_days = 7 } 
-            }
+            country_event = { id = _offer.1 hours = 6 random_days = 7 }
         }
 
         ai_chance = { base = 2 }

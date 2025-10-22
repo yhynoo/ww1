@@ -11,19 +11,20 @@ ideas = {
             modifier = {
                 political_power_factor = -0.15
                 stability_factor = -0.05
-                war_support_factor = -0.5
             }
             rule = {
-                can_create_factions = no
+                can_create_faction = no
                 can_join_factions = no
             }
             on_add = {
                 set_country_flag = loser_of_the_great_war
+                add_war_support = -0.5
 
                 # demobilization events
                 country_event = { id = _the_great_war.5 days = 7 random_days = 14 }
                 country_event = { id = _the_great_war.6 days = 7 random_days = 14 }
             }
+            allowed_civil_war = { always = yes }
         }
     }
 }

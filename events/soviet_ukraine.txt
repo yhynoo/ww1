@@ -29,7 +29,10 @@ news_event = {
     desc = soviet_ukraine.2.d 
 
     is_triggered_only = yes
-    trigger = { has_stability < 0.5 }
+    trigger = { 
+        has_stability < 0.5 
+        not = { has_idea = idea_limited_autonomy }
+    }
 
     option = {
         name = "To arms!"
