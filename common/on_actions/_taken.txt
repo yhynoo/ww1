@@ -11,53 +11,88 @@ on_actions = {
 
             # france
             if = {
-                limit = { FROM.FROM = { state = 16 } }
+                limit = { 
+                    FROM.FROM = { state = 16 } 
+                    has_war_with = FROM
+                }
+
                 news_event = { id = _taken.1 hours = 6 }
+                16 = { set_variable = { fired = 1 } }
             }
 
             if = {
-                limit = { FROM.FROM = { state = 18 } }
+                limit = { 
+                    FROM.FROM = { state = 18 } 
+                    has_war_with = FROM
+                }
+
                 news_event = { id = _taken.2 hours = 6 }
+                18 = { set_variable = { fired = 1 } }
             }
 
             # austria
             if = {
-                limit = { FROM.FROM = { state = 33 } }
+                limit = { 
+                    FROM.FROM = { state = 33 } 
+                    has_war_with = FROM
+                }
+
                 news_event = { id = _taken.3 hours = 6 }
+                33 = { set_variable = { fired = 1 } }
             }
 
             if = {
-                limit = { FROM.FROM = { state = 89 } }
+                limit = { 
+                    FROM.FROM = { state = 89 } 
+                    has_war_with = FROM
+                }
+
                 news_event = { id = _taken.4 hours = 6 }
+                89 = { set_variable = { fired = 1 } }
+            }
+
+            # germany
+            if = {
+                limit = { 
+                    tag = FRA
+                    has_war_with = FROM
+                    FROM.FROM = { state = 28 } 
+                }
+                news_event = { id = _taken.5 hours = 6 }
+                28 = { set_variable = { fired = 1 } }
             }
 
             # ottomans
             if = {
                 limit = { 
-                    not = { tag = GRE }
-                    FROM.FROM = { state = 47 } 
+                    has_war_with = FROM
+                    FROM.FROM = { state = 454 } 
                 }
-                news_event = { id = _taken.5 hours = 6 }
-            }
 
-            if = {
-                limit = { FROM.FROM = { state = 454 } }
                 news_event = { id = _taken.6 hours = 6 }
+                454 = { set_variable = { fired = 1 } }
             }
 
             # russia
             if = {
                 limit = { 
                     not = { tag = POL }
+                    has_war_with = FROM
                     FROM.FROM = { state = 10 } 
                 }
                 news_event = { id = _taken.7 hours = 6 }
+                10 = { set_variable = { fired = 1 } }
             }
 
             # england
             if = {
-                limit = { FROM.FROM = { state = 126 } }
+                limit = {
+                    has_war_with = FROM 
+                    FROM.FROM = { state = 126 } 
+                }
+
                 news_event = { id = _taken.8 hours = 6 }
+                126 = { set_variable = { fired = 1 } }
             }
         }
     }

@@ -1,0 +1,21 @@
+add_namespace = germany_liebknecht
+
+news_event = {
+    id = germany_liebknecht.1
+    title = "Liebknecht Dead!"
+    desc = germany_liebknecht.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Disturbing."
+
+        if = {
+            limit = { tag = GER }
+
+            add_political_power = -25
+            retire_character = GER_karl_liebknecht
+        }
+    }
+}

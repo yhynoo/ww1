@@ -1,71 +1,48 @@
 peace_ai_desires = {
 
     # TAKING STATES
-
-    take_states = {
+    take_cores = {
         peace_action_type = { take_states }
-
         enable = {
-            ROOT = { ROOT.FROM }
+            FROM.FROM.FROM = { is_core_of = ROOT }         # for now, just grab cores and neighboring states.
+        }
+        ai_desire = 200
+    }
 
-            if = {
-                limit = { ROOT.FROM = { has_government = democratic } }
-                not = { ROOT.FROM.FROM.FROM = { is_core_of = ROOT.FROM } }          # democracies only take cores.
-            }
-
-            if = {
-                limit = { ROOT.FROM = { has_government = monarchism } }
-                not = {
-                    ROOT.FROM.FROM.FROM = { is_core_of = ROOT.FROM }                # monarchists take cores
-                    ROOT.FROM.FROM.FROM = { is_claimed_by = ROOT.FROM }             # and also claims
-                }          
-            }
-
-            if = {
-                limit = { ROOT.FROM = { has_government = communism } }
-                not = {
-                    ROOT.FROM.FROM.FROM = { is_core_of = ROOT.FROM }                # communists take cores
-                    ROOT.FROM.FROM.FROM = { is_claimed_by = ROOT.FROM }             # and also claims
-                    ROOT.FROM.FROM.FROM = { is_controlled_by = ROOT.FROM }          # and also whatever they control.
-                }          
+    take_around = {
+        peace_action_type = { take_states }
+        enable = {
+            or = {
+                and = {
+                    is_coastal = yes
+                    not = { is_on_continent = europe }
+                }
+                any_neighboring_state = {
+                    or = {
+                        is_owned_by = ROOT
+                        is_claimed_by = ROOT
+                        pc_is_state_claimed_and_taken_by = ROOT
+                    }
+                }
             }
         }
-
-        ai_desire = -600
+        ai_desire = 80
     }
 
-    # PUPPET
-    dont_puppet_large_countries = {
-        peace_action_type = { puppet force_government }
+    take_farther = {
+        peace_action_type = { take_states }
         enable = {
-            ROOT.FROM.FROM = { check_variable = { num_owned_states > 6 } }
+            any_neighboring_state = {
+                pc_is_state_claimed_and_taken_by = ROOT
+            }
         }
-        ai_desire = -600
+        ai_desire = 20
     }
 
-    continuous_puppet = {
-        peace_action_type = { puppet }
-        enable = {
-            ROOT.FROM = { pc_is_puppeted_by = ROOT }
-        }
-        ai_desire = 600
-    }
-
-    # LIBERATING
-    liberating_is_broken = {
-        peace_action_type = { liberate }
-        enable = { 
-            always = yes
-        }
-        ai_desire = -600
-    }
-
-    # GOVERNMENT
-    government_change_is_broken_too = {
-        peace_action_type = { force_government }
-        enable = {
-            always = yes
-        }
-        ai_desire = -600
+    # OTHER
+    dont_do_other_things = {
+        peace_action_type = { puppet liberate force_government }
+        enable = { always = yes }
+        ai_desire = -1000
     }
 }

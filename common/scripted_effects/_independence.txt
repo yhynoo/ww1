@@ -262,7 +262,7 @@ yunnan_independence = {
 
 setup_uprising_country = {
     every_controlled_state = {
-        limit = { is_core_of = PREV.PREV impassable = no }
+        limit = { is_core_of = PREV.PREV }
         set_state_owner_to = PREV.PREV
 
         random = {
@@ -274,7 +274,10 @@ setup_uprising_country = {
 
 setup_uprising_state = {
     if = {
-        limit = { not = { is_controlled_by = PREV.PREV } }
+        limit = { 
+            not = { is_controlled_by = PREV.PREV } 
+            impassable = no 
+        }
         transfer_state_to = PREV.PREV
     }
 

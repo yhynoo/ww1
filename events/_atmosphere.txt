@@ -67,7 +67,7 @@ news_event = {
     desc = _taken.1.d
 
     is_triggered_only = yes
-    fire_only_once = yes
+    trigger = { not = { check_variable = { fired = 1 } } }
     major = yes
 
     option = {
@@ -88,7 +88,7 @@ news_event = {
     desc = _taken.2.d
 
     is_triggered_only = yes
-    fire_only_once = yes
+    trigger = { not = { check_variable = { fired = 1 } } }
     major = yes
 
     option = {
@@ -108,7 +108,7 @@ news_event = {
     desc = _taken.3.d
 
     is_triggered_only = yes
-    fire_only_once = yes
+    trigger = { not = { check_variable = { fired = 1 } } }
     major = yes
 
     option = {
@@ -126,7 +126,7 @@ news_event = {
     desc = _taken.4.d
 
     is_triggered_only = yes
-    fire_only_once = yes
+    trigger = { not = { check_variable = { fired = 1 } } }
     major = yes
 
     option = {
@@ -138,33 +138,33 @@ news_event = {
     }
 }
 
-# TAKEN - OTTOMANS
-
+# TAKEN - GERMANY
 news_event = {
     id = _taken.5
-    title = "Europa at Her Cradle"
+    title = "Strasbourg Taken!"
     desc = _taken.5.d
 
     is_triggered_only = yes
-    fire_only_once = yes
+    trigger = { not = { check_variable = { fired = 1 } } }
     major = yes
 
     option = {
-        name = "This has little to do with ancient glory."
+        name = "Alsace-Lorraine is French again."
         if = {
-            limit = { owns_state = 47 }
-            add_war_support = -0.025
+            limit = { owns_state = 28 }
+            add_war_support = -0.05
         }
     }
 }
 
+# TAKEN - OTTOMANS
 news_event = {
     id = _taken.6
     title = "The Near East under [ROOT.GetName]?"
     desc = _taken.6.d
 
     is_triggered_only = yes
-    fire_only_once = yes
+    trigger = { not = { check_variable = { fired = 1 } } }
     major = yes
 
     option = {
@@ -184,7 +184,7 @@ news_event = {
     desc = _taken.7.d
 
     is_triggered_only = yes
-    fire_only_once = yes
+    trigger = { not = { check_variable = { fired = 1 } } }
     major = yes
 
     option = {
@@ -204,7 +204,7 @@ news_event = {
     desc = _taken.8.d
 
     is_triggered_only = yes
-    fire_only_once = yes
+    trigger = { not = { check_variable = { fired = 1 } } }
     major = yes
 
     option = {
