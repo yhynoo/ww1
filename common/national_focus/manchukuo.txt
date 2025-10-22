@@ -644,7 +644,7 @@
         ai_will_do = { base = 2 }
 
         completion_reward = {
-            remove_ideas = idea_uneasy_agreement
+            add_political_power = 50
             country_event = { id = manchukuo_transition.1 hours = 3 }
         }
     }
@@ -748,15 +748,26 @@
         cost = 10
 
         prerequisite = { focus = MAN_expansionism }
-        available = { is_subject = no }
+        available = { 
+            is_subject = no
+            has_idea = idea_unequal_treaties 
+        }
 
         ai_will_do = { 
             base = 0
-            modifier = { has_completed_focus = MAN_adjust_the_government add = 2 }
+            modifier = { is_in_faction = yes add = 2 }
         }
 
         completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
+            remove_ideas = idea_unequal_treaties
+
+            every_country = {
+                limit = { 
+                    or = { tag = ENG tag = FRA tag = GER } 
+                    not = { is_ally_with = MAN }
+                }
+                news_event = { id = manchukuo_treaties.1 hours = 6 random_hours = 6 }
+            }
         }
     }
 
@@ -879,8 +890,6 @@
         completion_reward = {
             add_popularity = { ideology = monarchism popularity = 0.05 }
             add_timed_idea = { idea = idea_monarchism_tendencies years = 1 }
-            
-            hidden_effect = { news_event = { id = manchukuo_textile.1 days = 60 random_days = 30 } }
         }
     }
     focus = {
@@ -906,10 +915,16 @@
         y = 1
         cost = 10
 
+        available = {
+            not = { has_idea = idea_warlordism }
+        }
+
         prerequisite = { focus = MAN_adjust_the_government }
         completion_reward = {
+            add_stability = 0.05
             add_war_support = 0.1
-            custom_effect_tooltip = decision_effect_tooltip
+
+            add_timed_idea = { idea = idea_appease_warlords years = 2 }
         }
     }
     focus = {

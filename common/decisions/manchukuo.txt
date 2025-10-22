@@ -1,48 +1,3 @@
-entente_integration = {
-    expel_germans = {
-        icon = generic_prepare_civil_war
-        fire_only_once = yes
-        cost = 100
-
-        available = {
-            can_declare_war_on = GER
-            431 = { is_owned_and_controlled_by = GER }
-        }
-
-        ai_will_do = {
-            base = 3
-            modifier = { 
-                and = { has_government = democratic GER = { has_war = yes } }
-                add = 6
-            }
-        }
-
-        complete_effect = {
-            GER = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
-        }
-    }
-    labor_troops = {
-        icon = generic_industry
-        fire_only_once = yes
-        cost = 100
-
-        available = { is_in_faction = yes }
-        ai_will_do = { base = 9 }
-
-        complete_effect = {
-            if = {
-                limit = { is_in_faction = no }
-                custom_effect_tooltip = "This decision benefits our allies. We must have allies first."
-            }
-
-            every_country = {
-                limit = { is_ally_with = MAN }
-                news_event = { id = manchukuo_labor.1 hours = 6 random_hours = 6 }
-            }
-        }
-    }
-}
-
 eight_banners = {
     align_mongolia = {
         icon = generic_civil_support
@@ -61,32 +16,6 @@ eight_banners = {
 
         complete_effect = {
             MON = { country_event = { id = _align.1 hours = 6 random_hours = 6 } }
-        }
-    }
-    cancel_unequal_treaties = {
-        icon = generic_industry
-        fire_only_once = yes
-        cost = 100
-
-        available = {
-            has_idea = idea_unequal_treaties
-        }
-
-        ai_will_do = {
-            base = 6
-            modifier = { is_in_faction = yes add = 3 }
-        }
-
-        complete_effect = {
-            remove_ideas = idea_unequal_treaties
-
-            every_country = {
-                limit = { 
-                    or = { tag = ENG tag = FRA tag = GER } 
-                    not = { is_ally_with = MAN }
-                }
-                news_event = { id = manchukuo_treaties.1 hours = 6 random_hours = 6 }
-            }
         }
     }
     demand_dalian = {
@@ -110,11 +39,8 @@ eight_banners = {
             72 = { controller = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } } }
         }
     }
-}
-
-appease_the_warlords = {
     develop_shanghai = {
-        icon = generic_construction
+        icon = generic_naval
         cost = 50
         fire_only_once = yes
 
@@ -129,18 +55,6 @@ appease_the_warlords = {
                 add_building_construction = { type = naval_base level = 2 province = 7014 instant_build = yes }
                 add_building_construction = { type = dockyard level = 2 instant_build = yes }
             }
-        }
-    }
-    expel_foreigners = {
-        icon = generic_civil_support
-        cost = 50
-        days_remove = 90
-
-        ai_will_do = { base = 6 }
-
-        modifier = {
-            monarchism_drift = 0.1
-            research_speed_factor = -0.1
         }
     }
 }

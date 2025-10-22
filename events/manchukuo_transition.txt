@@ -9,9 +9,7 @@ country_event = {
 
     option = {
         name = "Honor the agreement."
-
         promote_character = MAN_yuan_shikai
-        remove_ideas = idea_uneasy_agreement
 
         ai_chance = { base = 2 }
         hidden_effect = {
@@ -20,37 +18,22 @@ country_event = {
         }
     }
     option = {
-        name = "Maintain the Tongmenghui authority."
+        name = "Maintain Sun’s authority."
         add_popularity = { ideology = democratic popularity = -0.05 }
 
         ai_chance = { base = 1 }
     }
 }
 
-country_event = {
+news_event = {
     id = manchukuo_transition.2
-    title = "Assassination of Song Jiaoren"
+    title = "Assassination of Song; Autocracy in China?"
     desc = manchukuo_transition.2.d
 
     is_triggered_only = yes
 
     option = {
-        name = "Condemn the act."
-        add_popularity = { ideology = democratic popularity = 0.05 }
-
-        ai_chance = { base = 0 }
-    }
-    option = {
-        name = "He was a dangerous idealist, after all."
-        add_political_power = 50
-
-        hidden_effect = {
-            JAP = { 
-                news_event = { id = japan_sun.1 days = 14 }
-                country_event = { id = japan_sun.2 days = 21 } 
-            }
-        }
-
-        ai_chance = { base = 1 }
+        name = "What a tragedy..."
+        set_politics = { ruling_party = ROOT elections_allowed = no }
     }
 }

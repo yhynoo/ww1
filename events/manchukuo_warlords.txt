@@ -1,0 +1,101 @@
+add_namespace = manchukuo_warlords
+
+news_event = {
+    id = manchukuo_warlords.1
+    title = "The Anhui Clique Declares Independence!"
+    desc = manchukuo_warlords.1.d
+
+    trigger = {
+        and = {
+            date > 1917.7.1
+            not = { has_country_leader = { character = MAN_duan_qirui ruling_only = yes } }
+        }
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "To arms!"
+
+        hidden_effect = { 
+            anhui_independence = yes 
+            retire_character = MAN_duan_qirui
+        }
+
+        declare_war_on = { target = ANH type = annex_everything }
+    }
+}
+
+news_event = {
+    id = manchukuo_warlords.2
+    title = "Local Warlords To Take Up Arms?"
+    desc = manchukuo_warlords.2.d
+
+    trigger = {
+        not = { has_completed_focus = MAN_open_the_economy }
+        and = {
+            date > 1913.1.1
+            not = { has_country_leader = { character = MAN_yuan_shikai ruling_only = yes } }
+            has_stability < 0.5
+        }
+    }
+    mean_time_to_happen = { months = 6 }
+    fire_only_once = yes
+
+    option = {
+        name = "Difficult times are ahead of us."
+        
+        custom_effect_tooltip = tt_warlordism
+        add_timed_idea = { idea = idea_warlordism years = 2 }
+    }
+}
+
+news_event = {
+    id = manchukuo_warlords.21
+    hidden = yes
+
+    trigger = {
+        tag = MAN
+        MON = { exists = no }
+        has_idea = idea_warlordism
+    }
+    mean_time_to_happen = { months = 2 }
+
+    immediate = {
+        mongolian_independence = yes
+        declare_war_on = { target = MON type = annex_everything }
+    }
+}
+
+news_event = {
+    id = manchukuo_warlords.22
+    hidden = yes
+
+    trigger = {
+        tag = MAN
+        SIN = { exists = no }
+        has_idea = idea_warlordism
+    }
+    mean_time_to_happen = { months = 3 }
+
+    immediate = {
+        sinkiang_independence = yes
+        declare_war_on = { target = SIK type = annex_everything }
+    }
+}
+
+news_event = {
+    id = manchukuo_warlords.23
+    hidden = yes
+
+    trigger = {
+        tag = MAN
+        YUN = { exists = no }
+        has_idea = idea_warlordism
+    }
+    mean_time_to_happen = { months = 3 }
+
+    immediate = {
+        yunnan_independence = yes
+        declare_war_on = { target = YUN type = annex_everything }
+    }
+}

@@ -15,7 +15,6 @@ area_of_security = {
         ai_will_do = {
             base = 0
             modifier = { GER = { has_war = yes } add = 9 }
-            modifier = { has_completed_focus = JAP_adjust_the_government factor = 2 }
         }
 
         complete_effect = {
@@ -23,8 +22,36 @@ area_of_security = {
                 limit = { or = { state = 431 state = 633 state = 647 state = 684 } }
                 add_claim_by = JAP
             }
+            GER = { country_event = { id = _demand.1 hours = 6 } }
+        }
+    }
+    demand_manchuria = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
 
-            GER = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
+        available = {
+            any_state = {
+                or = { state = 431 state = 633 state = 647 state = 684 }
+                not = { is_owned_by = ROOT }
+            }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { has_completed_focus = JAP_mobilize_the_masses add = 6 }
+        }
+
+        complete_effect = {
+            every_state = {
+                limit = { or = { state = 296 state = 328 state = 619 } }
+                add_claim_by = JAP
+            }
+
+            every_country = {
+                limit = { or = { controls_state = 296 controls_state = 328 controls_state = 619 } }
+                country_event = { id = _demand.1 hours = 6 }
+            }
         }
     }
     develop_okinawa = {
@@ -46,138 +73,5 @@ area_of_security = {
                 add_building_construction = { type = naval_base level = 1 province = 13026 instant_build = yes }
             }
         }
-    }
-}
-
-dominate_the_pacific = {
-    demand_singapore = {
-        icon = generic_prepare_civil_war
-        fire_only_once = yes
-        cost = 100
-
-        available = {
-            any_state = {
-                or = { state = 333 state = 336 }
-                owner = {
-                    not = { tag = JAP }
-                    not = { has_war_with = JAP }
-                }
-            }
-        }
-
-        ai_will_do = { 
-            base = 0
-            modifier = { 
-                is_ally_with = GER 
-                add = 9 
-            }
-        }
-
-        complete_effect = {
-            every_country = {
-                limit = { or = { owns_state = 333 owns_state = 336 } }
-                country_event = { id = _demand.1 hours = 6 random_hours = 6 }
-            }
-        }
-    }
-    demand_american_islands = {
-        icon = generic_prepare_civil_war
-        fire_only_once = yes
-        cost = 100
-
-        available = {
-            any_state = {
-                or = { state = 629 state = 631 state = 632 }
-                is_owned_and_controlled_by = USA
-            }
-        }
-
-        ai_will_do = { 
-            base = 9
-            modifier = { is_ally_with = ENG factor = 0 }
-        }
-
-        complete_effect = {
-            USA = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
-        }
-    }
-    american_neutrality = {
-        icon = generic_form_nation
-        fire_only_once = yes
-        cost = 75
-
-        available = {
-            AST = { is_in_faction = no not = { has_war_with = JAP } }
-            USA = { is_in_faction = no not = { has_war_with = JAP } }
-        }
-
-        ai_will_do = {
-            base = 6
-            modifier = {
-                or = { USA = { is_faction_leader = yes } ENG = { has_government = communism } }
-                add = 6
-            }
-        }
-
-        complete_effect = {
-            add_war_support = 0.05
-            every_country = {
-                limit = { or = { tag = AST tag = USA } }
-            }
-            country_event = { id = japan_pacific_agreement.1 hours = 6 random_hours = 6 }
-        }
-    }
-}
-
-twenty_one_demands = {
-    send_the_demands = {
-        icon = generic_civil_support
-        cost = 150
-        fire_only_once = yes
-
-        available = {
-            can_declare_war_on = MAN
-            any_state = {
-                or = { 
-                    state = 72 state = 296 state = 619 state = 328
-                    state = 592 state = 593 state = 594
-                }
-                is_owned_and_controlled_by = MAN
-            }
-        }
-
-        ai_will_do = {
-            base = 0
-            modifier = { 
-                or = { 
-                    has_government = monarchism 
-                    strength_ratio = { tag = MAN ratio > 1 } 
-                }
-                add = 9
-            }
-        }
-
-        complete_effect = {
-            MAN = { country_event = { id = japan_demands.1 hours = 6 random_hours = 6 } }
-        }
-    }
-    introduce_advisors = {
-        icon = generic_form_nation
-        cost = 150
-        fire_only_once = yes
-
-        available = {
-            can_declare_war_on = MAN
-            MAN = { is_subject = no }
-        }
-
-        ai_will_do = {
-            base = 0
-            modifier = { strength_ratio = { tag = MAN ratio > 2 } add = 12 }
-        }
-
-        complete_effect = {
-            MAN = { news_event = { id = _align.1 hours = 6 random_hours = 6 } }
-        }        
     }
 }

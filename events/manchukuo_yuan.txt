@@ -1,43 +1,36 @@
 add_namespace = manchukuo_yuan
 
-news_event = {
+country_event = {
     id = manchukuo_yuan.1
-    title = "Yuan Shikai Dies"
+    title = "Yuan Dies; Duan Takes Over"
     desc = manchukuo_yuan.1.d
 
     trigger = {
         tag = MAN
         date > 1916.6.1
+        has_country_leader = { character = MAN_yuan_shikai ruling_only = yes }
     }
     fire_only_once = yes
 
-    option = {
-        name = "This is a sad day."
-
-        if = {
-            limit = { has_country_leader = { character = MAN_yuan_shikai ruling_only = yes } }
-            promote_character = MAN_tang_shaoyi
-
-            hidden_effect = { 
-                news_event = { id = manchukuo_yuan.2 days = 60 } 
-                news_event = { id = japan_sun.3 days = 14 random_days = 14 }
-            }
+    immediate = {
+        hidden_effect = { 
+            retire_character = MAN_yuan_shikai 
+            promote_character = MAN_duan_qirui
         }
-
-        hidden_effect = { retire_character = MAN_yuan_shikai }
     }
-}
-
-news_event = {
-    id = manchukuo_yuan.2
-    title = "Warlords in the Countryside"
-    desc = manchukuo_yuan.2.d
-
-    is_triggered_only = yes
-    trigger = { has_stability < 0.6 }
 
     option = {
-        name = "That's unfortunate."
-        add_ideas = idea_warlordism
+        name = "Qirui’s dictatorship."
+        add_stability = 0.05
+
+        ai_chance = { base = 1 }
+    }
+    option = {
+        name = Elections!"
+
+        set_politics = { ruling_party = democratic elections_allowed = yes }
+        add_popularity = { ideology = democratic popularity = 0.05 }
+
+        ai_chance = { base = 0 }
     }
 }

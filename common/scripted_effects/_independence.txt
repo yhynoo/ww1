@@ -20,6 +20,26 @@ arab_independence = {
     }
 }
 
+anhui_independence = {
+    every_state = {
+        limit = { or = { state = 606 state = 596 state = 613 state = 598 state = 597 state = 607 } }
+        add_core_of = ANH
+    }
+
+    ANH = {
+        setup_uprising_troops = yes
+        add_ideas = { limited_conscription closed_economy partial_economic_mobilisation }
+
+        ROOT = {
+            setup_uprising_country = yes
+            606 = { setup_uprising_state = yes }     # Anhui
+        }
+    }
+
+    # shrink the army.
+    every_country_division = { random = { chance = 30 destroy_unit = yes } }
+}
+
 armenian_independence = {
     ARM = {
         setup_uprising_troops = yes
@@ -112,6 +132,9 @@ mongolian_independence = {
             setup_uprising_country = yes
             330 = { setup_uprising_state = yes }     # Mongolia
         }
+
+        # shrink the army.
+        every_country_division = { random = { chance = 5 destroy_unit = yes } }
     }
 }
 
@@ -166,6 +189,26 @@ serbian_independence = {
     }
 }
 
+sinkiang_independence = {
+    every_state = {
+        limit = { or = { state = 618 state = 617 state = 287 } }
+        add_core_of = SIK
+    }
+
+    SIK = {
+        setup_uprising_troops = yes
+        add_ideas = { extensive_conscription closed_economy partial_economic_mobilisation }
+
+        ROOT = {
+            setup_uprising_country = yes
+            617 = { setup_uprising_state = yes }     # Urumqi
+        }
+    }
+
+    # shrink the army.
+    every_country_division = { random = { chance = 10 destroy_unit = yes } }
+}
+
 syrian_independence = {
     every_state = {
         limit = { or = { state = 350 state = 411 state = 553 state = 554 } }
@@ -193,6 +236,26 @@ ukrainian_independence = {
             192 = { setup_uprising_state = yes }     # Odessa
         }
     }
+}
+
+yunnan_independence = {
+    every_state = {
+        limit = { or = { state = 325 state = 603 state = 599 state = 592 state = 594 state = 591 state = 593 } }
+        add_core_of = YUN
+    }
+
+    YUN = {
+        setup_uprising_troops = yes
+        add_ideas = { limited_conscription closed_economy partial_economic_mobilisation }
+
+        ROOT = {
+            setup_uprising_country = yes
+            325 = { setup_uprising_state = yes }     # Yunnan
+        }
+    }
+
+    # shrink the army.
+    every_country_division = { random = { chance = 20 destroy_unit = yes } }
 }
 
 ### UPRISING TROOPS SETUP HELPERS ###
