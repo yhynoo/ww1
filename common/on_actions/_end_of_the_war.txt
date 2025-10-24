@@ -2,15 +2,36 @@ on_actions = {
     on_peaceconference_ended = {
         effect = {
 
-            # losers get the loser trait
+            # losers first
             FROM = {
                 if = {
                     limit = { has_country_flag = side_of_the_great_war }
-
-                    add_timed_idea = { idea = idea_loser_of_the_great_war years = 2 }
                     clr_country_flag = side_of_the_great_war
+
+                    # Allies victory event
+                    if = { 
+                        limit = { original_tag = GER }
+                        news_event = { id = _the_great_war.4 hours = 6 }
+                    }
+
+                    # -- political shifts
+                    add_popularity = { ideology = ROOT popularity = -0.25 }
+                    add_war_support = -0.25
                 }
-   
+            }
+
+            # winners get the victor trait
+            if = {
+                limit = { has_country_flag = side_of_the_great_war }
+
+                # German victory event
+                if = { 
+                    limit = { original_tag = GER }
+                    news_event = { id = _the_great_war.3 hours = 6 }
+                }
+
+                add_timed_idea = { idea = idea_victor_of_the_great_war years = 2 }
+                clr_country_flag = side_of_the_great_war
             }
         }
     }

@@ -5,7 +5,11 @@ country_event = {
     title = "The Transition Agreement"
     desc = manchukuo_transition.1.d
 
-    is_triggered_only = yes
+    trigger = {
+        tag = MAN
+        date > 1912.4.1
+    }
+    fire_only_once = yes
 
     option = {
         name = "Honor the agreement."
@@ -19,7 +23,7 @@ country_event = {
     }
     option = {
         name = "Maintain Sun’s authority."
-        add_popularity = { ideology = democratic popularity = -0.05 }
+        add_timed_idea = { idea = idea_aborted_transition years = 2 }
 
         ai_chance = { base = 1 }
     }

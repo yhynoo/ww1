@@ -32,24 +32,7 @@ country_event = {
 
         ai_chance = { 
             base = 0
-            modifier = { has_country_flag = manchukuo_warlord add = 1 }
-        }
-    }
-    option = {
-        name = "Hu Hanmin."
-        trigger = { 
-            or = {
-                not = { has_country_leader = { character = MAN_sun_yat_sen } }
-                has_idea = idea_sun_in_exile
-            }
-        }
-        
-        add_popularity = { ideology = democratic popularity = 0.025 }
-        promote_character = MAN_hu_hanmin
-
-        ai_chance = { 
-            base = 0
-            modifier = { has_country_flag = manchukuo_warlord add = 1 }
+            modifier = { has_idea = idea_aborted_transition add = 1 }
         }
     }
     option = {
@@ -64,8 +47,8 @@ country_event = {
         }
 
         ai_chance = { 
-            base = 0
-            modifier = { has_country_flag = manchukuo_democratic add = 1 }
+            base = 1
+            modifier = { has_idea = idea_aborted_transition factor = 0 }
         }
     }
 }
@@ -103,27 +86,7 @@ country_event = {
         ai_chance = { base = 2 }
     }
     option = {
-        name = "Hu Hanmin."
-        trigger = { 
-            or = {
-                not = { has_country_leader = { character = MAN_sun_yat_sen } }
-                has_idea = idea_sun_in_exile
-            }
-        }
-        
-        if = {
-            limit = { has_country_leader = { character = MAN_hu_hanmin ruling_only = yes } }
-            add_stability = 0.05
-        }
-        else = {
-            add_popularity = { ideology = democratic popularity = 0.025 }
-            promote_character = MAN_hu_hanmin
-        }
-
-        ai_chance = { base = 2 }
-    }
-    option = {
-        name = "Tang Shaoyi."
+        name = "Duan Qirui."
         
         if = {
             limit = { has_country_leader = { character = MAN_duan_qirui ruling_only = yes } }
@@ -161,7 +124,7 @@ country_event = {
         ai_chance = { base = 2 }
     }
     option = {
-        name = "Tang Shaoyi."
+        name = "Duan Qurui."
         
         if = {
             limit = { has_country_leader = { character = MAN_duan_qirui ruling_only = yes } }

@@ -217,18 +217,20 @@ dc_head_of_state_decisions = {
     # armistice decisions
     withdraw_from_war = {
         visible = { 
-            or = { has_idea = idea_widespread_hunger has_capitulated = yes has_war_support < 0.1 }
-            has_civil_war = no
-            
-            and = {
-                is_faction_leader = no
-                any_country = { has_war_together_with = ROOT }
+            or = { 
+                has_idea = idea_widespread_hunger 
+                has_idea = idea_army_mutinies
+                or = {
+                    has_capitulated = yes 
+                    surrender_progress > 0.25
+                }
             }
+            has_civil_war = no
         }
 
         icon = generic_form_nation
         days_re_enable = 90
-        cost = 150
+        cost = 100
 
         available = { has_capitulated = no }
 
@@ -236,10 +238,10 @@ dc_head_of_state_decisions = {
             base = 6
             modifier = { 
                 or = { 
-                    has_war_support < 0.2
-                    surrender_progress > 0.5
+                    has_war_support < 0.2 surrender_progress > 0.5 
+                    has_idea = idea_all_adults_serve has_idea = scraping_the_barrel 
                 }
-                add = 12
+                factor = 3
             }
         }
 

@@ -7,10 +7,13 @@ country_event = {
 
     trigger = {
         tag = AUS
+        any_owned_controlled_state = { is_core_of = HUN }
+
         or = {
             has_idea = idea_shame_of_lemberg
             and = { has_stability < 0.5 surrender_progress > 0.25 }
         }
+        
         not = { has_completed_focus = AUS_embrace_modernity }
     }
     fire_only_once = yes

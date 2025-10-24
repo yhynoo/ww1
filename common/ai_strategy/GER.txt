@@ -16,6 +16,9 @@ GER_alliances = {
 	# aggressive wargoals
 	ai_strategy = { type = conquer		id = ENG		value = 20 }
 	ai_strategy = { type = conquer		id = FRA		value = 40 }
+
+	ai_strategy = { type = prepare_for_war		id = FRA		value = 60 }
+	ai_strategy = { type = front_unit_request	id = FRA		value = 200 }
 }
 
 # ARMY
@@ -49,11 +52,4 @@ GER_militarisation = {
 	# more military factories and infantry
 	ai_strategy = {	type = added_military_to_civilian_factory_ratio	value = 50 }
 	ai_strategy = {	type = role_ratio	id = infantry	value = 20 }
-}
-
-GER_schlieffen = {
-	allowed = { original_tag = GER }
-	enable = { always = yes }
-
-	ai_strategy = { type = front_unit_request	tag = FRA	value = 120 }
 }

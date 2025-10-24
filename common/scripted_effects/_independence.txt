@@ -32,12 +32,15 @@ anhui_independence = {
 
         ROOT = {
             setup_uprising_country = yes
-            606 = { setup_uprising_state = yes }     # Anhui
+            every_state = {
+                limit = { or = { state = 606 state = 613 } }     # Anhui and Shanghai
+                setup_uprising_state = yes
+            }
         }
     }
 
     # shrink the army.
-    every_country_division = { random = { chance = 30 destroy_unit = yes } }
+    every_country_division = { random = { chance = 40 destroy_unit = yes } }
 }
 
 armenian_independence = {
@@ -250,7 +253,10 @@ yunnan_independence = {
 
         ROOT = {
             setup_uprising_country = yes
-            325 = { setup_uprising_state = yes }     # Yunnan
+            every_state = {
+                limit = { or = { state = 325 state = 592 } }     # Yunnan and Guangdong
+                setup_uprising_state = yes
+            }
         }
     }
 

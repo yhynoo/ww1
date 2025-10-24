@@ -9,7 +9,7 @@ country_event = {
     trigger = { has_war = yes has_civil_war = no }
 
     option = {
-        name = "Let us end this war."
+        name = "This war is lost."
         every_enemy_country = {
             limit = { 
                 or = { is_faction_leader = yes is_in_faction = no } 
@@ -132,5 +132,46 @@ news_event = {
     option = {
         name = "Awful."
         add_timed_idea = { idea = idea_army_mutinies months = 3 }
+    }
+}
+
+## -- DEFEAT TRIGGERS -- ##
+add_namespace = _defeat
+
+news_event = {
+    id = _defeat.1
+    hidden = yes
+
+    trigger = {
+        or = {
+            # -- France --
+            and = {
+                tag = FRA
+                not = { controls_state = 16 }
+                or = { 
+                    surrender_progress > 0.5
+                    and = { 
+                        longest_war_length > 48
+                        not = { has_country_leader = FRA_georges_clemenceau ruling_only = yes }
+                    }
+                }
+            }
+            # -- Germany --
+            and = {
+                tag = GER
+                has_offensive_war = yes
+                or = {
+                    and = {
+                        not = { controls_state = 28 }
+                        not = { controls_state = 51 }
+                    }
+                    surrender_progress > 0.15
+                }
+            }
+        }   
+    }
+    
+    option = {
+        country_event = _armistice.1
     }
 }

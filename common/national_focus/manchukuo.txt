@@ -644,8 +644,7 @@
         ai_will_do = { base = 2 }
 
         completion_reward = {
-            add_political_power = 50
-            country_event = { id = manchukuo_transition.1 hours = 3 }
+            add_political_power = 150
         }
     }
     focus = {
@@ -709,8 +708,8 @@
         }
 
         ai_will_do = {
-            base = 2
-            modifier = { has_completed_focus = MAN_adjust_the_government factor = 0 }
+            base = 0
+            modifier = { has_government = monarchism add = 2 }
         }
 
         completion_reward = {
@@ -763,7 +762,7 @@
 
             every_country = {
                 limit = { 
-                    or = { tag = ENG tag = FRA tag = GER } 
+                    or = { tag = ENG tag = FRA tag = GER tag = JAP } 
                     not = { is_ally_with = MAN }
                 }
                 news_event = { id = manchukuo_treaties.1 hours = 6 random_hours = 6 }
@@ -786,7 +785,10 @@
         ai_chance = { base = 2 }
 
         available = {
-            has_country_leader = { character = MAN_yuan_shikai ruling_only = yes }
+            custom_trigger_tooltip = {
+                tooltip = tt_yuan
+                has_country_leader = { character = MAN_yuan_shikai ruling_only = yes }
+            }
         }
 
         completion_reward = {

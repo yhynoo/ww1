@@ -7,7 +7,10 @@ news_event = {
 
     trigger = {
         tag = TUR
-        has_stability < 0.25
+        or = {
+            has_stability < 0.25
+            ITA = { owns_state = 185 }
+        }
 
         or = {
             has_war = no
@@ -122,7 +125,10 @@ news_event = {
     option = {
         name = "Worrying."
         start_civil_war = { 
-            ideology = communism size = 0.4 states = { 44 49 184 344 345 404 586 }
+            ideology = communism size = 0.4 
+            
+            states_filter = { is_controlled_by = TUR }
+            states = { 44 49 184 344 345 404 586 }
         }
 
         hidden_effect = {

@@ -42,3 +42,15 @@ MAN_asia = {
     # areas
     ai_strategy = { type = area_priority    id = europe         value = -200 }
 }
+
+MAN_warlords = {
+    allowed = { or = { tag = ANH tag = MON tag = SIK tag = YUN } }
+    enable = { surrender_progress < 0.2 }                               # once the warlord holds most of his land, he won't attack that much.
+    abort_when_not_enabled = yes
+
+    ai_strategy = {
+        type = front_control
+        tag = MAN
+        ratio = 0.5 ordertype = front execution_type = careful execute_order = yes   
+    }
+}
