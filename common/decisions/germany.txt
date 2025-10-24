@@ -28,10 +28,7 @@ oriental_investments = {
 
         available = {
             ALG = { exists = no }
-            FRA = { 
-                has_stability < 0.5 
-                any_controlled_state = { is_core_of = ALG }
-            }
+            FRA = { has_stability < 0.5     controls_state = 459 }
         }
         cancel_trigger = { FRA = { has_stability > 0.5 } }
 

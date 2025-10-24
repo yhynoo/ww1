@@ -1,7 +1,40 @@
 aftermath_of_antwerp = {
-    withdraw_from_flanders = {
+    support_transvaal = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        available = {
+            SAF = { exists = no }
+            ENG = { has_stability < 0.5     controls_state = 275 }
+        }
+        cancel_trigger = { ENG = { has_stability > 0.5 } }
+
+        ai_will_do = { 
+            base = 3
+            modifier = { 
+                or = {
+                    has_war_with = ENG
+                    ENG = { has_idea = idea_mansion_house }
+                } 
+                factor = 2
+            }
+        }
+
+        days_remove = 90
+        complete_effect = { news_event = { id = holland_south_africa.1 hours = 6 } }
+
+        remove_effect = { 
+            custom_effect_tooltip = tt_transvaal
+            hidden_effect = { 
+                ENG = { news_event = { id = holland_south_africa.2 hours = 6 random_hours = 6 } }
+            }
+        }
+    }
+    invite_the_french = {
         cost = 75
         fire_only_once = yes
+        icon = generic_form_nation
 
         available = {
             not = { has_war_with = FRA }
@@ -18,8 +51,7 @@ aftermath_of_antwerp = {
         }
     }
     escalate_tensions = {
-        icon = generic_civil_war
-
+        icon = generic_prepare_civil_war
         cost = 50
         days_remove = 90
 
@@ -38,7 +70,7 @@ aftermath_of_antwerp = {
 
         complete_effect = {
             hidden_effect = {
-                random = { chance = 25 news_event = { id = holland_oostende.1 random_days = 60 } }
+                random = { chance = 25 news_event = { id = holland_dunkirk.1 random_days = 60 } }
             }
         }
     }

@@ -21,7 +21,6 @@ country_event = {
 
             # we will be more likely to give in if they are much stronger than us
             modifier = { strength_ratio = { tag = FROM ratio > 2 } factor = 2 }
-            modifier = { tag = HOL factor = 2 }
 
             # Germany and USA won't.
             modifier = { 
@@ -50,7 +49,10 @@ country_event = {
             modifier = { strength_ratio = { tag = FROM ratio < 0.5 } factor = 0.5 }
 
             # Holland won't, if they decided to stay neutral.
-            modifier = { has_completed_focus = HOL_traditionalism factor = 0 }
+            modifier = { 
+                and = { tag = HOL not = { has_completed_focus = HOL_adjust_the_government } }
+                factor = 0 
+            }
         }
 
         hidden_effect = { 

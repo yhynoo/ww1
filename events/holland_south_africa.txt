@@ -2,7 +2,7 @@ add_namespace = holland_south_africa
 
 news_event = {
     id = holland_south_africa.1
-    title = "Arson in Bloemfontein"
+    title = "Unrest Among the Afrikaners"
     desc = holland_south_africa.1.d
 
     is_triggered_only = yes
@@ -10,31 +10,32 @@ news_event = {
     option = {
         name = "Disturbing."
         add_timed_idea = { idea = idea_unrest_in_transvaal years = 1 }
-
-        hidden_effect = { 
-            random = {
-                chance = 50
-                HOL = { country_event = { id = holland_south_africa.2 months = 1 random_days = 30 } }
-            }
-        }
     }
 }
 
 news_event = {
     id = holland_south_africa.2
-    title = "Another Boer War?"
+    title = "Uprising in Transvaal!"
     desc = holland_south_africa.2.d
 
     is_triggered_only = yes
-    trigger = { SAF = { exists = no } }
+    trigger = { has_stability < 0.6 }
+
+    immediate = {
+        hidden_effect = { HOL = { give_guarantee = SAF } }
+    }
 
     option = {
+        name = "To arms!"
+        remove_ideas = idea_unrest_in_transvaal
+
         hidden_effect = { 
-            south_african_independence = yes
-            remove_ideas = idea_unrest_in_transvaal
+            south_african_independence_independence = yes
         }
 
-        name = "Haven't they had enough yet?"
-        declare_war_on = { target = SAF type = annex_everything }
+        every_country_with_original_tag = {
+            original_tag_to_check = ENG
+            declare_war_on = { target = SAF type = annex_everything }
+        }
     }
 }

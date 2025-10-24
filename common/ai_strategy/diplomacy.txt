@@ -3,21 +3,11 @@
 central_powers_acceptance = {
     allowed = {
         OR = {
-            original_tag = HOL
-            original_tag = ITA
             original_tag = MEX
         }
     }
     enable = {
         or = {                                              
-            and = {                                                             # holland
-                original_tag = HOL
-                has_country_flag = ignored_france
-            }
-            and = {                                                             # italy
-                has_completed_focus = ITA_on_our_own
-                not = { GER = { is_ally_with = TUR } }                                
-            }
             and = {                                                             # mexico
                 original_tag = MEX
                 has_war_with = USA
@@ -37,14 +27,6 @@ central_powers_invite = {
     allowed = { original_tag = GER }
     enable = {
         or = {                                              
-            and = {                                                             # holland
-                original_tag = HOL
-                has_country_flag = ignored_france
-            }
-            and = {                                                             # italy
-                has_completed_focus = ITA_on_our_own
-                not = { GER = { is_ally_with = TUR } }                                
-            }
             and = {                                                             # mexico
                 original_tag = MEX
                 has_war_with = USA

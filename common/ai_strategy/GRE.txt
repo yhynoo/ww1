@@ -11,14 +11,12 @@ GRE_alliances = {
         any_enemy_country = { original_tag = TUR }
     }
 
-    ai_strategy = {
-        type = alliance     id = GRE        value = 60
-    }
+    ai_strategy = { type = alliance     id = GRE        value = 60 }
 }
 
 GRE_schism = {
     allowed = { original_tag = GRE }
-    has_idea = { idea_the_great_schism }
+    enable = { has_idea = idea_the_great_schism }
     abort_when_not_enabled = yes
 
     reversed = yes

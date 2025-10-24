@@ -12,6 +12,10 @@ GER_alliances = {
 		limit = { has_completed_focus = GER_deterrence }
 		ai_strategy = { type = alliance		id = TUR		value = 40 }
 	}
+	if = {
+		limit = { HOL = { has_completed_focus = HOL_adjust_the_government } }
+		ai_strategy = { type = alliance		id = HOL		value = 20 }
+	}
 
 	# aggressive wargoals
 	ai_strategy = { type = conquer		id = ENG		value = 20 }

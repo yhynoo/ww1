@@ -36,3 +36,26 @@ news_event = {
         name = "Interesting."
     }
 }
+
+news_event = {
+    id = holland_withdraw.3
+    title = "[HOL.GetName] Annexes Flanders"
+    desc = holland_withdraw.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A dramatic move."
+
+        if = {
+            limit = { or = { tag = ENG tag = FRA } }
+            add_opinion_modifier = { target = HOL modifier = opinion_annexed_flanders }
+        }
+
+        if = {
+            limit = { tag = HOL }
+            6 = { add_core_of = HOL }
+        }
+    }
+}
