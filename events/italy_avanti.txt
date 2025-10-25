@@ -8,19 +8,16 @@ news_event = {
     trigger = {
         tag = ITA
         has_war = no
+        not = { has_idea = idea_war_enthusiasm }
         FRA = { has_war_with = GER }
     }
-    mean_time_to_happen = { months = 3 }
+    mean_time_to_happen = { months = 6 }
 
     option = {
         name = "The nation is eager to fight."
         add_timed_idea = { idea = idea_war_enthusiasm months = 6 }
 
-        hidden_effect = {
-            country_event = {
-                id = italy_avanti.2 days = 14
-            }
-        }
+        hidden_effect = { country_event = { id = italy_avanti.2 days = 14 } }
     }
 }
 

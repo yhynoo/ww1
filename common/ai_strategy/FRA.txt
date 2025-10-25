@@ -45,7 +45,7 @@ FRA_africa = {
     abort_when_not_enabled = yes
 
 	# planning the positions
-	ai_strategy = { type = area_priority		id = africa		    value = 120 }
+	ai_strategy = { type = area_priority		id = africa		    value = 200 }
 }
 
 FRA_western_front = {
@@ -53,5 +53,6 @@ FRA_western_front = {
 	enable = { always = yes }
 
     # planning the positions
-	ai_strategy = { type = front_unit_request	tag = GER		    value = 120 }
+	ai_strategy = { type = front_unit_request	tag = GER	 value = 180 }
+	ai_strategy = { type = front_unit_request	state = 28	 value = 100 }
 }

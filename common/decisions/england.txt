@@ -108,8 +108,8 @@ expand_the_empire = {
             any_state = {
                 or = { state = 289 state = 614 state = 286 state = 670 state = 671 }
                 owner = { 
-                    not = { tag = ENG }
-                    not = { has_war_with = ENG }
+                    not = { tag = ROOT }
+                    can_declare_war_on = ROOT
                 }
             }
         }
@@ -128,7 +128,7 @@ expand_the_empire = {
             every_country = {
                 limit = {
                     or = { controls_state = 289 controls_state = 614 controls_state = 286 controls_state = 670 controls_state = 671 }
-                    not = { has_war_with = ENG }
+                    can_declare_war_on = ROOT
                 }
                 country_event = { id = _demand.1 hours = 6 random_hours = 6 }
             }

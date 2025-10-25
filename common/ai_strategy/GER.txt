@@ -9,20 +9,21 @@ GER_alliances = {
 	ai_strategy = { type = alliance		id = AUS		value = 100 }
 	
 	if = {
-		limit = { has_completed_focus = GER_deterrence }
-		ai_strategy = { type = alliance		id = TUR		value = 40 }
-	}
-	if = {
 		limit = { HOL = { has_completed_focus = HOL_adjust_the_government } }
 		ai_strategy = { type = alliance		id = HOL		value = 20 }
+	}
+	if = {
+		limit = { SER = { has_completed_focus = SER_adjust_the_government } }
+		ai_strategy = { type = alliance		id = SER		value = 60 }
+	}
+	if = {
+		limit = { has_completed_focus = GER_deterrence }
+		ai_strategy = { type = alliance		id = TUR		value = 40 }
 	}
 
 	# aggressive wargoals
 	ai_strategy = { type = conquer		id = ENG		value = 20 }
-	ai_strategy = { type = conquer		id = FRA		value = 40 }
-
-	ai_strategy = { type = prepare_for_war		id = FRA		value = 60 }
-	ai_strategy = { type = front_unit_request	id = FRA		value = 200 }
+	ai_strategy = { type = conquer		id = FRA		value = 80 }
 }
 
 # ARMY
@@ -50,10 +51,70 @@ GER_handelskrieg = {
 
 GER_militarisation = {
 	allowed = { original_tag = GER }
-	enable = { has_government = monarchism }
-	abort_when_not_enabled = yes
+	enable = { always = yes }
 
 	# more military factories and infantry
 	ai_strategy = {	type = added_military_to_civilian_factory_ratio	value = 50 }
-	ai_strategy = {	type = role_ratio	id = infantry	value = 20 }
+	ai_strategy = {	type = role_ratio	id = infantry	value = 60 }
+}
+
+# TAKTIX
+
+GER_west = {
+	allowed = { original_tag = GER }
+	enable = {
+		or = {
+			or = { 
+				not = { has_war_with = FRA }
+				war_length_with = { tag = FRA months < 6 }
+			}
+			# SOV = { has_civil_war = yes }
+		}
+	}
+	abort_when_not_enabled = yes
+
+	# focus on the west
+	ai_strategy = { type = front_unit_request 	tag = FRA	value = 200 }
+	ai_strategy = { 
+		type = front_control		ratio = 0.25		execution_type = rush 
+		state_trigger = { or = { state = 6 state = 29 } }
+	}
+
+	# ignore alps and galicia
+	ai_strategy = { type = dont_defend_ally_borders		id = AUS		value = 1 }
+	ai_strategy = { type = dont_defend_ally_borders		id = UKR		value = 1 }
+}
+
+GER_west_stellungskrieg = {
+	allowed = { original_tag = GER }
+	enable = {
+		war_length_with = { tag = FRA months > 6 }
+		# SOV = { has_civil_war = no }
+	}
+	abort_when_not_enabled = yes
+
+	# less focused, more careful
+	ai_strategy = { type = front_unit_request 	tag = FRA	value = 160 }
+	ai_strategy = { type = front_control		ratio = 0.25		tag = FRA		execution_type = careful }
+
+	# don't entirely ignore the east and the alps, but also don't engage too much.
+	ai_strategy = { type = front_unit_request 	tag = SOV				value = -60 }
+	ai_strategy = { type = front_unit_request 	area = alpine_front		value = -120 }
+}
+
+GER_hindenburg_line = {
+	allowed = { original_tag = GER }
+	enable = {
+		war_length_with = { tag = FRA months > 6 }
+		FRA = { surrender_progress < 0.1 }
+	}
+	abort_when_not_enabled = yes
+
+	# fortifications
+	ai_strategy = {	type = build_building		id = bunker		target = 13081		value = 20 }		# Mons
+	ai_strategy = {	type = build_building		id = bunker		target = 9444		value = 20 }		# Meuse
+	ai_strategy = {	type = build_building		id = bunker		target = 11606		value = 20 }		# Cambrai
+
+	ai_strategy = {	type = build_building		id = bunker		target = 9472		value = 10 }		# Mezieres
+	ai_strategy = {	type = build_building		id = bunker		target = 6504		value = 10 }		# Arras
 }

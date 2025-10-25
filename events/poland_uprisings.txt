@@ -1,0 +1,93 @@
+add_namespace = poland_uprisings
+
+news_event = {
+    id = poland_uprisings.1
+    title = "Uprising in the Western Governorates!"
+    desc = poland_uprisings.1.d
+
+    trigger = {
+        tag = SOV
+        POL = { exists = no }
+
+        has_civil_war = yes
+        10 = { controller = { original_tag = SOV } }
+    }
+
+    option = {
+        name = "To arms!"
+
+        every_country = { 
+            limit = { original_tag = SOV }
+            hidden_effect = { polish_independence = yes }
+
+            declare_war_on = { target = POL type = annex_everything }
+        }
+    }
+}
+
+country_event = {
+    id = poland_uprisings.2
+    title = "Opportunity in the West?"
+    desc = poland_uprisings.2.d
+
+    trigger = {
+        tag = POL
+        GER = { has_civil_war = yes }
+
+        any_state = {
+            or = { state = 85 state = 86 }
+            controller = { original_tag = GER }
+            any_neighboring_state = { is_controlled_by = POL }
+        }
+    }
+
+    option = {
+        name = "Let us see..."
+
+        every_state = {
+            limit = { or = { state = 85 state = 86 } }
+            add_core_of = POL
+        }
+
+        every_country = {
+            limit = { or = { controls_state = 85 controls_state = 86 } }
+            country_event = { id = poland_uprisings.3 hours = 6 }
+        }
+    }
+    option = {
+        name = "This is too dangerous."
+        add_political_power = -50
+    }
+}
+
+country_event = {
+    id = poland_uprisings.3
+    title = "Eastern Territories to Secede?"
+    desc = poland_uprisings.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let them have it."
+        every_controlled_state = {
+            limit = { or = { state = 85 state = 86 } }
+            transfer_state_to = POL
+        }
+        ai_chance = { base = 2 }
+    }
+
+    option = {
+        name = "No!"
+        add_war_support = 0.05
+
+        hidden_effect = { 
+            POL = { 
+                setup_uprising_troops = yes 
+                ROOT = { 86 = { setup_uprising_state = yes } }
+            }
+        }
+        declare_war_on = { target = POL type = annex_everything }
+
+        ai_chance = { base = 1 }
+    }
+}

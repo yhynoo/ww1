@@ -1,0 +1,19 @@
+add_namespace = poland_aviation
+
+news_event = {
+    id = poland_aviation.1
+    title = "American Volunteer Pilots Arrive"
+    desc = poland_aviation.1.d
+
+    trigger = {
+        tag = POL
+        has_war = yes
+        USA = { has_opinion = { target = POL value > 10 } }
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "They are most welcome."
+        add_equipment_to_stockpile = { type = fighter_equipment_0 amount = 16 producer = USA }
+    }
+}

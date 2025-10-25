@@ -1,16 +1,16 @@
-﻿focus_tree = {
-    id = POL_focus
+focus_tree = {
+    id = SER_focus
 
     country = {
         factor = 0
-        modifier = { add = 20 original_tag = POL }
+        modifier = { add = 20 original_tag = SER }
     }
 
     continuous_focus_position = { x = 200 y = 800 }
 
     ## military branch
     focus = {
-        id = POL_adjust_the_military
+        id = SER_adjust_the_military
         icon = GFX_focus_generic_budget
 
         x = 7
@@ -39,24 +39,24 @@
         }
     }
     focus = {
-        id = POL_focus_army
+        id = SER_focus_army
         icon = GFX_focus_generic_army
 
-        relative_position_id = POL_adjust_the_military
+        relative_position_id = SER_adjust_the_military
         x = -2
         y = 1
         cost = 10
 
-        prerequisite = { focus = POL_adjust_the_military }
+        prerequisite = { focus = SER_adjust_the_military }
         completion_reward = {
             army_experience = 50
         }
     }
     focus = {
-        id = POL_extend_conscription
+        id = SER_extend_conscription
         icon = GFX_focus_generic_extend_conscription
 
-        relative_position_id = POL_focus_army
+        relative_position_id = SER_focus_army
         x = -4
         y = 1
         cost = 10
@@ -68,21 +68,21 @@
             }   
         }
 
-        prerequisite = { focus = POL_focus_army }
+        prerequisite = { focus = SER_focus_army }
         completion_reward = {
             upgrade_conscription_law = yes
         }
     }
     focus = {
-        id = POL_army_maneuvers
+        id = SER_army_maneuvers
         icon = GFX_focus_generic_army_maneuvers
 
-        relative_position_id = POL_focus_army
+        relative_position_id = SER_focus_army
         x = -2
         y = 1
         cost = 10
 
-        prerequisite = { focus = POL_focus_army }
+        prerequisite = { focus = SER_focus_army }
         completion_reward = {
             army_experience = 75
             add_doctrine_cost_reduction = {
@@ -92,15 +92,15 @@
         }
     }
     focus = {
-        id = POL_equipment_effort
+        id = SER_equipment_effort
         icon = GFX_focus_generic_equipment_effort
 
-        relative_position_id = POL_focus_army
+        relative_position_id = SER_focus_army
         x = 0
         y = 1
         cost = 10
 
-        prerequisite = { focus = POL_focus_army }
+        prerequisite = { focus = SER_focus_army }
         completion_reward = {
             add_tech_bonus = {
 				name = infantry_bonus bonus = 1.0 uses = 2
@@ -109,15 +109,15 @@
         }
     }
     focus = {
-        id = POL_artillery
+        id = SER_artillery
         icon = GFX_focus_generic_artillery
 
-        relative_position_id = POL_equipment_effort
+        relative_position_id = SER_equipment_effort
         x = -2
         y = 1
         cost = 10
 
-        prerequisite = { focus = POL_equipment_effort }
+        prerequisite = { focus = SER_equipment_effort }
         completion_reward = {
             add_tech_bonus = {
 				name = artillery_bonus bonus = 1.0 uses = 2
@@ -126,15 +126,15 @@
         }
     }
     focus = {
-        id = POL_aircraft
+        id = SER_aircraft
         icon = GFX_focus_generic_aircraft
 
-        relative_position_id = POL_equipment_effort
+        relative_position_id = SER_equipment_effort
         x = 0
         y = 1
         cost = 10
 
-        prerequisite = { focus = POL_equipment_effort }
+        prerequisite = { focus = SER_equipment_effort }
         completion_reward = {
             air_experience = 50
             add_tech_bonus = {
@@ -144,15 +144,15 @@
         }
     }
     focus = {
-        id = POL_armor
+        id = SER_armor
         icon = GFX_focus_generic_armor
 
-        relative_position_id = POL_equipment_effort
+        relative_position_id = SER_equipment_effort
         x = 2
         y = 1
         cost = 10
 
-        prerequisite = { focus = POL_equipment_effort }
+        prerequisite = { focus = SER_equipment_effort }
         completion_reward = {
             add_tech_bonus = {
 				name = armor_bonus bonus = 1.0 uses = 2
@@ -161,18 +161,18 @@
         }
     }
     focus = {
-        id = POL_modern_warfare
+        id = SER_modern_warfare
         icon = GFX_focus_generic_modern_warfare
 
-        relative_position_id = POL_aircraft
+        relative_position_id = SER_aircraft
         x = 0
         y = 1
         cost = 10
 
         prerequisite = { 
-            focus = POL_artillery
-            focus = POL_aircraft
-            focus = POL_armor
+            focus = SER_artillery
+            focus = SER_aircraft
+            focus = SER_armor
         }
         completion_reward = {
             army_experience = 100
@@ -181,10 +181,10 @@
     }
 
     focus = {
-        id = POL_focus_navy
+        id = SER_focus_navy
         icon = GFX_focus_generic_navy
 
-        relative_position_id = POL_adjust_the_military
+        relative_position_id = SER_adjust_the_military
         x = 2
         y = 1
         cost = 10
@@ -196,16 +196,16 @@
 			}
 		}
 
-        prerequisite = { focus = POL_adjust_the_military }
+        prerequisite = { focus = SER_adjust_the_military }
         completion_reward = {
             navy_experience = 50
         }
     }
     focus = {
-        id = POL_naval_exercises
+        id = SER_naval_exercises
         icon = GFX_focus_generic_naval_exercises
 
-        relative_position_id = POL_focus_navy
+        relative_position_id = SER_focus_navy
         x = 0
         y = 1
         cost = 10
@@ -217,7 +217,7 @@
 			}
 		}
 
-        prerequisite = { focus = POL_focus_navy }
+        prerequisite = { focus = SER_focus_navy }
         completion_reward = {
             navy_experience = 75
             add_doctrine_cost_reduction = {
@@ -227,10 +227,10 @@
         }
     }
     focus = {
-        id = POL_expand_dockyards
+        id = SER_expand_dockyards
         icon = GFX_focus_generic_expand_dockyards
 
-        relative_position_id = POL_focus_navy
+        relative_position_id = SER_focus_navy
         x = 2
         y = 1
         cost = 10
@@ -242,7 +242,7 @@
 			}
 		}
 
-        prerequisite = { focus = POL_focus_navy }
+        prerequisite = { focus = SER_focus_navy }
 		
 		completion_reward = {
 			navy_experience = 25
@@ -259,10 +259,10 @@
 		}
     }
     focus = {
-        id = POL_high_seas
+        id = SER_high_seas
         icon = GFX_focus_generic_high_seas
 
-        relative_position_id = POL_expand_dockyards
+        relative_position_id = SER_expand_dockyards
         x = 0
         y = 1
         cost = 10
@@ -274,7 +274,7 @@
 			}
 		}
 
-        prerequisite = { focus = POL_expand_dockyards }
+        prerequisite = { focus = SER_expand_dockyards }
         completion_reward = {
             add_tech_bonus = {
 				name = capital_ships_bonus bonus = 1.0 uses = 1
@@ -283,10 +283,10 @@
         }
     }
     focus = {
-        id = POL_the_dark_deep
+        id = SER_the_dark_deep
         icon = GFX_focus_generic_the_dark_deep
 
-        relative_position_id = POL_expand_dockyards
+        relative_position_id = SER_expand_dockyards
         x = 2
         y = 1
         cost = 10
@@ -298,7 +298,7 @@
 			}
 		}
 
-        prerequisite = { focus = POL_expand_dockyards }
+        prerequisite = { focus = SER_expand_dockyards }
         completion_reward = {
             add_tech_bonus = {
 				name = ss_bonus bonus = 1.0 uses = 1
@@ -307,10 +307,10 @@
         }
     }
     focus = {
-        id = POL_seaborne_operations
+        id = SER_seaborne_operations
         icon = GFX_focus_generic_seaborne_operations
 
-        relative_position_id = POL_naval_exercises
+        relative_position_id = SER_naval_exercises
         x = 0
         y = 1
         cost = 10
@@ -322,7 +322,7 @@
 			}
 		}
 
-        prerequisite = { focus = POL_naval_exercises }
+        prerequisite = { focus = SER_naval_exercises }
         completion_reward = {
             add_tech_bonus = {
 				name = special_forces_bonus bonus = 1.0 uses = 1
@@ -332,10 +332,10 @@
         }
     }
     focus = {
-        id = POL_rule_the_waves
+        id = SER_rule_the_waves
         icon = GFX_focus_generic_rule_the_waves
 
-        relative_position_id = POL_high_seas
+        relative_position_id = SER_high_seas
         x = 0
         y = 1
         cost = 10
@@ -348,9 +348,9 @@
 		}
 
         prerequisite = { 
-            focus = POL_seaborne_operations
-            focus = POL_high_seas
-            focus = POL_the_dark_deep
+            focus = SER_seaborne_operations
+            focus = SER_high_seas
+            focus = SER_the_dark_deep
         }
         completion_reward = {
             navy_experience = 100
@@ -360,7 +360,7 @@
 
 ## economic branch
     focus = {
-        id = POL_economic_development
+        id = SER_economic_development
         icon = GFX_focus_generic_economic_development
 
         x = 22
@@ -375,10 +375,10 @@
     }
     
     focus = {
-        id = POL_rationing
+        id = SER_rationing
         icon = GFX_focus_generic_rationing
 
-        relative_position_id = POL_economic_development
+        relative_position_id = SER_economic_development
         x = -4
         y = 1
 
@@ -389,7 +389,7 @@
             modifier = { has_war = no factor = 0 }
         }
 
-        prerequisite = { focus = POL_economic_development }
+        prerequisite = { focus = SER_economic_development }
         completion_reward = {
             add_stability = -0.05
             add_war_support = -0.05
@@ -397,16 +397,16 @@
         }
     }
     focus = {
-        id = POL_fuel
+        id = SER_fuel
         icon = GFX_focus_generic_fuel
 
-        relative_position_id = POL_rationing
+        relative_position_id = SER_rationing
         x = -2
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = POL_rationing }
+        prerequisite = { focus = SER_rationing }
         completion_reward = {
             add_tech_bonus = {
 				name = synthetic_bonus bonus = 1.0 uses = 1
@@ -420,10 +420,10 @@
         }
     }
     focus = {
-        id = POL_women_at_work
+        id = SER_women_at_work
         icon = GFX_focus_generic_women_at_work
 
-        relative_position_id = POL_rationing
+        relative_position_id = SER_rationing
         x = 1
         y = 1
 
@@ -438,7 +438,7 @@
             has_war = yes
         }
 
-        prerequisite = { focus = POL_rationing }
+        prerequisite = { focus = SER_rationing }
         completion_reward = {
             add_stability = -0.05
             add_ideas = idea_women_at_work
@@ -446,10 +446,10 @@
     }
 
     focus = {
-        id = POL_infrastructure_effort
+        id = SER_infrastructure_effort
         icon = GFX_focus_generic_extraction_effort
 
-        relative_position_id = POL_economic_development
+        relative_position_id = SER_economic_development
         x = 0
         y = 1
 
@@ -457,7 +457,7 @@
 
         ai_will_do = { base = 2 }
 
-        prerequisite = { focus = POL_economic_development }
+        prerequisite = { focus = SER_economic_development }
 		completion_reward = {
             add_tech_bonus = {
 				name = construction_bonus bonus = 1.0 uses = 2
@@ -474,10 +474,10 @@
 		}
     }
     focus = {
-        id = POL_construct_civilian
+        id = SER_construct_civilian
         icon = GFX_focus_generic_construct_civilian
 
-        relative_position_id = POL_infrastructure_effort
+        relative_position_id = SER_infrastructure_effort
         x = 0
         y = 1
 
@@ -485,7 +485,7 @@
 
         ai_will_do = { base = 3 }
 
-        prerequisite = { focus = POL_infrastructure_effort }
+        prerequisite = { focus = SER_infrastructure_effort }
 		completion_reward = {
             add_timed_idea = { idea = idea_industrial_expansion years = 1 }
 			random_owned_controlled_state = {
@@ -500,17 +500,17 @@
 		}
     }
     focus = {
-        id = POL_expand_mining
+        id = SER_expand_mining
         icon = GFX_focus_generic_expand_mining
 
-        relative_position_id = POL_infrastructure_effort
+        relative_position_id = SER_infrastructure_effort
         x = 3
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = POL_infrastructure_effort }
-        mutually_exclusive = { focus = POL_efficiency_studies }
+        prerequisite = { focus = SER_infrastructure_effort }
+        mutually_exclusive = { focus = SER_efficiency_studies }
 
         completion_reward = {
             random_owned_controlled_state = {
@@ -523,10 +523,10 @@
     }
 
     focus = {
-        id = POL_efficiency_studies
+        id = SER_efficiency_studies
         icon = GFX_focus_efficiency_studies
 
-        relative_position_id = POL_infrastructure_effort
+        relative_position_id = SER_infrastructure_effort
         x = 6
         y = 1
 
@@ -534,8 +534,8 @@
 
         ai_will_do = { base = 3 }
 
-        prerequisite = { focus = POL_infrastructure_effort }
-        mutually_exclusive = { focus = POL_expand_mining }
+        prerequisite = { focus = SER_infrastructure_effort }
+        mutually_exclusive = { focus = SER_expand_mining }
 
 		completion_reward = {
             add_ideas = idea_efficiency_studies
@@ -543,10 +543,10 @@
     }
 
     focus = {
-        id = POL_steady_growth
+        id = SER_steady_growth
         icon = GFX_focus_generic_steady_growth
 
-        relative_position_id = POL_construct_civilian
+        relative_position_id = SER_construct_civilian
         x = 2
         y = 1
 
@@ -555,7 +555,7 @@
         ai_will_do = { base = 4 }
 
         prerequisite = { 
-            focus = POL_construct_civilian
+            focus = SER_construct_civilian
         }
 
         available = {
@@ -578,17 +578,17 @@
         }
     }
     focus = {
-        id = POL_war_industry
+        id = SER_war_industry
         icon = GFX_focus_generic_war_industry
 
-        relative_position_id = POL_construct_civilian
+        relative_position_id = SER_construct_civilian
         x = -2
         y = 1
 
         cost = 10
 
         prerequisite = { 
-            focus = POL_construct_civilian
+            focus = SER_construct_civilian
         }
 
         available = {
@@ -610,16 +610,16 @@
     }
 
     focus = {
-        id = POL_telegraph
+        id = SER_telegraph
         icon = GFX_focus_generic_telegraph
 
-        relative_position_id = POL_economic_development
+        relative_position_id = SER_economic_development
         x = 4
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = POL_economic_development }
+        prerequisite = { focus = SER_economic_development }
         available = { has_tech = tech_telegraph }
 
         completion_reward = {
@@ -633,10 +633,10 @@
 
     ## political branch
     focus = {
-        id = POL_political_ambitions
+        id = SER_political_ambitions
         icon = GFX_focus_generic_political_ambitions
 
-        relative_position_id = POL_economic_development
+        relative_position_id = SER_economic_development
         x = -2
         y = 5
         cost = 10
@@ -648,10 +648,10 @@
         }
     }
     focus = {
-        id = POL_international_affairs
+        id = SER_international_affairs
         icon = GFX_focus_generic_international_affairs
 
-        relative_position_id = POL_political_ambitions
+        relative_position_id = SER_political_ambitions
         x = -4
         y = 1
         cost = 10
@@ -663,16 +663,16 @@
 
         available = { is_subject = no }
 
-        prerequisite = { focus = POL_political_ambitions }
+        prerequisite = { focus = SER_political_ambitions }
         completion_reward = {
             add_timed_idea = { idea = idea_international_affairs years = 2 }
         }
     }
     focus = {
-        id = POL_expansionism
+        id = SER_expansionism
         icon = GFX_focus_generic_expansionism
 
-        relative_position_id = POL_international_affairs
+        relative_position_id = SER_international_affairs
         x = -2
         y = 1
         cost = 10
@@ -687,38 +687,43 @@
             modifier = { threat > 0.2 factor = 3 }
         }
 
-        prerequisite = { focus = POL_international_affairs }
+        prerequisite = { focus = SER_international_affairs }
         completion_reward = {
             add_political_power = 100
             add_timed_idea = { idea = idea_expansionism years = 1 }
         }
     }
     focus = {
-        id = POL_deterrence
+        id = SER_deterrence
         icon = GFX_focus_generic_deterrence
 
-        relative_position_id = POL_international_affairs
+        relative_position_id = SER_international_affairs
         x = 1
         y = 1
         cost = 10
-§
-        prerequisite = { focus = POL_international_affairs }
+
+        prerequisite = { focus = SER_international_affairs }
         available = { is_subject = no }
+
+        ai_will_do = {
+            base = 0
+            modifier = { has_completed_focus = SER_mobilize_the_masses add = 2 }
+        }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }
     }
     focus = {
-        id = POL_seek_alliances
+        id = SER_seek_alliances
         icon = GFX_focus_generic_seek_alliances
 
-        relative_position_id = POL_expansionism
+        relative_position_id = SER_expansionism
         x = -2
         y = 1
         cost = 10
 
-        prerequisite = { focus = POL_expansionism }
+        prerequisite = { focus = SER_expansionism }
         available = { 
             is_in_faction = no
             is_subject = no 
@@ -729,15 +734,15 @@
         }
     }
     focus = {
-        id = POL_on_our_own
+        id = SER_on_our_own
         icon = GFX_focus_generic_on_our_own
 
-        relative_position_id = POL_expansionism
+        relative_position_id = SER_expansionism
         x = 1
         y = 1
         cost = 10
 
-        prerequisite = { focus = POL_expansionism }
+        prerequisite = { focus = SER_expansionism }
         available = { is_subject = no }
 
         completion_reward = {
@@ -746,31 +751,31 @@
     }
 
     focus = {
-        id = POL_traditionalism
-        icon = GFX_focus_generic_adjust_the_government
+        id = SER_traditionalism
+        icon = GFX_focus_generic_internal_stability
 
-        relative_position_id = POL_political_ambitions
+        relative_position_id = SER_political_ambitions
         x = 0
         y = 1
         cost = 10
 
         ai_will_do = {
             base = 1
-            modifier = { is_subject = yes factor = 0 }
+            modifier = { is_subject_of = AUS factor = 0 }
         }
         
-        mutually_exclusive = { focus = POL_adjust_the_government }
-        prerequisite = { focus = POL_political_ambitions }
+        mutually_exclusive = { focus = SER_adjust_the_government }
+        prerequisite = { focus = SER_political_ambitions }
         completion_reward = {
             add_stability = 0.05
-            add_popularity = { ideology = democratic popularity = 0.05 }
+            add_popularity = { ideology = monarchism popularity = 0.05 }
         }
     }
     focus = {
-        id = POL_public_support
+        id = SER_public_support
         icon = GFX_focus_generic_public_support
 
-        relative_position_id = POL_traditionalism
+        relative_position_id = SER_traditionalism
         x = -1
         y = 1
         cost = 10
@@ -784,7 +789,7 @@
             has_war = yes
         }
 
-        prerequisite = { focus = POL_traditionalism }
+        prerequisite = { focus = SER_traditionalism }
         completion_reward = {
             add_war_support = 0.05
             custom_effect_tooltip = decision_effect_tooltip
@@ -792,10 +797,10 @@
         }
     }
     focus = {
-        id = POL_mobilize_the_masses
-        icon = GFX_focus_USA_mobilize_the_masses
+        id = SER_mobilize_the_masses
+        icon = GFX_focus_ITA_mobilize_the_masses
 
-        relative_position_id = POL_traditionalism
+        relative_position_id = SER_traditionalism
         x = 1
         y = 1
         cost = 10
@@ -805,23 +810,23 @@
             modifier = { has_army_manpower = { size > 50000 } factor = 1 }
         }
 
-        prerequisite = { focus = POL_traditionalism }
+        prerequisite = { focus = SER_traditionalism }
         completion_reward = {
-            add_timed_idea = { idea = idea_komendant years = 2 }
+            add_timed_idea = { idea = idea_unification_or_death years = 2 }
         }
     }
     focus = {
-        id = POL_strength_in_unity
+        id = SER_strength_in_unity
         icon = GFX_focus_generic_strength_in_unity
 
-        relative_position_id = POL_public_support
+        relative_position_id = SER_public_support
         x = 1
         y = 1
         cost = 10
 
         prerequisite = { 
-            focus = POL_public_support
-            focus = POL_mobilize_the_masses
+            focus = SER_public_support
+            focus = SER_mobilize_the_masses
         }
         completion_reward = {
             add_political_power = 50
@@ -829,107 +834,91 @@
         }
     }
     focus = {
-        id = POL_the_everlasting_spirit
+        id = SER_the_everlasting_spirit
         icon = GFX_focus_generic_the_everlasting_spirit
 
-        relative_position_id = POL_strength_in_unity
+        relative_position_id = SER_strength_in_unity
         x = 0
         y = 1
         cost = 10
 
-        prerequisite = { focus = POL_strength_in_unity }
+        prerequisite = { focus = SER_strength_in_unity }
         completion_reward = {
-            add_ideas = idea_as_long_as_we_live
+            add_ideas = idea_the_golden_age
         }
     }
 
     focus = {
-        id = POL_adjust_the_government
-        icon = GFX_focus_generic_internal_stability
+        id = SER_adjust_the_government
+        icon = GFX_focus_SER_adjust_the_government
 
-        relative_position_id = POL_political_ambitions
+        relative_position_id = SER_political_ambitions
         x = 4
         y = 1
         cost = 10
 
-        mutually_exclusive = { focus = POL_traditionalism }
-        prerequisite = { focus = POL_political_ambitions }
-
-        available = {
-            democratic < 0.5
-        }
+        mutually_exclusive = { focus = SER_traditionalism }
+        prerequisite = { focus = SER_political_ambitions }
 
         ai_will_do = {
             base = 0
-            modifier = { 
-                or = { is_subject_of = AUS is_subject_of = GER }
-                add = 1 
-            }
+            modifier = { is_subject_of = AUS add = 1 }
         }
 
         completion_reward = {
-            if = {
-                limit = { not = { has_government = monarchism } }
-                set_politics = { ruling_party = monarchism elections_allowed = no }
-            }
+            add_war_support = -0.05
 
-            add_popularity = { ideology = monarchism popularity = 0.05 }
-            country_event = { id = poland_crown.1 hours = 6 }
+            AUS = {
+                hidden_effect = { remove_opinion_modifier = { target = SER modifier = opinion_anti_serbian_staff } }
+                add_opinion_modifier = { target = SER modifier = opinion_serbian_alignment } 
+            }
         }
     }
     focus = {
-        id = POL_state_reform
+        id = SER_state_reform
         icon = GFX_focus_generic_state_reform
 
-        relative_position_id = POL_adjust_the_government
+        relative_position_id = SER_adjust_the_government
         x = 2
         y = 1
         cost = 10
 
-        prerequisite = { focus = POL_adjust_the_government }
+        prerequisite = { focus = SER_adjust_the_government }
         completion_reward = {
             add_timed_idea = { idea = idea_state_reform years = 1 }
         }
     }
     focus = {
-        id = POL_open_the_economy
+        id = SER_open_the_economy
         icon = GFX_focus_generic_open_the_economy
 
-        relative_position_id = POL_adjust_the_government
+        relative_position_id = SER_adjust_the_government
         x = -1
         y = 1
         cost = 10
 
-        prerequisite = { focus = POL_adjust_the_government }
+        prerequisite = { focus = SER_adjust_the_government }
         completion_reward = {
-            add_timed_idea = { idea = idea_kwiatkowskis_government years = 2 }
+            add_timed_idea = { idea = idea_open_the_economy years = 1 }
 
             random_owned_controlled_state = {
                 limit = { is_core_of = ROOT is_in_home_area = yes }
 
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-
-                if = {
-                    limit = { owns_state = 92 }
-                    92 = {
-                        add_resource = { type = steel amount = 2 }
-                        add_resource = { type = tungsten amount = 4 }
-                    }
-                }
 			}
         }
     }
     focus = {
-        id = POL_over_the_edge
+        id = SER_over_the_edge
         icon = GFX_focus_generic_over_the_edge
 
-        relative_position_id = POL_state_reform
+        relative_position_id = SER_state_reform
         x = 2
         y = 1
         cost = 10
 
-        prerequisite = { focus = POL_state_reform }
+        prerequisite = { focus = SER_state_reform }
 
         ai_will_do = {
             base = 0
@@ -941,15 +930,15 @@
         }
     }
     focus = {
-        id = POL_embrace_modernity
+        id = SER_embrace_modernity
         icon = GFX_focus_generic_red_education
 
-        relative_position_id = POL_state_reform
+        relative_position_id = SER_state_reform
         x = -1
         y = 1
         cost = 10
 
-        prerequisite = { focus = POL_state_reform }
+        prerequisite = { focus = SER_state_reform }
         completion_reward = {
             add_research_slot = 1
         }

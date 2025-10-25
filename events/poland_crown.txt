@@ -1,0 +1,52 @@
+add_namespace = poland_crown
+
+country_event = {
+    id = poland_crown.1
+    title = "Who to Crown?"
+    desc = poland_crown.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Karol Stefan, a Habsburg with ties to Galicia."
+        promote_character = POL_karl_stephan_von_habsburg
+
+        if = {
+            limit = { AUS = { has_government = monarchism } }
+            AUS = { add_opinion_modifier = { target = ROOT modifier = opinion_habsburg_monarch } }
+        }
+
+        hidden_effect = { news_event = { id = poland_crown.2 hours = 6 } }
+    }
+    option = {
+        name = "Fryderyk Wettin, the heir of Saxony."
+        promote_character = POL_friedrich_christian_wettin
+
+        if = {
+            limit = { GER = { has_government = monarchism } }
+            GER = { add_opinion_modifier = { target = ROOT modifier = opinion_wettin_monarch } }
+        }
+
+        hidden_effect = { news_event = { id = poland_crown.2 hours = 6 } }
+    }
+    option = {
+        name = "A local aristocrat."
+        promote_character = POL_adam_czartoryski
+        FRA = { add_opinion_modifier = { target = ROOT modifier = opinion_francophile_monarch } }
+
+        hidden_effect = { news_event = { id = poland_crown.2 hours = 6 } }
+    }
+}
+
+news_event = {
+    id = poland_crown.2
+    title = "[POL.GetLeader] Crowned King of Poland!"
+    desc = poland_crown.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}

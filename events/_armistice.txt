@@ -20,12 +20,6 @@ country_event = {
         ai_chance = { 
             base = 2
             modifier = { has_war_support > 0.5 factor = 0.5 }
-
-            # French surrender
-            modifier = { 
-                and = { original_tag = FRA not = { controls_state = 16 } }
-                factor = 0
-            }
         }
     }
 
@@ -38,6 +32,12 @@ country_event = {
             modifier = { 
                 or = { longest_war_length > 48 surrender_progress > 0.25 } 
                 factor = 0.5 
+            }
+
+            # French surrender
+            modifier = { 
+                and = { original_tag = FRA not = { controls_state = 16 } }
+                factor = 0
             }
         }
     }
