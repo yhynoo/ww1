@@ -125,9 +125,12 @@ embrace_weltpolitik = {
         ai_will_do = { 
             base = 3 
             modifier = { 
-                or = {
-                    and = { date > 1915.4.1 has_war = no }
-                    FRA = { not = { has_guaranteed = SOV } }
+                and = {
+                    has_war = no
+                    or = {
+                        date > 1915.4.1
+                        FRA = { not = { has_guaranteed = SOV } }
+                    }
                 }
                 add = 6
             } 
@@ -145,6 +148,7 @@ embrace_weltpolitik = {
 
         remove_effect = {
             create_wargoal = { target = SOV type = take_claimed_state }
+            hidden_effect = { set_country_flag = german_drang_nach_osten}
         }
     }
 }

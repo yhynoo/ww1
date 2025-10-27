@@ -28,9 +28,12 @@ FRA_attention = {
 
 # ARMY
 
-FRA_aviation = {
-    allowed = { original_tag = FRA }
+FRA_army = {
+	allowed = { original_tag = FRA }
 	enable = { always = yes }
+
+	# more infantry and planes
+	ai_strategy = {	type = role_ratio	id = infantry		value = 50 }
 
     ai_strategy = { type = unit_ratio          id = fighter         value = 100 }
     ai_strategy = { type = equipment_production_min_factories       id = fighter        value = 1 }    
