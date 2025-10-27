@@ -2,16 +2,12 @@
 
 central_powers_acceptance = {
     allowed = {
-        OR = {
-            original_tag = MEX
-        }
+        original_tag = MEX
     }
-    enable = {
-        or = {                                              
-            and = {                                                             # mexico
-                original_tag = MEX
-                has_war_with = USA
-            }
+    enable = {                                          
+        and = {                                                             # mexico
+            original_tag = MEX
+            has_war_with = USA
         }
     }
     abort_when_not_enabled = yes
@@ -25,12 +21,10 @@ central_powers_acceptance = {
 
 central_powers_invite = {
     allowed = { original_tag = GER }
-    enable = {
-        or = {                                              
-            and = {                                                             # mexico
-                original_tag = MEX
-                has_war_with = USA
-            }
+    enable = {                                        
+        and = {                                                             # mexico
+            original_tag = MEX
+            has_war_with = USA
         }
     }
     abort_when_not_enabled = yes
@@ -43,63 +37,6 @@ central_powers_invite = {
         value = 25
     }
 }
-
-
-# ENTENTE
-
-entente_acceptance = {
-    allowed = {
-        OR = {
-            original_tag = ENG
-            original_tag = ITA
-            original_tag = SOV
-        }
-    }
-    enable = {
-        or = {
-            has_completed_focus = ENG_seek_alliances                            # england
-            and = {                                                             # russia
-                original_tag = SOV 
-                or = { has_government = democratic has_government = monarchism has_completed_focus = SOV_seek_alliances }
-                not = { has_truce_with = GER }
-            }
-        }
-    }
-    abort_when_not_enabled = yes
-
-    ai_strategy = {
-        type = alliance
-        id = FRA
-        value = 25
-    }
-}
-
-entente_invite = {
-    allowed = { original_tag = FRA }
-    enable = {
-        or = {
-            has_completed_focus = ENG_seek_alliances                            # england
-            and = {                                                             # russia
-                original_tag = SOV 
-                or = { has_government = democratic has_government = monarchism has_completed_focus = SOV_seek_alliances }
-                not = { has_truce_with = GER }
-            }
-        }
-    }
-    abort_when_not_enabled = yes
-
-    reversed = yes
-    enable_reverse = { FRA = { is_faction_leader = yes } }
-
-    ai_strategy = {
-        type = alliance
-        id = FRA
-        value = 30
-    }
-}
-
-# OTHER THINGS #
-
 
 # SOUTH AMERICAN NEUTRALITY
 

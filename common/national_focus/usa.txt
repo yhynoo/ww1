@@ -758,7 +758,10 @@ focus_tree = {
 
         ai_will_do = { 
             base = 0
-            modifier = { has_country_flag = usa_wilsonian add = 2 }
+            modifier = { 
+                and = { has_country_flag = usa_wilsonian has_war = yes }
+                add = 2 
+            }
         }
 
         completion_reward = {

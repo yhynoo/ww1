@@ -1,13 +1,37 @@
-england_western_front = {
-	allowed = { 
-		or = { tag = AST tag = ENG }
+# DIPLOMACY
+
+ENG_alliances = {
+	allowed = { original_tag = ENG }
+	enable = { 
+		not = { has_idea = idea_mansion_house } 
+		not = { has_completed_focus = ENG_on_our_own }
 	}
-	enable = { has_war_with = GER is_ally_with = FRA }
 	abort_when_not_enabled = yes
 
-	ai_strategy = {
-		type = front_unit_request
-		area = western_front
-		value = 120
-	}
+	# alliances
+	ai_strategy = { type = alliance		id = FRA		value = 100 }
+
+	# aggressive wargoals: none
+}
+
+ENG_alternative_alliances = {
+	allowed = { original_tag = ENG }
+	enable = { has_completed_focus = ENG_on_our_own }
+
+	# alliances
+	ai_strategy = { type = alliance		id = GER		value = 20 }
+
+	# aggressive wargoals:
+	ai_strategy = { type = conquer		id = HOL		value = 40 }
+	ai_strategy = { type = conquer		id = TUR		value = 80 }
+}
+
+# ARMY
+
+ENG_western_front = {
+	allowed = { original_tag = ENG }
+	enable = { and = { has_war_with = GER is_ally_with = FRA } }
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = front_unit_request		area = western_front		value = 120 }
 }

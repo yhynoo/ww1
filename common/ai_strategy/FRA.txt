@@ -9,7 +9,7 @@ FRA_alliances = {
 	ai_strategy = { type = alliance		id = ENG		value = 40 }
 	
 	if = {
-		limit = { has_guarenteed = SOV }
+		limit = { or = { has_guarenteed = SOV is_ally_with = SOV } }
 		ai_strategy = { type = alliance		id = SOV		value = 100 }
 	}
 

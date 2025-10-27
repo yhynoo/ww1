@@ -36,6 +36,13 @@ ideas = {
 
 			available = {
 				if = {
+					limit = { original_tag = HOL has_government = democratic }
+					or = {
+						has_idea = idea_armed_neutrality
+						has_war_support > 0.5
+					}
+				}
+				else = {
 					limit = { has_government = democratic }
 					has_war_support > 0.5
 				}
@@ -72,13 +79,22 @@ ideas = {
 		extensive_conscription = {
 			available = {
                 if = {
-					limit = { has_government = democratic }
-					has_war = yes
+					limit = { original_tag = HOL has_government = democratic }
+					or = {
+						has_idea = idea_armed_neutrality
+						has_war_support > 0.75
+					}
 				}
 				else = {
-					or = {
-						has_war = yes
-						has_war_support > 0.6
+					if = {
+						limit = { has_government = democratic }
+						has_war_support > 0.75
+					}
+					else = {
+						or = {
+							has_war = yes
+							has_war_support > 0.75
+						}
 					}
 				}
 
@@ -127,16 +143,7 @@ ideas = {
 
 		service_by_requirement = {
 			available = {
-				if = {
-					limit = { has_government = democratic }
-					has_war = yes
-				}
-				else = {
-					or = {
-						has_war = yes
-						has_war_support > 0.8
-					}
-				}
+				has_war = yes
 
 				if = {
 					limit = { tag = AST }
@@ -185,13 +192,10 @@ ideas = {
 		all_adults_serve = {
 			available = {
 				has_war = yes
-				has_war_support > 0.5
-
 				if = {
 					limit = { tag = AST }
 					not = { has_idea = idea_defense_act_1903 }
 				}
-
 				if = {
 					limit = { original_tag = USA }
 					not = { has_idea = idea_isolationist_society }
@@ -235,13 +239,10 @@ ideas = {
 		scraping_the_barrel = {
 			available = {
 				has_war = yes
-				has_war_support > 0.75
-
 				if = {
 					limit = { tag = AST }
 					not = { has_idea = idea_defense_act_1903 }
 				}
-
 				if = {
 					limit = { original_tag = USA }
 					not = { has_idea = idea_isolationist_society }

@@ -23,7 +23,7 @@ GER_alliances = {
 
 	# aggressive wargoals
 	ai_strategy = { type = conquer		id = ENG		value = 20 }
-	ai_strategy = { type = conquer		id = FRA		value = 80 }
+	ai_strategy = { type = conquer		id = FRA		value = 40 }
 }
 
 # ARMY
@@ -65,7 +65,7 @@ GER_west = {
 	enable = {
 		or = {
 			or = { 
-				threat > 10
+				threat > 0.1
 				war_length_with = { tag = FRA months < 6 }
 			}
 			# SOV = { has_civil_war = yes }

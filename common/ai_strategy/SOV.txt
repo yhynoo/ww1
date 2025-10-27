@@ -1,46 +1,44 @@
-russia_army_production = {
+# DIPLOMACY
+
+SOV_alliances = {
 	allowed = { original_tag = SOV }
-    enable = { always = yes }
+	enable = { or = { is_guaranteed_by = FRA is_ally_with = FRA } }
 	abort_when_not_enabled = yes
 
-	# prepare more units
-	ai_strategy = {
-		type = role_ratio
-		id = infantry
-		value = 60
-	}
+	# alliances
+	ai_strategy = { type = alliance		id = FRA		value = 100 }
 
-	# prepare more units
-	ai_strategy = {
-		type = role_ratio
-		id = breakthrough
-		value = -30
-	}
-
+	# aggressive wargoals
+	ai_strategy = { type = conquer		id = AUS		value = 40 }
+	ai_strategy = { type = conquer		id = TUR		value = 20 }
 }
 
-russia_focuses_on_europe = {
+# ARMY
+
+SOV_militarisation = {
 	allowed = { original_tag = SOV }
-    enable = { 
-		not = { has_completed_focus = SOV_on_our_own }
-		has_war = no
-	}
+	enable = { always = yes }
+
+	# more infantry, less cyclists
+	ai_strategy = {	type = role_ratio	id = infantry		value = 60 }
+	ai_strategy = {	type = role_ratio	id = breakthrough	value = -30 }
+}
+
+SOV_areas = {
+	allowed = { original_tag = SOV }
+    enable = { not = { has_completed_focus = SOV_on_our_own } }
 	abort_when_not_enabled = yes
 	
 	# planning the positions
 	ai_strategy = {
-		type = front_unit_request
-		state_trigger = {
-			is_on_continent = europe
-		}
+		type = frontarea_priority_unit_request
+		id = europe
 		value = 200
 	}
 
 	ai_strategy = {
-		type = front_unit_request
-		state_trigger = {
-			is_on_continent = asia
-		}
+		type = area_priority
+		id = asia
 		value = -100
 	}
 }

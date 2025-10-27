@@ -16,17 +16,7 @@ country_event = {
         }
         add_to_faction = FROM
 
-        ai_chance = {
-            base = 2
-
-            modifier = { 
-                or = {
-                    FROM = { has_government = communism } 
-                    or = { is_ally_with = AUS is_ally_with = TUR }
-                }
-                factor = 0
-            }
-        }
+        ai_chance = { base = 1 }
     }
 
     option = {
@@ -35,7 +25,6 @@ country_event = {
             limit = { has_guaranteed = FROM }
             diplomatic_relation = { country = FROM relation = guarantee active = no }
         }
-
         FROM = { 
             if = {
                 limit = { has_guaranteed = ROOT }
@@ -43,9 +32,12 @@ country_event = {
             }
         }
 
-        ai_chance = {
-            base = 1
-            modifier = { has_government = democratic factor = 0.5 }
+        ai_chance = { 
+            base = 0
+            modifier = {
+                or = { is_ally_with = AUS is_ally_with = TUR } 
+                add = 6
+            }
         }
     }
 }
