@@ -129,7 +129,7 @@ country_event = {
 
 news_event = {
     id = _dutch_neutrality.6
-    title = "The Hague Allows Imports to Germany"
+    title = "The Hague Allows Imports"
     desc = _dutch_neutrality.6.d
 
     is_triggered_only = yes
@@ -142,5 +142,28 @@ news_event = {
             limit = { tag = GER }
             add_timed_idea = { idea = idea_unlimited_grain_imports years = 1 }
         }
+    }
+}
+
+# CLEARING
+news_event = {
+    id = _dutch_neutrality.10
+    hidden = yes
+
+    trigger = {
+        has_power_balance = { id = HOL_dutch_neutrality }
+        or = {
+            GER = { not = { has_war_with = ENG } }
+            
+            is_ally_with = GER
+            has_war_with = GER
+
+            is_ally_with = ENG
+            has_war_with = ENG
+        }
+    }
+
+    option = {
+        remove_power_balance = { id = HOL_dutch_neutrality }
     }
 }
