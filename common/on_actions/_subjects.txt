@@ -1,8 +1,23 @@
 on_actions = {
-    on_subject_free = {
-        if = {
-            limit = { tag = RAJ }
-            drop_cosmetic_tag = yes
+    effect = {
+        on_subject_autonomy_level_change = {
+            if = {
+                limit = { 
+                    tag = RAJ
+                    has_autonomy_state = autonomy_free
+                }
+                drop_cosmetic_tag = yes
+            }
+
+            if = {
+                limit = { 
+                    tag = UGA 
+                    has_autonomy_state = autonomy_free
+                }
+
+                drop_cosmetic_tag = yes
+                news_event = { id = uganda_autonomy.3 hours = 6 }
+            }
         }
     }
 }

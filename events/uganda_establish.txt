@@ -1,0 +1,46 @@
+add_namespace = uganda_establish
+
+country_event = {
+    id = uganda_establish.1
+    title = "Autonomy for the African Colonies?"        # pragmatic choice: focus on war in Europe.
+    desc = uganda_establish.1.d
+
+    trigger = {
+        tag = GER
+        war_length_with = { tag = ENG months > 6 }
+        451 = { is_owned_and_controlled_by = ROOT }
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "This is a good idea."
+        custom_effect_tooltip = tt_establish_mittelafrika
+
+        hidden_effect = {
+            every_owned_state = {
+                limit = { is_on_continent = africa }
+
+                UGA = { set_state_owner = PREV }
+                add_core_of = UGA
+
+                if = {
+                    limit = { is_controlled_by = ROOT }
+                    UGA = { set_state_controller = PREV }
+                }
+            }
+        }
+        set_autonomy = { target = UGA autonomous_state = autonomy_colony }
+
+        hidden_effect = {
+            # setup
+            UGA = { 
+                set_cosmetic_tag = UGA_GER 
+                set_popularities = { democratic = 5 monarchism = 95 }
+                load_oob = "UGA_1912"
+            }
+        }
+    }
+    option = {
+        name = "This is not needed."
+    }
+}

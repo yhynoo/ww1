@@ -2,11 +2,11 @@
 
 SOV_alliances = {
 	allowed = { original_tag = SOV }
-	enable = { or = { is_guaranteed_by = FRA is_ally_with = FRA } }
+	enable = { or = { is_guaranteed_by = FRA is_in_faction_with = FRA } }
 	abort_when_not_enabled = yes
 
 	# alliances
-	ai_strategy = { type = alliance		id = FRA		value = 100 }
+	ai_strategy = { type = alliance		id = FRA		value = 200 }
 
 	# aggressive wargoals
 	ai_strategy = { type = conquer		id = AUS		value = 40 }
