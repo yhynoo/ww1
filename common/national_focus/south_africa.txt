@@ -1,21 +1,26 @@
-focus_tree = {
-    id = AUS_focus
+﻿focus_tree = {
+    id = SAF_focus
 
     country = {
         factor = 0
-        modifier = { add = 20 original_tag = AUS }
+        modifier = { add = 20 original_tag = SAF }
     }
 
     continuous_focus_position = { x = 200 y = 800 }
 
     ## military branch
     focus = {
-        id = AUS_adjust_the_military
+        id = SAF_adjust_the_military
         icon = GFX_focus_generic_budget
 
         x = 7
         y = 0
         cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = { has_war = yes factor = 3 }
+        }
 
         completion_reward = {
             add_command_power = 50
@@ -34,24 +39,24 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_focus_army
+        id = SAF_focus_army
         icon = GFX_focus_generic_army
 
-        relative_position_id = AUS_adjust_the_military
+        relative_position_id = SAF_adjust_the_military
         x = -2
         y = 1
         cost = 10
 
-        prerequisite = { focus = AUS_adjust_the_military }
+        prerequisite = { focus = SAF_adjust_the_military }
         completion_reward = {
             army_experience = 50
         }
     }
     focus = {
-        id = AUS_extend_conscription
+        id = SAF_extend_conscription
         icon = GFX_focus_generic_extend_conscription
 
-        relative_position_id = AUS_focus_army
+        relative_position_id = SAF_focus_army
         x = -4
         y = 1
         cost = 10
@@ -63,42 +68,39 @@ focus_tree = {
             }   
         }
 
-        prerequisite = { focus = AUS_focus_army }
+        prerequisite = { focus = SAF_focus_army }
         completion_reward = {
             upgrade_conscription_law = yes
         }
     }
     focus = {
-        id = AUS_army_maneuvers
+        id = SAF_army_maneuvers
         icon = GFX_focus_generic_army_maneuvers
 
-        relative_position_id = AUS_focus_army
+        relative_position_id = SAF_focus_army
         x = -2
         y = 1
         cost = 10
 
-        ai_will_do = { base = 2 }
-
-        prerequisite = { focus = AUS_focus_army }
+        prerequisite = { focus = SAF_focus_army }
         completion_reward = {
+            army_experience = 75
             add_doctrine_cost_reduction = {
 				name = land_doc_bonus cost_reduction = 0.5 uses = 2
 				category = land_doctrine
 			}
-
-            remove_ideas = idea_archaic_army
         }
     }
     focus = {
-        id = AUS_equipment_effort
+        id = SAF_equipment_effort
         icon = GFX_focus_generic_equipment_effort
 
-        relative_position_id = AUS_focus_army
+        relative_position_id = SAF_focus_army
         x = 0
         y = 1
         cost = 10
 
-        prerequisite = { focus = AUS_focus_army }
+        prerequisite = { focus = SAF_focus_army }
         completion_reward = {
             add_tech_bonus = {
 				name = infantry_bonus bonus = 1.0 uses = 2
@@ -107,15 +109,15 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_artillery
+        id = SAF_artillery
         icon = GFX_focus_generic_artillery
 
-        relative_position_id = AUS_equipment_effort
+        relative_position_id = SAF_equipment_effort
         x = -2
         y = 1
         cost = 10
 
-        prerequisite = { focus = AUS_equipment_effort }
+        prerequisite = { focus = SAF_equipment_effort }
         completion_reward = {
             add_tech_bonus = {
 				name = artillery_bonus bonus = 1.0 uses = 2
@@ -124,15 +126,15 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_aircraft
+        id = SAF_aircraft
         icon = GFX_focus_generic_aircraft
 
-        relative_position_id = AUS_equipment_effort
+        relative_position_id = SAF_equipment_effort
         x = 0
         y = 1
         cost = 10
 
-        prerequisite = { focus = AUS_equipment_effort }
+        prerequisite = { focus = SAF_equipment_effort }
         completion_reward = {
             air_experience = 50
             add_tech_bonus = {
@@ -142,15 +144,15 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_armor
+        id = SAF_armor
         icon = GFX_focus_generic_armor
 
-        relative_position_id = AUS_equipment_effort
+        relative_position_id = SAF_equipment_effort
         x = 2
         y = 1
         cost = 10
 
-        prerequisite = { focus = AUS_equipment_effort }
+        prerequisite = { focus = SAF_equipment_effort }
         completion_reward = {
             add_tech_bonus = {
 				name = armor_bonus bonus = 1.0 uses = 2
@@ -159,18 +161,18 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_modern_warfare
+        id = SAF_modern_warfare
         icon = GFX_focus_generic_modern_warfare
 
-        relative_position_id = AUS_aircraft
+        relative_position_id = SAF_aircraft
         x = 0
         y = 1
         cost = 10
 
         prerequisite = { 
-            focus = AUS_artillery
-            focus = AUS_aircraft
-            focus = AUS_armor
+            focus = SAF_artillery
+            focus = SAF_aircraft
+            focus = SAF_armor
         }
         completion_reward = {
             army_experience = 100
@@ -179,10 +181,10 @@ focus_tree = {
     }
 
     focus = {
-        id = AUS_focus_navy
+        id = SAF_focus_navy
         icon = GFX_focus_generic_navy
 
-        relative_position_id = AUS_adjust_the_military
+        relative_position_id = SAF_adjust_the_military
         x = 2
         y = 1
         cost = 10
@@ -194,16 +196,16 @@ focus_tree = {
 			}
 		}
 
-        prerequisite = { focus = AUS_adjust_the_military }
+        prerequisite = { focus = SAF_adjust_the_military }
         completion_reward = {
             navy_experience = 50
         }
     }
     focus = {
-        id = AUS_naval_exercises
+        id = SAF_naval_exercises
         icon = GFX_focus_generic_naval_exercises
 
-        relative_position_id = AUS_focus_navy
+        relative_position_id = SAF_focus_navy
         x = 0
         y = 1
         cost = 10
@@ -215,7 +217,7 @@ focus_tree = {
 			}
 		}
 
-        prerequisite = { focus = AUS_focus_navy }
+        prerequisite = { focus = SAF_focus_navy }
         completion_reward = {
             navy_experience = 75
             add_doctrine_cost_reduction = {
@@ -225,10 +227,10 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_expand_dockyards
+        id = SAF_expand_dockyards
         icon = GFX_focus_generic_expand_dockyards
 
-        relative_position_id = AUS_focus_navy
+        relative_position_id = SAF_focus_navy
         x = 2
         y = 1
         cost = 10
@@ -240,7 +242,7 @@ focus_tree = {
 			}
 		}
 
-        prerequisite = { focus = AUS_focus_navy }
+        prerequisite = { focus = SAF_focus_navy }
 		
 		completion_reward = {
 			navy_experience = 25
@@ -257,10 +259,10 @@ focus_tree = {
 		}
     }
     focus = {
-        id = AUS_high_seas
+        id = SAF_high_seas
         icon = GFX_focus_generic_high_seas
 
-        relative_position_id = AUS_expand_dockyards
+        relative_position_id = SAF_expand_dockyards
         x = 0
         y = 1
         cost = 10
@@ -272,7 +274,7 @@ focus_tree = {
 			}
 		}
 
-        prerequisite = { focus = AUS_expand_dockyards }
+        prerequisite = { focus = SAF_expand_dockyards }
         completion_reward = {
             add_tech_bonus = {
 				name = capital_ships_bonus bonus = 1.0 uses = 1
@@ -281,10 +283,10 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_the_dark_deep
+        id = SAF_the_dark_deep
         icon = GFX_focus_generic_the_dark_deep
 
-        relative_position_id = AUS_expand_dockyards
+        relative_position_id = SAF_expand_dockyards
         x = 2
         y = 1
         cost = 10
@@ -296,7 +298,7 @@ focus_tree = {
 			}
 		}
 
-        prerequisite = { focus = AUS_expand_dockyards }
+        prerequisite = { focus = SAF_expand_dockyards }
         completion_reward = {
             add_tech_bonus = {
 				name = ss_bonus bonus = 1.0 uses = 1
@@ -305,10 +307,10 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_seaborne_operations
+        id = SAF_seaborne_operations
         icon = GFX_focus_generic_seaborne_operations
 
-        relative_position_id = AUS_naval_exercises
+        relative_position_id = SAF_naval_exercises
         x = 0
         y = 1
         cost = 10
@@ -320,7 +322,7 @@ focus_tree = {
 			}
 		}
 
-        prerequisite = { focus = AUS_naval_exercises }
+        prerequisite = { focus = SAF_naval_exercises }
         completion_reward = {
             add_tech_bonus = {
 				name = special_forces_bonus bonus = 1.0 uses = 1
@@ -330,10 +332,10 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_rule_the_waves
+        id = SAF_rule_the_waves
         icon = GFX_focus_generic_rule_the_waves
 
-        relative_position_id = AUS_high_seas
+        relative_position_id = SAF_high_seas
         x = 0
         y = 1
         cost = 10
@@ -346,9 +348,9 @@ focus_tree = {
 		}
 
         prerequisite = { 
-            focus = AUS_seaborne_operations
-            focus = AUS_high_seas
-            focus = AUS_the_dark_deep
+            focus = SAF_seaborne_operations
+            focus = SAF_high_seas
+            focus = SAF_the_dark_deep
         }
         completion_reward = {
             navy_experience = 100
@@ -358,7 +360,7 @@ focus_tree = {
 
 ## economic branch
     focus = {
-        id = AUS_economic_development
+        id = SAF_economic_development
         icon = GFX_focus_generic_economic_development
 
         x = 22
@@ -373,10 +375,10 @@ focus_tree = {
     }
     
     focus = {
-        id = AUS_rationing
+        id = SAF_rationing
         icon = GFX_focus_generic_rationing
 
-        relative_position_id = AUS_economic_development
+        relative_position_id = SAF_economic_development
         x = -4
         y = 1
 
@@ -387,7 +389,7 @@ focus_tree = {
             modifier = { has_war = no factor = 0 }
         }
 
-        prerequisite = { focus = AUS_economic_development }
+        prerequisite = { focus = SAF_economic_development }
         completion_reward = {
             add_stability = -0.05
             add_war_support = -0.05
@@ -395,16 +397,16 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_fuel
+        id = SAF_fuel
         icon = GFX_focus_generic_fuel
 
-        relative_position_id = AUS_rationing
+        relative_position_id = SAF_rationing
         x = -2
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = AUS_rationing }
+        prerequisite = { focus = SAF_rationing }
         completion_reward = {
             add_tech_bonus = {
 				name = synthetic_bonus bonus = 1.0 uses = 1
@@ -418,10 +420,10 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_women_at_work
+        id = SAF_women_at_work
         icon = GFX_focus_generic_women_at_work
 
-        relative_position_id = AUS_rationing
+        relative_position_id = SAF_rationing
         x = 1
         y = 1
 
@@ -436,7 +438,7 @@ focus_tree = {
             has_war = yes
         }
 
-        prerequisite = { focus = AUS_rationing }
+        prerequisite = { focus = SAF_rationing }
         completion_reward = {
             add_stability = -0.05
             add_ideas = idea_women_at_work
@@ -444,10 +446,10 @@ focus_tree = {
     }
 
     focus = {
-        id = AUS_infrastructure_effort
+        id = SAF_infrastructure_effort
         icon = GFX_focus_generic_extraction_effort
 
-        relative_position_id = AUS_economic_development
+        relative_position_id = SAF_economic_development
         x = 0
         y = 1
 
@@ -455,7 +457,7 @@ focus_tree = {
 
         ai_will_do = { base = 2 }
 
-        prerequisite = { focus = AUS_economic_development }
+        prerequisite = { focus = SAF_economic_development }
 		completion_reward = {
             add_tech_bonus = {
 				name = construction_bonus bonus = 1.0 uses = 2
@@ -472,10 +474,10 @@ focus_tree = {
 		}
     }
     focus = {
-        id = AUS_construct_civilian
+        id = SAF_construct_civilian
         icon = GFX_focus_generic_construct_civilian
 
-        relative_position_id = AUS_infrastructure_effort
+        relative_position_id = SAF_infrastructure_effort
         x = 0
         y = 1
 
@@ -483,7 +485,7 @@ focus_tree = {
 
         ai_will_do = { base = 3 }
 
-        prerequisite = { focus = AUS_infrastructure_effort }
+        prerequisite = { focus = SAF_infrastructure_effort }
 		completion_reward = {
             add_timed_idea = { idea = idea_industrial_expansion years = 1 }
 			random_owned_controlled_state = {
@@ -498,17 +500,17 @@ focus_tree = {
 		}
     }
     focus = {
-        id = AUS_expand_mining
+        id = SAF_expand_mining
         icon = GFX_focus_generic_expand_mining
 
-        relative_position_id = AUS_infrastructure_effort
+        relative_position_id = SAF_infrastructure_effort
         x = 3
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = AUS_infrastructure_effort }
-        mutually_exclusive = { focus = AUS_efficiency_studies }
+        prerequisite = { focus = SAF_infrastructure_effort }
+        mutually_exclusive = { focus = SAF_efficiency_studies }
 
         completion_reward = {
             random_owned_controlled_state = {
@@ -521,10 +523,10 @@ focus_tree = {
     }
 
     focus = {
-        id = AUS_efficiency_studies
+        id = SAF_efficiency_studies
         icon = GFX_focus_efficiency_studies
 
-        relative_position_id = AUS_infrastructure_effort
+        relative_position_id = SAF_infrastructure_effort
         x = 6
         y = 1
 
@@ -532,8 +534,8 @@ focus_tree = {
 
         ai_will_do = { base = 3 }
 
-        prerequisite = { focus = AUS_infrastructure_effort }
-        mutually_exclusive = { focus = AUS_expand_mining }
+        prerequisite = { focus = SAF_infrastructure_effort }
+        mutually_exclusive = { focus = SAF_expand_mining }
 
 		completion_reward = {
             add_ideas = idea_efficiency_studies
@@ -541,10 +543,10 @@ focus_tree = {
     }
 
     focus = {
-        id = AUS_steady_growth
+        id = SAF_steady_growth
         icon = GFX_focus_generic_steady_growth
 
-        relative_position_id = AUS_construct_civilian
+        relative_position_id = SAF_construct_civilian
         x = 2
         y = 1
 
@@ -553,7 +555,7 @@ focus_tree = {
         ai_will_do = { base = 4 }
 
         prerequisite = { 
-            focus = AUS_construct_civilian
+            focus = SAF_construct_civilian
         }
 
         available = {
@@ -576,17 +578,17 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_war_industry
+        id = SAF_war_industry
         icon = GFX_focus_generic_war_industry
 
-        relative_position_id = AUS_construct_civilian
+        relative_position_id = SAF_construct_civilian
         x = -2
         y = 1
 
         cost = 10
 
         prerequisite = { 
-            focus = AUS_construct_civilian
+            focus = SAF_construct_civilian
         }
 
         available = {
@@ -598,6 +600,7 @@ focus_tree = {
 				limit = {
 					free_building_slots = { building = arms_factory size > 0 include_locked = yes }
 					is_core_of = ROOT
+                    is_in_home_area = yes
 				}
 
 				add_extra_state_shared_building_slots = 2
@@ -607,16 +610,16 @@ focus_tree = {
     }
 
     focus = {
-        id = AUS_telegraph
+        id = SAF_telegraph
         icon = GFX_focus_generic_telegraph
 
-        relative_position_id = AUS_economic_development
+        relative_position_id = SAF_economic_development
         x = 4
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = AUS_economic_development }
+        prerequisite = { focus = SAF_economic_development }
         available = { has_tech = tech_telegraph }
 
         completion_reward = {
@@ -630,10 +633,10 @@ focus_tree = {
 
     ## political branch
     focus = {
-        id = AUS_political_ambitions
+        id = SAF_political_ambitions
         icon = GFX_focus_generic_political_ambitions
 
-        relative_position_id = AUS_economic_development
+        relative_position_id = SAF_economic_development
         x = -2
         y = 5
         cost = 10
@@ -645,26 +648,31 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_international_affairs
+        id = SAF_international_affairs
         icon = GFX_focus_generic_international_affairs
 
-        relative_position_id = AUS_political_ambitions
+        relative_position_id = SAF_political_ambitions
         x = -4
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = { threat > 0.1 factor = 3 }
+        }
+
         available = { is_subject = no }
 
-        prerequisite = { focus = AUS_political_ambitions }
+        prerequisite = { focus = SAF_political_ambitions }
         completion_reward = {
             add_timed_idea = { idea = idea_international_affairs years = 2 }
         }
     }
     focus = {
-        id = AUS_expansionism
+        id = SAF_expansionism
         icon = GFX_focus_generic_expansionism
 
-        relative_position_id = AUS_international_affairs
+        relative_position_id = SAF_international_affairs
         x = -2
         y = 1
         cost = 10
@@ -674,123 +682,89 @@ focus_tree = {
             has_war_support > 0.3
         }
 
-        prerequisite = { focus = AUS_international_affairs }
+        ai_will_do = {
+            base = 1
+            modifier = { threat > 0.2 factor = 3 }
+        }
+
+        prerequisite = { focus = SAF_international_affairs }
         completion_reward = {
             add_political_power = 100
             add_timed_idea = { idea = idea_expansionism years = 1 }
         }
     }
     focus = {
-        id = AUS_contain_eastern_threats
+        id = SAF_deterrence
         icon = GFX_focus_generic_deterrence
 
-        relative_position_id = AUS_international_affairs
+        relative_position_id = SAF_international_affairs
         x = 1
         y = 1
         cost = 10
 
-        prerequisite = { focus = AUS_international_affairs }
+        prerequisite = { focus = SAF_international_affairs }
         available = { is_subject = no }
-
-        ai_will_do = { base = 2 }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }
     }
     focus = {
-        id = AUS_seek_alliances
-        icon = GFX_focus_generic_on_our_own
+        id = SAF_seek_alliances
+        icon = GFX_focus_generic_seek_alliances
 
-        relative_position_id = AUS_expansionism
+        relative_position_id = SAF_expansionism
         x = -2
         y = 1
         cost = 10
 
-        prerequisite = { focus = AUS_expansionism }
+        prerequisite = { focus = SAF_expansionism }
         available = { 
-            is_ally_with = GER
-            not = { has_idea = idea_archaic_army }
-        }
-
-        ai_will_do = { 
-            base = 2 
-            modifier = { is_in_faction = yes factor = 0 }
+            is_in_faction = no
+            is_subject = no 
         }
 
         completion_reward = {
-            every_country = {
-                limit = { or = { tag = AUS tag = GER } }
-                add_timed_idea = { idea = idea_gemeinsame_heeresleitung years = 2 }
-            }
+            add_timed_idea = { idea = idea_seek_alliances years = 2 }
         }
     }
     focus = {
-        id = AUS_on_our_own
-        icon = GFX_focus_generic_expand_the_empire
+        id = SAF_on_our_own
+        icon = GFX_focus_generic_on_our_own
 
-        relative_position_id = AUS_expansionism
+        relative_position_id = SAF_expansionism
         x = 1
         y = 1
         cost = 10
 
-        prerequisite = { focus = AUS_expansionism }
-
-        available = { 
-            is_subject = no
-            not = { has_war_together_with = GER }
-        }
-
-        ai_will_do = { 
-            base = 0
-            modifier = { 
-                or = { 
-                    FRA = { has_government = monarchism } 
-                    is_in_faction = no
-                }
-                add = 1 
-            }
-        }
+        prerequisite = { focus = SAF_expansionism }
+        available = { is_subject = no }
 
         completion_reward = {
-            if = {
-                limit = { is_ally_with = GER }
-                leave_faction = yes
-            }
-
-            GER = { add_opinion_modifier = { target = AUS modifier = opinion_denounced_germany } }
-            custom_effect_tooltip = decision_effect_tooltip
-
-            hidden_effect = {
-                add_ai_strategy = { type = alliance id = GER value = -75 }
-                add_ai_strategy = { type = contain id = GER value = 25 }
-            }
+            add_timed_idea = { idea = idea_on_our_own years = 1 }
         }
     }
 
     focus = {
-        id = AUS_traditionalism
-        icon = GFX_focus_generic_internal_stability
+        id = SAF_traditionalism
+        icon = GFX_focus_SAF_traditionalism
 
-        relative_position_id = AUS_political_ambitions
+        relative_position_id = SAF_political_ambitions
         x = 0
         y = 1
         cost = 10
-
-        ai_will_do = { base = 2 }
-
-        mutually_exclusive = { focus = AUS_adjust_the_government }
-        prerequisite = { focus = AUS_political_ambitions }
+        
+        mutually_exclusive = { focus = SAF_adjust_the_government }
+        prerequisite = { focus = SAF_political_ambitions }
         completion_reward = {
-            add_popularity = { ideology = monarchism popularity = 0.05 }
-            add_war_support = 0.05
+            add_stability = 0.05
         }
     }
     focus = {
-        id = AUS_public_support
+        id = SAF_public_support
         icon = GFX_focus_generic_public_support
 
-        relative_position_id = AUS_traditionalism
+        relative_position_id = SAF_traditionalism
         x = -1
         y = 1
         cost = 10
@@ -804,7 +778,7 @@ focus_tree = {
             has_war = yes
         }
 
-        prerequisite = { focus = AUS_traditionalism }
+        prerequisite = { focus = SAF_traditionalism }
         completion_reward = {
             add_war_support = 0.05
             custom_effect_tooltip = decision_effect_tooltip
@@ -812,36 +786,31 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_mobilize_the_masses
-        icon = GFX_focus_AUS_mobilize_the_masses
+        id = SAF_mobilize_the_masses
+        icon = GFX_focus_SAF_mobilize_the_masses
 
-        relative_position_id = AUS_traditionalism
+        relative_position_id = SAF_traditionalism
         x = 1
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 2
-            modifier = { has_war = no factor = 0 }
-        }
-
-        prerequisite = { focus = AUS_traditionalism }
+        prerequisite = { focus = SAF_traditionalism }
         completion_reward = {
-            add_timed_idea = { idea = idea_an_meine_volker years = 2 }
+            add_timed_idea = { idea = idea_krugers_legacy years = 2 }
         }
     }
     focus = {
-        id = AUS_strength_in_unity
+        id = SAF_strength_in_unity
         icon = GFX_focus_generic_strength_in_unity
 
-        relative_position_id = AUS_public_support
+        relative_position_id = SAF_public_support
         x = 1
         y = 1
         cost = 10
 
         prerequisite = { 
-            focus = AUS_public_support
-            focus = AUS_mobilize_the_masses
+            focus = SAF_public_support
+            focus = SAF_mobilize_the_masses
         }
         completion_reward = {
             add_political_power = 50
@@ -849,127 +818,104 @@ focus_tree = {
         }
     }
     focus = {
-        id = AUS_the_everlasting_spirit
+        id = SAF_the_everlasting_spirit
         icon = GFX_focus_generic_the_everlasting_spirit
 
-        relative_position_id = AUS_strength_in_unity
+        relative_position_id = SAF_strength_in_unity
         x = 0
         y = 1
         cost = 10
 
-        prerequisite = { focus = AUS_strength_in_unity }
-        completion_reward = {
-            add_ideas = idea_alles_erdreich_ist_osterreich
-        }
+        prerequisite = { focus = SAF_strength_in_unity }
+        completion_reward = { add_ideas = idea_southern_outpost }
     }
 
     focus = {
-        id = AUS_adjust_the_government
+        id = SAF_adjust_the_government
         icon = GFX_focus_generic_red_reform
 
-        relative_position_id = AUS_political_ambitions
+        relative_position_id = SAF_political_ambitions
         x = 4
         y = 1
         cost = 10
 
-        mutually_exclusive = { focus = AUS_traditionalism }
-        prerequisite = { focus = AUS_political_ambitions }
+        mutually_exclusive = { focus = SAF_traditionalism }
+        prerequisite = { focus = SAF_political_ambitions }
+
         completion_reward = {
-            add_popularity = { ideology = democratic popularity = 0.05 }
+            add_timed_idea = { idea = idea_communism_tendencies years = 1 }
             add_stability = -0.05
         }
     }
     focus = {
-        id = AUS_state_reform
+        id = SAF_state_reform
         icon = GFX_focus_generic_state_reform
 
-        relative_position_id = AUS_adjust_the_government
+        relative_position_id = SAF_adjust_the_government
         x = 2
         y = 1
         cost = 10
 
-        prerequisite = { focus = AUS_adjust_the_government }
+        prerequisite = { focus = SAF_adjust_the_government }
         completion_reward = {
             add_timed_idea = { idea = idea_state_reform years = 1 }
         }
     }
     focus = {
-        id = AUS_open_the_economy
+        id = SAF_open_the_economy
         icon = GFX_focus_generic_open_the_economy
 
-        relative_position_id = AUS_adjust_the_government
+        relative_position_id = SAF_adjust_the_government
         x = -1
         y = 1
         cost = 10
 
-        available = {
-            HUN = { exists = no }
-            any_owned_state = { is_core_of = HUN }
-        }
-
-        prerequisite = { focus = AUS_adjust_the_government }
+        prerequisite = { focus = SAF_adjust_the_government }
         completion_reward = {
-            add_timed_idea = { idea = idea_equal_development years = 1 }
-            
+            add_timed_idea = { idea = idea_open_the_economy years = 2 }
+
             random_owned_controlled_state = {
-                limit = { is_core_of = HUN is_in_home_area = yes }
-                
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+                limit = { is_core_of = ROOT is_in_home_area = yes }
+
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
 			}
         }
     }
     focus = {
-        id = AUS_over_the_edge
-        icon = GFX_focus_generic_over_the_edge
+        id = SAF_over_the_edge
+        icon = GFX_focus_SAF_over_the_edge
 
-        relative_position_id = AUS_state_reform
+        relative_position_id = SAF_state_reform
         x = 2
         y = 1
         cost = 10
 
-        prerequisite = { focus = AUS_state_reform }
+        prerequisite = { focus = SAF_state_reform }
 
-        ai_will_do = {
-            base = 0
-            modifier = { 
-                or = { surrender_progress > 0.1 stability < 0.25 }
-                add = 2 
-            }
+        available = {
+            has_government = communism
         }
         
         completion_reward = {
-            add_timed_idea = { idea = idea_communism_tendencies years = 2 }
+            every_state = {
+                limit = { or = { state = 540 state = 541 state = 542 state = 543 state = 545 state = 648 } }
+                add_core_of = ROOT
+            }
         }
     }
     focus = {
-        id = AUS_embrace_modernity
-        icon = GFX_focus_AUS_embrace_modernity
+        id = SAF_embrace_modernity
+        icon = GFX_focus_generic_red_education
 
-        relative_position_id = AUS_state_reform
+        relative_position_id = SAF_state_reform
         x = -1
         y = 1
         cost = 10
 
-        prerequisite = { focus = AUS_state_reform }
-
-        available = {
-            has_idea = idea_dual_monarchy
-            any_owned_state = { is_core_of = HUN }
-        }
-
-        ai_will_do = {
-            base = 0
-            modifier = { has_idea = idea_dual_monarchy add = 2 }
-        }
-
+        prerequisite = { focus = SAF_state_reform }
         completion_reward = {
-            remove_ideas = idea_dual_monarchy
-            set_cosmetic_tag = AUS_alone 
-
-            hidden_effect = { 
-                country_event = { id = austria_ausgleich.1 days = 15 random_days = 30 }
-            }
+            add_research_slot = 1
         }
     }
 }

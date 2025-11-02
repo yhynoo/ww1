@@ -1,0 +1,18 @@
+add_namespace = poland_maritime
+
+country_event = {
+    id = poland_maritime.1
+    title = "Warsaw Asks for [polish_colonies.GetName]"
+    desc = poland_maritime.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Alright."
+        event_target:polish_colonies = { transfer_state_to = POL }
+    }
+    option = {
+        name = "Why would we agree to that?"
+        add_political_power = -15
+    }
+}

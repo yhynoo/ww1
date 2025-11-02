@@ -1,18 +1,18 @@
 on_actions = {
-    effect = {
-        on_subject_autonomy_level_change = {
+    on_subject_autonomy_level_change = {
+        effect = {
             if = {
                 limit = { 
                     tag = RAJ
-                    has_autonomy_state = autonomy_free
+                    is_subject = no
                 }
                 drop_cosmetic_tag = yes
             }
 
             if = {
                 limit = { 
-                    tag = UGA 
-                    has_autonomy_state = autonomy_free
+                    tag = UGA
+                    is_subject = no
                 }
 
                 drop_cosmetic_tag = yes

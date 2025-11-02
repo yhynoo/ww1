@@ -701,7 +701,7 @@
         x = 1
         y = 1
         cost = 10
-§
+
         prerequisite = { focus = POL_international_affairs }
         available = { is_subject = no }
 
@@ -730,7 +730,7 @@
     }
     focus = {
         id = POL_on_our_own
-        icon = GFX_focus_generic_on_our_own
+        icon = GFX_focus_generic_across_the_sea
 
         relative_position_id = POL_expansionism
         x = 1
@@ -738,10 +738,43 @@
         cost = 10
 
         prerequisite = { focus = POL_expansionism }
-        available = { is_subject = no }
+        available = { 
+            is_subject = no 
+            has_navy_size = { size > 5 }
+
+            custom_trigger_tooltip = {
+                tooltip = tt_maritime_league
+                or = {
+                    and = { 
+                        is_ally_with = FRA
+                        543 = { is_owned_and_controlled_by = FRA }
+                    }
+                    and = { 
+                        is_ally_with = GER
+                        523 = { is_owned_and_controlled_by = GER }
+                    }
+                }
+            }
+        }
 
         completion_reward = {
-            add_timed_idea = { idea = idea_on_our_own years = 1 }
+            hidden_effect = {
+                if = {
+                    limit = { is_ally_with = GER }
+                    523 = { save_event_target_as = polish_colonies }
+                }
+                else = {
+                    543 = { save_event_target_as = polish_colonies }
+                }
+            }
+
+            if = {
+                limit = { is_ally_with = GER }
+                GER = { country_event = { id = poland_maritime.1 hours = 6 } }
+            }
+            else = {
+                FRA = { country_event = { id = poland_maritime.1 hours = 6 } }
+            }
         }
     }
 

@@ -1,0 +1,28 @@
+add_namespace = south_africa_allegiance
+
+country_event = {
+    id = south_africa_allegiance.1
+    title = "Hottentot Allegiance in the Veld"
+    desc = south_africa_allegiance.1.d
+
+    trigger = {
+        tag = SAF
+        or = { controls_state = 541 controls_state = 542 }
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "We are their liberators."
+        add_political_power = -50
+
+        every_controlled_state = {
+            limit = { or = { state = 541 state = 542 } }
+            add_manpower = 60000
+            add_compliance = 10
+        }
+    }
+    option = {
+        name = "Maintain their status."
+        add_stability = 0.05
+    }
+}

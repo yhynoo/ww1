@@ -743,10 +743,19 @@ focus_tree = {
         cost = 10
 
         prerequisite = { focus = SER_expansionism }
-        available = { is_subject = no }
+        available = { 
+            is_subject = no 
+            custom_trigger_tooltip = {
+                tooltip = tt_greater_yugoslavia
+                has_cosmetic_tag = SER_YUG
+            }
+        }
 
         completion_reward = {
-            add_timed_idea = { idea = idea_on_our_own years = 1 }
+            every_state = {
+                limit = { or = { state = 33 state = 44 state = 48 state = 102 state = 185 } }
+                add_core_of = SER
+            }
         }
     }
 

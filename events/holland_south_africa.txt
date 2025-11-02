@@ -22,7 +22,7 @@ news_event = {
     trigger = { has_stability < 0.6 }
 
     immediate = {
-        hidden_effect = { HOL = { give_guarantee = SAF } }
+        hidden_effect = { HOL = { set_autonomy = { target = SAF autonomous_state = autonomy_dominion } } }
     }
 
     option = {
@@ -30,7 +30,7 @@ news_event = {
         remove_ideas = idea_unrest_in_transvaal
 
         hidden_effect = { 
-            south_african_independence_independence = yes
+            south_african_independence = yes
         }
 
         every_country_with_original_tag = {
