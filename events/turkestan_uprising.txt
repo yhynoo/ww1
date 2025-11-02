@@ -1,0 +1,47 @@
+add_namespace = turkestan_uprising
+
+news_event = {
+    id = turkestan_uprising.1
+    title = "Assault on Administrators in Tashkent"       
+    desc = turkestan_uprising.1.d
+
+    trigger = {
+        and = { original_tag = SOV has_civil_war = yes controls_state = 405 }
+        TMS = { exists = no }
+
+        # only if Great Turan
+        TUR = { has_country_flag = turkestan_active }
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "Worrying."
+        hidden_effect = { news_event = { id = turkestan_uprising.2 days = 14 random_days = 60 } }
+    }
+}
+
+news_event = {
+    id = turkestan_uprising.2
+    title = "[TMS.GetName] Declares Independence!"
+    desc = turkestan_uprising.2.d
+
+    is_triggered_only = yes
+    trigger = {
+        any_country = {
+            and = { original_tag = SOV has_civil_war = yes controls_state = 405 }
+        }
+        TMS = { exists = no }
+    }
+
+    option = {
+        name = "Traitors!"
+        add_war_support = 0.05
+
+        every_country = {
+            limit = { original_tag = SOV }
+
+            hidden_effect = { turkestani_independence = yes }
+            declare_war_on = { target = TMS type = annex_everything }
+        }
+    }
+}

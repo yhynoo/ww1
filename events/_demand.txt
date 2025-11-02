@@ -48,20 +48,17 @@ country_event = {
             # if they are much stronger, we might rethink
             modifier = { strength_ratio = { tag = FROM ratio < 0.5 } factor = 0.5 }
 
-            # Holland won't, if they decided to stay neutral.
             modifier = { 
-                and = { tag = HOL not = { has_completed_focus = HOL_adjust_the_government } }
+                or = {
+                    has_civil_war = yes
+                    and = { tag = HOL not = { has_completed_focus = HOL_adjust_the_government } }       # Holland hasn't gone monarchist.
+                }
                 factor = 0 
             }
         }
 
         hidden_effect = { 
             FROM = { add_named_threat = { threat = 3 name = "[ROOT.GetName] Ignores [FROM.GetAdjective] Demands" } }
-        
-            if = { 
-                limit = { tag = HOL }
-                set_country_flag = ignored_france
-            }
         }
     }
 }

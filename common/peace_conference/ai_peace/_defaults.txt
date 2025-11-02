@@ -4,6 +4,7 @@ peace_ai_desires = {
     take_cores = {
         peace_action_type = { take_states }
         enable = {
+            not = { original_tag = AUS original_tag = GER }
             FROM.FROM.FROM = { is_core_of = ROOT }         # for now, just grab cores and neighboring states.
         }
         ai_desire = 200
@@ -12,6 +13,7 @@ peace_ai_desires = {
     take_around = {
         peace_action_type = { take_states }
         enable = {
+            not = { original_tag = AUS original_tag = GER }
             or = {
                 and = {
                     is_coastal = yes
@@ -32,6 +34,7 @@ peace_ai_desires = {
     take_farther = {
         peace_action_type = { take_states }
         enable = {
+            not = { original_tag = AUS original_tag = GER }
             any_neighboring_state = {
                 pc_is_state_claimed_and_taken_by = ROOT
             }
@@ -42,7 +45,7 @@ peace_ai_desires = {
     # OTHER
     dont_do_other_things = {
         peace_action_type = { puppet liberate force_government }
-        enable = { always = yes }
-        ai_desire = -200
+        enable = { not = { original_tag = AUS original_tag = GER } }
+        ai_desire = -100
     }
 }

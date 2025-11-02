@@ -18,24 +18,6 @@ on_actions = {
                 drop_cosmetic_tag = yes
                 news_event = { id = uganda_autonomy.3 hours = 6 }
             }
-
-            # polish monarchs
-            if = {
-                limit = { 
-                    tag = POL 
-                    is_subject = yes 
-                }
-
-                if = { 
-                    limit = { is_subject_of = AUS }
-                    promote_character = POL_karl_stephan_von_habsburg
-                }
-
-                if = { 
-                    limit = { is_subject_of = GER }
-                    promote_character = POL_friedrich_christian_wettin
-                }
-            }
         }
     }
 }

@@ -1,34 +1,32 @@
-add_namespace = poland_uprisings
+add_namespace = poland_uprising
 
 news_event = {
-    id = poland_uprisings.1
+    id = poland_uprising.1
     title = "Uprising in the Western Governorates!"
-    desc = poland_uprisings.1.d
+    desc = poland_uprising.1.d
 
     trigger = {
-        tag = SOV
+        original_tag = SOV has_civil_war = yes controls_state = 10
         POL = { exists = no }
-
-        has_civil_war = yes
-        10 = { controller = { original_tag = SOV } }
     }
+    fire_only_once = yes
 
     option = {
         name = "To arms!"
 
         every_country = { 
             limit = { original_tag = SOV }
-            hidden_effect = { polish_independence = yes }
 
+            hidden_effect = { polish_independence = yes }
             declare_war_on = { target = POL type = annex_everything }
         }
     }
 }
 
 country_event = {
-    id = poland_uprisings.2
+    id = poland_uprising.2
     title = "Opportunity in the West?"
-    desc = poland_uprisings.2.d
+    desc = poland_uprising.2.d
 
     trigger = {
         tag = POL
@@ -51,7 +49,7 @@ country_event = {
 
         every_country = {
             limit = { or = { controls_state = 85 controls_state = 86 } }
-            country_event = { id = poland_uprisings.3 hours = 6 }
+            country_event = { id = poland_uprising.3 hours = 6 }
         }
     }
     option = {
@@ -61,9 +59,9 @@ country_event = {
 }
 
 country_event = {
-    id = poland_uprisings.3
+    id = poland_uprising.3
     title = "Eastern Territories to Secede?"
-    desc = poland_uprisings.3.d
+    desc = poland_uprising.3.d
 
     is_triggered_only = yes
 

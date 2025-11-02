@@ -1,0 +1,25 @@
+add_namespace = armenia_uprising
+
+news_event = {
+    id = armenia_uprising.1
+    title = "[ARM.GetAdjective] Troops Seize Transcaucasia!"
+    desc = armenia_uprising.1.d
+
+    trigger = {
+        original_tag = SOV has_civil_war = yes controls_state = 230
+        ARM = { exists = no }
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "We must end this quickly."
+        add_war_support = 0.05
+
+        every_country = {
+            limit = { original_tag = SOV }
+
+            hidden_effect = { armenian_independence = yes }
+            declare_war_on = { target = ARM type = annex_everything }
+        }
+    }
+}

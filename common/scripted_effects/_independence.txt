@@ -50,7 +50,13 @@ armenian_independence = {
 
         ROOT = {
             setup_uprising_country = yes
-            354 = { setup_uprising_state = yes }     # Kars
+            if = {
+                limit = { ROOT = { original_tag = TUR } }
+                354 = { setup_uprising_state = yes }     # Kars
+            }
+            else = {
+                230 = { setup_uprising_state = yes }     # Yerevan
+            }
         }
     }
 }
@@ -225,6 +231,25 @@ syrian_independence = {
         ROOT = {
             setup_uprising_country = yes
             554 = { setup_uprising_state = yes }     # Damashek
+        }
+    }
+}
+
+turkestani_independence = {
+    every_state = {
+        limit = { or = { state = 405 state = 584 state = 585 state = 587 state = 589 state = 647 } }
+        add_core_of = TMS
+    }
+
+    TMS = {
+        setup_uprising_troops = yes
+        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
+
+        every_country = {
+            limit = { original_tag = SOV }
+
+            setup_uprising_country = yes
+            405 = { setup_uprising_state = yes }     # Tashkent
         }
     }
 }

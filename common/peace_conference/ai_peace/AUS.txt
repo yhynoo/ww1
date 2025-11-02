@@ -1,0 +1,43 @@
+peace_ai_desires = {
+
+    # DOMINIONS
+
+    AUS_puppet_SER = {
+        peace_action_type = { puppet }
+        enable = {
+            original_tag = AUS
+            FROM.FROM.FROM = { is_core_of = SER }
+        }
+        ai_desire = 240
+    }
+
+    AUS_puppet_UKR = {
+        peace_action_type = { puppet }
+        enable = {
+            original_tag = AUS
+            FROM.FROM.FROM = { is_core_of = UKR }
+        }
+        ai_desire = 200
+    }
+
+    AUS_dont_take_nonsense_in_the_east = {
+        peace_action_type = { take_states }
+        enable = {
+            original_tag = AUS
+            FROM.FROM.FROM = { 
+                not = { or = { state = 46 state = 78 state = 79 state = 81 state = 442 } }
+                or = { is_core_of = UKR is_core_of = SOV } 
+            }
+        }
+        ai_desire = -200
+    }
+
+    # OTHER
+
+    AUS_dont_liberate_or_force_governments = {
+        peace_action_type = { liberate force_government }
+        enable = { original_tag = AUS }
+        ai_desire = -200
+    }
+
+}

@@ -1,7 +1,23 @@
 on_actions = {
+    on_puppet = {
+        effect = {
+            add_popularity = { ideology = authoritarianism popularity = -0.5 }
+
+            # polish monarchs
+            if = {
+                limit = { tag = POL is_subject_of = AUS }
+                promote_character = POL_karl_stephan_von_habsburg
+            }
+
+            if = {
+                limit = { tag = POL is_subject_of = GER }
+                promote_character = POL_friedrich_christian_wettin
+            }
+        }
+    }
+    
     on_peaceconference_ended = {
         effect = {
-
             # losers first
             FROM = {
                 if = {

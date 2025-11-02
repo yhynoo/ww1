@@ -1,16 +1,13 @@
-add_namespace = soviet_ukraine
+add_namespace = ukraine_uprising
 
 news_event = {
-    id = soviet_ukraine.1
+    id = ukraine_uprising.1
      title = "Unrest Among Ukrainian Peasants"       
-    desc = soviet_ukraine.1.d 
+    desc = ukraine_uprising.1.d 
 
     trigger = {
-        tag = SOV
-        has_stability < 0.25
-        or = {
-            has_war = no
-            has_civil_war = yes
+        any_country = {
+            and = { original_tag = SOV has_stability < 0.25 controls_state = 202 }
         }
         UKR = { exists = no }
     }
@@ -21,20 +18,22 @@ news_event = {
         hidden_effect = { 
             random = {
                 chance = 25
-                news_event = { id = soviet_ukraine.2 days = 14 random_days = 60 } 
+                news_event = { id = ukraine_uprising.2 days = 14 random_days = 60 } 
             }
         }
     }
 }
 
 news_event = {
-    id = soviet_ukraine.2
-     title = "Anarchy in the Steppe!"
-    desc = soviet_ukraine.2.d 
+    id = ukraine_uprising.2
+    title = "Uprising in the Steppe!"
+    desc = ukraine_uprising.2.d 
 
     is_triggered_only = yes
     trigger = { 
         has_stability < 0.5 
+        
+        UKR = { exists = no }
         not = { has_completed_focus = SOV_open_the_economy }
     }
 
@@ -42,13 +41,10 @@ news_event = {
         name = "To arms!"
         remove_ideas = idea_unrest_in_ukraine
 
-        hidden_effect = { 
-            SOV = { add_named_threat = { threat = 2 name = "Anarchy in the Steppe" } }   
-            ukrainian_independence = yes
-        }
+        every_country = {
+            limit = { original_tag = SOV }
 
-        every_country_with_original_tag = {
-            original_tag_to_check = SOV
+            hidden_effect = { ukrainian_independence = yes }
             declare_war_on = { target = UKR type = annex_everything }
         }
     }

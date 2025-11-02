@@ -791,8 +791,13 @@
             base = 1
             modifier = { is_subject = yes factor = 0 }
         }
+
+        available = {
+            has_government = democratic
+        }
         
         mutually_exclusive = { focus = POL_adjust_the_government }
+        
         prerequisite = { focus = POL_political_ambitions }
         completion_reward = {
             add_stability = 0.05
@@ -826,7 +831,7 @@
     }
     focus = {
         id = POL_mobilize_the_masses
-        icon = GFX_focus_USA_mobilize_the_masses
+        icon = GFX_focus_POL_mobilize_the_masses
 
         relative_position_id = POL_traditionalism
         x = 1

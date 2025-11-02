@@ -51,10 +51,8 @@ assembling_the_lands = {
         fire_only_once = yes
 
         available = {
-            any_enemy_country = {
-                original_tag = SOV
-                has_government = communism
-            }
+            not = { has_government = communism }
+            any_enemy_country = { has_government = communism }
         }
 
         ai_will_do = { base = 12 }

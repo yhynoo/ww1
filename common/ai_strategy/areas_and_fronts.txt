@@ -1,4 +1,4 @@
-default_area_priority = {
+european_area_priority = {
 	enable = { 
 		capital_scope = { is_on_continent = europe } 
 		not = { tag = TUR }
@@ -21,5 +21,18 @@ default_area_priority = {
 		type = area_priority
 		id = africa
 		value = -90
+	}
+}
+
+# FRONTS
+
+defending_homeland_is_important = {
+	enable = { always = yes }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = front_unit_request
+		state_trigger = { owner = ROOT 	not = { controller = ROOT }	is_in_home_area = yes }
+		value = 200
 	}
 }

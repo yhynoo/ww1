@@ -2,7 +2,10 @@
 
 SOV_alliances = {
 	allowed = { original_tag = SOV }
-	enable = { or = { is_guaranteed_by = FRA is_in_faction_with = FRA } }
+	enable = { 
+		not = { has_government = communism }
+		or = { is_guaranteed_by = FRA is_in_faction_with = FRA } 
+	}
 	abort_when_not_enabled = yes
 
 	# alliances
@@ -11,6 +14,29 @@ SOV_alliances = {
 	# aggressive wargoals
 	ai_strategy = { type = conquer		id = AUS		value = 40 }
 	ai_strategy = { type = conquer		id = TUR		value = 20 }
+}
+
+SOV_communist_expansion = {
+	allowed = { original_tag = SOV }
+	enable = { 
+		or = { 
+			and = {
+				or = { tag = ARM tag = POL tag = TMS tag = UBD tag = UKR }
+				is_in_faction = no
+			}
+			any_owned_state = { is_core_of = SOV }
+		} 
+	}
+	
+	reversed = yes
+	enable_reverse = { 
+		has_government = communism 
+		has_civil_war = no
+	}
+
+	# aggressive wargoals
+	ai_strategy = { type = conquer		id = SOV		value = 100 }
+	ai_strategy = { type = declare_war	id = SOV		value = 100 }
 }
 
 # ARMY
@@ -30,15 +56,6 @@ SOV_areas = {
 	abort_when_not_enabled = yes
 	
 	# planning the positions
-	ai_strategy = {
-		type = frontarea_priority_unit_request
-		id = europe
-		value = 200
-	}
-
-	ai_strategy = {
-		type = area_priority
-		id = asia
-		value = -100
-	}
+	ai_strategy = { type = area_priority		id = europe			value = 100 }
+	ai_strategy = {	type = area_priority		id = asia			value = -60 }
 }

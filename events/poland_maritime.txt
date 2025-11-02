@@ -10,9 +10,24 @@ country_event = {
     option = {
         name = "Alright."
         event_target:polish_colonies = { transfer_state_to = POL }
+
+        news_event = { id = poland_maritime.2 hours = 6 }
     }
     option = {
         name = "Why would we agree to that?"
         add_political_power = -15
+    }
+}
+
+news_event = {
+    id = poland_maritime.2
+    title = "[POL.GetName] Acquires Colonies!"
+    desc = poland_maritime.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
     }
 }
