@@ -1,0 +1,74 @@
+peace_ai_desires = {
+
+    # LIBERATE
+
+    FRA_liberate_GRE = {
+        peace_action_type = { liberate }
+        enable = {
+            and = { original_tag = FRA has_government = democratic }
+            GRE = {
+                or = { has_government = democratic }
+                exists = no
+            }
+            FROM.FROM.FROM = { is_core_of = GRE }
+        }
+        ai_desire = 200
+    }
+
+    FRA_liberate_POL = {
+        peace_action_type = { liberate }
+        enable = {
+            and = { original_tag = FRA has_government = democratic }
+            POL = {
+                or = { has_government = democratic }
+                exists = no
+            }
+            FROM.FROM.FROM = { is_core_of = POL }
+        }
+        ai_desire = 200
+    }
+
+    FRA_liberate_SER = {
+        peace_action_type = { liberate }
+        enable = {
+            and = { original_tag = FRA has_government = democratic }
+            SER = {
+                or = { has_government = democratic }
+                exists = no
+            }
+            FROM.FROM.FROM = { is_core_of = SER }
+        }
+        ai_desire = 200
+    }
+
+    FRA_dont_take_nonsense = {
+        peace_action_type = { take_states }
+        enable = {
+            original_tag = FRA
+            FROM.FROM.FROM = { 
+                not = { 
+                    or = {
+                        state = 8                                               # Luxembourg
+                        state = 350 state = 411 state = 553 state = 554         # Syria
+
+                        state = 591 state = 592 state = 594                     # Southern China
+                        state = 289 state = 614                                 # Siam
+
+                        state = 309 state = 244                                 # Dutch Antilles
+
+                        is_on_continent = africa
+                    } 
+                }
+            }
+        }
+        ai_desire = -200
+    }
+
+    # OTHER
+
+    FRA_dont_force_governments = {
+        peace_action_type = { puppet force_government }
+        enable = { original_tag = FRA }
+        ai_desire = -200
+    }
+}

@@ -2,6 +2,15 @@ peace_ai_desires = {
 
     # DOMINIONS
 
+    AUS_puppet_GRE = {
+        peace_action_type = { puppet }
+        enable = {
+            original_tag = AUS
+            FROM.FROM.FROM = { is_core_of = GRE }
+        }
+        ai_desire = 240
+    }
+
     AUS_puppet_SER = {
         peace_action_type = { puppet }
         enable = {
@@ -17,19 +26,28 @@ peace_ai_desires = {
             original_tag = AUS
             FROM.FROM.FROM = { is_core_of = UKR }
         }
-        ai_desire = 200
+        ai_desire = 240
     }
 
-    AUS_dont_take_nonsense_in_the_east = {
+    AUS_dont_take_nonsense = {
         peace_action_type = { take_states }
         enable = {
             original_tag = AUS
             FROM.FROM.FROM = { 
-                not = { or = { state = 46 state = 78 state = 79 state = 81 state = 442 } }
+                not = { 
+                    or = { 
+                        state = 46 state = 78 state = 79 state = 81 state = 442         # east
+                        state = 160                                                     # Venice
+
+                        state = 1 state = 116                                           # Corsica and Malta
+                        state = 265 state = 458                                         # Tunisia
+                        state = 310                                                     # Guyana
+                    } 
+                }
                 or = { is_core_of = UKR is_core_of = SOV } 
             }
         }
-        ai_desire = -200
+        ai_desire = -600
     }
 
     # OTHER

@@ -4,8 +4,12 @@ peace_ai_desires = {
 
     dont_even_try = {
         peace_action_type = { puppet }
-        enable = { FROM = { check_variable = { num_owned_states > 6 } } }
-        ai_desire = -200
+        enable = { 
+            FROM = { 
+                check_variable = { num_owned_states > 6 } 
+            } 
+        }
+        ai_desire = -600
     }
 
     dont_puppet_and_force_government = {
@@ -27,7 +31,7 @@ peace_ai_desires = {
                 always = no
             }
         }
-        ai_desire = -200
+        ai_desire = -600
     }
 
     # IDEOLOGY
@@ -35,7 +39,7 @@ peace_ai_desires = {
     dont_force_government_and_puppet = {
         peace_action_type = { force_government }
         enable = { FROM = { pc_is_puppeted_by = ROOT } }
-        ai_desire = -200
+        ai_desire = -600
     }
 
     # LIBERATING
@@ -43,7 +47,7 @@ peace_ai_desires = {
     dont_liberate_if_puppeted = {
         peace_action_type = { liberate }
         enable = { FROM = { pc_is_puppeted = yes } }
-        ai_desire = -200
+        ai_desire = -600
     }
 
     # TAKING
@@ -51,6 +55,6 @@ peace_ai_desires = {
     dont_take_state_if_already_puppeted_by_us = {
         peace_action_type = { take_state }
         enable = { FROM = { pc_is_puppeted_by = ROOT } }
-        ai_desire = -200
+        ai_desire = -600
     }
 }

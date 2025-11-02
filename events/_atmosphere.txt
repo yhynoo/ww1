@@ -74,7 +74,12 @@ news_event = {
         name = "Marianne weeps in the Hall of Mirrors."
         if = {
             limit = { tag = FRA }
-            add_war_support = -0.05
+            add_war_support = -0.15
+        }
+
+        if = {
+            limit = { controls_state = 16 }
+            add_political_power = 150
         }
     }
 }

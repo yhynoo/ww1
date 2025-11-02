@@ -7,10 +7,15 @@ news_event = {
 
     trigger = {
         any_country = {
-            and = { original_tag = SOV has_stability < 0.25 controls_state = 202 }
+            and = { 
+                original_tag = SOV controls_state = 202 
+                has_stability < 0.25
+                or = { has_war = no has_civil_war = yes }
+            }
         }
         UKR = { exists = no }
     }
+    fire_only_once = yes
 
     option = {
         name = "Worrying."
@@ -32,6 +37,7 @@ news_event = {
     is_triggered_only = yes
     trigger = { 
         has_stability < 0.5 
+        or = { has_war = no has_civil_war = yes }
         
         UKR = { exists = no }
         not = { has_completed_focus = SOV_open_the_economy }

@@ -27,12 +27,12 @@ european_area_priority = {
 # FRONTS
 
 defending_homeland_is_important = {
-	enable = { always = yes }
+	enable = { has_war = yes }
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
 		type = front_unit_request
-		state_trigger = { owner = ROOT 	not = { controller = ROOT }	is_in_home_area = yes }
-		value = 200
+		state_trigger = { owner = ROOT 		not = { controller = ROOT }		is_in_home_area = yes }
+		value = 180
 	}
 }

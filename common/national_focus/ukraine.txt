@@ -855,6 +855,14 @@
         y = 1
         cost = 10
 
+        ai_will_do = {
+            base = 1
+            modifier = { 
+                and = { has_government = monarchism is_subject = yes } 
+                factor = 0 
+            }
+        }
+
         mutually_exclusive = { focus = UKR_traditionalism }
         prerequisite = { focus = UKR_political_ambitions }
 
