@@ -897,12 +897,10 @@
 
         completion_reward = {
             if = {
-                limit = { not = { has_government = monarchism } }
-                set_politics = { ruling_party = monarchism elections_allowed = no }
+                limit = { has_government = monarchism }
+                add_stability = 0.05
             }
-
             add_popularity = { ideology = monarchism popularity = 0.05 }
-            country_event = { id = poland_crown.1 hours = 6 }
         }
     }
     focus = {
