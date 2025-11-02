@@ -16,3 +16,13 @@ can_give_us_our_territory = {
         can_declare_war_on = ROOT
     }
 }
+
+is_not_us_and_can_fight = {
+    custom_trigger_tooltip = {
+        tooltip = tt_can_fight_us
+        and = {
+            not = { tag = ROOT }
+            can_declare_war_on = ROOT
+        }
+    }
+}

@@ -1,16 +1,4 @@
 on_actions = {
-    on_peace = {
-        effect = {
-            if = {
-                limit = { 
-                    or = { tag = UBD tag = UKR }
-                    not = { has_rule = can_join_factions }
-                }
-                set_rule = { can_join_factions = yes }
-            }
-        }
-    }
-
     on_war_relation_added = {
         effect = {
             if = {

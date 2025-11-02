@@ -26,3 +26,21 @@ turkish_civil_war = {
         set_cosmetic_tag = TUR_ottomanists
     }
 }
+
+ukrainian_civil_war = {
+    random_country = {
+        limit = { original_tag = UKR has_government = communism }
+        set_cosmetic_tag = UKR_makhno
+
+        set_popularities = { communism = 75 democratic = 20 monarchism = 5 }
+        set_capital = { state = 200 }
+    }
+
+    random_country = {
+        limit = { original_tag = UKR not = { has_government = communism } }
+        set_popularities = { communism = 10 democratic = 45 monarchism = 45 }
+
+        set_cosmetic_tag = UKR_state
+        set_state_controller = 202
+    }
+}

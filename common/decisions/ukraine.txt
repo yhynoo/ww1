@@ -1,0 +1,67 @@
+across_the_steppe = {
+    demand_crimea = {
+        icon = generic_prepare_civil_war
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            137 = { owner = { is_not_us_and_can_fight = yes } }
+        }
+
+        ai_will_do = { base = 6 }
+
+        complete_effect = {
+            137 = { owner = { country_event = { id = _demand.1 hours = 6 } } }
+        }
+    }
+    demand_eastern_galicia = {
+        icon = generic_prepare_civil_war
+        cost = 100
+        fire_only_once = yes
+
+        available = {
+            any_state = {
+                or = { state = 89 state = 91 }
+                owner = { is_not_us_and_can_fight = yes }
+            }
+        }
+
+        ai_will_do = {
+            base = 6
+            modifier = { 
+                91 = { is_owned_by = POL } 
+                factor = 2 
+            }
+        }
+
+        complete_effect = {
+            every_state = {
+                limit = { or = { state = 89 state = 91 } }
+                add_core_of = ROOT
+            }
+            every_other_country = {
+                limit = {
+                    or = { owns_state = 89 owns_state = 91 }
+                    can_declare_war_on = ROOT
+                }
+                country_event = { id = _demand.1 hours = 6 }
+            }
+        }
+    }
+    expand_aviation_odesa = {
+        icon = generic_air
+        cost = 75
+        fire_only_once = yes
+
+        available = {
+            controls_state = 192
+        }
+
+        complete_effect = {
+            192 = { 
+                add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+                add_extra_state_shared_building_slots = 2
+            }
+        }
+    }
+}

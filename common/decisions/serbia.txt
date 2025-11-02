@@ -7,10 +7,7 @@ the_land_of_south_slavs = {
         available = {
             any_state = {
                 or = { state = 103 state = 104 state = 109 }
-                owner = {
-                    not = { tag = ROOT }
-                    can_declare_war_on = ROOT
-                }
+                owner = { is_not_us_and_can_fight = yes }
             }
         }
 

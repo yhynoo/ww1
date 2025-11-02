@@ -1,1 +1,944 @@
-﻿
+﻿focus_tree = {
+    id = UKR_focus
+
+    country = {
+        factor = 0
+        modifier = { add = 20 original_tag = UKR }
+    }
+
+    continuous_focus_position = { x = 200 y = 800 }
+
+    ## military branch
+    focus = {
+        id = UKR_adjust_the_military
+        icon = GFX_focus_generic_budget
+
+        x = 7
+        y = 0
+        cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = { has_war = yes factor = 3 }
+        }
+
+        completion_reward = {
+            add_command_power = 50
+            add_war_support = 0.05
+
+            hidden_effect = {
+                random = {
+                    chance = 50
+                    country_event = { id = _army.1 days = 30 random_days = 120 }
+                }
+                random = {
+                    chance = 50
+                    country_event = { id = _army.2 days = 30 random_days = 120 }
+                }
+            }
+        }
+    }
+    focus = {
+        id = UKR_focus_army
+        icon = GFX_focus_generic_army
+
+        relative_position_id = UKR_adjust_the_military
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = UKR_adjust_the_military }
+        completion_reward = {
+            army_experience = 50
+        }
+    }
+    focus = {
+        id = UKR_extend_conscription
+        icon = GFX_focus_generic_extend_conscription
+
+        relative_position_id = UKR_focus_army
+        x = -4
+        y = 1
+        cost = 10
+
+        available = {
+            or = {
+                has_idea = disarmed_nation
+                has_idea = volunteer_only
+            }   
+        }
+
+        prerequisite = { focus = UKR_focus_army }
+        completion_reward = {
+            upgrade_conscription_law = yes
+        }
+    }
+    focus = {
+        id = UKR_army_maneuvers
+        icon = GFX_focus_generic_army_maneuvers
+
+        relative_position_id = UKR_focus_army
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = UKR_focus_army }
+        completion_reward = {
+            army_experience = 75
+            add_doctrine_cost_reduction = {
+				name = land_doc_bonus cost_reduction = 0.5 uses = 2
+				category = land_doctrine
+			}
+        }
+    }
+    focus = {
+        id = UKR_equipment_effort
+        icon = GFX_focus_generic_equipment_effort
+
+        relative_position_id = UKR_focus_army
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = UKR_focus_army }
+        completion_reward = {
+            add_tech_bonus = {
+				name = infantry_bonus bonus = 1.0 uses = 2
+				category = infantry_weapons_tech
+			}
+        }
+    }
+    focus = {
+        id = UKR_artillery
+        icon = GFX_focus_generic_artillery
+
+        relative_position_id = UKR_equipment_effort
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = UKR_equipment_effort }
+        completion_reward = {
+            add_tech_bonus = {
+				name = artillery_bonus bonus = 1.0 uses = 2
+				category = artillery_tech
+			}
+        }
+    }
+    focus = {
+        id = UKR_aircraft
+        icon = GFX_focus_generic_aircraft
+
+        relative_position_id = UKR_equipment_effort
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = UKR_equipment_effort }
+        completion_reward = {
+            air_experience = 50
+            add_tech_bonus = {
+				name = aircraft_bonus bonus = 1.0 uses = 2
+				category = air_equipment_tech
+			}
+        }
+    }
+    focus = {
+        id = UKR_armor
+        icon = GFX_focus_generic_armor
+
+        relative_position_id = UKR_equipment_effort
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = UKR_equipment_effort }
+        completion_reward = {
+            add_tech_bonus = {
+				name = armor_bonus bonus = 1.0 uses = 2
+				category = armor_tech
+			}
+        }
+    }
+    focus = {
+        id = UKR_modern_warfare
+        icon = GFX_focus_generic_modern_warfare
+
+        relative_position_id = UKR_aircraft
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { 
+            focus = UKR_artillery
+            focus = UKR_aircraft
+            focus = UKR_armor
+        }
+        completion_reward = {
+            army_experience = 100
+            add_ideas = idea_modern_warfare
+        }
+    }
+
+    focus = {
+        id = UKR_focus_navy
+        icon = GFX_focus_generic_navy
+
+        relative_position_id = UKR_adjust_the_military
+        x = 2
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = UKR_adjust_the_military }
+        completion_reward = {
+            navy_experience = 50
+        }
+    }
+    focus = {
+        id = UKR_naval_exercises
+        icon = GFX_focus_generic_naval_exercises
+
+        relative_position_id = UKR_focus_navy
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = UKR_focus_navy }
+        completion_reward = {
+            navy_experience = 75
+            add_doctrine_cost_reduction = {
+				name = navy_doc_bonus cost_reduction = 0.5 uses = 2
+				category = naval_doctrine
+			}
+        }
+    }
+    focus = {
+        id = UKR_expand_dockyards
+        icon = GFX_focus_generic_expand_dockyards
+
+        relative_position_id = UKR_focus_navy
+        x = 2
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = UKR_focus_navy }
+		
+		completion_reward = {
+			navy_experience = 25
+			if = {
+				limit = { any_owned_state = { is_coastal = yes } }
+
+				random_owned_controlled_state = {
+					limit = { is_coastal = yes }
+
+					add_extra_state_shared_building_slots = 3
+					add_building_construction = { type = dockyard level = 3 instant_build = yes }
+				}
+			}		
+		}
+    }
+    focus = {
+        id = UKR_high_seas
+        icon = GFX_focus_generic_high_seas
+
+        relative_position_id = UKR_expand_dockyards
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = UKR_expand_dockyards }
+        completion_reward = {
+            add_tech_bonus = {
+				name = capital_ships_bonus bonus = 1.0 uses = 1
+				category = capital_ship_tech
+			}
+        }
+    }
+    focus = {
+        id = UKR_the_dark_deep
+        icon = GFX_focus_generic_the_dark_deep
+
+        relative_position_id = UKR_expand_dockyards
+        x = 2
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = UKR_expand_dockyards }
+        completion_reward = {
+            add_tech_bonus = {
+				name = ss_bonus bonus = 1.0 uses = 1
+				category = submarines_tech
+			}
+        }
+    }
+    focus = {
+        id = UKR_seaborne_operations
+        icon = GFX_focus_generic_seaborne_operations
+
+        relative_position_id = UKR_naval_exercises
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { focus = UKR_naval_exercises }
+        completion_reward = {
+            add_tech_bonus = {
+				name = special_forces_bonus bonus = 1.0 uses = 1
+				technology = marines_1
+                technology = marines_2
+			}
+        }
+    }
+    focus = {
+        id = UKR_rule_the_waves
+        icon = GFX_focus_generic_rule_the_waves
+
+        relative_position_id = UKR_high_seas
+        x = 0
+        y = 1
+        cost = 10
+
+        available = {
+			any_state = {
+				is_coastal = yes
+				is_controlled_by = ROOT
+			}
+		}
+
+        prerequisite = { 
+            focus = UKR_seaborne_operations
+            focus = UKR_high_seas
+            focus = UKR_the_dark_deep
+        }
+        completion_reward = {
+            navy_experience = 100
+            add_ideas = idea_rule_the_waves
+        }
+    }
+
+## economic branch
+    focus = {
+        id = UKR_economic_development
+        icon = GFX_focus_generic_economic_development
+
+        x = 22
+        y = 0
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        completion_reward = {
+            add_stability = 0.05
+        }
+    }
+    
+    focus = {
+        id = UKR_rationing
+        icon = GFX_focus_generic_rationing
+
+        relative_position_id = UKR_economic_development
+        x = -4
+        y = 1
+
+        cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
+
+        prerequisite = { focus = UKR_economic_development }
+        completion_reward = {
+            add_stability = -0.05
+            add_war_support = -0.05
+            add_timed_idea = { idea = idea_rationing years = 2 }
+        }
+    }
+    focus = {
+        id = UKR_fuel
+        icon = GFX_focus_generic_fuel
+
+        relative_position_id = UKR_rationing
+        x = -2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = UKR_rationing }
+        completion_reward = {
+            add_tech_bonus = {
+				name = synthetic_bonus bonus = 1.0 uses = 1
+				category = synth_resources_tech
+			}
+
+            random_owned_controlled_state = {
+                limit = { oil > 0 }
+                add_resource = { type = oil amount = 4 }
+            }
+        }
+    }
+    focus = {
+        id = UKR_women_at_work
+        icon = GFX_focus_generic_women_at_work
+
+        relative_position_id = UKR_rationing
+        x = 1
+        y = 1
+
+        cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = { has_stability < 0.25 factor = 0 }
+        }
+
+        available = { 
+            has_war = yes
+        }
+
+        prerequisite = { focus = UKR_rationing }
+        completion_reward = {
+            add_stability = -0.05
+            add_ideas = idea_women_at_work
+        }
+    }
+
+    focus = {
+        id = UKR_infrastructure_effort
+        icon = GFX_focus_generic_extraction_effort
+
+        relative_position_id = UKR_economic_development
+        x = 0
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        prerequisite = { focus = UKR_economic_development }
+		completion_reward = {
+            add_tech_bonus = {
+				name = construction_bonus bonus = 1.0 uses = 2
+				category = construction_tech
+                category = supply_tech
+			}
+
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes }
+
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                add_extra_state_shared_building_slots = 2
+            }
+		}
+    }
+    focus = {
+        id = UKR_construct_civilian
+        icon = GFX_focus_generic_construct_civilian
+
+        relative_position_id = UKR_infrastructure_effort
+        x = 0
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 3 }
+
+        prerequisite = { focus = UKR_infrastructure_effort }
+		completion_reward = {
+            add_timed_idea = { idea = idea_industrial_expansion years = 1 }
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = { building = industrial_complex size > 0 include_locked = yes }
+					is_core_of = ROOT
+				}
+
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+			}
+		}
+    }
+    focus = {
+        id = UKR_expand_mining
+        icon = GFX_focus_generic_expand_mining
+
+        relative_position_id = UKR_infrastructure_effort
+        x = 3
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = UKR_infrastructure_effort }
+        mutually_exclusive = { focus = UKR_efficiency_studies }
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes }
+                
+                add_resource = { type = steel amount = 12 }
+                add_resource = { type = aluminium amount = 6 }
+            }
+        }
+    }
+
+    focus = {
+        id = UKR_efficiency_studies
+        icon = GFX_focus_efficiency_studies
+
+        relative_position_id = UKR_infrastructure_effort
+        x = 6
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 3 }
+
+        prerequisite = { focus = UKR_infrastructure_effort }
+        mutually_exclusive = { focus = UKR_expand_mining }
+
+		completion_reward = {
+            add_ideas = idea_efficiency_studies
+		}
+    }
+
+    focus = {
+        id = UKR_steady_growth
+        icon = GFX_focus_generic_steady_growth
+
+        relative_position_id = UKR_construct_civilian
+        x = 2
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 4 }
+
+        prerequisite = { 
+            focus = UKR_construct_civilian
+        }
+
+        available = {
+            has_stability > 0.4
+        }
+
+        completion_reward = {
+            add_ideas = idea_steady_growth
+
+            hidden_effect = {
+                random = {
+                    chance = 25
+                    country_event = { id = _growth.1 days = 30 random_days = 60 }
+                }
+                random = {
+                    chance = 25
+                    country_event = { id = _growth.2 days = 30 random_days = 60 }
+                }
+            }
+        }
+    }
+    focus = {
+        id = UKR_war_industry
+        icon = GFX_focus_generic_war_industry
+
+        relative_position_id = UKR_construct_civilian
+        x = -2
+        y = 1
+
+        cost = 10
+
+        prerequisite = { 
+            focus = UKR_construct_civilian
+        }
+
+        available = {
+            has_war_support > 0.4
+        }
+
+        completion_reward = {
+            random_owned_controlled_state = {
+				limit = {
+					free_building_slots = { building = arms_factory size > 0 include_locked = yes }
+					is_core_of = ROOT
+                    is_in_home_area = yes
+				}
+
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+			}
+        }
+    }
+
+    focus = {
+        id = UKR_telegraph
+        icon = GFX_focus_generic_telegraph
+
+        relative_position_id = UKR_economic_development
+        x = 4
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = UKR_economic_development }
+        available = { has_tech = tech_telegraph }
+
+        completion_reward = {
+            add_political_power = 50
+            add_tech_bonus = {
+				name = communications_bonus bonus = 1.0 uses = 2
+				category = communications_tech
+			}
+        }
+    }
+
+    ## political branch
+    focus = {
+        id = UKR_political_ambitions
+        icon = GFX_focus_generic_political_ambitions
+
+        relative_position_id = UKR_economic_development
+        x = -2
+        y = 5
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        completion_reward = {
+            add_political_power = 150
+        }
+    }
+    focus = {
+        id = UKR_international_affairs
+        icon = GFX_focus_generic_international_affairs
+
+        relative_position_id = UKR_political_ambitions
+        x = -4
+        y = 1
+        cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = { threat > 0.1 factor = 3 }
+        }
+
+        available = { is_subject = no }
+
+        prerequisite = { focus = UKR_political_ambitions }
+        completion_reward = {
+            add_timed_idea = { idea = idea_international_affairs years = 2 }
+        }
+    }
+    focus = {
+        id = UKR_expansionism
+        icon = GFX_focus_generic_expansionism
+
+        relative_position_id = UKR_international_affairs
+        x = -2
+        y = 1
+        cost = 10
+
+        available = { 
+            is_subject = no
+            has_war_support > 0.3
+        }
+
+        ai_will_do = {
+            base = 1
+            modifier = { threat > 0.2 factor = 3 }
+        }
+
+        prerequisite = { focus = UKR_international_affairs }
+        completion_reward = {
+            add_political_power = 100
+            add_timed_idea = { idea = idea_expansionism years = 1 }
+        }
+    }
+    focus = {
+        id = UKR_deterrence
+        icon = GFX_focus_generic_deterrence
+
+        relative_position_id = UKR_international_affairs
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = UKR_international_affairs }
+        available = { is_subject = no }
+
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+    focus = {
+        id = UKR_seek_alliances
+        icon = GFX_focus_generic_seek_alliances
+
+        relative_position_id = UKR_expansionism
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = UKR_expansionism }
+        available = { 
+            is_in_faction = no
+            is_subject = no 
+        }
+
+        completion_reward = {
+            add_timed_idea = { idea = idea_seek_alliances years = 2 }
+        }
+    }
+    focus = {
+        id = UKR_on_our_own
+        icon = GFX_focus_generic_on_our_own
+
+        relative_position_id = UKR_expansionism
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = UKR_expansionism }
+        available = { 
+            is_subject = no 
+        }
+
+        completion_reward = {
+            add_war_support = 0.05
+            
+            every_state = {
+                limit = { or = { state = 240 state = 245 state = 218 } }
+                add_core_of = UKR
+            }
+        }
+    }
+
+    focus = {
+        id = UKR_traditionalism
+        icon = GFX_focus_generic_internal_stability
+
+        relative_position_id = UKR_political_ambitions
+        x = 0
+        y = 1
+        cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = { is_subject = yes factor = 0 }
+        }
+        
+        mutually_exclusive = { focus = UKR_adjust_the_government }
+        
+        prerequisite = { focus = UKR_political_ambitions }
+        completion_reward = {
+            add_stability = 0.05
+            add_popularity = { ideology = monarchism popularity = 0.05 }
+        }
+    }
+    focus = {
+        id = UKR_public_support
+        icon = GFX_focus_generic_public_support
+
+        relative_position_id = UKR_traditionalism
+        x = -1
+        y = 1
+        cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
+
+        available = {
+            has_war = yes
+        }
+
+        prerequisite = { focus = UKR_traditionalism }
+        completion_reward = {
+            add_war_support = 0.05
+            custom_effect_tooltip = decision_effect_tooltip
+            hidden_effect = { set_country_flag = public_support_allowed }
+        }
+    }
+    focus = {
+        id = UKR_mobilize_the_masses
+        icon = GFX_focus_UKR_mobilize_the_masses
+
+        relative_position_id = UKR_traditionalism
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = UKR_traditionalism }
+        completion_reward = {
+            add_timed_idea = { idea = idea_cossack_legacy years = 2 }
+        }
+    }
+    focus = {
+        id = UKR_strength_in_unity
+        icon = GFX_focus_generic_strength_in_unity
+
+        relative_position_id = UKR_public_support
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { 
+            focus = UKR_public_support
+            focus = UKR_mobilize_the_masses
+        }
+        completion_reward = {
+            add_political_power = 50
+            add_timed_idea = { idea = idea_strength_in_unity years = 1 }
+        }
+    }
+    focus = {
+        id = UKR_the_everlasting_spirit
+        icon = GFX_focus_generic_the_everlasting_spirit
+
+        relative_position_id = UKR_strength_in_unity
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = UKR_strength_in_unity }
+        completion_reward = {
+            add_ideas = idea_glory_around_the_earth
+        }
+    }
+
+    focus = {
+        id = UKR_adjust_the_government
+        icon = GFX_focus_generic_adjust_the_government
+
+        relative_position_id = UKR_political_ambitions
+        x = 4
+        y = 1
+        cost = 10
+
+        mutually_exclusive = { focus = UKR_traditionalism }
+        prerequisite = { focus = UKR_political_ambitions }
+
+        completion_reward = {
+            add_timed_idea = { idea = idea_democratic_tendencies years = 1 }
+            add_popularity = { ideology = democratic popularity = 0.05 }
+        }
+    }
+    focus = {
+        id = UKR_state_reform
+        icon = GFX_focus_generic_state_reform
+
+        relative_position_id = UKR_adjust_the_government
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = UKR_adjust_the_government }
+        completion_reward = {
+            add_timed_idea = { idea = idea_state_reform years = 1 }
+        }
+    }
+    focus = {
+        id = UKR_open_the_economy
+        icon = GFX_focus_UKR_open_the_economy
+
+        relative_position_id = UKR_adjust_the_government
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = UKR_adjust_the_government }
+        completion_reward = {
+            add_timed_idea = { idea = idea_agrarian_reform years = 2 }
+
+            if = {
+                limit = { controls_state = 196 }
+                196 = { 
+                    add_resource = { type = tungsten amount = 4 } 
+                    add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                }
+            }
+
+            if = {
+                limit = { controls_state = 200 }
+                200 = { 
+                    add_resource = { type = tungsten amount = 4 } 
+                    add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                }
+            }
+        }
+    }
+    focus = {
+        id = UKR_over_the_edge
+        icon = GFX_focus_generic_over_the_edge
+
+        relative_position_id = UKR_state_reform
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = UKR_state_reform }
+
+        ai_will_do = {
+            base = 0
+            modifier = { has_stability < 0.2 add = 1 }
+        }
+        
+        completion_reward = {
+            add_timed_idea = { idea = idea_communism_tendencies years = 2 }
+        }
+    }
+    focus = {
+        id = UKR_embrace_modernity
+        icon = GFX_focus_generic_red_education
+
+        relative_position_id = UKR_state_reform
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = UKR_state_reform }
+        completion_reward = {
+            add_research_slot = 1
+        }
+    }
+}
