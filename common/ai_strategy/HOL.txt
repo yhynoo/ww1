@@ -2,24 +2,22 @@
 
 HOL_neutrality = {
     allowed = { original_tag = HOL }
-    enable = { not = { has_completed_focus = HOL_adjust_the_government } }
-    abort_when_not_enabled = yes
-
+    enable = { not = { HOL = { has_completed_focus = HOL_adjust_the_government } } }
+    
+    abort = { HOL = { has_completed_focus = HOL_adjust_the_government } }
     reversed = yes
-    enable_reverse = { always = yes }
 
-    ai_strategy = { type = alliance		id = HOL		value = -60 }
+    ai_strategy = { type = alliance		id = HOL		value = -100 }
 }
 
-HOL_alliances_alternative = {
+HOL_alternative = {
     allowed = { original_tag = HOL }
     enable = { has_government = monarchism }
     abort_when_not_enabled = yes
 
     # alliances
-    ai_strategy = { type = alliance     id = GER        value = 40 }
+    ai_strategy = { type = alliance     id = GER        value = 60 }
 
     # aggressive war goals
-    ai_strategy = { type = contain      id = ENG        value = 20 }
-    ai_strategy = { type = contain      id = FRA        value = 20 }
+    ai_strategy = { type = contain      id = ENG        value = 60 }
 }

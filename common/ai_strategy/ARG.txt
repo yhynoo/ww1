@@ -1,0 +1,11 @@
+# DIPLOMACY
+
+ARG_neutrality = {
+    allowed = { original_tag = ARG }
+    enable = { not = { ARG = { has_completed_focus = ARG_traditionalism } } }
+    
+    abort = { ARG = { has_completed_focus = ARG_traditionalism } }
+    reversed = yes
+
+    ai_strategy = { type = alliance		id = ARG		value = -100 }
+}

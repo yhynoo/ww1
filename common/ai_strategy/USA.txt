@@ -11,8 +11,8 @@ USA_alliances = {
     abort_when_not_enabled = yes
 
     # alliances
-	ai_strategy = { type = alliance		id = ENG		value = 20 }
-    ai_strategy = { type = alliance		id = FRA		value = 40 }
+	ai_strategy = { type = alliance		id = ENG		value = 60 }
+    ai_strategy = { type = alliance		id = FRA		value = 60 }
 }
 
 USA_alternative_alliances = {
@@ -54,19 +54,19 @@ USA_isolation = {
 USA_wilsonianism = {
     allowed = { original_tag = USA }
     enable = {
-        has_completed_focus = USA_on_our_own
         has_government = democratic
+        is_in_faction = no
     }
     abort_when_not_enabled = yes
 
     reversed = yes
     enable_reverse = {
-        is_in_faction = no
+        has_completed_focus = USA_on_our_own
         has_government = democratic
     }
 
     # support
-    ai_strategy = { type = protect		id = USA		value = 20 }
+    ai_strategy = { type = protect		id = USA		value = 30 }
     ai_strategy = { type = support		id = USA		value = 60 }
 }
 
@@ -77,5 +77,5 @@ USA_western_front = {
 	enable = { is_ally_with = FRA }
 
     # planning the positions
-	ai_strategy = { type = front_unit_request	tag = GER		    value = 120 }
+	ai_strategy = { type = front_unit_request	    tag = GER		    value = 120 }
 }

@@ -1,0 +1,24 @@
+# DIPLOMACY
+
+MEX_neutrality = {
+    allowed = { original_tag = MEX }
+    enable = { not = { MEX = { has_completed_focus = MEX_traditionalism } } }
+    
+    abort = { MEX = { has_completed_focus = MEX_traditionalism } }
+    reversed = yes
+
+    ai_strategy = { type = alliance		id = MEX		value = -100 }
+}
+
+MEX_alliances = {
+    allowed = { original_tag = MEX }
+    enable = { 
+        has_completed_focus = MEX_traditionalism 
+        not = { has_war_with = USA }
+    }
+    abort_when_not_enabled = yes
+
+    # alliances
+	ai_strategy = { type = alliance		id = ENG		value = 60 }
+    ai_strategy = { type = alliance		id = FRA		value = 60 }
+}
