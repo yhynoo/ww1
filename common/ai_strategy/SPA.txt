@@ -1,0 +1,25 @@
+# DIPLOMACY
+
+SPA_neutrality = {
+    allowed = { original_tag = SPA }
+    enable = { not = { SPA = { has_completed_focus = SPA_deterrence } } }
+    
+    abort = { SPA = { has_completed_focus = SPA_deterrence } }
+    reversed = yes
+
+    ai_strategy = { type = alliance		id = SPA		value = -100 }
+}
+
+SPA_weyler = {
+    allowed = { original_tag = SPA }
+    enable = { has_country_leader = { character = SPA_valeriano_weyler ruling_only = yes } }
+    abort_when_not_enabled = yes
+
+    # alliances
+    ai_strategy = { type = alliance     id = COL        value = 100 }
+    ai_strategy = { type = alliance     id = ARG        value = 60 }
+
+    # aggressive war goals
+    ai_strategy = { type = contain      id = MOR        value = 60 }
+    ai_strategy = { type = contain      id = USA        value = 60 }
+}

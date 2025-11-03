@@ -1,0 +1,25 @@
+# DIPLOMACY
+
+COL_neutrality = {
+    allowed = { original_tag = COL }
+    enable = { not = { COL = { has_completed_focus = COL_deterrence } } }
+    
+    abort = { COL = { has_completed_focus = COL_deterrence } }
+    reversed = yes
+
+    ai_strategy = { type = alliance		id = COL		value = -100 }
+}
+
+COL_expansionist = {
+    allowed = { original_tag = COL }
+    enable = { has_government = monarchism }
+    abort_when_not_enabled = yes
+
+    # alliances
+    ai_strategy = { type = alliance     id = SPA        value = 60 }
+    ai_strategy = { type = alliance     id = ARG        value = 20 }
+
+    # aggressive war goals
+    ai_strategy = { type = contain      id = PRU        value = 100 }
+    ai_strategy = { type = contain      id = USA        value = 60 }
+}

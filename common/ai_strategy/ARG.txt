@@ -9,3 +9,16 @@ ARG_neutrality = {
 
     ai_strategy = { type = alliance		id = ARG		value = -100 }
 }
+
+ARG_expansionist = {
+    allowed = { original_tag = ARG }
+    enable = { has_government = monarchism }
+    abort_when_not_enabled = yes
+
+    # alliances
+    ai_strategy = { type = alliance     id = SPA        value = 60 }
+    ai_strategy = { type = alliance     id = COL        value = 20 }
+
+    # aggressive war goals
+    ai_strategy = { type = contain      id = ENG        value = 20 }
+}
