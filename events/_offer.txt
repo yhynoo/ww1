@@ -29,6 +29,15 @@ country_event = {
         ai_chance = { 
             base = 2
             modifier = { longest_war_length > 12 add = 2 }
+
+            # China won't accept peace with warlords.
+            modifier = {
+                and = {
+                    tag = MAN
+                    FROM = { or = { tag = ANH tag = MON tag = SIK tag = YUN } }
+                }
+                factor = 0
+            }
         }
     } 
     option = {

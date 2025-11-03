@@ -66,7 +66,12 @@ country_event = {
             country_event = { id = _offer.1 hours = 6 random_days = 7 }
         }
 
-        ai_chance = { base = 2 }
+        ai_chance = { 
+            base = 2 
+
+            # China will fight.
+            modifier = { tag = MAN  factor = 0 }
+        }
     }
 
     option = {

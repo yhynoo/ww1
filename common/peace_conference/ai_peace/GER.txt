@@ -1,71 +1,38 @@
 peace_ai_desires = {
 
-    # MITTELEUROPA
+    ## DOMINIONS ##
 
-    GER_puppet_POL = {
+    GER_dominions_east = {
         peace_action_type = { puppet }
         enable = {
-            original_tag = GER
+            and = {
+                original_tag = GER
+                not = { has_country_flag = german_drang_nach_osten }
+            }
+            FROM = { or = { tag = POL tag = UBD } }
             FROM.FROM.FROM = { 
-                is_core_of = POL 
-
                 not = { state = 90 }            # we take Augustów anyway
-                not = { is_core_of = GER }      # if we did 'Drang nach Osten', don't do this
             }
         }
-        ai_desire = 600
+        ai_desire = 360
     }
 
-    GER_puppet_UBD = {
-        peace_action_type = { puppet }
-        enable = {
-            original_tag = GER
-            FROM.FROM.FROM = { 
-                is_core_of = UBD 
-                not = { is_core_of = GER }      # if we did 'Drang nach Osten', don't do this
-            }
-        }
-        ai_desire = 240
-    }
+    ## OTHER ##
 
-    GER_dont_take_nonsense_in_the_east = {
+    GER_dont_take_east = {
         peace_action_type = { take_states }
         enable = {
-            and = {                             # if we're still at war...
-                original_tag = GER
-                has_war_with = FRA
-            }
+            original_tag = GER
             FROM.FROM.FROM = { 
                 is_core_of = SOV 
-                not = { is_core_of = POL is_core_of = UBD }           
+                not = { state = 90 }            # we take Augustów anyway
+
+                if = {
+                    limit = { has_country_flag = german_drang_nach_osten }
+                    not = { is_core_of = POL is_core_of = UBD }      
+                }     
             }
         }
-        ai_desire = -600
-    }
-
-    # WEST
-    GER_dont_take_nonsense_in_the_west = {
-        peace_action_type = { take_states }
-        enable = {
-            original_tag = GER
-            FROM.FROM.FROM = { 
-                not = {
-                    or = {
-                        state = 17 state = 18 state = 29                    # France
-                        state = 286 state = 199 state = 624                 # Indochina
-                        is_on_continent = africa
-                    }
-                }      
-            }
-        }
-        ai_desire = -600
-    }
-
-    # OTHER
-
-    GER_dont_liberate_or_force_governments = {
-        peace_action_type = { liberate force_government }
-        enable = { original_tag = GER }
         ai_desire = -200
     }
 }
