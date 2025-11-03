@@ -23,25 +23,21 @@ AUS_alliances_alternative = {
 
 AUS_militarisation = {
 	allowed = { original_tag = AUS }
-	enable = { has_government = monarchism }
-	abort_when_not_enabled = yes
+	enable = { always = yes }
 
 	# more infantry, less cyclists
 	ai_strategy = {	type = role_ratio	id = infantry		value = 25 }
 	ai_strategy = {	type = role_ratio	id = breakthrough	value = -5 }
+
+	# don't help germany
+	ai_strategy = { type = dont_defend_ally_borders		id = GER		value = 1 }
 }
 
 AUS_alps = {
 	allowed = { original_tag = AUS }
-	enable = {
-		has_war = yes			# remember to guard the Alpine frontier.
-		threat > 0.1 
-	}
+	enable = { ITA = { has_idea = idea_war_enthusiasm } }
+	abort_when_not_enabled = yes
 
 	# planning the positions
-	ai_strategy = { type = prepare_for_war		id = ITA		value = 20 }
-	ai_strategy = { type = front_unit_request	tag = ITA		value = 50 }
-
-	# don't help germany
-	ai_strategy = { type = dont_defend_ally_borders		id = GER		value = 1 }
+	ai_strategy = { type = prepare_for_war		id = ITA		value = 60 }
 } 

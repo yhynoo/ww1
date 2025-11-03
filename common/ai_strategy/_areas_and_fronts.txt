@@ -5,9 +5,9 @@ european_area_priority = {
 	}
 	abort_when_not_enabled = yes
 
-	ai_strategy = {	type = area_priority	id = mainland_europe	value = 60  }
-	ai_strategy = {	type = area_priority	id = middle_east		value = 30  }
-	ai_strategy = {	type = area_priority	id = africa				value = -90 }
+	ai_strategy = {	type = area_priority	id = mainland_europe	value = 60   }
+	ai_strategy = {	type = area_priority	id = middle_east		value = 30   }
+	ai_strategy = {	type = area_priority	id = africa				value = -120 }
 }
 
 # FRONTS
@@ -18,7 +18,9 @@ defending_homeland_is_important = {
 
 	ai_strategy = {
 		type = front_unit_request
-		state_trigger = { owner = ROOT 		not = { controller = ROOT }		is_in_home_area = yes }
-		value = 180
+		state_trigger = { 
+			owner = ROOT 	is_in_home_area = yes 	controller = { not = { tag = ROOT } }
+		}
+		value = 200
 	}
 }

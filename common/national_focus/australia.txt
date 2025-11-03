@@ -694,7 +694,7 @@
     }
     focus = {
         id = AST_deterrence
-        icon = GFX_focus_generic_deterrence
+        icon = GFX_focus_generic_across_the_sea
 
         relative_position_id = AST_international_affairs
         x = 1
@@ -705,7 +705,7 @@
         available = { is_subject = no }
 
         completion_reward = {
-            add_timed_idea = { idea = idea_deterrence years = 1 }
+            custom_effect_tooltip = decision_effect_tooltip
         }
     }
     focus = {
@@ -726,7 +726,7 @@
     }
     focus = {
         id = AST_on_our_own
-        icon = GFX_focus_generic_across_the_sea
+        icon = GFX_focus_generic_on_our_own
 
         relative_position_id = AST_expansionism
         x = 1
@@ -824,13 +824,6 @@
         id = AST_the_everlasting_spirit
         icon = GFX_focus_generic_the_everlasting_spirit
 
-        available = { 
-            custom_trigger_tooltip = {
-                tooltip = tt_ast_anzac 
-                casualties > 10000            
-            }
-        }
-
         relative_position_id = AST_strength_in_unity
         x = 0
         y = 1
@@ -838,13 +831,13 @@
 
         prerequisite = { focus = AST_strength_in_unity }
         completion_reward = {
-            add_ideas = idea_anzac_myth
+            add_ideas = idea_the_everlasting_spirit
         }
     }
 
     focus = {
         id = AST_adjust_the_government
-        icon = GFX_focus_AST_adjust_the_government
+        icon = GFX_focus_generic_red_reform
 
         relative_position_id = AST_political_ambitions
         x = 4
@@ -887,7 +880,6 @@
 
             random_owned_controlled_state = {
                 limit = { is_core_of = ROOT }
-                
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
 			}
