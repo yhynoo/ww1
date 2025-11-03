@@ -1,0 +1,45 @@
+peace_ai_desires = {
+
+    # LIBERATE
+
+    USA_liberates_wilson = {
+        peace_action_type = { liberate }
+        enable = {
+            and = { 
+                original_tag = USA 
+                has_completed_focus = USA_on_our_own 
+            }
+            FROM = {
+                or = { tag = GRE tag = POL tag = SER tag = UKR }
+                or = { 
+                    has_government = democratic 
+                    exists = no
+                }
+            }
+        }
+        ai_desire = 300
+    }
+
+    ## DOMINIONS ##
+
+    USA_puppet_south_america = {
+        peace_action_type = { puppet }
+        enable = {
+            original_tag = USA
+            FROM = { or = { tag = ARG tag = BRA tag = COL tag = MEX tag = PRU } }
+        }
+        ai_desire = 360
+    }
+
+    ## OTHER ##
+
+    USA_dont_take_south_america = {
+        peace_action_type = { take_states }
+        enable = {
+            original_tag = SPA
+            FROM.FROM.FROM = { or = { is_core_of = ARG is_core_of = BRA is_core_of = COL is_core_of = MEX is_core_of = PRU } }
+        }
+        ai_desire = -100
+    }
+
+}

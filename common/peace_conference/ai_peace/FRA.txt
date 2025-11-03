@@ -7,7 +7,7 @@ peace_ai_desires = {
         enable = {
             and = { original_tag = FRA has_government = democratic }
             FROM = {
-                or = { tag = ARM tag = GRE }
+                or = { tag = ARM tag = GRE tag = SYR }
                 or = { 
                     has_government = democratic 
                     exists = no
@@ -15,5 +15,43 @@ peace_ai_desires = {
             }
         }
         ai_desire = 300
+    }
+
+    # TAKE STATES
+
+    FRA_wants_africa = {
+        peace_action_type = { take_states }
+        enable = {
+            original_tag = FRA
+            FROM.FROM.FROM = { 
+                or = { is_core_of = ALG is_core_of = MOR }            
+            }
+        }
+        ai_desire = 100
+    }
+
+    FRA_wants_east = {
+        peace_action_type = { take_states }
+        enable = {
+            and = {
+                original_tag = FRA
+                SYR = { exists = no }
+            }
+            FROM.FROM.FROM = { 
+                or = { state = 411 state = 350 state = 554 state = 553 }            
+            }
+        }
+        ai_desire = 60
+    }
+
+    FRA_wants_siam = {
+        peace_action_type = { take_states }
+        enable = {
+            original_tag = FRA
+            FROM.FROM.FROM = { 
+                or = { state = 289 state = 614 state = 594 state = 592 state = 591 }            
+            }
+        }
+        ai_desire = 40
     }
 }

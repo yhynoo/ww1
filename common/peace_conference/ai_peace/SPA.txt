@@ -1,0 +1,25 @@
+peace_ai_desires = {
+
+    ## DOMINIONS ##
+
+    SPA_puppet_MOR = {
+        peace_action_type = { puppet }
+        enable = {
+            original_tag = SPA
+            FROM = { tag = MOR }
+        }
+        ai_desire = 360
+    }
+
+    ## OTHER ##
+
+    SPA_dont_take_morocco = {
+        peace_action_type = { take_states }
+        enable = {
+            original_tag = SPA
+            FROM.FROM.FROM = { is_core_of = MOR }
+        }
+        ai_desire = -100
+    }
+
+}
