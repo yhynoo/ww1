@@ -735,10 +735,29 @@ focus_tree = {
         cost = 10
 
         prerequisite = { focus = ARG_expansionism }
-        available = { is_subject = no }
+        available = { 
+            is_subject = no 
+            any_state = {
+                or = { state = 564 state = 62 }
+                not = { is_owned_by = ARG }
+            }
+        }
 
         completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
+            add_war_support = 0.05
+
+            every_state = {
+                limit = {
+                    or = { state = 564 state = 62 }
+                    not = { is_owned_by = ARG }
+                }
+                add_claim_by = ARG
+            }
+
+            every_country = {
+                limit = { or = { owns_state = 564 owns_state = 62 } }
+                country_event = { id = _demand.1 hours = 6 random_hours = 6 }
+            }
         }
     }
 
@@ -836,7 +855,7 @@ focus_tree = {
 
         prerequisite = { focus = ARG_strength_in_unity }
         completion_reward = {
-            add_ideas = idea_argentina_serena
+            add_ideas = idea_the_everlasting_spirit
         }
     }
 

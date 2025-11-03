@@ -1,0 +1,21 @@
+add_namespace = colombia_transandean
+
+news_event = {
+    id = colombia_transandean.1
+    title = "Trans-Andean Railways"
+    desc = colombia_transandean.1.d
+
+    trigger = { 
+        tag = COL 
+        date > 1913.1.1
+    }
+    mean_time_to_happen = { months = 6 }
+    fire_only_once = yes
+
+    option = {
+        name = "Great."
+        
+        add_tech_bonus = { name = supply_tech_bonus bonus = 1.0 uses = 2 category = supply_tech }
+        add_timed_idea = { idea = idea_trans_andean_railways years = 2 }
+    }
+}

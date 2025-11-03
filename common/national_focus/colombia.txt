@@ -694,7 +694,7 @@
         }
     }
     focus = {
-        id = COL_our_own_strength
+        id = COL_deterrence
         icon = GFX_focus_generic_deterrence
 
         relative_position_id = COL_international_affairs
@@ -743,13 +743,13 @@
         available = { is_subject = no }
 
         completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
+            add_timed_idea = { idea = idea_on_our_own years = 1 }
         }
     }
 
     focus = {
         id = COL_traditionalism
-        icon = GFX_focus_COL_traditionalism
+        icon = GFX_focus_generic_internal_stability
 
         relative_position_id = COL_political_ambitions
         x = 0
@@ -760,9 +760,14 @@
 
         mutually_exclusive = { focus = COL_adjust_the_government }
         prerequisite = { focus = COL_political_ambitions }
+
+        available = {
+            has_country_leader = { character = COL_rafael_uribe_uribe ruling_only = yes }
+        }
+        
         completion_reward = {
             add_stability = 0.05
-            country_event = { id = colombia_americans.1 hours = 6 }
+            add_popularity = { ideology = monarchism popularity = 0.05 }
         }
     }
     focus = {
@@ -838,7 +843,7 @@
 
         prerequisite = { focus = COL_strength_in_unity }
         completion_reward = {
-            add_ideas = idea_america_libre
+            add_ideas = idea_the_everlasting_spirit
         }
     }
 
@@ -857,7 +862,7 @@
         prerequisite = { focus = COL_political_ambitions }
         completion_reward = {
             add_timed_idea = { idea = idea_democratic_tendencies years = 1 }
-            add_popularity = { ideology = democratic popularity = 0.05 }
+            add_stability = -0.05
         }
     }
     focus = {
