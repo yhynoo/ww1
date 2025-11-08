@@ -1,0 +1,103 @@
+_war_office = {
+    inspire_definitive_offensive = {
+        visible = { not = { surrender_progress > 0.05 } }
+
+        icon = generic_ignite_civil_war
+        days_remove = 180
+        cost = 50
+
+        available = {
+            has_war_support > 0.25
+        }
+
+        modifier = {
+            army_attack_factor = 0.15
+            army_morale_factor = 0.2
+        }
+
+        remove_effect = {
+            add_war_support = -0.25
+            add_popularity = { ideology = ROOT popularity = -0.05 }
+        }
+
+        cancel_trigger = { has_war = no }
+    }
+
+    organize_desperate_defenses = {
+        visible = { surrender_progress > 0.05 }
+
+        icon = generic_ignite_civil_war
+        days_remove = 90
+        cost = 50
+
+        ai_will_do = {
+            base = 6
+            modifier = { any_enemy_country = { is_ai = no } add = 3 }
+        }
+
+        modifier = {
+            army_core_defence_factor = 0.05
+            war_support_factor = 0.05
+        }
+    }
+
+    greater_effort = {
+        icon = generic_industry
+        days_remove = 90
+        cost = 50
+
+        ai_will_do = {
+            base = 6
+            modifier = { has_war = yes factor = 2 }
+        }
+
+        modifier = {
+            industrial_capacity_factory = 0.1
+            industrial_capacity_dockyard = 0.1
+        }
+    }
+
+    withdraw_from_war = {
+        visible = { 
+            has_war = yes
+            has_civil_war = no
+        }
+
+        icon = generic_form_nation
+        days_re_enable = 90
+        cost = 100
+
+        available = { 
+            or = {
+                surrender_progress > 0.25    
+                custom_trigger_tooltip = {
+                    tooltip = tt_war_length
+
+                    has_war_support < 0.4
+                    war_length_with = { tag = FROM months > 23 }
+                }
+            }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { or = { has_war_support < 0.2 surrender_progress > 0.4 }                    add = 6 }
+            modifier = { or = { war_length_with = { tag = FROM months > 48 } }                      add = 3 }
+            modifier = { or = { has_idea = idea_all_adults_serve has_idea = scraping_the_barrel }   factor = 3 }
+        }
+
+        targets_dynamic = yes
+        target_trigger = { 
+            FROM = {
+                has_war_with = ROOT
+                or = { 
+                    is_faction_leader = yes 
+                    not = { any_country = { has_war_together_with = FROM } }
+                }
+            }
+        }
+
+        days_remove = 7
+        remove_effect = { FROM = { country_event = { id = _offer.1 hours = 6 random_hours = 6 } } }
+    }
+}

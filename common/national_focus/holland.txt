@@ -721,7 +721,10 @@
         cost = 10
 
         prerequisite = { focus = HOL_expansionism }
-        available = { is_subject = no }
+        available = { 
+            is_subject = no
+            is_in_faction = no
+        }
 
         ai_will_do = { 
             base = 0
@@ -742,15 +745,16 @@
         cost = 10
 
         prerequisite = { focus = HOL_expansionism }
-        available = { is_subject = no }
+        ai_will_do = { base = 0 }
 
-        ai_will_do = { 
-            base = 0
-            modifier = { has_government = monarchism add = 1 }
+        available = { 
+            is_subject = no 
+            is_in_faction = no
         }
 
         completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
+            add_war_support = 0.05
+            set_rule = { can_create_factions = yes }
         }
     }
 

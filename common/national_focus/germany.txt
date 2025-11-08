@@ -706,7 +706,7 @@ focus_tree = {
     }
     focus = {
         id = GER_seek_alliances
-        icon = GFX_focus_generic_on_our_own
+        icon = GFX_focus_generic_seek_alliances
 
         relative_position_id = GER_expansionism
         x = -2
@@ -715,23 +715,23 @@ focus_tree = {
 
         prerequisite = { focus = GER_expansionism }
         available = { 
-            is_subject = no
-            FRA = { is_ally_with = SOV }
+            is_subject = no 
+            is_in_faction = no
         }
 
         ai_will_do = { 
             base = 2
             modifier = { 
-                or = { 
-                    has_war = yes
-                    has_completed_focus = GER_adjust_the_government 
-                }
+                has_completed_focus = GER_adjust_the_government 
                 factor = 0
             }
         }
 
         completion_reward = {
-            add_timed_idea = { idea = idea_einkreisungstheorie years = 2 }
+            add_war_support = 0.05
+            hidden_effect = { news_event = { id = _alliance.1 hours = 6 } }
+
+            create_faction = "Central European Alliance"
         }
     }
     focus = {
@@ -904,9 +904,13 @@ focus_tree = {
             add_timed_idea = { idea = idea_against_utopianism years = 1 }
             random_owned_controlled_state = {
                 limit = { is_core_of = ROOT is_in_home_area = yes }
-
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+            random_owned_controlled_state = {
+                limit = { is_core_of = ROOT is_in_home_area = yes }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
 			}
         }
     }

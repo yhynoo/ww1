@@ -1,9 +1,8 @@
-dc_head_of_state_decisions = {
+_head_of_state = {
     # war support
     territorial_auxilliaries = {
         visible = { 
             is_subject = no
-            not = { has_government = communism } 
             or = { has_idea = volunteer_only has_idea = limited_conscription }
         }
 
@@ -11,7 +10,7 @@ dc_head_of_state_decisions = {
         days_remove = 90
         cost = 50
     
-        available = { or = { has_idea = disarmed_nation has_idea = volunteer_only has_idea = limited_conscription } }
+        available = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
     
         ai_will_do = {
             base = 3
@@ -21,30 +20,30 @@ dc_head_of_state_decisions = {
 
         modifier = {
             war_support_weekly = 0.005
-            weekly_manpower = 300
+            weekly_manpower = 600
         }
     }
-    workers_militias = {
+    honor_the_heroes = {
         visible = { 
             is_subject = no
-            has_government = communism
-            or = { has_idea = volunteer_only has_idea = limited_conscription }
+            not = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
         }
 
-        icon = generic_prepare_civil_war    
+        icon = generic_nationalism    
         days_remove = 90
-        cost = 50
-    
-        available = { or = { has_idea = disarmed_nation has_idea = volunteer_only has_idea = limited_conscription } }
-    
+        cost = 25
+
+        available = { has_war = yes }
+
         ai_will_do = {
-            base = 3
-            modifier = { and = { threat > 0.1 has_war_support < 0.3 } factor = 2 }
+            base = 6
+            modifier = { and = { threat > 0.1 has_war_support < 0.3 } add = 6 }
+            modifier = { has_war_support > 0.8 factor = 0 }
         }
 
         modifier = {
             war_support_weekly = 0.005
-            training_time_factor = -0.1
+            resistance_growth_on_our_occupied_states = 0.1
         }
     }
 
@@ -52,7 +51,7 @@ dc_head_of_state_decisions = {
     expand_information_services = {
         visible = { 
             is_subject = no
-            or = { has_government = authoritarianism has_government = monarchism }
+            has_government = monarchism
         }
 
         icon = generic_civil_support
@@ -116,150 +115,6 @@ dc_head_of_state_decisions = {
 
         remove_effect = {
             add_popularity = { ideology = ROOT popularity = 0.05 }
-        }
-    }
-
-    # heroes
-    honor_the_heroes = {
-        visible = { 
-            is_subject = no
-            not = { or = { has_idea = disarmed_nation has_idea = volunteer_only has_idea = limited_conscription } }
-        }
-
-        icon = generic_nationalism    
-        days_remove = 90
-        cost = 25
-
-        available = { has_war = yes }
-
-        ai_will_do = {
-            base = 6
-            modifier = { and = { threat > 0.1 has_war_support < 0.3 } add = 6 }
-            modifier = { has_war_support > 0.8 factor = 0 }
-        }
-
-        modifier = {
-            war_support_weekly = 0.005
-            resistance_growth_on_our_occupied_states = 0.1
-        }
-    }
-
-    # puppet decisions
-    empower_loyalists = {
-        visible = { is_subject = yes }
-
-        icon = generic_civil_support
-        days_remove = 90
-        cost = 50
-
-        ai_will_do = { 
-            base = 6
-            modifier = { has_idea = idea_underground_state factor = 0 }
-        }
-
-        modifier = {
-            stability_weekly = 0.005
-            master_ideology_drift = 0.05
-        }
-    }
-    develop_independents = {
-        visible = { 
-            is_subject = yes
-            not = { has_idea = idea_underground_state }
-        }
-
-        icon = generic_prepare_civil_war
-        days_remove = 90
-        cost = 50
-
-        modifier = {
-            stability_weekly = -0.005
-        }
-
-        ai_will_do = { 
-            base = 3
-            modifier = { OVERLORD = { has_stability < 0.5 } add = 6 }
-        }
-
-        remove_effect = {
-            add_autonomy_score = { value = 100 }
-            OVERLORD = { add_stability = -0.025 }
-
-            random = {
-                chance = 25
-                add_ideas = idea_underground_state
-            }
-        }
-    }
-    launch_independence_war = {
-        visible = { 
-            is_subject = yes
-            has_idea = idea_underground_state
-        }
-
-        icon = generic_form_nation
-        fire_only_once = yes
-        cost = 75
-
-        ai_will_do = {
-            base = 0
-            modifier = { OVERLORD = { has_war = yes } add = 6 }
-        }
-
-        complete_effect = {
-            OVERLORD = {
-                hidden_effect = { set_autonomy = { target = ROOT autonomous_state = autonomy_free } }
-                declare_war_on = { target = ROOT type = annex_everything }
-            }
-        }
-    }
-
-    # armistice decisions
-    withdraw_from_war = {
-        visible = { 
-            or = { 
-                has_idea = idea_widespread_hunger 
-                has_idea = idea_army_mutinies
-                or = {
-                    has_capitulated = yes 
-                    surrender_progress > 0.25
-                }
-            }
-            has_civil_war = no
-        }
-
-        icon = generic_form_nation
-        days_re_enable = 90
-        cost = 100
-
-        available = { has_capitulated = no }
-
-        ai_will_do = {
-            base = 6
-            modifier = { 
-                or = { 
-                    has_war_support < 0.2 surrender_progress > 0.5 
-                    has_idea = idea_all_adults_serve has_idea = scraping_the_barrel 
-                }
-                factor = 3
-            }
-        }
-
-        targets_dynamic = yes
-        target_trigger = { 
-            FROM = {
-                has_war_with = ROOT
-                or = { 
-                    is_faction_leader = yes 
-                    not = { any_country = { has_war_together_with = FROM } }
-                }
-            }
-        }
-
-        days_remove = 7
-
-        remove_effect = {
-            FROM = { country_event = { id = _offer.1 hours = 6 random_hours = 6 } }
         }
     }
 }

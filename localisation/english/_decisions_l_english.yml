@@ -1,23 +1,14 @@
 ﻿l_english:
-  decision_effect_tooltip: "§LCompleting this focus unlocks new decisions.§!"
+  decision_effect_tooltip: "Completing this focus unlocks §Ynew decisions§!."
+  decision_faction_effect_tooltip: "Completing this focus unlocks §Ynew decisions§! and allows us to §Ycreate our own faction§!."
   integration_trigger_tooltip: "All highlighted states are controlled by §Y[ROOT.GetName]§!."
 
   tt_can_fight_us: "We can go to war with the owner"
+  tt_war_length: "Has been at war with §Y[FROM.GetNameDef]§! at least §Y2 years§! and has §tless than 40%§! war support"
 
   # HEAD OF STATE
-  dc_head_of_state_decisions: "Head of State Decisions"
+  _head_of_state: "Head of State Decisions"
 
-  ## defense
-  honor_the_heroes: "Honor the Heroes"
-  honor_the_heroes_desc: "Pay homage to the fallen and the living alike, uniting the nation around shared sacrifice and unbroken will to fight."
-
-  territorial_auxilliaries: "Encourage Voluntary Draft"
-  territorial_auxilliaries_desc: "Launch a patriotic campaign to inspire citizens to enlist before conscription becomes necessary."
-
-  workers_militias: "Organize Workers' Militias"
-  workers_militias_desc: "Arm and train loyal workers to defend factories and villages under revolutionary banners."
-
-  ## propaganda
   expand_information_services: "Expand State Information Services"
   expand_information_services_desc: "Strengthen government media to ensure the national message reaches every citizen."
 
@@ -27,24 +18,39 @@
   intensify_agitation: "Intensify Agitation"
   intensify_agitation_desc: "Deploy trusted organizers to spread revolutionary fervor through speeches and printed word."
 
-  # puppet
-  empower_loyalists: "Empower the Loyalists"
-  empower_loyalists_desc: "By elevating loyal officials and collaborators to positions of authority, the overlord ensures firm control over the region, rooting out dissent and keeping rebellious elements in check."
+  honor_the_heroes: "Honor the Heroes"
+  honor_the_heroes_desc: "Pay homage to the fallen and the living alike, uniting the nation around shared sacrifice and the unbroken will to win."
 
-  develop_independents: "Develop Independent Administration"
-  develop_independents_desc: "In the shadows of occupation, a parallel state will take form. Secret councils, hidden networks, and loyal cadres will prepare the foundations of true independence, waiting for the moment to step into the light."
+  territorial_auxilliaries: "Encourage Voluntary Draft"
+  territorial_auxilliaries_desc: "Launch a campaign to inspire citizens to enlist before conscription becomes necessary."
+  
+  ## -- war office
+  _war_office: "War Office"
 
-  launch_independence_war: "Launch the War of Independence"
-  launch_independence_war_desc: "The time for peaceful attempts has passed. With arms in hand and banners raised, let our struggle for self-determination start, as we cast off the overlord’s yoke through fire and sacrifice."
+  inspire_definitive_offensive: "Inspire the Decisive Offensive"
+  inspire_definitive_offensive_desc: ""
 
-  # armistice
+  organize_desperate_defenses: "Organize Desperate Defenses"
+  organize_desperate_defenses_desc: ""
+
+  greater_effort: "Ask for Greater Industrial Effort"
+  greater_effort_desc: "Demand more effort from our heroic workers to boost the industrial output — despite the economic strain."
+
   withdraw_from_war: "Offer Armistice to [FROM.GetNameDef]"
   withdraw_from_war_desc: "We will try to step out of the conflict, seeking to preserve our country from further bloodshed."
 
-  # INTERNAL STRUGGLE
+  ## -- support the war effort
+  _support_war_effort: "Support the War Effort"
 
-  dc_struggle_decisions: "Internal Struggle"
-  dc_struggle_decisions_desc: "Several political factions have grown enough to vie for power in our country, sometimes at the cost of all of us.\n\nLet us take action to curb their efforts and shape our future ourselves: the way we truly want."
+  all_for_the_frontline: "All for the Front!"
+  all_for_the_frontline_desc: "Redirect all resources toward sustaining the war front through industry and rationing."
+
+  confiscate_automobiles: "Confiscate Trucks and Automobiles"
+  confiscate_automobiles_desc: ""
+
+  ## -- internal struggle
+  _internal_struggle: "Internal Struggle"
+  _internal_struggle_desc: "Several political factions have grown enough to vie for power in our country, sometimes at the cost of all of us.\n\nLet us take action to curb their efforts and shape our future ourselves: the way we truly want."
 
   crush_agitators: "Crush Communist Agitators"
   crush_agitators_desc: "Stamp out the communist cells before their radical fervor sets the streets aflame."
@@ -52,23 +58,11 @@
   attack_activists: "Attack Democratic Activists"
   attack_activists_desc: "Break the influence of democratic activists whose irresponsible rhetoric undermines our stability."
 
-  discredit_authority: "Discredit the Conservatives"    # monarchist
+  discredit_authority: "Discredit the Conservatives"
   discredit_authority_desc: "Expose the monarchists' failures and erode their legitimacy in the eyes of the people."
 
-  disarm_thugs: "Disarm Authoritarian Thugs"
-  disarm_thugs_desc: "Armed authoritarian bands impose their will by force; we must strip them of weapons so we can stop them."
-
-  # PUBLIC SUPPORT
-  dc_public_support_decisions: "Public Support"
-  
-  greater_effort: "Advocate for Increased Industrial Effort"
-  greater_effort_desc: "Demand more effort from our heroic workers to boost the industrial output — despite the economic strain."
-
-  all_for_the_front: "All for the Front!"
-  all_for_the_front_desc: "Redirect all resources toward sustaining the war front through industry and rationing."
-
-  # ECONOMIC
-  dc_economic_decisions: "Economic Decisions"
+  ## -- economic
+  _economic_decisions: "Economic Decisions"
 
   establish_oil_reserve: "Establish National Fuel Reserve"
   establish_oil_reserve_desc: "Create a centralized stockpile of fuel to safeguard military and industrial operations."
@@ -79,20 +73,8 @@
   literacy_campaigns: "Literacy Campaigns"
   literacy_campaigns_desc: "Improve education to raise literacy rates, empowering the population and workforce."
 
-  ## economic - communist
-  dc_communist_economic_decisions: "Commissariat of Economy"
-
-  wheat_requisitions: "Organize Wheat Requisitions"
-  wheat_requisitions_desc: "Dispatch soldiers to villages to secure grain from the countryside for the people and the cause."
-
-  arrange_expropriations: "Arrange Expropriations"
-  arrange_expropriations_desc: "Seize private assets and place them under state control for the benefit of the collective."
-
-  literacy_campaigns_communist: "Literacy Campaigns"
-  literacy_campaigns_communist_desc: "Promote literacy to uplift the working class and spread revolutionary consciousness."
-
-  # CIVIL WARS
-  civil_war_decisions: "Civil Wars"
+  ## -- civil wars
+  _civil_war_decisions: "Civil Wars"
 
   generic_send_guns: "Send Arms to [FROM.GetNameDef]"
   generic_send_guns_desc: "By sending arms and supplies, we can influence the course of the conflict and ensure that our chosen side has the means to fight."

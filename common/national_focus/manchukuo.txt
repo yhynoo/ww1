@@ -726,7 +726,10 @@
         cost = 10
 
         prerequisite = { focus = MAN_expansionism }
-        available = { is_subject = no }
+        available = { 
+            is_subject = no
+            is_in_faction = no
+        }
 
         ai_will_do = { 
             base = 0
@@ -747,26 +750,16 @@
         cost = 10
 
         prerequisite = { focus = MAN_expansionism }
-        available = { 
-            is_subject = no
-            has_idea = idea_unequal_treaties 
-        }
+        ai_will_do = { base = 0 }
 
-        ai_will_do = { 
-            base = 0
-            modifier = { is_in_faction = yes add = 2 }
+        available = { 
+            is_subject = no 
+            is_in_faction = no
         }
 
         completion_reward = {
-            remove_ideas = idea_unequal_treaties
-
-            every_country = {
-                limit = { 
-                    or = { tag = ENG tag = FRA tag = GER tag = JAP } 
-                    not = { is_ally_with = MAN }
-                }
-                news_event = { id = manchukuo_treaties.1 hours = 6 random_hours = 6 }
-            }
+            add_war_support = 0.05
+            set_rule = { can_create_factions = yes }
         }
     }
 

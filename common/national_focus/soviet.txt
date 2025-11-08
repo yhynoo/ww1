@@ -740,12 +740,12 @@
         }
 
         completion_reward = {
-            FRA = { country_event = { id = soviet_entente.1 hours = 6 random_hours = 6 } }
+            add_timed_idea = { idea = idea_seek_alliances years = 2 }
         }
     }
     focus = {
         id = SOV_on_our_own
-        icon = GFX_focus_generic_on_our_own
+        icon = GFX_focus_generic_across_the_sea
 
         relative_position_id = SOV_expansionism
         x = 1
@@ -767,7 +767,8 @@
         }
 
         completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
+            custom_effect_tooltip = decision_faction_effect_tooltip
+            hidden_effect = { set_rule = { can_create_factions = yes } }
         }
     }
 

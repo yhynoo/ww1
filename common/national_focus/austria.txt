@@ -700,7 +700,7 @@ focus_tree = {
     }
     focus = {
         id = AUS_seek_alliances
-        icon = GFX_focus_generic_on_our_own
+        icon = GFX_focus_generic_seek_alliances
 
         relative_position_id = AUS_expansionism
         x = -2
@@ -709,25 +709,22 @@ focus_tree = {
 
         prerequisite = { focus = AUS_expansionism }
         available = { 
-            is_ally_with = GER
-            not = { has_idea = idea_archaic_army }
+            is_subject = no
+            is_in_faction = no
         }
 
         ai_will_do = { 
-            base = 2 
+            base = 0
             modifier = { is_in_faction = yes factor = 0 }
         }
 
         completion_reward = {
-            every_country = {
-                limit = { or = { tag = AUS tag = GER } }
-                add_timed_idea = { idea = idea_gemeinsame_heeresleitung years = 2 }
-            }
+            add_timed_idea = { idea = idea_seek_alliances years = 2 }
         }
     }
     focus = {
         id = AUS_on_our_own
-        icon = GFX_focus_generic_expand_the_empire
+        icon = GFX_focus_generic_on_our_own
 
         relative_position_id = AUS_expansionism
         x = 1
@@ -738,33 +735,22 @@ focus_tree = {
 
         available = { 
             is_subject = no
-            not = { has_war_together_with = GER }
+            is_in_faction = no
         }
 
         ai_will_do = { 
             base = 0
             modifier = { 
-                or = { 
-                    FRA = { has_government = monarchism } 
-                    is_in_faction = no
-                }
+                and = { FRA = { has_government = monarchism } is_in_faction = no }
                 add = 1 
             }
         }
 
         completion_reward = {
-            if = {
-                limit = { is_ally_with = GER }
-                leave_faction = yes
-            }
-
             GER = { add_opinion_modifier = { target = AUS modifier = opinion_denounced_germany } }
-            custom_effect_tooltip = decision_effect_tooltip
 
-            hidden_effect = {
-                add_ai_strategy = { type = alliance id = GER value = -75 }
-                add_ai_strategy = { type = contain id = GER value = 25 }
-            }
+            custom_effect_tooltip = decision_faction_effect_tooltip
+            hidden_effect = { set_rule = { can_create_factions = yes } }
         }
     }
 

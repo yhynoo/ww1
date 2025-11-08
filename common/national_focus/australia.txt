@@ -718,7 +718,10 @@
         cost = 10
 
         prerequisite = { focus = AST_expansionism }
-        available = { is_subject = no }
+        available = { 
+            is_subject = no
+            is_in_faction = no
+        }
 
         completion_reward = {
             add_timed_idea = { idea = idea_seek_alliances years = 2 }
@@ -734,10 +737,16 @@
         cost = 10
 
         prerequisite = { focus = AST_expansionism }
-        available = { is_subject = no }
+        ai_will_do = { base = 0 }
+        
+        available = { 
+            is_subject = no 
+            is_in_faction = no
+        }
 
         completion_reward = {
-            add_timed_idea = { idea = idea_on_our_own years = 1 }
+            add_war_support = 0.05
+            set_rule = { can_create_factions = yes }
         }
     }
 

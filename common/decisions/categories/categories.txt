@@ -1,48 +1,38 @@
-dc_head_of_state_decisions = {
+_head_of_state = {
     visible_when_empty = yes
     priority = 6
 }
 
-dc_struggle_decisions = {
+_war_office = {
+    visible = { has_war = yes }
     visible_when_empty = yes
     priority = 5
 }
 
-dc_public_support_decisions = {
+_support_war_effort = {
     visible = { has_country_flag = public_support_allowed }
+    priority = 4
+}
+
+_internal_struggle = {
+    visible_when_empty = yes
     priority = 3
 }
 
-dc_economic_decisions = {
+_economic_decisions = {
     visible = { not = { has_government = communism } }
 
     visible_when_empty = yes
     priority = 2
 }
 
-dc_communist_economic_decisions = {
-    visible = { has_government = communism }
-
-    visible_when_empty = yes
-    priority = 2
-}
-
-civil_war_decisions = {
+_civil_war_decisions = {
     visible = {
         or = {
             has_civil_war = yes 
             any_neighbor_country = { has_civil_war = yes }
         }
     }
-}
-
-# american influence in central america
-american_influence = {
-    visible = {
-        USA = { has_idea = idea_influence_in_central_america }
-        or = { original_tag = USA original_tag = MEX original_tag = COL }
-    }
-    priority = 4
 }
 
 # country specific

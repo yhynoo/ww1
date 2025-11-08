@@ -28,7 +28,7 @@ on_actions = {
                 give_resource_rights = { receiver = USA state = 485 }
             }
 
-            PER = {
+            QAJ = {
                 give_resource_rights = { receiver = ENG state = 412 }
                 give_resource_rights = { receiver = ENG state = 413 }
             }
@@ -36,7 +36,15 @@ on_actions = {
             # atmosphere events
             USA = {
                 # 1912
-                news_event = { id = _atmosphere.1 months = 3 days = 15 }
+                random_list = {
+                    2 = { news_event = { id = _atmosphere.1 months = 2 days = 7 } }
+                    1 = { news_event = { id = _atmosphere.2 months = 2 days = 7 } }
+                }
+                random_list = {
+                    1 = { news_event = { id = _atmosphere.3 months = 3 days = 21 } }
+                    3 = { news_event = { id = _atmosphere.4 months = 3 days = 15 } }
+                }
+
                 news_event = { id = _atmosphere.2 months = 6 days = 19 }
 
                 # 1913

@@ -719,7 +719,10 @@
         cost = 10
 
         prerequisite = { focus = JAP_expansionism }
-        available = { is_subject = no }
+        available = { 
+            is_subject = no
+            is_in_faction = no
+        }
 
         ai_will_do = { 
             base = 2
@@ -740,18 +743,16 @@
         cost = 10
 
         prerequisite = { focus = JAP_expansionism }
-        available = { is_subject = no }
-
-        ai_will_do = { 
-            base = 0
-            modifier = { 
-                and = { has_completed_focus = JAP_mobilize_the_masses is_in_faction = no }
-                add = 1 
-            }
+        ai_will_do = { base = 0 }
+        
+        available = { 
+            is_subject = no 
+            is_in_faction = no
         }
 
         completion_reward = {
-            MAN = { country_event = { id = _align.1 hours = 6 } }
+            add_war_support = 0.05
+            set_rule = { can_create_factions = yes }
         }
     }
 

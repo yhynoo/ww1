@@ -725,11 +725,13 @@ focus_tree = {
         }
 
         prerequisite = { focus = TUR_expansionism }
-        available = { is_subject = no }
+        available = { 
+            is_subject = no
+            is_in_faction = no
+        }
 
         completion_reward = {
-            add_stability = 0.05
-            remove_ideas = idea_dissent_in_the_army
+            add_timed_idea = { idea = idea_seek_alliances years = 2 }
         }
     }
     focus = {
@@ -750,7 +752,8 @@ focus_tree = {
         available = { is_subject = no }
 
         completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
+            custom_effect_tooltip = decision_faction_effect_tooltip
+            hidden_effect = { set_rule = { can_create_factions = yes } }
         }
     }
 

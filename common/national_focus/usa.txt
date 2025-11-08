@@ -735,12 +735,9 @@ focus_tree = {
 
         completion_reward = {
             add_war_support = 0.05
-            set_rule = { can_create_factions = yes }
+            hidden_effect = { news_event = { id = _alliance.1 hours = 6 } }
             
-            if = {
-                limit = { is_ai = yes }
-                create_faction = "Washington Charter"
-            }
+            create_faction = "Washington Charter"
         }
     }
     focus = {

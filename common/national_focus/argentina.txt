@@ -719,7 +719,10 @@ focus_tree = {
         cost = 10
 
         prerequisite = { focus = ARG_expansionism }
-        available = { is_subject = no }
+        available = { 
+            is_subject = no
+            is_in_faction = no
+        }
 
         completion_reward = {
             add_timed_idea = { idea = idea_seek_alliances years = 2 }
@@ -727,7 +730,7 @@ focus_tree = {
     }
     focus = {
         id = ARG_on_our_own
-        icon = GFX_focus_generic_across_the_sea
+        icon = GFX_focus_generic_on_our_own
 
         relative_position_id = ARG_expansionism
         x = 1
@@ -735,29 +738,16 @@ focus_tree = {
         cost = 10
 
         prerequisite = { focus = ARG_expansionism }
+        ai_will_do = { base = 0 }
+        
         available = { 
             is_subject = no 
-            any_state = {
-                or = { state = 564 state = 62 }
-                not = { is_owned_by = ARG }
-            }
+            is_in_faction = no
         }
 
         completion_reward = {
             add_war_support = 0.05
-
-            every_state = {
-                limit = {
-                    or = { state = 564 state = 62 }
-                    not = { is_owned_by = ARG }
-                }
-                add_claim_by = ARG
-            }
-
-            every_country = {
-                limit = { or = { owns_state = 564 owns_state = 62 } }
-                country_event = { id = _demand.1 hours = 6 random_hours = 6 }
-            }
+            set_rule = { can_create_factions = yes }
         }
     }
 

@@ -27,15 +27,6 @@ country_event = {
     is_triggered_only = yes
     trigger = { has_stability < 0.65 }
 
-    immediate = {
-        hidden_effect = {
-            every_state = {
-                limit = { or = { state = 405 state = 584 state = 585 state = 589 state = 647 } }
-                add_core_of = TMS
-            }
-        }
-    }
-
     option = {
         name = "Why not."
         add_popularity = { ideology = democratic value = 0.05 }

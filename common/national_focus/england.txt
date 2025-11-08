@@ -719,20 +719,21 @@ focus_tree = {
         cost = 10
 
         prerequisite = { focus = ENG_expansionism }
-        available = { is_subject = no }
+        available = { 
+            is_subject = no
+            is_in_faction = no
+        }
 
         ai_will_do = { 
-            base = 2
-            modifier = { has_completed_focus = ENG_abolish_lords factor = 0 }
+            base = 0
+            modifier = { has_completed_focus = ENG_abolish_lords factor = 1 }
         }
 
         completion_reward = {
-            news_event = { id = england_entente.1 hours = 6 }
+            hidden_effect = { news_event = { id = _alliance.1 hours = 6 } }
             remove_ideas = idea_mansion_house
-
-            hidden_effect = {
-                add_ai_strategy = { type = alliance id = FRA value = 100 }
-            }
+            
+            create_faction = "Westminster Treaty"
         }
     }
     focus = {

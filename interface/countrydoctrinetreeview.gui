@@ -11,7 +11,7 @@ guiTypes = {
 			quadTextureSprite ="GFX_tiled_plain_bg2"
 		}
 
-			containerWindowType = {
+		containerWindowType = {
 			name = "land_doctrine_folder"
 			position = { x=0 y=47 }
 			size = { width = 100%% height = 100%% }
@@ -29,7 +29,7 @@ guiTypes = {
 			containerWindowType = {
 				name = "size_filler"
 				position = { x=0 y=0 }
-				size = { width = 1586 height = 780 }
+				size = { width = 1980 height = 1000 }
 			}
 
 			iconType = {
@@ -38,33 +38,67 @@ guiTypes = {
 				position = { x = 0 y = 0 }
 				alwaystransparent = yes
 			}
+			
+			# MASS WARFARE
+
+			iconType = {
+				name ="mass_bg"
+				spriteType = "GFX_doctrine_land_bg"
+				position = { x=104 y=28 }
+			}	
+
+			instantTextBoxType = {
+				name = "mass_title"
+				position = { x = 370 y = 42 }
+				font = "hoi_22tech"
+				borderSize = {x = 0 y = 4 }
+				text = "Mass Warfare Doctrine"
+				maxWidth = 300
+				maxHeight = 122
+				format = center
+				Orientation = "UPPER_LEFT"
+			}
+
+			instantTextBoxType = {
+				name = "mass_desc"
+				position = { x = 270 y = 77 }
+				font = "hoi_20b"
+				borderSize = {x = 0 y = 4}
+				text = "We will focus on our mobilization capabilities, firepower, and organization of the army as a whole — and by doing so, prepare it for a long, exhausting war."
+				maxWidth = 500
+				maxHeight = 122
+				format = center
+				Orientation = "UPPER_LEFT"
+			}
+
+			gridboxtype = {
+				name = "mass_army_doctrine_tree"
+				position = { x= 100 y = 172 }
+				size = { width = 840 height = 1000 }
+				slotsize = { width = 60 height = 60 }
+				format = "UP"
+
+				background = {
+					name = "Background"
+					quadTextureSprite ="GFX_fullborder_tiled"
+					position = { x=0 y=-156 }					
+				}
+			}
+
+			# MANEUVER
 
 			iconType = {
 				name ="maneuver_bg"
-				spriteType = "GFX_doctrine_box_bg"
-				position = { x=84 y=33 }
-			}			
-				
-			iconType = {
-				name ="static_bg"
-				spriteType = "GFX_doctrine_box_bg"
-				position = { x=599 y=33 }
+				spriteType = "GFX_doctrine_land_bg"
+				position = { x=1044 y=28 }
 			}	
-	
-			iconType = {
-				name ="material_bg"
-				spriteType = "GFX_doctrine_box_bg"
-				position = { x=1104 y=33 }
-			}
-			
-			# MANEUVER
 
 			instantTextBoxType = {
 				name = "maneuver_title"
-				position = { x = 143 y = 42 }
+				position = { x = 1310 y = 42 }
 				font = "hoi_22tech"
 				borderSize = {x = 0 y = 4 }
-				text = "Maneuver Warfare"
+				text = "Maneuver Doctrine"
 				maxWidth = 300
 				maxHeight = 122
 				format = center
@@ -73,229 +107,28 @@ guiTypes = {
 
 			instantTextBoxType = {
 				name = "maneuver_desc"
-				position = { x = 123 y = 77 }
+				position = { x = 1210 y = 77 }
 				font = "hoi_20b"
 				borderSize = {x = 0 y = 4}
-				text = "We will focus on our maneuver capabilities, solid logistics, and eliminating the enemy through swift movements."
-				maxWidth = 340
-				maxHeight = 122
-				format = center
-				Orientation = "UPPER_LEFT"
-			}
-
-			instantTextBoxType = {
-				name = "maneuver_subtitle1"
-				position = { x = 102 y = 179 }
-				textureFile = ""
-				font = "hoi_22tech"
-				borderSize = { x = 0 y = 4 }
-				text = "OFFENSIVE"
-				maxWidth = 150
-				maxHeight = 122
-				format = center
-				Orientation = "UPPER_LEFT"
-			}
-
-			instantTextBoxType = {
-				name = "maneuver_subtitle2"
-				position = { x = 304 y = 179 }
-				textureFile = ""
-				font = "hoi_22tech"
-				borderSize = {x = 0 y = 4 }
-				text = "DEFENSIVE"
-				maxWidth = 200
+				text = "We will focus on technological advantage, tactical flexibility, and individual training to ensure that our army can destroy the enemy quickly, using well-executed, deadly strikes."
+				maxWidth = 500
 				maxHeight = 122
 				format = center
 				Orientation = "UPPER_LEFT"
 			}
 
 			gridboxtype = {
-				name = "cyclist_exploitation_tree"
-				position = { x=80 y=172 }
-				size = { width = 426 height = 635 }
+				name = "maneuver_doctrine_tree"
+				position = { x= 1040 y = 172 }
+				size = { width = 840 height = 1000 }
 				slotsize = { width = 60 height = 60 }
 				format = "UP"
 
 				background = {
 					name = "Background"
 					quadTextureSprite ="GFX_fullborder_tiled"
-					position = { x=0 y=-150 }					
+					position = { x=0 y=-156 }					
 				}
-			}
-
-			gridboxtype = {
-				name = "spot_defense_tree"
-				position = { x=72 y=172 }
-				size = { width = 426 height = 635 }
-				slotsize = { width = 60 height = 60 }
-				format = "UP"
-
-				#background = {
-				#	name = "Background"
-				#	quadTextureSprite ="GFX_fullborder_tiled"
-				#	position = { x=0 y=-150 }					
-				#}
-			}
-
-			# STATIC
-
-			instantTextBoxType = {
-				name = "static_title"
-				position = { x = 658 y = 42 }
-				font = "hoi_22tech"
-				borderSize = {x = 0 y = 4}
-				text = "Attrition Warfare"
-				maxWidth = 300
-				maxHeight = 122
-				format = center
-				Orientation = "UPPER_LEFT"
-			}
-
-			instantTextBoxType = {
-				name = "static_desc"
-				position = { x = 638 y = 77 }
-				font = "hoi_20b"
-				borderSize = {x = 0 y = 4 }
-				text = "We will focus on overwhelming and exhausting the enemy with large offensives, artillery fire, and steadfast defense."
-				maxWidth = 340
-				maxHeight = 122
-				format = center
-				Orientation = "UPPER_LEFT"
-			}
-
-			instantTextBoxType = {
-				name = "static_subtitle1"
-				position = { x = 617 y = 179 }
-				textureFile = ""
-				font = "hoi_22tech"
-				borderSize = { x = 0 y = 4 }
-				text = "OFFENSIVE"
-				maxWidth = 150
-				maxHeight = 122
-				format = center
-				Orientation = "UPPER_LEFT"
-			}
-
-			instantTextBoxType = {
-				name = "static_subtitle2"
-				position = { x = 819 y = 179 }
-				textureFile = ""
-				font = "hoi_22tech"
-				borderSize = {x = 0 y = 4 }
-				text = "DEFENSIVE"
-				maxWidth = 200
-				maxHeight = 122
-				format = center
-				Orientation = "UPPER_LEFT"
-			}
-
-			gridboxtype = {
-				name = "mass_warfare_tree"
-				position = { x=595 y=172 }
-				size = { width = 426 height = 635 }
-				slotsize = { width=60 height= 60 }
-				format = "UP"
-
-				background = {
-					name = "Background"
-					quadTextureSprite ="GFX_fullborder_tiled"
-					position = { x=0 y=-150 }					
-				}
-			}
-
-			gridboxtype = {
-				name = "continuous_trenches_tree"
-				position = { x=587 y=172 }
-				size = { width = 426 height = 635 }
-				slotsize = { width=60 height= 60 }
-				format = "UP"
-
-				#background = {
-				#	name = "Background"
-				#	quadTextureSprite ="GFX_fullborder_tiled"
-				#	position = { x=0 y=-150 }					
-				#}
-			}
-
-
-			# material
-
-			instantTextBoxType = {
-				name = "material_title"
-				position = { x = 1163 y = 42 }
-				font = "hoi_22tech"
-				borderSize = {x = 0 y = 4}
-				text = "Material Support"
-				maxWidth = 300
-				maxHeight = 122
-				format = center
-				Orientation = "UPPER_LEFT"
-			}
-
-			instantTextBoxType = {
-				name = "material_desc"
-				position = { x = 1143 y = 77 }
-				font = "hoi_20b"
-				borderSize = {x = 0 y = 4}
-				text = "We will organize our industrial and human capabilities for maximum efficiency to ensure a decisive victory."
-				maxWidth = 340
-				maxHeight = 122
-				format = center
-				Orientation = "UPPER_LEFT"
-			}
-
-			instantTextBoxType = {
-				name = "material_subtitle1"
-				position = { x = 1122 y = 179 }
-				textureFile = ""
-				font = "hoi_22tech"
-				borderSize = { x = 0 y = 4 }
-				text = "ECONOMY"
-				maxWidth = 150
-				maxHeight = 122
-				format = center
-				Orientation = "UPPER_LEFT"
-			}
-
-			instantTextBoxType = {
-				name = "material_subtitle2"
-				position = { x = 1324 y = 179 }
-				textureFile = ""
-				font = "hoi_22tech"
-				borderSize = {x = 0 y = 4 }
-				text = "CIVIL DEFENSE"
-				maxWidth = 200
-				maxHeight = 122
-				format = center
-				Orientation = "UPPER_LEFT"
-			}
-
-			gridboxtype = {
-				name = "militarized_management_tree"
-				position = { x=1100 y=172 }
-				size = { width = 426 height = 635 }
-				slotsize = { width=60 height= 60 }
-				format = "UP"
-
-				background = {
-					name = "Background"
-					quadTextureSprite ="GFX_fullborder_tiled"
-					position = { x=0 y=-150 }					
-				}
-			}
-
-			gridboxtype = {
-				name = "citizen_militias_tree"
-				position = { x=1092 y=172 }
-				size = { width = 426 height = 635 }
-				slotsize = { width=60 height= 60 }
-				format = "UP"
-
-				#background = {
-				#	name = "Background"
-				#	quadTextureSprite ="GFX_fullborder_tiled"
-				#	position = { x=0 y=-150 }					
-				#}
 			}
 		}
 
@@ -327,8 +160,8 @@ guiTypes = {
 			}			
 				
 			iconType = {
-				name ="trade_interdiction_bg"
-				spriteType = "GFX_trade_interdiction_bg"
+				name ="trade_direct_artillery_support_bg"
+				spriteType = "GFX_trade_direct_artillery_support_bg"
 				position = { x=575 y=33 }
 			}	
 	
@@ -365,7 +198,7 @@ guiTypes = {
 			}
 			
 			instantTextBoxType = {
-				name = "trade_interdiction_title"
+				name = "trade_direct_artillery_support_title"
 				position = { x = 610 y = 35 }
 				textureFile = ""
 				font = "hoi_22tech"
@@ -378,7 +211,7 @@ guiTypes = {
 			}
 
 			instantTextBoxType = {
-				name = "trade_interdiction_desc"
+				name = "trade_direct_artillery_support_desc"
 				position = { x = 610 y = 70 }
 				textureFile = ""
 				font = "hoi_20b"
@@ -432,7 +265,7 @@ guiTypes = {
 			}
 
 			gridboxtype = {
-				name = "trade_interdiction_tree"
+				name = "trade_direct_artillery_support_tree"
 				position = { x=560 y=172 }
 				size = { width = 480 height = 1000 }
 				slotsize = { width=60 height= 60 }
@@ -482,137 +315,55 @@ guiTypes = {
 			}
 
 			iconType = {
-				name ="air_superiority_bg"
-				spriteType = "GFX_strategic_destruction_bg"
-				position = { x=80 y=33 }
-			}			
-				
+				name ="air_doctrine_bg"
+				spriteType = "GFX_air_doctrine_bg"
+				position = { x = 0 y = 0 }
+				alwaystransparent = yes
+			}
+
+			# AIR DOCTRINE
+
 			iconType = {
-				name ="battlefield_destruction_bg"
-				spriteType = "GFX_battlefield_destruction_bg"
-				position = { x=595 y=33 }
+				name ="air_bg"
+				spriteType = "GFX_doctrine_air_bg"
+				position = { x=104 y=28 }
 			}	
-	
-			iconType = {
-				name ="operational_destruction_bg"
-				spriteType = "GFX_operational_destruction_bg"
-				position = { x=1100 y=33 }
-			}
-			
+
 			instantTextBoxType = {
-				name = "strategic_destruction_title"
-				position = { x = 80 y = 35 }
+				name = "air_title"
+				position = { x = 420 y = 42 }
 				font = "hoi_22tech"
-				borderSize = {x = 0 y = 4}
-				text = "TITLE_STRATEGIC_DESTRUCTION"
-				maxWidth = 400
+				borderSize = {x = 0 y = 4 }
+				text = "Air Doctrine"
+				maxWidth = 300
 				maxHeight = 122
 				format = center
 				Orientation = "UPPER_LEFT"
 			}
 
 			instantTextBoxType = {
-				name = "strategic_destruction_desc"
-				position = { x = 108 y = 70 }
+				name = "air_desc"
+				position = { x = 320 y = 77 }
 				font = "hoi_20b"
 				borderSize = {x = 0 y = 4}
-				text = "STRATEGIC_DESTRUCTION_DESC"
-				maxWidth = 380
+				text = "Airplane — the greatest invention of the last decade — will certainly change how war is fought around the world. What exactly will happen though, is yet to be found out."
+				maxWidth = 500
 				maxHeight = 122
 				format = center
 				Orientation = "UPPER_LEFT"
 			}
 
-			instantTextBoxType = {
-				name = "battlefield_support_title"
-				position = { x = 605 y = 35 }
-				font = "hoi_22tech"
-				borderSize = {x = 0 y = 4}
-				text = "TITLE_BATTLEFIELD_SUPPORT"
-				maxWidth = 400
-				maxHeight = 122
-				format = center
-				Orientation = "UPPER_LEFT"
-			}
-
-			instantTextBoxType = {
-				name = "battlefield_support_desc"
-				position = { x = 620 y = 70 }
-				font = "hoi_20b"
-				borderSize = {x = 0 y = 4}
-				text = "BATTLEFIELD_SUPPORT_DESC"
-				maxWidth = 380
-				maxHeight = 122
-				format = center
-				Orientation = "UPPER_LEFT"
-			}
-
-			instantTextBoxType = {
-				name = "operational_integrity_title"
-				position = { x = 1105 y = 35 }
-				font = "hoi_22tech"
-				borderSize = {x = 0 y = 4}
-				text = "TITLE_OPERATIONAL_INTEGRITY"
-				maxWidth = 400
-				maxHeight = 122
-				format = center
-				Orientation = "UPPER_LEFT"
-			}
-
-			instantTextBoxType = {
-				name = "operational_integrity_desc"
-				position = { x = 1120 y = 82 }
-				font = "hoi_20b"
-				borderSize = {x = 0 y = 4}
-				text = "OPERATIONAL_INTEGRITY_DESC"
-				maxWidth = 380
-				maxHeight = 122
-				format = center
-				Orientation = "UPPER_LEFT"
-			}
-	
 			gridboxtype = {
-				#strategic_destruction_tree Needs to be named after first tech (air_superiority)
-				name = "air_superiority_tree"
-				position = { x=80 y=172 }
-				size = { width = 427 height = 1335 }
-				slotsize = { width=60 height= 60 }
+				name = "experimental_aviation_tree"
+				position = { x= 100 y = 172 }
+				size = { width = 940 height = 1140 }
+				slotsize = { width = 60 height = 60 }
 				format = "UP"
 
 				background = {
 					name = "Background"
 					quadTextureSprite ="GFX_fullborder_tiled"
-					position = { x=0 y=-150 }					
-				}
-			}
-
-			gridboxtype = {
-				#battlefield_support_tree Needs to be named after first tech (formation_flying)
-				name = "formation_flying_tree"
-				position = { x=595 y=172 }
-				size = { width = 427 height = 1335 }
-				slotsize = { width=60 height= 60 }
-				format = "UP"
-
-				background = {
-					name = "Background"
-					quadTextureSprite ="GFX_fullborder_tiled"
-					position = { x=0 y=-150 }					
-				}
-			}
-
-			gridboxtype = {
-				#operational_integrity_tree Needs to be named after first tech (force_rotation)
-				name = "force_rotation_tree"
-				position = { x=1100 y=172 }
-				size = { width = 427 height = 1335 }
-				slotsize = { width=60 height= 60 }
-				format = "UP"
-
-				background = {
-					name = "Background"
-					quadTextureSprite ="GFX_fullborder_tiled"
-					position = { x=0 y=-150 }					
+					position = { x=0 y=-156 }					
 				}
 			}
 		}

@@ -1,382 +1,398 @@
 technologies = {
 
-    # MANEUVER
-
-    # maneuver: offensive
-
-    cyclist_exploitation = {
+## -- mass warfare
+    mass_army_doctrine = {
         doctrine = yes
         xp_research_type = army
 		xp_unlock_cost = 150
 
-        path = {
-			leads_to_tech = flexible_detachments 
-			research_cost_coeff = 1
-		}
+        path = { leads_to_tech = human_wave_assault     research_cost_coeff = 1 }
+        path = { leads_to_tech = trench_warfare         research_cost_coeff = 1 }
 
         folder = {
 			name = land_doctrine_folder
-			position = { x = -2 y = 1 }
+			position = { x = 0 y = 0 }
 		}
 
-        categories = { land_doctrine }
+        xor = { maneuver_doctrine }
 
-        # modifiers
-        army_speed_factor = 0.05
-        mod_cat_light_offensive = {
-            soft_attack = 0.05
-            breakthrough = 0.1
-        }
-        
+        categories = { land_doctrine }
     }
 
-    flexible_detachments = {
+    ## tier 2
+    human_wave_assault = {
         doctrine = yes
         xp_research_type = army
 		xp_unlock_cost = 150
 
-        path = {
-			leads_to_tech = infiltration_tactics 
-			research_cost_coeff = 1
-		}
+        path = { leads_to_tech = artillery_coordination research_cost_coeff = 1 }
+        path = { leads_to_tech = war_of_attrition       research_cost_coeff = 1 }
 
         folder = {
 			name = land_doctrine_folder
-			position = { x = -2 y = 3 }
+			position = { x = -2 y = 2 }
 		}
 
         categories = { land_doctrine }
+    }
+    trench_warfare = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
 
-        # modifiers
-        experience_gain_army_factor = 0.1
-        planning_speed = 0.15
+        path = { leads_to_tech = strongholds            research_cost_coeff = 1 }
+        path = { leads_to_tech = moral_endurance        research_cost_coeff = 1 }
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = 2 y = 2 }
+		}
+
+        categories = { land_doctrine }
     }
 
-    infiltration_tactics = {
+    ## tier 3
+    artillery_coordination = {
         doctrine = yes
         xp_research_type = army
 		xp_unlock_cost = 150
 
         folder = {
 			name = land_doctrine_folder
-			position = { x = -2 y = 5 }
+			position = { x = -5 y = 4 }
 		}
 
         categories = { land_doctrine }
+    }
+    war_of_attrition = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
 
-        # modifiers
-        army_attack_speed_factor = 0.15
-        mod_cat_infantry = { breakthrough = 0.1 max_organisation = 10 }
+        path = { leads_to_tech = overwhelming_firepower    research_cost_coeff = 1 }
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = -2 y = 4 }
+		}
+
+        categories = { land_doctrine }
     }
 
-    # maneuver: defensive
-
-    spot_defense = {
+    strongholds = {
         doctrine = yes
         xp_research_type = army
 		xp_unlock_cost = 150
 
-        path = {
-			leads_to_tech = counterattack_doctrine 
-			research_cost_coeff = 1
-		}
+        path = { leads_to_tech = overwhelming_firepower    research_cost_coeff = 1 }
 
         folder = {
 			name = land_doctrine_folder
-			position = { x = 2 y = 1 }
+			position = { x = 2 y = 4 }
 		}
 
         categories = { land_doctrine }
+    }
+    moral_endurance = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
 
-        # modifiers
-        mod_cat_infantry = { defense = 0.1 max_organisation = 10 }
-        field_hospital = { casualty_trickleback = 0.2 }
+        folder = {
+			name = land_doctrine_folder
+			position = { x = 5 y = 4 }
+		}
+
+        categories = { land_doctrine }
     }
 
-    counterattack_doctrine = {
+    ## tier 4
+    overwhelming_firepower = {
         doctrine = yes
         xp_research_type = army
 		xp_unlock_cost = 150
 
-        path = {
-			leads_to_tech = land_for_time 
-			research_cost_coeff = 1
-		}
+        path = { leads_to_tech = decisive_strike    research_cost_coeff = 1 }
 
         folder = {
 			name = land_doctrine_folder
-			position = { x = 2 y = 3 }
+			position = { x = 0 y = 6 }
 		}
 
         categories = { land_doctrine }
-
-        coordination_bonus = 0.15
-        initiative_factor = 0.15
     }
 
-    land_for_time = {
+    ## tier 5
+    decisive_strike = {
         doctrine = yes
         xp_research_type = army
 		xp_unlock_cost = 150
 
+        path = { leads_to_tech = frontwide_offensive    research_cost_coeff = 1 }
+        path = { leads_to_tech = operational_excellence    research_cost_coeff = 1 }
+        path = { leads_to_tech = economy_of_scale    research_cost_coeff = 1 }
+
         folder = {
 			name = land_doctrine_folder
-			position = { x = 2 y = 5 }
+			position = { x = 0 y = 8 }
 		}
 
         categories = { land_doctrine }
-
-        # modifiers
-        army_org_regain = 0.1
-        org_loss_when_moving = -0.15
     }
 
-    # MASS WARFARE
-
-    # static: offensive
-
-    mass_warfare = {
+    ## tier 6
+    frontwide_offensive = {
         doctrine = yes
         xp_research_type = army
 		xp_unlock_cost = 150
 
-        path = {
-			leads_to_tech = feuerwalze_tactic 
-			research_cost_coeff = 1
-		}
-
-        categories = { land_doctrine }
+        path = { leads_to_tech = scorched_earth    research_cost_coeff = 1 }
 
         folder = {
 			name = land_doctrine_folder
-			position = { x = -2 y = 1 }
+			position = { x = -3 y = 10 }
 		}
 
-        # modifiers
-        mod_cat_infantry = { soft_attack = 0.1 default_morale = 0.15 }
-        combat_width_factor = -0.1
+        categories = { land_doctrine }
+    }
+    operational_excellence = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
 
+        path = { leads_to_tech = scorched_earth    research_cost_coeff = 1 }
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = 0 y = 10 }
+		}
+
+        categories = { land_doctrine }
+    }
+    economy_of_scale = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        path = { leads_to_tech = scorched_earth    research_cost_coeff = 1 }
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = 3 y = 10 }
+		}
+
+        categories = { land_doctrine }
     }
 
-    feuerwalze_tactic = {
+    ## tier 7
+    scorched_earth = {
         doctrine = yes
         xp_research_type = army
 		xp_unlock_cost = 150
 
-        path = {
-			leads_to_tech = strategic_offensive 
-			research_cost_coeff = 1
+        folder = {
+			name = land_doctrine_folder
+			position = { x = 0 y = 12 }
 		}
 
         categories = { land_doctrine }
-
-        folder = {
-			name = land_doctrine_folder
-			position = { x = -2 y = 3 }
-		}
-
-        # modifier
-        mod_cat_artillery = { soft_attack = 0.15 breakthrough = 0.1 }
     }
 
-    strategic_offensive = {
+## -- maneuver warfare
+    maneuver_doctrine = {
         doctrine = yes
         xp_research_type = army
 		xp_unlock_cost = 150
 
+        path = { leads_to_tech = shock_tactics          research_cost_coeff = 1 }
+        path = { leads_to_tech = logistics_offices      research_cost_coeff = 1 }
+
         folder = {
 			name = land_doctrine_folder
-			position = { x = -2 y = 5 }
+			position = { x = 0 y = 0 }
 		}
 
-        categories = { land_doctrine }
+        xor = { mass_army_doctrine }
 
-        max_planning = 0.15
-        supply_consumption_factor = -0.2
+        categories = { land_doctrine }
     }
 
-    # static: defensive
-
-    continuous_trenches = {
+    ## tier 2
+    shock_tactics = {
         doctrine = yes
         xp_research_type = army
 		xp_unlock_cost = 150
 
-        path = {
-			leads_to_tech = layered_defense 
-			research_cost_coeff = 1
-		}
-
-        categories = { land_doctrine }
+        path = { leads_to_tech = mobile_detachments     research_cost_coeff = 1 }
+        path = { leads_to_tech = schwerpunkt            research_cost_coeff = 1 }
 
         folder = {
 			name = land_doctrine_folder
-			position = { x = 2 y = 1 }
+			position = { x = -2 y = 2 }
 		}
 
-        # modifiers
-        engineer = { defense = 0.1 }
-        dig_in_speed_factor = 0.2
+        categories = { land_doctrine }
+    }
+    logistics_offices = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        path = { leads_to_tech = defense_in_depth       research_cost_coeff = 1 }
+        path = { leads_to_tech = auftragstaktik         research_cost_coeff = 1 }
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = 2 y = 2 }
+		}
+
+        categories = { land_doctrine }
     }
 
-    layered_defense = {
+    ## tier 3
+    mobile_detachments = {
         doctrine = yes
         xp_research_type = army
 		xp_unlock_cost = 150
 
-        path = {
-			leads_to_tech = ground_denial 
-			research_cost_coeff = 1
+        folder = {
+			name = land_doctrine_folder
+			position = { x = -5 y = 4 }
 		}
 
         categories = { land_doctrine }
+    }
+    schwerpunkt = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        path = { leads_to_tech = elite_troops    research_cost_coeff = 1 }
 
         folder = {
 			name = land_doctrine_folder
-			position = { x = 2 y = 3 }
+			position = { x = -2 y = 4 }
 		}
 
-        mod_cat_infantry = { defense = 0.1 entrenchment = 0.1 }
-        army_org_factor = 0.1
+        categories = { land_doctrine }
     }
 
-    ground_denial = {
+    defense_in_depth = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        path = { leads_to_tech = elite_troops    research_cost_coeff = 1 }
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = 2 y = 4 }
+		}
+
+        categories = { land_doctrine }
+    }
+    auftragstaktik = {
         doctrine = yes
         xp_research_type = army
 		xp_unlock_cost = 150
 
         folder = {
 			name = land_doctrine_folder
-			position = { x = 2 y = 5 }
+			position = { x = 5 y = 4 }
 		}
 
         categories = { land_doctrine }
-
-        max_dig_in_factor = 0.25
-        land_bunker_effectiveness_factor = 0.1
     }
 
-    # MATERIAL
-
-    # material warfare: economy
-
-    militarized_management = {
+    ## tier 4
+    elite_troops = {
         doctrine = yes
         xp_research_type = army
 		xp_unlock_cost = 150
 
-        path = {
-			leads_to_tech = workforce_coordination 
-			research_cost_coeff = 1
-		}
-
-        categories = { land_doctrine }
+        path = { leads_to_tech = infiltration_warfare    research_cost_coeff = 1 }
 
         folder = {
 			name = land_doctrine_folder
-			position = { x = -2 y = 1 }
+			position = { x = 0 y = 6 }
 		}
 
-        land_equipment_upgrade_xp_cost = -0.1
-        production_factory_efficiency_gain_factor = 0.25
+        categories = { land_doctrine }
     }
 
-    workforce_coordination = {
+    ## tier 5
+    infiltration_warfare = {
         doctrine = yes
         xp_research_type = army
 		xp_unlock_cost = 150
 
-        path = {
-			leads_to_tech = all_for_the_front 
-			research_cost_coeff = 1
-		}
-
-        categories = { land_doctrine }
+        path = { leads_to_tech = mechanized_assault_troops  research_cost_coeff = 1 }
+        path = { leads_to_tech = communications_effort      research_cost_coeff = 1 }
+        path = { leads_to_tech = direct_artillery_support               research_cost_coeff = 1 }
 
         folder = {
 			name = land_doctrine_folder
-			position = { x = -2 y = 3 }
+			position = { x = 0 y = 8 }
 		}
 
-        industrial_capacity_factory = 0.1
-        industry_repair_factor = 0.25
+        categories = { land_doctrine }
     }
 
-    all_for_the_front = {
+    ## tier 6
+    mechanized_assault_troops = {
         doctrine = yes
         xp_research_type = army
 		xp_unlock_cost = 150
 
+        path = { leads_to_tech = deep_strike_operations    research_cost_coeff = 1 }
+
         folder = {
 			name = land_doctrine_folder
-			position = { x = -2 y = 5 }
+			position = { x = -3 y = 10 }
 		}
 
         categories = { land_doctrine }
+    }
+    communications_effort = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
 
-        conversion_cost_civ_to_mil_factor = -0.5
-        consumer_goods_factor = -0.1
+        path = { leads_to_tech = deep_strike_operations    research_cost_coeff = 1 }
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = 0 y = 10 }
+		}
+
+        categories = { land_doctrine }
+    }
+    direct_artillery_support = {
+        doctrine = yes
+        xp_research_type = army
+		xp_unlock_cost = 150
+
+        path = { leads_to_tech = deep_strike_operations    research_cost_coeff = 1 }
+
+        folder = {
+			name = land_doctrine_folder
+			position = { x = 3 y = 10 }
+		}
+
+        categories = { land_doctrine }
     }
 
-    # material warfare: civil defense
-
-    citizen_militias = {
-        doctrine = yes
-        xp_research_type = army
-		xp_unlock_cost = 150
-
-        path = {
-			leads_to_tech = organized_civil_defense 
-			research_cost_coeff = 1
-		}
-
-        categories = { land_doctrine }
-
-        folder = {
-			name = land_doctrine_folder
-			position = { x = 2 y = 1 }
-		}
-
-        training_time_army_factor = -0.1
-        minimum_training_level = -0.25
-
-    }
-
-    organized_civil_defense = {
-        doctrine = yes
-        xp_research_type = army
-		xp_unlock_cost = 150
-
-        path = {
-			leads_to_tech = war_weariness_management 
-			research_cost_coeff = 1
-		}
-
-        categories = { land_doctrine }
-
-        folder = {
-			name = land_doctrine_folder
-			position = { x = 2 y = 3 }
-		}
-
-        # modifiers
-        land_reinforce_rate = 0.1
-        army_core_defence_factor = 0.1
-    }
-
-    war_weariness_management = {
+    ## tier 7
+    deep_strike_operations = {
         doctrine = yes
         xp_research_type = army
 		xp_unlock_cost = 150
 
         folder = {
 			name = land_doctrine_folder
-			position = { x = 2 y = 5 }
+			position = { x = 0 y = 12 }
 		}
 
         categories = { land_doctrine }
-
-        weekly_casualties_war_support = 0.1
-        defensive_war_stability_factor = 0.15
     }
 }

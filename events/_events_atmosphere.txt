@@ -1,0 +1,102 @@
+add_namespace = _atmosphere
+
+## -- amundsen
+news_event = {
+    id = _atmosphere.1
+    title ="Amundsen’s Antarctic Expedition Succeeds!"
+    desc = _atmosphere.1.d
+
+    picture = "GFX_antarctic_success"
+
+    is_triggered_only = yes
+    major = yes
+
+    option = { name = "What an achievement!" }
+}
+
+news_event = {
+    id = _atmosphere.2
+    title ="Amundsen’s Expedition Lost?"
+    desc = _atmosphere.2.d
+
+    picture = "GFX_antarctic_failure"
+
+    is_triggered_only = yes
+    major = yes
+
+    option = { name = "We shall remember their feats." }
+}
+
+## -- titanic
+news_event = {
+    id = _atmosphere.3
+    title ="The Titanic Arrives in New York"
+    desc = _atmosphere.3.d
+
+    picture = "GFX_titanic_success"
+
+    is_triggered_only = yes
+    major = yes
+
+    option = { name = "A marvellous sight!" }
+}
+
+news_event = {
+    id = _atmosphere.4
+    title ="The Titanic Lost at Sea!"
+    desc = _atmosphere.4.d
+
+    picture = "GFX_titanic_failure"
+
+    is_triggered_only = yes
+    major = yes
+
+    option = { name = "What a tragedy." }
+}
+
+news_event = {
+    id = _atmosphere.2
+    title = "Meteor Shower over Arizona"
+    desc = _atmosphere.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = { name = "Awesome." }
+}
+
+news_event = {
+    id = _atmosphere.3
+    title = "Exhibition in the Armory"
+    desc = _atmosphere.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = { name = "It's a matter of taste." }
+}
+
+news_event = {
+    id = _atmosphere.4
+    title = "Frenchman Flies Over the Mediterranean!"
+    desc = _atmosphere.4.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = { name = "What a hero." }
+}
+
+news_event = {
+    id = _atmosphere.5
+    title = "A World-Wide Influenza Epidemic"
+    desc = _atmosphere.5.d
+
+    is_triggered_only = yes
+    major = yes
+ 
+    option = { 
+        name = "Horrible."
+        add_timed_idea = { idea = idea_spanish_flu months = 18 }
+    }
+}
