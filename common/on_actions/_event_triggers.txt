@@ -1,9 +1,60 @@
 on_actions = {
+    on_startup = {
+        effect = {
+            # atmosphere events
+            USA = {
+                # 1912
+                news_event = { id = _atmosphere.1 months = 2 days = 7 }
+                news_event = { id = _atmosphere.2 months = 3 days = 15 }
+
+                # 1913
+                news_event = { id = _atmosphere.3 months = 13 days = 17 }
+                news_event = { id = _atmosphere.4 months = 20 days = 23 }
+
+                # 1915
+                news_event = { id = _atmosphere.5 months = 42 days = 20 }
+
+                # 1918
+                news_event = { id = _atmosphere.6 months = 75 random_days = 30 }
+            }
+        }
+    }
     on_monthly = {
+        # internal affairs
+        random_events = {
+            2 = { 
+                random_owned_controlled_state = { save_event_target_as = demonstration_state }
+                random_list = {
+                    1 = { news_event = { id = _demonstrations.1       random_days = 28 } }
+                    1 = { news_event = { id = _demonstrations.2       random_days = 28 } }
+                }
+            }
+
+            2 = { 
+                random_owned_controlled_state = { save_event_target_as = attack_state }
+                random_list = {
+                    1 = { country_event = { id = _stability.1       random_days = 28 } }
+                    1 = { country_event = { id = _stability.2       random_days = 28 } }
+                }
+            }
+
+            2 = { }
+        }
+
+        # war
         random_events = {
             1 = { news_event = { id = _hunger.1     random_days = 28 } }
             1 = { news_event = { id = _mutinies.1   random_days = 28 } }
             4 = { }
+        }
+    }
+
+    on_ruling_party_change = {
+        effect = {
+            if = {
+                limit = { tag = SOV old_ideology_token = monarchism }
+                news_event = { id = soviet_tsar.1 hours = 6 }
+            }
         }
     }
 }
