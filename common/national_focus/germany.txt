@@ -6,106 +6,77 @@ focus_tree = {
         modifier = { add = 20 original_tag = GER }
     }
 
-    continuous_focus_position = { x = 200 y = 800 }
+    continuous_focus_position = { x = 100 y = 1400 }
 
-    ## military branch
+## -- army
     focus = {
-        id = GER_adjust_the_military
-        icon = GFX_focus_generic_budget
-
-        x = 7
-        y = 0
-        cost = 10
-
-        ai_will_do = {
-            base = 1
-            modifier = { has_war = yes factor = 3 }
-        }
-
-        completion_reward = {
-            add_command_power = 50
-            add_war_support = 0.05
-
-            hidden_effect = {
-                random = {
-                    chance = 50
-                    country_event = { id = _army.1 days = 30 random_days = 120 }
-                }
-                random = {
-                    chance = 50
-                    country_event = { id = _army.2 days = 30 random_days = 120 }
-                }
-            }
-        }
-    }
-    focus = {
-        id = GER_focus_army
+        id = GER_army
         icon = GFX_focus_generic_army
+        x = 0           y = 0           cost = 10
 
-        relative_position_id = GER_adjust_the_military
-        x = -2
-        y = 1
-        cost = 10
-
-        prerequisite = { focus = GER_adjust_the_military }
         completion_reward = {
-            army_experience = 50
+            army_experience = 25
+            add_war_support = 0.05
         }
     }
     focus = {
-        id = GER_extend_conscription
+        id = GER_conscription
         icon = GFX_focus_generic_extend_conscription
 
-        relative_position_id = GER_focus_army
-        x = -4
-        y = 1
-        cost = 10
+        relative_position_id = GER_army
+        x = -6           y = 1           cost = 10
 
-        available = {
-            or = {
-                has_idea = disarmed_nation
-                has_idea = volunteer_only
-            }   
+        prerequisite = { focus = GER_army }
+        available = { 
+            has_idea = volunteer_only
+            if = {
+                limit = { has_government = democratic }
+                has_war_support > 0.5
+            }
         }
 
-        prerequisite = { focus = GER_focus_army }
         completion_reward = {
-            upgrade_conscription_law = yes
+            add_ideas = limited_conscription
         }
     }
     focus = {
         id = GER_army_maneuvers
         icon = GFX_focus_generic_army_maneuvers
 
-        relative_position_id = GER_focus_army
-        x = -2
-        y = 1
-        cost = 10
+        relative_position_id = GER_army
+        x = -3           y = 1           cost = 10
 
-        prerequisite = { focus = GER_focus_army }
+        prerequisite = { focus = GER_army }
+
         completion_reward = {
             army_experience = 75
-            add_doctrine_cost_reduction = {
-				name = land_doc_bonus cost_reduction = 0.5 uses = 2
-				category = land_doctrine
-			}
+            add_doctrine_cost_reduction = { name = land_doc_bonus cost_reduction = 0.5 uses = 2 category = land_doctrine }
         }
     }
     focus = {
         id = GER_equipment_effort
         icon = GFX_focus_generic_equipment_effort
 
-        relative_position_id = GER_focus_army
-        x = 0
-        y = 1
-        cost = 10
+        relative_position_id = GER_army
+        x = 0           y = 1           cost = 10
 
-        prerequisite = { focus = GER_focus_army }
+        prerequisite = { focus = GER_army }
+
         completion_reward = {
-            add_tech_bonus = {
-				name = infantry_bonus bonus = 1.0 uses = 2
-				category = infantry_weapons_tech
-			}
+            add_tech_bonus = { name = infantry_bonus bonus = 1.0 uses = 2 category = infantry_weapons_tech }
+        }
+    }
+    focus = {
+        id = GER_support_companies
+        icon = GFX_focus_generic_support_companies
+
+        relative_position_id = GER_equipment_effort
+        x = -3           y = 1           cost = 10
+
+        prerequisite = { focus = GER_equipment_effort }
+
+        completion_reward = {
+            add_tech_bonus = { name = support_bonus bonus = 1.0 uses = 2 category = support_tech }
         }
     }
     focus = {
@@ -113,34 +84,12 @@ focus_tree = {
         icon = GFX_focus_generic_artillery
 
         relative_position_id = GER_equipment_effort
-        x = -2
-        y = 1
-        cost = 10
+        x = 0           y = 1           cost = 10
 
         prerequisite = { focus = GER_equipment_effort }
-        completion_reward = {
-            add_tech_bonus = {
-				name = artillery_bonus bonus = 1.0 uses = 2
-				category = artillery_tech
-			}
-        }
-    }
-    focus = {
-        id = GER_aircraft
-        icon = GFX_focus_generic_aircraft
 
-        relative_position_id = GER_equipment_effort
-        x = 0
-        y = 1
-        cost = 10
-
-        prerequisite = { focus = GER_equipment_effort }
         completion_reward = {
-            air_experience = 50
-            add_tech_bonus = {
-				name = aircraft_bonus bonus = 1.0 uses = 2
-				category = air_equipment_tech
-			}
+            add_tech_bonus = { name = artillery_bonus bonus = 1.0 uses = 2 category = artillery_tech }
         }
     }
     focus = {
@@ -148,223 +97,340 @@ focus_tree = {
         icon = GFX_focus_generic_armor
 
         relative_position_id = GER_equipment_effort
-        x = 2
-        y = 1
-        cost = 10
+        x = 3           y = 1           cost = 10
 
         prerequisite = { focus = GER_equipment_effort }
+
         completion_reward = {
-            add_tech_bonus = {
-				name = armor_bonus bonus = 1.0 uses = 2
-				category = armor_tech
-			}
+            add_tech_bonus = { name = mechanized_bonus bonus = 1.0 uses = 1 category = mechanized_tech }
+            add_tech_bonus = { name = armor_bonus bonus = 1.0 uses = 1 category = armor_tech }
         }
     }
     focus = {
-        id = GER_modern_warfare
-        icon = GFX_focus_generic_modern_warfare
+        id = GER_industrial_warfare
+        icon = GFX_focus_generic_industrial_warfare
 
-        relative_position_id = GER_aircraft
-        x = 0
-        y = 1
-        cost = 10
+        relative_position_id = GER_artillery
+        x = 0           y = 1           cost = 10
+
+        prerequisite = { focus = GER_artillery }
+        available = { has_war = yes }
+
+        completion_reward = {
+            add_equipment_bonus = {
+                bonus = {
+                    armored_car_equipment = {
+                        soft_attack = 0.05
+                        build_cost_ic = -0.25
+                        instant = yes
+                    }
+                    artillery_equipment = {
+                        soft_attack = 0.05
+                        build_cost_ic = -0.25
+                        instant = yes
+                    }
+                }
+            }
+            random_owned_controlled_state = {
+                limit = { is_core_of = ROOT is_in_home_area = yes infrastructure > 1 }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+            }
+        }
+    }
+    
+## -- airforce
+    focus = {
+        id = GER_aviation
+        icon = GFX_focus_generic_aviation
+        x = 9           y = 0           cost = 10
+
+        completion_reward = {
+            air_experience = 25
+            add_war_support = 0.05
+        }
+    }
+    focus = {
+        id = GER_air_training
+        icon = GFX_focus_generic_air_training
+
+        relative_position_id = GER_aviation
+        x = 0         y = 1           cost = 10
+
+        prerequisite = { focus = GER_aviation }
+
+        completion_reward = {
+            add_timed_idea = { idea = idea_air_training years = 1 }
+            add_equipment_bonus = { bonus = { small_plane_airframe = { air_agility = 0.1 air_superiority = 0.05 } } }
+        }
+    }
+    focus = {
+        id = GER_independent_airforce
+        icon = GFX_focus_generic_independent_airforce
+
+        relative_position_id = GER_air_training
+        x = -3           y = 1           cost = 10
+
+        prerequisite = { focus = GER_air_training }
+        mutually_exclusive = { focus = GER_subordinate_airforce }
+
+        completion_reward = {
+            add_tech_bonus = { name = light_aircraft_bonus bonus = 0.5 uses = 2 category = light_aircraft_tech }
+            add_equipment_bonus = { bonus = { archetype_fighter_equipment = { air_superiority = 0.15 air_defence = 0.05 } } }
+        }
+    }
+    focus = {
+        id = GER_subordinate_airforce
+        icon = GFX_focus_generic_subordinate_airforce
+
+        relative_position_id = GER_air_training
+        x = 0           y = 1           cost = 10
+
+        prerequisite = { focus = GER_air_training }
+        mutually_exclusive = { focus = GER_independent_airforce }
+
+        completion_reward = {
+            add_tech_bonus = { name = attack_aircraft_bonus bonus = 0.5 uses = 2 category = attack_aircraft_tech }
+            add_equipment_bonus = { bonus = { archetype_CAS_equipment = { air_ground_attack = 0.15 naval_strike_attack = 0.1 } } }
+        }
+    }
+    focus = {
+        id = GER_aces
+        icon = GFX_focus_generic_aces
+
+        relative_position_id = GER_air_training
+        x = 3         y = 1           cost = 10
+
+        prerequisite = { focus = GER_air_training }
+        available = { has_war = yes }
+
+        completion_reward = {
+            air_experience = 50
+            add_doctrine_cost_reduction = { name = air_doc_bonus cost_reduction = 0.5 uses = 2 category = air_doctrine }
+        }
+    }
+    focus = {
+        id = GER_air_doctrine
+        icon = GFX_focus_generic_air_doctrine
+
+        relative_position_id = GER_independent_airforce
+        x = 3         y = 1           cost = 10
 
         prerequisite = { 
-            focus = GER_artillery
-            focus = GER_aircraft
-            focus = GER_armor
+            focus = GER_independent_airforce
+            focus = GER_subordinate_airforce
+            focus = GER_aces
         }
+        available = { has_war = yes }
+
         completion_reward = {
-            army_experience = 100
-            add_ideas = idea_modern_warfare
+            air_experience = 75
+            add_doctrine_cost_reduction = { name = air_doc_bonus cost_reduction = 0.5 uses = 2 category = air_doctrine }
         }
     }
 
     focus = {
-        id = GER_focus_navy
+        id = GER_airfields
+        icon = GFX_focus_generic_airfields
+
+        relative_position_id = GER_aviation
+        x = 3            y = 1           cost = 10
+
+        prerequisite = { focus = GER_aviation }
+
+        completion_reward = {
+            random_owned_state = {
+                limit = { is_capital = yes }
+                add_building_construction = { type = air_base level = 2 instant_build = yes }
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
+            if = {
+                limit = { check_variable = { num_owned_states > 5 } }
+                random_owned_controlled_state = {
+                    add_building_construction = { type = air_base level = 2 instant_build = yes }
+                    add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                }
+            }
+        }
+    }
+
+    focus = {
+        id = GER_aerostats
+        icon = GFX_focus_generic_aerostats
+
+        relative_position_id = GER_aviation
+        x = 6         y = 1           cost = 10
+
+        prerequisite = { focus = GER_aviation }
+
+        completion_reward = {
+            air_experience = 25
+            add_tech_bonus = { name = airships_bonus bonus = 0.5 uses = 2 category = airship_tech }
+        }
+    }
+
+## -- navy
+
+    focus = {
+        id = GER_navy
         icon = GFX_focus_generic_navy
+        x = 23           y = 0           cost = 10
 
-        relative_position_id = GER_adjust_the_military
-        x = 2
-        y = 1
-        cost = 10
+        available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
 
-        available = {
-			any_state = {
-				is_coastal = yes
-				is_controlled_by = ROOT
-			}
-		}
-
-        prerequisite = { focus = GER_adjust_the_military }
         completion_reward = {
-            navy_experience = 50
-        }
-    }
-    focus = {
-        id = GER_naval_exercises
-        icon = GFX_focus_generic_naval_exercises
-
-        relative_position_id = GER_focus_navy
-        x = 0
-        y = 1
-        cost = 10
-
-        available = {
-			any_state = {
-				is_coastal = yes
-				is_controlled_by = ROOT
-			}
-		}
-
-        prerequisite = { focus = GER_focus_navy }
-        completion_reward = {
-            navy_experience = 75
-            add_doctrine_cost_reduction = {
-				name = navy_doc_bonus cost_reduction = 0.5 uses = 2
-				category = naval_doctrine
-			}
+            navy_experience = 25
+            add_war_support = 0.05
         }
     }
     focus = {
         id = GER_expand_dockyards
         icon = GFX_focus_generic_expand_dockyards
 
-        relative_position_id = GER_focus_navy
-        x = 2
-        y = 1
-        cost = 10
+        relative_position_id = GER_navy
+        x = -3            y = 1           cost = 10
 
-        available = {
-			any_state = {
-				is_coastal = yes
-				is_controlled_by = ROOT
-			}
-		}
+        prerequisite = { focus = GER_navy }
+        available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
 
-        prerequisite = { focus = GER_focus_navy }
-		
-		completion_reward = {
-			navy_experience = 25
-			if = {
-				limit = { any_owned_state = { is_coastal = yes } }
-
-				random_owned_controlled_state = {
-					limit = { is_coastal = yes }
-
-					add_extra_state_shared_building_slots = 3
-					add_building_construction = { type = dockyard level = 3 instant_build = yes }
-				}
-			}		
-		}
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes is_coastal = yes }
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = { type = dockyard level = 2 instant_build = yes }
+            }
+        }
     }
     focus = {
         id = GER_high_seas
         icon = GFX_focus_generic_high_seas
 
         relative_position_id = GER_expand_dockyards
-        x = 0
-        y = 1
-        cost = 10
-
-        available = {
-			any_state = {
-				is_coastal = yes
-				is_controlled_by = ROOT
-			}
-		}
+        x = -2              y = 1               cost = 10
 
         prerequisite = { focus = GER_expand_dockyards }
+        available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
+
         completion_reward = {
-            add_tech_bonus = {
-				name = capital_ships_bonus bonus = 1.0 uses = 1
-				category = capital_ship_tech
-			}
+            add_tech_bonus = { name = capital_ships_bonus bonus = 1.0 uses = 1 category = capital_ship_tech }
+            add_equipment_bonus = { bonus = { capital_ship = { hg_attack = 0.1 anti_air_attack = 0.15 } } }
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes is_coastal = yes }
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = { type = dockyard level = 1 instant_build = yes }
+            }
         }
     }
     focus = {
-        id = GER_the_dark_deep
-        icon = GFX_focus_generic_the_dark_deep
+        id = GER_shallow_waters
+        icon = GFX_focus_generic_shallow_waters
 
         relative_position_id = GER_expand_dockyards
-        x = 2
-        y = 1
-        cost = 10
-
-        available = {
-			any_state = {
-				is_coastal = yes
-				is_controlled_by = ROOT
-			}
-		}
+        x = 1              y = 1               cost = 10
 
         prerequisite = { focus = GER_expand_dockyards }
+        available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
+
         completion_reward = {
-            add_tech_bonus = {
-				name = ss_bonus bonus = 1.0 uses = 1
-				category = submarines_tech
-			}
+            add_tech_bonus = { name = screens_bonus bonus = 1.0 uses = 2 category = screen_tech }
+            add_equipment_bonus = { bonus = { screen_ship = { lg_attack = 0.15 naval_speed = 0.05 } } }
         }
     }
+
     focus = {
-        id = GER_seaborne_operations
-        icon = GFX_focus_generic_seaborne_operations
+        id = GER_naval_exercises
+        icon = GFX_focus_generic_naval_exercises
 
-        relative_position_id = GER_naval_exercises
-        x = 0
-        y = 1
-        cost = 10
+        relative_position_id = GER_navy
+        x = 0            y = 1           cost = 10
 
-        available = {
-			any_state = {
-				is_coastal = yes
-				is_controlled_by = ROOT
-			}
-		}
+        prerequisite = { focus = GER_navy }
+        available = { 
+            has_navy_size = { size > 0 }
+            any_owned_state = { is_coastal = yes is_controlled_by = ROOT }
+        }
 
-        prerequisite = { focus = GER_naval_exercises }
         completion_reward = {
-            add_tech_bonus = {
-				name = special_forces_bonus bonus = 1.0 uses = 1
-				technology = marines_1
-                technology = marines_2
-			}
+            navy_experience = 50
+            add_doctrine_cost_reduction = { name = navy_doc_bonus cost_reduction = 0.5 uses = 2 category = naval_doctrine }
         }
     }
     focus = {
         id = GER_rule_the_waves
         icon = GFX_focus_generic_rule_the_waves
 
-        relative_position_id = GER_high_seas
-        x = 0
-        y = 1
-        cost = 10
+        relative_position_id = GER_naval_exercises
+        x = 0            y = 2           cost = 10
 
-        available = {
-			any_state = {
-				is_coastal = yes
-				is_controlled_by = ROOT
-			}
-		}
-
-        prerequisite = { 
-            focus = GER_seaborne_operations
-            focus = GER_high_seas
-            focus = GER_the_dark_deep
+        prerequisite = { focus = GER_naval_exercises }
+        available = { 
+            has_war = yes
+            has_navy_size = { size > 0 }
+            any_owned_state = { is_coastal = yes is_controlled_by = ROOT }
         }
+
         completion_reward = {
-            navy_experience = 100
-            add_ideas = idea_rule_the_waves
+            navy_experience = 75
+            add_doctrine_cost_reduction = { name = navy_doc_bonus cost_reduction = 0.5 uses = 2 category = naval_doctrine }
         }
     }
 
-## economic branch
+    focus = {
+        id = GER_naval_innovation
+        icon = GFX_focus_generic_naval_innovation
+
+        relative_position_id = GER_navy
+        x = 3            y = 1           cost = 10
+
+        prerequisite = { focus = GER_navy }
+        available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
+
+        completion_reward = {
+            add_tech_bonus = { name = naval_equipment_bonus bonus = 0.5 uses = 2 category = naval_equipment_tech }
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes is_coastal = yes }
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = { type = dockyard level = 1 instant_build = yes }
+            }
+        }
+    }
+    focus = {
+        id = GER_the_dark_deep
+        icon = GFX_focus_generic_the_dark_deep
+
+        relative_position_id = GER_naval_innovation
+        x = -1              y = 1               cost = 10
+
+        prerequisite = { focus = GER_naval_innovation }
+        available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
+
+        completion_reward = {
+            add_tech_bonus = { name = ss_bonus bonus = 1.0 uses = 1 category = submarines_tech }
+            add_equipment_bonus = { bonus = { submarine = { torpedo_attack = 0.1 convoy_raiding_coordination = 0.1 } } }
+        }
+    }
+    focus = {
+        id = GER_seaborne_operations
+        icon = GFX_focus_generic_seaborne_operations
+
+        relative_position_id = GER_naval_innovation
+        x = 2              y = 1               cost = 10
+
+        prerequisite = { focus = GER_naval_innovation }
+        available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
+
+        completion_reward = {
+            add_tech_bonus = { name = special_forces_bonus bonus = 1.0 uses = 1 technology = marines_1 technology = marines_2 }
+        }
+    }
+
+## -- economy
     focus = {
         id = GER_economic_development
         icon = GFX_focus_generic_economic_development
 
-        x = 22
-        y = 0
+        x = 0
+        y = 5
         cost = 10
 
         ai_will_do = { base = 2 }
@@ -492,6 +558,7 @@ focus_tree = {
 				limit = {
 					free_building_slots = { building = industrial_complex size > 0 include_locked = yes }
 					is_core_of = ROOT
+                    infrastructure > 1
 				}
 
 				add_extra_state_shared_building_slots = 2
@@ -601,6 +668,7 @@ focus_tree = {
 					free_building_slots = { building = arms_factory size > 0 include_locked = yes }
 					is_core_of = ROOT
                     is_in_home_area = yes
+                    infrastructure > 1
 				}
 
 				add_extra_state_shared_building_slots = 2
@@ -631,14 +699,14 @@ focus_tree = {
         }
     }
 
-    ## political branch
+## -- society
     focus = {
         id = GER_political_ambitions
         icon = GFX_focus_generic_political_ambitions
 
         relative_position_id = GER_economic_development
-        x = -2
-        y = 5
+        x = 18
+        y = 0
         cost = 10
 
         ai_will_do = { base = 2 }
@@ -772,6 +840,13 @@ focus_tree = {
         completion_reward = {
             add_stability = 0.05
             add_popularity = { ideology = monarchism popularity = 0.05 }
+
+            hidden_effect = { 
+                random_list = {
+                    2 = { news_event = { id = GER_airships.1 days = 7 random_days = 7 } }
+                    1 = { news_event = { id = GER_airships.2 days = 7 random_days = 7 } }
+                }
+            }
         }
     }
     focus = {
@@ -870,6 +945,8 @@ focus_tree = {
         completion_reward = {
             add_stability = -0.05
             add_timed_idea = { idea = idea_democratic_tendencies years = 1 }
+
+            hidden_effect = { news_event = { id = _tensions.1 days = 7 random_days = 7 } }
         }
     }
     focus = {

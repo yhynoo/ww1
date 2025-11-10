@@ -114,7 +114,7 @@ add_namespace = _uprising
 
 news_event = {
     id = _uprising.1
-    title = "[ROOT.GetAdjective] Uprising in [PREV.GetNameDef]!"
+    title = "Uprising in [ROOT.GetNameDef]!"
     desc = _uprising.1.d
 
     is_triggered_only = yes
@@ -358,6 +358,22 @@ country_event = {
             factor = 1
             modifier = { FROM = { is_faction_leader = yes } factor = 0 }        # AI will always accept factions surrendering.
         }
+    }
+}
+
+## -- equipment
+add_namespace = _equipment
+
+news_event = {
+    id = _equipment.1
+    title = "[FROM.GetAdjective] Arms and Equipment Arrive"
+    desc = _equipment.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They are most welcome."
+        add_opinion_modifier = { target = FROM modifier = opinion_sent_arms }
     }
 }
 

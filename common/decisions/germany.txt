@@ -4,21 +4,19 @@ oriental_investments = {
         fire_only_once = yes
         cost = 100
 
-        ai_will_do = { base = 9 }
+        ai_will_do = { factor = 9 }
 
         available = { 
-            MOR = { exists = yes } 
+            MOR = { 
+                exists = yes 
+                not = { has_war_with = ROOT }
+            } 
             has_equipment = { infantry_equipment > 899 }
-            has_equipment = { artillery_equipment > 59 }
         }
 
         complete_effect = {
-            add_war_support = 0.05
-
             send_equipment = { equipment = infantry_equipment amount = 900 target = MOR }
-            send_equipment = { equipment = artillery_equipment amount = 60 target = MOR }
-
-            hidden_effect = { MOR = { news_event = { id = germany_morocco.1 hours = 6 } } }
+            hidden_effect = { MOR = { news_event = { id = _equipment.1 hours = 6 } } }
         }
     }
     support_algeria = {
@@ -33,7 +31,7 @@ oriental_investments = {
         cancel_trigger = { FRA = { has_stability > 0.5 } }
 
         ai_will_do = { 
-            base = 3
+            factor = 3
             modifier = { 
                 or = {
                     has_war_with = FRA
@@ -44,15 +42,17 @@ oriental_investments = {
         }
 
         days_remove = 90
-        complete_effect = {
-            news_event = { id = germany_algeria.1 hours = 6 random_hours = 6 }
-        }
 
         remove_effect = { 
-            custom_effect_tooltip = tt_algeria
-            hidden_effect = { 
-                FRA = { news_event = { id = germany_algeria.2 hours = 6 random_hours = 6 } }
+            hidden_effect = {
+                GER = { give_guarantee = ALG }
+                ALG = { news_event = { id = _uprising.1 hours = 6 } }
+                FRA = {
+                    algerian_independence = yes
+                    declare_war_on = { target = ALG type = annex_everything }
+                }
             }
+            custom_effect_tooltip = tt_algeria
         }
     }
     arabian_oil = {
@@ -61,18 +61,18 @@ oriental_investments = {
         fire_only_once = yes
 
         available = {
-            not = { has_war_with = TUR }
-            291 = { is_owned_and_controlled_by = TUR }
+            TUR = {
+                not = { has_war_with = ROOT }
+                controls_state = 291
+            }
         }
 
         ai_will_do = { 
-            base = 9
+            factor = 9
             modifier = { has_war = yes add = 6 }
         }
 
-        complete_effect = {
-            TUR = { country_event = { id = germany_oil.1 hours = 6 random_hours = 6 } }
-        }
+        complete_effect = { TUR = { country_event = { id = GER_oil.1 hours = 6 random_hours = 6 } } }
     }
 }
 
@@ -91,7 +91,7 @@ embrace_weltpolitik = {
         }
 
         ai_will_do = { 
-            base = 3
+            factor = 3
             modifier = { 
                 and = { date > 1914.7.1 has_war = no } 
                 add = 6
@@ -107,9 +107,7 @@ embrace_weltpolitik = {
                 add_claim_by = GER
             }
 
-            ENG = {
-                country_event = { id = _demand.1 hours = 6 random_hours = 6 }
-            }
+            ENG = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
         }
     }
     expand_in_the_east = {
@@ -117,38 +115,32 @@ embrace_weltpolitik = {
         cost = 100
         fire_only_once = yes
 
-        available = { 
-            has_war_support > 0.5
+        available = {
             can_declare_war_on = SOV
         }
 
         ai_will_do = { 
-            base = 3 
+            factor = 3 
             modifier = { 
                 and = {
                     has_war = no
-                    or = {
-                        date > 1915.4.1
-                        FRA = { not = { has_guaranteed = SOV } }
-                    }
+                    or = { date > 1915.4.1      FRA = { not = { has_guaranteed = SOV } } }
                 }
                 add = 6
             } 
         }
 
         days_remove = 90
+        war_with_on_remove = SOV
 
         complete_effect = {
-            news_event = { id = germany_east.1 hours = 6 }
+            news_event = { id = GER_east.1 hours = 6 }
             every_state = { 
                 limit = { is_core_of = POL }
                 add_claim_by = GER
             }
         }
 
-        remove_effect = {
-            create_wargoal = { target = SOV type = take_claimed_state }
-            hidden_effect = { set_country_flag = german_drang_nach_osten }
-        }
+        remove_effect = { create_wargoal = { target = SOV type = take_claimed_state } }
     }
 }
