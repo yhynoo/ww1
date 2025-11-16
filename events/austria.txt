@@ -1,0 +1,173 @@
+# - sarajevo
+add_namespace = aus_sarajevo
+
+country_event = {
+    id = aus_sarajevo.1
+    title = "Annexation of Sarajevo"        # didn't happen in 1908 in this timeline
+    desc = aus_sarajevo.1.d
+
+    fire_only_once = yes
+    trigger = {
+        tag = AUS
+        date > 1912.5.1
+        controls_state = 104
+    }
+
+    option = {
+        name = "This is the logical thing to do."
+        104 = { add_core_of = AUS }
+
+        hidden_effect = { 
+            add_named_threat = { name = "[AUS.GetName] Annexes Sarajevo" threat = 4 }
+            TUR = { add_opinion_modifier = { target = ROOT modifier = opinion_integrated_sarajevo } }
+        }
+        ai_chance = { factor = 4 }
+    }
+    option = {
+        name = "We must not agitate the Turks."
+        ai_chance = { factor = 1 }
+    }
+}
+
+## - evidenzbureau
+add_namespace = aus_evidenzbureau
+
+country_event = {
+    id = aus_evidenzbureau.1
+    title = "Spies in Evidenzbureau!"
+    desc = aus_evidenzbureau.1.d
+
+    fire_only_once = yes
+    trigger = {
+        tag = AUS
+        date > 1914.2.1
+    }
+
+    option = {
+        name = "Arrest them immediately."
+        add_war_support = -0.025
+        add_popularity = { ideology = ROOT popularity = -0.05 }
+    }
+    option = {
+        name = "Silence the matter."
+        add_political_power = -25
+        hidden_effect = { 
+            random = { chance = 50 news_event = { id = aus_evidenzbureau.2 days = 7 random_days = 7 } }
+        }
+    }
+}
+
+news_event = {
+    id = aus_evidenzbureau.2
+    title = "Treason Among High Officers!"
+    desc = aus_evidenzbureau.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Awful."
+        add_war_support = -0.05
+        add_political_power = -50
+    }
+}
+
+## -- unrest in galicia
+add_namespace = aus_galicia
+
+news_event = {
+    id = aus_galicia.1
+    title = "Unrest in Galicia"         # suspected Okhrana activity
+    desc = aus_galicia.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Worrying."
+        add_timed_idea = { idea = idea_unrest_in_galicia months = 6 }
+
+        hidden_effect = {
+            random = { chance = 50 news_event = { id = aus_galicia.2 days = 14 random_days = 7 } }
+            country_event = { id = aus_galicia.3 days = 42 random_days = 14 }
+        }
+    }
+}
+
+news_event = {
+    id = aus_galicia.2
+    title = "Desertions at the Tarnopol Garrison"
+    desc = aus_galicia.2.d
+
+    is_triggered_only = yes
+    trigger = { controls_state = 91 }
+
+    option = {
+        name = "This is unfortunate."
+        add_war_support = -0.025
+    }
+}
+
+country_event = {
+    id = aus_galicia.3
+    title = "Archduke Assassinated in Lemberg!"
+    desc = aus_galicia.3.d
+
+    is_triggered_only = yes
+    trigger = {
+        controls_state = 91
+        and = { has_government = monarchism not = { has_war_with = SOV } }   
+    }
+    immediate = {
+        hidden_effect = {
+            SOV = { add_named_threat = { name = "Archduke Assassinated in Lemberg" threat = 12 } }
+            retire_character = AUS_franz_ferdinand
+            news_event = { id = aus_archduke.1 hours = 6 }
+        }
+    }
+
+    option = {
+        name = "We must avenge his death!"
+        add_war_support = 0.25
+        declare_war_on = { target = SOV type = topple_government }
+
+        ai_chance = { base = 4 }
+    }
+    option = {
+        name = "What a tragedy."
+
+        add_popularity = { ideology = ROOT popularity = -0.15 }
+        ai_chance = { base = 1 }
+    }
+}
+
+## -- archduke news
+add_namespace = aus_archduke
+
+news_event = {
+    id = aus_archduke.1
+    title = "Archduke Franz Ferdinand Assassinated"
+    desc = aus_archduke.1.d
+
+    is_triggered_only = yes
+    fire_for_sender = no
+
+    option = {
+        name = "This will not end well."
+    }
+}
+
+# -- kaiser dies
+add_namespace = austria_emperor
+
+news_event = {
+    id = austria_emperor.1
+    title = "Emperor Karl I Ascends to the Throne"
+    desc = austria_emperor.1.d
+
+    is_triggered_only = yes
+    trigger = { has_government = monarchism }
+
+    option = {
+        name = "Long live the Emperor!"
+        retire_character = AUS_franz_joseph
+    }
+}

@@ -50,19 +50,8 @@ slavic_unrest = {
         }
 
         complete_effect = {
-            AUS = {
-                add_timed_idea = { idea = idea_unrest_in_galicia years = 1 }
-                hidden_effect = { country_event = { id = soviet_okhrana.1 days = 15 random_days = 30 } }
-            }
-
-            # AI
-            hidden_effect = {
-                add_ai_strategy = {
-                    type = prepare_for_war
-                    id = AUS
-                    value = 90
-                }
-            }
+            AUS = { news_event = { id = aus_galicia.1 hours = 6 } }
+            hidden_effect = { add_ai_strategy = { type = prepare_for_war      id = AUS        value = 60 } }
         }
     }
 }

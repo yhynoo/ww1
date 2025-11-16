@@ -13,7 +13,7 @@ _head_of_state = {
         available = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
     
         ai_will_do = {
-            base = 3
+            factor = 3
             modifier = { and = { threat > 0.1 has_war_support < 0.3 } factor = 2 }
             modifier = { has_war_support > 0.8 factor = 0 }
         }
@@ -36,7 +36,7 @@ _head_of_state = {
         available = { has_war = yes }
 
         ai_will_do = {
-            base = 6
+            factor = 6
             modifier = { and = { threat > 0.1 has_war_support < 0.3 } add = 6 }
             modifier = { has_war_support > 0.8 factor = 0 }
         }
@@ -59,7 +59,7 @@ _head_of_state = {
         cost = 50
 
         ai_will_do = {
-            base = 3
+            factor = 3
             modifier = { has_stability < 0.5 factor = 2 }
         }
 
@@ -82,7 +82,7 @@ _head_of_state = {
         cost = 50
 
         ai_will_do = {
-            base = 3
+            factor = 3
             modifier = { has_stability < 0.5 factor = 2 }
         }
 
@@ -105,7 +105,7 @@ _head_of_state = {
         cost = 50
 
         ai_will_do = {
-            base = 3
+            factor = 3
             modifier = { has_stability < 0.5 factor = 2 }
         }
 
@@ -115,6 +115,47 @@ _head_of_state = {
 
         remove_effect = {
             add_popularity = { ideology = ROOT popularity = 0.05 }
+        }
+    }
+
+    # mobilization
+    announce_mobilization = {
+        visible = { has_country_flag = mobilization_allowed }
+
+        icon = generic_nationalism
+        days_remove = 90
+        cost = 25
+
+        fire_only_once = yes
+        ai_will_do = {
+            factor = 0 
+            modifier = { 
+                or = { any_country = { has_wargoal_against = ROOT } has_war = yes }
+                factor = 12 
+            }
+        }
+
+        available = { not = { has_idea = volunteer_only } }
+
+        modifier = {
+            mobilization_speed = 0.25
+            training_time_factor = -0.25
+        }
+
+        complete_effect = {
+            add_named_threat = { name = "[ROOT.GetName] Announces Mobilization" threat = 2 }
+            news_event = { id = _mobilization.1 hours = 6 }
+        }
+    }
+    shorten_training = {
+        visible = { has_country_flag = mobilization_allowed }
+
+        icon = ger_military_buildup
+        days_remove = 180
+        cost = 25
+
+        modifier = {
+            minimum_training_level = -0.25
         }
     }
 }

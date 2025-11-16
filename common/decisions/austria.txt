@@ -1,5 +1,6 @@
 contain_eastern_threats = {
     demand_serbia = {
+        visible = { SER = { exists = no } }
         icon = generic_prepare_civil_war
         fire_only_once = yes
         cost = 100
@@ -37,6 +38,26 @@ contain_eastern_threats = {
             }
         }
     }
+    align_serbia = {
+        visible = { SER = { exists = yes } }
+        icon = generic_civil_support
+        fire_only_once = yes
+        cost = 75
+
+        available = {
+            can_declare_war_on = SER
+            SER = { exists = yes is_subject = no }
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = { SER = { is_in_faction = no } add = 9 }
+        }
+
+        complete_effect = {
+            SER = { country_event = { id = _align.1 hours = 6 random_hours = 6 } }
+        }
+    }
     arm_the_ukrainians = {
         icon = generic_industry
         fire_only_once = yes
@@ -46,17 +67,12 @@ contain_eastern_threats = {
 
         available = { 
             UKR = { exists = yes } 
-            has_equipment = { infantry_equipment > 599 }
-            has_equipment = { artillery_equipment > 23 }
+            has_equipment = { infantry_equipment > 899 }
         }
 
         complete_effect = {
-            add_war_support = 0.05
-
-            send_equipment = { equipment = infantry_equipment amount = 600 target = UKR }
-            send_equipment = { equipment = artillery_equipment amount = 24 target = UKR }
-
-            hidden_effect = { UKR = { news_event = { id = austria_ukraine.1 hours = 6 } } }
+            send_equipment = { equipment = infantry_equipment amount = 900 target = UKR }
+            hidden_effect = { UKR = { news_event = { id = _equipment.1 hours = 6 } } }
         }
     }
     defenses_in_the_east = {
@@ -79,7 +95,6 @@ contain_eastern_threats = {
                     build_railway = { start_province = 9660 target_province = 6711 }
                 }
             }
-            
             add_timed_idea = { idea = idea_defenses_in_the_east years = 1 }
         }
     }
@@ -102,7 +117,7 @@ denounce_adventurism = {
         }
 
         complete_effect = {
-            FRA = { country_event = { id = austria_france.1 hours = 6 random_hours = 6 } }
+            FRA = { country_event = { id = _guarantees.1 hours = 6 random_hours = 6 } }
         }
     }
     use_church_influence = {

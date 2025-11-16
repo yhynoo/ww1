@@ -111,10 +111,9 @@ country_event = {
     fire_only_once = yes
     trigger = {
         tag = GER
-        date > 1914.2.1
-        GER = { 
-            controls_state = 28 
-            not = { has_war_with = FRA }
+        and = {
+            date > 1914.2.1
+            GER = { controls_state = 28 not = { has_war_with = FRA } }
         }
     }
 
@@ -123,8 +122,14 @@ country_event = {
         add_political_power = -50
         add_war_support = 0.025
 
-        hidden_effect = { add_named_threat = { threat = 4 name = "Tensions in Alsace" } }
-        ai_chance = { factor = 2 }
+        hidden_effect = { 
+            news_event = { id = GER_alsace.2 hours = 6 }
+            add_named_threat = { threat = 4 name = "Tensions in Alsace" } 
+        }
+        ai_chance = { 
+            factor = 2 
+            modifier = { has_government = monarchism add = 2 }
+        }
     }
     option = {
         name = "We must not act so harshly."
@@ -133,21 +138,17 @@ country_event = {
     }
 }
 
-country_event = {
+news_event = {
     id = GER_alsace.2
-    title = "France Too Weak to Act?"
+    title = "Unrest in Alsace-Lorraine"
     desc = GER_alsace.2.d
 
     is_triggered_only = yes
+    fire_to_sender = no
+    major = yes
 
     option = {
-        name = "This is our opportunity!"
-        add_war_support = 0.15
-        declare_war_on = { target = FRA type = annex_everything }
-    }
-    option = {
-        name = "Who in their right mind would want a war?"
-        add_popularity = { ideology = democratic popularity = 0.025 }
+        name = "Worrying."
     }
 }
 

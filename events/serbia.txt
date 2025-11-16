@@ -1,0 +1,93 @@
+## -- austria
+add_namespace = ser_austria
+
+news_event = {
+    id = ser_austria.1
+    title = "‘Serbien muß sterbien!’"   # about Hötzendorf's obsessions, after Serbia wins independence
+    desc = ser_austria.1.d
+
+    fire_only_once = yes
+    trigger = {
+        tag = AUS
+        SER = { exists = yes }
+    }
+
+    option = {
+        name = "Alright."
+        add_opinion_modifier = { target = SER modifier = opinion_anti_serbian_staff }
+    }
+}
+
+## -- intervention
+add_namespace = ser_intervention
+
+country_event = {
+    id = ser_intervention.1
+    title = "Intervene in Serbia?"          # after the Ottomans didn't grant the Serbs independence, so they started an uprising
+    desc = ser_intervention.1.d
+
+    fire_only_once = yes
+    trigger = {
+        tag = SOV
+        SER = { is_in_faction = no has_war_with = TUR }
+    }
+
+    option = {
+        name = "Send arms."
+        add_war_support = 0.05
+
+        send_equipment = { equipment = infantry_equipment amount = 900 target = SER }
+        hidden_effect = { 
+            ai_strategy = { type = diplo_action_desire  id = SER    value = 100     target = send_volunteers }
+            SER = { news_event = { id = _equipment.1 hours = 6 } }
+        }
+    }
+    option = {
+        name = "We have nothing to do with it."
+    }
+}
+
+## -- war
+add_namespace = ser_war
+
+country_event = {
+    id = ser_war.1
+    title = "Opportunity to Strike Austria?"
+    desc = ser_war.1.d
+
+    fire_only_once = yes
+    trigger = {
+        tag = SER
+        is_subject = no
+        AUS = { has_war_with = SOV }
+    }
+
+    option = {
+        name = "This is the moment!"
+        declare_war_on = { target = AUS type = take_claimed_state }
+        add_timed_idea = { idea = idea_war_enthusiasm months = 6 }
+
+        hidden_effect = { 
+            news_event = { id = ser_war.2 days = 7 random_days = 7 }
+        }
+    }
+    option = {
+        name = "Insane."
+        add_popularity = { ideology = democratic popularity = 0.025 }
+    }
+}
+
+news_event = {
+    id = ser_war.2
+    title = "King in the Trenches"
+    desc = ser_war.2.d
+
+    is_triggered_only = yes
+    trigger = { has_government = monarchism }
+
+    option = {
+        name = "A true Serbian soul."
+        add_popularity = { ideology = monarchism popularity = 0.025 }
+        add_war_support = 0.05
+    }
+}

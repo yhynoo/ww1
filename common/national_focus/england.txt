@@ -307,8 +307,8 @@ focus_tree = {
         }
     }
     focus = {
-        id = ENG_seaborne_operations
-        icon = GFX_focus_generic_seaborne_operations
+        id = ENG_coastal_defense
+        icon = GFX_focus_generic_coastal_defense
 
         relative_position_id = ENG_naval_exercises
         x = 0
@@ -348,7 +348,7 @@ focus_tree = {
 		}
 
         prerequisite = { 
-            focus = ENG_seaborne_operations
+            focus = ENG_coastal_defense
             focus = ENG_high_seas
             focus = ENG_the_dark_deep
         }
@@ -730,10 +730,8 @@ focus_tree = {
         }
 
         completion_reward = {
-            hidden_effect = { news_event = { id = _alliance.1 hours = 6 } }
             remove_ideas = idea_mansion_house
-            
-            create_faction = "Westminster Treaty"
+            FRA = { add_opinion_modifier = { target = ENG modifier = opinion_affirmed_the_entente } }
         }
     }
     focus = {
@@ -762,7 +760,8 @@ focus_tree = {
         }
 
         completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
+            custom_effect_tooltip = decision_faction_effect_tooltip
+            hidden_effect = { set_rule = { can_create_factions = yes } }
         }
     }
 

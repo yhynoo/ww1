@@ -1,0 +1,159 @@
+## -- antwerp
+add_namespace = hol_antwerp
+
+country_event = {
+    id = hol_antwerp.1
+    title = "The Dutch to Withdraw?"
+    desc = hol_antwerp.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let us take over."
+        6 = { transfer_state_to = FRA }
+
+        hidden_effect = { news_event = { id = hol_antwerp.2 hours = 6 } }
+    }
+    option = {
+        name = "We are not ready yet."
+        add_popularity = { ideology = ROOT popularity = -0.025 }
+    }
+}
+
+news_event = {
+    id = hol_antwerp.2
+    title = "French Army Enters Anvers"
+    desc = hol_antwerp.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Alright."
+    }
+}
+
+news_event = {
+    id = hol_antwerp.3
+    title = "The Antwerpen Affair"      # dutch garrison clashes with locals and supposed french agents
+    desc = hol_antwerp.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Worrying."
+        if = {
+            limit = { tag = HOL }
+            add_popularity = { ideology = democratic popularity = -0.05 }
+            add_named_threat = { threat = 4 name = "The Antwerpen Affair" } 
+        }
+    }
+}
+
+## -- airfield
+add_namespace = hol_airfield
+
+news_event = {
+    id = hol_airfield.1
+    title = "Army Airfield Opens in Soesterberg"
+    desc = hol_airfield.1.d
+
+    trigger = {
+        tag = HOL
+        date > 1912.7.1
+    }
+    fire_only_once = yes
+
+    option = {
+        name = "Wonderful."
+        36 = { add_building_construction = { type = air_base level = 2 instant_build = yes } }
+        add_equipment_to_stockpile = { type = fighter_equipment_0 amount = 4 producer = FRA }
+    }
+}
+
+## -- dunkirk
+add_namespace = hol_dunkirk
+
+news_event = {
+    id = hol_dunkirk.1
+    title = "Explosion in Dunkirk!"      # dutch agents disrupt french efforts to take over flanders
+    desc = hol_dunkirk.1.d
+
+    fire_only_once = yes
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Worrying."
+        if = {
+            limit = { tag = FRA }
+            add_stability = -0.025
+        }
+        if = {
+            limit = { tag = HOL }
+            add_named_threat = { threat = 2 name = "Explosion in Dunkirk" } 
+        }
+    }
+}
+
+## -- transvaal
+add_namespace = hol_transvaal
+
+news_event = {
+    id = hol_transvaal.1
+    title = "Unrest Among the Afrikaners"
+    desc = hol_transvaal.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Disturbing."
+        add_timed_idea = { idea = idea_unrest_in_transvaal years = 1 }
+    }
+}
+
+## -- neutrality
+add_namespace = hol_neutrality
+
+country_event = {
+    id = hol_neutrality.1
+    title = "The Dutch and the Great War"
+    desc = hol_neutrality.1.d
+
+    fire_only_once = yes
+    mean_time_to_happen = { months = 1 }
+    trigger = {
+        tag = HOL
+        FRA = { has_war_with = GER }
+    }
+
+    option = {
+        name = "We shall stay neutral."
+        add_ideas = idea_dutch_neutrality
+
+        hidden_effect = { news_event = { id = hol_neutrality.2 hours = 6 } }
+        ai_chance = { factor = 1 }
+    }
+    option = {
+        name = "Let us keep our options open."
+        add_war_support = 0.05
+        add_popularity = { ideology = monarchism popularity = 0.025 }
+
+        ai_chance = {
+            factor = 0
+            modifier = { has_completed_focus = HOL_adjust_the_government add = 4 }
+        }
+    }
+}
+
+news_event = {
+    id = hol_neutrality.2
+    title = "[HOL.GetNameDef] Announces Neutrality"
+    desc = hol_neutrality.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Alright."
+    }
+}

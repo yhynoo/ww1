@@ -2,11 +2,21 @@ ideas = {
     country = {
 
         # focus tree
+        idea_airfield_expansion = {
+            modifier = {
+                production_speed_air_base_factor = 0.5
+            }
+        }
         idea_air_training = {
             modifier = {
                 air_training_xp_gain_factor = 0.25
                 air_ace_generation_chance_factor = 0.1
                 air_accidents_factor = -0.15
+            }
+        }
+        idea_dockyard_expansion = {
+            modifier = {
+                production_speed_dockyard_factor = 0.25
             }
         }
 
@@ -29,19 +39,17 @@ ideas = {
                 production_speed_industrial_complex_factor = 0.25
             }
         }
-
-        idea_efficiency_studies = {
+        idea_war_industry = {
             modifier = {
-                production_factory_efficiency_gain_factor = 0.15
-                production_factory_max_efficiency_factor = 0.1
-                equipment_conversion_speed = 0.25
+                production_speed_arms_factory_factor = 0.25
             }
         }
 
-        idea_steady_growth = {
+        idea_efficiency_studies = {
             modifier = {
-                production_speed_buildings_factor = 0.1
-                global_building_slots = 1
+                equipment_conversion_speed = 0.15
+                production_factory_efficiency_gain_factor = 0.1
+                production_factory_max_efficiency_factor = 0.1
             }
         }
 
@@ -56,6 +64,7 @@ ideas = {
         idea_deterrence = {
             modifier = {
                 production_speed_bunker_factor = 0.15
+                production_speed_coastal_bunker_factor = 0.15
             }
         }
 

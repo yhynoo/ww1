@@ -283,17 +283,16 @@ spriteTypes = {
     }
 
 ## - air
-
     SpriteType = {
-		name = "GFX_focus_generic_aviation"
-		texturefile = "gfx/interface/goals/goal_generic_build_airforce.dds"
+		name = "GFX_focus_generic_airfields"
+		texturefile = "gfx/interface/goals/goal_generic_air_production.dds"
 	}
-	spriteType = {
-        name = GFX_focus_generic_aviation_shine
-        texturefile = gfx/interface/goals/goal_generic_build_airforce.dds
+    spriteType = {
+        name = GFX_focus_generic_airfields_shine
+        texturefile = gfx/interface/goals/goal_generic_air_production.dds
         effectFile = gfx/FX/buttonstate.lua
         animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_build_airforce.dds
+            animationmaskfile = gfx/interface/goals/goal_generic_air_production.dds
             animationtexturefile = gfx/interface/goals/shine_overlay.dds
             animationrotation = -90.0
             animationlooping = no
@@ -305,7 +304,7 @@ spriteTypes = {
             animationtexturescale = { x = 1.0 y = 1.0 }
         }
         animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_build_airforce.dds
+            animationmaskfile = gfx/interface/goals/goal_generic_air_production.dds
             animationtexturefile = gfx/interface/goals/shine_overlay.dds
             animationrotation = 90.0
             animationlooping = no
@@ -353,11 +352,11 @@ spriteTypes = {
         legacy_lazy_load = no
     }
     SpriteType = {
-		name = "GFX_focus_generic_independent_airforce"
+		name = "GFX_focus_generic_aces"
 		texturefile = "gfx/interface/goals/focus_generic_light_aircraft.dds"
 	}
     spriteType = {
-        name = GFX_focus_generic_independent_airforce_shine
+        name = GFX_focus_generic_aces_shine
         texturefile = gfx/interface/goals/focus_generic_light_aircraft.dds
         effectFile = gfx/FX/buttonstate.lua
         animation = {
@@ -387,11 +386,11 @@ spriteTypes = {
         legacy_lazy_load = no
     }
         SpriteType = {
-		name = "GFX_focus_generic_subordinate_airforce"
+		name = "GFX_focus_generic_ground_support"
 		texturefile = "gfx/interface/goals/focus_generic_support.dds"
 	}
     spriteType = {
-        name = GFX_focus_generic_subordinate_airforce_shine
+        name = GFX_focus_generic_ground_support_shine
         texturefile = gfx/interface/goals/focus_generic_support.dds
         effectFile = gfx/FX/buttonstate.lua
         animation = {
@@ -408,40 +407,6 @@ spriteTypes = {
         }
         animation = {
             animationmaskfile = gfx/interface/goals/focus_generic_support.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = 90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        legacy_lazy_load = no
-    }
-    SpriteType = {
-		name = "GFX_focus_generic_aces"
-		texturefile = "gfx/interface/goals/focus_generic_aces.dds"
-	}
-    spriteType = {
-        name = GFX_focus_generic_aces_shine
-        texturefile = gfx/interface/goals/focus_generic_aces.dds
-        effectFile = gfx/FX/buttonstate.lua
-        animation = {
-            animationmaskfile = gfx/interface/goals/focus_generic_aces.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = -90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        animation = {
-            animationmaskfile = gfx/interface/goals/focus_generic_aces.dds
             animationtexturefile = gfx/interface/goals/shine_overlay.dds
             animationrotation = 90.0
             animationlooping = no
@@ -476,41 +441,6 @@ spriteTypes = {
         }
         animation = {
             animationmaskfile = gfx/interface/goals/focus_generic_combined_arms.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = 90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        legacy_lazy_load = no
-    }
-
-    SpriteType = {
-		name = "GFX_focus_generic_airfields"
-		texturefile = "gfx/interface/goals/goal_generic_air_production.dds"
-	}
-    spriteType = {
-        name = GFX_focus_generic_airfields_shine
-        texturefile = gfx/interface/goals/goal_generic_air_production.dds
-        effectFile = gfx/FX/buttonstate.lua
-        animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_air_production.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = -90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_air_production.dds
             animationtexturefile = gfx/interface/goals/shine_overlay.dds
             animationrotation = 90.0
             animationlooping = no
@@ -560,42 +490,6 @@ spriteTypes = {
 
 
 ## - navy
-
-    SpriteType = {
-		name = "GFX_focus_generic_navy"
-		texturefile = "gfx/interface/goals/goal_generic_navy_cruiser.dds"
-	}
-	spriteType = {
-        name = GFX_focus_generic_navy_shine
-        texturefile = gfx/interface/goals/goal_generic_navy_cruiser.dds
-        effectFile = gfx/FX/buttonstate.lua
-        animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_navy_cruiser.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = -90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_navy_cruiser.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = 90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        legacy_lazy_load = no
-    }
-
     SpriteType = {
 		name = "GFX_focus_generic_expand_dockyards"
 		texturefile = "gfx/interface/goals/goal_generic_construct_naval_dockyard.dds"
@@ -666,14 +560,14 @@ spriteTypes = {
     }
     SpriteType = {
 		name = "GFX_focus_generic_shallow_waters"
-		texturefile = "gfx/interface/goals/focus_generic_destroyer.dds"
+		texturefile = "gfx/interface/goals/goal_generic_navy_cruiser.dds"
 	}
 	spriteType = {
         name = GFX_focus_generic_shallow_waters_shine
-        texturefile = gfx/interface/goals/focus_generic_destroyer.dds
+        texturefile = gfx/interface/goals/goal_generic_navy_cruiser.dds
         effectFile = gfx/FX/buttonstate.lua
         animation = {
-            animationmaskfile = gfx/interface/goals/focus_generic_destroyer.dds
+            animationmaskfile = gfx/interface/goals/goal_generic_navy_cruiser.dds
             animationtexturefile = gfx/interface/goals/shine_overlay.dds
             animationrotation = -90.0
             animationlooping = no
@@ -685,42 +579,7 @@ spriteTypes = {
             animationtexturescale = { x = 1.0 y = 1.0 }
         }
         animation = {
-            animationmaskfile = gfx/interface/goals/focus_generic_destroyer.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = 90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        legacy_lazy_load = no
-    }
-
-	SpriteType = {
-		name = "GFX_focus_generic_naval_exercises"
-		texturefile = "gfx/interface/goals/goal_generic_navy_doctrines_tactics.dds"
-	}
-	spriteType = {
-        name = GFX_focus_generic_naval_exercises_shine
-        texturefile = gfx/interface/goals/goal_generic_navy_doctrines_tactics.dds
-        effectFile = gfx/FX/buttonstate.lua
-        animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_navy_doctrines_tactics.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = -90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_navy_doctrines_tactics.dds
+            animationmaskfile = gfx/interface/goals/goal_generic_navy_cruiser.dds
             animationtexturefile = gfx/interface/goals/shine_overlay.dds
             animationrotation = 90.0
             animationlooping = no
@@ -755,41 +614,6 @@ spriteTypes = {
         }
         animation = {
             animationmaskfile = gfx/interface/goals/focus_generic_navy_battleship2.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = 90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        legacy_lazy_load = no
-    }
-
-    SpriteType = {
-		name = "GFX_focus_generic_naval_innovation"
-		texturefile = "gfx/interface/goals/goal_generic_wolf_pack.dds"
-	}
-	spriteType = {
-        name = GFX_focus_generic_naval_innovation_shine
-        texturefile = gfx/interface/goals/goal_generic_wolf_pack.dds
-        effectFile = gfx/FX/buttonstate.lua
-        animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_wolf_pack.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = -90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_wolf_pack.dds
             animationtexturefile = gfx/interface/goals/shine_overlay.dds
             animationrotation = 90.0
             animationlooping = no
@@ -837,11 +661,11 @@ spriteTypes = {
         legacy_lazy_load = no
     }
 	SpriteType = {
-		name = "GFX_focus_generic_seaborne_operations"
+		name = "GFX_focus_generic_coastal_defense"
 		texturefile = "gfx/interface/goals/goal_generic_amphibious_assault.dds"
 	}
 	spriteType = {
-        name = GFX_focus_generic_seaborne_operations_shine
+        name = GFX_focus_generic_coastal_defense_shine
         texturefile = gfx/interface/goals/goal_generic_amphibious_assault.dds
         effectFile = gfx/FX/buttonstate.lua
         animation = {
@@ -872,17 +696,16 @@ spriteTypes = {
     }
 
 ## - economic
-
-	SpriteType = {
-		name = "GFX_focus_generic_economic_development"
-		texturefile = "gfx/interface/goals/focus_generic_improve_the_administration.dds"
+SpriteType = {
+		name = "GFX_focus_generic_extraction_effort"
+		texturefile = "gfx/interface/goals/goal_generic_construction2.dds"
 	}
 	spriteType = {
-        name = GFX_focus_generic_economic_development_shine
-        texturefile = gfx/interface/goals/focus_generic_improve_the_administration.dds
+        name = GFX_focus_generic_extraction_effort_shine
+        texturefile = gfx/interface/goals/goal_generic_construction2.dds
         effectFile = gfx/FX/buttonstate.lua
         animation = {
-            animationmaskfile = gfx/interface/goals/focus_generic_improve_the_administration.dds
+            animationmaskfile = gfx/interface/goals/goal_generic_construction2.dds
             animationtexturefile = gfx/interface/goals/shine_overlay.dds
             animationrotation = -90.0
             animationlooping = no
@@ -894,7 +717,7 @@ spriteTypes = {
             animationtexturescale = { x = 1.0 y = 1.0 }
         }
         animation = {
-            animationmaskfile = gfx/interface/goals/focus_generic_improve_the_administration.dds
+            animationmaskfile = gfx/interface/goals/goal_generic_construction2.dds
             animationtexturefile = gfx/interface/goals/shine_overlay.dds
             animationrotation = 90.0
             animationlooping = no
@@ -907,7 +730,40 @@ spriteTypes = {
         }
         legacy_lazy_load = no
     }
-
+    SpriteType = {
+		name = "GFX_focus_generic_construct_civilian"
+		texturefile = "gfx/interface/goals/goal_generic_production2.dds"
+	}
+	spriteType = {
+        name = GFX_focus_generic_construct_civilian_shine
+        texturefile = gfx/interface/goals/goal_generic_production2.dds
+        effectFile = gfx/FX/buttonstate.lua
+        animation = {
+            animationmaskfile = gfx/interface/goals/goal_generic_production2.dds
+            animationtexturefile = gfx/interface/goals/shine_overlay.dds
+            animationrotation = -90.0
+            animationlooping = no
+            animationtime = 0.75
+            animationdelay = 0
+            animationblendmode = "add"
+            animationtype = "scrolling"
+            animationrotationoffset = { x = 0.0 y = 0.0 }
+            animationtexturescale = { x = 1.0 y = 1.0 }
+        }
+        animation = {
+            animationmaskfile = gfx/interface/goals/goal_generic_production2.dds
+            animationtexturefile = gfx/interface/goals/shine_overlay.dds
+            animationrotation = 90.0
+            animationlooping = no
+            animationtime = 0.75
+            animationdelay = 0
+            animationblendmode = "add"
+            animationtype = "scrolling"
+            animationrotationoffset = { x = 0.0 y = 0.0 }
+            animationtexturescale = { x = 1.0 y = 1.0 }
+        }
+        legacy_lazy_load = no
+    }
 	SpriteType = {
 		name = "GFX_focus_generic_rationing"
 		texturefile = "gfx/interface/goals/goal_generic_consumer_goods.dds"
@@ -977,112 +833,6 @@ spriteTypes = {
         }
         legacy_lazy_load = no
     }
-
-	SpriteType = {
-		name = "GFX_focus_generic_austerity_measures"
-		texturefile = "gfx/interface/goals/focus_generic_concessions.dds"
-	}
-	spriteType = {
-        name = GFX_focus_generic_austerity_measures_shine
-        texturefile = gfx/interface/goals/focus_generic_concessions.dds
-        effectFile = gfx/FX/buttonstate.lua
-        animation = {
-            animationmaskfile = gfx/interface/goals/focus_generic_concessions.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = -90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        animation = {
-            animationmaskfile = gfx/interface/goals/focus_generic_concessions.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = 90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        legacy_lazy_load = no
-    }
-
-	SpriteType = {
-		name = "GFX_focus_generic_extraction_effort"
-		texturefile = "gfx/interface/goals/goal_generic_construction2.dds"
-	}
-	spriteType = {
-        name = GFX_focus_generic_extraction_effort_shine
-        texturefile = gfx/interface/goals/goal_generic_construction2.dds
-        effectFile = gfx/FX/buttonstate.lua
-        animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_construction2.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = -90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_construction2.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = 90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        legacy_lazy_load = no
-    }
-
-	SpriteType = {
-		name = "GFX_focus_generic_construct_civilian"
-		texturefile = "gfx/interface/goals/goal_generic_production2.dds"
-	}
-	spriteType = {
-        name = GFX_focus_generic_construct_civilian_shine
-        texturefile = gfx/interface/goals/goal_generic_production2.dds
-        effectFile = gfx/FX/buttonstate.lua
-        animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_production2.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = -90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        animation = {
-            animationmaskfile = gfx/interface/goals/goal_generic_production2.dds
-            animationtexturefile = gfx/interface/goals/shine_overlay.dds
-            animationrotation = 90.0
-            animationlooping = no
-            animationtime = 0.75
-            animationdelay = 0
-            animationblendmode = "add"
-            animationtype = "scrolling"
-            animationrotationoffset = { x = 0.0 y = 0.0 }
-            animationtexturescale = { x = 1.0 y = 1.0 }
-        }
-        legacy_lazy_load = no
-    }
-
 	SpriteType = {
 		name = "GFX_focus_generic_expand_mining"
 		texturefile = "gfx/interface/goals/focus_generic_steel.dds"
@@ -1293,8 +1043,7 @@ spriteTypes = {
         legacy_lazy_load = no
     }
 
-
-	# political
+## - political
 
 	SpriteType = {
 		name = "GFX_focus_generic_political_ambitions"
