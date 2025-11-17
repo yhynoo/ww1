@@ -1,0 +1,39 @@
+## -- annexation
+add_namespace = tur_annexation
+
+country_event = {
+    id = tur_annexation.1
+    title = "Constantinople's Answer"
+    desc = tur_annexation.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Demand their withdrawal."
+        AUS = { country_event = { id = _demand.1 hours = 6 } }
+    }
+    option = {
+        name = "Issue a warning."
+        add_war_support = 0.025
+
+        add_named_threat = { name = "[TUR.GetName] Warns Austria" threat = 2 }
+        news_event = { id = tur_annexation.2 hours = 6 }
+    }
+    option = {
+        name = "Ignore it."
+        add_political_power = -25
+    }
+}
+
+news_event = {
+    id = tur_annexation.2
+    title = "[TUR.GetName] Warns Austria"
+    desc = tur_annexation.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "This does not sound very convincing."
+    }
+}

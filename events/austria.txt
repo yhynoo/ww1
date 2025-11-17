@@ -1,34 +1,3 @@
-# - sarajevo
-add_namespace = aus_sarajevo
-
-country_event = {
-    id = aus_sarajevo.1
-    title = "Annexation of Sarajevo"        # didn't happen in 1908 in this timeline
-    desc = aus_sarajevo.1.d
-
-    fire_only_once = yes
-    trigger = {
-        tag = AUS
-        date > 1912.5.1
-        controls_state = 104
-    }
-
-    option = {
-        name = "This is the logical thing to do."
-        104 = { add_core_of = AUS }
-
-        hidden_effect = { 
-            add_named_threat = { name = "[AUS.GetName] Annexes Sarajevo" threat = 4 }
-            TUR = { add_opinion_modifier = { target = ROOT modifier = opinion_integrated_sarajevo } }
-        }
-        ai_chance = { factor = 4 }
-    }
-    option = {
-        name = "We must not agitate the Turks."
-        ai_chance = { factor = 1 }
-    }
-}
-
 ## - evidenzbureau
 add_namespace = aus_evidenzbureau
 
@@ -169,5 +138,21 @@ news_event = {
     option = {
         name = "Long live the Emperor!"
         retire_character = AUS_franz_joseph
+    }
+}
+
+## -- annexation
+add_namespace = aus_annexation
+
+news_event = {
+    id = aus_annexation.1
+    title = "Austria Annexes Sarajevo!"
+    desc = aus_annexation.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Worrying."
     }
 }

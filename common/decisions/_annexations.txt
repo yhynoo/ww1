@@ -1,0 +1,107 @@
+_annexation_decisions = {
+    annex_albania = {
+        visible = { original_tag = AUS }
+        icon = generic_form_nation
+        cost = 50
+
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = tt_annex_success
+                and = { controls_state = 44 }
+            }
+        }
+
+        fire_only_once = yes
+        remove_days = 90
+
+        highlight_states = { highlight_state_targets = { state = 44 } }
+        remove_effect = {
+            news_event = { id = aus_annexation.1 hours = 6 }
+            add_named_threat = { name = "[AUS.GetName] Annexes Sarajevo" threat = 4 }
+
+            every_state = {
+                limit = { or = { state = 44 } }
+                add_core_of = ROOT
+            }
+        }
+
+        cancel_trigger = {
+            custom_trigger_tooltip = {
+                tooltip = tt_annex_cancel
+                any_state = {
+                    or = { state = 44 }
+                    not = { is_controlled_by = ROOT }
+                }
+            }
+        }
+    }
+    annex_moldova_and_wallachia = {
+        visible = { original_tag = AUS }
+        icon = generic_form_nation
+        cost = 100
+
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = tt_annex_success
+                and = { controls_state = 46 controls_state = 77 controls_state = 79 controls_state = 81 }
+            }
+        }
+
+        fire_only_once = yes
+        remove_days = 90
+
+        highlight_states = { highlight_state_targets = { state = 46 state = 77 state = 79 state = 81 } }
+        remove_effect = {
+            every_state = {
+                limit = { or = { state = 46 state = 77 state = 79 state = 81 } }
+                add_core_of = ROOT
+            }
+        }
+
+        cancel_trigger = {
+            custom_trigger_tooltip = {
+                tooltip = tt_annex_cancel
+                any_state = {
+                    or = { state = 46 state = 77 state = 79 state = 81 }
+                    not = { is_controlled_by = ROOT }
+                }
+            }
+        }
+    }
+    annex_sarajevo = {
+        visible = { original_tag = AUS }
+        icon = generic_form_nation
+        cost = 50
+
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = tt_annex_success
+                and = { controls_state = 104 }
+            }
+        }
+
+        fire_only_once = yes
+        remove_days = 90
+
+        highlight_states = { highlight_state_targets = { state = 104 } }
+        remove_effect = {
+            news_event = { id = aus_annexation.1 hours = 6 }
+            add_named_threat = { name = "[AUS.GetName] Annexes Sarajevo" threat = 4 }
+
+            every_state = {
+                limit = { or = { state = 104 } }
+                add_core_of = ROOT
+            }
+        }
+
+        cancel_trigger = {
+            custom_trigger_tooltip = {
+                tooltip = tt_annex_cancel
+                any_state = {
+                    or = { state = 104 }
+                    not = { is_controlled_by = ROOT }
+                }
+            }
+        }
+    }
+}

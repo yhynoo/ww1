@@ -1,29 +1,29 @@
 _head_of_state = {
     visible_when_empty = yes
-    priority = 6
+    priority = 7
 }
 
 _war_office = {
     visible = { has_war = yes }
     visible_when_empty = yes
-    priority = 5
+    priority = 6
 }
 
 _support_war_effort = {
     visible = { has_country_flag = public_support_allowed }
-    priority = 4
+    priority = 5
 }
 
 _internal_struggle = {
     visible_when_empty = yes
-    priority = 3
+    priority = 4
 }
 
 _economic_decisions = {
     visible = { not = { has_government = communism } }
 
     visible_when_empty = yes
-    priority = 2
+    priority = 3
 }
 
 _civil_war_decisions = {
@@ -33,6 +33,11 @@ _civil_war_decisions = {
             any_neighbor_country = { has_civil_war = yes }
         }
     }
+}
+
+_annexation_decisions = {
+    visible = { has_country_flag = can_annex_areas }
+    priority = 2
 }
 
 # country specific
