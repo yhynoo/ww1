@@ -6,11 +6,7 @@ country_event = {
     title = "Spies in Evidenzbureau!"
     desc = aus_evidenzbureau.1.d
 
-    fire_only_once = yes
-    trigger = {
-        tag = AUS
-        date > 1914.2.1
-    }
+    is_triggered_only = yes
 
     option = {
         name = "Arrest them immediately."
@@ -125,12 +121,12 @@ news_event = {
 }
 
 # -- kaiser dies
-add_namespace = austria_emperor
+add_namespace = aus_emperor
 
 news_event = {
-    id = austria_emperor.1
+    id = aus_emperor.1
     title = "Emperor Karl I Ascends to the Throne"
-    desc = austria_emperor.1.d
+    desc = aus_emperor.1.d
 
     is_triggered_only = yes
     trigger = { has_government = monarchism }

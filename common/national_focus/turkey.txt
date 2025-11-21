@@ -753,7 +753,7 @@ focus_tree = {
 
         completion_reward = {
             custom_effect_tooltip = decision_faction_effect_tooltip
-            hidden_effect = { set_rule = { can_create_factions = yes } }
+            hidden_effect = { if = { limit = { is_ai = no } set_rule = { can_create_factions = yes } } }
         }
     }
 

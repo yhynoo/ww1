@@ -593,8 +593,9 @@ focus_tree = {
 
         prerequisite = { focus = GER_international_affairs }
         completion_reward = {
-            add_political_power = 100
-            add_timed_idea = { idea = idea_expansionism years = 1 }
+            add_war_support = 0.05
+            custom_effect_tooltip = annexations_effect_tooltip
+            set_country_flag = can_annex_areas
         }
     }
     focus = {
@@ -630,13 +631,7 @@ focus_tree = {
             is_in_faction = no
         }
 
-        ai_will_do = { 
-            base = 2
-            modifier = { 
-                has_completed_focus = GER_adjust_the_government 
-                factor = 0
-            }
-        }
+        ai_will_do = { base = 2 }
 
         completion_reward = {
             add_war_support = 0.05
@@ -683,13 +678,6 @@ focus_tree = {
         completion_reward = {
             add_stability = 0.05
             add_popularity = { ideology = monarchism popularity = 0.05 }
-
-            hidden_effect = { 
-                random_list = {
-                    2 = { news_event = { id = GER_airships.1 days = 7 random_days = 7 } }
-                    1 = { news_event = { id = GER_airships.2 days = 7 random_days = 7 } }
-                }
-            }
         }
     }
     focus = {

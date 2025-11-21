@@ -1,0 +1,60 @@
+_ai_army = {
+	enable = { not = { num_of_military_factories < 6 } }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {	type = role_ratio	id = infantry		value = 65 }
+	ai_strategy = {	type = role_ratio	id = garrison		value = 25 }
+	ai_strategy = {	type = role_ratio	id = maneuver		value = 10 }
+}
+
+_ai_army_light = {
+	enable = { num_of_military_factories < 6 }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {	type = role_ratio	id = infantry		value = 25 }
+	ai_strategy = {	type = role_ratio	id = garrison		value = 70 }
+	ai_strategy = {	type = role_ratio	id = maneuver		value = 5  }
+}
+
+ai_army_mountaineers = {
+	enable = { has_tech = mountaineers_1 }
+	ai_strategy = {	type = role_ratio	id = mountaineers	value = 5  }
+}
+
+ai_army_marines = {
+	enable = { has_tech = marines_1 }
+	ai_strategy = {	type = role_ratio	id = marines		value = 2  }
+}
+
+# - doctrine adjustments: mass army
+ai_doctrine_mass_army = {
+	enable = { has_tech = mass_army_doctrine }
+	ai_strategy = {	type = role_ratio	id = infantry		value = 25 }
+}
+
+ai_doctrine_heavy_infantry = {
+	enable = { has_tech = overwhelming_firepower }
+	ai_strategy = {	type = role_ratio	id = heavy_infantry		value = 10 }
+}
+
+# - doctrine adjustments: maneuver
+ai_doctrine_mobile = {
+	enable = { has_tech = maneuver_doctrine }
+	ai_strategy = {	type = role_ratio	id = maneuver		value = 10 }
+}
+
+ai_doctrine_stosstruppen = {
+	enable = { 
+		has_tech = elite_troops 
+		has_tech = assault_mg
+	}
+	ai_strategy = {	type = role_ratio	id = stosstrupp_infantry		value = 20 }
+}
+
+ai_doctrine_armored_detachments = {
+	enable = { 
+		has_tech = mechanized_assault_troops 
+		has_tech = 1916_heavy
+	}
+	ai_strategy = {	type = role_ratio	id = maneuver_armor		value = 10 }
+}

@@ -1,0 +1,18 @@
+## uprising
+add_namespace = mor_uprising
+
+news_event = {
+    id = mor_uprising.0
+    hidden = yes
+
+    is_triggered_only = yes
+
+    option = {
+        FRA = { 
+            moroccan_independence = yes 
+            remove_ideas = idea_unrest_in_morocco
+            declare_war_on = { target = MOR type = annex_everything }
+        }
+        news_event = { id = _uprising.1 }
+    }
+}

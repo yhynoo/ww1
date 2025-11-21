@@ -1,0 +1,86 @@
+_infantry = {
+    role = infantry
+    _1912_infantry = {
+        upgrade_prio = { factor = 1 }
+        target_template = {
+            support = { artillery = 1 }
+            regiments = { infantry = 8 }
+        }
+    }
+    _1914_infantry = {
+        enable = { 
+            and = { has_tech = mg_1     has_tech = tech_engineers }
+        }
+        upgrade_prio = { factor = 2 }
+        target_template = {
+            support = { artillery = 1 mg_company = 1 engineer = 1 }
+            regiments = { infantry = 8 }
+        }
+    }
+    _1917_infantry = {
+        enable = { 
+            and = { has_tech = mg_1     has_tech = tech_engineers }
+            has_idea = extensive_conscription
+        }
+        upgrade_prio = { factor = 4 }
+        target_template = {
+            support = { artillery = 1 mg_company = 1 engineer = 1 }
+            regiments = { infantry = 5 artillery_brigade = 2 }
+        }
+    }
+}
+
+_garrison_troops = {
+    role = garrison
+    _1912_garrison = {
+        target_template = { 
+            regiments = { infantry = 4 } 
+        }
+    }
+}
+
+# -- specialists
+
+_mountaineer_troops = {
+    role = mountaineers
+    1912_mountaineers = {
+        enable = {
+            has_tech = mountaineers_1
+        }
+        target_template = {
+            regiments = { mountaineers = 4 } 
+        }
+    }
+    1914_mountaineers = {
+        enable = {
+            has_tech = mountaineers_1
+            and = { has_tech = mg_1     has_tech = tech_engineers }
+        }
+        target_template = {
+            support = { artillery = 1 mg_company = 1 engineer = 1 }
+            regiments = { mountaineers = 4 } 
+        }
+    }
+}
+
+_marines_troops = {
+    role = marines
+    1912_marines = {
+        enable = {
+            has_tech = marines_1
+        }
+        target_template = {
+            regiments = { marine = 4 } 
+        }
+    }
+    1914_marines = {
+        enable = {
+            has_tech = marines_1
+            and = { has_tech = mg_1     has_tech = tech_engineers }
+        }
+        target_template = {
+            support = { artillery = 1 mg_company = 1 engineer = 1 }
+            regiments = { marine = 4 } 
+        }
+    }
+}

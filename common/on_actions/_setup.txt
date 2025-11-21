@@ -6,17 +6,6 @@ on_actions = {
                 _starting_resistance = yes
             }
 
-            # flavor events
-            AUS = {
-                # 1916
-                news_event = { id = austria_emperor.1 months = 58 days = 28 }
-            }
-
-            FRA = {
-                # 1912
-                news_event = { id = france_caillaux.1 days = 20 }
-            }
-
             # resource rights
             COL = {
                 give_resource_rights = { receiver = USA state = 312 }
@@ -31,18 +20,6 @@ on_actions = {
             QAJ = {
                 give_resource_rights = { receiver = ENG state = 412 }
                 give_resource_rights = { receiver = ENG state = 413 }
-            }
-        }
-    }
-
-    on_state_control_changed = {
-        effect = {
-            # american investments
-            if = {
-                limit = { FROM.FROM = { check_variable = { investment = 1 } } }
-
-                set_variable = { investment = 0 }
-                remove_decision = investment_in_progress
             }
         }
     }

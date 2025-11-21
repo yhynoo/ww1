@@ -1,0 +1,229 @@
+## -- agadir
+add_namespace = fra_agadir
+
+country_event = {
+    id = fra_agadir.1
+    title = "Caillaux’ Dismissal"
+    desc = fra_agadir.1.d
+
+    trigger = { tag = FRA   date > 1912.2.1 }
+    fire_only_once = yes
+
+    option = {
+        name = "Dismiss him."
+        promote_character = FRA_aristide_briand
+    }
+    option = {
+        name = "He deserves another chance."
+        add_popularity = { ideology = democratic popularity = -0.02 }
+
+        hidden_effect = { news_event = { id = fra_morocco.1 days = 14 random_days = 7 } }
+    }
+}
+
+## -- morocco
+add_namespace = fra_morocco
+
+news_event = {
+    id = fra_morocco.1
+    title = "Arson in Agadir!"
+    desc = fra_morocco.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Worrying."
+        add_stability = -0.025
+        
+        hidden_effect = { MOR = { news_event = { id = mor_uprising.0 days = 7 random_days = 14 } } }
+    }
+}
+
+## -- jaures
+add_namespace = fra_jaures
+
+news_event = {
+    id = fra_jaures.1
+    title = "Jaurés Assassinated!"
+    desc = fra_jaures.1.d
+
+    fire_only_once = yes
+    trigger = {
+        tag = FRA
+        and = { has_wargoal_against = GER not = { has_war_with = GER } }
+    }
+
+    option = {
+        name = "The last idealist is gone."
+        add_war_support = 0.05
+        hidden_effect = { GER = { country_event = { id = fra_jaures.2 days = 2 } } }
+    }
+}
+
+country_event = {
+    id = fra_jaures.2
+    title = "France Too Weak to Act?"
+    desc = fra_jaures.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must strike now!"
+        add_war_support = 0.05
+        declare_war_on = { target = FRA type = annex_everything }
+    }
+    option = {
+        name = "Enough imperialist delusion."
+        add_popularity = { ideology = communism popularity = 0.025 }
+    }
+}
+
+## -- tours
+add_namespace = fra_tours
+
+news_event = {
+    id = fra_tours.1
+    title = "Tours Archbishop Speaks Out"
+    desc = fra_tours.1.d
+
+    fire_only_once = yes
+    trigger = {
+        tag = FRA
+        monarchism > 0.25
+    }
+
+    option = {
+        name = "Is this the end of secularism?"
+        add_popularity = { ideology = monarchism popularity = 0.025 }
+    }
+}
+
+country_event = {
+    id = fra_tours.2
+    title = "Action Française Organizes in Tours"
+    desc = fra_tours.2.d
+
+    fire_only_once = yes
+    trigger = {
+        tag = FRA
+        monarchism > 0.3
+    }
+
+    option = {
+        name = "Dismiss it."
+        add_stability = -0.05
+
+        hidden_effect = { 
+            random = { chance = 50 news_event = { id = fra_tours.3 days = 7 random_days = 7 } }
+        }
+    }
+    option = {
+        name = "Disperse them."
+        add_political_power = -50
+    }
+}
+
+news_event = {
+    id = fra_tours.3
+    title = "‘Against Degeneracy!’"
+    desc = fra_tours.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "The republican ideals are shattering."
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+    }
+}
+
+### ELECTIONS ###
+add_namespace = fra_elections
+
+country_event = {
+    id = fra_elections.1
+    title = "The Election of 1913"
+    desc = fra_elections.1.d
+
+    is_triggered_only = yes
+    trigger = {
+        tag = FRA
+        has_government = democratic
+        date > 1913.1.1         date < 1914.1.1
+    }
+
+    option = {
+        name = "Louis Barthou."
+        promote_character = FRA_louis_barthou
+        ai_chance = { factor = 1 }
+    }
+    option = {
+        name = "Aristide Briand."
+        if = {
+            limit = { has_country_leader = { character = FRA_aristide_briand ruling_only = yes } }
+            add_stability = 0.05
+        }
+        else = { promote_character = FRA_aristide_briand }
+        ai_chance = { factor = 2 }
+    }
+}
+
+country_event = {
+    id = fra_elections.2
+    title = "The Election of 1917"
+    desc = fra_elections.2.d
+
+    is_triggered_only = yes
+    trigger = {
+        tag = FRA
+        has_government = democratic
+        date > 1917.1.1         date < 1918.1.1
+    }
+
+    option = {
+        name = "Georges Clemenceau."
+        promote_character = FRA_georges_clemenceau
+        ai_chance = { 
+            factor = 2
+            modifier = { has_war = yes add = 2 }
+        }
+    }
+    option = {
+        name = "Joseph Caillaux."
+        promote_character = FRA_joseph_caillaux
+        ai_chance = { 
+            factor = 1
+            modifier = { communism > 0.25 add = 1 }
+        }
+    }
+}
+
+country_event = {
+    id = fra_elections.3
+    title = "The Election of 1921"
+    desc = fra_elections.3.d
+
+    is_triggered_only = yes
+    trigger = {
+        tag = FRA
+        has_government = democratic
+        date > 1921.1.1         date < 1922.1.1
+    }
+
+    option = {
+        name = "Georges Clemenceau."
+        if = {
+            limit = { has_country_leader = { character = FRA_georges_clemenceau ruling_only = yes } }
+            add_stability = 0.05
+        }
+        else = { promote_character = FRA_georges_clemenceau }
+        ai_chance = { 
+            factor = 2
+            modifier = { has_war = yes factor = 0 }     # enough of this war...
+        }
+    }
+    option = {
+        name = "Édouard Herriot."
+        promote_character = FRA_edouard_herriot
+        ai_chance = { factor = 1 }
+    }
+}

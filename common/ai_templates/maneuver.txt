@@ -1,0 +1,33 @@
+_maneuver = {
+    role = maneuver
+
+    _1912_maneuver = {
+        enable = {
+            has_tech = tech_support
+        }
+        target_template = {
+            regiments = { bicycle_battalion = 4 }
+        }
+    }
+    _1914_maneuver = {
+        enable = {
+            and = { has_tech = tech_support has_tech = armored_car_1912 }
+            num_of_military_factories < 6
+        }
+        upgrade_prio = { factor = 2 }
+        target_template = {
+            support = { artillery = 1 mg_company = 1 }
+            regiments = { bicycle_battalion = 5 armored_car = 1 }
+        }
+    }
+    _1917_maneuver = {
+        enable = { 
+            and = { has_tech = tech_support has_tech = armored_car_1915 has_tech = trucks }
+        }
+        upgrade_prio = { factor = 4 }
+        target_template = {
+            support = { artillery = 1 mg_company = 1 armored_car_recon = 1 }
+            regiments = { motorized = 4 mot_art = 2 armored_car = 1 }
+        }
+    }
+}

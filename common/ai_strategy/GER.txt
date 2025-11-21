@@ -97,22 +97,5 @@ GER_west_stellungskrieg = {
 	ai_strategy = { type = front_control		ratio = 0.25		tag = FRA		execution_type = careful }
 
 	# don't entirely ignore the alps, but also don't engage too much.
-	ai_strategy = { type = front_unit_request 	area = alpine_front		value = -120 }
-}
-
-GER_hindenburg_line = {
-	allowed = { original_tag = GER }
-	enable = {
-		war_length_with = { tag = FRA months > 6 }
-		FRA = { surrender_progress < 0.1 }
-	}
-	abort_when_not_enabled = yes
-
-	# fortifications
-	ai_strategy = {	type = build_building		id = bunker		target = 13081		value = 20 }		# Mons
-	ai_strategy = {	type = build_building		id = bunker		target = 9444		value = 20 }		# Meuse
-	ai_strategy = {	type = build_building		id = bunker		target = 11606		value = 20 }		# Cambrai
-
-	ai_strategy = {	type = build_building		id = bunker		target = 9472		value = 10 }		# Mezieres
-	ai_strategy = {	type = build_building		id = bunker		target = 6504		value = 10 }		# Arras
+	ai_strategy = { type = front_unit_request 	area = alpine_front		value = -60 }
 }

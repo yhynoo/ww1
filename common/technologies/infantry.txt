@@ -13,11 +13,7 @@ technologies = {
     # machine guns
     mg_1 = {
         categories = { infantry_weapons_tech }
-
-        category_infantry_and_bicycle = {
-            defense = 0.25
-            entrenchment = 0.05
-        }
+        enable_subunits = { mg_company }
 
         research_cost = 1
         start_year = 1912
@@ -36,7 +32,7 @@ technologies = {
     mg_2 = {
         categories = { infantry_weapons_tech }
 
-        category_infantry_and_bicycle = {
+        mg_company = {
             defense = 0.2
             entrenchment = 0.1
         }

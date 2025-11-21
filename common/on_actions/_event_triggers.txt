@@ -1,6 +1,13 @@
 on_actions = {
     on_startup = {
         effect = {
+
+            # Austria
+            AUS = {
+                country_event = { id = aus_evidenzbureau.1 months = 26 random_days = 7 }
+                news_event = { id = aus_emperor.1 months = 58 days = 28 }
+            }
+
             # atmosphere events
             USA = {
                 # 1912
@@ -20,30 +27,35 @@ on_actions = {
         }
     }
     on_monthly = {
-        # internal affairs
-        random_events = {
-            2 = { 
-                random_owned_controlled_state = { save_event_target_as = demonstration_state }
-                random_list = {
-                    1 = { news_event = { id = _demonstrations.1       random_days = 28 } }
-                    1 = { news_event = { id = _demonstrations.2       random_days = 28 } }
-                }
-            }
-            2 = { 
-                random_owned_controlled_state = { save_event_target_as = attack_state }
-                random_list = {
-                    1 = { country_event = { id = _stability.1       random_days = 28 } }
-                    1 = { country_event = { id = _stability.2       random_days = 28 } }
-                }
-            }
-            2 = { }
-        }
+        effect = {
+            every_country = {
+                limit = { has_capitulated = no exists = yes }
+                random_owned_controlled_state = { save_event_target_as = event_state }
 
-        # war
-        random_events = {
-            1 = { news_event = { id = _hunger.1     random_days = 28 } }
-            1 = { news_event = { id = _mutinies.1   random_days = 28 } }
-            4 = { }
+                # demonstrations and stability
+                random_list = {
+                    2 = { 
+                        random_list = {
+                            1 = { news_event = { id = _demonstrations.1     random_days = 28 } }
+                            1 = { news_event = { id = _demonstrations.2     random_days = 28 } }
+                        }
+                    }
+                    2 = { 
+                        random_list = {
+                            1 = { country_event = { id = _stability.1   random_days = 28 } }
+                            1 = { country_event = { id = _stability.2   random_days = 28 } }
+                        }
+                    }
+                    2 = { }
+                }
+
+                # war
+                random_list = {
+                    1 = { news_event = { id = _hunger.1     random_days = 28 } }
+                    1 = { news_event = { id = _mutinies.1   random_days = 28 } }
+                    4 = { }
+                }
+            }
         }
     }
 

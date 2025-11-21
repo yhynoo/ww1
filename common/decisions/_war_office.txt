@@ -31,7 +31,7 @@ _war_office = {
         cost = 50
 
         ai_will_do = {
-            base = 6
+            factor = 6
             modifier = { any_enemy_country = { is_ai = no } add = 3 }
         }
 
@@ -47,7 +47,7 @@ _war_office = {
         cost = 50
 
         ai_will_do = {
-            base = 6
+            factor = 6
             modifier = { has_war = yes factor = 2 }
         }
 
@@ -80,10 +80,10 @@ _war_office = {
         }
 
         ai_will_do = {
-            base = 0
+            factor = 0
             modifier = { or = { has_war_support < 0.2 surrender_progress > 0.4 }                    add = 6 }
             modifier = { or = { war_length_with = { tag = FROM months > 48 } }                      add = 3 }
-            modifier = { or = { has_idea = idea_all_adults_serve has_idea = scraping_the_barrel }   factor = 3 }
+            modifier = { or = { has_idea = all_adults_serve has_idea = scraping_the_barrel }        factor = 3 }
         }
 
         targets_dynamic = yes
@@ -98,6 +98,6 @@ _war_office = {
         }
 
         days_remove = 7
-        remove_effect = { FROM = { country_event = { id = _offer.1 hours = 6 random_hours = 6 } } }
+        remove_effect = { FROM = { country_event = { id = _armistice.2 hours = 6 random_hours = 6 } } }
     }
 }

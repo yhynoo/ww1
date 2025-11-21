@@ -1,43 +1,22 @@
-standard_armor = {
+_armor_troops = {
     role = armor
-    available_for = { ENG FRA GER USA }
-
-    standard_armor_1916 = {
+    _armor_1917 = {
         enable = { 
             has_tech = heavy_1916
             not = { num_of_military_factories < 10 }
         }
-
         target_template = {
-            support = {
-                artillery = 1
-                recon = 1
-            }
-            regiments = {
-                infantry = 6
-                heavy_armor = 1
-            }
+            regiments = { heavy_armor = 2 }
         }
     }
-
-    standard_armor_1919 = {
+    _armor_1918 = {
         enable = { 
-            has_tech = heavy_1919
-            not = { num_of_military_factories < 20 }
+            and = { has_tech = heavy_1916   has_tech = tech_logistics_company }
+            not = { num_of_military_factories < 10 }
         }
-
-        upgrade_prio = { base = 2 }
-
         target_template = {
-            support = {
-                anti_air = 1
-                artillery = 1
-                recon = 1
-            }
-            regiments = {
-                infantry = 6
-                heavy_armor = 2
-            }
+            support = { logistics_company = 1 }
+            regiments = { heavy_armor = 2 }
         }
     }
 }

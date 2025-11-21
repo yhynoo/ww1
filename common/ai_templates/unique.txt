@@ -1,0 +1,54 @@
+_stosstrupp_infantry = {
+    role = stosstrupp_infantry
+    _1917_stosstrupp_infantry = {
+        enable = { 
+            and = { has_tech = assault_mg     has_tech = tech_engineers }
+        }
+        upgrade_prio = { factor = 1 }
+        target_template = {
+            support = { artillery = 1 engineer = 1 sturmtruppe_battalion = 1 }
+            regiments = { infantry = 5 artillery_brigade = 2 }
+        }
+    }
+}
+
+_heavy_infantry = {
+    role = heavy_infantry
+    _1916_heavy_infantry = {
+        enable = { 
+            and = { has_tech = mg_1     has_tech = tech_engineers }
+            not = { has_idea = extensive_conscription }
+        }
+        upgrade_prio = { factor = 2 }
+        target_template = {
+            support = { artillery = 1 mg_company = 1 engineer = 1 }
+            regiments = { infantry = 8 artillery_brigade = 2 }
+        }
+    }
+
+    _1917_heavy_infantry = {
+        enable = { 
+            and = { has_tech = mg_1     has_tech = tech_engineers   has_tech = heavy_1916 }
+        }
+        upgrade_prio = { factor = 4 }
+        target_template = {
+            support = { artillery = 1 mg_company = 1 engineer = 1 }
+            regiments = { infantry = 5 artillery_brigade = 2 heavy_armor = 1 }
+        }
+    }
+}
+
+_maneuver_armor = {
+    role = maneuver_armor
+    _1917_maneuver_armor = {
+        enable = { 
+            and = { has_tech = light_1916 has_tech = tech_logistics_company }
+            and = { has_tech = tech_support has_tech = armored_car_1915 has_tech = trucks }
+        }
+        upgrade_prio = { factor = 6 }
+        target_template = {
+            support = { logistics_company = 1 mg_company = 1 artillery = 1 armored_car_recon = 1 }
+            regiments = { motorized = 2 mot_art = 2 armored_car = 1 light_armor = 1 }
+        }
+    }
+}
