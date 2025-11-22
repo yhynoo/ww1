@@ -1,0 +1,849 @@
+focus_tree = {
+    id = SAF_focus
+
+    country = {
+        factor = 0
+        modifier = { add = 20 original_tag = SAF }
+    }
+
+    continuous_focus_position = { x = 2750 y = 50 }
+
+## -- army
+    focus = {
+        id = SAF_army
+        icon = GFX_focus_generic_army
+        x = 0           y = 0           cost = 10
+
+        completion_reward = {
+            army_experience = 25
+            add_war_support = 0.05
+        }
+    }
+    focus = {
+        id = SAF_conscription
+        icon = GFX_focus_generic_extend_conscription
+
+        relative_position_id = SAF_army
+        x = -6           y = 1           cost = 10
+
+        prerequisite = { focus = SAF_army }
+        available = { not = { has_idea = volunteer_only } }
+
+        ai_will_do = { 
+            factor = 1 
+            modifier = { threat > 0.15 factor = 4 } 
+        }
+
+        completion_reward = {
+            add_timed_idea = { idea = idea_mobilization months = 6 }
+            hidden_effect = { 
+                news_event = { id = _mobilization.1 hours = 6 } 
+                add_named_threat = { name = "[ROOT.GetName] Announces Mobilization" threat = 2 }
+            }
+        }
+    }
+    focus = {
+        id = SAF_army_maneuvers
+        icon = GFX_focus_generic_army_maneuvers
+
+        relative_position_id = SAF_army
+        x = -3           y = 1           cost = 10
+
+        prerequisite = { focus = SAF_army }
+
+        completion_reward = {
+            army_experience = 50
+            add_doctrine_cost_reduction = { name = land_doc_bonus cost_reduction = 0.5 uses = 2 category = land_doctrine }
+        }
+    }
+    focus = {
+        id = SAF_equipment_effort
+        icon = GFX_focus_generic_equipment_effort
+
+        relative_position_id = SAF_army
+        x = 0           y = 1           cost = 10
+
+        prerequisite = { focus = SAF_army }
+
+        completion_reward = {
+            add_tech_bonus = { name = infantry_bonus bonus = 1.0 uses = 2 category = infantry_weapons_tech }
+            add_equipment_bonus = { bonus = { infantry_equipment = { build_cost_ic = -0.05 reliability = 0.05 } } }
+        }
+    }
+    focus = {
+        id = SAF_support_companies
+        icon = GFX_focus_generic_support_companies
+
+        relative_position_id = SAF_equipment_effort
+        x = -3           y = 1           cost = 10
+
+        prerequisite = { focus = SAF_equipment_effort }
+
+        completion_reward = {
+            add_tech_bonus = { name = support_bonus bonus = 1.0 uses = 2 category = support_tech }
+            add_equipment_bonus = { bonus = { support_equipment = { build_cost_ic = -0.05 reliability = 0.05 } } }
+            add_equipment_bonus = { bonus = { motorized_equipment = { build_cost_ic = -0.05 reliability = 0.05 } } }
+        }
+    }
+    focus = {
+        id = SAF_artillery
+        icon = GFX_focus_generic_artillery
+
+        relative_position_id = SAF_equipment_effort
+        x = 0           y = 1           cost = 10
+
+        prerequisite = { focus = SAF_equipment_effort }
+
+        completion_reward = {
+            add_tech_bonus = { name = artillery_bonus bonus = 1.0 uses = 2 category = artillery_tech }
+            add_equipment_bonus = { bonus = { artillery_equipment = { build_cost_ic = -0.05 reliability = 0.05 } } }
+        }
+    }
+    focus = {
+        id = SAF_armor
+        icon = GFX_focus_generic_armor
+
+        relative_position_id = SAF_equipment_effort
+        x = 3           y = 1           cost = 10
+
+        prerequisite = { focus = SAF_equipment_effort }
+
+        completion_reward = {
+            add_tech_bonus = { name = armor_bonus bonus = 1.0 uses = 2 category = armor_tech }
+            add_equipment_bonus = { bonus = { armored_car_equipment = { build_cost_ic = -0.05 soft_attack = 0.05 } } }
+        }
+    }
+    focus = {
+        id = SAF_industrial_warfare
+        icon = GFX_focus_generic_industrial_warfare
+
+        relative_position_id = SAF_artillery
+        x = 0           y = 1           cost = 10
+
+        prerequisite = { focus = SAF_artillery }
+        available = { has_war = yes }
+
+        completion_reward = {
+            add_equipment_bonus = {
+                bonus = {
+                    infantry_equipment = { build_cost_ic = -0.1 soft_attack = 0.05 }
+                    artillery_equipment = { build_cost_ic = -0.1 soft_attack = 0.05 }
+                }
+            }
+            random_owned_controlled_state = {
+                limit = { is_core_of = ROOT is_in_home_area = yes or = { infrastructure > 2 is_capital = yes } }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+        }
+    }
+    
+## -- airforce
+    focus = {
+        id = SAF_airfields
+        icon = GFX_focus_generic_airfields
+        x = 9           y = 0           cost = 10
+
+        completion_reward = {
+            air_experience = 25
+            add_timed_idea = { idea = idea_airfield_expansion years = 1 }
+            random_owned_state = {
+                limit = { is_capital = yes }
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                add_building_construction = { type = air_base level = 2 instant_build = yes }
+            }
+        }
+    }
+    focus = {
+        id = SAF_air_training
+        icon = GFX_focus_generic_air_training
+
+        relative_position_id = SAF_airfields
+        x = 0         y = 1           cost = 10
+
+        prerequisite = { focus = SAF_airfields }
+
+        completion_reward = {
+            add_timed_idea = { idea = idea_air_training years = 1 }
+            add_equipment_bonus = { bonus = { small_plane_airframe = { air_agility = 0.1 air_superiority = 0.05 } } }
+        }
+    }
+    focus = {
+        id = SAF_ground_support
+        icon = GFX_focus_generic_ground_support
+
+        relative_position_id = SAF_air_training
+        x = -3           y = 1           cost = 10
+
+        prerequisite = { focus = SAF_air_training }
+
+        completion_reward = {
+            add_tech_bonus = { name = attack_aircraft_bonus bonus = 0.5 uses = 2 category = attack_aircraft_tech }
+            add_equipment_bonus = { bonus = { archetype_CAS_equipment = { air_ground_attack = 0.15 naval_strike_attack = 0.1 } } }
+        }
+    }
+    focus = {
+        id = SAF_aces
+        icon = GFX_focus_generic_aces
+
+        relative_position_id = SAF_air_training
+        x = 0           y = 1           cost = 10
+
+        prerequisite = { focus = SAF_air_training }
+
+        completion_reward = {
+            add_tech_bonus = { name = light_aircraft_bonus bonus = 0.5 uses = 2 category = light_aircraft_tech }
+            add_equipment_bonus = { bonus = { archetype_fighter_equipment = { air_superiority = 0.15 air_defence = 0.05 } } }
+        }
+    }
+    focus = {
+        id = SAF_air_doctrine
+        icon = GFX_focus_generic_air_doctrine
+
+        relative_position_id = SAF_aces
+        x = 0         y = 1           cost = 10
+
+        prerequisite = { focus = SAF_aces }
+        available = { has_war = yes }
+
+        completion_reward = {
+            air_experience = 50
+            add_doctrine_cost_reduction = { name = air_doc_bonus cost_reduction = 0.5 uses = 2 category = air_doctrine }
+        }
+    }
+    focus = {
+        id = SAF_aerostats
+        icon = GFX_focus_generic_aerostats
+
+        relative_position_id = SAF_airfields
+        x = 3         y = 1           cost = 10
+
+        prerequisite = { focus = SAF_airfields }
+
+        completion_reward = {
+            add_tech_bonus = { name = airships_bonus bonus = 0.5 uses = 2 category = airship_tech }
+            random_owned_controlled_state = {
+                limit = { is_core_of = ROOT is_in_home_area = yes infrastructure > 2 }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+        }
+    }
+
+## -- navy
+    focus = {
+        id = SAF_expand_dockyards
+        icon = GFX_focus_generic_expand_dockyards
+
+        x = 15          y = 0           cost = 10
+        available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
+
+        completion_reward = {
+            navy_experience = 25
+            add_timed_idea = { idea = idea_dockyard_expansion years = 1 }
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes is_coastal = yes }
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = { type = dockyard level = 2 instant_build = yes }
+            }
+        }
+    }
+    focus = {
+        id = SAF_shallow_waters
+        icon = GFX_focus_generic_shallow_waters
+
+        relative_position_id = SAF_expand_dockyards
+        x = 0              y = 1               cost = 10
+
+        prerequisite = { focus = SAF_expand_dockyards }
+        available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
+
+        completion_reward = {
+            add_tech_bonus = { name = screens_bonus bonus = 1.0 uses = 2 category = screen_tech }
+            add_equipment_bonus = { bonus = { screen_ship = { lg_attack = 0.15 naval_speed = 0.05 } } }
+        }
+    }
+    focus = {
+        id = SAF_high_seas
+        icon = GFX_focus_generic_high_seas
+
+        relative_position_id = SAF_shallow_waters
+        x = 0              y = 1               cost = 10
+
+        prerequisite = { focus = SAF_shallow_waters }
+        available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
+
+        completion_reward = {
+            add_tech_bonus = { name = capital_ships_bonus bonus = 1.0 uses = 1 category = capital_ship_tech }
+            add_equipment_bonus = { bonus = { capital_ship = { hg_attack = 0.1 shore_bombardment = 0.25 naval_range = 0.1 } } }
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes is_coastal = yes }
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = { type = dockyard level = 1 instant_build = yes }
+            }
+        }
+    }
+    focus = {
+        id = SAF_rule_the_waves
+        icon = GFX_focus_generic_rule_the_waves
+
+        relative_position_id = SAF_high_seas
+        x = 0            y = 1           cost = 10
+
+        prerequisite = { focus = SAF_high_seas }
+        available = { 
+            has_navy_size = { size > 0 }
+            any_owned_state = { is_coastal = yes is_controlled_by = ROOT }
+        }
+
+        completion_reward = {
+            navy_experience = 50
+            add_doctrine_cost_reduction = { name = navy_doc_bonus cost_reduction = 0.5 uses = 2 category = naval_doctrine }
+        }
+    }
+    focus = {
+        id = SAF_the_dark_deep
+        icon = GFX_focus_generic_the_dark_deep
+
+        relative_position_id = SAF_shallow_waters
+        x = 3              y = 1               cost = 10
+
+        prerequisite = { focus = SAF_shallow_waters }
+        available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
+
+        completion_reward = {
+            add_tech_bonus = { name = ss_bonus bonus = 1.0 uses = 1 category = submarines_tech }
+            add_equipment_bonus = { bonus = { submarine = { torpedo_attack = 0.1 convoy_raiding_coordination = 0.1 } } }
+        }
+    }
+    focus = {
+        id = SAF_coastal_defense
+        icon = GFX_focus_generic_coastal_defense
+
+        relative_position_id = SAF_shallow_waters
+        x = -3              y = 1               cost = 10
+
+        prerequisite = { 
+            focus = SAF_aerostats
+            focus = SAF_shallow_waters 
+        }
+        available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
+
+        completion_reward = {
+            add_equipment_bonus = { bonus = { airship_equipment = { air_defence = 0.1 naval_strike_attack = 0.25 } } }
+            every_owned_state = {
+				limit = { is_controlled_by = ROOT   is_in_home_area = yes   is_coastal = yes }
+				add_building_construction = {
+					type = coastal_bunker
+					province = {
+						all_provinces = yes							
+						limit_to_naval_base = yes
+					}
+					level = 2
+					instant_build = yes
+				}
+			}
+        }
+    }
+
+## -- economy
+
+    focus = {
+        id = SAF_infrastructure_effort
+        icon = GFX_focus_generic_extraction_effort
+        x = 1              y = 5               cost = 10
+
+        ai_will_do = { base = 2 }
+
+        prerequisite = { focus = SAF_economic_development }
+		completion_reward = {
+            add_tech_bonus = {
+				name = construction_bonus bonus = 1.0 uses = 2
+				category = construction_tech
+                category = supply_tech
+			}
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes is_core_of = ROOT }
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes is_core_of = ROOT }
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
+		}
+    }
+    focus = {
+        id = SAF_rationing
+        icon = GFX_focus_generic_rationing
+
+        relative_position_id = SAF_infrastructure_effort
+        x = -3
+        y = 1
+
+        cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
+
+        prerequisite = { focus = SAF_infrastructure_effort }
+        completion_reward = {
+            add_stability = -0.05
+            add_war_support = -0.05
+            add_timed_idea = { idea = idea_rationing years = 2 }
+        }
+    }
+    focus = {
+        id = SAF_fuel
+        icon = GFX_focus_generic_fuel
+
+        relative_position_id = SAF_rationing
+        x = -3
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = SAF_rationing }
+        completion_reward = {
+            add_tech_bonus = {
+				name = synthetic_bonus bonus = 1.0 uses = 1
+				category = synth_resources_tech
+			}
+
+            random_owned_controlled_state = {
+                limit = { oil > 0 }
+                add_resource = { type = oil amount = 4 }
+            }
+        }
+    }
+    focus = {
+        id = SAF_women_at_work
+        icon = GFX_focus_generic_women_at_work
+
+        relative_position_id = SAF_rationing
+        x = 0
+        y = 1
+
+        cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = { has_stability < 0.25 factor = 0 }
+        }
+
+        available = { 
+            has_war = yes
+        }
+
+        prerequisite = { focus = SAF_rationing }
+        completion_reward = {
+            add_stability = -0.05
+            add_ideas = idea_women_at_work
+        }
+    }
+
+    focus = {
+        id = SAF_construct_civilian
+        icon = GFX_focus_generic_construct_civilian
+
+        relative_position_id = SAF_infrastructure_effort
+        x = 0
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 3 }
+
+        prerequisite = { focus = SAF_infrastructure_effort }
+		completion_reward = {
+            add_timed_idea = { idea = idea_industrial_expansion years = 2 }
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT is_in_home_area = 1 infrastructure > 1 }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+			}
+		}
+    }
+    focus = {
+        id = SAF_expand_mining
+        icon = GFX_focus_generic_expand_mining
+
+        relative_position_id = SAF_construct_civilian
+        x = 3
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = SAF_construct_civilian }
+        mutually_exclusive = { focus = SAF_efficiency_studies }
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes }
+                
+                add_resource = { type = steel amount = 12 }
+                add_resource = { type = aluminium amount = 6 }
+            }
+        }
+    }
+    focus = {
+        id = SAF_efficiency_studies
+        icon = GFX_focus_efficiency_studies
+
+        relative_position_id = SAF_construct_civilian
+        x = 6
+        y = 1
+
+        cost = 10
+
+        ai_will_do = { base = 3 }
+
+        prerequisite = { focus = SAF_construct_civilian }
+        mutually_exclusive = { focus = SAF_expand_mining }
+
+		completion_reward = {
+            add_ideas = idea_efficiency_studies
+		}
+    }
+    focus = {
+        id = SAF_war_industry
+        icon = GFX_focus_generic_war_industry
+
+        relative_position_id = SAF_construct_civilian
+        x = 0               y = 2           cost = 10
+
+        prerequisite = { focus = SAF_construct_civilian }
+        available = { has_war_support > 0.4 }
+
+        completion_reward = {
+            add_timed_idea = { idea = idea_war_industry years = 2 }
+            random_owned_controlled_state = {
+				limit = { is_core_of = ROOT is_in_home_area = yes infrastructure > 2 }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+			}
+        }
+    }
+
+    focus = {
+        id = SAF_telegraph
+        icon = GFX_focus_generic_telegraph
+
+        relative_position_id = SAF_infrastructure_effort
+        x = 3
+        y = 1
+
+        cost = 10
+
+        prerequisite = { focus = SAF_infrastructure_effort }
+        available = { has_tech = tech_telegraph }
+
+        completion_reward = {
+            add_political_power = 50
+            add_tech_bonus = {
+				name = communications_bonus bonus = 1.0 uses = 2
+				category = communications_tech
+			}
+        }
+    }
+
+## -- society
+    focus = {
+        id = SAF_political_ambitions
+        icon = GFX_focus_generic_political_ambitions
+
+        relative_position_id = SAF_expand_dockyards
+        x = 4
+        y = 4
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        completion_reward = {
+            add_political_power = 150
+        }
+    }
+    focus = {
+        id = SAF_international_affairs
+        icon = GFX_focus_generic_international_affairs
+
+        relative_position_id = SAF_political_ambitions
+        x = -4
+        y = 1
+        cost = 10
+
+        ai_will_do = {
+            base = 1
+            modifier = { threat > 0.1 factor = 3 }
+        }
+
+        prerequisite = { focus = SAF_political_ambitions }
+        completion_reward = {
+            add_timed_idea = { idea = idea_international_affairs years = 2 }
+        }
+    }
+    focus = {
+        id = SAF_expansionism
+        icon = GFX_focus_generic_expansionism
+
+        relative_position_id = SAF_international_affairs
+        x = -2
+        y = 1
+        cost = 10
+
+        available = { 
+            is_subject = no
+            has_war_support > 0.3
+        }
+
+        ai_will_do = {
+            base = 1
+            modifier = { threat > 0.2 factor = 3 }
+        }
+
+        prerequisite = { focus = SAF_international_affairs }
+        completion_reward = {
+            add_political_power = 100
+            add_timed_idea = { idea = idea_expansionism years = 1 }
+        }
+    }
+    focus = {
+        id = SAF_deterrence
+        icon = GFX_focus_generic_deterrence
+
+        relative_position_id = SAF_international_affairs
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = SAF_international_affairs }
+
+        completion_reward = {
+            custom_effect_tooltip = decision_effect_tooltip
+        }
+    }
+    focus = {
+        id = SAF_seek_alliances
+        icon = GFX_focus_generic_seek_alliances
+
+        relative_position_id = SAF_expansionism
+        x = -2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = SAF_expansionism }
+        available = { 
+            is_subject = no
+            is_in_faction = no
+        }
+
+        completion_reward = {
+            add_timed_idea = { idea = idea_seek_alliances years = 2 }
+        }
+    }
+    focus = {
+        id = SAF_on_our_own
+        icon = GFX_focus_generic_on_our_own
+
+        relative_position_id = SAF_expansionism
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = SAF_expansionism }
+        ai_will_do = { base = 0 }
+        
+        available = { 
+            is_subject = no 
+            is_in_faction = no
+        }
+
+        completion_reward = {
+            add_war_support = 0.05
+            if = { limit = { is_ai = no } set_rule = { can_create_factions = yes } }
+        }
+    }
+
+    focus = {
+        id = SAF_traditionalism
+        icon = GFX_focus_SAF_traditionalism
+
+        relative_position_id = SAF_political_ambitions
+        x = 0
+        y = 1
+        cost = 10
+
+        ai_will_do = { base = 2 }
+
+        mutually_exclusive = { focus = SAF_adjust_the_government }
+        prerequisite = { focus = SAF_political_ambitions }
+        completion_reward = {
+            add_stability = 0.05
+            add_timed_idea = { idea = idea_monarchism_tendencies years = 1 }
+        }
+    }
+    focus = {
+        id = SAF_public_support
+        icon = GFX_focus_generic_public_support
+
+        relative_position_id = SAF_traditionalism
+        x = -1
+        y = 1
+        cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
+
+        available = {
+            has_war = yes
+        }
+
+        prerequisite = { focus = SAF_traditionalism }
+        completion_reward = {
+            add_war_support = 0.05
+            custom_effect_tooltip = decision_effect_tooltip
+            hidden_effect = { set_country_flag = public_support_allowed }
+        }
+    }
+    focus = {
+        id = SAF_mobilize_the_masses
+        icon = GFX_focus_SAF_mobilize_the_masses
+
+        relative_position_id = SAF_traditionalism
+        x = 1
+        y = 1
+        cost = 10
+
+        ai_will_do = {
+            base = 2
+            modifier = { has_war = no factor = 0 }
+        }
+
+        prerequisite = { focus = SAF_traditionalism }
+        completion_reward = {
+            add_timed_idea = { idea = idea_heroes_of_the_veld years = 2 }
+        }
+    }
+    focus = {
+        id = SAF_strength_in_unity
+        icon = GFX_focus_generic_strength_in_unity
+
+        relative_position_id = SAF_public_support
+        x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { 
+            focus = SAF_public_support
+            focus = SAF_mobilize_the_masses
+        }
+        completion_reward = {
+            add_political_power = 50
+            add_timed_idea = { idea = idea_strength_in_unity years = 1 }
+        }
+    }
+    focus = {
+        id = SAF_the_everlasting_spirit
+        icon = GFX_focus_generic_the_everlasting_spirit
+
+        relative_position_id = SAF_strength_in_unity
+        x = 0
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = SAF_strength_in_unity }
+        completion_reward = {
+            add_ideas = idea_the_everlasting_spirit
+        }
+    }
+
+    focus = {
+        id = SAF_adjust_the_government
+        icon = GFX_focus_generic_adjust_the_government
+
+        relative_position_id = SAF_political_ambitions
+        x = 4
+        y = 1
+        cost = 10
+
+        mutually_exclusive = { focus = SAF_traditionalism }
+        prerequisite = { focus = SAF_political_ambitions }
+        completion_reward = {
+            add_stability = -0.05
+            add_popularity = { ideology = democratic popularity = 0.05 }
+
+            hidden_effect = { news_event = { id = _tensions.1 days = 7 random_days = 7 } }
+        }
+    }
+    focus = {
+        id = SAF_state_reform
+        icon = GFX_focus_generic_state_reform
+
+        relative_position_id = SAF_adjust_the_government
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = SAF_adjust_the_government }
+        completion_reward = {
+            add_timed_idea = { idea = idea_state_reform years = 1 }
+        }
+    }
+    focus = {
+        id = SAF_open_the_economy
+        icon = GFX_focus_generic_open_the_economy
+
+        relative_position_id = SAF_adjust_the_government
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = SAF_adjust_the_government }
+        completion_reward = {
+            add_timed_idea = { idea = idea_open_the_economy years = 1 }
+            random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+        }
+    }
+    focus = {
+        id = SAF_over_the_edge
+        icon = GFX_focus_generic_over_the_edge
+
+        relative_position_id = SAF_state_reform
+        x = 2
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = SAF_state_reform }
+
+        ai_will_do = {
+            base = 0
+            modifier = { has_stability < 0.2 add = 1 }
+        }
+        
+        completion_reward = {
+            add_timed_idea = { idea = idea_communism_tendencies years = 2 }
+        }
+    }
+    focus = {
+        id = SAF_embrace_modernity
+        icon = GFX_focus_generic_embrace_modernity
+
+        relative_position_id = SAF_state_reform
+        x = -1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = SAF_state_reform }
+        completion_reward = {
+            add_research_slot = 1
+        }
+    }
+}

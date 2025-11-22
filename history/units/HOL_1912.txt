@@ -2,26 +2,21 @@ division_template = {
 	name = "Infanterie Divisie"
 	division_names_group = HOL_INF_01
 	regiments = {
-		infantry = { x = 0 y = 0 }
-		infantry = { x = 0 y = 1 }
-        infantry = { x = 1 y = 0 }
-		infantry = { x = 1 y = 1 }
-        infantry = { x = 2 y = 0 }
-		infantry = { x = 2 y = 1 }
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
+        infantry = { x = 2 y = 0 }  infantry = { x = 2 y = 1 }  infantry = { x = 3 y = 0 }  infantry = { x = 3 y = 1 }
 	}
-	priority = 1
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
 }
 division_template = {
 	name = "Koloniaal Garnizoen"
 	division_names_group = INS_GAR_01
-    
-	regiments = {
-        infantry = { x = 0 y = 0 }
-		infantry = { x = 0 y = 1 }
-        infantry = { x = 1 y = 0 }
-		infantry = { x = 1 y = 1 }
+    regiments = {
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  
+        infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
 	}
-	priority = 0
+    priority = 0
 }
 
 # units

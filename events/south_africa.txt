@@ -1,0 +1,36 @@
+# -- trek
+add_namespace = saf_trek
+
+country_event = {
+    id = saf_trek.1
+    title = "Old Airships for South Africa?"   
+    desc = saf_trek.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Why not?"
+        send_equipment = { equipment = airship_equipment    amount = 6      target = SAF }
+
+        SAF = { 
+            news_event = { id = saf_trek.2 hours = 6 }
+            add_opinion_modifier = { target = GER modifier = opinion_air_trek } 
+        }
+    }
+
+    option = {
+        name = "No."
+    }
+}
+
+news_event = {
+    id = saf_trek.2
+    title = "[GER.GetName] Agrees!"
+    desc = saf_trek.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great!"
+    }
+}

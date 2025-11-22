@@ -650,7 +650,7 @@
     }
     focus = {
         id = HOL_on_our_own
-        icon = GFX_focus_generic_on_our_own
+        icon = GFX_focus_generic_across_the_sea
 
         relative_position_id = HOL_expansionism
         x = 1
@@ -666,8 +666,8 @@
         }
 
         completion_reward = {
-            add_war_support = 0.05
-            if = { limit = { is_ai = no } set_rule = { can_create_factions = yes } }
+            custom_effect_tooltip = decision_faction_effect_tooltip
+            hidden_effect = { if = { limit = { is_ai = no } set_rule = { can_create_factions = yes } } }
         }
     }
 
