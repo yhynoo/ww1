@@ -1,69 +1,16 @@
 oriental_investments = {
-    arm_moroccans = {
-        icon = generic_industry
-        fire_only_once = yes
-        cost = 100
-
-        ai_will_do = { factor = 9 }
-
-        available = { 
-            MOR = { 
-                exists = yes 
-                not = { has_war_with = ROOT }
-            } 
-            has_equipment = { infantry_equipment > 899 }
-        }
-
-        complete_effect = {
-            send_equipment = { equipment = infantry_equipment amount = 900 target = MOR }
-            hidden_effect = { MOR = { news_event = { id = _equipment.1 hours = 6 } } }
-        }
-    }
-    support_algeria = {
-        icon = generic_prepare_civil_war
-        fire_only_once = yes
-        cost = 100
-
-        available = {
-            ALG = { exists = no }
-            FRA = { has_stability < 0.5     controls_state = 459 }
-        }
-        cancel_trigger = { FRA = { has_stability > 0.5 } }
-
-        ai_will_do = { 
-            factor = 3
-            modifier = { 
-                or = {
-                    has_war_with = FRA
-                    and = { FRA = { has_war = yes } has_war = no date > 1916.1.1 }
-                } 
-                add = 6 
-            }
-        }
-
-        days_remove = 90
-
-        remove_effect = { 
-            hidden_effect = {
-                GER = { give_guarantee = ALG }
-                ALG = { news_event = { id = _uprising.1 hours = 6 } }
-                FRA = {
-                    algerian_independence = yes
-                    declare_war_on = { target = ALG type = annex_everything }
-                }
-            }
-            custom_effect_tooltip = tt_algeria
-        }
-    }
     arabian_oil = {
         icon = oil
-        cost = 75
+        cost = 50
         fire_only_once = yes
+        
+        targets_dynamic = yes
+        target_trigger = { FROM = { owns_state = 292 } }
 
         available = {
-            TUR = {
+            FROM = {
                 not = { has_war_with = ROOT }
-                controls_state = 291
+                controls_state = 292 has_resources_rights = { state = 292 resources = { oil } }
             }
         }
 
@@ -72,42 +19,85 @@ oriental_investments = {
             modifier = { has_war = yes add = 6 }
         }
 
-        complete_effect = { TUR = { country_event = { id = GER_oil.1 hours = 6 random_hours = 6 } } }
+        complete_effect = { FROM = { country_event = { id = GER_oil.1 hours = 6 random_hours = 6 } } }
+    }
+    align_morocco = {
+        icon = generic_civil_support
+        fire_only_once = yes
+        cost = 75
+
+        targets = { MOR }
+        available = {
+            can_declare_war_on = FROM
+            FROM = { exists = yes is_subject = no }
+        }
+
+        target_non_existing = yes
+        ai_will_do = {
+            factor = 0
+            modifier = { FROM = { has_war = no is_in_faction = no } add = 9 }
+        }
+
+        complete_effect = { FROM = { country_event = { id = _align.1 hours = 6 random_hours = 6 } } }
+    }
+    support_algeria = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        targets = { ALG }
+        target_non_existing = yes
+
+        available = {
+            FROM = { exists = no }
+            459 = { owner = { controls_state = PREV has_stability < 0.5 } }
+        }
+        cancel_trigger = { 459 = { owner = { has_stability > 0.5 } } }
+
+        days_remove = 90
+        remove_effect = { 
+            hidden_effect = {
+                give_guarantee = FROM
+                FROM = { news_event = { id = _uprising.1 hours = 6 } }
+                459 = {
+                    owner = {
+                        algerian_independence = yes
+                        declare_war_on = { target = FROM type = annex_everything }
+                    }
+                }
+            }
+            custom_effect_tooltip = tt_algeria
+        }
     }
 }
 
 embrace_weltpolitik = {
     demand_east_africa = {
-        icon = border_war
-        cost = 150
+        icon = generic_ignite_civil_war
         fire_only_once = yes
+        cost = 50
 
-        available = {
-            not = { has_war_with = ENG }
-            any_state = {
-                or = { state = 542 state = 545 }
-                is_owned_by = ENG
-            }
+        targets_dynamic = yes
+        target_trigger =   {
+            can_declare_war_on = FROM 
+            any_state = { or = { state = 542 state = 545 } is_owned_and_controlled_by = FROM } 
         }
+        highlight_states = { highlight_states_trigger = { or = { state = 542 state = 545 } is_owned_and_controlled_by = FROM } }
 
-        ai_will_do = { 
+        ai_will_do = {
             factor = 3
-            modifier = { 
-                and = { date > 1914.7.1 has_war = no } 
-                add = 6
+            modifier = {
+                and = { has_war = no date > 1915.4.1 }
+                factor = 3
             }
         }
 
-        complete_effect = {
+        complete_effect = { 
             every_state = {
-                limit = { 
-                    or  = { state = 542 state = 545 }
-                    is_owned_by = ENG
-                }
-                add_claim_by = GER
+                limit = { or = { state = 542 state = 545 }  is_owned_and_controlled_by = FROM }
+                add_claim_by = ROOT
             }
-
-            ENG = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
+            FROM = { country_event = { id = _demand.1 hours = 6 } } 
         }
     }
     expand_in_the_east = {
