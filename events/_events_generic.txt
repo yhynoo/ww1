@@ -664,3 +664,19 @@ country_event = {
         start_civil_war = { ideology = monarchism size = 0.5 }
     }
 }
+
+## -- autonomy
+add_namespace = _autonomy
+
+news_event = {
+    id = _mobilization.1
+    title = "[FROM.GetName] Supports Our Independence Efforts"
+    desc = _autonomy.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        add_opinion_modifier = { target = FROM modifier = opinion_supports_our_independence }
+    }
+}

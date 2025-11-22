@@ -92,6 +92,21 @@ contain_eastern_threats = {
 }
 
 denounce_adventurism = {
+    use_church_influence = {
+        icon = generic_civil_support
+        days_remove = 90
+        cost = 50
+
+        ai_will_do = {
+            factor = 0
+            modifier = { has_war_with = GER add = 9 }
+        }
+
+        modifier = {
+            war_support_weekly = 0.01
+            army_core_defence_factor = 0.05
+        }
+    }
     guarantees_to_france = {
         icon = generic_prepare_civil_war
         fire_only_once = yes
@@ -112,21 +127,6 @@ denounce_adventurism = {
 
         complete_effect = {
             FROM = { country_event = { id = _guarantees.1 hours = 6 random_hours = 6 } }
-        }
-    }
-    use_church_influence = {
-        icon = generic_civil_support
-        days_remove = 90
-        cost = 50
-
-        ai_will_do = {
-            factor = 0
-            modifier = { has_war_with = GER add = 9 }
-        }
-
-        modifier = {
-            war_support_weekly = 0.01
-            army_core_defence_factor = 0.05
         }
     }
 }

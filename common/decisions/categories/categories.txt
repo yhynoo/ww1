@@ -21,7 +21,12 @@ _internal_struggle = {
 
 _economic_decisions = {
     visible = { not = { has_government = communism } }
+    visible_when_empty = yes
+    priority = 3
+}
 
+_communist_economic_decisions = {
+    visible = { has_government = communism }
     visible_when_empty = yes
     priority = 3
 }
