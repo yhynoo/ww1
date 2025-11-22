@@ -14,18 +14,6 @@ _stosstrupp_infantry = {
 
 _heavy_infantry = {
     role = heavy_infantry
-    _1916_heavy_infantry = {
-        enable = { 
-            and = { has_tech = mg_1     has_tech = tech_engineers }
-            not = { has_idea = extensive_conscription }
-        }
-        upgrade_prio = { factor = 2 }
-        target_template = {
-            support = { artillery = 1 mg_company = 1 engineer = 1 }
-            regiments = { infantry = 8 artillery_brigade = 2 }
-        }
-    }
-
     _1917_heavy_infantry = {
         enable = { 
             and = { has_tech = mg_1     has_tech = tech_engineers   has_tech = heavy_1916 }
