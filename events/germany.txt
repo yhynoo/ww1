@@ -1,37 +1,22 @@
 ## -- airships
-add_namespace = GER_airships
-news_event = {
-    id = GER_airships.0
-    hidden = yes
-
-    trigger = { tag = GER   date > 1913.3.1 }
-    fire_only_once = yes
-
-    option = { 
-        random_list = {
-            1 = { news_event = GER_airships.1 }
-            1 = { news_event = GER_airships.2 }
-        }
-    }
-}
+add_namespace = ger_airships
 
 news_event = {
-    id = GER_airships.1
-    title = "Airshow in Johannisthal"
-    desc = GER_airships.1.d
+    id = ger_airships.1
+    title = "Airships March in Johannisthal"
+    desc = ger_airships.1.d
 
     is_triggered_only = yes
 
     option = { 
         name = "What a view!"
-        add_war_support = 0.025
-        air_experience = 25
+        add_war_support = 0.025     air_experience = 25
     }
 }
 news_event = {
-    id = GER_airships.2
+    id = ger_airships.2
     title = "Tragedy in Johannisthal!"
-    desc = GER_airships.2.d
+    desc = ger_airships.2.d
 
     is_triggered_only = yes
 
@@ -42,12 +27,12 @@ news_event = {
 }
 
 ## -- oil 
-add_namespace = GER_oil
+add_namespace = ger_oil
 
 country_event = {
-    id = GER_oil.1
+    id = ger_oil.1
     title = "[FROM.GetName] Asks for Access to Oil"
-    desc = GER_oil.1.d
+    desc = ger_oil.1.d
 
     is_triggered_only = yes
 
@@ -57,7 +42,7 @@ country_event = {
         
         manage_turkish_debt = yes
         hidden_effect = { 
-            news_event = { id = GER_oil.2 hours = 6 }
+            news_event = { id = ger_oil.2 hours = 6 }
 
             give_resource_rights = { receiver = FROM state = 291 resources = { oil } }
             FROM = { give_guarantee = ROOT } 
@@ -77,9 +62,9 @@ country_event = {
 }
 
 news_event = {
-    id = GER_oil.2
-    title = "Germany Accesses Iraqi Oil!"
-    desc = GER_oil.2.d
+    id = ger_oil.2
+    title = "Germany Accesses Arabian Oil!"
+    desc = ger_oil.2.d
 
     is_triggered_only = yes
     major = yes
@@ -88,7 +73,7 @@ news_event = {
         name = "Alright."
         if = { 
             limit = { tag = GER }
-            add_opinion_modifier = { target = TUR modifier = opinion_iraqi_oil }
+            add_opinion_modifier = { target = TUR modifier = opinion_arabian_oil }
         }
     }
 }
@@ -102,6 +87,7 @@ news_event = {
     desc = ger_alsace.1.d
 
     is_triggered_only = yes
+    trigger = { GER = { controls_state = 28 } }
     major = yes
 
     option = {
@@ -114,12 +100,12 @@ news_event = {
 }
 
 ## -- east
-add_namespace = GER_east
+add_namespace = ger_east
 
 news_event = {
-    id = GER_east.1
+    id = ger_east.1
     title = "[GER.GetName] Looks to the East?"
-    desc = GER_east.1.d
+    desc = ger_east.1.d
 
     is_triggered_only = yes
     major = yes
@@ -134,18 +120,15 @@ news_event = {
 }
 
 ## -- atlantic
-add_namespace = GER_atlantic
+add_namespace = ger_atlantic
 
 country_event = {
-    id = GER_atlantic.1
+    id = ger_atlantic.1
     title = "Atlantic Submarine Warfare"
-    desc = GER_atlantic.1.d
+    desc = ger_atlantic.1.d
 
-    trigger = {
-        and = { tag = GER   war_length_with = { tag = ENG months > 6 } }
-        not = { has_country_flag = ger_atlantic_done }
-    }
-    immediate = { set_country_flag = ger_atlantic_done }
+    is_triggered_only = yes
+    trigger = { has_war_with = ENG }
 
     option = {
         name = "Gott Strafe England!"
@@ -157,26 +140,24 @@ country_event = {
         }
 
         hidden_effect = {
-            random = { chance = 50 USA = { news_event = { id = GER_atlantic.2 days = 28 random_days = 140 } } }
-
-            # -- argentina and spain
+            random = { chance = 50 USA = { news_event = { id = ger_atlantic.2 days = 28 random_days = 140 } } }
             every_country = {
                 limit = { or = { tag = ARG tag = SPA } }
-                random = { chance = 50 news_event = { id = GER_atlantic.3 days = 28 random_days = 140 } }
+                random = { chance = 50 news_event = { id = ger_atlantic.3 days = 28 random_days = 140 } }
             }
         }
 
         ai_chance = { factor = 4 }
     }
     option = {
-        name = "We will win in a conventional way."
+        name = "We will win this war in a conventional way."
         ai_chance = { factor = 1 }
     }
 }
 news_event = {
-    id = GER_atlantic.2
+    id = ger_atlantic.2
     title = "Lusitania Lost in a Submarine Attack!"
-    desc = GER_atlantic.2.d
+    desc = ger_atlantic.2.d
 
     is_triggered_only = yes
     major = yes
@@ -192,9 +173,9 @@ news_event = {
     }
 }
 news_event = {
-    id = GER_atlantic.3
+    id = ger_atlantic.3
     title = "Attacks on [ROOT.GetAdjective] Trade Fleet"
-    desc = GER_atlantic.3.d
+    desc = ger_atlantic.3.d
 
     is_triggered_only = yes
     trigger = { not = { has_war_with = GER } }

@@ -6,6 +6,17 @@ on_actions = {
                 news_event = { id = aus_emperor.1 months = 58 days = 28 }
             }
 
+            GER = {
+                # airships
+                random_list = {
+                    1 = { news_event = { id = ger_airships.1 months = 10 random_days = 28 } }
+                    1 = { news_event = { id = ger_airships.2 months = 10 random_days = 28 } }
+                }
+
+                # alsace
+                news_event = { id = ger_alsace.1 months = 23 random_days = 28 }
+            }
+
             # atmosphere events
             USA = {
                 # 1912
@@ -47,6 +58,17 @@ on_actions = {
                     1 = { news_event = { id = _mutinies.1 random_days = 28 } }
                     4 = { }
                 }
+            }
+        }
+    }
+    on_war_relation_added = {
+        effect = {
+            if = {
+                limit = { 
+                    or = { tag = GER FROM = { tag = GER } }
+                    GER = { has_war_with = ENG }
+                }
+                GER = { country_event = { id = ger_atlantic.1 months = 6 random_days = 28 } }
             }
         }
     }

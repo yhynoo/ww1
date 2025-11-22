@@ -150,7 +150,7 @@ focus_tree = {
             random_owned_state = {
                 limit = { is_capital = yes }
                 add_building_construction = { type = infrastructure level = 1 instant_build = yes }
-                add_building_construction = { type = air_base level = 2 instant_build = yes }
+                add_building_construction = { type = air_factor level = 2 instant_build = yes }
             }
         }
     }
@@ -337,7 +337,7 @@ focus_tree = {
 					type = coastal_bunker
 					province = {
 						all_provinces = yes							
-						limit_to_naval_base = yes
+						limit_to_naval_factor = yes
 					}
 					level = 2
 					instant_build = yes
@@ -353,7 +353,7 @@ focus_tree = {
         icon = GFX_focus_generic_extraction_effort
         x = 1              y = 5               cost = 10
 
-        ai_will_do = { base = 2 }
+        ai_will_do = { factor = 2 }
 
         prerequisite = { focus = USA_economic_development }
 		completion_reward = {
@@ -385,7 +385,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 2
+            factor = 2
             modifier = { has_war = no factor = 0 }
         }
 
@@ -430,7 +430,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1
+            factor = 1
             modifier = { has_stability < 0.25 factor = 0 }
         }
 
@@ -455,7 +455,7 @@ focus_tree = {
 
         cost = 10
 
-        ai_will_do = { base = 3 }
+        ai_will_do = { factor = 3 }
 
         prerequisite = { focus = USA_infrastructure_effort }
 		completion_reward = {
@@ -499,7 +499,7 @@ focus_tree = {
 
         cost = 10
 
-        ai_will_do = { base = 3 }
+        ai_will_do = { factor = 3 }
 
         prerequisite = { focus = USA_construct_civilian }
         mutually_exclusive = { focus = USA_expand_mining }
@@ -560,7 +560,7 @@ focus_tree = {
         y = 4
         cost = 10
 
-        ai_will_do = { base = 2 }
+        ai_will_do = { factor = 2 }
 
         completion_reward = {
             add_political_power = 150
@@ -576,7 +576,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1
+            factor = 1
             modifier = { MEX = { has_war = yes } add = 1 }
         }
 
@@ -598,11 +598,11 @@ focus_tree = {
 
         available = { 
             is_subject = no
-            has_war_support > 0.3
+            not = { has_idea = idea_isolationist_society }
         }
 
         ai_will_do = {
-            base = 1
+            factor = 1
             modifier = { threat > 0.2 add = 2 }
         }
 
@@ -623,7 +623,7 @@ focus_tree = {
         prerequisite = { focus = USA_international_affairs }
         available = { is_subject = no }
 
-        ai_will_do = { base = 2 }
+        ai_will_do = { factor = 2 }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
@@ -648,15 +648,12 @@ focus_tree = {
         }
 
         ai_will_do = { 
-            base = 0
-            modifier = { date > 1918.1.1 add = 1 }
+            factor = 0
+            modifier = { has_completed_focus = USA_traditionalism add = 1 }
         }
 
         completion_reward = {
-            add_war_support = 0.05
-            hidden_effect = { news_event = { id = _alliance.1 hours = 6 } }
-            
-            create_faction = "Washington Charter"
+            add_timed_idea = { idea = idea_seek_alliances years = 2 }
         }
     }
     focus = {
@@ -669,22 +666,16 @@ focus_tree = {
         cost = 10
 
         prerequisite = { focus = USA_expansionism }
-        available = { 
-            is_subject = no
-            has_country_leader = { character = USA_woodrow_wilson ruling_only = yes }
-            not = { has_idea = idea_isolationist_society }
-        }
+        available = { is_subject = no }
 
         ai_will_do = { 
-            base = 0
-            modifier = { 
-                and = { has_country_flag = usa_wilsonian has_war = yes }
-                add = 2 
-            }
+            factor = 0
+            modifier = { not = { has_country_flag = usa_wilsonian } add = 1 }
         }
 
         completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
+            custom_effect_tooltip = decision_faction_effect_tooltip
+            hidden_effect = { if = { limit = { is_ai = no } set_rule = { can_create_factions = yes } } }
         }
     }
 
@@ -698,13 +689,14 @@ focus_tree = {
         cost = 10
 
         ai_will_do = { 
-            base = 0
+            factor = 0
             modifier = { has_country_flag = usa_wilsonian add = 2 }
         }
 
         mutually_exclusive = { focus = USA_adjust_the_government }
         available = {
-            threat > 0.5
+            has_government = democratic
+            has_war_support > 0.5
         }
 
         prerequisite = { focus = USA_political_ambitions }
@@ -722,7 +714,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 2
+            factor = 2
             modifier = { has_war = no factor = 0 }
         }
 
@@ -747,7 +739,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 2
+            factor = 2
             modifier = { has_war = no factor = 0 }
         }
 
@@ -799,7 +791,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = { 
-            base = 0
+            factor = 0
             modifier = { has_country_flag = usa_alternative add = 2 }
         }
 
@@ -865,7 +857,7 @@ focus_tree = {
         prerequisite = { focus = USA_state_reform }
 
         ai_will_do = {
-            base = 0
+            factor = 0
             modifier = { monarchism > 0.25 add = 2 }
         }
         

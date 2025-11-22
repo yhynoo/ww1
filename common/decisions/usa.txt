@@ -1,36 +1,11 @@
 monroe_doctrine = {
-    align_mexico = {
-        icon = generic_form_nation
-        fire_only_once = yes
-        cost = 150
-
-        available = {
-            any_country = { original_tag = MEX has_government = democratic }
-        }
-
-        ai_will_do = { 
-            base = 0
-            modifier = {
-                MEX = { has_civil_war = no has_government = democratic }
-                add = 9
-            }
-            modifier = { has_completed_focus = USA_on_our_own add = 3 }
-        }
-
-        complete_effect = {
-            MEX = { country_event = { id = _align.1 hours = 6 random_hours = 6 } }
-        }
-    }
     demand_colombia_withdraw = {
         icon = border_war
         fire_only_once = yes
-        cost = 100
+        cost = 50
 
         available = {
-            any_state = { 
-                is_core_of = MEX 
-                is_controlled_by = COL 
-            }
+            any_state = { is_core_of = MEX is_controlled_by = COL }
         }
 
         ai_will_do = {
@@ -45,63 +20,85 @@ monroe_doctrine = {
     andes_for_protection = {
         icon = chromium
         fire_only_once = yes
-        cost = 75
-
+        cost = 50
+        
         available = {
-            any_state = {
-                or = { state = 279 state = 506 }
-                is_owned_and_controlled_by = ADE
+            506 = {
+                custom_trigger_tooltip = {
+                    tooltip = tt_resource_rights
+                    owner = {
+                        not = { has_war_with = ROOT }
+                        controls_state = 506 has_resources_rights = { state = 506 resources = { chromium } }
+                    }
+                }
             }
         }
 
-        ai_will_do = { base = 6 }
-
-        complete_effect = {
-            ADE = { country_event = { id = usa_andes.1 hours = 6 } }
+        ai_will_do = { 
+            factor = 9
+            modifier = { has_war = yes add = 6 }
         }
+
+        complete_effect = { 506 = { owner = { country_event = { id = usa_andes.1 hours = 6 random_hours = 6 } } } }
+    }
+    align_mexico = {
+        icon = generic_civil_support
+        fire_only_once = yes
+        cost = 75
+
+        targets_dynamic = yes
+        target_trigger = { FROM = { original_tag = MEX has_government = democratic } }
+        
+        available = {
+            can_declare_war_on = FROM
+            FROM = { exists = yes is_subject = no }
+        }
+
+        target_non_existing = yes
+        ai_will_do = {
+            factor = 3
+            modifier = { FROM = { has_civil_war = yes } add = 9 }
+        }
+
+        complete_effect = { FROM = { country_event = { id = _align.1 hours = 6 random_hours = 6 } } }
     }
 }
 
-adapt_wilsonianism = {
+across_the_pacific = {
     liberate_australia = {
         icon = generic_political_discourse
         cost = 75
-        days_remove = 90
 
-        available = {
-            AST = { is_subject = yes }
-        }
+        targets = { AST }
+        available = { FROM = { is_subject = yes not = { has_war_with = ROOT } } }
 
         ai_will_do = { 
             base = 6
             modifier = { not = { is_ally_with = ENG } add = 3 }
         }
 
-        complete_effect = {
-            AST = { news_event = { id = usa_australia.1 hours = 6 random_hours = 6 } }
-        }
+        complete_effect = { FROM = { news_event = { id = _autonomy.1 hours = 6 random_hours = 6 } } }
     }
-    aid_to_eastern_europe = {
-        icon = generic_industry
+    assert_claims_in_oceania = {
+        icon = generic_ignite_civil_war
+        fire_only_once = yes
         cost = 50
-        days_remove = 90
 
-        targets = { POL UKR }
-        target_non_existing = yes
-
-        ai_will_do = {
-            base = 0
-            modifier = { FROM = { has_government = ROOT } add = 6 }
+        targets_dynamic = yes
+        target_trigger =   {
+            can_declare_war_on = FROM 
+            any_state = { or = { state = 581 state = 636 state = 639 state = 643 } is_owned_and_controlled_by = FROM } 
         }
+        highlight_states = { highlight_states_trigger = { or = { state = 581 state = 636 state = 639 state = 643 } is_owned_and_controlled_by = FROM } }
 
-        available = { 
-            FROM = { exists = yes } 
-            has_equipment = { infantry_equipment > 599 }
-        }
+        ai_will_do = { factor = 6 }
 
-        complete_effect = {
-            add_war_support = 0.025
-            send_equipment = { equipment = infantry_equipment amount = 600 target = FROM }
+        complete_effect = { 
+            every_state = {
+                limit = { or = { state = 581 state = 636 state = 639 state = 643 }  is_owned_and_controlled_by = FROM }
+                add_claim_by = ROOT
+            }
+            FROM = { country_event = { id = _demand.1 hours = 6 } } 
         }
     }
 }

@@ -677,8 +677,8 @@
         }
 
         completion_reward = {
-            add_war_support = 0.05
-            set_rule = { can_create_factions = yes }
+            custom_effect_tooltip = decision_faction_effect_tooltip
+            hidden_effect = { if = { limit = { is_ai = no } set_rule = { can_create_factions = yes } } }
         }
     }
 

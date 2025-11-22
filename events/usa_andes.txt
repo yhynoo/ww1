@@ -14,10 +14,7 @@ country_event = {
             give_guarantee = ADE
         }
 
-        every_controlled_state = {
-            limit = { or = { state = 279 state = 506 } }
-            give_resource_rights = { receiver = USA resources = { chromium } }
-        }
+        506 = { give_resource_rights = { receiver = USA resources = { chromium } } }
 
         hidden_effect = { 
             USA = { add_ai_strategy = { type = protect id = ADE value = 60 } }

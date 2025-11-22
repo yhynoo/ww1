@@ -150,7 +150,7 @@
             random_owned_state = {
                 limit = { is_capital = yes }
                 add_building_construction = { type = infrastructure level = 1 instant_build = yes }
-                add_building_construction = { type = air_base level = 2 instant_build = yes }
+                add_building_construction = { type = air_factor level = 2 instant_build = yes }
             }
         }
     }
@@ -337,7 +337,7 @@
 					type = coastal_bunker
 					province = {
 						all_provinces = yes							
-						limit_to_naval_base = yes
+						limit_to_naval_factor = yes
 					}
 					level = 2
 					instant_build = yes
@@ -353,7 +353,7 @@
         icon = GFX_focus_generic_extraction_effort
         x = 1              y = 5               cost = 10
 
-        ai_will_do = { base = 2 }
+        ai_will_do = { factor = 2 }
 
         prerequisite = { focus = JAP_economic_development }
 		completion_reward = {
@@ -385,7 +385,7 @@
         cost = 10
 
         ai_will_do = {
-            base = 2
+            factor = 2
             modifier = { has_war = no factor = 0 }
         }
 
@@ -430,7 +430,7 @@
         cost = 10
 
         ai_will_do = {
-            base = 1
+            factor = 1
             modifier = { has_stability < 0.25 factor = 0 }
         }
 
@@ -455,7 +455,7 @@
 
         cost = 10
 
-        ai_will_do = { base = 3 }
+        ai_will_do = { factor = 3 }
 
         prerequisite = { focus = JAP_infrastructure_effort }
 		completion_reward = {
@@ -499,7 +499,7 @@
 
         cost = 10
 
-        ai_will_do = { base = 3 }
+        ai_will_do = { factor = 3 }
 
         prerequisite = { focus = JAP_construct_civilian }
         mutually_exclusive = { focus = JAP_expand_mining }
@@ -560,7 +560,7 @@
         y = 4
         cost = 10
 
-        ai_will_do = { base = 2 }
+        ai_will_do = { factor = 2 }
 
         completion_reward = {
             add_political_power = 150
@@ -576,7 +576,7 @@
         cost = 10
 
         ai_will_do = {
-            base = 3
+            factor = 3
             modifier = { threat > 0.1 factor = 3 }
         }
 
@@ -602,7 +602,7 @@
         }
 
         ai_will_do = {
-            base = 3
+            factor = 3
             modifier = { threat > 0.2 factor = 3 }
         }
 
@@ -644,7 +644,7 @@
         }
 
         ai_will_do = { 
-            base = 2
+            factor = 2
             modifier = { has_war = yes factor = 2 }
         }
 
@@ -662,7 +662,10 @@
         cost = 10
 
         prerequisite = { focus = JAP_expansionism }
-        ai_will_do = { base = 0 }
+        ai_will_do = { 
+            factor = 0 
+            modifier = { and = { controls_state = 431 has_war = no } add = 1 }
+        }
         
         available = { 
             is_subject = no 
@@ -670,8 +673,8 @@
         }
 
         completion_reward = {
-            add_war_support = 0.05
-            set_rule = { can_create_factions = yes }
+            custom_effect_tooltip = decision_faction_effect_tooltip
+            hidden_effect = { if = { limit = { is_ai = no } set_rule = { can_create_factions = yes } } }
         }
     }
 
@@ -701,7 +704,7 @@
         cost = 10
 
         ai_will_do = {
-            base = 2
+            factor = 2
             modifier = { has_war = no factor = 0 }
         }
 
@@ -740,7 +743,7 @@
         cost = 10
 
         ai_will_do = {
-            base = 1
+            factor = 1
             modifier = { has_war = no factor = 0 }
         }
 
@@ -837,7 +840,7 @@
         prerequisite = { focus = JAP_state_reform }
 
         ai_will_do = {
-            base = 0
+            factor = 0
             modifier = { surrender_progress > 0.1 add = 1 }
         }
         
