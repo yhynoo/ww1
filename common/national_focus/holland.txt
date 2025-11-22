@@ -577,8 +577,6 @@
 
         ai_will_do = { base = 2 }
 
-        available = { is_subject = no }
-
         prerequisite = { focus = HOL_political_ambitions }
         completion_reward = {
             add_timed_idea = { idea = idea_international_affairs years = 2 }
@@ -619,11 +617,7 @@
         cost = 10
 
         prerequisite = { focus = HOL_international_affairs }
-        available = { 
-            is_subject = no
-            controls_state = 6 
-        }
-
+        available = { controls_state = 6 }
         ai_will_do = { base = 2 }
 
         completion_reward = {

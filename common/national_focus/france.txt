@@ -580,8 +580,6 @@
             modifier = { threat > 0.1 factor = 3 }
         }
 
-        available = { is_subject = no }
-
         prerequisite = { focus = FRA_political_ambitions }
         completion_reward = {
             add_timed_idea = { idea = idea_international_affairs years = 2 }
@@ -613,7 +611,7 @@
         }
     }
     focus = {
-        id = FRA_echoes_of_agadir
+        id = FRA_deterrence
         icon = GFX_focus_generic_deterrence
 
         relative_position_id = FRA_international_affairs
@@ -622,8 +620,7 @@
         cost = 10
 
         prerequisite = { focus = FRA_international_affairs }
-        available = { is_subject = no has_idea = idea_echoes_of_agadir }
-
+        available = { has_idea = idea_echoes_of_agadir }
         ai_will_do = { base = 3 }
 
         completion_reward = {

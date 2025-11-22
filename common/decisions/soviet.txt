@@ -1,36 +1,7 @@
-slavic_unrest = {
-    support_greeks = {
-        icon = generic_prepare_civil_war
-        fire_only_once = yes
-        cost = 150
-
-        available = {
-            GRE = { exists = no }
-            TUR = { has_stability < 0.5 }
-        }
-        cancel_trigger = { TUR = { has_stability > 0.5 } }
-
-        ai_will_do = { 
-            base = 6
-            modifier = { has_war_with = TUR add = 6 }
-        }
-
-        days_remove = 90
-        complete_effect = {
-            news_event = { id = soviet_greece.1 hours = 6 random_hours = 6 }
-            hidden_effect = { country_event = { id = france_teheran.1 days = 14 } }
-        }
-
-        remove_effect = { 
-            custom_effect_tooltip = tt_greeks
-            hidden_effect = { 
-                TUR = { news_event = { id = soviet_greece.2 hours = 6 random_hours = 6 } }
-            }
-        }
-    }
+orthodox_unrest = {
     unrest_in_galicia = {
-        icon = generic_prepare_civil_war
-        cost = 100
+        icon = generic_civil_support
+        cost = 75
         fire_only_once = yes
 
         available = {
@@ -42,99 +13,115 @@ slavic_unrest = {
         }
 
         ai_will_do = {
-            base = 3
+            factor = 3
             modifier = { date > 1914.4.1 add = 9 }
-
-            # if it's too late, don't do it.
-            modifier = { and = { date > 1915.1.1 is_in_faction = no } factor = 0 }
+            modifier = { and = { date > 1915.1.1 is_in_faction = no } factor = 0 }      # don't do it too late
         }
 
         complete_effect = {
             AUS = { news_event = { id = aus_galicia.1 hours = 6 } }
-            hidden_effect = { add_ai_strategy = { type = prepare_for_war      id = AUS        value = 60 } }
         }
+    }
+    support_armenia = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 75
+
+        targets = { ARM }
+        target_non_existing = yes
+
+        available = {
+            FROM = { exists = no }
+            354 = { owner = { controls_state = PREV has_stability < 0.5 } }
+        }
+        cancel_trigger = { 354 = { owner = { has_stability > 0.5 } } }
+
+        days_remove = 90
+        remove_effect = { 
+            hidden_effect = {
+                give_guarantee = FROM
+                FROM = { news_event = { id = _uprising.1 hours = 6 } }
+                354 = {
+                    owner = {
+                        armenian_independence = yes
+                        declare_war_on = { target = FROM type = annex_everything }
+                    }
+                }
+            }
+            custom_effect_tooltip = tt_armenia
+        }
+    }
+    guarantees_to_serbia = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        targets = { SER }
+        target_non_existing = yes
+
+        available = {
+            FROM = { exists = yes }
+            and = { not = { has_war_with = FROM } not = { is_ally_with = FROM } }
+        }
+
+        ai_will_do = {
+            factor = 0
+            modifier = { FROM = { has_government = ROOT } add = 9 }
+        }
+
+        complete_effect = { FROM = { country_event = { id = _guarantees.1 hours = 6 random_hours = 6 } } }
     }
 }
 
 far_east_affairs = {
-    align_afghans = {
-        icon = generic_civil_support
-        fire_only_once = yes
-        cost = 100
-
-        available = {
-            can_declare_war_on = AFG
-            AFG = { exists = yes is_subject = no }
-        }
-
-        ai_will_do = {
-            base = 0
-            modifier = { AFG = { is_in_faction = no } add = 9 }
-        }
-
-        complete_effect = {
-            AFG = { country_event = { id = _align.1 hours = 6 random_hours = 6 } }
-        }
-    }
-    harbin_section = {
-        icon = generic_form_nation
-        fire_only_once = yes
-        cost = 100
-
-        available = {
-            FER = { exists = no }
-            not = { has_war_with = MAN }
-
-            any_state = {
-                or = { state = 328 state = 619 }
-                is_controlled_by = MAN
-            }
-        }
-
-        ai_will_do = {
-            base = 6
-            modifier = { MAN = { has_war = yes } add = 3 }
-        }
-
-        complete_effect = {
-            MAN = { country_event = { id = soviet_harbin.1 hours = 6 random_hours = 6 } }
-        }
-    }
     avenge_1905 = {
         icon = generic_ignite_civil_war
         fire_only_once = yes
-        cost = 100
+        cost = 50
 
-        available = {
-            any_state = {
-                or = { state = 72 state = 654 }
-                not = { is_owned_by = SOV }
-
-                owner = { not = { has_war_with = ROOT } }
-            }
+        targets_dynamic = yes
+        target_trigger = {
+            can_declare_war_on = FROM 
+            72 = { is_owned_and_controlled_by = FROM } 
         }
+        highlight_states = { highlight_states_trigger = { state = 72 } }
 
         ai_will_do = {
-            base = 3
-            modifier = { 
-                FER = { exists = yes is_subject_of = SOV } 
-                add = 9 
-            }
+            factor = 2
+            modifier = { FROM = { has_war = yes factor = 6 } }
         }
 
-        complete_effect = {
-            every_state = {
-                limit = {
-                    or = { state = 72 state = 654 }
-                    not = { is_owned_by = SOV }
-                }
-                add_claim_by = SOV
-            }
+        complete_effect = { 
+            FROM = { country_event = { id = _demand.1 hours = 6 } } 
+        }
+    }
+    support_mongolia = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 75
 
-            every_country = {
-                limit = { or = { owns_state = 72 owns_state = 654 } }
-                country_event = { id = _demand.1 hours = 6 random_hours = 6 }
+        targets = { MON }
+        target_non_existing = yes
+
+        available = {
+            FROM = { exists = no }
+            330 = { owner = { controls_state = PREV has_stability < 0.5 } }
+        }
+        cancel_trigger = { 330 = { owner = { has_stability > 0.5 } } }
+
+        days_remove = 90
+        remove_effect = { 
+            hidden_effect = {
+                give_guarantee = FROM
+                FROM = { news_event = { id = _uprising.1 hours = 6 } }
+                330 = {
+                    owner = {
+                        mongolian_independence = yes
+                        declare_war_on = { target = FROM type = annex_everything }
+                    }
+                }
             }
+            custom_effect_tooltip = tt_mongolia
         }
     }
 }
