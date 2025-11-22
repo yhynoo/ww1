@@ -6,106 +6,85 @@
         modifier = { add = 20 original_tag = MEX }
     }
 
-    continuous_focus_position = { x = 200 y = 800 }
+    continuous_focus_position = { x = 2750 y = 50 }
 
-    ## military branch
+## -- army
     focus = {
-        id = MEX_adjust_the_military
-        icon = GFX_focus_generic_budget
-
-        x = 7
-        y = 0
-        cost = 10
-
-        ai_will_do = {
-            base = 1
-            modifier = { has_war = yes factor = 3 }
-        }
-
-        completion_reward = {
-            add_command_power = 50
-            add_war_support = 0.05
-
-            hidden_effect = {
-                random = {
-                    chance = 50
-                    country_event = { id = _army.1 days = 30 random_days = 120 }
-                }
-                random = {
-                    chance = 50
-                    country_event = { id = _army.2 days = 30 random_days = 120 }
-                }
-            }
-        }
-    }
-    focus = {
-        id = MEX_focus_army
+        id = MEX_army
         icon = GFX_focus_generic_army
+        x = 0           y = 0           cost = 10
 
-        relative_position_id = MEX_adjust_the_military
-        x = -2
-        y = 1
-        cost = 10
-
-        prerequisite = { focus = MEX_adjust_the_military }
         completion_reward = {
-            army_experience = 50
+            army_experience = 25
+            add_war_support = 0.05
         }
     }
     focus = {
-        id = MEX_extend_conscription
+        id = MEX_conscription
         icon = GFX_focus_generic_extend_conscription
 
-        relative_position_id = MEX_focus_army
-        x = -4
-        y = 1
-        cost = 10
+        relative_position_id = MEX_army
+        x = -6           y = 1           cost = 10
 
-        available = {
-            or = {
-                has_idea = disarmed_nation
-                has_idea = volunteer_only
-            }   
+        prerequisite = { focus = MEX_army }
+        available = { not = { has_idea = volunteer_only } }
+
+        ai_will_do = { 
+            factor = 1 
+            modifier = { threat > 0.15 factor = 4 } 
         }
 
-        prerequisite = { focus = MEX_focus_army }
         completion_reward = {
-            upgrade_conscription_law = yes
+            add_war_support = 0.025
+            add_timed_idea = { idea = idea_mobilization months = 6 }
+            
+            hidden_effect = { 
+                news_event = { id = _mobilization.1 hours = 6 } 
+                add_named_threat = { name = "[ROOT.GetName] Announces Mobilization" threat = 2 }
+            }
         }
     }
     focus = {
         id = MEX_army_maneuvers
         icon = GFX_focus_generic_army_maneuvers
 
-        relative_position_id = MEX_focus_army
-        x = -2
-        y = 1
-        cost = 10
+        relative_position_id = MEX_army
+        x = -3           y = 1           cost = 10
 
-        prerequisite = { focus = MEX_focus_army }
+        prerequisite = { focus = MEX_army }
+
         completion_reward = {
-            army_experience = 75
-            add_doctrine_cost_reduction = {
-				name = land_doc_bonus cost_reduction = 0.5 uses = 2
-				category = land_doctrine
-			}
+            army_experience = 50
+            add_doctrine_cost_reduction = { name = land_doc_bonus cost_reduction = 0.5 uses = 2 category = land_doctrine }
         }
     }
     focus = {
         id = MEX_equipment_effort
         icon = GFX_focus_generic_equipment_effort
 
-        relative_position_id = MEX_focus_army
-        x = 0
-        y = 1
-        cost = 10
+        relative_position_id = MEX_army
+        x = 0           y = 1           cost = 10
 
-        prerequisite = { focus = MEX_focus_army }
+        prerequisite = { focus = MEX_army }
+
         completion_reward = {
-            add_tech_bonus = {
-				name = infantry_bonus bonus = 1.0 uses = 2
-				category = infantry_weapons_tech
-			}
+            add_tech_bonus = { name = infantry_bonus bonus = 1.0 uses = 2 category = infantry_weapons_tech }
+            add_equipment_bonus = { bonus = { infantry_equipment = { build_cost_ic = -0.05 reliability = 0.05 } } }
+        }
+    }
+    focus = {
+        id = MEX_support_companies
+        icon = GFX_focus_generic_support_companies
+
+        relative_position_id = MEX_equipment_effort
+        x = -3           y = 1           cost = 10
+
+        prerequisite = { focus = MEX_equipment_effort }
+
+        completion_reward = {
+            add_tech_bonus = { name = support_bonus bonus = 1.0 uses = 2 category = support_tech }
+            add_equipment_bonus = { bonus = { support_equipment = { build_cost_ic = -0.05 reliability = 0.05 } } }
+            add_equipment_bonus = { bonus = { motorized_equipment = { build_cost_ic = -0.05 reliability = 0.05 } } }
         }
     }
     focus = {
@@ -113,34 +92,13 @@
         icon = GFX_focus_generic_artillery
 
         relative_position_id = MEX_equipment_effort
-        x = -2
-        y = 1
-        cost = 10
+        x = 0           y = 1           cost = 10
 
         prerequisite = { focus = MEX_equipment_effort }
-        completion_reward = {
-            add_tech_bonus = {
-				name = artillery_bonus bonus = 1.0 uses = 2
-				category = artillery_tech
-			}
-        }
-    }
-    focus = {
-        id = MEX_aircraft
-        icon = GFX_focus_generic_aircraft
 
-        relative_position_id = MEX_equipment_effort
-        x = 0
-        y = 1
-        cost = 10
-
-        prerequisite = { focus = MEX_equipment_effort }
         completion_reward = {
-            air_experience = 50
-            add_tech_bonus = {
-				name = aircraft_bonus bonus = 1.0 uses = 2
-				category = air_equipment_tech
-			}
+            add_tech_bonus = { name = artillery_bonus bonus = 1.0 uses = 2 category = artillery_tech }
+            add_equipment_bonus = { bonus = { artillery_equipment = { build_cost_ic = -0.05 reliability = 0.05 } } }
         }
     }
     focus = {
@@ -148,187 +106,183 @@
         icon = GFX_focus_generic_armor
 
         relative_position_id = MEX_equipment_effort
-        x = 2
-        y = 1
-        cost = 10
+        x = 3           y = 1           cost = 10
 
         prerequisite = { focus = MEX_equipment_effort }
+
         completion_reward = {
-            add_tech_bonus = {
-				name = armor_bonus bonus = 1.0 uses = 2
-				category = armor_tech
-			}
+            add_tech_bonus = { name = armor_bonus bonus = 1.0 uses = 2 category = armor_tech }
+            add_equipment_bonus = { bonus = { armored_car_equipment = { build_cost_ic = -0.05 soft_attack = 0.05 } } }
         }
     }
     focus = {
-        id = MEX_modern_warfare
-        icon = GFX_focus_generic_modern_warfare
+        id = MEX_industrial_warfare
+        icon = GFX_focus_generic_industrial_warfare
 
-        relative_position_id = MEX_aircraft
-        x = 0
-        y = 1
-        cost = 10
+        relative_position_id = MEX_artillery
+        x = 0           y = 1           cost = 10
 
-        prerequisite = { 
-            focus = MEX_artillery
-            focus = MEX_aircraft
-            focus = MEX_armor
-        }
+        prerequisite = { focus = MEX_artillery }
+        available = { has_war = yes }
+
         completion_reward = {
-            army_experience = 100
-            add_ideas = idea_modern_warfare
+            add_equipment_bonus = {
+                bonus = {
+                    infantry_equipment = { build_cost_ic = -0.1 soft_attack = 0.05 }
+                    artillery_equipment = { build_cost_ic = -0.1 soft_attack = 0.05 }
+                }
+            }
+            random_owned_controlled_state = {
+                limit = { is_core_of = ROOT is_in_home_area = yes or = { infrastructure > 2 is_capital = yes } }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
         }
     }
-
+    
+## -- airforce
     focus = {
-        id = MEX_focus_navy
-        icon = GFX_focus_generic_navy
+        id = MEX_airfields
+        icon = GFX_focus_generic_airfields
+        x = 9           y = 0           cost = 10
 
-        relative_position_id = MEX_adjust_the_military
-        x = 2
-        y = 1
-        cost = 10
-
-        available = {
-			any_state = {
-				is_coastal = yes
-				is_controlled_by = ROOT
-			}
-		}
-
-        prerequisite = { focus = MEX_adjust_the_military }
         completion_reward = {
-            navy_experience = 50
+            air_experience = 25
+            add_timed_idea = { idea = idea_airfield_expansion years = 1 }
+            random_owned_state = {
+                limit = { is_capital = yes }
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                add_building_construction = { type = air_base level = 2 instant_build = yes }
+            }
         }
     }
     focus = {
-        id = MEX_naval_exercises
-        icon = GFX_focus_generic_naval_exercises
+        id = MEX_air_training
+        icon = GFX_focus_generic_air_training
 
-        relative_position_id = MEX_focus_navy
-        x = 0
-        y = 1
-        cost = 10
+        relative_position_id = MEX_airfields
+        x = 0         y = 1           cost = 10
 
-        available = {
-			any_state = {
-				is_coastal = yes
-				is_controlled_by = ROOT
-			}
-		}
+        prerequisite = { focus = MEX_airfields }
 
-        prerequisite = { focus = MEX_focus_navy }
         completion_reward = {
-            navy_experience = 75
-            add_doctrine_cost_reduction = {
-				name = navy_doc_bonus cost_reduction = 0.5 uses = 2
-				category = naval_doctrine
-			}
+            add_timed_idea = { idea = idea_air_training years = 1 }
+            add_equipment_bonus = { bonus = { small_plane_airframe = { air_agility = 0.1 air_superiority = 0.05 } } }
         }
     }
+    focus = {
+        id = MEX_ground_support
+        icon = GFX_focus_generic_ground_support
+
+        relative_position_id = MEX_air_training
+        x = -3           y = 1           cost = 10
+
+        prerequisite = { focus = MEX_air_training }
+
+        completion_reward = {
+            add_tech_bonus = { name = attack_aircraft_bonus bonus = 0.5 uses = 2 category = attack_aircraft_tech }
+            add_equipment_bonus = { bonus = { archetype_CAS_equipment = { air_ground_attack = 0.15 naval_strike_attack = 0.1 } } }
+        }
+    }
+    focus = {
+        id = MEX_aces
+        icon = GFX_focus_generic_aces
+
+        relative_position_id = MEX_air_training
+        x = 0           y = 1           cost = 10
+
+        prerequisite = { focus = MEX_air_training }
+
+        completion_reward = {
+            add_tech_bonus = { name = light_aircraft_bonus bonus = 0.5 uses = 2 category = light_aircraft_tech }
+            add_equipment_bonus = { bonus = { archetype_fighter_equipment = { air_superiority = 0.15 air_defence = 0.05 } } }
+        }
+    }
+    focus = {
+        id = MEX_air_doctrine
+        icon = GFX_focus_generic_air_doctrine
+
+        relative_position_id = MEX_aces
+        x = 0         y = 1           cost = 10
+
+        prerequisite = { focus = MEX_aces }
+        available = { has_war = yes }
+
+        completion_reward = {
+            air_experience = 50
+            add_doctrine_cost_reduction = { name = air_doc_bonus cost_reduction = 0.5 uses = 2 category = air_doctrine }
+        }
+    }
+    focus = {
+        id = MEX_aerostats
+        icon = GFX_focus_generic_aerostats
+
+        relative_position_id = MEX_airfields
+        x = 3         y = 1           cost = 10
+
+        prerequisite = { focus = MEX_airfields }
+
+        completion_reward = {
+            add_tech_bonus = { name = airships_bonus bonus = 0.5 uses = 2 category = airship_tech }
+            random_owned_controlled_state = {
+                limit = { is_core_of = ROOT is_in_home_area = yes infrastructure > 2 }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+        }
+    }
+
+## -- navy
     focus = {
         id = MEX_expand_dockyards
         icon = GFX_focus_generic_expand_dockyards
 
-        relative_position_id = MEX_focus_navy
-        x = 2
-        y = 1
-        cost = 10
+        x = 15          y = 0           cost = 10
+        available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
 
-        available = {
-			any_state = {
-				is_coastal = yes
-				is_controlled_by = ROOT
-			}
-		}
+        completion_reward = {
+            navy_experience = 25
+            add_timed_idea = { idea = idea_dockyard_expansion years = 1 }
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes is_coastal = yes }
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = { type = dockyard level = 2 instant_build = yes }
+            }
+        }
+    }
+    focus = {
+        id = MEX_shallow_waters
+        icon = GFX_focus_generic_shallow_waters
 
-        prerequisite = { focus = MEX_focus_navy }
-		
-		completion_reward = {
-			navy_experience = 25
-			if = {
-				limit = { any_owned_state = { is_coastal = yes } }
+        relative_position_id = MEX_expand_dockyards
+        x = 0              y = 1               cost = 10
 
-				random_owned_controlled_state = {
-					limit = { is_coastal = yes }
+        prerequisite = { focus = MEX_expand_dockyards }
+        available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
 
-					add_extra_state_shared_building_slots = 3
-					add_building_construction = { type = dockyard level = 3 instant_build = yes }
-				}
-			}		
-		}
+        completion_reward = {
+            add_tech_bonus = { name = screens_bonus bonus = 1.0 uses = 2 category = screen_tech }
+            add_equipment_bonus = { bonus = { screen_ship = { lg_attack = 0.15 naval_speed = 0.05 } } }
+        }
     }
     focus = {
         id = MEX_high_seas
         icon = GFX_focus_generic_high_seas
 
-        relative_position_id = MEX_expand_dockyards
-        x = 0
-        y = 1
-        cost = 10
+        relative_position_id = MEX_shallow_waters
+        x = 0              y = 1               cost = 10
 
-        available = {
-			any_state = {
-				is_coastal = yes
-				is_controlled_by = ROOT
-			}
-		}
+        prerequisite = { focus = MEX_shallow_waters }
+        available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
 
-        prerequisite = { focus = MEX_expand_dockyards }
         completion_reward = {
-            add_tech_bonus = {
-				name = capital_ships_bonus bonus = 1.0 uses = 1
-				category = capital_ship_tech
-			}
-        }
-    }
-    focus = {
-        id = MEX_the_dark_deep
-        icon = GFX_focus_generic_the_dark_deep
-
-        relative_position_id = MEX_expand_dockyards
-        x = 2
-        y = 1
-        cost = 10
-
-        available = {
-			any_state = {
-				is_coastal = yes
-				is_controlled_by = ROOT
-			}
-		}
-
-        prerequisite = { focus = MEX_expand_dockyards }
-        completion_reward = {
-            add_tech_bonus = {
-				name = ss_bonus bonus = 1.0 uses = 1
-				category = submarines_tech
-			}
-        }
-    }
-    focus = {
-        id = MEX_coastal_defense
-        icon = GFX_focus_generic_coastal_defense
-
-        relative_position_id = MEX_naval_exercises
-        x = 0
-        y = 1
-        cost = 10
-
-        available = {
-			any_state = {
-				is_coastal = yes
-				is_controlled_by = ROOT
-			}
-		}
-
-        prerequisite = { focus = MEX_naval_exercises }
-        completion_reward = {
-            add_tech_bonus = {
-				name = special_forces_bonus bonus = 1.0 uses = 1
-				technology = marines_1
-                technology = marines_2
-			}
+            add_tech_bonus = { name = capital_ships_bonus bonus = 1.0 uses = 1 category = capital_ship_tech }
+            add_equipment_bonus = { bonus = { capital_ship = { hg_attack = 0.1 shore_bombardment = 0.25 naval_range = 0.1 } } }
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes is_coastal = yes }
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = { type = dockyard level = 1 instant_build = yes }
+            }
         }
     }
     focus = {
@@ -336,50 +290,98 @@
         icon = GFX_focus_generic_rule_the_waves
 
         relative_position_id = MEX_high_seas
-        x = 0
-        y = 1
-        cost = 10
+        x = 0            y = 1           cost = 10
 
-        available = {
-			any_state = {
-				is_coastal = yes
-				is_controlled_by = ROOT
-			}
-		}
+        prerequisite = { focus = MEX_high_seas }
+        available = { 
+            has_navy_size = { size > 0 }
+            any_owned_state = { is_coastal = yes is_controlled_by = ROOT }
+        }
+
+        completion_reward = {
+            navy_experience = 50
+            add_doctrine_cost_reduction = { name = navy_doc_bonus cost_reduction = 0.5 uses = 2 category = naval_doctrine }
+        }
+    }
+    focus = {
+        id = MEX_the_dark_deep
+        icon = GFX_focus_generic_the_dark_deep
+
+        relative_position_id = MEX_shallow_waters
+        x = 3              y = 1               cost = 10
+
+        prerequisite = { focus = MEX_shallow_waters }
+        available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
+
+        completion_reward = {
+            add_tech_bonus = { name = ss_bonus bonus = 1.0 uses = 1 category = submarines_tech }
+            add_equipment_bonus = { bonus = { submarine = { torpedo_attack = 0.1 convoy_raiding_coordination = 0.1 } } }
+        }
+    }
+    focus = {
+        id = MEX_coastal_defense
+        icon = GFX_focus_generic_coastal_defense
+
+        relative_position_id = MEX_shallow_waters
+        x = -3              y = 1               cost = 10
 
         prerequisite = { 
-            focus = MEX_coastal_defense
-            focus = MEX_high_seas
-            focus = MEX_the_dark_deep
+            focus = MEX_aerostats
+            focus = MEX_shallow_waters 
         }
+        available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
+
         completion_reward = {
-            navy_experience = 100
-            add_ideas = idea_rule_the_waves
+            add_equipment_bonus = { bonus = { airship_equipment = { air_defence = 0.1 naval_strike_attack = 0.25 } } }
+            every_owned_state = {
+				limit = { is_controlled_by = ROOT   is_in_home_area = yes   is_coastal = yes }
+				add_building_construction = {
+					type = coastal_bunker
+					province = {
+						all_provinces = yes							
+						limit_to_naval_base = yes
+					}
+					level = 2
+					instant_build = yes
+				}
+			}
         }
     }
 
-## economic branch
-    focus = {
-        id = MEX_economic_development
-        icon = GFX_focus_generic_economic_development
+## -- economy
 
-        x = 22
-        y = 0
-        cost = 10
+    focus = {
+        id = MEX_infrastructure_effort
+        icon = GFX_focus_generic_extraction_effort
+        x = 1              y = 5               cost = 10
 
         ai_will_do = { base = 2 }
 
-        completion_reward = {
-            add_stability = 0.05
-        }
+        prerequisite = { focus = MEX_economic_development }
+		completion_reward = {
+            add_tech_bonus = {
+				name = construction_bonus bonus = 1.0 uses = 2
+				category = construction_tech
+                category = supply_tech
+			}
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes is_core_of = ROOT }
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes is_core_of = ROOT }
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
+		}
     }
-    
     focus = {
         id = MEX_rationing
         icon = GFX_focus_generic_rationing
 
-        relative_position_id = MEX_economic_development
-        x = -4
+        relative_position_id = MEX_infrastructure_effort
+        x = -3
         y = 1
 
         cost = 10
@@ -389,7 +391,7 @@
             modifier = { has_war = no factor = 0 }
         }
 
-        prerequisite = { focus = MEX_economic_development }
+        prerequisite = { focus = MEX_infrastructure_effort }
         completion_reward = {
             add_stability = -0.05
             add_war_support = -0.05
@@ -401,7 +403,7 @@
         icon = GFX_focus_generic_fuel
 
         relative_position_id = MEX_rationing
-        x = -2
+        x = -3
         y = 1
 
         cost = 10
@@ -424,7 +426,7 @@
         icon = GFX_focus_generic_women_at_work
 
         relative_position_id = MEX_rationing
-        x = 1
+        x = 0
         y = 1
 
         cost = 10
@@ -446,34 +448,6 @@
     }
 
     focus = {
-        id = MEX_infrastructure_effort
-        icon = GFX_focus_generic_extraction_effort
-
-        relative_position_id = MEX_economic_development
-        x = 0
-        y = 1
-
-        cost = 10
-
-        ai_will_do = { base = 2 }
-
-        prerequisite = { focus = MEX_economic_development }
-		completion_reward = {
-            add_tech_bonus = {
-				name = construction_bonus bonus = 1.0 uses = 2
-				category = construction_tech
-                category = supply_tech
-			}
-
-            random_owned_controlled_state = {
-                limit = { is_in_home_area = yes }
-
-                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
-                add_extra_state_shared_building_slots = 2
-            }
-		}
-    }
-    focus = {
         id = MEX_construct_civilian
         icon = GFX_focus_generic_construct_civilian
 
@@ -487,13 +461,9 @@
 
         prerequisite = { focus = MEX_infrastructure_effort }
 		completion_reward = {
-            add_timed_idea = { idea = idea_industrial_expansion years = 1 }
+            add_timed_idea = { idea = idea_industrial_expansion years = 2 }
 			random_owned_controlled_state = {
-				limit = {
-					free_building_slots = { building = industrial_complex size > 0 include_locked = yes }
-					is_core_of = ROOT
-				}
-
+				limit = { is_core_of = ROOT is_in_home_area = 1 infrastructure > 1 }
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
 			}
@@ -503,13 +473,13 @@
         id = MEX_expand_mining
         icon = GFX_focus_generic_expand_mining
 
-        relative_position_id = MEX_infrastructure_effort
+        relative_position_id = MEX_construct_civilian
         x = 3
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = MEX_infrastructure_effort }
+        prerequisite = { focus = MEX_construct_civilian }
         mutually_exclusive = { focus = MEX_efficiency_studies }
 
         completion_reward = {
@@ -521,12 +491,11 @@
             }
         }
     }
-
     focus = {
         id = MEX_efficiency_studies
         icon = GFX_focus_efficiency_studies
 
-        relative_position_id = MEX_infrastructure_effort
+        relative_position_id = MEX_construct_civilian
         x = 6
         y = 1
 
@@ -534,75 +503,27 @@
 
         ai_will_do = { base = 3 }
 
-        prerequisite = { focus = MEX_infrastructure_effort }
+        prerequisite = { focus = MEX_construct_civilian }
         mutually_exclusive = { focus = MEX_expand_mining }
 
 		completion_reward = {
             add_ideas = idea_efficiency_studies
 		}
     }
-
-    focus = {
-        id = MEX_steady_growth
-        icon = GFX_focus_generic_steady_growth
-
-        relative_position_id = MEX_construct_civilian
-        x = 2
-        y = 1
-
-        cost = 10
-
-        ai_will_do = { base = 4 }
-
-        prerequisite = { 
-            focus = MEX_construct_civilian
-        }
-
-        available = {
-            has_stability > 0.4
-        }
-
-        completion_reward = {
-            add_ideas = idea_steady_growth
-
-            hidden_effect = {
-                random = {
-                    chance = 25
-                    country_event = { id = _growth.1 days = 30 random_days = 60 }
-                }
-                random = {
-                    chance = 25
-                    country_event = { id = _growth.2 days = 30 random_days = 60 }
-                }
-            }
-        }
-    }
     focus = {
         id = MEX_war_industry
         icon = GFX_focus_generic_war_industry
 
         relative_position_id = MEX_construct_civilian
-        x = -2
-        y = 1
+        x = 0               y = 2           cost = 10
 
-        cost = 10
-
-        prerequisite = { 
-            focus = MEX_construct_civilian
-        }
-
-        available = {
-            has_war_support > 0.4
-        }
+        prerequisite = { focus = MEX_construct_civilian }
+        available = { has_war_support > 0.4 }
 
         completion_reward = {
+            add_timed_idea = { idea = idea_war_industry years = 2 }
             random_owned_controlled_state = {
-				limit = {
-					free_building_slots = { building = arms_factory size > 0 include_locked = yes }
-					is_core_of = ROOT
-                    is_in_home_area = yes
-				}
-
+				limit = { is_core_of = ROOT is_in_home_area = yes infrastructure > 2 }
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = { type = arms_factory level = 2 instant_build = yes }
 			}
@@ -613,13 +534,13 @@
         id = MEX_telegraph
         icon = GFX_focus_generic_telegraph
 
-        relative_position_id = MEX_economic_development
-        x = 4
+        relative_position_id = MEX_infrastructure_effort
+        x = 3
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = MEX_economic_development }
+        prerequisite = { focus = MEX_infrastructure_effort }
         available = { has_tech = tech_telegraph }
 
         completion_reward = {
@@ -631,14 +552,14 @@
         }
     }
 
-    ## political branch
+## -- society
     focus = {
         id = MEX_political_ambitions
         icon = GFX_focus_generic_political_ambitions
 
-        relative_position_id = MEX_economic_development
-        x = -2
-        y = 5
+        relative_position_id = MEX_expand_dockyards
+        x = 4
+        y = 4
         cost = 10
 
         ai_will_do = { base = 2 }

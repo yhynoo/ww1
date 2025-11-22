@@ -117,45 +117,4 @@ _head_of_state = {
             add_popularity = { ideology = ROOT popularity = 0.05 }
         }
     }
-
-    # mobilization
-    announce_mobilization = {
-        visible = { has_country_flag = mobilization_allowed }
-
-        icon = generic_nationalism
-        days_remove = 90
-        cost = 25
-
-        fire_only_once = yes
-        ai_will_do = {
-            factor = 0 
-            modifier = { 
-                or = { any_country = { has_wargoal_against = ROOT } has_war = yes }
-                factor = 12 
-            }
-        }
-
-        available = { not = { has_idea = volunteer_only } }
-
-        modifier = {
-            mobilization_speed = 0.25
-            training_time_factor = -0.25
-        }
-
-        complete_effect = {
-            add_named_threat = { name = "[ROOT.GetName] Announces Mobilization" threat = 2 }
-            news_event = { id = _mobilization.1 hours = 6 }
-        }
-    }
-    shorten_training = {
-        visible = { has_country_flag = mobilization_allowed }
-
-        icon = ger_military_buildup
-        days_remove = 180
-        cost = 25
-
-        modifier = {
-            minimum_training_level = -0.25
-        }
-    }
 }

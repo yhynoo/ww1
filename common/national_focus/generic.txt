@@ -25,9 +25,19 @@ focus_tree = {
         prerequisite = { focus = XXX_army }
         available = { not = { has_idea = volunteer_only } }
 
+        ai_will_do = { 
+            factor = 1 
+            modifier = { threat > 0.15 factor = 4 } 
+        }
+
         completion_reward = {
-            custom_effect_tooltip = decision_effect_tooltip
-            hidden_effect = { set_country_flag = mobilization_allowed }
+            add_war_support = 0.025
+            add_timed_idea = { idea = idea_mobilization months = 6 }
+            
+            hidden_effect = { 
+                news_event = { id = _mobilization.1 hours = 6 } 
+                add_named_threat = { name = "[ROOT.GetName] Announces Mobilization" threat = 2 }
+            }
         }
     }
     focus = {
@@ -130,7 +140,7 @@ focus_tree = {
     focus = {
         id = XXX_airfields
         icon = GFX_focus_generic_airfields
-        x = 10           y = 0           cost = 10
+        x = 9           y = 0           cost = 10
 
         completion_reward = {
             air_experience = 25
@@ -147,13 +157,13 @@ focus_tree = {
         icon = GFX_focus_generic_air_training
 
         relative_position_id = XXX_airfields
-        x = -2         y = 1           cost = 10
+        x = 0         y = 1           cost = 10
 
         prerequisite = { focus = XXX_airfields }
 
         completion_reward = {
-            add_equipment_bonus = { bonus = { small_plane_airframe = { air_agility = 0.1 air_superiority = 0.05 } } }
             add_timed_idea = { idea = idea_air_training years = 1 }
+            add_equipment_bonus = { bonus = { small_plane_airframe = { air_agility = 0.1 air_superiority = 0.05 } } }
         }
     }
     focus = {
@@ -161,7 +171,7 @@ focus_tree = {
         icon = GFX_focus_generic_ground_support
 
         relative_position_id = XXX_air_training
-        x = -2           y = 1           cost = 10
+        x = -3           y = 1           cost = 10
 
         prerequisite = { focus = XXX_air_training }
 
@@ -175,7 +185,7 @@ focus_tree = {
         icon = GFX_focus_generic_aces
 
         relative_position_id = XXX_air_training
-        x = 1           y = 1           cost = 10
+        x = 0           y = 1           cost = 10
 
         prerequisite = { focus = XXX_air_training }
 
@@ -204,7 +214,7 @@ focus_tree = {
         icon = GFX_focus_generic_aerostats
 
         relative_position_id = XXX_airfields
-        x = 2         y = 1           cost = 10
+        x = 3         y = 1           cost = 10
 
         prerequisite = { focus = XXX_airfields }
 
