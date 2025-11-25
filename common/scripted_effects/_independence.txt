@@ -82,18 +82,6 @@ caucasian_independence = {
     }
 }
 
-greek_independence = {
-    GRE = {
-        setup_uprising_troops = yes
-        add_ideas = { limited_conscription limited_exports low_economic_mobilisation }
-
-        ROOT = {
-            setup_uprising_country = yes
-            47 = { setup_uprising_state = yes }     # Athens
-        }
-    }
-}
-
 hungarian_independence = {
     HUN = {
         setup_uprising_troops = yes
@@ -151,18 +139,6 @@ polish_independence = {
     }
 }
 
-serbian_independence = {
-    SER = {
-        setup_uprising_troops = yes
-        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
-
-        ROOT = {
-            setup_uprising_country = yes
-            107 = { setup_uprising_state = yes }     # Serbia
-        }
-    }
-}
-
 south_african_independence = {
     SAF = {
         setup_uprising_troops = yes
@@ -171,23 +147,6 @@ south_african_independence = {
         ROOT = {
             setup_uprising_country = yes
             275 = { setup_uprising_state = yes }     # Transvaal
-        }
-    }
-}
-
-syrian_independence = {
-    every_state = {
-        limit = { or = { state = 350 state = 411 state = 553 state = 554 } }
-        add_core_of = SYR
-    }
-
-    SYR = {
-        setup_uprising_troops = yes
-        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
-
-        ROOT = {
-            setup_uprising_country = yes
-            554 = { setup_uprising_state = yes }     # Damashek
         }
     }
 }

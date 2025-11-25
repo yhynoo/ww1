@@ -1,18 +1,16 @@
-capital = 107
+capital = 46
 
-oob = "SER_1912"
+oob = "ROM_1912"
 
 set_research_slots = 2
-set_stability = 0.55
-set_war_support = 0.6
+set_stability = 0.5
+set_war_support = 0.3
 
-recruit_character = SER_petar_i
-
-add_ideas = {
-    idea_traditional_militarism
-    
-    partial_economic_mobilisation
-    extensive_conscription
+TUR = {
+    set_autonomy = {
+        target = ROM
+        autonomous_state = autonomy_dominion
+    }
 }
 
 set_technology = {
@@ -22,20 +20,26 @@ set_technology = {
     tech_support = 1
     basic_train = 1
 
+    destroyer_1904 = 1
+
     artillery_1904 = 1
 
     tech_telegraph = 1
 }
 
+add_ideas = {
+    idea_oil_investments
+}
+
 set_popularities = {
-    communism = 5
+    communism = 15
     democratic = 45
-    monarchism = 50
+    monarchism = 40
 }
 
 set_politics = {
     ruling_party = monarchism
     last_election = "1910.1.12"
     election_frequency = 48
-    elections_allowed = no
+    elections_allowed = yes
 }

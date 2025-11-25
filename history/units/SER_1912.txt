@@ -1,69 +1,34 @@
 division_template = {
-	name = "Pešadijska Divizija"
+	name = "Infantry Division"
 	division_names_group = SER_INF_01
 	regiments = {
-		infantry = { x = 0 y = 0 }
-		infantry = { x = 0 y = 1 }
-		infantry = { x = 1 y = 0 }
-		infantry = { x = 1 y = 1 }
-		infantry = { x = 2 y = 0 }
-		infantry = { x = 2 y = 1 }
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
+        infantry = { x = 2 y = 0 }  infantry = { x = 2 y = 1 }  infantry = { x = 3 y = 0 }  infantry = { x = 3 y = 1 }
 	}
-	support = {
-		artillery = { x = 0 y = 0 }
-	}
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
 }
 division_template = {
-	name = "Dobrovoljačka Divizija"
+	name = "Garrison Troops"
 	division_names_group = SER_GAR_01
-
 	regiments = {
-		infantry = { x = 0 y = 0 }
-		infantry = { x = 0 y = 1 }
-        infantry = { x = 1 y = 0 }
-		infantry = { x = 1 y = 1 }
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  
+        infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
 	}
     priority = 0
 }
 
 units = {
-	# Belgrade (3 + 1 divs.)
-	division = {
-		location = 11586
-		division_template = "Pešadijska Divizija"
-        start_experience_factor = 0.5
-    }
-    division = {
-		location = 11586
-		division_template = "Dobrovoljačka Divizija"
-        start_experience_factor = 0.5
-    }
+    # divisions
+    division = { location = 11586		division_template = "Infantry Division"		start_experience_factor = 0.5 }
+	division = { location = 11586		division_template = "Infantry Division"		start_experience_factor = 0.5 }
+	division = { location = 9809		division_template = "Infantry Division"		start_experience_factor = 0.5 }
 
-    division = {
-		location = 3956
-		division_template = "Dobrovoljačka Divizija"
-        start_experience_factor = 0.5
-    }
-    division = {
-		location = 6634
-		division_template = "Dobrovoljačka Divizija"
-        start_experience_factor = 0.5
-    }
+    # garrisons
+    division = { location = 9602	 	division_template = "Garrison Troops"		start_experience_factor = 0.5 }
+	division = { location = 11857		division_template = "Garrison Troops"		start_experience_factor = 0.5 }
 
-	# Niš (2 + 1 divs.)
-	division = {
-		location = 9602
-		division_template = "Pešadijska Divizija"
-        start_experience_factor = 0.5
-    }
-    division = {
-		location = 9602
-		division_template = "Dobrovoljačka Divizija"
-        start_experience_factor = 0.5
-    }
-    division = {
-		location = 11857
-		division_template = "Dobrovoljačka Divizija"
-        start_experience_factor = 0.5
-    }
+	division = { location = 9821	 	division_template = "Garrison Troops"		start_experience_factor = 0.5 }
+	division = { location = 6634		division_template = "Garrison Troops"		start_experience_factor = 0.5 }
 }

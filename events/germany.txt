@@ -128,7 +128,8 @@ country_event = {
     desc = ger_atlantic.1.d
 
     is_triggered_only = yes
-    trigger = { has_war_with = ENG }
+    trigger = { has_war_with = ENG not = { has_country_flag = atlantic_event_done } }
+    immediate = { hidden_effect = { set_country_flag = atlantic_event_done } }
 
     option = {
         name = "Gott Strafe England!"
@@ -197,8 +198,9 @@ country_event = {
     trigger = {
         and = { tag = GER       date > 1916.7.1     date < 1916.10.1 }
         not = { has_idea = civilian_economy }
+        not = { has_country_flag = harvest_event_done }
     }
-    fire_only_once = yes
+    immediate = { hidden_effect = { set_country_flag = harvest_event_done } } 
 
     option = {
         name = "Demobilize the economy."

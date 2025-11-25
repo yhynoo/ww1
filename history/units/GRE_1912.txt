@@ -1,73 +1,50 @@
 division_template = {
-	name = "Merarchía Pezikoú"
+	name = "Infantry Division"
 	division_names_group = GRE_INF_01
-
 	regiments = {
-		infantry = { x = 0 y = 0 }
-		infantry = { x = 0 y = 1 }
-        infantry = { x = 1 y = 0 }
-		infantry = { x = 1 y = 1 }
-        infantry = { x = 2 y = 0 }
-		infantry = { x = 2 y = 1 }
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
+        infantry = { x = 2 y = 0 }  infantry = { x = 2 y = 1 }  infantry = { x = 3 y = 0 }  infantry = { x = 3 y = 1 }
 	}
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
 }
-
 division_template = {
-	name = "Taxiarchía Pezikoú"
-	division_names_group = GRE_INF_01
-
+	name = "Garrison Troops"
+	division_names_group = GRE_GAR_01
 	regiments = {
-		infantry = { x = 0 y = 0 }
-		infantry = { x = 0 y = 1 }
-        infantry = { x = 1 y = 0 }
-		infantry = { x = 1 y = 1 }
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  
+        infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
 	}
-
-	priority = 0
+    priority = 0
 }
 
 units = {
-	# Ioannina
-	division = {
-		location = 936
-		division_template = "Taxiarchía Pezikoú"
-    }
+    # divisions
+    division = { location = 4109		division_template = "Infantry Division"		start_experience_factor = 0.5 }
+	division = { location = 9940		division_template = "Infantry Division"		start_experience_factor = 0.5 }§
 
-    division = {
-		location = 3914
-		division_template = "Merarchía Pezikoú"
-    }
-	division = {
-		location = 3914
-		division_template = "Taxiarchía Pezikoú"
-		start_equipment_factor = 0.6
-    }
+    # garrisons
+    division = { location = 8435		division_template = "Garrison Troops"		start_experience_factor = 0.5 }
+	division = { location = 3973		division_template = "Garrison Troops"		start_experience_factor = 0.5 }
+	division = { location = 4109		division_template = "Garrison Troops"		start_experience_factor = 0.5 }
 
-    division = {
-		location = 1205
-		division_template = "Merarchía Pezikoú"
-    }
+	fleet = {
+        name = "Nautiko Hellenon"	
+        naval_base = 4109                # Athens
 
-	division = {
-		location = 10203
-		division_template = "Taxiarchía Pezikoú"
-    }
+        # Nautiko Hellenon
+        task_force = {
+            name = "Nautiko Hellenon"      
+			location = 4109
 
-	# Argos
-    division = {
-		location = 7096
-		division_template = "Merarchía Pezikoú"
-    }
-	division = {
-		location = 7096
-		division_template = "Taxiarchía Pezikoú"
-		start_equipment_factor = 0.8
-    }
+			# cruiser
+            ship = { name = "Hydra" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = GRE } } }
 
-	# Crete
-    division = {
-		location = 9940
-		division_template = "Taxiarchía Pezikoú"
-		start_equipment_factor = 0.8
-    }
+            # destroyers
+            ship = { name = "Aspis" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = GRE } } }
+			ship = { name = "Doxa" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = GRE } } }
+			ship = { name = "Niki" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = GRE } } }
+        }
+	}
 }
