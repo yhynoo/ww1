@@ -1,0 +1,12 @@
+# - romanian war
+
+peace_ai_desires = {
+    GRE_war_with_TUR_limits = {
+        peace_action_type = { take_states }
+        enable = {
+            FROM = { tag = TUR }
+            FROM.FROM.FROM = { not = { or = { is_core_of = ROOT is_claimed_by = ROOT } } }
+        }
+        ai_desire = -600
+    }
+}

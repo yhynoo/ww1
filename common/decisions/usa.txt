@@ -56,8 +56,8 @@ monroe_doctrine = {
 
         target_non_existing = yes
         ai_will_do = {
-            factor = 3
-            modifier = { FROM = { has_civil_war = yes } add = 9 }
+            factor = 0
+            modifier = { not = { has_government = democratic } add = 9 }
         }
 
         complete_effect = { FROM = { country_event = { id = _align.1 hours = 6 random_hours = 6 } } }

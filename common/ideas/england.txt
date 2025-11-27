@@ -10,7 +10,10 @@ ideas = {
         idea_mansion_house = {
             modifier = {
                 war_support_factor = -0.15
-                join_faction_tension = 0.1
+                political_power_factor = -0.1
+            }
+            rule = {
+                can_join_factions = no
             }
             cancel = {
                 not = { has_government = democratic }

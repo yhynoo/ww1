@@ -1,0 +1,20 @@
+# - romanian war
+
+peace_ai_desires = {
+    ROM_war_with_TUR = {
+        peace_action_type = { take_states }
+        enable = {
+            FROM = { tag = TUR }
+            FROM.FROM.FROM = { or = { state = 211 state = 212 } }
+        }
+        ai_desire = 25
+    }
+    ROM_war_with_TUR_limits = {
+        peace_action_type = { take_states }
+        enable = {
+            FROM = { tag = TUR }
+            FROM.FROM.FROM = { not = { or = { state = 211 state = 212 } } }
+        }
+        ai_desire = -600
+    }
+}

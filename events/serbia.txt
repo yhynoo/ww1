@@ -9,7 +9,14 @@ country_event = {
     trigger = {
         tag = SER
         not = { has_country_flag = join_event_done }
-        and = { has_war = no is_subject = no AUS = { war_length_with = { tag = SOV months < 2 } } }
+        and = { 
+            has_war = no 
+            is_subject = no 
+            AUS = { 
+                has_war_with = SOV 
+                war_length_with = { tag = SOV months < 2 } 
+            }
+        }
     }
     immediate = { set_country_flag = join_event_done }
 

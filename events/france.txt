@@ -70,10 +70,16 @@ country_event = {
         name = "We must strike now!"
         add_war_support = 0.05
         declare_war_on = { target = FRA type = annex_everything }
+
+        ai_chance = {
+            factor = 4
+            modifier = { or = { not = { has_government = monarchism } has_war = yes } factor = 0 }
+        }
     }
     option = {
         name = "Enough imperialist delusion."
         add_popularity = { ideology = communism popularity = 0.025 }
+        ai_chance = { factor = 1 }
     }
 }
 

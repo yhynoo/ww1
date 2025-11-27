@@ -54,7 +54,10 @@ country_event = {
             FROM = { give_guarantee = ROOT } 
         }
 
-        ai_chance = { factor = 1 }
+        ai_chance = { 
+            factor = 1 
+            modifier = { or = { is_guaranteed_by = GRE is_guaranteed_by = SER } factor = 0 }
+        }
     }
     option = {
         name = "We are not interested."
@@ -95,6 +98,7 @@ news_event = {
         has_government = monarchism
         
         date > 1914.1.1
+        not = { has_war_with = SER }
         and = { SOV = { has_completed_focus = SOV_deterrence } SER = { has_completed_focus = SER_deterrence } }
     }
     mean_time_to_happen = { days = 14 }
@@ -135,9 +139,8 @@ country_event = {
 
     is_triggered_only = yes
     trigger = {
-        SER = { exists = yes not = { is_subject_of = AUS } }
-        controls_state = 104
-        and = { has_government = monarchism not = { has_war_with = SOV } }   
+        tag = AUS has_government = monarchism controls_state = 104
+        can_declare_war_on = SER
     }
     immediate = {
         hidden_effect = {

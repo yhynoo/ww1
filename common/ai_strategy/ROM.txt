@@ -6,12 +6,27 @@ ROM_stay_alone = {
     ai_strategy = { type = alliance     id = ROM        value = -120 }
 }
 
-SER_anti_ottoman = {
-    allowed = { original_tag = GRE }
+ROM_anti_ottoman = {
+    allowed = { original_tag = ROM }
     enable = { not = { is_subject = no not = { has_war_with = TUR } } }
 
     reverse_enable = { has_country_flag = anti_ottoman_alliance }
     reversed = yes
 
     ai_strategy = { type = protect     id = ROM        value = 60 }
+}
+
+ROM_alliances = {
+    allowed = { original_tag = ROM }
+    enable = { is_subject = no has_completed_focus = ROM_traditionalism threat > 0.8 }
+
+    ai_strategy = { type = alliance     id = ENG        value = 60 }
+    ai_strategy = { type = alliance     id = FRA        value = 60 }
+}
+
+ROM_alliances_alternative = {
+    allowed = { original_tag = ROM }
+    enable = { is_subject = no has_completed_focus = ROM_adjust_the_government threat > 0.6 }
+
+    ai_strategy = { type = alliance     id = GER        value = 60 }
 }

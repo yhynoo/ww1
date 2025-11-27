@@ -1,3 +1,42 @@
+# - orientalism
+add_namespace = rom_orientalism
+
+news_event = {
+    id = rom_orientalism.1
+    title = "Against ‘Orientalism’?"    # an anti-turkish liberal newspaper article
+    desc = rom_orientalism.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "The liberals long for Europe."
+        add_stability = -0.025
+    }
+}
+
+# - constanta
+add_namespace = rom_constanta
+
+country_event = {
+    id = rom_constanta.1
+    title = "Turkish Warehouses Looted in Constanta"   
+    desc = rom_constanta.1.d
+
+    is_triggered_only = yes
+    trigger = { is_subject_of = TUR }
+
+    option = {
+        name = "Investigate the matter."
+        add_stability = 0.05
+        ai_chance = { factor = 0 }
+    }
+    option = {
+        name = "Who cares?"
+        add_equipment_to_stockpile = { type = support_equipment amount = 60 producer = TUR }
+        ai_chance = { factor = 1 }
+    }
+}
+
 # - aircraft
 add_namespace = rom_aircraft
 
@@ -52,7 +91,7 @@ country_event = {
         give_guarantee = FROM
 
         hidden_effect = { 
-            news_event = { id = rom_alliance.2 hours = 6 } 
+            FROM = { news_event = { id = rom_alliance.2 hours = 6 } }
             set_country_flag = anti_ottoman_alliance
         }
         ai_chance = { factor = 4 }
@@ -89,6 +128,28 @@ news_event = {
     }
 }
 
+# ferdinand
+add_namespace = rom_ferdinand
+
+news_event = {
+    id = rom_ferdinand.1
+    title = "Ferdinand I Ascends to the Throne"
+    desc = rom_ferdinand.1.d
+
+    trigger = {
+        tag = ROM
+        and = { is_subject = no has_country_leader = { character = ROM_nicolae_filipescu ruling_only = yes } }
+    }
+
+    option = {
+        name = "Great."
+        add_popularity = { ideology = monarchism popularity = 0.05 }
+
+        promote_character = ROM_ferdinand_i
+        drop_cosmetic_tag = ROM_duchy
+    }
+}
+
 # neutrality
 add_namespace = rom_neutrality
 
@@ -113,11 +174,11 @@ country_event = {
             clr_country_flag = anti_ottoman_alliance
             ROM = { diplomatic_relation = { country = PREV relation = guarantee active = no } }
         }
-        ai_chance = { factor = 4 }
+        ai_chance = { factor = 1 }
     }
     option = {
         name = "We should stick together."
-        ai_chance = { factor = 1 }
+        ai_chance = { factor = 0 }
     }
 }
 

@@ -12,7 +12,10 @@ on_actions = {
             if = {
                 limit = {
                     not = { has_country_flag = side_of_the_great_war }
-                    any_allied_country = { has_country_flag = side_of_the_great_war }
+                    or = {
+                        any_allied_country = { has_country_flag = side_of_the_great_war }
+                        any_enemy_country = { has_country_flag = side_of_the_great_war }
+                    }
                 }
                 set_country_flag = side_of_the_great_war
             }

@@ -1,0 +1,88 @@
+# enosis
+add_namespace = gre_enosis
+
+news_event = {
+    id = gre_enosis.1
+    title = "Cyprus Joins [GRE.GetNameDef]!"
+    desc = gre_enosis.1.d
+
+    is_triggered_only = yes
+    trigger = {
+        tag = GRE
+        owns_state = 183
+        not = { has_country_flag = enosis_event_done }
+    }
+    immediate = { set_country_flag = enosis_event_done }
+
+    option = {
+        name = "Wonderful!"
+        add_political_power = 50
+        add_popularity = { ideology = ROOT popularity = 0.05 }
+    }
+}
+
+# giorgios
+add_namespace = gre_assassination
+
+news_event = {
+    id = gre_assassination.1
+    title = "Geórgios I Assassinated!"  # killed by a drunk degenerate/socialist, public outrage
+    desc = gre_assassination.1.d
+
+    is_triggered_only = yes
+    immediate = { hidden_effect = { news_event = { id = gre_assassination.2 days = 7 } } }
+
+    option = {
+        name = "Horrible."
+        add_popularity = { ideology = communism popularity = -0.05 }
+        retire_character = GRE_georgios_i
+    }
+}
+news_event = {
+    id = gre_assassination.2
+    title = "The Greeks Take Sides"
+    desc = gre_assassination.2.d
+
+    is_triggered_only = yes
+    trigger = {
+        not = { or = { has_completed_focus = GRE_traditionalism has_completed_focus = GRE_adjust_the_government } }
+    }
+
+    option = {
+        name = "Worrying."
+        add_ideas = idea_national_schism
+    }
+}
+
+# schism
+add_namespace = gre_assassination
+
+news_event = {
+    id = gre_schism.2
+    title = "Monarchists Take up Arms!"
+    desc = gre_schism.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Freedom will win."
+        start_civil_war = { ruling_party = democratic ideology = monarchism size = 0.5 }
+        
+        hidden_effect = { greek_civil_war = yes }
+    }
+}
+
+news_event = {
+    id = gre_schism.3
+    title = "Democrats Take up Arms!"
+    desc = gre_schism.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "For our King!"
+        start_civil_war = { ruling_party = monarchism ideology = democratic size = 0.5 }
+        
+        hidden_effect = { greek_civil_war = yes }
+    }
+}

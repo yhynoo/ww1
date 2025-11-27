@@ -20,6 +20,9 @@ country_event = {
         ai_chance = { 
             factor = 1 
             modifier = { strength_ratio = { tag = FROM ratio > 2.0 } factor = 2 }
+
+            # GER will never give up Alsace
+            modifier = { and = { tag = GER FROM = { tag = FRA } } factor = 0 }
         }
     }
     option = {
@@ -72,7 +75,7 @@ country_event = {
     option = {
         name = "No!"
         add_war_support = 0.05
-        FROM = { create_wargoal = { type = topple_government target = ROOT } }
+        FROM = { create_wargoal = { type = puppet_wargoal_focus target = ROOT } }
         
         ai_chance = { 
             factor = 2
@@ -152,6 +155,7 @@ news_event = {
 
     option = {
         name = "Interesting."
+        hidden_effect = { add_ideas = idea_alliance_leader }
     }
 }
 
@@ -206,6 +210,9 @@ news_event = {
             hidden_effect = {
                 random = { chance = 25 news_event = { id = _war.2 days = 7 random_days = 7 } }
                 random = { chance = 25 news_event = { id = _war.3 days = 14 random_days = 7 } }
+
+                # flag for tracking
+                set_country_flag = side_of_the_great_war
             }
         }
     }
@@ -359,8 +366,9 @@ country_event = {
             country_event = { id = _armistice.2 hours = 6 random_days = 7 } 
         }
         ai_chance = { 
-            factor = 2
-            modifier = { has_war_support > 0.5 factor = 0.5 }
+            factor = 1
+            modifier = { has_war_support < 0.5 factor = 2 }
+            modifier = { has_war_support < 0.2 factor = 3 }
         }
     }
     option = {
@@ -696,7 +704,8 @@ country_event = {
         name = "Let them go."
         end_puppet = FROM
 
-        ai_chance = { factor = 0 }
+        hidden_effect = { FROM = { news_event = { id = _autonomy.3 hours = 6 } } }
+        ai_chance = { factor = 1 }
     }
     option = {
         name = "Never!"
@@ -714,6 +723,22 @@ country_event = {
         }
 
         declare_war_on = { target = FROM type = annex_everything }
-        ai_chance = { factor = 1 }
+        ai_chance = { 
+            factor = 4 
+            modifier = { and = { tag = TUR FROM = { tag = ROM is_guaranteed_by = AUS } } factor = 0.25 }
+        }
+    }
+}
+
+news_event = {
+    id = _autonomy.3
+    title = "[ROOT.GetName] Liberated!"
+    desc = _autonomy.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Congratulations."
     }
 }

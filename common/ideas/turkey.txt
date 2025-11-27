@@ -13,6 +13,14 @@ ideas = {
                 stability_factor = -0.05
                 conscription_factor = -0.1
             }
+            cancel = {
+                not = {
+                    any_state = {
+                        or = { state = 44 state = 106 state = 185 state = 404 state = 586 }
+                        is_owned_and_controlled_by = TUR
+                    }
+                }
+            }
         }
 
         idea_amassed_debt = {

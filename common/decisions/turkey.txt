@@ -2,6 +2,7 @@ consolidate_the_empire = {
     albanians_in_epirus = {
         cost = 50
         icon = generic_civil_support
+        fire_only_once = yes
 
         ai_will_do = { factor = 9 }
 
@@ -52,7 +53,7 @@ consolidate_the_empire = {
 
         ai_will_do = {
             factor = 0
-            modifier = { FROM = { is_in_faction = no } add = 6 }
+            modifier = { and = { has_war = no date > 1916.1.1 } add = 6 }
         }
 
         complete_effect = { FROM = { country_event = { id = _align.1 hours = 6 random_hours = 6 } } }

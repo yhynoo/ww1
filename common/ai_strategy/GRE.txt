@@ -15,3 +15,18 @@ GRE_anti_ottoman = {
 
     ai_strategy = { type = protect     id = ROM        value = 60 }
 }
+
+GRE_alliances = {
+    allowed = { original_tag = GRE }
+    enable = { has_completed_focus = GRE_traditionalism threat > 0.75 }
+
+    ai_strategy = { type = alliance     id = ENG        value = 60 }
+    ai_strategy = { type = alliance     id = FRA        value = 60 }
+}
+
+GRE_alliances_alternative = {
+    allowed = { original_tag = GRE }
+    enable = { has_completed_focus = GRE_adjust_the_government threat > 0.6 }
+
+    ai_strategy = { type = alliance     id = GER        value = 60 }
+}

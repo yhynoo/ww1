@@ -3,20 +3,13 @@
 TUR_alliances = {
     allowed = { original_tag = TUR }
     enable = { 
-        and = {
-            or = { has_government = monarchism has_government = communism }
-            or = { GER = { has_guaranteed = TUR } has_completed_focus = TUR_on_our_own }
-        }
+        GER = { has_war_with = ROM }
+        not = { has_government = democratic }
     }
     abort_when_not_enabled = yes
 
     # alliances
-	ai_strategy = { type = alliance		id = GER		value = 40 }
-
-    # aggressive wargoals
-    ai_strategy = { type = conquer		id = ARM		value = 100 }
-    ai_strategy = { type = conquer		id = GRE		value = 100 }
-    ai_strategy = { type = conquer		id = SOV		value = 40 }
+	ai_strategy = { type = alliance		id = GER		value = 60 }
 }
 
 TUR_alliances_alternative = {
@@ -25,8 +18,6 @@ TUR_alliances_alternative = {
     abort_when_not_enabled = yes
 
     # alliances
+    ai_strategy = { type = alliance		id = ENG		value = 60 }
     ai_strategy = { type = alliance		id = FRA		value = 20 }
-    ai_strategy = { type = alliance		id = GER		value = -40 }
-
-    # aggressive wargoals: none
 }

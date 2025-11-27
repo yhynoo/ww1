@@ -10,7 +10,45 @@ news_event = {
 
         or = {
             war_support < 0.05
-            and = { longest_war_length > 6 has_war_support < 0.2 }
+            and = { longest_war_length > 12 has_war_support < 0.15 is_major = no }
+
+            # FRA
+            and = {
+                tag = FRA
+                owns_state = 16 not = { controls_state = 16 }
+                or = {
+                    owns_state = 20 not = { controls_state = 20 } 
+                    owns_state = 29 not = { controls_state = 29 }
+                }
+            }
+
+            # GER
+            and = {
+                tag = GER
+                or = {
+                    and = {
+                        owns_state = 28 not = { controls_state = 28 } 
+                        owns_state = 51 not = { controls_state = 51 }
+                    }
+                    and = {
+                        owns_state = 64 not = { controls_state = 64 } 
+                        owns_state = 85 not = { controls_state = 85 }
+                    }
+                }
+            }
+
+            # SOV
+            and = {
+                tag = SOV
+                owns_state = 195 not = { controls_state = 195 } 
+                or = {
+                    and = {
+                        owns_state = 137 not = { controls_state = 137 }
+                        owns_state = 192 not = { controls_state = 192 }
+                    }
+                    owns_state = 219 not = { controls_state = 219 } 
+                }
+            }
 
             # TUR
             and = {

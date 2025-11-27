@@ -31,7 +31,7 @@ contain_eastern_threats = {
 
         ai_will_do = {
             factor = 0
-            modifier = { FROM = { is_in_faction = no } add = 6 }
+            modifier = { and = { date > 1915.1.1 FROM = { is_in_faction = no } } add = 6 }
         }
 
         complete_effect = { FROM = { country_event = { id = _align.1 hours = 6 random_hours = 6 } } }

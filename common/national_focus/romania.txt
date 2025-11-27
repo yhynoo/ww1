@@ -647,16 +647,11 @@ focus_tree = {
         cost = 10
 
         prerequisite = { focus = ROM_expansionism }
-        ai_will_do = { base = 0 }
-        
-        available = { 
-            is_subject = no 
-            is_in_faction = no
-        }
+        available = { is_subject = no }
 
         completion_reward = {
-            add_war_support = 0.05
-            if = { limit = { is_ai = no } set_rule = { can_create_factions = yes } }
+            custom_effect_tooltip = decision_faction_effect_tooltip
+            hidden_effect = { if = { limit = { is_ai = no } set_rule = { can_create_factions = yes } } }
         }
     }
 
@@ -668,6 +663,11 @@ focus_tree = {
         x = 0
         y = 1
         cost = 10
+
+        ai_will_do = {
+            factor = 1
+            modifier = { and = { is_guaranteed_by = AUS AUS = { has_government = democratic } } factor = 6 }
+        }
 
         mutually_exclusive = { focus = ROM_adjust_the_government }
         prerequisite = { focus = ROM_political_ambitions }
@@ -768,6 +768,7 @@ focus_tree = {
         ai_will_do = {
             base = 0
             modifier = { date > 1914.1.1 add = 2 }
+            modifier = { and = { is_guaranteed_by = AUS AUS = { has_government = monarchism } } add = 3 }
         }
 
         mutually_exclusive = { focus = ROM_traditionalism }

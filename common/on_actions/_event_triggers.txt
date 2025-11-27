@@ -22,6 +22,19 @@ on_actions = {
                 news_event = { id = ger_alsace.1 months = 23 random_days = 28 }
             }
 
+            GRE = {
+                # assassination
+                news_event = { id = gre_assassination.1 months = 14 days = 18 }
+            }
+
+            ROM = {
+                # orientalism
+                news_event = { id = rom_orientalism.1 months = 2 random_days = 28 }
+
+                # constanta
+                country_event = { id = rom_constanta.1 months = 6 random_days = 28 }
+            }
+
             TUR = {
                 # aviators
                 news_event = { id = tur_aviators.1 months = 2 days = 28 }
@@ -88,6 +101,11 @@ on_actions = {
 
     on_ruling_party_change = {
         effect = {
+            # ROM
+            if = {
+                limit = { tag = ROM old_ideology_token = monarchism }
+                drop_cosmetic_tag = yes
+            }
             
             # SOV
             if = {

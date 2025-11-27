@@ -638,13 +638,13 @@ focus_tree = {
         }
 
         ai_will_do = { 
-            base = 0
-            modifier = { has_completed_focus = ENG_abolish_lords factor = 1 }
+            base = 1
+            modifier = { has_completed_focus = ENG_abolish_lords factor = 0 }
         }
 
         completion_reward = {
-            remove_ideas = idea_mansion_house
             FRA = { add_opinion_modifier = { target = ENG modifier = opinion_affirmed_the_entente } }
+            remove_ideas = idea_mansion_house
         }
     }
     focus = {

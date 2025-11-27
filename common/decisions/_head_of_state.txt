@@ -60,7 +60,8 @@ _head_of_state = {
 
         ai_will_do = {
             factor = 3
-            modifier = { has_stability < 0.5 factor = 2 }
+            modifier = { has_stability < 0.6 factor = 2 }
+            modifier = { and = { has_stability < 0.3 } factor = 2 }
         }
 
         modifier = {
@@ -83,7 +84,8 @@ _head_of_state = {
 
         ai_will_do = {
             factor = 3
-            modifier = { has_stability < 0.5 factor = 2 }
+            modifier = { has_stability < 0.6 factor = 2 }
+            modifier = { and = { has_stability < 0.3 } factor = 2 }
         }
 
         modifier = {
@@ -106,7 +108,8 @@ _head_of_state = {
 
         ai_will_do = {
             factor = 3
-            modifier = { has_stability < 0.5 factor = 2 }
+            modifier = { has_stability < 0.6 factor = 2 }
+            modifier = { and = { has_stability < 0.3 } factor = 2 }
         }
 
         modifier = {
@@ -126,6 +129,13 @@ _head_of_state = {
         days_remove = 90
         cost = 50
 
+        ai_will_do = {
+            factor = 0
+
+            # ROM
+            modifier = { has_completed_focus = ROM_adjust_the_government add = 6 }
+        }
+
         modifier = {
             stability_weekly = 0.005
         }
@@ -144,8 +154,8 @@ _head_of_state = {
             factor = 0
 
             # ROM
-            modifier = { has_completed_focus = ROM_deterrence add = 6 }
-            modifier = { and = { has_stability > 0.2 not = { has_completed_focus = ROM_adjust_the_government } } factor = 2 }
+            modifier = { has_completed_focus = ROM_deterrence add = 3 }
+            modifier = { and = { has_stability > 0.2 not = { has_completed_focus = ROM_adjust_the_government } } factor = 6 }
         }
 
         modifier = {
