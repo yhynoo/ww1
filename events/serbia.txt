@@ -1,53 +1,4 @@
-## -- austria
-add_namespace = ser_austria
-
-news_event = {
-    id = ser_austria.1
-    title = "‘Serbien muß sterbien!’"   # about Hötzendorf's obsessions, after Serbia wins independence
-    desc = ser_austria.1.d
-
-    fire_only_once = yes
-    trigger = {
-        tag = AUS
-        SER = { exists = yes }
-    }
-
-    option = {
-        name = "Alright."
-        add_opinion_modifier = { target = SER modifier = opinion_anti_serbian_staff }
-    }
-}
-
-## -- intervention
-add_namespace = ser_intervention
-
-country_event = {
-    id = ser_intervention.1
-    title = "Intervene in Serbia?"          # after the Ottomans didn't grant the Serbs independence, so they started an uprising
-    desc = ser_intervention.1.d
-
-    fire_only_once = yes
-    trigger = {
-        tag = SOV
-        SER = { is_in_faction = no has_war_with = TUR }
-    }
-
-    option = {
-        name = "Send arms."
-        add_war_support = 0.05
-
-        send_equipment = { equipment = infantry_equipment amount = 900 target = SER }
-        hidden_effect = { 
-            ai_strategy = { type = diplo_action_desire  id = SER    value = 100     target = send_volunteers }
-            SER = { news_event = { id = _equipment.1 hours = 6 } }
-        }
-    }
-    option = {
-        name = "We have nothing to do with it."
-    }
-}
-
-## -- war
+# join the war?
 add_namespace = ser_war
 
 country_event = {
@@ -55,12 +6,12 @@ country_event = {
     title = "Opportunity to Strike Austria?"
     desc = ser_war.1.d
 
-    fire_only_once = yes
     trigger = {
         tag = SER
-        is_subject = no
-        AUS = { has_war_with = SOV }
+        not = { has_country_flag = join_event_done }
+        and = { has_war = no is_subject = no AUS = { war_length_with = { tag = SOV months < 2 } } }
     }
+    immediate = { set_country_flag = join_event_done }
 
     option = {
         name = "This is the moment!"

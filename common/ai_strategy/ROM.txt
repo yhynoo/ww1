@@ -1,0 +1,17 @@
+ROM_stay_alone = {
+    allowed = { original_tag = ROM }
+    enable = { date < 1916.1.1 }
+    reversed = yes
+
+    ai_strategy = { type = alliance     id = ROM        value = -120 }
+}
+
+SER_anti_ottoman = {
+    allowed = { original_tag = GRE }
+    enable = { not = { is_subject = no not = { has_war_with = TUR } } }
+
+    reverse_enable = { has_country_flag = anti_ottoman_alliance }
+    reversed = yes
+
+    ai_strategy = { type = protect     id = ROM        value = 60 }
+}

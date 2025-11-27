@@ -1,31 +1,17 @@
-SER_alliances = {
-	allowed = { original_tag = SER }
-	enable = { has_completed_focus = SER_traditionalism }
-	abort_when_not_enabled = yes
+SER_stay_alone = {
+    allowed = { original_tag = SER }
+    enable = { and = { has_war_with = TUR is_in_faction = no } }
+    reversed = yes
 
-	# alliances
-	ai_strategy = { type = alliance		id = FRA		value = 40 }
-	ai_strategy = { type = alliance		id = SOV		value = 100 }
-
-	# aggressive wargoals
-	ai_strategy = { type = conquer		id = AUS		value = 40 }
-	ai_strategy = { type = conquer		id = TUR		value = 60 }
+    ai_strategy = { type = alliance     id = SER        value = -120 }
 }
 
-SER_alliances_alternative = {
-	allowed = { original_tag = SER }
-	enable = { has_completed_focus = SER_adjust_the_government }
+SER_anti_ottoman = {
+    allowed = { original_tag = GRE }
+    enable = { 
+        has_country_flag = anti_ottoman_alliance 
+        ROM = { not = { is_subject = no not = { has_war_with = TUR } } }
+    }
 
-	ai_strategy = { type = alliance		id = AUS		value = 100 }
-	ai_strategy = { type = alliance		id = GER		value = 40 }
-}
-
-# ARMY
-
-SER_militarisation = {
-	allowed = { original_tag = SER }
-	enable = { always = yes }
-
-	# more infantry
-	ai_strategy = {	type = role_ratio	id = infantry		value = 25 }
+    ai_strategy = { type = protect     id = ROM        value = 60 }
 }

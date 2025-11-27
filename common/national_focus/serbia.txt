@@ -150,7 +150,7 @@ focus_tree = {
             random_owned_state = {
                 limit = { is_capital = yes }
                 add_building_construction = { type = infrastructure level = 1 instant_build = yes }
-                add_building_construction = { type = air_base level = 2 instant_build = yes }
+                add_building_construction = { type = air_factor level = 2 instant_build = yes }
             }
         }
     }
@@ -337,7 +337,7 @@ focus_tree = {
 					type = coastal_bunker
 					province = {
 						all_provinces = yes							
-						limit_to_naval_base = yes
+						limit_to_naval_factor = yes
 					}
 					level = 2
 					instant_build = yes
@@ -353,7 +353,7 @@ focus_tree = {
         icon = GFX_focus_generic_extraction_effort
         x = 1              y = 5               cost = 10
 
-        ai_will_do = { base = 2 }
+        ai_will_do = { factor = 2 }
 
         prerequisite = { focus = SER_economic_development }
 		completion_reward = {
@@ -385,7 +385,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 2
+            factor = 2
             modifier = { has_war = no factor = 0 }
         }
 
@@ -430,7 +430,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1
+            factor = 1
             modifier = { has_stability < 0.25 factor = 0 }
         }
 
@@ -455,7 +455,7 @@ focus_tree = {
 
         cost = 10
 
-        ai_will_do = { base = 3 }
+        ai_will_do = { factor = 3 }
 
         prerequisite = { focus = SER_infrastructure_effort }
 		completion_reward = {
@@ -499,7 +499,7 @@ focus_tree = {
 
         cost = 10
 
-        ai_will_do = { base = 3 }
+        ai_will_do = { factor = 3 }
 
         prerequisite = { focus = SER_construct_civilian }
         mutually_exclusive = { focus = SER_expand_mining }
@@ -560,7 +560,7 @@ focus_tree = {
         y = 4
         cost = 10
 
-        ai_will_do = { base = 2 }
+        ai_will_do = { factor = 2 }
 
         completion_reward = {
             add_political_power = 150
@@ -576,7 +576,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1
+            factor = 1
             modifier = { threat > 0.1 factor = 3 }
         }
 
@@ -600,7 +600,7 @@ focus_tree = {
         }
 
         ai_will_do = {
-            base = 1
+            factor = 1
             modifier = { threat > 0.2 factor = 3 }
         }
 
@@ -622,8 +622,8 @@ focus_tree = {
         prerequisite = { focus = SER_international_affairs }
 
         ai_will_do = {
-            base = 0
-            modifier = { has_completed_focus = SER_mobilize_the_masses add = 2 }
+            factor = 1
+            modifier = { and = { date > 1914.1.1 has_war = no } factor = 3 }
         }
 
         completion_reward = {
@@ -685,7 +685,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 1
+            factor = 1
             modifier = { is_subject_of = AUS factor = 0 }
         }
         
@@ -706,7 +706,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 2
+            factor = 2
             modifier = { has_war = no factor = 0 }
         }
 
@@ -731,7 +731,7 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 0
+            factor = 0
             modifier = { has_army_manpower = { size > 50000 } factor = 1 }
         }
 
@@ -786,7 +786,7 @@ focus_tree = {
         prerequisite = { focus = SER_political_ambitions }
 
         ai_will_do = {
-            base = 0
+            factor = 0
             modifier = { is_subject_of = AUS add = 1 }
         }
 
@@ -846,7 +846,7 @@ focus_tree = {
         prerequisite = { focus = SER_state_reform }
 
         ai_will_do = {
-            base = 0
+            factor = 0
             modifier = { has_stability < 0.2 add = 1 }
         }
         

@@ -9,6 +9,8 @@ towards_liberation = {
             or = { GRE = { exists = yes } SER = { exists = yes } }
         }
 
+        ai_will_do = { base = 12 }
+
         complete_effect = {
             every_country = {
                 limit = { or = { tag = GRE tag = SER } exists = yes }
@@ -25,9 +27,11 @@ towards_liberation = {
         available = { 
             FROM = { 
                 not = { has_war_with = ROOT }
-                has_equipment = { fighter_equipment > 11 }
+                has_equipment = { fighter_equipment_0 > 11 }
             } 
         }
+
+        ai_will_do = { base = 6 }
 
         complete_effect = {
             FROM = { country_event = { id = rom_aircraft.1 hours = 6 } }
@@ -43,19 +47,13 @@ towards_liberation = {
             can_declare_war_on = FROM 
             any_state = { or = { state = 78 state = 442 } is_owned_and_controlled_by = FROM } 
         }
-        highlight_states = { highlight_states_trigger = { or = { state = 78 state = 4422 } is_owned_and_controlled_by = FROM } }
-
+        highlight_states = { highlight_states_trigger = { or = { state = 78 state = 442 } is_owned_and_controlled_by = FROM } }
+ 
         ai_will_do = {
-            factor = 3
-            modifier = { FROM = { has_war = yes } factor = 3 }
+            factor = 0
+            modifier = { and = { has_government = monarchism is_in_faction = yes } add = 6 }
         }
 
-        complete_effect = { 
-            every_state = {
-                limit = { or = { state = 78 state = 442 } is_owned_and_controlled_by = FROM }
-                add_claim_by = ROOT
-            }
-            FROM = { country_event = { id = _demand.1 hours = 6 } } 
-        }
+        complete_effect = { FROM = { country_event = { id = _demand.1 hours = 6 } } }
     }
 }

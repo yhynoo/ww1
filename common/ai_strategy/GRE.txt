@@ -1,26 +1,17 @@
-GRE_alliances = {
+GRE_stay_alone = {
     allowed = { original_tag = GRE }
-    enable = { has_completed_focus = GRE_traditionalism }
-    abort = {               
-        has_completed_focus = GRE_the_everlasting_spirit                        # once we realize the Megali Idea, we will be neutral again.
-        not = { GRE = { any_core_state = { not = { is_owned_and_controlled_by = GRE } } } }
-    }
-
+    enable = { date < 1916.1.1 }
     reversed = yes
-    enable_reverse = {
-        any_enemy_country = { original_tag = TUR }
-    }
 
-    ai_strategy = { type = alliance     id = GRE        value = 60 }
+    ai_strategy = { type = alliance     id = GRE        value = -120 }
 }
 
-GRE_schism = {
+GRE_anti_ottoman = {
     allowed = { original_tag = GRE }
-    enable = { has_idea = idea_the_great_schism }
-    abort_when_not_enabled = yes
+    enable = { 
+        has_country_flag = anti_ottoman_alliance 
+        ROM = { not = { is_subject = no not = { has_war_with = TUR } } }
+    }
 
-    reversed = yes
-    enable_reverse = { always = yes }
-
-    ai_strategy = { type = alliance		id = GRE		value = -100 }
+    ai_strategy = { type = protect     id = ROM        value = 60 }
 }

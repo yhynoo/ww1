@@ -1,0 +1,47 @@
+add_namespace = _defeat
+
+news_event = {
+    id = _defeat.0
+    hidden = yes
+
+    trigger = {
+        has_war = yes
+        not = { has_country_flag = defeat_event_done }
+
+        or = {
+            war_support < 0.05
+            and = { longest_war_length > 6 has_war_support < 0.2 }
+
+            # TUR
+            and = {
+                tag = TUR
+                or = { has_war_with = ROM has_war_with = GRE }
+                or = { 
+                    and = { 
+                        owns_state = 212 not = { controls_state = 212 } 
+                        owns_state = 106 not = { controls_state = 106 } 
+                    } 
+                    and = {
+                        owns_state = 586 not = { controls_state = 586 } 
+                    }
+                }
+            }
+        }
+    }
+
+    option = {
+        set_country_flag = defeat_event_done
+        country_event = { id = _armistice.1 random_days = 7 }
+
+        # reset
+        news_event = { id = _defeat.1 days = 90 }
+    }
+}
+
+news_event = {
+    id = _defeat.1
+    hidden = yes
+
+    is_triggered_only = yes
+    option = { clr_country_flag = defeat_event_done }
+}

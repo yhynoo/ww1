@@ -1,4 +1,39 @@
-## -- oil 
+# treason in evidenzbureau
+add_namespace = aus_treason
+
+country_event = {
+    id = aus_treason.1
+    title = "Scandal in Evidenzbureau"
+    desc = aus_treason.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Arrest them immediately."
+        add_stability = -0.05
+    }
+    option = {
+        name = "Silence the matter."
+        add_political_power = -50
+        hidden_effect = { random = { chance = 50 news_event = { id = aus_treason.2 days = 7 random_days = 7 } } }
+    }
+}
+
+news_event = {
+    id = aus_treason.2
+    title = "Treason Among High Officers!"
+    desc = aus_treason.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Awful."
+        add_war_support = -0.05
+        add_popularity = { ideology = monarchism popularity = -0.025 }
+    }
+}
+
+# oil 
 add_namespace = aus_oil
 
 country_event = {
@@ -40,75 +75,49 @@ news_event = {
     option = {
         name = "Alright."
         if = { 
-            limit = { tag = GER }
+            limit = { tag = AUS }
             add_opinion_modifier = { target = FROM modifier = opinion_romanian_oil }
         }
     }
 }
 
-# - evidenzbureau
-add_namespace = aus_evidenzbureau
-
-country_event = {
-    id = aus_evidenzbureau.1
-    title = "Spies in Evidenzbureau!"
-    desc = aus_evidenzbureau.1.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Arrest them immediately."
-        add_war_support = -0.025
-        add_popularity = { ideology = ROOT popularity = -0.05 }
-    }
-    option = {
-        name = "Silence the matter."
-        add_political_power = -25
-        hidden_effect = { 
-            random = { chance = 50 news_event = { id = aus_evidenzbureau.2 days = 7 random_days = 7 } }
-        }
-    }
-}
+# unrest among the slavs
+add_namespace = aus_unrest
 
 news_event = {
-    id = aus_evidenzbureau.2
-    title = "Treason Among High Officers!"
-    desc = aus_evidenzbureau.2.d
+    id = aus_unrest.1
+    title = "Unrest Among the Slavic Subjects"
+    desc = aus_unrest.1.d
 
-    is_triggered_only = yes
+    trigger = {
+        tag = AUS
+        not = { has_country_flag = unrest_event_done }
+        has_government = monarchism
+        
+        date > 1914.1.1
+        and = { SOV = { has_completed_focus = SOV_deterrence } SER = { has_completed_focus = SER_deterrence } }
+    }
+    mean_time_to_happen = { days = 14 }
+    
+    immediate = { 
+        set_country_flag = unrest_event_done
+        hidden_effect = { 
+            add_named_threat = { threat = 2 name = "Unrest Among Slavs in Austria-Hungary" } 
+            random = { chance = 50 news_event = { id = aus_unrest.2 days = 28 random_days = 7 } }
+            country_event = { id = aus_unrest.3 days = 70 random_days = 70 }
+        } 
+    }
 
     option = {
         name = "Awful."
-        add_war_support = -0.05
-        add_political_power = -50
-    }
-}
-
-# - unrest in galicia
-add_namespace = aus_galicia
-
-news_event = {
-    id = aus_galicia.1
-    title = "Unrest in Galicia"         # suspected Okhrana activity
-    desc = aus_galicia.1.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Worrying."
-        add_timed_idea = { idea = idea_unrest_in_galicia months = 6 }
-
-        hidden_effect = {
-            random = { chance = 50 news_event = { id = aus_galicia.2 days = 14 random_days = 7 } }
-            country_event = { id = aus_galicia.3 days = 42 random_days = 14 }
-        }
+        add_timed_idea = { idea = idea_slavic_unrest years = 1 }
     }
 }
 
 news_event = {
-    id = aus_galicia.2
+    id = aus_unrest.2
     title = "Desertions at the Tarnopol Garrison"
-    desc = aus_galicia.2.d
+    desc = aus_unrest.2.d
 
     is_triggered_only = yes
     trigger = { controls_state = 91 }
@@ -120,39 +129,43 @@ news_event = {
 }
 
 country_event = {
-    id = aus_galicia.3
-    title = "Archduke Assassinated in Lemberg!"
-    desc = aus_galicia.3.d
+    id = aus_unrest.3
+    title = "Archduke Assassinated in Sarajevo!"
+    desc = aus_unrest.3.d
 
     is_triggered_only = yes
     trigger = {
-        controls_state = 91
+        SER = { exists = yes not = { is_subject_of = AUS } }
+        controls_state = 104
         and = { has_government = monarchism not = { has_war_with = SOV } }   
     }
     immediate = {
         hidden_effect = {
-            SOV = { add_named_threat = { name = "Archduke Assassinated in Lemberg" threat = 12 } }
+            SER = { add_named_threat = { name = "Archduke Assassinated in Sarajevo" threat = 12 } }
             retire_character = AUS_franz_ferdinand
             news_event = { id = aus_archduke.1 hours = 6 }
         }
     }
 
     option = {
-        name = "We must avenge his death!"
-        add_war_support = 0.25
-        declare_war_on = { target = SOV type = topple_government }
+        name = "Serbia must die!"
 
+        add_war_support = 0.25
+        declare_war_on = { target = SER type = annex_everything }
+        
         ai_chance = { base = 4 }
     }
     option = {
-        name = "What a tragedy."
-
-        add_popularity = { ideology = ROOT popularity = -0.15 }
+        name = "We must not act in haste."
+        
+        add_stability = -0.25
+        add_popularity = { ideology = monarchism popularity = -0.15 }
+        
         ai_chance = { base = 1 }
     }
 }
 
-# - archduke news
+# archduke news
 add_namespace = aus_archduke
 
 news_event = {
@@ -164,17 +177,17 @@ news_event = {
     fire_for_sender = no
 
     option = {
-        name = "This will not end well."
+        name = "Awful."
     }
 }
 
-# -- kaiser dies
-add_namespace = aus_emperor
+# karl's coronation
+add_namespace = aus_karl
 
 news_event = {
-    id = aus_emperor.1
+    id = aus_karl.1
     title = "Emperor Karl I Ascends to the Throne"
-    desc = aus_emperor.1.d
+    desc = aus_karl.1.d
 
     is_triggered_only = yes
     trigger = { has_government = monarchism }
@@ -182,21 +195,5 @@ news_event = {
     option = {
         name = "Long live the Emperor!"
         retire_character = AUS_franz_joseph
-    }
-}
-
-## -- annexation
-add_namespace = aus_annexation
-
-news_event = {
-    id = aus_annexation.1
-    title = "Austria Annexes Sarajevo!"
-    desc = aus_annexation.1.d
-
-    is_triggered_only = yes
-    major = yes
-
-    option = {
-        name = "Worrying."
     }
 }

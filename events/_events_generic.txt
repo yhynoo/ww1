@@ -252,7 +252,7 @@ country_event = {
     is_triggered_only = yes
     trigger = { 
         has_war = yes
-        has_stability < 0.4
+        and = { has_stability < 0.4 longest_war_length > 12 }
         not = { has_idea = idea_widespread_hunger }
     }
 
@@ -318,7 +318,7 @@ news_event = {
     is_triggered_only = yes
     trigger = { 
         has_war = yes
-        has_war_support < 0.4
+        and = { has_war_support < 0.4 longest_war_length > 12 }
         not = { has_idea = idea_army_demoralization }
     }
 
@@ -369,6 +369,7 @@ country_event = {
 
         ai_chance = { 
             factor = 1
+            modifier = { has_civil_war = yes factor = 0 }
             modifier = { 
                 and = { original_tag = FRA not = { controls_state = 16 } }      # FRA surrenders
                 factor = 0
@@ -386,7 +387,7 @@ country_event = {
  
     option = {
         name = "We agree."
-        start_peace_conference = { tag = FROM score_factor = 0.2 }
+        start_peace_conference = { tag = FROM score_factor = 0.1 }
         FROM = { leave_faction = yes }
         
         ai_chance = { factor = 4 }
@@ -397,7 +398,8 @@ country_event = {
         
         ai_chance = { 
             factor = 1
-            modifier = { FROM = { is_faction_leader = yes } factor = 0 }        # AI will always accept factions surrendering.
+            modifier = { FROM = { is_faction_leader = yes } factor = 0 }            # AI will always accept factions surrendering.
+            modifier = { strength_ratio = { tag = FROM ratio < 0.6 } factor = 0 }   # Also, if we're weaker than them, we should accept it too.
         }
     }
 }
@@ -607,6 +609,7 @@ country_event = {
 
     mean_time_to_happen = { months = 1 }
     trigger = { 
+        is_subject = no
         has_civil_war = no
         communism > 0.5 not = { has_government = communism } 
     }
@@ -628,6 +631,7 @@ country_event = {
 
     mean_time_to_happen = { months = 1 }
     trigger = { 
+        is_subject = no
         has_civil_war = no
         democratic > 0.5 not = { has_government = democratic } 
     }
@@ -650,6 +654,7 @@ country_event = {
 
     mean_time_to_happen = { months = 1 }
     trigger = { 
+        is_subject = no
         has_civil_war = no
         monarchism > 0.5 not = { has_government = monarchism } 
     }
@@ -701,7 +706,11 @@ country_event = {
                 limit = { is_ally_with = FROM } 
                 FROM = { leave_faction = yes }
             }
-            FROM = { news_event = { id = _uprising.1 hours = 6 } }
+            if = {
+                limit = { FROM = { tag = ROM } }
+                news_event = { id = rom_alliance.3 hours = 6 }      # special event for Romania
+            }
+            else = { FROM = { news_event = { id = _uprising.1 hours = 6 } } }
         }
 
         declare_war_on = { target = FROM type = annex_everything }

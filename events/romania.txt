@@ -51,7 +51,10 @@ country_event = {
         FROM = { give_guarantee = ROOT }
         give_guarantee = FROM
 
-        hidden_effect = { news_event = { id = rom_alliance.2 hours = 6 } }
+        hidden_effect = { 
+            news_event = { id = rom_alliance.2 hours = 6 } 
+            set_country_flag = anti_ottoman_alliance
+        }
         ai_chance = { factor = 4 }
     }
     option = {
@@ -70,5 +73,67 @@ news_event = {
     option = {
         name = "Great."
         add_political_power = 50
+    }
+}
+
+news_event = {
+    id = rom_alliance.3
+    title = "War in Southeastern Europe!"
+    desc = rom_alliance.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Is this the collapse of [TUR.GetNameDef]?"
+    }
+}
+
+# neutrality
+add_namespace = rom_neutrality
+
+country_event = {
+    id = rom_neutrality.1
+    title = "Approach to Neutrality"
+    desc = rom_neutrality.1.d
+
+    trigger = {
+        tag = ROM
+        is_subject = no not = { has_war_with = TUR } not = { has_country_flag = neutrality_event_done }
+        or = { has_guaranteed = GRE has_guaranteed = SER }
+    }
+    immediate = { set_country_flag = neutrality_event_done }
+
+    option = {
+        name = "We have accomplished what we wanted."
+        hidden_effect = { news_event = { id = rom_neutrality.2 hours = 6 } }
+
+        every_country = {
+            limit = { is_guaranteed_by = ROM }
+            clr_country_flag = anti_ottoman_alliance
+            ROM = { diplomatic_relation = { country = PREV relation = guarantee active = no } }
+        }
+        ai_chance = { factor = 4 }
+    }
+    option = {
+        name = "We should stick together."
+        ai_chance = { factor = 1 }
+    }
+}
+
+news_event = {
+    id = rom_neutrality.2
+    title = "Romania Announces Neutrality"
+    desc = rom_neutrality.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A chance for peace."
+        if = {
+            limit = { has_guaranteed = ROM }
+            diplomatic_relation = { country = ROM relation = guarantee active = no }
+        }
     }
 }

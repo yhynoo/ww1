@@ -138,7 +138,7 @@ news_event = {
 # young turks
 add_namespace = tur_young_turks
 
-country_event = {
+news_event = {
     id = tur_young_turks.1
     title = "The Young Turks Take up Arms!"
     desc = tur_young_turks.1.d
@@ -146,7 +146,7 @@ country_event = {
     trigger = { 
         tag = TUR
         not = { has_government = communism }
-        and = { has_civil_war = no has_stability < 0.3 or = { communism > 0.15 has_idea = idea_dissent_in_the_army } }
+        and = { has_civil_war = no has_stability < 0.15 communism > 0.25 }
     }
     mean_time_to_happen = { days = 14 }
 
@@ -155,18 +155,6 @@ country_event = {
         start_civil_war = { 
             ideology = communism size = 0.45 states_filter = { is_controlled_by = TUR }
             states = { 49 184 344 345 586 }
-        }
-        hidden_effect = { turkish_civil_war = yes }
-    }
-    option = {
-        name = "Time for change!"
-        start_civil_war = { 
-            ruling_party = communism ideology = ROOT size = 0.55
-            states_filter = {
-                not = { state = 49 state = 184 state = 344 state = 345 state = 586 }
-                is_controlled_by = TUR 
-            }
-            states = all
         }
         hidden_effect = { turkish_civil_war = yes }
     }
