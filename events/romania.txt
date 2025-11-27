@@ -1,0 +1,74 @@
+# - aircraft
+add_namespace = rom_aircraft
+
+country_event = {
+    id = rom_aircraft.1
+    title = "Aircraft for Romania?"   
+    desc = rom_aircraft.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Why not?"
+        send_equipment = { equipment = fighter_equipment    amount = 12      target = ROM }
+
+        ROM = { 
+            news_event = { id = rom_aircraft.2 hours = 6 }
+            add_opinion_modifier = { target = FRA modifier = opinion_aircraft_purchase } 
+        }
+    }
+
+    option = {
+        name = "No."
+    }
+}
+
+news_event = {
+    id = rom_aircraft.2
+    title = "[FRA.GetName] Agrees!"
+    desc = rom_aircraft.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great!"
+    }
+}
+
+# - alliance
+add_namespace = rom_alliance
+
+country_event = {
+    id = rom_alliance.1
+    title = "[ROM.GetName] Offers Anti-[TUR.GetAdjective] Alliance"
+    desc = rom_alliance.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a great initiative."
+
+        FROM = { give_guarantee = ROOT }
+        give_guarantee = FROM
+
+        hidden_effect = { news_event = { id = rom_alliance.2 hours = 6 } }
+        ai_chance = { factor = 4 }
+    }
+    option = {
+        name = "We are not interested."
+        ai_chance = { factor = 1 }
+    }
+}
+
+news_event = {
+    id = rom_alliance.2
+    title = "[FROM.GetName] Agrees to Our Initiative!"
+    desc = rom_alliance.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        add_political_power = 50
+    }
+}

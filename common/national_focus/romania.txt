@@ -1,16 +1,16 @@
 focus_tree = {
-    id = TUR_focus
+    id = ROM_focus
 
     country = {
         factor = 0
-        modifier = { add = 20 original_tag = TUR }
+        modifier = { add = 20 original_tag = ROM }
     }
 
     continuous_focus_position = { x = 2750 y = 50 }
 
 ## -- army
     focus = {
-        id = TUR_army
+        id = ROM_army
         icon = GFX_focus_generic_army
         x = 0           y = 0           cost = 10
 
@@ -20,13 +20,13 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_conscription
+        id = ROM_conscription
         icon = GFX_focus_generic_extend_conscription
 
-        relative_position_id = TUR_army
+        relative_position_id = ROM_army
         x = -6           y = 1           cost = 10
 
-        prerequisite = { focus = TUR_army }
+        prerequisite = { focus = ROM_army }
         available = { not = { has_idea = volunteer_only } }
 
         ai_will_do = { 
@@ -43,13 +43,13 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_army_maneuvers
+        id = ROM_army_maneuvers
         icon = GFX_focus_generic_army_maneuvers
 
-        relative_position_id = TUR_army
+        relative_position_id = ROM_army
         x = -3           y = 1           cost = 10
 
-        prerequisite = { focus = TUR_army }
+        prerequisite = { focus = ROM_army }
 
         completion_reward = {
             army_experience = 50
@@ -57,13 +57,13 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_equipment_effort
+        id = ROM_equipment_effort
         icon = GFX_focus_generic_equipment_effort
 
-        relative_position_id = TUR_army
+        relative_position_id = ROM_army
         x = 0           y = 1           cost = 10
 
-        prerequisite = { focus = TUR_army }
+        prerequisite = { focus = ROM_army }
 
         completion_reward = {
             add_tech_bonus = { name = infantry_bonus bonus = 1.0 uses = 2 category = infantry_weapons_tech }
@@ -71,13 +71,13 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_support_companies
+        id = ROM_support_companies
         icon = GFX_focus_generic_support_companies
 
-        relative_position_id = TUR_equipment_effort
+        relative_position_id = ROM_equipment_effort
         x = -3           y = 1           cost = 10
 
-        prerequisite = { focus = TUR_equipment_effort }
+        prerequisite = { focus = ROM_equipment_effort }
 
         completion_reward = {
             add_tech_bonus = { name = support_bonus bonus = 1.0 uses = 2 category = support_tech }
@@ -86,13 +86,13 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_artillery
+        id = ROM_artillery
         icon = GFX_focus_generic_artillery
 
-        relative_position_id = TUR_equipment_effort
+        relative_position_id = ROM_equipment_effort
         x = 0           y = 1           cost = 10
 
-        prerequisite = { focus = TUR_equipment_effort }
+        prerequisite = { focus = ROM_equipment_effort }
 
         completion_reward = {
             add_tech_bonus = { name = artillery_bonus bonus = 1.0 uses = 2 category = artillery_tech }
@@ -100,13 +100,13 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_armor
+        id = ROM_armor
         icon = GFX_focus_generic_armor
 
-        relative_position_id = TUR_equipment_effort
+        relative_position_id = ROM_equipment_effort
         x = 3           y = 1           cost = 10
 
-        prerequisite = { focus = TUR_equipment_effort }
+        prerequisite = { focus = ROM_equipment_effort }
 
         completion_reward = {
             add_tech_bonus = { name = armor_bonus bonus = 1.0 uses = 2 category = armor_tech }
@@ -114,13 +114,13 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_industrial_warfare
+        id = ROM_industrial_warfare
         icon = GFX_focus_generic_industrial_warfare
 
-        relative_position_id = TUR_artillery
+        relative_position_id = ROM_artillery
         x = 0           y = 1           cost = 10
 
-        prerequisite = { focus = TUR_artillery }
+        prerequisite = { focus = ROM_artillery }
         available = { has_war = yes }
 
         completion_reward = {
@@ -140,7 +140,7 @@ focus_tree = {
     
 ## -- airforce
     focus = {
-        id = TUR_airfields
+        id = ROM_airfields
         icon = GFX_focus_generic_airfields
         x = 9           y = 0           cost = 10
 
@@ -155,13 +155,13 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_air_training
+        id = ROM_air_training
         icon = GFX_focus_generic_air_training
 
-        relative_position_id = TUR_airfields
+        relative_position_id = ROM_airfields
         x = 0         y = 1           cost = 10
 
-        prerequisite = { focus = TUR_airfields }
+        prerequisite = { focus = ROM_airfields }
 
         completion_reward = {
             add_timed_idea = { idea = idea_air_training years = 1 }
@@ -169,13 +169,13 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_ground_support
+        id = ROM_ground_support
         icon = GFX_focus_generic_ground_support
 
-        relative_position_id = TUR_air_training
+        relative_position_id = ROM_air_training
         x = -3           y = 1           cost = 10
 
-        prerequisite = { focus = TUR_air_training }
+        prerequisite = { focus = ROM_air_training }
 
         completion_reward = {
             add_tech_bonus = { name = attack_aircraft_bonus bonus = 0.5 uses = 2 category = attack_aircraft_tech }
@@ -183,13 +183,13 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_aces
+        id = ROM_aces
         icon = GFX_focus_generic_aces
 
-        relative_position_id = TUR_air_training
+        relative_position_id = ROM_air_training
         x = 0           y = 1           cost = 10
 
-        prerequisite = { focus = TUR_air_training }
+        prerequisite = { focus = ROM_air_training }
 
         completion_reward = {
             add_tech_bonus = { name = light_aircraft_bonus bonus = 0.5 uses = 2 category = light_aircraft_tech }
@@ -197,13 +197,13 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_air_doctrine
+        id = ROM_air_doctrine
         icon = GFX_focus_generic_air_doctrine
 
-        relative_position_id = TUR_aces
+        relative_position_id = ROM_aces
         x = 0         y = 1           cost = 10
 
-        prerequisite = { focus = TUR_aces }
+        prerequisite = { focus = ROM_aces }
         available = { has_war = yes }
 
         completion_reward = {
@@ -212,13 +212,13 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_aerostats
+        id = ROM_aerostats
         icon = GFX_focus_generic_aerostats
 
-        relative_position_id = TUR_airfields
+        relative_position_id = ROM_airfields
         x = 3         y = 1           cost = 10
 
-        prerequisite = { focus = TUR_airfields }
+        prerequisite = { focus = ROM_airfields }
 
         completion_reward = {
             add_tech_bonus = { name = airships_bonus bonus = 0.5 uses = 2 category = airship_tech }
@@ -232,7 +232,7 @@ focus_tree = {
 
 ## -- navy
     focus = {
-        id = TUR_expand_dockyards
+        id = ROM_expand_dockyards
         icon = GFX_focus_generic_expand_dockyards
 
         x = 15          y = 0           cost = 10
@@ -249,13 +249,13 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_shallow_waters
+        id = ROM_shallow_waters
         icon = GFX_focus_generic_shallow_waters
 
-        relative_position_id = TUR_expand_dockyards
+        relative_position_id = ROM_expand_dockyards
         x = 0              y = 1               cost = 10
 
-        prerequisite = { focus = TUR_expand_dockyards }
+        prerequisite = { focus = ROM_expand_dockyards }
         available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
 
         completion_reward = {
@@ -264,13 +264,13 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_high_seas
+        id = ROM_high_seas
         icon = GFX_focus_generic_high_seas
 
-        relative_position_id = TUR_shallow_waters
+        relative_position_id = ROM_shallow_waters
         x = 0              y = 1               cost = 10
 
-        prerequisite = { focus = TUR_shallow_waters }
+        prerequisite = { focus = ROM_shallow_waters }
         available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
 
         completion_reward = {
@@ -284,13 +284,13 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_rule_the_waves
+        id = ROM_rule_the_waves
         icon = GFX_focus_generic_rule_the_waves
 
-        relative_position_id = TUR_high_seas
+        relative_position_id = ROM_high_seas
         x = 0            y = 1           cost = 10
 
-        prerequisite = { focus = TUR_high_seas }
+        prerequisite = { focus = ROM_high_seas }
         available = { 
             has_navy_size = { size > 0 }
             any_owned_state = { is_coastal = yes is_controlled_by = ROOT }
@@ -302,13 +302,13 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_the_dark_deep
+        id = ROM_the_dark_deep
         icon = GFX_focus_generic_the_dark_deep
 
-        relative_position_id = TUR_shallow_waters
+        relative_position_id = ROM_shallow_waters
         x = 3              y = 1               cost = 10
 
-        prerequisite = { focus = TUR_shallow_waters }
+        prerequisite = { focus = ROM_shallow_waters }
         available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
 
         completion_reward = {
@@ -317,15 +317,15 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_coastal_defense
+        id = ROM_coastal_defense
         icon = GFX_focus_generic_coastal_defense
 
-        relative_position_id = TUR_shallow_waters
+        relative_position_id = ROM_shallow_waters
         x = -3              y = 1               cost = 10
 
         prerequisite = { 
-            focus = TUR_aerostats
-            focus = TUR_shallow_waters 
+            focus = ROM_aerostats
+            focus = ROM_shallow_waters 
         }
         available = { any_owned_state = { is_coastal = yes is_controlled_by = ROOT } }
 
@@ -349,13 +349,13 @@ focus_tree = {
 ## -- economy
 
     focus = {
-        id = TUR_infrastructure_effort
+        id = ROM_infrastructure_effort
         icon = GFX_focus_generic_extraction_effort
         x = 1              y = 5               cost = 10
 
         ai_will_do = { base = 2 }
 
-        prerequisite = { focus = TUR_economic_development }
+        prerequisite = { focus = ROM_economic_development }
 		completion_reward = {
             add_tech_bonus = {
 				name = construction_bonus bonus = 1.0 uses = 2
@@ -375,10 +375,10 @@ focus_tree = {
 		}
     }
     focus = {
-        id = TUR_rationing
+        id = ROM_rationing
         icon = GFX_focus_generic_rationing
 
-        relative_position_id = TUR_infrastructure_effort
+        relative_position_id = ROM_infrastructure_effort
         x = -3
         y = 1
 
@@ -389,7 +389,7 @@ focus_tree = {
             modifier = { has_war = no factor = 0 }
         }
 
-        prerequisite = { focus = TUR_infrastructure_effort }
+        prerequisite = { focus = ROM_infrastructure_effort }
         completion_reward = {
             add_stability = -0.05
             add_war_support = -0.05
@@ -397,16 +397,16 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_fuel
+        id = ROM_fuel
         icon = GFX_focus_generic_fuel
 
-        relative_position_id = TUR_rationing
+        relative_position_id = ROM_rationing
         x = -3
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = TUR_rationing }
+        prerequisite = { focus = ROM_rationing }
         completion_reward = {
             add_tech_bonus = {
 				name = synthetic_bonus bonus = 1.0 uses = 1
@@ -420,10 +420,10 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_women_at_work
+        id = ROM_women_at_work
         icon = GFX_focus_generic_women_at_work
 
-        relative_position_id = TUR_rationing
+        relative_position_id = ROM_rationing
         x = 0
         y = 1
 
@@ -438,7 +438,7 @@ focus_tree = {
             has_war = yes
         }
 
-        prerequisite = { focus = TUR_rationing }
+        prerequisite = { focus = ROM_rationing }
         completion_reward = {
             add_stability = -0.05
             add_ideas = idea_women_at_work
@@ -446,10 +446,10 @@ focus_tree = {
     }
 
     focus = {
-        id = TUR_construct_civilian
+        id = ROM_construct_civilian
         icon = GFX_focus_generic_construct_civilian
 
-        relative_position_id = TUR_infrastructure_effort
+        relative_position_id = ROM_infrastructure_effort
         x = 0
         y = 1
 
@@ -457,7 +457,7 @@ focus_tree = {
 
         ai_will_do = { base = 3 }
 
-        prerequisite = { focus = TUR_infrastructure_effort }
+        prerequisite = { focus = ROM_infrastructure_effort }
 		completion_reward = {
             add_timed_idea = { idea = idea_industrial_expansion years = 2 }
 			random_owned_controlled_state = {
@@ -468,17 +468,17 @@ focus_tree = {
 		}
     }
     focus = {
-        id = TUR_expand_mining
+        id = ROM_expand_mining
         icon = GFX_focus_generic_expand_mining
 
-        relative_position_id = TUR_construct_civilian
+        relative_position_id = ROM_construct_civilian
         x = 3
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = TUR_construct_civilian }
-        mutually_exclusive = { focus = TUR_efficiency_studies }
+        prerequisite = { focus = ROM_construct_civilian }
+        mutually_exclusive = { focus = ROM_efficiency_studies }
 
         completion_reward = {
             random_owned_controlled_state = {
@@ -490,10 +490,10 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_efficiency_studies
+        id = ROM_efficiency_studies
         icon = GFX_focus_efficiency_studies
 
-        relative_position_id = TUR_construct_civilian
+        relative_position_id = ROM_construct_civilian
         x = 6
         y = 1
 
@@ -501,21 +501,21 @@ focus_tree = {
 
         ai_will_do = { base = 3 }
 
-        prerequisite = { focus = TUR_construct_civilian }
-        mutually_exclusive = { focus = TUR_expand_mining }
+        prerequisite = { focus = ROM_construct_civilian }
+        mutually_exclusive = { focus = ROM_expand_mining }
 
 		completion_reward = {
             add_ideas = idea_efficiency_studies
 		}
     }
     focus = {
-        id = TUR_war_industry
+        id = ROM_war_industry
         icon = GFX_focus_generic_war_industry
 
-        relative_position_id = TUR_construct_civilian
+        relative_position_id = ROM_construct_civilian
         x = 0               y = 2           cost = 10
 
-        prerequisite = { focus = TUR_construct_civilian }
+        prerequisite = { focus = ROM_construct_civilian }
         available = { has_war_support > 0.4 }
 
         completion_reward = {
@@ -529,16 +529,16 @@ focus_tree = {
     }
 
     focus = {
-        id = TUR_telegraph
+        id = ROM_telegraph
         icon = GFX_focus_generic_telegraph
 
-        relative_position_id = TUR_infrastructure_effort
+        relative_position_id = ROM_infrastructure_effort
         x = 3
         y = 1
 
         cost = 10
 
-        prerequisite = { focus = TUR_infrastructure_effort }
+        prerequisite = { focus = ROM_infrastructure_effort }
         available = { has_tech = tech_telegraph }
 
         completion_reward = {
@@ -552,44 +552,44 @@ focus_tree = {
 
 ## -- society
     focus = {
-        id = TUR_political_ambitions
+        id = ROM_political_ambitions
         icon = GFX_focus_generic_political_ambitions
 
-        relative_position_id = TUR_expand_dockyards
+        relative_position_id = ROM_expand_dockyards
         x = 4
         y = 4
         cost = 10
 
-        ai_will_do = { base = 3 }
+        ai_will_do = { base = 2 }
 
         completion_reward = {
             add_political_power = 150
         }
     }
     focus = {
-        id = TUR_international_affairs
+        id = ROM_international_affairs
         icon = GFX_focus_generic_international_affairs
 
-        relative_position_id = TUR_political_ambitions
+        relative_position_id = ROM_political_ambitions
         x = -4
         y = 1
         cost = 10
 
         ai_will_do = {
-            base = 2
+            base = 1
             modifier = { threat > 0.1 factor = 3 }
         }
 
-        prerequisite = { focus = TUR_political_ambitions }
+        prerequisite = { focus = ROM_political_ambitions }
         completion_reward = {
             add_timed_idea = { idea = idea_international_affairs years = 2 }
         }
     }
     focus = {
-        id = TUR_expansionism
+        id = ROM_expansionism
         icon = GFX_focus_generic_expansionism
 
-        relative_position_id = TUR_international_affairs
+        relative_position_id = ROM_international_affairs
         x = -2
         y = 1
         cost = 10
@@ -604,43 +604,37 @@ focus_tree = {
             modifier = { threat > 0.2 factor = 3 }
         }
 
-        prerequisite = { focus = TUR_international_affairs }
+        prerequisite = { focus = ROM_international_affairs }
         completion_reward = {
             add_political_power = 100
             add_timed_idea = { idea = idea_expansionism years = 1 }
         }
     }
     focus = {
-        id = TUR_deterrence
+        id = ROM_deterrence
         icon = GFX_focus_generic_deterrence
 
-        relative_position_id = TUR_international_affairs
+        relative_position_id = ROM_international_affairs
         x = 1
         y = 1
         cost = 10
 
-        prerequisite = { focus = TUR_international_affairs }
-        ai_will_do = { base = 2 }
+        prerequisite = { focus = ROM_international_affairs }
 
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }
     }
     focus = {
-        id = TUR_seek_alliances
+        id = ROM_seek_alliances
         icon = GFX_focus_generic_seek_alliances
 
-        relative_position_id = TUR_expansionism
+        relative_position_id = ROM_expansionism
         x = -2
         y = 1
         cost = 10
 
-        ai_will_do = { 
-            base = 0
-            modifier = { threat > 0.2 add = 2 }
-        }
-
-        prerequisite = { focus = TUR_expansionism }
+        prerequisite = { focus = ROM_expansionism }
         available = { 
             is_subject = no
             is_in_faction = no
@@ -651,54 +645,55 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_on_our_own
+        id = ROM_on_our_own
         icon = GFX_focus_generic_on_our_own
 
-        relative_position_id = TUR_expansionism
+        relative_position_id = ROM_expansionism
         x = 1
+        y = 1
+        cost = 10
+
+        prerequisite = { focus = ROM_expansionism }
+        ai_will_do = { base = 0 }
+        
+        available = { 
+            is_subject = no 
+            is_in_faction = no
+        }
+
+        completion_reward = {
+            add_war_support = 0.05
+            if = { limit = { is_ai = no } set_rule = { can_create_factions = yes } }
+        }
+    }
+
+    focus = {
+        id = ROM_traditionalism
+        icon = GFX_focus_generic_adjust_the_government
+
+        relative_position_id = ROM_political_ambitions
+        x = 0
         y = 1
         cost = 10
 
         ai_will_do = {
             base = 1
-            modifier = { has_government = democratic factor = 0 }
+            modifier = { has_government = monarchism factor = 2 }
         }
 
-        prerequisite = { focus = TUR_expansionism }
-        available = { is_subject = no }
-
+        mutually_exclusive = { focus = ROM_adjust_the_government }
+        prerequisite = { focus = ROM_political_ambitions }
         completion_reward = {
-            custom_effect_tooltip = decision_faction_effect_tooltip
-            hidden_effect = { if = { limit = { is_ai = no } set_rule = { can_create_factions = yes } } }
-        }
-    }
-
-    focus = {
-        id = TUR_traditionalism
-        icon = GFX_focus_generic_internal_stability
-
-        relative_position_id = TUR_political_ambitions
-        x = 0
-        y = 1
-        cost = 10
-
-        ai_will_do = { base = 2 }
-
-        available = {
-            has_government = monarchism
-        }
-
-        mutually_exclusive = { focus = TUR_adjust_the_government }
-        prerequisite = { focus = TUR_political_ambitions }
-        completion_reward = {
-            add_stability = 0.05
+            add_timed_idea = { idea = idea_democratic_tendencies years = 1 }
+            add_stability = -0.05
+            hidden_effect = { news_event = { id = _tensions.1 days = 7 random_days = 7 } }
         }
     }
     focus = {
-        id = TUR_public_support
+        id = ROM_public_support
         icon = GFX_focus_generic_public_support
 
-        relative_position_id = TUR_traditionalism
+        relative_position_id = ROM_traditionalism
         x = -1
         y = 1
         cost = 10
@@ -712,7 +707,7 @@ focus_tree = {
             has_war = yes
         }
 
-        prerequisite = { focus = TUR_traditionalism }
+        prerequisite = { focus = ROM_traditionalism }
         completion_reward = {
             add_war_support = 0.05
             custom_effect_tooltip = decision_effect_tooltip
@@ -720,36 +715,33 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_mobilize_the_masses
-        icon = GFX_focus_TUR_mobilize_the_masses
+        id = ROM_mobilize_the_masses
+        icon = GFX_focus_FRA_mobilize_the_masses
 
-        relative_position_id = TUR_traditionalism
+        relative_position_id = ROM_traditionalism
         x = 1
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 2
-            modifier = { has_war = no factor = 0 }
-        }
+        available = { has_government = democratic }
+        prerequisite = { focus = ROM_traditionalism }
 
-        prerequisite = { focus = TUR_traditionalism }
         completion_reward = {
-            add_timed_idea = { idea = idea_jihad years = 2 }
+            add_timed_idea = { idea = idea_liberal_government years = 2 }
         }
     }
     focus = {
-        id = TUR_strength_in_unity
+        id = ROM_strength_in_unity
         icon = GFX_focus_generic_strength_in_unity
 
-        relative_position_id = TUR_public_support
+        relative_position_id = ROM_public_support
         x = 1
         y = 1
         cost = 10
 
         prerequisite = { 
-            focus = TUR_public_support
-            focus = TUR_mobilize_the_masses
+            focus = ROM_public_support
+            focus = ROM_mobilize_the_masses
         }
         completion_reward = {
             add_political_power = 50
@@ -757,134 +749,105 @@ focus_tree = {
         }
     }
     focus = {
-        id = TUR_the_everlasting_spirit
+        id = ROM_the_everlasting_spirit
         icon = GFX_focus_generic_the_everlasting_spirit
 
-        relative_position_id = TUR_strength_in_unity
+        relative_position_id = ROM_strength_in_unity
         x = 0
         y = 1
         cost = 10
 
-        prerequisite = { focus = TUR_strength_in_unity }
+        prerequisite = { focus = ROM_strength_in_unity }
         completion_reward = {
-            add_ideas = idea_the_eternal_state
+            add_ideas = idea_the_everlasting_spirit
         }
     }
 
     focus = {
-        id = TUR_adjust_the_government
-        icon = GFX_focus_generic_red_reform
+        id = ROM_adjust_the_government
+        icon = GFX_focus_generic_internal_stability
 
-        relative_position_id = TUR_political_ambitions
+        relative_position_id = ROM_political_ambitions
         x = 4
         y = 1
         cost = 10
 
-        ai_will_do = { base = 2 }
+        ai_will_do = {
+            base = 1
+            modifier = { has_government = democratic factor = 2 }
+        }
 
-        mutually_exclusive = { focus = TUR_traditionalism }
-        prerequisite = { focus = TUR_political_ambitions }
+        mutually_exclusive = { focus = ROM_traditionalism }
+        prerequisite = { focus = ROM_political_ambitions }
         completion_reward = {
-            add_timed_idea = { idea = idea_democratic_tendencies years = 1 }
+            add_popularity = { ideology = monarchism popularity = 0.05 }
+            add_stability = 0.05
+            hidden_effect = { news_event = { id = _army.1 days = 7 random_days = 7 } }
         }
     }
     focus = {
-        id = TUR_state_reform
+        id = ROM_state_reform
         icon = GFX_focus_generic_state_reform
 
-        relative_position_id = TUR_adjust_the_government
+        relative_position_id = ROM_adjust_the_government
         x = 2
         y = 1
         cost = 10
 
-        prerequisite = { focus = TUR_adjust_the_government }
+        prerequisite = { focus = ROM_adjust_the_government }
         completion_reward = {
             add_timed_idea = { idea = idea_state_reform years = 1 }
         }
     }
     focus = {
-        id = TUR_open_the_economy
+        id = ROM_open_the_economy
         icon = GFX_focus_generic_open_the_economy
 
-        relative_position_id = TUR_adjust_the_government
+        relative_position_id = ROM_adjust_the_government
         x = -1
         y = 1
         cost = 10
 
-        prerequisite = { focus = TUR_adjust_the_government }
-        ai_will_do = { base = 2 }
-
+        prerequisite = { focus = ROM_adjust_the_government }
         completion_reward = {
-            add_stability = 0.05
-            manage_turkish_debt = yes
-
+            add_timed_idea = { idea = idea_agrarian_investments years = 1 }
             random_owned_controlled_state = {
-                limit = { is_core_of = ROOT is_in_home_area = yes is_coastal = yes }
-                prioritize = { 339 355 }
-
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = { type = dockyard level = 1 instant_build = yes }
-			}
-
-            random_owned_controlled_state = {
-                limit = { is_core_of = ROOT is_in_home_area = yes }
-                prioritize = { 49 340 341 356 }
-
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
 			}
         }
     }
     focus = {
-        id = TUR_ethnic_state
-        icon = GFX_focus_generic_authoritarian
+        id = ROM_over_the_edge
+        icon = GFX_focus_generic_over_the_edge
 
-        relative_position_id = TUR_state_reform
+        relative_position_id = ROM_state_reform
         x = 2
         y = 1
         cost = 10
 
-        prerequisite = { focus = TUR_state_reform }
+        prerequisite = { focus = ROM_state_reform }
 
         ai_will_do = {
             base = 0
-            modifier = { surrender_progress > 0.1 add = 1 }
-        }
-
-        available = {
-            not = { has_idea = idea_dissent_in_the_army }
-            has_country_leader = { character = TUR_mustafa_kemal ruling_only = yes }
+            modifier = { has_stability < 0.2 add = 1 }
         }
         
         completion_reward = {
-            set_capital = { state = 49 }
-            if = {
-                limit = { has_power_balance = TUR_consolidate }
-                remove_power_balance = TUR_consolidate
-            }
-            else = { remove_ideas = idea_unrest_in_european_wilayets }
-
-            every_state = {
-                limit = {
-                    is_core_of = TUR
-                    not = { or = { state = 48 state = 49 state = 77 state = 211 state = 212 state = 187 state = 164 state = 341 state = 340 state = 339 state = 356 state = 355 state = 344 state = 586 } }
-                }
-                remove_core_of = ROOT
-            }
+            add_timed_idea = { idea = idea_communism_tendencies years = 2 }
         }
     }
     focus = {
-        id = TUR_embrace_modernity
+        id = ROM_embrace_modernity
         icon = GFX_focus_generic_red_education
 
-        relative_position_id = TUR_state_reform
+        relative_position_id = ROM_state_reform
         x = -1
         y = 1
         cost = 10
 
-        prerequisite = { focus = TUR_state_reform }
+        prerequisite = { focus = ROM_state_reform }
         completion_reward = {
-            add_popularity = { ideology = monarchism popularity = -0.05 }
             add_research_slot = 1
         }
     }

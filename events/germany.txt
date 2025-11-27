@@ -50,7 +50,7 @@ country_event = {
 
         ai_chance = {
             factor = 1
-            modifier = { or = { has_idea = idea_amassed_foreign_debt has_idea = idea_significant_foreign_debt } factor = 4 }
+            modifier = { or = { has_idea = idea_amassed_debt has_idea = idea_significant_debt } factor = 4 }
         }
     }
     option = {
@@ -73,7 +73,7 @@ news_event = {
         name = "Alright."
         if = { 
             limit = { tag = GER }
-            add_opinion_modifier = { target = TUR modifier = opinion_arabian_oil }
+            add_opinion_modifier = { target = FROM modifier = opinion_arabian_oil }
         }
     }
 }
@@ -128,7 +128,7 @@ country_event = {
     desc = ger_atlantic.1.d
 
     is_triggered_only = yes
-    trigger = { has_war_with = ENG not = { has_country_flag = atlantic_event_done } }
+    trigger = { tag = GER has_war_with = ENG not = { has_country_flag = atlantic_event_done } }
     immediate = { hidden_effect = { set_country_flag = atlantic_event_done } }
 
     option = {

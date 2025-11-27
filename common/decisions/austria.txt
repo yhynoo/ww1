@@ -1,22 +1,4 @@
 contain_eastern_threats = {
-    align_serbia = {
-        icon = generic_civil_support
-        fire_only_once = yes
-        cost = 75
-
-        targets = { SER }
-        available = {
-            can_declare_war_on = FROM
-            FROM = { exists = yes is_subject = no }
-        }
-
-        ai_will_do = {
-            factor = 0
-            modifier = { FROM = { is_in_faction = no } add = 6 }
-        }
-
-        complete_effect = { FROM = { country_event = { id = _align.1 hours = 6 random_hours = 6 } } }
-    }
     arm_the_ukrainians = {
         icon = generic_industry
         fire_only_once = yes
@@ -36,28 +18,43 @@ contain_eastern_threats = {
             hidden_effect = { FROM = { news_event = { id = _equipment.1 hours = 6 } } }
         }
     }
-    defenses_in_the_east = {
-        icon = generic_prepare_civil_war
+    align_serbia = {
+        icon = generic_civil_support
         fire_only_once = yes
         cost = 75
 
+        targets = { SER }
+        available = {
+            can_declare_war_on = FROM
+            FROM = { exists = yes is_subject = no }
+        }
+
         ai_will_do = {
             factor = 0
-            modifier = { has_war_with = SOV add = 9 }
+            modifier = { FROM = { is_in_faction = no } add = 6 }
         }
 
-        complete_effect = {
-            if = {
-                limit = { controls_state = 76 }
-                custom_effect_tooltip = tt_defenses_east
-
-                hidden_effect = {
-                    76 = { add_building_construction = { type = supply_node level = 1 province = 6711 instant_build = yes } }
-                    build_railway = { start_province = 9660 target_province = 6711 }
-                }
+        complete_effect = { FROM = { country_event = { id = _align.1 hours = 6 random_hours = 6 } } }
+    }
+    romanian_oil = {
+        icon = oil
+        cost = 50
+        fire_only_once = yes
+        
+        targets = { ROM }
+        available = {
+            ROM = {
+                not = { has_war_with = ROOT }
+                controls_state = 46 has_resources_rights = { state = 46 resources = { oil } }
             }
-            add_timed_idea = { idea = idea_defenses_in_the_east years = 1 }
         }
+
+        ai_will_do = { 
+            factor = 9
+            modifier = { has_war = yes add = 6 }
+        }
+
+        complete_effect = { 46 = { owner = { country_event = { id = aus_oil.1 hours = 6 random_hours = 6 } } } }
     }
 }
 

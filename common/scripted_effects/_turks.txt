@@ -1,0 +1,13 @@
+manage_turkish_debt = {
+    if = {
+        limit = { has_idea = idea_amassed_debt }
+        swap_ideas = {
+            remove_idea = idea_amassed_debt
+            add_idea = idea_significant_debt
+        }
+    }
+    else_if = {
+        limit = { has_idea = idea_significant_debt }
+        remove_ideas = idea_significant_debt
+    }
+}

@@ -22,6 +22,14 @@ on_actions = {
                 news_event = { id = ger_alsace.1 months = 23 random_days = 28 }
             }
 
+            TUR = {
+                # aviators
+                news_event = { id = tur_aviators.1 months = 2 days = 28 }
+                
+                # abdulhamid
+                news_event = { id = tur_abdulhamid.1 months = 61 days = 10 }
+            }
+
             # atmosphere events
             USA = {
                 # 1912
@@ -80,6 +88,8 @@ on_actions = {
 
     on_ruling_party_change = {
         effect = {
+            
+            # SOV
             if = {
                 limit = { tag = SOV old_ideology_token = monarchism }
                 news_event = { id = soviet_tsar.1 hours = 6 }

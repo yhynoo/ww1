@@ -11,7 +11,7 @@ division_template = {
 }
 
 division_template = {
-	name = "Honvéd"
+	name = "Landwehr"
 	division_names_group = AUS_INF_02
     regiments = {
 		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  
@@ -21,16 +21,7 @@ division_template = {
 }
 
 division_template = {
-	name = "Schnelle Division"
-	division_names_group = AUS_CAV_01
-    regiments = {
-		bicycle_battalion = { x = 0 y = 0 } bicycle_battalion = { x = 0 y = 1 } 
-        bicycle_battalion = { x = 1 y = 0 } bicycle_battalion = { x = 1 y = 1 }
-	}
-}
-
-division_template = {
-	name = "Landesschützen-Division"
+	name = "Landesschützen"
 	division_names_group = AUS_MNT_01
 	regiments = {
 		mountaineers = { x = 0 y = 0 }  mountaineers = { x = 0 y = 1 }  
@@ -38,115 +29,67 @@ division_template = {
 	}
 }
 
-# units
 units = {
+    # 11 infantry
+    division = { location = 11666		division_template = "Infanterie-Division"		start_experience_factor = 0.5 }
 
-    # Galicia (10 divs)
-    division = {
-		location = 11666
-		division_template = "Infanterie-Division"
-        start_experience_factor = 0.5
-    }
-    division = {
-		location = 11539
-		division_template = "Infanterie-Division"
-        start_experience_factor = 0.5
-    }
+    division = { location = 9427		division_template = "Infanterie-Division"		start_experience_factor = 0.5 }
+    division = { location = 9427		division_template = "Infanterie-Division"		start_experience_factor = 0.5 }
+    division = { location = 11479		division_template = "Infanterie-Division"		start_experience_factor = 0.5 }
+    division = { location = 577		    division_template = "Infanterie-Division"		start_experience_factor = 0.5 }
+    division = { location = 577		    division_template = "Infanterie-Division"		start_experience_factor = 0.5 }
 
-    division = {
-		location = 9427
-		division_template = "Infanterie-Division"
-        start_experience_factor = 0.5
-    }
-    division = {
-		location = 9427
-		division_template = "Infanterie-Division"
-        start_experience_factor = 0.5
-    }
-    division = {
-		location = 9427
-		division_template = "Schnelle Division"
-        start_experience_factor = 0.5
-        start_equipment_factor = 0.8
-    }
+    division = { location = 11899		division_template = "Infanterie-Division"		start_experience_factor = 0.5 }
+    division = { location = 11899		division_template = "Infanterie-Division"		start_experience_factor = 0.5 }
+    division = { location = 6889		division_template = "Infanterie-Division"		start_experience_factor = 0.5 }
 
-    division = {
-		location = 11479
-		division_template = "Infanterie-Division"
-        start_experience_factor = 0.5
-        start_equipment_factor = 0.8
-    }
-    division = {
-		location = 11479
-		division_template = "Infanterie-Division"
-        start_experience_factor = 0.5
-    }
+    division = { location = 6626		division_template = "Infanterie-Division"		start_experience_factor = 0.5 }
+    division = { location = 6626		division_template = "Infanterie-Division"		start_experience_factor = 0.5 }
 
-    division = {
-		location = 3548
-		division_template = "Honvéd"
-        start_experience_factor = 0.5
-        start_equipment_factor = 0.8
-    }
-    division = {
-		location = 6711
-		division_template = "Infanterie-Division"
-        start_experience_factor = 0.5
-    }
-    division = {
-		location = 6711
-		division_template = "Honvéd"
-        start_experience_factor = 0.5
-        start_equipment_factor = 0.8
-    }
+    # 2 alpine
+    division = { location = 673		    division_template = "Landesschützen"		start_experience_factor = 0.5 }
+    division = { location = 9598		division_template = "Landesschützen"		start_experience_factor = 0.5 }
 
-    # Croatia
-    division = {
-		location = 3943
-		division_template = "Infanterie-Division"
-        start_experience_factor = 0.5
-    }
-    division = {
-		location = 3943
-		division_template = "Honvéd"
-        start_experience_factor = 0.5
-    }
-    division = {
-		location = 6626
-		division_template = "Infanterie-Division"
-        start_experience_factor = 0.5
-        start_equipment_factor = 0.8
-    }
+    # 6 landwehr
+    division = { location = 9660		division_template = "Landwehr"		start_experience_factor = 0.5 }
 
-    # Tirol
-    division = {
-		location = 9598
-		division_template = "Landesschützen-Division"
-        start_experience_factor = 0.5
-    }
-    division = {
-		location = 6673
-		division_template = "Landesschützen-Division"
-        start_experience_factor = 0.5
-    }
-    division = {
-		location = 688
-		division_template = "Infanterie-Division"
-        start_experience_factor = 0.5
-    }
-    division = {
-		location = 688
-		division_template = "Infanterie-Division"
-        start_experience_factor = 0.5
-        start_equipment_factor = 0.8
+    division = { location = 9606		division_template = "Landwehr"		start_experience_factor = 0.5 }
+    division = { location = 3483		division_template = "Landwehr"		start_experience_factor = 0.5 }
+    division = { location = 6711		division_template = "Landwehr"		start_experience_factor = 0.5 }
+
+    division = { location = 9494		division_template = "Landwehr"		start_experience_factor = 0.5 }
+    division = { location = 11580		division_template = "Landwehr"		start_experience_factor = 0.5 }
+
+    fleet = {
+        name = "K.u.K. Marine"	
+        naval_base = 6626                # Triest
+
+        # Adriatic
+        task_force = {
+            name = "K.u.K. Eskadre"      
+			location = 6626 	# Triest
+
+            # dreadnoughts
+            ship = { name = "Viribus Unitis" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = AUS } } }
+
+            # cruisers
+            ship = { name = "Kaiser Franz Joseph I" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = AUS } } }
+
+            # destroyers
+            ship = { name = "Saida" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = AUS } } }
+            ship = { name = "Admiral Spaun" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = AUS } } }
+            ship = { name = "Tátra" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = AUS } } }
+            ship = { name = "Triglav" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = AUS } } }
+
+            # subs
+            ship = { name = "U-1" definition = submarine equipment = { submarine_1 = { amount = 1 owner = AUS } } }
+            ship = { name = "U-2" definition = submarine equipment = { submarine_1 = { amount = 1 owner = AUS } } }
+        }
     }
 }
 
 air_wings = {
     4 = {
-        fighter_equipment_0 = {
-            owner = "AUS"
-            amount = 4
-        }
+        fighter_equipment_0 = { owner = AUS amount = 4 }
     }
 }

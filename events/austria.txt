@@ -1,4 +1,52 @@
-## - evidenzbureau
+## -- oil 
+add_namespace = aus_oil
+
+country_event = {
+    id = aus_oil.1
+    title = "[FROM.GetName] Asks for Access to Oil"
+    desc = aus_oil.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a good idea."
+        custom_effect_tooltip = tt_romanian_oil
+        
+        hidden_effect = { 
+            news_event = { id = aus_oil.2 hours = 6 }
+
+            give_resource_rights = { receiver = FROM state = 46 resources = { oil } }
+            FROM = { give_guarantee = ROOT } 
+        }
+
+        ai_chance = { factor = 1 }
+    }
+    option = {
+        name = "We are not interested."
+        FROM = { add_opinion_modifier = { target = ROOT modifier = opinion_denied_access_to_oil } }
+        
+        ai_chance = { factor = 1 }
+    }
+}
+
+news_event = {
+    id = aus_oil.2
+    title = "Oil Concessions for Guarantees"
+    desc = aus_oil.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Alright."
+        if = { 
+            limit = { tag = GER }
+            add_opinion_modifier = { target = FROM modifier = opinion_romanian_oil }
+        }
+    }
+}
+
+# - evidenzbureau
 add_namespace = aus_evidenzbureau
 
 country_event = {
@@ -36,7 +84,7 @@ news_event = {
     }
 }
 
-## -- unrest in galicia
+# - unrest in galicia
 add_namespace = aus_galicia
 
 news_event = {
@@ -104,7 +152,7 @@ country_event = {
     }
 }
 
-## -- archduke news
+# - archduke news
 add_namespace = aus_archduke
 
 news_event = {

@@ -1,39 +1,173 @@
-## -- annexation
-add_namespace = tur_annexation
+# aviators
+add_namespace = tur_aviators
 
-country_event = {
-    id = tur_annexation.1
-    title = "Constantinople's Answer"
-    desc = tur_annexation.1.d
+news_event = {
+    id = tur_aviators.1
+    title = "Turkish Aviators Arrive from France"
+    desc = tur_aviators.1.d
 
     is_triggered_only = yes
 
     option = {
-        name = "Demand their withdrawal."
-        AUS = { country_event = { id = _demand.1 hours = 6 } }
+        name = "Great."
+        add_equipment_to_stockpile = { type = fighter_equipment_0 amount = 6 producer = FRA }
+        341 = { add_building_construction = { type = air_base level = 1 instant_build = yes } }
     }
-    option = {
-        name = "Issue a warning."
-        add_war_support = 0.025
+}
 
-        add_named_threat = { name = "[TUR.GetName] Warns Austria" threat = 2 }
-        news_event = { id = tur_annexation.2 hours = 6 }
+# epirus: after we supported expanding albanian settlements
+add_namespace = tur_epirus
+
+country_event = {
+    id = tur_epirus.1
+    title = "Ethnic Tensions in Epirus"
+    desc = tur_epirus.1.d
+
+    is_triggered_only = yes
+    immediate = { hidden_effect = { add_named_threat = { threat = 2 name = "Tensions in Epirus" } } }
+
+    option = {
+        name = "Intervene decisively."
+        add_political_power = -50   
+    
+        hidden_effect = { random = { chance = 50 news_event = { id = tur_epirus.2 days = 14 random_days = 7 } } }
     }
     option = {
-        name = "Ignore it."
-        add_political_power = -25
+        name = "They will figure it out."
+        add_stability = -0.025
     }
 }
 
 news_event = {
-    id = tur_annexation.2
-    title = "[TUR.GetName] Warns Austria"
-    desc = tur_annexation.2.d
+    id = tur_epirus.2
+    title = "Tragedy in Yanya"
+    desc = tur_epirus.2.d
 
     is_triggered_only = yes
     major = yes
 
+    immediate = { hidden_effect = { add_named_threat = { threat = 4 name = "Tragedy in Yanya" } } }
+
     option = {
-        name = "This does not sound very convincing."
+        name = "Awful."
+        if = {
+            limit = { tag = GRE }
+            add_opinion_modifier = { target = TUR modifier = opinion_yanya }
+        }
+    }
+}
+
+# armenia
+add_namespace = tur_armenia
+
+news_event = {
+    id = tur_armenia.1
+    title = "Testimonies from Armenia and Assyria"
+    desc = tur_armenia.1.d
+
+    is_triggered_only = yes
+    trigger = { 
+        ARM = { exists = no } 
+        and = { tag = TUR has_war_with = SOV not = { has_country_flag = armenia_event_done } }
+    }
+    major = yes
+
+    immediate = { 
+        set_country_flag = armenia_event_done
+        hidden_effect = { add_named_threat = { threat = 4 name = "Testimonies from Armenia and Assyria" } } 
+    }
+
+    option = {
+        name = "A despicable tragedy."
+        if = {
+            limit = { or = { tag = ARM tag = ENG tag = FRA tag = GRE tag = USA } }
+            add_opinion_modifier = { target = TUR modifier = opinion_armenian_genocide }
+        }
+    }
+}
+
+country_event = {
+    id = tur_armenia.2
+    title = "Open Investigations?"
+    desc = tur_armenia.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must do it."
+        add_political_power = -25
+        add_popularity = { ideology = democratic popularity = 0.05 }
+        hidden_effect = { news_event = { id = tur_armenia.3 days = 7 random_days = 7 } }
+    }
+    option = {
+        name = "There is nothing to investigate."
+        add_popularity = { ideology = communism popularity = 0.05 }
+    }
+}
+
+news_event = {
+    id = tur_armenia.3
+    title = "Young Officers: ‘Slander is Treason!’"
+    desc = tur_armenia.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Disgusting."
+        add_stability = -0.025
+    }
+}
+
+# abdulhamid dies
+add_namespace = tur_abdulhamid
+
+news_event = {
+    id = tur_abdulhamid.1
+    title = "Abdülhamid Dies"
+    desc = tur_abdulhamid.1.d
+
+    is_triggered_only = yes
+    trigger = { has_government = monarchism }
+
+    option = {
+        name = "We belong to God, and to Him we will return."
+        promote_character = TUR_mehmed_v
+    }
+}
+
+# young turks
+add_namespace = tur_young_turks
+
+country_event = {
+    id = tur_young_turks.1
+    title = "The Young Turks Take up Arms!"
+    desc = tur_young_turks.1.d
+
+    trigger = { 
+        tag = TUR
+        not = { has_government = communism }
+        and = { has_civil_war = no has_stability < 0.3 or = { communism > 0.15 has_idea = idea_dissent_in_the_army } }
+    }
+    mean_time_to_happen = { days = 14 }
+
+    option = {
+        name = "Yet another coup to crush."
+        start_civil_war = { 
+            ideology = communism size = 0.45 states_filter = { is_controlled_by = TUR }
+            states = { 49 184 344 345 586 }
+        }
+        hidden_effect = { turkish_civil_war = yes }
+    }
+    option = {
+        name = "Time for change!"
+        start_civil_war = { 
+            ruling_party = communism ideology = ROOT size = 0.55
+            states_filter = {
+                not = { state = 49 state = 184 state = 344 state = 345 state = 586 }
+                is_controlled_by = TUR 
+            }
+            states = all
+        }
+        hidden_effect = { turkish_civil_war = yes }
     }
 }

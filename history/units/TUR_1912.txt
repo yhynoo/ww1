@@ -26,6 +26,7 @@ units = {
 
 	division = { location = 11818		division_template = "Infantry Division"		start_experience_factor = 0.5 }
 	division = { location = 4112		division_template = "Infantry Division"		start_experience_factor = 0.5 }
+	division = { location = 9617		division_template = "Infantry Division"		start_experience_factor = 0.5 }
 
     # garrisons
     division = { location = 11818		division_template = "Garrison Troops"		start_experience_factor = 0.5 }
@@ -38,4 +39,23 @@ units = {
 
 	division = { location = 7011		division_template = "Garrison Troops"		start_experience_factor = 0.5 }
 	division = { location = 5074		division_template = "Garrison Troops"		start_experience_factor = 0.5 }
+
+	fleet = {
+        name = "Osmanlı Donanması"	
+        naval_base = 849                # Straits
+
+        # Straits
+        task_force = {
+            name = "Osmanlı Donanması"      
+			location = 849 	        # Straits 
+
+            # dreadnoughts
+            ship = { name = "Mesudiye" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = AUS } } }
+
+            # destroyers
+            ship = { name = "Samsun" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = AUS } } }
+            ship = { name = "Taşoz" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = AUS } } }
+            ship = { name = "Yarhisar" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = AUS } } }
+        }
+    }
 }

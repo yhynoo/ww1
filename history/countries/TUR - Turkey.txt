@@ -1,7 +1,6 @@
 capital = 341
 
 oob = "TUR_1912"
-set_naval_oob = "TUR_naval_1912"
 
 set_research_slots = 2
 set_stability = 0.4
@@ -20,11 +19,10 @@ recruit_character = TUR_enver_pasha
 recruit_character = TUR_fehmi_pasha
 recruit_character = TUR_hüseyin_rauf_orbay
 
-
+add_timed_idea = { idea = idea_dissent_in_the_army months = 30 }
 add_ideas = {
-    idea_dissent_in_the_army
-    idea_amassed_foreign_debt
-    idea_unrest_in_adriatic
+    idea_unrest_in_european_wilayets
+    idea_amassed_debt
 }
 
 set_technology = {
@@ -53,15 +51,6 @@ set_politics = {
 
 add_equipment_to_stockpile = {
     type = convoy
-    amount = 8
+    amount = 16
     producer = TUR
 }
-
-# Serbia - resistance
-107 = { start_resistance = yes set_resistance = 10 }
-108 = { start_resistance = yes set_resistance = 8 }
-
-# Greece - resistance
-47 = { start_resistance = yes set_resistance = 10 }
-182 = { start_resistance = yes set_resistance = 8 }
-186 = { start_resistance = yes set_resistance = 6 }

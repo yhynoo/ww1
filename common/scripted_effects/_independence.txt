@@ -65,23 +65,6 @@ baltic_independence = {
     }
 }
 
-caucasian_independence = {
-    every_state = {
-        limit = { or = { state = 229 state = 230 state = 231 state = 233 state = 646 } }
-        add_core_of = GEO
-    }
-
-    GEO = {
-        setup_uprising_troops = yes
-        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
-
-        ROOT = {
-            setup_uprising_country = yes
-            231 = { setup_uprising_state = yes }     # Baku
-        }
-    }
-}
-
 hungarian_independence = {
     HUN = {
         setup_uprising_troops = yes
@@ -147,6 +130,18 @@ south_african_independence = {
         ROOT = {
             setup_uprising_country = yes
             275 = { setup_uprising_state = yes }     # Transvaal
+        }
+    }
+}
+
+turkic_independence = {
+    TKM = {
+        setup_uprising_troops = yes
+        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
+
+        ROOT = {
+            setup_uprising_country = yes
+            405 = { setup_uprising_state = yes }     # Tashkent
         }
     }
 }

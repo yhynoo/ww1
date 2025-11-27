@@ -1,82 +1,61 @@
 consolidate_the_empire = {
-    salonika_declaration = {
-        icon = generic_form_nation
-        cost = 100
-        fire_only_once = yes
+    albanians_in_epirus = {
+        cost = 50
+        icon = generic_civil_support
 
-        ai_will_do = { base = 9 }
-        available = {
-            has_idea = idea_unrest_in_adriatic
-        }
+        ai_will_do = { factor = 9 }
 
-        complete_effect = {
-            news_event = { id = turkey_salonika.1 hours = 6 random_hours = 6 }
-            
-            remove_ideas = idea_unrest_in_adriatic
-            every_country = {
-                limit = { or = { tag = FRA tag = SER tag = SOV } }
-                add_opinion_modifier = { target = TUR modifier = opinion_salonika_declaration }
+        available = { controls_state = 106 controls_state = 185 controls_state = 404 }
+        highlight_states = { highlight_state_targets = { state = 106 state = 185 state = 404 } }
+        
+        complete_effect = { 
+            remove_ideas = idea_unrest_in_european_wilayets
+            every_state = {
+                limit = { or = { state = 106 state = 185 state = 404 } }
+                add_building_construction = { type = infrastructure level = 1 instant_build = 1 }
+                add_extra_state_shared_building_slots = 1
             }
-
-            hidden_effect = {
-                country_event = { id = turkey_salonika.2 days = 15 random_days = 30 }
-            }
+            hidden_effect = { random = { chance = 75 news_event = { id = tur_epirus.1 days = 28 random_days = 7 } } }
         }
     }
     develop_arabia = {
-        icon = generic_construction
-        cost = 75
+        cost = 50
+        icon = generic_naval
         fire_only_once = yes
 
-        available = { 
-            controls_state = 83 
-            controls_state = 416
-        }
-        
-        ai_will_do = { base = 9 }
+        available = { controls_state = 292 controls_state = 416 }
+        highlight_states = { highlight_state_targets = { state = 292 state = 416 } }
 
-        complete_effect = {
-            manage_turkish_debt = yes
-            
-            83 = {
-                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
-                add_extra_state_shared_building_slots = 1
-            }
+        ai_will_do = { factor = 12 }
+        
+        complete_effect = { 
             416 = {
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-                add_extra_state_shared_building_slots = 1
+                add_building_construction = { type = infrastructure level = 1 instant_build = 1 }
+                add_building_construction = { type = dockyard level = 1 instant_build = 1 }
+            }
+            292 = {
+                add_building_construction = { type = infrastructure level = 1 instant_build = 1 }
+                add_resource = { type = oil amount = 4 }
             }
         }
     }
-    sell_egypt = {
+    align_greece = {
+        icon = generic_civil_support
         fire_only_once = yes
         cost = 75
 
-        available = { 
-            not = { has_war_with = ENG }
-
-            custom_trigger_tooltip = {
-                tooltip = tt_sell_egypt
-
-                or = { has_idea = idea_amassed_foreign_debt has_idea = idea_significant_foreign_debt }
-                controls_state = 447 controls_state = 452 controls_state = 456 controls_state = 457 controls_state = 552 controls_state = 551
-            }
-        }
-
-        highlight_states = {
-            highlight_state_targets = {
-                state = 447 state = 452 state = 456 state = 457 state = 551 state = 552
-            }
+        targets = { GRE }
+        available = {
+            can_declare_war_on = FROM
+            FROM = { exists = yes is_subject = no }
         }
 
         ai_will_do = {
-            base = 0
-            modifier = { has_idea = idea_amassed_foreign_debt add = 6 }
+            factor = 0
+            modifier = { FROM = { is_in_faction = no } add = 6 }
         }
 
-        complete_effect = {
-            ENG = { country_event = { id = turkey_egypt.1 hours = 6 random_hours = 6 } }
-        }
+        complete_effect = { FROM = { country_event = { id = _align.1 hours = 6 random_hours = 6 } } }
     }
 }
 
@@ -86,6 +65,7 @@ turanist_ambition = {
         cost = 100
         fire_only_once = yes
 
+        targets = { FRA }
         available = {
             controls_state = 341
             FRA = { has_opinion = { target = TUR value > 49 } }
@@ -94,42 +74,65 @@ turanist_ambition = {
         ai_will_do = { base = 6 }
         complete_effect = {
             add_ideas = idea_sky_steppe
-
             341 = { 
-                add_building_construction = { type = arms_factory level = 1 instant_build = yes } 
-                hidden_effect = { add_extra_state_shared_building_slots = 1 }
+                add_building_construction = { type = arms_factory level = 2 instant_build = yes } 
+                add_extra_state_shared_building_slots = 2
             }
         }
     }
     turanist_movement = {
         icon = generic_prepare_civil_war
-        cost = 100
         fire_only_once = yes
+        cost = 75
+
+        targets = { TMS }
+        target_non_existing = yes
 
         available = {
-            any_state = {
-                or = { state = 405 state = 584 state = 585 state = 589 state = 647 }
-                is_owned_and_controlled_by = SOV
+            FROM = { exists = no }
+            405 = { owner = { controls_state = PREV has_stability < 0.5 } }
+        }
+        cancel_trigger = { 405 = { owner = { has_stability > 0.5 } } }
+
+        days_remove = 90
+        remove_effect = { 
+            hidden_effect = {
+                give_guarantee = FROM
+                FROM = { news_event = { id = _uprising.1 hours = 6 } }
+                405 = {
+                    owner = {
+                        turkic_independence = yes
+                        declare_war_on = { target = FROM type = annex_everything }
+                    }
+                }
+            }
+            custom_effect_tooltip = tt_turkestan
+        }
+    }
+}
+
+# for later?
+unused = {
+    sell_egypt = {
+        fire_only_once = yes
+        cost = 75
+
+        available = { 
+            not = { has_war_with = ENG }
+            custom_trigger_tooltip = {
+                tooltip = tt_controlled_states
+                controls_state = 447 controls_state = 452 controls_state = 456 controls_state = 457 controls_state = 552 controls_state = 551
             }
         }
+        highlight_states = { highlight_state_targets = { state = 447 state = 452 state = 456 state = 457 state = 551 state = 552 } }
 
         ai_will_do = {
             base = 0
-            modifier = { 
-                and = { 
-                    or = { has_government = communism has_government = monarchism }
-                    has_war = no
-                } 
-                add = 9
-            }
+            modifier = { has_idea = idea_amassed_debt add = 6 }
         }
 
         complete_effect = {
-            SOV = {
-                add_timed_idea = { idea = idea_unrest_in_central_asia years = 1 }
-                hidden_effect = { country_event = { id = turkey_turanism.1 hours = 6 random_hours = 6 } }
-            }
-            hidden_effect = { set_country_flag = turkestan_active }
+            ENG = { country_event = { id = turkey_egypt.1 hours = 6 random_hours = 6 } }
         }
     }
 }
