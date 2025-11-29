@@ -80,6 +80,9 @@ country_event = {
         ai_chance = { 
             factor = 2
             modifier = { any_country = { or = { is_ally_with = ROOT has_guaranteed = ROOT } } factor = 2 }
+
+            # Serbia's Austrophile king
+            modifier = { has_country_leader = { character = SER_konstantin_konstantinovic ruling_only = yes } factor = 0 }
         }
         
     }

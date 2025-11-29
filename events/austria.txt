@@ -99,6 +99,7 @@ news_event = {
         
         date > 1914.1.1
         not = { has_war_with = SER }
+        not = { SER = { has_country_leader = { character = SER_konstantin_konstantinovic ruling_only = yes } } }
         and = { SOV = { has_completed_focus = SOV_deterrence } SER = { has_completed_focus = SER_deterrence } }
     }
     mean_time_to_happen = { days = 14 }
@@ -106,7 +107,7 @@ news_event = {
     immediate = { 
         set_country_flag = unrest_event_done
         hidden_effect = { 
-            add_named_threat = { threat = 2 name = "Unrest Among Slavs in Austria-Hungary" } 
+            add_named_threat = { threat = 4 name = "Unrest Among Slavs in Austria-Hungary" } 
             random = { chance = 50 news_event = { id = aus_unrest.2 days = 28 random_days = 7 } }
             country_event = { id = aus_unrest.3 days = 70 random_days = 70 }
         } 
@@ -152,10 +153,8 @@ country_event = {
 
     option = {
         name = "Serbia must die!"
-
         add_war_support = 0.25
         declare_war_on = { target = SER type = annex_everything }
-        
         ai_chance = { base = 4 }
     }
     option = {
@@ -163,6 +162,11 @@ country_event = {
         
         add_stability = -0.25
         add_popularity = { ideology = monarchism popularity = -0.15 }
+
+        hidden_effect = { 
+            random = { chance = 60 galician_uprising = yes }
+            random = { chance = 80 hungarian_uprising = yes }
+        }
         
         ai_chance = { base = 1 }
     }
@@ -198,5 +202,42 @@ news_event = {
     option = {
         name = "Long live the Emperor!"
         retire_character = AUS_franz_joseph
+    }
+}
+
+# - end
+add_namespace = aus_end
+
+news_event = {
+    id = aus_end.0
+    hidden = yes
+
+    trigger = {
+        and = { HUN = { exists = no } }
+        and = { tag = AUS stability < 0.4 surrender_progress > 0.25 }
+        not = { has_country_flag = hungarian_uprising_event_done }
+    }
+    mean_time_to_happen = { days = 14 }
+
+    immediate = { 
+        hungarian_uprising = yes 
+        set_country_flag = hungarian_uprising_event_done
+    }
+}
+
+news_event = {
+    id = aus_end.1
+    hidden = yes
+
+    trigger = {
+        and = { POL = { exists = no } }
+        and = { tag = AUS stability < 0.4 surrender_progress > 0.4 }
+        not = { has_country_flag = galician_uprising_event_done }
+    }
+    mean_time_to_happen = { days = 14 }
+
+    immediate = { 
+        galician_uprising = yes 
+        set_country_flag = galician_uprising_event_done
     }
 }

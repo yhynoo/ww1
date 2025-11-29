@@ -1,27 +1,48 @@
-# enosis
-add_namespace = gre_enosis
+# delegaion
+add_namespace = gre_delegation
 
-news_event = {
-    id = gre_enosis.1
-    title = "Cyprus Joins [GRE.GetNameDef]!"
-    desc = gre_enosis.1.d
+country_event = {
+    id = gre_delegation.1
+    title = "Cretan Delegation Arrives"   
+    desc = gre_delegation.1.d
 
     is_triggered_only = yes
-    trigger = {
-        tag = GRE
-        owns_state = 183
-        not = { has_country_flag = enosis_event_done }
-    }
-    immediate = { set_country_flag = enosis_event_done }
+    trigger = { 182 = { not = { is_core_of = GRE } } }
 
     option = {
-        name = "Wonderful!"
-        add_political_power = 50
-        add_popularity = { ideology = ROOT popularity = 0.05 }
+        name = "Welcome them."
+        182 = { add_core_of = GRE }
+        add_named_threat = { name = "[GRE.GetNameDef] Annexes Crete" threat = 4 }
+
+        hidden_effect = { news_event = { id = gre_delegation.2 hours = 6 } }
+        ai_chance = { factor = 1 }
+    }
+    option = {
+        name = "Send them home."
+        add_political_power = -25
+
+        TUR = { add_opinion_modifier = { target = ROOT modifier = opinion_sent_delegation_home } }
+        ai_chance = { factor = 0 }
+    }
+}
+news_event = {
+    id = gre_delegation.2
+    title = "[GRE.GetName] Annexes Crete!"
+    desc = gre_delegation.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The Turks will not like this..."
+        if = {
+            limit = { tag = TUR }
+            add_opinion_modifier = { target = GRE modifier = opinion_annexed_crete }
+        }
     }
 }
 
-# giorgios
+# assassination
 add_namespace = gre_assassination
 
 news_event = {
@@ -44,9 +65,7 @@ news_event = {
     desc = gre_assassination.2.d
 
     is_triggered_only = yes
-    trigger = {
-        not = { or = { has_completed_focus = GRE_traditionalism has_completed_focus = GRE_adjust_the_government } }
-    }
+    trigger = { not = { or = { has_completed_focus = GRE_traditionalism has_completed_focus = GRE_adjust_the_government } } }
 
     option = {
         name = "Worrying."
@@ -55,12 +74,12 @@ news_event = {
 }
 
 # schism
-add_namespace = gre_assassination
+add_namespace = gre_schism
 
 news_event = {
-    id = gre_schism.2
+    id = gre_schism.1
     title = "Monarchists Take up Arms!"
-    desc = gre_schism.2.d
+    desc = gre_schism.1.d
 
     is_triggered_only = yes
 
@@ -73,9 +92,9 @@ news_event = {
 }
 
 news_event = {
-    id = gre_schism.3
+    id = gre_schism.2
     title = "Democrats Take up Arms!"
-    desc = gre_schism.3.d
+    desc = gre_schism.2.d
 
     is_triggered_only = yes
 
@@ -84,5 +103,44 @@ news_event = {
         start_civil_war = { ruling_party = monarchism ideology = democratic size = 0.5 }
         
         hidden_effect = { greek_civil_war = yes }
+    }
+}
+
+# officers
+add_namespace = gre_officers
+
+news_event = {
+    id = gre_officers.1
+    title = "Young Oficers Approve of the Government"
+    desc = gre_officers.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Alright."
+        add_political_power = 25
+    }
+}
+
+
+# enosis
+add_namespace = gre_enosis
+
+news_event = {
+    id = gre_enosis.1
+    title = "Cyprus Joins [GRE.GetNameDef]!"
+    desc = gre_enosis.1.d
+
+    trigger = {
+        tag = GRE
+        owns_state = 183
+        not = { has_country_flag = enosis_event_done }
+    }
+    immediate = { set_country_flag = enosis_event_done }
+
+    option = {
+        name = "Wonderful!"
+        add_political_power = 50
+        add_popularity = { ideology = ROOT popularity = 0.05 }
     }
 }

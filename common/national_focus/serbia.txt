@@ -145,13 +145,8 @@ focus_tree = {
         x = 9           y = 0           cost = 10
 
         completion_reward = {
-            air_experience = 25
+            news_event = { id = ser_avijatika.1 hours = 6 }
             add_timed_idea = { idea = idea_airfield_expansion years = 1 }
-            random_owned_state = {
-                limit = { is_capital = yes }
-                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
-                add_building_construction = { type = air_factor level = 2 instant_build = yes }
-            }
         }
     }
     focus = {
@@ -623,7 +618,7 @@ focus_tree = {
 
         ai_will_do = {
             factor = 1
-            modifier = { and = { date > 1914.1.1 has_war = no } factor = 3 }
+            modifier = { and = { date > 1913.10.1 has_war = no } factor = 3 }
         }
 
         completion_reward = {
@@ -660,18 +655,12 @@ focus_tree = {
 
         prerequisite = { focus = SER_expansionism }
         available = { 
-            is_subject = no 
-            custom_trigger_tooltip = {
-                tooltip = tt_greater_yugoslavia
-                has_cosmetic_tag = SER_YUG
-            }
+            is_subject = no
         }
 
         completion_reward = {
-            every_state = {
-                limit = { or = { state = 33 state = 44 state = 48 state = 102 state = 185 } }
-                add_core_of = SER
-            }
+            custom_effect_tooltip = decision_faction_effect_tooltip
+            hidden_effect = { if = { limit = { is_ai = no } set_rule = { can_create_factions = yes } } }
         }
     }
 
@@ -683,17 +672,15 @@ focus_tree = {
         x = 0
         y = 1
         cost = 10
-
-        ai_will_do = {
-            factor = 1
-            modifier = { is_subject_of = AUS factor = 0 }
-        }
         
         mutually_exclusive = { focus = SER_adjust_the_government }
         prerequisite = { focus = SER_political_ambitions }
+        available = { has_government = monarchism }
+
         completion_reward = {
-            add_stability = 0.05
-            add_popularity = { ideology = monarchism popularity = 0.05 }
+            add_stability = -0.05
+            custom_effect_tooltip = tt_undo_the_coup
+            hidden_effect = { news_event = { id = ser_aristocrats.1 days = 7 } }
         }
     }
     focus = {
@@ -723,21 +710,17 @@ focus_tree = {
     }
     focus = {
         id = SER_mobilize_the_masses
-        icon = GFX_focus_ITA_mobilize_the_masses
+        icon = GFX_focus_SER_mobilize_the_masses
 
         relative_position_id = SER_traditionalism
         x = 1
         y = 1
         cost = 10
 
-        ai_will_do = {
-            factor = 0
-            modifier = { has_army_manpower = { size > 50000 } factor = 1 }
-        }
-
         prerequisite = { focus = SER_traditionalism }
+
         completion_reward = {
-            add_timed_idea = { idea = idea_unification_or_death years = 2 }
+            add_timed_idea = { idea = idea_stabilization years = 2 }
         }
     }
     focus = {
@@ -769,13 +752,13 @@ focus_tree = {
 
         prerequisite = { focus = SER_strength_in_unity }
         completion_reward = {
-            add_ideas = idea_the_golden_age
+            add_ideas = idea_united_and_inseparable
         }
     }
 
     focus = {
         id = SER_adjust_the_government
-        icon = GFX_focus_SER_adjust_the_government
+        icon = GFX_focus_generic_adjust_the_government
 
         relative_position_id = SER_political_ambitions
         x = 4
@@ -785,18 +768,11 @@ focus_tree = {
         mutually_exclusive = { focus = SER_traditionalism }
         prerequisite = { focus = SER_political_ambitions }
 
-        ai_will_do = {
-            factor = 0
-            modifier = { is_subject_of = AUS add = 1 }
-        }
+        ai_will_do = { factor = 2 }
 
         completion_reward = {
-            add_war_support = -0.05
-
-            AUS = {
-                hidden_effect = { remove_opinion_modifier = { target = SER modifier = opinion_anti_serbian_staff } }
-                add_opinion_modifier = { target = SER modifier = opinion_serbian_alignment } 
-            }
+            add_stability = 0.05
+            add_popularity = { ideology = democratic popularity = 0.05 }
         }
     }
     focus = {
@@ -824,11 +800,10 @@ focus_tree = {
 
         prerequisite = { focus = SER_adjust_the_government }
         completion_reward = {
-            add_timed_idea = { idea = idea_open_the_economy years = 1 }
+            add_timed_idea = { idea = idea_the_golden_age years = 1 }
 
             random_owned_controlled_state = {
                 limit = { is_core_of = ROOT is_in_home_area = yes }
-
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
 			}

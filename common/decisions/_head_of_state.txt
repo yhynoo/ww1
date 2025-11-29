@@ -180,8 +180,11 @@ _head_of_state = {
 
             # ROM
             modifier = { 
-                and = { not = { has_completed_focus = ROM_adjust_the_government } or = { is_guaranteed_by = GRE is_guaranteed_by = SER } } 
-                factor = 6
+                and = { 
+                    not = { has_completed_focus = ROM_adjust_the_government } 
+                    or = { is_guaranteed_by = AUS is_guaranteed_by = GRE is_guaranteed_by = SER } 
+                } 
+                factor = 12
             }
         }
 

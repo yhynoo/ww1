@@ -65,17 +65,40 @@ baltic_independence = {
     }
 }
 
-hungarian_independence = {
-    HUN = {
+galician_uprising = {
+    POL = {
         setup_uprising_troops = yes
-        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
+        set_cosmetic_tag = POL_galicia
+        news_event = { id = _uprising.1 hours = 6 }
 
         ROOT = {
             setup_uprising_country = yes
-            43 = { setup_uprising_state = yes }     # Budapest
+            every_state = {
+                limit = { or = { state = 80 state = 89 state = 91 } is_controlled_by = ROOT }
+                setup_uprising_state = yes
+            }
 
-            # shrink the army.
-            every_country_division = { random = { chance = 40 destroy_unit = yes } }
+            declare_war_on = { target = PREV type = annex_everything }
+        }
+    }
+}
+
+hungarian_uprising = {
+    HUN = {
+        setup_uprising_troops = yes
+        news_event = { id = _uprising.1 hours = 6 }
+        
+        ROOT = {
+            setup_uprising_country = yes
+            every_state = {
+                limit = { or = { state = 43 state = 73 state = 76 state = 84 state = 155 } is_controlled_by = ROOT }
+                setup_uprising_state = yes
+            }
+
+            # shrink the army
+            every_country_division = { random = { chance = 25 destroy_unit = yes } }
+
+            declare_war_on = { target = PREV type = annex_everything }
         }
     }
 }
@@ -161,15 +184,8 @@ ukrainian_independence = {
 ### UPRISING TROOPS SETUP HELPERS ###
 
 setup_uprising_country = {
-    every_controlled_state = {
-        limit = { is_core_of = PREV.PREV }
-        set_state_owner_to = PREV.PREV
-
-        random = {
-            chance = 50
-            setup_uprising_state = yes
-        }
-    }
+    PREV = { add_ideas = { limited_conscription limited_exports partial_economic_mobilisation } }
+    every_controlled_state = { limit = { is_core_of = PREV.PREV } set_state_owner_to = PREV.PREV }
 }
 
 setup_uprising_state = {
@@ -181,10 +197,12 @@ setup_uprising_state = {
         transfer_state_to = PREV.PREV
     }
 
-    create_unit = {
-        division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\" start_experience_factor = 0.2" count = 2
-        owner = PREV.PREV
+    random_list = {
+        3 = { create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\" start_experience_factor = 0.2" count = 3 owner = PREV.PREV } }
+        2 = { create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\" start_experience_factor = 0.2" count = 2 owner = PREV.PREV } }
+        1 = { create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\" start_experience_factor = 0.2" count = 1 owner = PREV.PREV } }
     }
+    
 }
 
 setup_uprising_tribal_units = {

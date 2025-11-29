@@ -1,83 +1,87 @@
-land_of_south_slavs = {
-    demand_croatia = {
+ethnic_mobilization = {
+    claim_croatia = {
         icon = generic_prepare_civil_war
-        cost = 100
         fire_only_once = yes
+        cost = 50
 
-        available = {
-            any_state = {
-                or = { state = 103 state = 104 state = 109 }
-                owner = { is_not_us_and_can_fight = yes }
-            }
-        }
-
+        highlight_states = { highlight_state_targets = { state = 103 state = 109 } }
         ai_will_do = {
-            base = 3
-            modifier = { 
-                any_state = { 
-                    or = { state = 103 state = 104 state = 109 } 
-                    is_controlled_by = HUN
-                } 
-                factor = 3
-            }
+            factor = 6
+            modifier = { is_in_faction = yes factor = 2 }
         }
-
-        complete_effect = {
+        complete_effect = { 
             every_state = {
-                limit = { or = { state = 103 state = 104 state = 109 } }
+                limit = { or = { state = 103 state = 109 } }
                 add_claim_by = ROOT
-            }
-            every_other_country = {
-                limit = {
-                    or = { owns_state = 103 owns_state = 104 owns_state = 109 }
-                    can_declare_war_on = ROOT
-                }
-                country_event = { id = _demand.1 hours = 6 }
             }
         }
     }
-    demand_kosovo_and_skopje = {
-        icon = generic_prepare_civil_war
-        cost = 100
+    demand_old_serbia = {
+        icon = generic_ignite_civil_war
         fire_only_once = yes
+        cost = 50
+
+        targets_dynamic = yes
+        target_trigger = {
+            can_declare_war_on = FROM 
+            any_state = { or = { state = 106 state = 404 } is_owned_and_controlled_by = FROM } 
+        }
+        highlight_states = { highlight_states_trigger = { or = { state = 106 state = 404 } is_owned_and_controlled_by = FROM } }
+ 
+        ai_will_do = {
+            factor = 4
+            modifier = { is_in_faction = yes factor = 2 }
+        }
+
+        complete_effect = { FROM = { country_event = { id = _demand.1 hours = 6 } } }
+    }
+    ser_fra_guarantees = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 100
+
+        targets = { FRA }
+        target_non_existing = yes
 
         available = {
-            any_state = {
-                or = { state = 106 state = 404 }
-                owner = {
-                    not = { tag = ROOT }
-                    can_declare_war_on = ROOT
-                }
-            }
+            FROM = { exists = yes }
+            and = { not = { has_war_with = FROM } not = { is_ally_with = FROM } }
         }
 
-        ai_will_do = {
-            base = 3
-            modifier = { is_in_faction = yes factor = 3 }
-        }
+        ai_will_do = { factor = 9 }
+
+        complete_effect = { FROM = { country_event = { id = _guarantees.1 hours = 6 random_hours = 6 } } }
+    }
+}
+
+land_of_south_slavs = {
+    annex_albania = {
+        icon = generic_form_nation
+        fire_only_once = yes
+        cost = 50
+
+        available = { 44 = { is_controlled_by = SER } }
+        highlight_states = { highlight_state_targets = { state = 44 } }
+ 
+        ai_will_do = { factor = 12 }
 
         complete_effect = {
-            106 = {
-                add_claim_by = ROOT
-            }
-            every_other_country = {
-                limit = {
-                    or = { owns_state = 106 owns_state = 404 }
-                    can_declare_war_on = ROOT
-                }
-                country_event = { id = _demand.1 hours = 6 }
-            }
+            44 = { add_core_of = SER }
         }
     }
     establish_yugoslavia = {
         icon = generic_form_nation
-        cost = 150
+        cost = 75
         fire_only_once = yes
 
         available = {
-            controls_state = 104
-            controls_state = 109
+            custom_trigger_tooltip = {
+                tooltip = tt_highlighted_states
+                controls_state = 107 controls_state = 105 controls_state = 108
+                controls_state = 102 controls_state = 103 controls_state = 104 controls_state = 109 controls_state = 404 controls_state = 106
+            }
         }
+        highlight_states = { highlight_state_targets = { state = 102 state = 103 state = 104 state = 105 state = 106 state = 107 state = 108 state = 109 state = 404 } }
 
         ai_will_do = { base = 24 }
 

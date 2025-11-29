@@ -145,7 +145,6 @@
         x = 9           y = 0           cost = 10
 
         completion_reward = {
-            air_experience = 25
             add_timed_idea = { idea = idea_airfield_expansion years = 1 }
             random_owned_state = {
                 limit = { is_capital = yes }
@@ -600,8 +599,8 @@
         }
 
         ai_will_do = {
-            base = 2
-            modifier = { threat > 0.2 factor = 3 }
+            base = 3
+            modifier = { threat > 0.1 factor = 3 }
         }
 
         prerequisite = { focus = FRA_international_affairs }

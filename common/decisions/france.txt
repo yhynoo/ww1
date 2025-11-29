@@ -13,11 +13,9 @@ echoes_of_agadir = {
         highlight_states = { highlight_states_trigger = { or = { state = 6 state = 28 state = 34 } not = { is_owned_and_controlled_by = ROOT } } }
 
         ai_will_do = {
-            factor = 2
-            modifier = {
-                or = { date > 1914.7.1 or = { is_ally_with = ENG is_ally_with = SOV } }
-                factor = 6
-            }
+            factor = 1
+            modifier = { date > 1914.8.1 factor = 2 }
+            modifier = { or = { is_ally_with = ENG is_ally_with = SOV } } factor = 6 }
         }
 
         complete_effect = { 

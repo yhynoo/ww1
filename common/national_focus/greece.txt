@@ -145,7 +145,6 @@ focus_tree = {
         x = 9           y = 0           cost = 10
 
         completion_reward = {
-            air_experience = 25
             add_timed_idea = { idea = idea_airfield_expansion years = 1 }
             random_owned_state = {
                 limit = { is_capital = yes }
@@ -686,8 +685,9 @@ focus_tree = {
                 remove_ideas = idea_national_schism
                 custom_effect_tooltip = tt_national_schism
 
-                hidden_effect = { 
-                    random = { chance = 50 news_event = { id = gre_schism.2 days = 14 random_days = 7 } }
+                if = {
+                    limit = { has_stability < 0.5 }
+                    hidden_effect = { random = { chance = 80 news_event = { id = gre_schism.1 days = 14 random_days = 7 } } }
                 }
             }
 
@@ -802,8 +802,9 @@ focus_tree = {
                 remove_ideas = idea_national_schism
                 custom_effect_tooltip = tt_national_schism
 
-                hidden_effect = { 
-                    random = { chance = 50 news_event = { id = gre_schism.3 days = 14 random_days = 7 } }
+                if = {
+                    limit = { has_stability < 0.5 }
+                    hidden_effect = { random = { chance = 80 news_event = { id = gre_schism.2 days = 14 random_days = 7 } } }
                 }
             }
 

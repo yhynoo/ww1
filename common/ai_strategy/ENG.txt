@@ -28,10 +28,18 @@ ENG_alternative_alliances = {
 
 # ARMY
 
+ENG_middle_east = {
+	allowed = { original_tag = ENG }
+    enable = { always = yes }
+	
+	# planning the positions
+    ai_strategy = {	type = area_priority		id = middle_east			value = 40 }
+}
+
 ENG_western_front = {
 	allowed = { original_tag = ENG }
 	enable = { and = { has_war_with = GER is_ally_with = FRA } }
 	abort_when_not_enabled = yes
 
-	ai_strategy = { type = front_unit_request		area = western_front		value = 120 }
+	ai_strategy = { type = front_unit_request		area = western_front		value = 200 }
 }
