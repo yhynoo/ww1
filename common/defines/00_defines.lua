@@ -82,21 +82,19 @@ NDiplomacy = {
 	--   if distance is between [0, NEUTRAL_DIST], we lerp the cost modifier between [MIN_DIST_COST_MODIFIER, 1.0]
 	--   if distance is between [NEUTRAL_DIST, MAX_DIST], we lerp the cost modifier between [1.0, MAX_DIST_COST_MODIFIER]
 	-- The below values represent (pixel distance / INFLUENCE_DISTANCE_DIVISOR)
-	INFLUENCE_NEUTRAL_DIST_CAPITAL = 30.0,           -- distance to capital that results in a cost modifier of 1.0
+	INFLUENCE_NEUTRAL_DIST_CAPITAL = 30.0,          -- distance to capital that results in a cost modifier of 1.0
 	INFLUENCE_MAX_DIST_CAPITAL = 45.0,              -- distance to capital that results in a cost modifier of INFLUENCE_MAX_DIST_COST_MODIFIER
-	INFLUENCE_NEUTRAL_DIST_CORE = 6.0,              -- distance to nearest core state that results in a cost modifier of 1.0
+	INFLUENCE_NEUTRAL_DIST_CORE = 3.0,              -- distance to nearest core state that results in a cost modifier of 1.0
 	INFLUENCE_MAX_DIST_CORE = 13.0,                 -- distance to nearest core state that results in a cost modifier of INFLUENCE_MAX_DIST_COST_MODIFIER
 	INFLUENCE_NEUTRAL_DIST_CONTROLLED = 14.0,       -- distance to nearest controlled state that results in a cost modifier of 1.0
 	INFLUENCE_MAX_DIST_CONTROLLED = 20.0,           -- distance to nearest controlled state that results in a cost modifier of INFLUENCE_MAX_DIST_COST_MODIFIER
-	INFLUENCE_MIN_DIST_COST_MODIFIER = 2.0,        	-- Cost modifier at min (zero) distance
-	INFLUENCE_MAX_DIST_COST_MODIFIER = 5.0,       -- Cost modifier at max distance
+	INFLUENCE_MIN_DIST_COST_MODIFIER = 0.5,        	-- Cost modifier at min (zero) distance
+	INFLUENCE_MAX_DIST_COST_MODIFIER = 15.0,       	-- Cost modifier at max distance
 	INFLUENCE_RATIO_CAPITAL = 0.05,                 -- Ratio of influence based on distance to capital
 	INFLUENCE_RATIO_CORE = 0.45,                    -- Ratio of influence based on distance to nearest core territory
 	INFLUENCE_RATIO_CONTROLLED = 0.5,               -- Ratio of influence based on distance to neared controlled territory (including uncontested peace conference bids)
 	INFLUENCE_DISTANCE_DIVISOR = 22.0,              -- Divide pixel distance with this when determining distance to capital / core / controlled states. Just an arbitrary way of scaling the distance numbers.
-
 	INFLUENCE_PER_ADJACENCY = 0.05,					-- How much influence to add per uncontested adjacent state in the PC (blob, don't snake)
-
 	INFLUENCE_MAJOR_FACTOR = 1.0,					--How much influence discount an AI major will get (inverse)
 	INFLUENCE_MINOR_FACTOR = 1.0,					--How much influence discount an AI minor will get (inverse)
 

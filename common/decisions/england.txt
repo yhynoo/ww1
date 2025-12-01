@@ -4,10 +4,7 @@ eng_mediterranean_expansion = {
         cost = 100
         fire_only_once = yes
 
-        available = {
-            116 = { is_owned_and_controlled_by = ENG }
-        }
-
+        available = { 116 = { is_owned_and_controlled_by = ENG } }
         ai_will_do = { base = 9 }
 
         complete_effect = {
@@ -15,7 +12,6 @@ eng_mediterranean_expansion = {
 				name = capital_ships_bonus bonus = 0.5 uses = 2
 				category = naval_equipment_tech
 			}
-
             116 = { add_building_construction = { type = naval_base level = 2 province = 12003 instant_build = yes } }
         }
     }
@@ -50,31 +46,26 @@ eng_mediterranean_expansion = {
             }
         }
     }
-    support_aliyah = {
+    egypt_for_debt = {
         icon = generic_civil_support
-        cost = 50
         fire_only_once = yes
+        cost = 75
 
-        available = {
-            not = { owns_state = 454 }
-        }
-
-        ai_will_do = {
-            base = 0
-            modifier = { 
-                454 = { owner = { has_war_with = ENG } }
-                add = 12
+        targets = { TUR }
+        available = { 
+            not = { has_war_with = FROM }
+            custom_trigger_tooltip = {
+                tooltip = tt_egypt
+                FROM = { controls_state = 447 controls_state = 452 controls_state = 456 controls_state = 457 controls_state = 552 controls_state = 551 }
             }
         }
+        highlight_states = { highlight_state_targets = { state = 447 state = 452 state = 456 state = 457 state = 551 state = 552 } }
 
-        complete_effect = {
-            news_event = { id = england_aliyah.1 hours = 3 }
-            454 = {
-                owner = {
-                    add_opinion_modifier = { target = ENG modifier = opinion_supported_the_aliyah }
-                }
-            }
+        ai_will_do = { 
+            factor = 12 
+            modifier = { FROM = { is_guaranteed_by = GER } factor = 0.5 }
         }
+        complete_effect = { FROM = { country_event = { id = eng_egypt.1 hours = 6 } } }
     }
 }
 

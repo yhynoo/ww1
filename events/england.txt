@@ -1,0 +1,39 @@
+# - egypt
+add_namespace = eng_egypt
+
+country_event = {
+    id = eng_egypt.1
+    title = "London Offers Debt Relief for Egypt"
+    desc = eng_egypt.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a good deal."
+        manage_turkish_debt = yes
+
+        every_state = {
+            or = { state = 447 state = 452 state = 456 state = 457 state = 551 state = 552 }
+            transfer_state_to = ENG
+        }
+
+        hidden_effect = { news_event = { id = eng_egypt.2 hours = 6 } }
+        ai_chance = { factor = 2 }
+    }
+    option = {
+        name = "We are not interested."
+        ai_chance = { factor = 1 }
+    }
+}
+
+news_event = {
+    id = eng_egypt.2
+    title = "[ENG.GetName] Acquires Egypt"
+    desc = eng_egypt.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
