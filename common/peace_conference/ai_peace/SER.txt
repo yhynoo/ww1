@@ -1,18 +1,10 @@
 # - romanian war
 
 peace_ai_desires = {
-    SER_war_with_TUR = {
-        peace_action_type = { take_states }
-        enable = {
-            FROM = { tag = TUR }
-            FROM.FROM.FROM = { or = { state = 44 state = 106 state = 404 } }
-        }
-        ai_desire = 25
-    }
     SER_war_with_TUR_limits = {
         peace_action_type = { take_states }
         enable = {
-            FROM = { tag = TUR }
+            tag = SER
             FROM.FROM.FROM = { not = { or = { state = 44 state = 106 state = 404 } } }
         }
         ai_desire = -600

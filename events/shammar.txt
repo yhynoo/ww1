@@ -1,0 +1,147 @@
+# expel
+add_namespace = sau_expel
+
+country_event = {
+    id = sau_expel.1
+    title = "The Offence of the Turkish Governor"
+    desc = sau_expel.1.d
+
+    is_triggered_only = yes
+    trigger = { is_subject_of = TUR }
+
+    option = {
+        name = "Expel him."
+        add_autonomy_score = { value = 120 }
+
+        hidden_effect = { TUR = { news_event = { id = sau_expel.2 hours = 6 } } }
+        ai_chance = { factor = 0 }
+    }
+    option = {
+        name = "Let him stay."
+        add_political_power = -50
+        ai_chance = { factor = 1 }
+    }
+}
+
+news_event = {
+    id = sau_expel.2
+    title = "[SAU.GetName] Expels Our Governor"
+    desc = sau_expel.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Worrying."
+        add_opinion_modifier = { target = FROM modifier = opinion_expelled_governor }
+    }
+}
+
+# ikhwan
+add_namespace = sau_ikhwan
+
+country_event = {
+    id = sau_ikhwan.1
+    title = "The Establishment of Saudi Ikhwan"
+    desc = sau_ikhwan.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Destroy them."
+        add_political_power = -75
+    }
+    option = {
+        name = "Allow limited influence."
+        add_timed_idea = { idea = idea_ikhwan years = 1 }
+    }
+}
+
+# tribalism
+add_namespace = sau_tribalism
+
+country_event = {
+    id = sau_tribalism.1
+    title = "End Arab Tribalism?"
+    desc = sau_tribalism.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Announce concessions."
+        add_political_power = -50
+        add_popularity = { ideology = democratic popularity = 0.05 }
+    }
+    option = {
+        name = "Arrest tribal leaders."
+        remove_ideas = idea_tribal_state
+
+        hidden_effect = { 
+            random = { chance = 50 news_event = { id = sau_tribalism.2 days = 7 random_days = 7 } }
+        }
+    }
+}
+
+news_event = {
+    id = sau_tribalism.2
+    title = "Other Tribes Resist Us"
+    desc = sau_tribalism.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Not great."
+
+        add_political_power = -100
+        random_owned_controlled_state = { limit = { is_core_of = ROOT is_capital = no } remove_core_of = ROOT }
+    }
+}
+
+news_event = {
+    id = sau_tribalism.3
+    title = "United Arab Kingdom Established"
+    desc = sau_tribalism.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+# mecca
+add_namespace = sau_mecca
+
+news_event = {
+    id = sau_mecca.1
+    title = "[SAU.GetName] Vows to Liberate Mecca"  # and medina too
+    desc = sau_mecca.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Worrying."
+    }
+}
+
+country_event = {
+    id = sau_mecca.2
+    title = "Establish Mecca as Our Capital?"
+    desc = sau_mecca.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Good idea."
+
+        add_political_power = -15
+        set_capital = 416
+
+        ai_chance = { factor = 1 }
+    }
+    option = {
+        name = "This is not necessary."
+        ai_chance = { factor = 0 }
+    }
+}
