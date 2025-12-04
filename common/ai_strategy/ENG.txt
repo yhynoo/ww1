@@ -42,4 +42,7 @@ ENG_western_front = {
 	abort_when_not_enabled = yes
 
 	ai_strategy = { type = front_unit_request		area = western_front		value = 200 }
+
+	# don't get too involved
+    ai_strategy = { type = dont_defend_ally_borders     id = SOV        value = 10 }
 }

@@ -130,7 +130,11 @@ country_event = {
     title = "Establish Mecca as Our Capital?"
     desc = sau_mecca.2.d
 
-    is_triggered_only = yes
+    trigger = {
+        tag = SAU
+        and = { owns_state = 416 416 = { is_capital = no } not = { has_country_flag = mecca_event_done } }
+    }
+    immediate = { set_country_flag = mecca_event_done }
 
     option = {
         name = "Good idea."

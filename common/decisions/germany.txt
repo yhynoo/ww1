@@ -17,8 +17,9 @@ oriental_investments = {
         }
 
         ai_will_do = { 
-            factor = 9
+            factor = 6
             modifier = { has_war = yes add = 6 }
+            modifier = { is_ally_with = ITA factor = 0 }
         }
 
         complete_effect = { 414 = { owner = { country_event = { id = ger_oil.1 hours = 6 random_hours = 6 } } } }
@@ -80,10 +81,9 @@ embrace_weltpolitik = {
         cost = 50
 
         targets_dynamic = yes
-        target_trigger =   {
-            can_declare_war_on = FROM 
-            any_state = { or = { state = 542 state = 545 } is_owned_and_controlled_by = FROM } 
-        }
+        target_trigger = { any_state = { or = { state = 542 state = 545 } is_owned_and_controlled_by = FROM } }
+
+        available = { can_declare_war_on = FROM }
         highlight_states = { highlight_states_trigger = { or = { state = 542 state = 545 } is_owned_and_controlled_by = FROM } }
 
         ai_will_do = {
@@ -107,19 +107,11 @@ embrace_weltpolitik = {
         cost = 100
         fire_only_once = yes
 
-        available = {
-            can_declare_war_on = SOV
-        }
+        available = { can_declare_war_on = SOV }
 
         ai_will_do = { 
             factor = 3 
-            modifier = { 
-                and = {
-                    has_war = no
-                    or = { date > 1915.4.1      FRA = { not = { has_guaranteed = SOV } } }
-                }
-                add = 6
-            } 
+            modifier = { and = { has_war = no date > 1915.4.1 } add = 6 } 
         }
 
         days_remove = 90
@@ -127,10 +119,7 @@ embrace_weltpolitik = {
 
         complete_effect = {
             news_event = { id = ger_east.1 hours = 6 }
-            every_state = { 
-                limit = { is_core_of = POL }
-                add_claim_by = GER
-            }
+            every_state = { limit = { is_core_of = POL } add_claim_by = GER }
         }
 
         remove_effect = { create_wargoal = { target = SOV type = take_claimed_state } }

@@ -3,7 +3,7 @@
 TUR_alliances = {
     allowed = { original_tag = TUR }
     enable = { 
-        GER = { has_war_with = ROM not = { is_ally_with = ITA } }
+        GER = { or = { has_war_with = ROM has_war_with = ITA } not = { is_ally_with = ITA } }
         not = { has_government = democratic }
     }
     abort_when_not_enabled = yes
@@ -27,10 +27,6 @@ TUR_alliances_alternative = {
 TUR_europe = {
 	allowed = { original_tag = TUR }
     enable = { always = yes }
-	
-	# planning the positions
-	ai_strategy = {	type = area_priority		id = europe			        value = 80 }
-    ai_strategy = {	type = area_priority		id = middle_east			value = 40 }
 
     # don't get too involved
     ai_strategy = { type = dont_defend_ally_borders     id = GER        value = 10 }

@@ -19,24 +19,20 @@ eight_banners = {
         complete_effect = { FROM = { country_event = { id = _align.1 hours = 6 random_hours = 6 } } }
     }
     demand_dalian = {
-        icon = generic_prepare_civil_war
+        icon = generic_ignite_civil_war
         fire_only_once = yes
-        cost = 100
+        cost = 50
 
-        available = {
-            72 = { 
-                NOT = { is_owned_by = MAN } 
-                controller = { can_declare_war_on = MAN }
-            }
-        }
+        targets_dynamic = yes
+        target_trigger = { 72 = { is_owned_and_controlled_by = FROM } }
+        
+        available = { can_declare_war_on = FROM }
+        highlight_states = { highlight_states_trigger = { state = 72 } }
 
-        ai_will_do = {
-            base = 0
-            modifier = { any_country = { owns_state = 72 has_war = yes } add = 12 }
-        }
+        ai_will_do = { factor = 3 }
 
-        complete_effect = {
-            72 = { controller = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } } }
+        complete_effect = { 
+            FROM = { country_event = { id = _demand.1 hours = 6 } } 
         }
     }
     develop_shanghai = {
@@ -48,7 +44,7 @@ eight_banners = {
             controls_state = 613
         }
 
-        ai_will_do = { base = 9 }
+        ai_will_do = { factor = 9 }
 
         complete_effect = {
             613 = {

@@ -10,10 +10,7 @@ ethnic_mobilization = {
             modifier = { is_in_faction = yes factor = 2 }
         }
         complete_effect = { 
-            every_state = {
-                limit = { or = { state = 103 state = 109 } }
-                add_claim_by = ROOT
-            }
+            every_state = { limit = { or = { state = 103 state = 109 } } add_claim_by = ROOT }
         }
     }
     demand_old_serbia = {
@@ -22,10 +19,9 @@ ethnic_mobilization = {
         cost = 50
 
         targets_dynamic = yes
-        target_trigger = {
-            can_declare_war_on = FROM 
-            any_state = { or = { state = 106 state = 404 } is_owned_and_controlled_by = FROM } 
-        }
+        target_trigger = { any_state = { or = { state = 106 state = 404 } is_owned_and_controlled_by = FROM } }
+        
+        available = { can_declare_war_on = FROM }
         highlight_states = { highlight_states_trigger = { or = { state = 106 state = 404 } is_owned_and_controlled_by = FROM } }
  
         ai_will_do = {
@@ -33,7 +29,10 @@ ethnic_mobilization = {
             modifier = { is_in_faction = yes factor = 2 }
         }
 
-        complete_effect = { FROM = { country_event = { id = _demand.1 hours = 6 } } }
+        complete_effect = {
+            every_state = { limit = { or = { state = 106 state = 404 } is_owned_and_controlled_by = FROM } add_claim_by = FROM }
+            FROM = { country_event = { id = _demand.1 hours = 6 } } 
+        }
     }
     ser_fra_guarantees = {
         icon = generic_prepare_civil_war
@@ -60,13 +59,14 @@ land_of_south_slavs = {
         fire_only_once = yes
         cost = 50
 
-        available = { 44 = { is_controlled_by = SER } }
+        available = { 44 = { is_controlled_by = ROOT } }
         highlight_states = { highlight_state_targets = { state = 44 } }
  
         ai_will_do = { factor = 12 }
 
         complete_effect = {
-            44 = { add_core_of = SER }
+            44 = { add_core_of = ROOT }
+            news_event = { id = ser_albania.1 hours = 6 }
         }
     }
     establish_yugoslavia = {

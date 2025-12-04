@@ -1,62 +1,93 @@
-avenge_libya = {
-    demand_libya = {
-        icon = generic_prepare_civil_war
+adriatic_dominion = {
+    ita_annex_albania = {
+        icon = generic_form_nation
         fire_only_once = yes
-        cost = 100
+        cost = 50
 
-        ai_will_do = { 
-            base = 6
-            modifier = { or = { not = { any_country = { has_guaranteed = TUR } } TUR = { is_in_faction = no } } add = 3 }
-        }
-
-        available = {
-            can_declare_war_on = TUR
-            any_state = { is_claimed_by = ITA is_owned_by = TUR }
-        }
+        available = { 44 = { is_controlled_by = ROOT } }
+        highlight_states = { highlight_state_targets = { state = 44 } }
+ 
+        ai_will_do = { factor = 12 }
 
         complete_effect = {
-            TUR = { country_event = { id = _demand.1 hours = 6 random_hours = 6 } }
+            44 = { add_core_of = ROOT }
+            news_event = { id = ser_albania.1 hours = 6 }
         }
     }
-    demand_aegean = {
-        icon = generic_prepare_civil_war
-        fire_only_once = yes
-        cost = 100
-
-        ai_will_do = { base = 12 }
-
-        available = {
-            any_state = {
-                or = { state = 44 state = 182 state = 164 }
-                not = { is_owned_by = ITA }
-            }
-        }
-
-        complete_effect = {
-            news_event = { id = italy_aegean.1 hours = 6 random_hours = 6 }
-
-            every_state = {
-                limit = {
-                    or = { state = 44 state = 182 state = 164 }
-                    not = { is_owned_by = ITA }
-                }
-                add_claim_by = ITA
-            }
-        }
-    }
-    develop_taranto = {
-        icon = generic_naval
+    align_greece = {
+        icon = generic_civil_support
         fire_only_once = yes
         cost = 75
 
-        ai_will_do = { base = 9 }
+        targets = { GRE }
+        available = {
+            can_declare_war_on = FROM
+            FROM = { exists = yes is_subject = no }
+        }
 
-        available = { controls_state = 156 }
+        target_non_existing = yes
+        ai_will_do = {
+            factor = 0
+            modifier = { FROM = { has_war = no is_in_faction = no } add = 9 }
+        }
+
+        complete_effect = { FROM = { country_event = { id = _align.1 hours = 6 random_hours = 6 } } }
+    }
+    extend_claims = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 50
+
+        highlight_states = { highlight_state_targets = { state = 44 state = 164 } }
+        ai_will_do = {
+            factor = 6
+            modifier = { is_in_faction = yes factor = 2 }
+        }
+        complete_effect = { 
+            every_state = { limit = { or = { state = 44 state = 164 } } add_claim_by = ROOT }
+            news_event = { id = italy_aegean.1 hours = 6 }
+        }
+    }
+}
+
+avenge_all_defeats = {
+    demand_tunisia_and_alps = {
+        icon = generic_ignite_civil_war
+        fire_only_once = yes
+        cost = 50
+
+        targets_dynamic = yes
+        target_trigger = { any_state = { or = { state = 32 state = 458 state = 265 } is_owned_and_controlled_by = FROM } }
+
+        available = { can_declare_war_on = FROM }
+        highlight_states = { highlight_states_trigger = { or = { state = 32 state = 458 state = 265 } is_owned_and_controlled_by = FROM } }
+ 
+        ai_will_do = { factor = 3 }
+
         complete_effect = {
-            156 = {
-                add_building_construction = { type = dockyard level = 2 instant_build = yes }
-                add_extra_state_shared_building_slots = 2
-            }
+            every_state = { limit = { or = { state = 32 state = 458 state = 265 } is_owned_and_controlled_by = FROM } add_claim_by = FROM }
+            FROM = { country_event = { id = _demand.1 hours = 6 } } 
+        }
+    }
+    demand_ethiopia = {
+        icon = generic_ignite_civil_war
+        fire_only_once = yes
+        cost = 50
+
+        targets_dynamic = yes
+        target_trigger = { any_state = { or = { state = 550 state = 271 state = 269 } is_owned_and_controlled_by = FROM } }
+        
+        available = { can_declare_war_on = FROM }
+        highlight_states = { highlight_states_trigger = { or = { state = 550 state = 271 state = 269 } is_owned_and_controlled_by = FROM } }
+ 
+        ai_will_do = {
+            factor = 3
+            modifier = { and = { date > 1918.1.1 has_war = no } factor = 2 }
+        }
+
+        complete_effect = {
+            every_state = { limit = { or = { state = 550 state = 271 state = 269 } is_owned_and_controlled_by = FROM } add_claim_by = FROM }
+            FROM = { country_event = { id = _demand.1 hours = 6 } } 
         }
     }
 }

@@ -86,7 +86,7 @@ hungarian_uprising = {
         ROOT = {
             setup_uprising_country = yes
             every_state = {
-                limit = { or = { state = 43 state = 73 state = 76 state = 84 state = 155 } is_controlled_by = ROOT }
+                limit = { or = { state = 43 state = 76 state = 82 state = 84 } is_controlled_by = ROOT }
                 setup_uprising_state = yes
             }
 
@@ -113,14 +113,17 @@ mongolian_independence = {
     }
 }
 
-moroccan_independence = {
+moroccan_uprising = {
     MOR = {
         setup_uprising_troops = yes
         add_ideas = { limited_conscription low_economic_mobilisation }
 
         ROOT = {
             setup_uprising_country = yes
-            462 = { setup_uprising_state = yes }     # Agadir
+            every_state = {
+                limit = { or = { state = 461 state = 462 } is_controlled_by = ROOT }
+                setup_uprising_state = yes
+            }
         }
 
         # extra units:
@@ -180,7 +183,16 @@ ukrainian_independence = {
 
 setup_uprising_country = {
     PREV = { add_ideas = { limited_conscription limited_exports partial_economic_mobilisation } }
-    every_controlled_state = { limit = { is_core_of = PREV.PREV } set_state_owner_to = PREV.PREV }
+    
+    every_controlled_state = { 
+        limit = { is_core_of = PREV.PREV } 
+        set_state_owner_to = PREV.PREV 
+
+        random = { chance = 25 
+            set_state_controller_to = PREV.PREV
+            setup_uprising_state = yes
+        }
+    }
 }
 
 setup_uprising_state = {

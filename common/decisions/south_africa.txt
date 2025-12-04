@@ -5,10 +5,9 @@ defend_the_independence = {
         cost = 50
 
         targets_dynamic = yes
-        target_trigger = {
-            can_declare_war_on = FROM 
-            542 = { is_owned_and_controlled_by = FROM } 
-        }
+        target_trigger = { 542 = { is_owned_and_controlled_by = FROM } }
+        
+        available = { can_declare_war_on = FROM }
         highlight_states = { highlight_states_trigger = { state = 542 } }
 
         complete_effect = { 

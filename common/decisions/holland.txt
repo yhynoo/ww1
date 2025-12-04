@@ -100,10 +100,9 @@ voc_mentaliteit = {
         cost = 50
 
         targets_dynamic = yes
-        target_trigger = {
-            can_declare_war_on = FROM 
-            56 = { is_owned_and_controlled_by = FROM } 
-        }
+        target_trigger = { 56 = { is_owned_and_controlled_by = FROM } }
+        
+        available = { can_declare_war_on = FROM }
         highlight_states = { highlight_states_trigger = { state = 56 } }
 
         complete_effect = { 

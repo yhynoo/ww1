@@ -11,10 +11,25 @@ ideas = {
                 controls_state = 34
             }
         }
+        idea_algerian_support_in_the_atlas = {
+            modifier = {
+                heat_attrition_factor = -0.25
+                out_of_supply_factor = -0.2
+            }
+            cancel = {
+                ALG = { exists = yes }
+            }
+        }
         idea_not_again = {
             modifier = {
                 army_core_defence_factor = 0.25
                 production_speed_bunker_factor = 0.1
+            }
+        }
+        idea_on_les_aura = {
+            modifier = {
+                army_core_attack_factor = 0.2
+                war_support_weekly = 0.005
             }
         }
 
@@ -45,12 +60,17 @@ ideas = {
         idea_unrest_in_algeria = {
             modifier = {
                 stability_factor = -0.05
+                conscription_factor = -0.05
             }
         }
 
         idea_unrest_in_morocco = {
             modifier = {
                 stability_factor = -0.05
+                conscription_factor = - 0.025
+            }
+            cancel = {
+                MOR = { exists = yes }
             }
         }
     }

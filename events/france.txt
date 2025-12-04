@@ -1,4 +1,4 @@
-## -- agadir
+# - agadir
 add_namespace = fra_agadir
 
 country_event = {
@@ -20,7 +20,7 @@ country_event = {
     }
 }
 
-## -- morocco
+# - morocco
 add_namespace = fra_morocco
 
 news_event = {
@@ -28,17 +28,85 @@ news_event = {
     title = "Arson in Agadir!"
     desc = fra_morocco.1.d
 
-    is_triggered_only = yes
+    trigger = {
+        tag = FRA
+        date > 1912.4.1
+        and = { has_idea = idea_unrest_in_morocco has_stability < 0.5 not = { has_country_flag = arson_event_done } }
+    }
+    immediate = { set_country_flag = arson_event_done }
 
     option = {
         name = "Worrying."
         add_stability = -0.025
-        
-        hidden_effect = { MOR = { news_event = { id = mor_uprising.0 days = 7 random_days = 14 } } }
+        hidden_effect = { random = { chance = 80 country_event = { id = fra_morocco.2 days = 7 random_days = 7 } } }
     }
 }
 
-## -- jaures
+country_event = {
+    id = fra_morocco.2
+    title = "Morocco Demands Independence!"
+    desc = fra_morocco.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "To arms!"
+
+        hidden_effect = { 
+            moroccan_uprising = yes
+            SPA = { country_event = { id = spa_morocco.1 days = 7 } }
+        }
+        declare_war_on = { target = MOR type = annex_everything }
+    }
+    option = {
+        name = "We cannot afford a war over Morocco."
+        release = MOR
+    }
+}
+
+# - algeria
+add_namespace = fra_algeria
+
+country_event = {
+    id = fra_algeria.1
+    title = "Unrest in Algiers"
+    desc = fra_algeria.1.d
+
+    trigger = {
+        tag = FRA
+        and = { has_war_with = MOR controls_state = 459 not = { has_country_flag = algiers_event_done } }
+    }
+    immediate = { set_country_flag = algiers_event_done }
+
+    option = {
+        name = "Offer concessions."
+        add_political_power = -75
+
+        hidden_effect = { 
+            random = { chance = 50 news_event = { id = fra_algeria.2 days = 7 random_days = 7 } }
+        }
+    }
+    option = {
+        name = "Thwart the unrest."
+        add_stability = -0.025
+        add_popularity = { ideology = monarchism popularity = 0.025 }
+    }
+}
+
+news_event = {
+    id = fra_algeria.2
+    title = "Locals Support Our Efforts in the Atlas"
+    desc = fra_algeria.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        add_timed_idea = { idea = idea_algerian_support_in_the_atlas months = 6 }
+    }
+}
+
+# - jaures
 add_namespace = fra_jaures
 
 news_event = {
@@ -83,65 +151,106 @@ country_event = {
     }
 }
 
-## -- tours
-add_namespace = fra_tours
-
-news_event = {
-    id = fra_tours.1
-    title = "Tours Archbishop Speaks Out"
-    desc = fra_tours.1.d
-
-    fire_only_once = yes
-    trigger = {
-        tag = FRA
-        monarchism > 0.25
-    }
-
-    option = {
-        name = "Is this the end of secularism?"
-        add_popularity = { ideology = monarchism popularity = 0.025 }
-    }
-}
+# - the exile act
+add_namespace = fra_exile
 
 country_event = {
-    id = fra_tours.2
-    title = "Action Française Organizes in Tours"
-    desc = fra_tours.2.d
-
-    fire_only_once = yes
-    trigger = {
-        tag = FRA
-        monarchism > 0.3
-    }
-
-    option = {
-        name = "Dismiss it."
-        add_stability = -0.05
-
-        hidden_effect = { 
-            random = { chance = 50 news_event = { id = fra_tours.3 days = 7 random_days = 7 } }
-        }
-    }
-    option = {
-        name = "Disperse them."
-        add_political_power = -50
-    }
-}
-
-news_event = {
-    id = fra_tours.3
-    title = "‘Against Degeneracy!’"
-    desc = fra_tours.3.d
+    id = fra_exile.1
+    title = "The Exile Act"
+    desc = fra_exile.1.d
 
     is_triggered_only = yes
 
     option = {
-        name = "The republican ideals are shattering."
-        add_popularity = { ideology = monarchism popularity = 0.05 }
+        name = "Withdraw the act."
+
+        add_popularity = { ideology = monarchism popularity = 0.025 }
+        promote_character = FRA_philippe_dorleans
+    }
+    option = {
+        name = "We must not allow more turmoil in the country."
+        add_stability = 0.025
     }
 }
 
-### ELECTIONS ###
+# - aura
+add_namespace = fra_aura
+
+news_event = {
+    id = fra_aura.1
+    title = "‘On Les Aura!’"
+    desc = fra_aura.1.d
+
+    trigger = {
+        tag = FRA
+        and = { surrender_progress > 0.05 has_war_support > 0.5 longest_war_length > 18 not = { has_country_flag = aura_event_done } }
+    }
+    immediate = { set_country_flag = aura_event_done }
+
+    option = {
+        name = "Advance!"
+        add_timed_idea = { idea = idea_on_les_aura months = 6 }
+    }
+}
+
+# - levant
+add_namespace = fra_levant
+
+country_event = {
+    id = fra_levant.1
+    title = "The Question of the Levant"
+    desc = fra_levant.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Announce our aspirations."
+        every_state = {
+            or = { state = 411 state = 553 state = 554 state = 350 state = 454 }
+            add_claim_by = FRA
+        }
+        add_named_threat = { name = "France’s Aspirations in the Levant" threat = 4 }
+
+        hidden_effect = { 
+            random = { chance = 50 news_event = { id = fra_levant.2 days = 7 random_days = 7 } }
+            news_event = { id = fra_levant.3 hours = 6 }
+        }
+    }
+    option = {
+        name = "Avoid escalation."
+    }
+}
+
+news_event = {
+    id = fra_levant.2
+    title = "Levantine Arabs Denounce France"
+    desc = fra_levant.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Arab honour is inconsolable."
+        if = {
+            limit = { or = { owns_state = 411 owns_state = 553 owns_state = 554 owns_state = 350 owns_state = 454 } }
+            add_war_support = 0.05
+        }
+    }
+}
+
+news_event = {
+    id = fra_levant.3
+    title = "France’s Aspirations in the Levant"
+    desc = fra_levant.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Another colonial adventure."
+    }
+}
+
+# - elections
 add_namespace = fra_elections
 
 country_event = {

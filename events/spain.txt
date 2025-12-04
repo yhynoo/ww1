@@ -1,0 +1,33 @@
+# - morocco
+add_namespace = spa_morocco
+
+country_event = {
+    id = spa_morocco.1
+    title = "Intervene in Morocco?"
+    desc = spa_morocco.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a good opportunity."
+        declare_war_on = MOR
+
+        hidden_effect = { news_event = { id = spa_morocco.2 hours = 6 } }
+    }
+    option = {
+        name = "Why waste our time and men?"
+        add_popularity = { ideology = democratic popularity = 0.05 }
+    }
+}
+
+news_event = {
+    id = spa_morocco.2
+    title = "[SPA.GetName] Intervenes in Morocco!"
+    desc = spa_morocco.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "The Agadir crisis develops."
+    }
+}

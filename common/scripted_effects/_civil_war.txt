@@ -1,3 +1,18 @@
+italian_civil_war = {
+    random_country = {
+        limit = { original_tag = ITA has_government = communism }
+        set_cosmetic_tag = ITA_reds
+        set_popularities = { communism = 80 democratic = 15 monarchism = 5 }
+
+        setup_civil_war_troops = yes
+    }
+
+    random_country = {
+        limit = { original_tag = ITA not = { has_government = communism } }
+        set_cosmetic_tag = ITA_whites
+    }
+}
+
 mexican_civil_war = {
     random_country = {
         limit = { original_tag = MEX has_government = communism }
@@ -42,5 +57,21 @@ ukrainian_civil_war = {
 
         set_cosmetic_tag = UKR_state
         set_state_controller = 202
+    }
+}
+
+# - setup
+setup_civil_war_troops = {
+    setup_uprising_troops = yes
+
+    # add troops
+    every_controlled_state = {
+        random_list = {
+            1 = { create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\" start_equipment_factor = 0.5" count = 1 owner = PREV } }
+            1 = { create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\" start_equipment_factor = 0.4" count = 1 owner = PREV } }
+            
+            1 = { create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\" start_equipment_factor = 0.2" count = 2 owner = PREV } }
+            2 = { }
+        }
     }
 }

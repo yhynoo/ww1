@@ -1,34 +1,32 @@
 ITA_alliances = {
-	allowed = { original_tag = ITA }
-    enable = { has_completed_focus = ITA_traditionalism }
-    abort = {               
-        has_completed_focus = ITA_the_everlasting_spirit                        # once we get hold of all our claims, we will be neutral again.
-        not = { ITA = { any_core_state = { not = { is_owned_and_controlled_by = ITA } } } }
+    allowed = { original_tag = ITA }
+    enable = { 
+        has_completed_focus = ITA_traditionalism 
+        GER = { has_war_with = TUR }
     }
 
-    # alliances
-    ai_strategy = { type = alliance     id = FRA        value = 40 }
-
-    # aggressive war goals
-    ai_strategy = { type = contain      		id = AUS        value = 60 }
-	ai_strategy = { type = prepare_for_war      id = AUS        value = 60 }
+	ai_strategy = { type = alliance     id = GER        value = 40 }
 }
 
-ITA_expansion_in_africa = {
-	allowed = { original_tag = ITA }
-	enable = {
-		has_completed_focus = ITA_deterrence
-	}
-	abort = {
-		 not = { ITA = { any_claimed_state = { not = { is_owned_and_controlled_by = TUR } } } }
-	}
+ITA_alliances_alternative = {
+    allowed = { original_tag = ITA }
+    enable = { 
+        has_civil_war = no
+        has_country_flag = monarchist_orientation 
+        has_idea = idea_war_enthusiasm
+    }
+    abort_when_not_enabled = yes
 
-	ai_strategy = { type = conquer	     id = TUR        	value = 100 }
+    ai_strategy = { type = alliance     id = ENG        value = 60 }
+    ai_strategy = { type = alliance     id = FRA        value = 60 }
+}
 
-	# execution
-	ai_strategy = { type = naval_invasion_focus	value = 250 }
-	ai_strategy = {
-		type = invasion_unit_request	value = 100
-		state_trigger = { or = { state = 44 state = 186 state = 204 } }
-	}
+ITA_not_with_TUR = {
+    allowed = { original_tag = TUR }
+	enable = { always = yes }
+
+    reverse_enable = { or = { GER = { is_ally_with = TUR } GER = { has_guaranteed = TUR } } }
+    reversed = yes
+
+    ai_strategy = { type = alliance     id = ITA        value = -200 }
 }

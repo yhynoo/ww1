@@ -632,10 +632,12 @@ country_event = {
     option = {
         name = "We must step down."
         set_politics = { ruling_party = communism elections_allowed = no }
+        ai_chance = { factor = 1 }
     }
     option = {
         name = "Let them try."
         start_civil_war = { ideology = communism size = 0.5 }
+        ai_chance = { factor = 0 }
     }
 }
 
@@ -654,11 +656,14 @@ country_event = {
     option = {
         name = "Alright."
         set_politics = { ruling_party = democratic elections_allowed = no }
+        ai_chance = { factor = 1 }
     }
     option = {
         name = "We will never agree to this!"
         add_popularity = { ideology = democratic popularity = -0.025 }
+
         add_political_power = -75
+        ai_chance = { factor = 0 }
     }
 }
 
@@ -677,10 +682,12 @@ country_event = {
     option = {
         name = "We must step down."
         set_politics = { ruling_party = monarchism elections_allowed = no }
+        ai_chance = { factor = 1 }
     }
     option = {
         name = "Let them try."
         start_civil_war = { ideology = monarchism size = 0.5 }
+        ai_chance = { factor = 0 }
     }
 }
 

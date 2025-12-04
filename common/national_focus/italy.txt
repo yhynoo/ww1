@@ -352,7 +352,7 @@
         icon = GFX_focus_generic_extraction_effort
         x = 1              y = 5               cost = 10
 
-        ai_will_do = { base = 2 }
+        ai_will_do = { factor = 2 }
 
         prerequisite = { focus = ITA_economic_development }
 		completion_reward = {
@@ -384,7 +384,7 @@
         cost = 10
 
         ai_will_do = {
-            base = 2
+            factor = 2
             modifier = { has_war = no factor = 0 }
         }
 
@@ -429,7 +429,7 @@
         cost = 10
 
         ai_will_do = {
-            base = 1
+            factor = 1
             modifier = { has_stability < 0.25 factor = 0 }
         }
 
@@ -454,9 +454,8 @@
 
         cost = 10
 
-        ai_will_do = { base = 3 }
-
         prerequisite = { focus = ITA_infrastructure_effort }
+
 		completion_reward = {
             add_timed_idea = { idea = idea_industrial_expansion years = 2 }
 			random_owned_controlled_state = {
@@ -497,8 +496,6 @@
         y = 1
 
         cost = 10
-
-        ai_will_do = { base = 3 }
 
         prerequisite = { focus = ITA_construct_civilian }
         mutually_exclusive = { focus = ITA_expand_mining }
@@ -559,7 +556,7 @@
         y = 4
         cost = 10
 
-        ai_will_do = { base = 2 }
+        ai_will_do = { factor = 2 }
 
         completion_reward = {
             add_political_power = 150
@@ -573,11 +570,6 @@
         x = -4
         y = 1
         cost = 10
-
-        ai_will_do = {
-            base = 2
-            modifier = { threat > 0.1 factor = 3 }
-        }
 
         prerequisite = { focus = ITA_political_ambitions }
         completion_reward = {
@@ -598,11 +590,6 @@
             has_war_support > 0.3
         }
 
-        ai_will_do = {
-            base = 2
-            modifier = { threat > 0.2 factor = 3 }
-        }
-
         prerequisite = { focus = ITA_international_affairs }
         completion_reward = {
             add_political_power = 100
@@ -611,14 +598,13 @@
     }
     focus = {
         id = ITA_deterrence
-        icon = GFX_focus_generic_across_the_sea
+        icon = GFX_focus_generic_deterrence
 
         relative_position_id = ITA_international_affairs
         x = 1
         y = 1
         cost = 10
 
-        ai_will_do = { base = 2 }
         prerequisite = { focus = ITA_international_affairs }
 
         completion_reward = {
@@ -636,13 +622,8 @@
 
         prerequisite = { focus = ITA_expansionism }
         available = { 
+            is_subject = no
             is_in_faction = no
-            is_subject = no 
-        }
-
-        ai_will_do = { 
-            base = 1
-            modifier = { threat > 0.2 add = 2 }
         }
 
         completion_reward = {
@@ -651,7 +632,7 @@
     }
     focus = {
         id = ITA_on_our_own
-        icon = GFX_focus_generic_on_our_own
+        icon = GFX_focus_generic_across_the_sea
 
         relative_position_id = ITA_expansionism
         x = 1
@@ -659,54 +640,49 @@
         cost = 10
 
         prerequisite = { focus = ITA_expansionism }
-        ai_will_do = { base = 0 }
-        
         available = { 
-            is_subject = no 
-            is_in_faction = no
+            is_subject = no
         }
 
         completion_reward = {
-            add_war_support = 0.05
-            set_rule = { can_create_factions = yes }
+            custom_effect_tooltip = decision_faction_effect_tooltip
+            hidden_effect = { if = { limit = { is_ai = no } set_rule = { can_create_factions = yes } } }
         }
     }
 
     focus = {
         id = ITA_traditionalism
-        icon = GFX_focus_generic_internal_stability
+        icon = GFX_focus_generic_adjust_the_government
 
         relative_position_id = ITA_political_ambitions
         x = 0
         y = 1
         cost = 10
 
-        ai_will_do = { base = 2 }
+        ai_will_do = {
+            factor = 0
+            modifier = { has_country_flag = socialist_orientation add = 1 }
+        }
 
         mutually_exclusive = { focus = ITA_adjust_the_government }
         prerequisite = { focus = ITA_political_ambitions }
+        available = { has_government = democratic }
+
         completion_reward = {
-            add_war_support = 0.05
-            add_popularity = { ideology = monarchism popularity = 0.05 }
+            add_popularity = { ideology = democratic popularity = 0.05 }
+            remove_ideas = idea_trasformismo
         }
     }
     focus = {
         id = ITA_public_support
-        icon = GFX_focus_generic_public_support
+        icon = GFX_focus_generic_public_support 
 
         relative_position_id = ITA_traditionalism
         x = -1
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 2
-            modifier = { has_war = no factor = 0 }
-        }
-
-        available = {
-            has_war = yes
-        }
+        available = { has_war = yes }
 
         prerequisite = { focus = ITA_traditionalism }
         completion_reward = {
@@ -717,26 +693,17 @@
     }
     focus = {
         id = ITA_mobilize_the_masses
-        icon = GFX_focus_ITA_mobilize_the_masses
+        icon = GFX_focus_MEX_traditionalism
 
         relative_position_id = ITA_traditionalism
         x = 1
         y = 1
         cost = 10
 
-        ai_will_do = {
-            base = 2
-            modifier = { has_war = no factor = 0 }
-        }
-
         prerequisite = { focus = ITA_traditionalism }
         completion_reward = {
-            add_timed_idea = { idea = idea_arditi years = 2 }
-            
-            add_tech_bonus = {
-				name = arditi_bonus bonus = 1.0 uses = 1
-				technology = assault_mg
-			}
+            country_event = { id = ita_syndicalists.1 hours = 6 }
+            add_timed_idea = { idea = idea_against_the_extremists years = 2 }
         }
     }
     focus = {
@@ -766,36 +733,37 @@
         y = 1
         cost = 10
 
+        available = {
+            not = { has_civil_war = yes }
+            not = { has_government = monarchism }
+        }
+
         prerequisite = { focus = ITA_strength_in_unity }
         completion_reward = {
-            add_ideas = idea_eia_eia_alala
-
-            every_state = {
-                limit = { or = { state = 33 state = 39 state = 103 } }
-                add_core_of = ROOT
-            }
+            add_ideas = idea_italy_united_again
         }
     }
 
     focus = {
         id = ITA_adjust_the_government
-        icon = GFX_focus_generic_red_reform
+        icon = GFX_focus_generic_internal_stability
 
         relative_position_id = ITA_political_ambitions
         x = 4
         y = 1
         cost = 10
 
-        ai_will_do = { 
-            base = 1
-            modifier = { is_in_faction = yes factor = 0 }
+        ai_will_do = {
+            factor = 0
+            modifier = { has_country_flag = monarchist_orientation add = 2 }
         }
 
         mutually_exclusive = { focus = ITA_traditionalism }
         prerequisite = { focus = ITA_political_ambitions }
+
         completion_reward = {
-            add_timed_idea = { idea = idea_democratic_tendencies years = 1 }
-            add_popularity = { ideology = democratic popularity = 0.05 }
+            add_stability = -0.025
+            add_timed_idea = { idea = idea_monarchism_tendencies years = 1 }
         }
     }
     focus = {
@@ -823,9 +791,16 @@
 
         prerequisite = { focus = ITA_adjust_the_government }
         completion_reward = {
-            add_timed_idea = { idea = idea_open_the_economy years = 1 }
+            add_timed_idea = { idea = idea_corporatism years = 1 }
 
             random_owned_controlled_state = {
+                limit = { is_core_of = ROOT is_in_home_area = yes is_coastal = yes }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			}
+
+            random_owned_controlled_state = {
+                limit = { is_core_of = ROOT is_in_home_area = yes }
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
 			}
@@ -833,7 +808,7 @@
     }
     focus = {
         id = ITA_over_the_edge
-        icon = GFX_focus_generic_over_the_edge
+        icon = GFX_focus_generic_authoritarian
 
         relative_position_id = ITA_state_reform
         x = 2
@@ -841,19 +816,18 @@
         cost = 10
 
         prerequisite = { focus = ITA_state_reform }
+        available = { has_government = monarchism }
 
-        ai_will_do = {
-            base = 0
-            modifier = { and = { has_war = yes communism > 0.2 } add = 2 }
-        }
+        ai_will_do = { factor = 0 modifier = { has_stability < 0.5 add = 1 } }
         
         completion_reward = {
-            add_timed_idea = { idea = idea_communism_tendencies years = 2 }
+            country_event = { id = ita_eia.1 hours = 6 }
+            add_ideas = idea_eia_eia_alala
         }
     }
     focus = {
         id = ITA_embrace_modernity
-        icon = GFX_focus_AUS_embrace_modernity
+        icon = GFX_focus_generic_red_education
 
         relative_position_id = ITA_state_reform
         x = -1
@@ -861,9 +835,9 @@
         cost = 10
 
         prerequisite = { focus = ITA_state_reform }
+
         completion_reward = {
-            news_event = { id = italy_trasformismo.1 hours = 3 }
-            add_popularity = { ideology = democratic popularity = 0.05 }
+            add_research_slot = 1
         }
     }
 }
