@@ -7,16 +7,3 @@ UKR_alliances = {
 
     ai_strategy = { type = alliance     id = UKR        value = -100 }
 }
-
-# ARMY
-
-UKR_dont_expand = {
-    allowed = { original_tag = UKR }
-    enable = { always = yes }                             
-    abort_when_not_enabled = yes
-
-    ai_strategy = {
-        type = front_control    ratio = 0.2   ordertype = front   execute_order = no   
-        state_trigger = { not = { is_core_of = UKR } }
-    }
-}

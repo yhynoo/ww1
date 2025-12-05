@@ -2,11 +2,11 @@
 
 GER_alliances = {
 	allowed = { original_tag = GER }
-	enable = { and = { is_faction_leader = yes has_government = monarchism } }
+	enable = { has_government = monarchism }
 	abort_when_not_enabled = yes
 
 	# alliances
-	ai_strategy = { type = alliance		id = AUS		value = 100 }
+	ai_strategy = { type = alliance					id = AUS		value = 100 }
 	
 	if = {
 		limit = { HOL = { has_completed_focus = HOL_adjust_the_government } }
@@ -14,16 +14,12 @@ GER_alliances = {
 	}
 	if = {
 		limit = { SER = { has_completed_focus = SER_adjust_the_government } }
-		ai_strategy = { type = alliance		id = SER		value = 60 }
+		ai_strategy = { type = alliance		id = SER		value = 20 }
 	}
 	if = {
 		limit = { has_completed_focus = GER_deterrence }
-		ai_strategy = { type = alliance		id = TUR		value = 40 }
+		ai_strategy = { type = alliance		id = TUR		value = 20 }
 	}
-
-	# aggressive wargoals
-	ai_strategy = { type = conquer		id = ENG		value = 20 }
-	ai_strategy = { type = conquer		id = FRA		value = 60 }
 }
 
 # ARMY
@@ -53,36 +49,6 @@ GER_militarisation = {
 	allowed = { original_tag = GER }
 	enable = { always = yes }
 
-	# more military factories and infantry
-	ai_strategy = {	type = added_military_to_civilian_factory_ratio	value = 50 }
+	# more infantry
 	ai_strategy = {	type = role_ratio	id = infantry	value = 60 }
-}
-
-# TAKTIX
-
-GER_west = {
-	allowed = { original_tag = GER }
-	enable = {
-		or = {
-			or = { threat > 0.05	war_length_with = { tag = FRA months < 6 } }
-			SOV = { has_civil_war = yes }
-		}
-	}
-	abort_when_not_enabled = yes
-
-	# focus on the west
-	ai_strategy = { type = front_unit_request 	tag = FRA	value = 200 }
-	ai_strategy = { type = front_control		ratio = 0.25		execution_type = rush 		state_trigger = { or = { state = 6 state = 29 } } }
-
-	# ignore alps and galicia
-	ai_strategy = { type = dont_defend_ally_borders		id = AUS		value = 1 }
-}
-
-GER_west_stellungskrieg = {
-	allowed = { original_tag = GER }
-	enable = { war_length_with = { tag = FRA months > 6 } SOV = { has_civil_war = no } }
-	abort_when_not_enabled = yes
-
-	# less focused, more careful
-	ai_strategy = { type = front_control		ratio = 0.25		tag = FRA		execution_type = careful }
 }

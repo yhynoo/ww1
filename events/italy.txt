@@ -66,7 +66,7 @@ country_event = {
     desc = ita_torino.1.d
 
     is_triggered_only = yes
-    trigger = { has_stability < 0.5 }
+    immediate = { hidden_effect = { news_event = { id = ita_torino.3 days = 14 random_days = 28 } } }
 
     option = {
         name = "Send in the troops."
@@ -98,11 +98,7 @@ news_event = {
     desc = ita_torino.2.d
 
     is_triggered_only = yes
-
-    immediate = { 
-        add_named_threat = { name = "Workers Massacred in Torino" threat = 2 }
-        hidden_effect = { news_event = { id = ita_torino.3 days = 7 } } 
-    }
+    immediate = { add_named_threat = { name = "Workers Massacred in Torino" threat = 2 } }
 
     option = {
         name = "Awful."
@@ -117,13 +113,18 @@ news_event = {
 
     is_triggered_only = yes
     trigger = { 
-        has_civil_war = no
-        not = { has_government = communism } 
+        has_stability < 0.5
+        and = { has_civil_war = no not = { has_government = communism } }
     }
 
     option = {
         name = "To arms!"
-        start_civil_war = { ideology = communism size = 0.4 army_ratio = 0.2 }
+        start_civil_war = { 
+            ideology = communism size = 0.45    army_ratio = 0.25   keep_all_characters = yes
+            PREV = {
+                ITA_alceste_de_ambris = { set_nationality = PREV.PREV }
+            }
+        }
         hidden_effect = { italian_civil_war = yes }
     }
 }

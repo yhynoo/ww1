@@ -7,7 +7,7 @@ echoes_of_agadir = {
         available = { 
             any_state = { 
                 or = { state = 6 state = 28 state = 34 }  
-                not = { is_owned_and_controlled_by = ROOT } 
+                not = { is_owned_and_controlled_by = ROOT controller = { has_war_with = ROOT } } 
             }
         }
         highlight_states = { highlight_states_trigger = { or = { state = 6 state = 28 state = 34 } not = { is_owned_and_controlled_by = ROOT } } }
@@ -20,7 +20,7 @@ echoes_of_agadir = {
 
         complete_effect = { 
             every_other_country = { 
-                limit = { or = { controls_state = 6 controls_state = 28 controls_state = 34 } }
+                limit = { or = { controls_state = 6 controls_state = 28 controls_state = 34 } not = { has_war_with = ROOT } }
                 country_event = { id = _demand.1 hours = 6 random_hours = 6 } 
             }
         }

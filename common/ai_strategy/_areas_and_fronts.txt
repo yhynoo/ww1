@@ -1,26 +1,99 @@
+asian_area_priority = {
+	enable = { capital_scope = { is_on_continent = asia } }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {	type = area_priority	id = middle_east		value = 30  }
+	ai_strategy = {	type = area_priority	id = mainland_europe	value = -120 }
+}
+
 european_area_priority = {
-	enable = { 
-		capital_scope = { is_on_continent = europe } 
-		not = { tag = TUR }
-	}
+	enable = { capital_scope = { is_on_continent = europe } }
 	abort_when_not_enabled = yes
 
 	ai_strategy = {	type = area_priority	id = mainland_europe	value = 60   }
 	ai_strategy = {	type = area_priority	id = middle_east		value = 30   }
+
+	ai_strategy = { type = area_priority	id = asia				value = -60  }
 	ai_strategy = {	type = area_priority	id = africa				value = -120 }
+	ai_strategy = {	type = area_priority	id = pacific			value = -240 }
 }
+
+fewer_garrisons_overall = {
+	enable = { always = yes }
+
+	ai_strategy = { type = garrison					value = -60 }
+	ai_strategy = { type = spare_unit_factor		value = -200 }
+}
+
 
 # FRONTS
 
-defending_homeland_is_important = {
-	enable = { has_war = yes }
+defend_allies = {
+	enable = { always = yes }
+	ai_strategy = {
+		type = front_unit_request		country_trigger = { or = { has_guaranteed = FROM is_guaranteed_by = FROM } }
+		value = -600
+	}
+}
+
+defend_homeland = {
+	enable = { always = yes }
+	ai_strategy = {
+		type = front_unit_request		state_trigger = { owner = FROM.FROM 	is_in_home_area = yes 	not = { is_fully_controlled_by = FROM.FROM } }
+		value = 200
+	}
+}
+
+defend_if_abgenutzt_or_smol = {
+	enable = { 
+		or = {
+			and = { num_divisions < 12 	has_country_flag = side_of_the_great_war }
+			
+			has_manpower < 20000
+			stockpile_ratio = {	archetype = infantry_equipment ratio < 0.2 }
+		}
+	}
 	abort_when_not_enabled = yes
 
 	ai_strategy = {
-		type = front_unit_request
+		type = front_control	country_trigger = { always = yes }		execution = careful
+	}
+}
+
+defend_weak = {
+	enable = { always = yes }
+	ai_strategy = {
+		type = front_unit_request		country_trigger = { not = { has_war_with = FROM } strength_ratio = { tag = FROM ratio < 0.4 } }
+		value = -60
+	}
+}
+
+defend_very_weak = {
+	enable = { always = yes }
+	ai_strategy = {
+		type = front_unit_request		country_trigger = { not = { has_war_with = FROM } strength_ratio = { tag = FROM ratio < 0.2 } }
+		value = -120
+	}
+}
+
+
+# TAKTIX
+
+war_with_france = {
+	allowed = { original_tag = GER }
+	enable = { has_war_with = FRA }
+
+	ai_strategy = { type = front_unit_request		state_trigger = { owner = FRA is_on_continent = europe }		value = 100 }
+}
+
+war_with_slavs = {
+	enable = { has_idea = idea_slavic_unrest }
+	ai_strategy = { 
+		type = front_unit_request		
 		state_trigger = { 
-			owner = ROOT 	is_in_home_area = yes 	controller = { not = { tag = ROOT } }
-		}
-		value = 200
+			owner = { not = { has_war_with = FROM } }
+			or = { owner = { tag = SER } owner = { tag = SOV } } 
+		}		
+		value = 120 
 	}
 }

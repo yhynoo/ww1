@@ -14,10 +14,16 @@ ideas = {
                 mobilization_speed = 0.25
                 training_time_factor = -0.25
             }
+            allowed_civil_war = { 
+                always = yes 
+            }
         }
         idea_airfield_expansion = {
             modifier = {
                 production_speed_air_base_factor = 0.5
+            }
+            allowed_civil_war = { 
+                always = yes 
             }
         }
         idea_air_training = {
@@ -26,10 +32,16 @@ ideas = {
                 air_ace_generation_chance_factor = 0.1
                 air_accidents_factor = -0.15
             }
+            allowed_civil_war = { 
+                always = yes 
+            }
         }
         idea_dockyard_expansion = {
             modifier = {
                 production_speed_dockyard_factor = 0.25
+            }
+            allowed_civil_war = { 
+                always = yes 
             }
         }
 
@@ -38,11 +50,17 @@ ideas = {
             modifier = {
                 consumer_goods_factor = -0.2
             }
+            allowed_civil_war = { 
+                always = yes 
+            }
         }
 
         idea_women_at_work = {
             modifier = {
                 conscription = 0.025
+            }
+            allowed_civil_war = { 
+                always = yes 
             }
         }
 
@@ -51,10 +69,16 @@ ideas = {
                 production_speed_infrastructure_factor = 0.25
                 production_speed_industrial_complex_factor = 0.25
             }
+            allowed_civil_war = { 
+                always = yes 
+            }
         }
         idea_war_industry = {
             modifier = {
                 production_speed_arms_factory_factor = 0.25
+            }
+            allowed_civil_war = { 
+                always = yes 
             }
         }
 
@@ -63,6 +87,9 @@ ideas = {
                 equipment_conversion_speed = 0.15
                 production_factory_efficiency_gain_factor = 0.1
                 production_factory_max_efficiency_factor = 0.1
+            }
+            allowed_civil_war = { 
+                always = yes 
             }
         }
 
@@ -137,17 +164,32 @@ ideas = {
         # tendencies
         idea_democratic_tendencies = {
             modifier = { democratic_drift = 0.05 }
-			cancel = { has_government = democratic }
+            allowed_civil_war = { 
+                always = yes 
+            }
+			cancel = { 
+                has_government = democratic 
+            }
         }
 
         idea_monarchism_tendencies = {
             modifier = { monarchism_drift = 0.05 }
-			cancel = { has_government = monarchism }
+            allowed_civil_war = { 
+                always = yes 
+            }
+			cancel = { 
+                has_government = monarchism
+            }
         }
 
         idea_communism_tendencies = {
             modifier = { communism_drift = 0.05 }
-			cancel = { has_government = communism }
+            allowed_civil_war = { 
+                always = yes 
+            }
+			cancel = { 
+                has_government = communism 
+            }
         }
 
         # -- war
@@ -156,6 +198,9 @@ ideas = {
                 mobilization_speed = 0.25
                 training_time_factor = -0.25
             }
+            allowed_civil_war = { 
+                always = yes 
+            }
         }
         idea_widespread_hunger = {
             modifier = {
@@ -163,11 +208,17 @@ ideas = {
                 war_support_weekly = -0.005
                 conscription_factor = -0.1
             }
+            allowed_civil_war = { 
+                always = yes 
+            }
         }
         idea_army_demoralization = {
             modifier = {
                 army_morale_factor = -0.25
                 army_attack_factor = -0.5
+            }
+            allowed_civil_war = { 
+                always = yes 
             }
         }
         idea_spanish_flu = {
@@ -176,11 +227,17 @@ ideas = {
                 army_morale_factor = -0.25
                 conscription_factor = -0.5
             }
+            allowed_civil_war = { 
+                always = yes 
+            }
         }
         idea_loser_of_the_great_war = {
             modifier = {
                 stability_factor = -0.15
                 drift_defence_factor = -0.25
+            }
+            allowed_civil_war = { 
+                always = yes 
             }
             rule = {
                 can_join_factions = no
@@ -192,6 +249,9 @@ ideas = {
             modifier = {
                 political_power_factor = -0.25
                 conscription_factor = -0.25
+            }
+            allowed_civil_war = { 
+                always = yes 
             }
         }
     }

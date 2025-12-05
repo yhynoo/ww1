@@ -38,27 +38,3 @@ FRA_army = {
     ai_strategy = { type = unit_ratio          id = fighter         value = 100 }
     ai_strategy = { type = equipment_production_min_factories       id = fighter        value = 1 }    
 }
-
-FRA_africa = {
-	allowed = { original_tag = FRA }
-	enable = { 
-        or = { has_war_with = ALG  has_war_with = MOR }
-        not = { has_war_with = GER }
-    }
-    abort_when_not_enabled = yes
-
-	# planning the positions
-	ai_strategy = { type = front_unit_request		strategic_region = 126		    value = 240 }
-	ai_strategy = { type = front_unit_request		strategic_region = 182		    value = 240 }
-}
-
-FRA_western_front = {
-    allowed = { original_tag = FRA }
-	enable = { always = yes }
-
-    # planning the positions
-	ai_strategy = { type = prepare_for_war		id = GER	 		value = 60 }
-
-	# don't get too involved
-    ai_strategy = { type = dont_defend_ally_borders     id = SOV        value = 10 }
-}

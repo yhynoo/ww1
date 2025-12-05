@@ -25,7 +25,7 @@ ITA_not_with_TUR = {
     allowed = { original_tag = TUR }
 	enable = { always = yes }
 
-    reverse_enable = { or = { GER = { is_ally_with = TUR } GER = { has_guaranteed = TUR } } }
+    reverse_enable = { or = { is_ally_with = TUR has_guaranteed = TUR } }
     reversed = yes
 
     ai_strategy = { type = alliance     id = ITA        value = -200 }

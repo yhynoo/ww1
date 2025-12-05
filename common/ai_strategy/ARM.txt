@@ -7,16 +7,3 @@ ARM_alliances = {
 
     ai_strategy = { type = alliance     id = ARM        value = -100 }
 }
-
-# ARMY
-
-ARM_dont_expand = {
-    allowed = { original_tag = ARM }
-    enable = { always = yes }                             
-    abort_when_not_enabled = yes
-
-    ai_strategy = {
-        type = front_control    ratio = 0.2   ordertype = front   execute_order = no   
-        state_trigger = { not = { is_core_of = ARM } }
-    }
-}
