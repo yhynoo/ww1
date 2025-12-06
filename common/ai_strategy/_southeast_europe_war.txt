@@ -1,0 +1,32 @@
+eng_help_the_greeks = {
+	allowed = {
+		and = { tag = ENG has_war = no not = { TUR = { has_country_flag = turkey_english_direction } } }
+		GRE = { has_war_with = TUR has_country_flag = anti_ottoman_alliance }
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {	type = diplo_action_desire	id = GRE	value = 100 	target = send_volunteers }
+}
+
+fra_help_the_romanians = {
+	allowed = {
+		and = { tag = FRA has_war = no not = { TUR = { has_country_flag = turkey_french_direction } } }
+		ROM = { has_war_with = TUR has_country_flag = anti_ottoman_alliance }
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {	type = diplo_action_desire	id = ROM	value = 100 	target = send_volunteers }
+}
+
+sov_help_the_serbs = {
+	allowed = {
+		and = { tag = SOV has_war = no }
+		SER = { 
+			has_war_with = TUR 
+			has_country_flag = anti_ottoman_alliance not = { has_completed_focus = SER_traditionalism }
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {	type = diplo_action_desire	id = SER	value = 100 	target = send_volunteers }
+}

@@ -11,6 +11,8 @@ country_event = {
     option = {
         name = "Dismiss him."
         promote_character = FRA_aristide_briand
+
+        hidden_effect = { news_event = { id = fra_agadir.2 hours = 6 } }
     }
     option = {
         name = "He deserves another chance."
@@ -19,6 +21,20 @@ country_event = {
         hidden_effect = { news_event = { id = fra_morocco.1 days = 14 random_days = 7 } }
     }
 }
+
+news_event = {
+    id = fra_agadir.2
+    title = "Caillaux Dismissed Over the Agadir Crisis"
+    desc = fra_agadir.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "France humiliated again."
+    }
+}
+
 
 # - morocco
 add_namespace = fra_morocco

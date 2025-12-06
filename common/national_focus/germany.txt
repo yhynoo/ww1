@@ -659,6 +659,11 @@ focus_tree = {
             is_subject = no
         }
 
+        ai_will_do = {
+            factor = 0
+            modifier = { has_country_flag = imperial_tendency add = 1 }
+        }
+
         completion_reward = {
             custom_effect_tooltip = decision_effect_tooltip
         }
@@ -674,8 +679,8 @@ focus_tree = {
         cost = 10
 
         ai_will_do = {
-            base = 2
-            modifier = { has_war = yes add = 2 }
+            factor = 0
+            modifier = { or = { has_country_flag = imperial_tendency has_country_flag = neutral_tendency } add = 1 }
         }
 
         mutually_exclusive = { focus = GER_adjust_the_government }
@@ -774,8 +779,9 @@ focus_tree = {
         mutually_exclusive = { focus = GER_traditionalism }
         prerequisite = { focus = GER_political_ambitions }
 
-        available = {
-            has_war = no
+        ai_will_do = {
+            factor = 0
+            modifier = { or = { has_country_flag = neutral_tendency has_country_flag = democratic_tendency } add = 1 }
         }
 
         completion_reward = {

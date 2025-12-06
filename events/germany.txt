@@ -1,4 +1,114 @@
-## -- airships
+# - wallonien
+add_namespace = ger_wallonia
+
+country_event = {
+    id = ger_wallonia.1
+    title = "The Occupation of Wallonia"
+    desc = ger_wallonia.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Annex it."
+
+        add_named_threat = { name = "The Annexation of Wallonia" threat = 4 }
+        34 = { add_core_of = ROOT }
+
+        hidden_effect = { 
+            news_event = { id = ger_wallonia.2 hours = 6 }
+            set_country_flag = imperial_tendency
+        }
+        ai_chance = { factor = 2 }
+    }
+    option = {
+        name = "Keep the military administration."
+
+        hidden_effect = { set_country_flag = neutral_tendency }
+        ai_chance = { factor = 1 }
+    }
+    option = {
+        name = "Withdraw our troops."
+
+        add_popularity = { ideology = ROOT popularity = -0.05 }
+        34 = { transfer_state_to = FRA }
+
+        hidden_effect = { 
+            news_event = { id = ger_wallonia.3 hours = 6 }
+            set_country_flag = democratic_tendency 
+        }
+        ai_chance = { factor = 1 }
+    }
+}
+
+news_event = {
+    id = ger_wallonia.2
+    title = "[GER.GetName] Annexes [34.GetName]!"
+    desc = ger_wallonia.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Worrying."
+        if = {
+            limit = { or = { tag = ENG tag = FRA } }
+            add_opinion_modifier = { target = GER modifier = opinion_annexation_of_wallonia }
+        }
+    }
+}
+
+news_event = {
+    id = ger_wallonia.3
+    title = "[GER.GetName] Withdraws from [34.GetName]!"
+    desc = ger_wallonia.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+
+# - alsace
+add_namespace = ger_alsace
+
+news_event = {
+    id = ger_alsace.1
+    title = "Tensions in Alsace"
+    desc = ger_alsace.1.d
+
+    is_triggered_only = yes
+    trigger = { GER = { controls_state = 28 not = { has_war_with = FRA } } }
+    major = yes
+
+    option = {
+        name = "Hope this leads to nothing worse..."
+        if = {
+            limit = { tag = GER }
+            add_named_threat = { name = "Tensions in Alsace" threat = 4 }
+        }
+    }
+}
+
+# - amarna
+add_namespace = ger_amarna
+
+news_event = {
+    id = ger_amarna.1
+    title = "Excavations in Egypt"
+    desc = ger_amarna.1.d
+
+    is_triggered_only = yes
+
+    option = { 
+        name = "Wonderful!"
+        add_political_power = 25
+    }
+}
+
+# - airships
 add_namespace = ger_airships
 
 news_event = {
@@ -26,7 +136,7 @@ news_event = {
     }
 }
 
-## -- oil 
+# - oil 
 add_namespace = ger_oil
 
 country_event = {
@@ -46,11 +156,14 @@ country_event = {
 
             give_resource_rights = { receiver = FROM state = 414 resources = { oil } }
             FROM = { give_guarantee = ROOT } 
+
+            set_country_flag = turkey_german_direction
         }
 
         ai_chance = {
-            factor = 1
-            modifier = { or = { has_idea = idea_amassed_debt has_idea = idea_significant_debt } factor = 4 }
+            factor = 0
+            modifier = { or = { has_country_flag = turkey_english_direction has_country_flag = turkey_french_direction } factor = 0.5 }
+            modifier = { or = { has_idea = idea_amassed_debt has_idea = idea_significant_debt } add = 2 }
         }
     }
     option = {
@@ -78,28 +191,7 @@ news_event = {
     }
 }
 
-## -- alsace
-add_namespace = ger_alsace
-
-news_event = {
-    id = ger_alsace.1
-    title = "Tensions in Alsace"
-    desc = ger_alsace.1.d
-
-    is_triggered_only = yes
-    trigger = { GER = { controls_state = 28 not = { has_war_with = FRA } } }
-    major = yes
-
-    option = {
-        name = "Hope this leads to nothing worse..."
-        if = {
-            limit = { tag = GER }
-            add_named_threat = { name = "Tensions in Alsace" threat = 4 }
-        }
-    }
-}
-
-## -- east
+# - east
 add_namespace = ger_east
 
 news_event = {
@@ -119,7 +211,7 @@ news_event = {
     }
 }
 
-## -- atlantic
+# - atlantic
 add_namespace = ger_atlantic
 
 country_event = {

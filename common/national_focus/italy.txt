@@ -666,7 +666,9 @@
 
         mutually_exclusive = { focus = ITA_adjust_the_government }
         prerequisite = { focus = ITA_political_ambitions }
-        available = { has_government = democratic }
+
+        bypass = { not = { has_idea = idea_trasformismo } }
+        enable_automatic_bypass = no
 
         completion_reward = {
             add_popularity = { ideology = democratic popularity = 0.05 }

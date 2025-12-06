@@ -681,7 +681,11 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = { base = 2 }
+        ai_will_do = {
+            factor = 0
+            modifier = { date > 1914.1.1 add = 1 }
+            modifier = { has_country_flag = turkey_german_direction add = 1 }
+        }
 
         available = {
             has_government = monarchism
@@ -780,7 +784,11 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = { base = 1 }
+        ai_will_do = {
+            factor = 0
+            modifier = { date > 1914.1.1 add = 1 }
+            modifier = { or = { has_country_flag = turkey_english_direction has_country_flag = turkey_french_direction } add = 1 }
+        }
 
         mutually_exclusive = { focus = TUR_traditionalism }
         prerequisite = { focus = TUR_political_ambitions }

@@ -18,13 +18,6 @@ european_area_priority = {
 	ai_strategy = {	type = area_priority	id = pacific			value = -240 }
 }
 
-fewer_garrisons_overall = {
-	enable = { always = yes }
-
-	ai_strategy = { type = garrison					value = -60 }
-	ai_strategy = { type = spare_unit_factor		value = -200 }
-}
-
 
 # FRONTS
 
@@ -32,47 +25,15 @@ defend_allies = {
 	enable = { always = yes }
 	ai_strategy = {
 		type = front_unit_request		country_trigger = { or = { has_guaranteed = FROM is_guaranteed_by = FROM } }
-		value = -600
-	}
-}
-
-defend_homeland = {
-	enable = { always = yes }
-	ai_strategy = {
-		type = front_unit_request		state_trigger = { owner = FROM.FROM 	is_in_home_area = yes 	not = { is_fully_controlled_by = FROM.FROM } }
-		value = 200
-	}
-}
-
-defend_if_abgenutzt_or_smol = {
-	enable = { 
-		or = {
-			and = { num_divisions < 12 	has_country_flag = side_of_the_great_war }
-			
-			has_manpower < 20000
-			stockpile_ratio = {	archetype = infantry_equipment ratio < 0.2 }
-		}
-	}
-	abort_when_not_enabled = yes
-
-	ai_strategy = {
-		type = front_control	country_trigger = { always = yes }		execution = careful
+		value = -200
 	}
 }
 
 defend_weak = {
 	enable = { always = yes }
 	ai_strategy = {
-		type = front_unit_request		country_trigger = { not = { has_war_with = FROM } strength_ratio = { tag = FROM ratio < 0.4 } }
+		type = front_unit_request		country_trigger = { not = { has_war_with = FROM } strength_ratio = { tag = FROM ratio < 0.25 } }
 		value = -60
-	}
-}
-
-defend_very_weak = {
-	enable = { always = yes }
-	ai_strategy = {
-		type = front_unit_request		country_trigger = { not = { has_war_with = FROM } strength_ratio = { tag = FROM ratio < 0.2 } }
-		value = -120
 	}
 }
 
@@ -80,20 +41,13 @@ defend_very_weak = {
 # TAKTIX
 
 war_with_france = {
-	allowed = { original_tag = GER }
-	enable = { has_war_with = FRA }
+	enable = { original_tag = GER has_war_with = FRA }
+	abort_when_not_enabled = yes
 
-	ai_strategy = { type = front_unit_request		state_trigger = { owner = FRA is_on_continent = europe }		value = 100 }
+	ai_strategy = { type = front_unit_request		state_trigger = { owner = FRA is_on_continent = europe }		value = 150 }
 }
 
 war_with_slavs = {
 	enable = { has_idea = idea_slavic_unrest }
-	ai_strategy = { 
-		type = front_unit_request		
-		state_trigger = { 
-			owner = { not = { has_war_with = FROM } }
-			or = { owner = { tag = SER } owner = { tag = SOV } } 
-		}		
-		value = 120 
-	}
+	ai_strategy = { type = front_unit_request		country_trigger = { not = { has_war_with = FROM }	or = { tag = SER tag = SOV } }		value = 120 }
 }

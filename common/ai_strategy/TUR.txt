@@ -1,23 +1,25 @@
 # DIPLOMACY
 
 TUR_alliances = {
-    allowed = { original_tag = TUR }
-    enable = { 
-        GER = { or = { has_war_with = ROM has_war_with = ITA } not = { is_ally_with = ITA } }
-        not = { has_government = democratic }
-    }
+    allowed = { has_country_flag = turkey_german_direction }
     abort_when_not_enabled = yes
 
     # alliances
-	ai_strategy = { type = alliance		id = GER		value = 60 }
+	ai_strategy = { type = alliance		id = GER		value = 40 }
 }
 
 TUR_alliances_alternative = {
     allowed = { original_tag = TUR }
-    enable = { has_government = democratic }
-    abort_when_not_enabled = yes
+    enable = { or = { has_country_flag = turkey_english_direction has_country_flag = turkey_french_direction } }
 
     # alliances
-    ai_strategy = { type = alliance		id = ENG		value = 60 }
+    ai_strategy = { type = alliance		id = ENG		value = 40 }
     ai_strategy = { type = alliance		id = FRA		value = 20 }
+}
+
+TUR_not_with_ITA = {
+    enable = { or = { is_ally_with = ITA has_guaranteed = ITA } }
+    reversed = yes
+
+    ai_strategy = { type = alliance     id = TUR        value = -200 }
 }

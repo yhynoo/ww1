@@ -2,7 +2,7 @@ ITA_alliances = {
     allowed = { original_tag = ITA }
     enable = { 
         has_completed_focus = ITA_traditionalism 
-        GER = { has_war_with = TUR }
+        or = { has_idea = idea_war_enthusiasm       GER = { has_war_with = TUR } }
     }
 
 	ai_strategy = { type = alliance     id = GER        value = 40 }
@@ -12,8 +12,7 @@ ITA_alliances_alternative = {
     allowed = { original_tag = ITA }
     enable = { 
         has_civil_war = no
-        has_country_flag = monarchist_orientation 
-        has_idea = idea_war_enthusiasm
+        and = { has_country_flag = monarchist_orientation       has_idea = idea_war_enthusiasm }
     }
     abort_when_not_enabled = yes
 
@@ -22,10 +21,7 @@ ITA_alliances_alternative = {
 }
 
 ITA_not_with_TUR = {
-    allowed = { original_tag = TUR }
-	enable = { always = yes }
-
-    reverse_enable = { or = { is_ally_with = TUR has_guaranteed = TUR } }
+    enable = { or = { is_ally_with = TUR has_guaranteed = TUR } }
     reversed = yes
 
     ai_strategy = { type = alliance     id = ITA        value = -200 }

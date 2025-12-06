@@ -94,7 +94,10 @@ country_event = {
             FROM = { news_event = { id = rom_alliance.2 hours = 6 } }
             set_country_flag = anti_ottoman_alliance
         }
-        ai_chance = { factor = 4 }
+        ai_chance = { 
+            factor = 2
+            modifier = { has_completed_focus = SER_traditionalism factor = 0 }
+        }
     }
     option = {
         name = "We are not interested."
@@ -104,14 +107,22 @@ country_event = {
 
 news_event = {
     id = rom_alliance.2
-    title = "[FROM.GetName] Agrees to Our Initiative!"
+    title = "Anti-[TUR.GetAdjective] Alliance in the Making?"
     desc = rom_alliance.2.d
 
     is_triggered_only = yes
+    major = yes
+
+    trigger = { not = { has_country_flag = alliance_event_done } }
+    immediate = { set_country_flag = alliance_event_done }
 
     option = {
-        name = "Great."
-        add_political_power = 50
+        name = "Interesting."
+
+        if = { 
+            limit = { tag = ROM } 
+            set_country_flag = anti_ottoman_alliance    add_political_power = 75 
+        }
     }
 }
 
@@ -167,7 +178,10 @@ country_event = {
 
     option = {
         name = "We have accomplished what we wanted."
-        hidden_effect = { news_event = { id = rom_neutrality.2 hours = 6 } }
+        hidden_effect = { 
+            clr_country_flag = anti_ottoman_alliance
+            news_event = { id = rom_neutrality.2 hours = 6 } 
+        }
 
         every_country = {
             limit = { is_guaranteed_by = ROM }

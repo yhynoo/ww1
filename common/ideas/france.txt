@@ -62,6 +62,9 @@ ideas = {
                 stability_factor = -0.05
                 conscription_factor = -0.05
             }
+            cancel = {
+                or = { has_war_with = ALG not = { controls_state = 459 } }
+            }
         }
 
         idea_unrest_in_morocco = {
@@ -70,7 +73,7 @@ ideas = {
                 conscription_factor = - 0.025
             }
             cancel = {
-                MOR = { exists = yes }
+                or = { has_war_with = MOR not = { controls_state = 462 } }
             }
         }
     }

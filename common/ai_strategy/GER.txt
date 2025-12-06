@@ -22,16 +22,18 @@ GER_alliances = {
 	}
 }
 
+
 # ARMY
 
-ger_airships = {
+ger_airships_and_troops = {
 	allowed = { original_tag = GER }
 	enable = { always = yes }
 
-	ai_strategy = { type = equipment_production_min_factories	id = strategic_bomber	value = 1 }
+	ai_strategy = { type = equipment_production_min_factories	id = strategic_bomber	value = 1 }			# airships
+	ai_strategy = {	type = role_ratio	id = infantry	value = 60 }										# troops
 }
 
-GER_handelskrieg = {
+ger_handelskrieg = {
 	allowed = { original_tag = GER }
 	enable = { has_idea = idea_atlantic_submarine_warfare }
 	abort_when_not_enabled = yes
@@ -45,10 +47,13 @@ GER_handelskrieg = {
 	ai_strategy = { type = naval_convoy_raid_region		id = 43		value = 100 }
 }
 
-GER_militarisation = {
+
+# TAKTIX
+
+ger_west = {
 	allowed = { original_tag = GER }
 	enable = { always = yes }
 
-	# more infantry
-	ai_strategy = {	type = role_ratio	id = infantry	value = 60 }
+	ai_strategy = { type = garrison 	value = 10 }
+	ai_strategy = { type = put_unit_buffer 		states = { 8 28 34 } 		ratio = 0.1 }
 }

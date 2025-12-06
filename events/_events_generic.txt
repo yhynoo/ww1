@@ -66,6 +66,8 @@ country_event = {
         name = "We must agree."
         FROM = { set_autonomy = { target = ROOT autonomous_state = autonomy_dominion } }
 
+        hidden_effect = { news_event = { id = _align.2 hours = 6 } }
+
         ai_chance = { 
             factor = 1
             modifier = { has_opinion = { target = FROM value > 50 } factor = 1.2 }

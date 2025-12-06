@@ -22,3 +22,14 @@ AUS_attention = {
 
     ai_strategy = { type = avoid_starting_wars      value = -100 }
 }
+
+
+# TAKTIX
+
+aus_alps = {
+	allowed = { original_tag = AUS }
+	enable = { always = yes }
+
+	ai_strategy = { type = garrison 	value = 10 }
+	ai_strategy = { type = put_unit_buffer 		states = { 33 39 153 } 		ratio = 0.1 }
+}

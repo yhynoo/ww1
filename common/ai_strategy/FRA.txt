@@ -38,3 +38,14 @@ FRA_army = {
     ai_strategy = { type = unit_ratio          id = fighter         value = 100 }
     ai_strategy = { type = equipment_production_min_factories       id = fighter        value = 1 }    
 }
+
+
+# TAKTIX
+
+fra_east = {
+	allowed = { original_tag = FRA }
+	enable = { always = yes }
+
+	ai_strategy = { type = garrison 	value = 10 }
+	ai_strategy = { type = put_unit_buffer 		states = { 17 18 29 228 } 		ratio = 0.1 }
+}
