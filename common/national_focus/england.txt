@@ -598,7 +598,7 @@ focus_tree = {
             has_war_support > 0.3
         }
 
-        ai_will_do = { base = 3 }
+        ai_will_do = { base = 2 }
 
         prerequisite = { focus = ENG_international_affairs }
         completion_reward = {
@@ -637,12 +637,12 @@ focus_tree = {
         }
 
         ai_will_do = { 
-            base = 1
-            modifier = { has_completed_focus = ENG_abolish_lords factor = 0 }
+            base = 0
+            modifier = { has_completed_focus = ENG_traditionalism factor = 3 }
         }
 
         completion_reward = {
-            FRA = { add_opinion_modifier = { target = ENG modifier = opinion_affirmed_the_entente } }
+            news_event = { id = eng_entente.1 hours = 6 }
             remove_ideas = idea_mansion_house
         }
     }
@@ -663,10 +663,7 @@ focus_tree = {
         ai_will_do = { 
             base = 0
             modifier = {
-                and = {
-                    date > 1917.1.1
-                    has_war = no
-                }
+                and = { date > 1917.1.1     has_war = no }
                 add = 2
             }
         }

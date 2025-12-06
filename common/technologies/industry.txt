@@ -10,10 +10,46 @@ technologies = {
     @1919 = 18
     @1920 = 20
 
+    # infrastructure
+    improved_agronomy = {
+        categories = { industry_tech }
+
+        monthly_population = 0.1
+        global_building_slots_factor = 0.15
+
+        research_cost = 1
+        start_year = 1914
+
+        path = {
+            leads_to_tech = efficient_area_management
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+    efficient_area_management = {
+        categories = { industry_tech }
+
+        global_building_slots_factor = 0.15
+        local_resources_factor = 0.1
+
+        research_cost = 1
+        start_year = 1918
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = @1918 }
+        }
+    }
+
+    # output
     electrification = {
         categories = { industry_tech industrial_output_tech }
 
-        production_factory_max_efficiency_factor = 0.1
+        production_factory_max_efficiency_factor = 0.15
 
         research_cost = 1
         start_year = 1904
@@ -32,7 +68,7 @@ technologies = {
         categories = { industry_tech industrial_output_tech }
 
         production_factory_max_efficiency_factor = 0.1
-        line_change_production_efficiency_factor = 0.1
+        line_change_production_efficiency_factor = 0.05
 
         research_cost = 1.5
         start_year = 1912
@@ -51,7 +87,7 @@ technologies = {
         categories = { industry_tech industrial_output_tech }
 
         production_factory_max_efficiency_factor = 0.1
-        production_factory_efficiency_gain_factor = 0.1
+        production_factory_efficiency_gain_factor = 0.05
 
         research_cost = 1.5
         start_year = 1915
@@ -70,8 +106,8 @@ technologies = {
         categories = { industry_tech industrial_output_tech }
 
         production_factory_max_efficiency_factor = 0.15
-        industrial_capacity_factory = 0.1
-		industrial_capacity_dockyard = 0.1
+        production_factory_efficiency_gain_factor = 0.05
+        line_change_production_efficiency_factor = 0.05
 
         research_cost = 2
         start_year = 1918
@@ -275,11 +311,11 @@ technologies = {
         local_resources_factor = 0.25
 
         research_cost = 1.5
-        start_year = 1920
+        start_year = 1918
 
         folder = {
             name = industry_folder
-            position = { x = 0 y = @1920 }
+            position = { x = 0 y = @1918 }
         }
     }
 }
