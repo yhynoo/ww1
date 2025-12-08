@@ -1,0 +1,10 @@
+ger_help_the_moroccans = {
+	allowed = {
+		and = { tag = GER has_war = no }
+		MOR = { has_war_with = FRA }
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {	type = diplo_action_desire	id = MOR	value = 100 	target = send_volunteers }
+    ai_strategy = { type = support              id = MOR    value = 60 }
+}

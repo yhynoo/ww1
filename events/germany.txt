@@ -131,7 +131,7 @@ news_event = {
     is_triggered_only = yes
 
     option = { 
-        name = "Awful."
+        name = "What a tragedy."
         add_war_support = -0.01
     }
 }
@@ -331,5 +331,49 @@ news_event = {
         else = {
             add_timed_idea = { idea = idea_widespread_hunger months = 9 }
         }
+    }
+}
+
+# - weimar
+add_namespace = ger_weimar
+
+country_event = {
+    id = ger_weimar.1
+    title = "Constitutional Adjustments"
+    desc = ger_weimar.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let us adopt it."
+        add_ideas = idea_weimar_constitution
+
+        hidden_effect = { 
+            news_event = { id = ger_weimar.2 days = 7 random_days = 7 }
+        }
+
+        ai_chance = { factor = 1 }
+    }
+    option = {
+        name = "The old one is good."
+        add_stability = 0.025
+
+        ai_chance = { factor = 0 }
+    }
+}
+country_event = {
+    id = ger_weimar.2
+    title = "Socialists Demand More Concessions"
+    desc = ger_weimar.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "This is a good idea."
+        add_popularity = { ideology = communism popularity = 0.05 }
+    }
+    option = {
+        name = "Who cares?"
+        add_political_power = -25
     }
 }

@@ -1,0 +1,12 @@
+# - moroccan war
+
+peace_ai_desires = {
+    MOR_limits = {
+        peace_action_type = { take_states }
+        enable = {
+            tag = MOR
+            FROM.FROM.FROM = { not = { or = { state = 460 state = 290 state = 470 } } }
+        }
+        ai_desire = -600
+    }
+}

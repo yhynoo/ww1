@@ -13,6 +13,7 @@ country_event = {
         promote_character = FRA_aristide_briand
 
         hidden_effect = { news_event = { id = fra_agadir.2 hours = 6 } }
+        set_country_flag = caillaux_dismissed
     }
     option = {
         name = "He deserves another chance."
@@ -64,61 +65,31 @@ country_event = {
     desc = fra_morocco.2.d
 
     is_triggered_only = yes
+    immediate = { hidden_effect = { remove_ideas = idea_unrest_in_morocco } }
 
     option = {
         name = "To arms!"
 
         hidden_effect = { 
             moroccan_uprising = yes
+            news_event = { id = mor_war.1 hours = 6 }
             SPA = { country_event = { id = spa_morocco.1 days = 7 } }
         }
         declare_war_on = { target = MOR type = annex_everything }
+
+        ai_chance = {
+            factor = 1
+            modifier = { has_country_flag = caillaux_dismissed factor = 0 }
+        }
     }
     option = {
         name = "We cannot afford a war over Morocco."
         release = MOR
-    }
-}
 
-# - algeria
-add_namespace = fra_algeria
-
-country_event = {
-    id = fra_algeria.1
-    title = "Unrest in Algiers"
-    desc = fra_algeria.1.d
-
-    trigger = {
-        tag = FRA
-        and = { has_war_with = MOR controls_state = 459 not = { has_country_flag = algiers_event_done } }
-    }
-    immediate = { set_country_flag = algiers_event_done }
-
-    option = {
-        name = "Offer concessions."
-        add_political_power = -75
-
-        hidden_effect = { 
-            random = { chance = 50 news_event = { id = fra_algeria.2 days = 7 random_days = 7 } }
+        hidden_effect = { MOR = { load_oob = "MOR_1912" } }
+        ai_chance = {
+            factor = 2
         }
-    }
-    option = {
-        name = "Thwart the unrest."
-        add_stability = -0.025
-        add_popularity = { ideology = monarchism popularity = 0.025 }
-    }
-}
-
-news_event = {
-    id = fra_algeria.2
-    title = "Locals Support Our Efforts in the Atlas"
-    desc = fra_algeria.2.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Great."
-        add_timed_idea = { idea = idea_algerian_support_in_the_atlas months = 6 }
     }
 }
 

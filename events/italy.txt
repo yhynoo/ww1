@@ -1,3 +1,39 @@
+# - aegean
+add_namespace = ita_aegean
+
+news_event = {
+    id = ita_aegean.1
+    title = "Italy Extends Claims to Albania and the Aegean"
+    desc = ita_aegean.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Worrying."
+    }
+}
+
+# - avanti
+add_namespace = ita_avanti
+
+news_event = {
+    id = ita_avanti.1
+    title = "Editorial in ‘Avanti’"
+    desc = ita_avanti.1.d
+
+    trigger = {
+        and = { tag = ITA not = { has_country_flag = avanti_event_done } }
+        and = { FRA = { war_length_with = { tag = GER months > 6 } } has_war = no has_civil_war = no }
+    }
+    immediate = { set_country_flag = avanti_event_done }
+
+    option = {
+        name = "Mussolini is seeking attention."
+        add_timed_idea = { idea = idea_war_enthusiasm months = 6 }
+    }
+}
+
 # - tripoli
 add_namespace = ita_tripoli
 
@@ -116,6 +152,7 @@ news_event = {
         has_stability < 0.5
         and = { has_civil_war = no not = { has_government = communism } }
     }
+    immediate = { hidden_effect = { news_event = { id = ita_uprising.1 hours = 6 } } }
 
     option = {
         name = "To arms!"
@@ -165,41 +202,6 @@ country_event = {
         name = "Dismiss them."
         add_popularity = { ideology = communism popularity = -0.025 }
         add_stability = -0.05
-    }
-}
-
-# - aegean
-add_namespace = ita_aegean
-
-news_event = {
-    id = ita_aegean.1
-    title = "Italy Extends Claims to Albania and the Aegean"
-    desc = ita_aegean.1.d
-
-    is_triggered_only = yes
-    major = yes
-
-    option = {
-        name = "Worrying."
-    }
-}
-
-# - avanti
-add_namespace = ita_avanti
-
-news_event = {
-    id = ita_avanti.1
-    title = "Editorial in ‘Avanti’"
-    desc = ita_avanti.1.d
-
-    trigger = {
-        tag = ITA
-        and = { FRA = { war_length_with = GER > 6 } has_war = no has_civil_war = no }
-    }
-
-    option = {
-        name = "Mussolini is seeking attention."
-        add_timed_idea = { idea = idea_war_enthusiasm months = 6 }
     }
 }
 
@@ -291,5 +293,22 @@ country_event = {
     option = { 
         name = "Vittorio Orlando." 
         promote_character = ITA_vittorio_orlando
+    }
+}
+
+# - uprising
+add_namespace = ita_uprising
+
+news_event = {
+    id = ita_uprising.1
+    title = "Syndicalist Uprising in Italy!"
+    desc = ita_uprising.1.d
+
+    is_triggered_only = yes
+    major = yes
+    fire_for_sender = no
+
+    option = {
+        name = "Awful."
     }
 }

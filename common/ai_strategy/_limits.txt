@@ -1,5 +1,4 @@
-### allowed later
-
+# - later
 too_early_for_tanks = {
     enable = { not = { has_tech = heavy_1916 } not = { has_tech = light_1916 } }
     abort_when_not_enabled = yes
@@ -26,14 +25,11 @@ too_early_for_marines = {
     enable = { not = { has_tech = marines_1 } }
     abort_when_not_enabled = yes
 
-    ai_strategy = {
-        type = role_ratio
-        id = marines
-        value = -300
-    }
+    ai_strategy = { type = role_ratio       id = marines        value = -300 }
+    ai_strategy = { type = naval_invasion_focus     value = -120 }
 }
 
-### other
+# - other
 other_limits = {
     enable = { always = yes }
     abort = { always = no }

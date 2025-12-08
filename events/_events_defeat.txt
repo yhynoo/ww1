@@ -15,10 +15,18 @@ news_event = {
             # FRA
             and = {
                 tag = FRA
-                owns_state = 16 not = { controls_state = 16 }
                 or = {
-                    owns_state = 20 not = { controls_state = 20 } 
-                    owns_state = 29 not = { controls_state = 29 }
+                    and = {
+                        owns_state = 16 not = { controls_state = 16 }
+                        or = {
+                            owns_state = 20 not = { controls_state = 20 } 
+                            owns_state = 29 not = { controls_state = 29 }
+                        }
+                    }
+                    and = {
+                        war_lengh_with = { tag = MOR months > 12 }
+                        date < 1914.1.1
+                    }
                 }
             }
 
@@ -53,7 +61,9 @@ news_event = {
             # TUR
             and = {
                 tag = TUR
-                or = { has_war_with = ROM has_war_with = GRE }
+                or = { 
+                    has_war_with = ROM has_war_with = GRE 
+                }
                 or = { 
                     and = { 
                         owns_state = 212 not = { controls_state = 212 } 
@@ -61,6 +71,10 @@ news_event = {
                     } 
                     and = {
                         owns_state = 586 not = { controls_state = 586 } 
+                    }
+                    and = {
+                        war_lengh_with = { tag = ROM months > 9 }
+                        date < 1914.4.1
                     }
                 }
             }

@@ -1,0 +1,117 @@
+dominion_atlas = {
+    claim_atlantic_islands = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 50
+
+        highlight_states = { highlight_state_targets = { state = 178 state = 469 state = 471 } }
+        ai_will_do = {
+            factor = 6
+            modifier = { is_in_faction = yes factor = 2 }
+        }
+        complete_effect = { 
+            every_state = { limit = { or = { state = 178 state = 469 state = 471 } } add_claim_by = ROOT }
+            news_event = { id = mor_atlantic.1 hours = 6 }
+        }
+    }
+    demand_sahara = {
+        icon = generic_ignite_civil_war
+        fire_only_once = yes
+        cost = 50
+
+        targets_dynamic = yes
+        target_trigger = {
+            can_declare_war_on = FROM 
+            470 = { is_owned_and_controlled_by = FROM } 
+        }
+        highlight_states = { highlight_state_targets = { state = 470 } }
+ 
+        ai_will_do = { factor = 6 }
+        complete_effect = { FROM = { country_event = { id = _demand.1 hours = 6 } } }
+    }
+    mor_support_algeria = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 75
+
+        targets = { ALG }
+        target_non_existing = yes
+
+        available = {
+            FROM = { exists = no }
+            459 = { owner = { controls_state = PREV has_stability < 0.5 } }
+        }
+        cancel_trigger = { 459 = { owner = { has_stability > 0.5 } } }
+        
+        ai_will_do = { 
+            factor = 0 
+            modifier = { and = { has_war_with = FRA is_in_faction = yes } add = 9 }
+        }
+
+        days_remove = 90
+        remove_effect = { 
+            hidden_effect = {
+                give_guarantee = FROM
+                FROM = { news_event = { id = _uprising.1 hours = 6 } }
+                459 = {
+                    owner = {
+                        algerian_independence = yes
+                        declare_war_on = { target = FROM type = annex_everything }
+                    }
+                }
+            }
+            custom_effect_tooltip = tt_algeria
+        }
+    }
+}
+
+liberate_maghreb = {
+    align_algeria = {
+        icon = generic_civil_support
+        fire_only_once = yes
+        cost = 75
+
+        targets = { ALG }
+        available = {
+            can_declare_war_on = FROM
+            FROM = { exists = yes is_subject = no }
+        }
+
+        target_non_existing = yes
+        ai_will_do = {
+            factor = 0
+            modifier = { FROM = { has_war = no is_in_faction = no } add = 9 }
+        }
+
+        complete_effect = { FROM = { country_event = { id = _align.1 hours = 6 random_hours = 6 } } }
+    }
+    support_tunisia = {
+        icon = generic_prepare_civil_war
+        fire_only_once = yes
+        cost = 75
+
+        targets = { TUN }
+        target_non_existing = yes
+
+        available = {
+            FROM = { exists = no }
+            458 = { owner = { controls_state = PREV has_stability < 0.5 } }
+        }
+        cancel_trigger = { 458 = { owner = { has_stability > 0.5 } } }
+
+        days_remove = 90
+        remove_effect = { 
+            hidden_effect = {
+                give_guarantee = FROM
+                FROM = { news_event = { id = _uprising.1 hours = 6 } }
+                458 = {
+                    owner = {
+                        tunisian_independence = yes
+                        declare_war_on = { target = FROM type = annex_everything }
+                    }
+                }
+            }
+            custom_effect_tooltip = tt_tunisia
+        }
+    }
+}
