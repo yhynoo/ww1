@@ -1,76 +1,3 @@
-# - wallonien
-add_namespace = ger_wallonia
-
-country_event = {
-    id = ger_wallonia.1
-    title = "The Occupation of Wallonia"
-    desc = ger_wallonia.1.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Annex it."
-
-        add_named_threat = { name = "The Annexation of Wallonia" threat = 4 }
-        34 = { add_core_of = ROOT }
-
-        hidden_effect = { 
-            news_event = { id = ger_wallonia.2 hours = 6 }
-            set_country_flag = imperial_tendency
-        }
-        ai_chance = { factor = 2 }
-    }
-    option = {
-        name = "Keep the military administration."
-
-        hidden_effect = { set_country_flag = neutral_tendency }
-        ai_chance = { factor = 1 }
-    }
-    option = {
-        name = "Withdraw our troops."
-
-        add_popularity = { ideology = ROOT popularity = -0.05 }
-        34 = { transfer_state_to = FRA }
-
-        hidden_effect = { 
-            news_event = { id = ger_wallonia.3 hours = 6 }
-            set_country_flag = democratic_tendency 
-        }
-        ai_chance = { factor = 1 }
-    }
-}
-
-news_event = {
-    id = ger_wallonia.2
-    title = "[GER.GetName] Annexes [34.GetName]!"
-    desc = ger_wallonia.2.d
-
-    is_triggered_only = yes
-    major = yes
-
-    option = {
-        name = "Worrying."
-        if = {
-            limit = { or = { tag = ENG tag = FRA } }
-            add_opinion_modifier = { target = GER modifier = opinion_annexation_of_wallonia }
-        }
-    }
-}
-
-news_event = {
-    id = ger_wallonia.3
-    title = "[GER.GetName] Withdraws from [34.GetName]!"
-    desc = ger_wallonia.3.d
-
-    is_triggered_only = yes
-    major = yes
-
-    option = {
-        name = "Interesting."
-    }
-}
-
-
 # - alsace
 add_namespace = ger_alsace
 
@@ -280,12 +207,12 @@ news_event = {
 }
 
 ## -- 1916
-add_namespace = GER_harvest
+add_namespace = ger_harvest
 
 country_event = {
-    id = GER_harvest.1
+    id = ger_harvest.1
     title = "The Harvest of 1916"
-    desc = GER_harvest.1.d
+    desc = ger_harvest.1.d
 
     trigger = {
         and = { tag = GER       date > 1916.7.1     date < 1916.10.1 }
@@ -311,14 +238,14 @@ country_event = {
         name = "We must endure."
         add_political_power = -50
 
-        hidden_effect = { news_event = { id = GER_harvest.2 days = 14 } }
+        hidden_effect = { news_event = { id = ger_harvest.2 days = 14 } }
         ai_chance = { factor = 2 }
     }
 }
 news_event = {
-    id = GER_harvest.2
+    id = ger_harvest.2
     title = "‘Durchhalten!’"
-    desc = GER_harvest.2.d
+    desc = ger_harvest.2.d
 
     is_triggered_only = yes
 

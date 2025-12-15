@@ -661,7 +661,7 @@ focus_tree = {
 
         ai_will_do = {
             factor = 0
-            modifier = { has_country_flag = imperial_tendency add = 1 }
+            modifier = { has_government = monarchism add = 1 }
         }
 
         completion_reward = {
@@ -678,10 +678,7 @@ focus_tree = {
         y = 1
         cost = 10
 
-        ai_will_do = {
-            factor = 0
-            modifier = { or = { has_country_flag = imperial_tendency has_country_flag = neutral_tendency } add = 1 }
-        }
+        ai_will_do = { factor = 2 }
 
         mutually_exclusive = { focus = GER_adjust_the_government }
         prerequisite = { focus = GER_political_ambitions }
@@ -778,11 +775,6 @@ focus_tree = {
 
         mutually_exclusive = { focus = GER_traditionalism }
         prerequisite = { focus = GER_political_ambitions }
-
-        ai_will_do = {
-            factor = 0
-            modifier = { or = { has_country_flag = neutral_tendency has_country_flag = democratic_tendency } add = 1 }
-        }
 
         completion_reward = {
             country_event = { id = ger_weimar.1 hours = 6 }

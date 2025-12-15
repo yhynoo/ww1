@@ -1,7 +1,12 @@
 # DIPLOMACY
 
 TUR_alliances = {
-    allowed = { has_country_flag = turkey_german_direction }
+    allowed = { 
+        or = { 
+            has_country_flag = turkey_german_direction 
+            and = { ROM = { is_subject = no has_war_with = GER } } GER = { has_war_with = ITA }
+        }
+    }
     abort_when_not_enabled = yes
 
     # alliances

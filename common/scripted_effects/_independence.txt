@@ -36,7 +36,6 @@ armenian_independence = {
 algerian_independence = {
     ALG = {
         setup_uprising_troops = yes
-        add_ideas = { limited_conscription closed_economy partial_economic_mobilisation }
 
         ROOT = {
             setup_uprising_country = yes
@@ -51,8 +50,6 @@ algerian_independence = {
 baltic_independence = {
     UBD = {
         setup_uprising_troops = yes
-        add_ideas = { limited_conscription limited_exports partial_economic_mobilisation }
-
         ROOT = {
             setup_uprising_country = yes
             12 = { setup_uprising_state = yes }     # Riga
@@ -190,6 +187,21 @@ ukrainian_independence = {
         ROOT = {
             setup_uprising_country = yes
             192 = { setup_uprising_state = yes }     # Odessa
+        }
+    }
+}
+
+ukrainian_uprising = {
+    UKR = {
+        setup_uprising_troops = yes
+        news_event = { id = _uprising.1 hours = 6 }
+
+        ROOT = {
+            setup_uprising_country = yes
+            every_state = {
+                limit = { or = { state = 137 state = 192 state = 200 state = 226 state = 78 } is_controlled_by = ROOT }
+                setup_uprising_state = yes
+            }
         }
     }
 }

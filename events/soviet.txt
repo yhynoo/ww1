@@ -1,0 +1,233 @@
+# - agitation
+add_namespace = sov_agitation
+
+news_event = {
+    id = sov_agitation.1
+    title = "Agitation in the Army"
+    desc = sov_agitation.1.d
+
+    trigger = {
+        tag = SOV
+        and = { surrender_progress > 0.05 not = { has_country_flag = agitation_event_done } }
+    }
+    immediate = {
+        set_country_flag = agitation_event_done
+        hidden_effect = { news_event = { id = sov_agitation.2 days = 14 random_days = 7 } }
+    }
+
+    option = {
+        name = "Worrying."
+        add_timed_idea = { idea = idea_agitation_in_the_army years = 1 }
+    }
+}
+
+news_event = {
+    id = sov_agitation.2
+    title = "Assault on the Arkhangelsk Garrison"
+    desc = sov_agitation.2.d
+
+    is_triggered_only = yes
+    trigger = { controls_state = 214 }
+
+    option = {
+        name = "Disturbing."
+
+        add_stability = -0.02
+        add_popularity = { ideology = communism popularity = 0.025 }
+    }
+}
+
+country_event = {
+    id = sov_agitation.3
+    title = "Lenin’s Arrival"
+    desc = sov_agitation.3.d
+
+    trigger = { 
+        tag = SOV
+        and = { has_war_with = GER or = { surrender_progress > 0.15 longest_war_length > 24 } }
+
+        has_civil_war = no
+        not = { has_government = communism }
+    }
+
+    immediate = {
+        set_country_flag = agitation_event_done
+        hidden_effect = {
+            random = { chance = 50 news_event = { id = sov_agitation.2 days = 14 random_days = 7 } }
+            random = { chance = 50 news_event = { id = sov_agitation.3 days = 28 random_days = 7 } }
+        }
+    }
+
+    option = {
+        name = "Don’t agitate the workers."
+
+        promote_character = SOV_vladimir_lenin
+        add_popularity = { ideology = communism popularity = 0.05 }
+
+        ai_chance = { factor = 1 }
+    }
+    option = {
+        name = "Arrest him."
+        add_stability = -0.05
+    }
+}
+
+# - aircraft
+add_namespace = sov_aircraft
+
+news_event = {
+    id = sov_aircraft.1
+    title = "Sikorsky’s Aircraft Takes to the Air!"       
+    desc = sov_aircraft.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Wonderful."
+        add_tech_bonus = { name = aircraft_bonus bonus = 1.0 uses = 1 category = air_equipment_tech }
+    }
+}
+
+# - duma
+add_namespace = sov_duma
+
+country_event = {
+    id = sov_duma.1
+    title = "Tensions in the Duma"
+    desc = sov_duma.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Maintain the current leadership."
+        add_political_power = -25
+    }
+    option = {
+        name = "Let the Kadets join the government."
+        promote_character = SOV_pavel_milyukov
+    }
+}
+
+# - end
+add_namespace = sov_end
+
+country_event = {
+    id = sov_end.1
+    title = "End of the Empire?"
+    desc = sov_end.1.d
+
+    trigger = {
+        tag = SOV
+        and = {
+            not = { has_country_flag = end_event_done }
+            and = { communism > 0.4 surrender_progress > 0.05 not = { has_government = communism } has_civil_war = no }
+        }
+    }
+    immediate = { set_country_flag = end_event_done }
+
+    option = {
+        name = "To arms!"
+        start_civil_war = { ideology = communism size = 0.6 }
+
+        hidden_effect = { 
+            soviet_civil_war = yes 
+            news_event = { id = sov_end.2 hours = 6 }
+        }
+    }
+    option = {
+        name = "Long live the workers’ state!"
+        start_civil_war = { ideology = monarchism ruling_party = communism size = 0.5 }
+
+        hidden_effect = { 
+            soviet_civil_war = yes
+            news_event = { id = sov_end.2 hours = 6 }
+        }      
+    }
+}
+
+news_event = {
+    id = sov_end.2
+    title = "Communist Uprising in the East!"
+    desc = sov_end.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+# - tsar
+add_namespace = sov_tsar
+
+news_event = {
+    id = sov_tsar.1
+    title = "Tsar Dethroned!"      
+    desc = sov_tsar.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The end of centuries of oppression."
+    }
+}
+
+# - ukraine
+add_namespace = sov_ukraine
+
+country_event = {
+    id = sov_ukraine.1
+    title = "Arson in Sevastopol"
+    desc = sov_ukraine.1.d
+
+    trigger = { 
+        tag = SOV
+        and = { has_war = no has_stability < 0.25 not = { has_completed_focus = SOV_open_the_economy } not = { has_country_flag = ukraine_event_done } }
+        
+        and = {
+            UKR = { exists = no }
+        }
+    }
+    immediate = { set_country_flag = ukraine_event_done }
+
+    option = {
+        name = "Send in the troops."
+        add_stability = 0.025
+
+        hidden_effect = { 
+            random = { chance = 50 news_event = { id = sov_ukraine.2 days = 7 random_days = 7 } }
+        }
+
+        ai_chance = {
+            factor = 0
+            modifier = { has_country_flag = orthodox_direction add = 1 }
+        }
+    }
+    option = {
+        name = "We must not overreact."
+        add_popularity = { ideology = democratic popularity = 0.025 }
+
+        ai_chance = {
+            factor = 0
+            modifier = { has_country_flag = democratic_direction add = 1 }
+        }
+    }
+}
+
+news_event = {
+    id = sov_ukraine.2
+    title = "Anarchy in the Steppe"
+    desc = sov_ukraine.2.d
+
+    is_triggered_only = yes
+    trigger = { UKR = { exists = no } }
+
+    option = {
+        name = "To arms!"
+
+        hidden_effect = { ukrainian_uprising = yes }
+        declare_war_on = { target = UKR type = annex_everything }
+    }
+}

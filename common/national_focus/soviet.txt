@@ -671,13 +671,7 @@
 
         ai_will_do = {
             factor = 0
-            modifier = {
-                or = {
-                    not = { has_completed_focus = SOV_deterrence }
-                    and = { has_war = no date > 1915.7.1 }
-                }
-                add = 2
-            }
+            modifier = { has_country_flag = orthodox_direction add = 1 }
         }
 
         completion_reward = {
@@ -695,9 +689,9 @@
         y = 1
         cost = 10
 
-        ai_will_do = { 
-            factor = 1
-            modifier = { date < 1914.1.1 factor = 0 }
+        ai_will_do = {
+            factor = 0
+            modifier = { has_country_flag = orthodox_direction add = 1 }
         }
 
         available = {
@@ -719,11 +713,6 @@
         x = -1
         y = 1
         cost = 10
-
-        ai_will_do = {
-            factor = 2
-            modifier = { has_war = no factor = 0 }
-        }
 
         available = {
             has_war = yes
@@ -803,16 +792,19 @@
         y = 1
         cost = 10
 
-        ai_will_do = { 
-            factor = 2
-            modifier = { date < 1914.1.1 factor = 0 }
+        ai_will_do = {
+            factor = 0
+            modifier = { has_country_flag = democratic_direction add = 1 }
         }
 
         mutually_exclusive = { focus = SOV_traditionalism }
         prerequisite = { focus = SOV_political_ambitions }
+        
         completion_reward = {
             add_timed_idea = { idea = idea_democratic_tendencies years = 1 }
             add_popularity = { ideology = democratic popularity = 0.05 }
+
+            hidden_effect = { country_event = { id = sov_duma.1 days = 14 } }
         }
     }
     focus = {
