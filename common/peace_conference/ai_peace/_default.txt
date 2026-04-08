@@ -1,0 +1,69 @@
+peace_ai_desires = {
+
+    # TAKING STATES
+    take_cores = {
+        peace_action_type = { take_states }
+        enable = { FROM.FROM.FROM = { is_core_of = ROOT } }        # first, just grab cores and neighboring states.
+        ai_desire = 200
+    }
+
+    take_around = {
+        peace_action_type = { take_states }
+        enable = {
+            FROM.FROM.FROM = {
+                any_neighboring_state = {
+                    or = { is_owned_by = ROOT is_claimed_by = ROOT }
+                }
+            }
+        }
+        ai_desire = 30
+    }
+
+    take_farther = {
+        peace_action_type = { take_states }
+        enable = {
+            FROM.FROM.FROM = {
+                or = {
+                    and = { is_coastal = yes is_on_continent = africa }
+                    any_neighboring_state = {
+                        pc_is_state_claimed_and_taken_by = ROOT
+                    }
+                }
+            }
+        }
+        ai_desire = 20
+    }
+
+    dont_take_africa_as_a_minor = {
+        peace_action_type = { take_states }
+        enable = {
+            is_major = no
+            FROM.FROM.FROM = { is_on_continent = africa }
+        }
+        ai_desire = -200
+    }
+
+    # DOMINIONS
+    keep_them_tight = {
+        peace_action_type = { puppet }
+        enable = {
+            FROM.FROM.FROM = {
+                any_neighboring_state = { pc_is_puppeted_by = ROOT }
+            }
+        }
+        ai_desire = 30
+    }
+
+    dont_take_states_from_dominions = {
+        peace_action_type = { take_state }
+        enable = { FROM = { pc_is_puppeted_by = ROOT } }
+        ai_desire = -100
+    }
+
+    # OTHER
+    dont_do_other_things = {
+        peace_action_type = { puppet liberate force_government }
+        enable = { always = yes }
+        ai_desire = -600
+    }
+}

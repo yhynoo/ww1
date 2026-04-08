@@ -1,0 +1,25 @@
+on_actions = {
+    on_war = {
+        effect = {
+            if = {
+                limit = { has_civil_war = no }
+
+                # pre-launch the stalemate event
+                country_event = { id = _armistice.0 days = 180 random_days = 30 }
+            }
+
+            # adding the side of the great war
+            if = {
+                limit = {
+                    not = { has_country_flag = side_of_the_great_war }
+                    or = {
+                        any_allied_country = { has_country_flag = side_of_the_great_war }
+                        any_enemy_country = { has_country_flag = side_of_the_great_war }
+                    }
+                }
+                set_country_flag = side_of_the_great_war
+            }
+
+        }
+    }
+}

@@ -1,0 +1,48 @@
+division_template = {
+	name = "Infantry Division"
+	division_names_group = DEN_INF_01
+	regiments = {
+		infantry = { x = 0 y = 0 }		infantry = { x = 1 y = 0 }		infantry = { x = 2 y = 0 }
+		infantry = { x = 0 y = 1 }		infantry = { x = 1 y = 1 }		infantry = { x = 2 y = 1 }
+	}
+}
+
+division_template = {
+	name = "Garrison Troops"
+	division_names_group = DEN_INF_02
+	regiments = {
+		infantry = { x = 0 y = 0 }      infantry = { x = 0 y = 1 }  
+        infantry = { x = 1 y = 0 }      infantry = { x = 1 y = 1 }
+	}
+    priority = 0
+}
+
+units = {
+
+	# army
+    division = { location = 6287	division_template = "Infantry Division"	start_experience_factor = 0.5 }
+	division = { location = 6287	division_template = "Garrison Troops"	start_experience_factor = 0.5 }
+
+	division = { location = 6364	division_template = "Infantry Division"	start_experience_factor = 0.5 }
+	division = { location = 399		division_template = "Infantry Division"	start_experience_factor = 0.5 }
+
+	# navy
+	fleet = {
+        name = "Kongelige Danske Marine"	
+        naval_base = 6287                # Kopenhagen
+
+        # Denmark
+        task_force = {
+            name = "Dansk Eskadre"      
+			location = 6287 	        # Kopenhagen 
+
+            # cruisers
+            ship = { name = "Valkyrien" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = DEN } } }
+
+            # destroyers
+            ship = { name = "Hajen" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = DEN } } }
+            ship = { name = "Havhesten" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = DEN } } }
+            ship = { name = "Havørnen" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = DEN } } }
+        }
+	}
+}

@@ -1,0 +1,93 @@
+china_civil_war = {
+    random_country = {
+        limit = { original_tag = MAN has_government = communism }
+        set_popularities = { communism = 85 democratic = 10 monarchism = 5 }
+
+        if = {
+            limit = { is_ai = yes }
+            add_ideas = {
+                closed_economy
+                partial_economic_mobilisation
+            }
+        }
+    }
+
+    random_country = {
+        limit = { 
+            original_tag = MAN
+            not = { has_government = communism }
+        }
+        set_popularities = { communism = 10 democratic = 65 monarchism = 35 }
+
+        if = {
+            limit = { is_ai = yes }
+            add_ideas = {
+                closed_economy
+                partial_economic_mobilisation
+            }
+        }
+    }
+}
+
+mexican_civil_war = {
+    random_country = {
+        limit = { original_tag = MEX has_government = communism }
+        set_popularities = { communism = 70 democratic = 30 }
+
+        add_ideas = {
+            closed_economy
+            partial_economic_mobilisation
+        }
+    }
+
+    random_country = {
+        limit = { original_tag = MEX not = { has_government = communism } }
+        set_popularities = { communism = 15 democratic = 45 monarchism = 40 }
+
+        add_ideas = {
+            closed_economy
+            partial_economic_mobilisation
+        }
+    }
+}
+
+soviet_civil_war = {
+    random_country = {
+        limit = { original_tag = SOV has_government = communism }
+
+        set_cosmetic_tag = SOV_civil_war_reds
+        set_popularities = { communism = 75 democratic = 20 monarchism = 5 }
+
+        add_ideas = {
+            closed_economy
+            war_economy
+            extensive_conscription
+        }
+
+        # diplomacy
+        leave_faction = yes
+        every_country = {
+            limit = { has_guaranteed = PREV }
+            diplomatic_relation = { country = PREV relation = guarantee active = no }
+        }
+    }
+
+    random_country = {
+        limit = { original_tag = SOV not = { has_government = communism } }
+        set_cosmetic_tag = SOV_civil_war_whites
+
+        retire_character = SOV_nikolai_ii
+        leave_faction = yes
+        
+        set_politics = { ruling_party = monarchism }
+        set_popularities = { communism = 10 democratic = 40 monarchism = 50 }
+
+        add_ideas = {
+            closed_economy
+            war_economy
+            extensive_conscription
+
+            idea_corrupt_officers
+        }
+    }
+}

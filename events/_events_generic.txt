@@ -1,0 +1,760 @@
+## -- demands
+add_namespace = _demand
+
+country_event = {
+    id = _demand.1
+    title = "[FROM.GetName] Demands Territories"
+    desc = _demand.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We can do nothing about it."
+        FROM = { news_event = { id = _demand.2 hours = 6 } }
+
+        every_owned_state = {
+            limit = { or = { is_core_of = FROM is_claimed_by = FROM } }
+            FROM = { set_state_owner = PREV }
+        }
+
+        ai_chance = { 
+            factor = 1 
+            modifier = { strength_ratio = { tag = FROM ratio > 2.0 } factor = 2 }
+
+            # GER will never give up Alsace
+            modifier = { and = { tag = GER FROM = { tag = FRA } } factor = 0 }
+        }
+    }
+    option = {
+        name = "No!"
+        FROM = { 
+            create_wargoal = { type = take_claimed_state target = ROOT } 
+            add_named_threat = { threat = 4 name = "[ROOT.GetName] Dismisses Our Claims!" }
+        }
+        
+        ai_chance = { 
+            factor = 2
+            modifier = { any_country = { or = { is_ally_with = ROOT has_guaranteed = ROOT } } factor = 2 }
+        }
+        
+    }
+}
+
+news_event = {
+    id = _demand.2
+    title = "[FROM.GetName] Accepts Our Demands"
+    desc = _demand.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "A victory for [ROOT.GetName]."
+    }
+}
+
+## -- alignment
+add_namespace = _align
+
+country_event = {
+    id = _align.1
+    title = "[FROM.GetName] Demands Alignment"
+    desc = _align.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We must agree."
+        FROM = { set_autonomy = { target = ROOT autonomous_state = autonomy_dominion } }
+
+        hidden_effect = { news_event = { id = _align.2 hours = 6 } }
+
+        ai_chance = { 
+            factor = 1
+            modifier = { has_opinion = { target = FROM value > 50 } factor = 1.2 }
+            modifier = { strength_ratio = { tag = FROM ratio > 2.0 } factor = 2 }
+        }
+    }
+    option = {
+        name = "No!"
+        add_war_support = 0.05
+        FROM = { create_wargoal = { type = puppet_wargoal_focus target = ROOT } }
+        
+        ai_chance = { 
+            factor = 2
+            modifier = { any_country = { or = { is_ally_with = ROOT has_guaranteed = ROOT } } factor = 2 }
+
+            # Serbia's Austrophile king
+            modifier = { has_country_leader = { character = SER_konstantin_konstantinovic ruling_only = yes } factor = 0 }
+        }
+        
+    }
+}
+
+news_event = {
+    id = _align.2
+    title = "[ROOT.GetName] Aligns with [FROM.GetName]"
+    desc = _align.2.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+## - guarantees
+add_namespace = _guarantees
+
+country_event = {
+    id = _guarantees.1
+    title = "[FROM.GetName] Offers a Defense Agreement"
+    desc = _guarantees.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Sounds good."
+        give_guarantee = FROM
+        FROM = { give_guarantee = ROOT }
+
+        ai_chance = { 
+            factor = 0 
+            modifier = { 
+                or = { has_opinion = { target = FROM value > 50 } strength_ratio = { tag = FROM ratio < 0.5 } }
+                add = 2
+            }
+            modifier = { threat > 0.2 add = 1 }
+        }
+    }
+    option = {
+        name = "We are not interested."
+        FROM = { news_event = { id = _guarantees.2 hours = 6 } }
+
+        ai_chance = { factor = 1 }
+    }
+}
+
+news_event = {
+    id = _guarantees.2
+    title = "[FROM.GetName] Dismisses Our Offer!"
+    desc = _guarantees.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Their loss."
+        add_war_support = 0.025
+    }
+}
+
+## -- alliance
+add_namespace = _alliance
+
+news_event = {
+    id = _alliance.1
+    title = "[FROM.GetName] Establishes an Alliance!"
+    desc = _alliance.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+        if = {
+            limit = { tag = FROM } 
+            hidden_effect = { add_ideas = idea_alliance_leader }
+        }
+    }
+}
+
+## -- uprising
+add_namespace = _uprising
+
+news_event = {
+    id = _uprising.1
+    title = "Uprising in [ROOT.GetNameDef]!"
+    desc = _uprising.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Alright."
+    }
+}
+
+## -- war
+add_namespace = _war
+
+news_event = {
+    id = _war.0         # this is just the trigger event.
+    hidden = yes
+
+    trigger = {
+        GER = {
+            or = { has_war_with = FRA has_war_with = ENG }
+            or = { is_ally_with = AUS is_ally_with = TUR }
+        }
+    }
+    fire_only_once = yes
+
+    option = { news_event = _war.1 }
+}
+
+news_event = {
+    id = _war.1
+    title = "Great War in Europe!"
+    desc = _war.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "The old world is engulfed in fire."
+        if = {
+            limit = { or = { tag = GER is_ally_with = GER has_war_with = GER } }
+            add_timed_idea = { idea = idea_war_enthusiasm months = 6 }
+
+            hidden_effect = {
+                random = { chance = 25 news_event = { id = _war.2 days = 7 random_days = 7 } }
+                random = { chance = 25 news_event = { id = _war.3 days = 14 random_days = 7 } }
+
+                # flag for tracking
+                set_country_flag = side_of_the_great_war
+            }
+        }
+    }
+}
+
+news_event = {
+    id = _war.2
+    title = "Daring Airshow over [ROOT.capital_scope.GetCapitalVictoryPointName]!"
+    desc = _war.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "What a sight!"
+        air_experience = 5
+        add_war_support = 0.025
+    }
+}
+
+news_event = {
+    id = _war.3
+    title = "Communist Agitators Against the War!"
+    desc = _war.3.d
+
+    is_triggered_only = yes
+    trigger = { 
+        communism > 0.1 
+    }
+
+    option = {
+        name = "Traitors."
+        add_war_support = -0.05
+    }
+}
+
+## -- hunger
+add_namespace = _hunger
+
+country_event = {
+    id = _hunger.1
+    title = "Widespread Hunger"
+    desc = _hunger.1.d
+
+    is_triggered_only = yes
+    trigger = { 
+        has_war = yes
+        and = { has_stability < 0.4 longest_war_length > 12 }
+        not = { has_idea = idea_widespread_hunger }
+    }
+
+    option = {
+        name = "Demobilize the economy."
+        add_ideas = civilian_economy
+        ai_chance = { factor = 1 }
+    }
+    option = {
+        name = "We must endure."
+        add_timed_idea = { idea = idea_widespread_hunger months = 6 }
+
+        hidden_effect = {
+            random_owned_controlled_state = {
+                save_event_target_as = hunger_state
+                random = { 
+                    chance = 25 
+                    ROOT = { news_event = { id = _hunger.2 days = 28 random_days = 14 } } 
+                }
+            }
+            random = { chance = 25 news_event = { id = _hunger.3 days = 7 random_days = 7 } }
+        }
+        ai_chance = { factor = 2 }
+    }
+}
+
+news_event = {
+    id = _hunger.2
+    title = "The Hungry Loot Trains in [hunger_state.GetCapitalVictoryPointName]!"
+    desc = _hunger.2.d
+
+    is_triggered_only = yes
+    trigger = { has_equipment = { train_equipment > 1 } }
+
+    option = {
+        name = "Awful."
+        add_war_support = -0.025
+        add_equipment_to_stockpile = { type = train_equipment producer = ROOT amount = -2 }
+    }
+}
+
+news_event = {
+    id = _hunger.3
+    title = "Soldiers Send Supplies Home?"
+    desc = _hunger.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Awful."
+        add_war_support = -0.025
+    }
+}
+
+## -- mutinies
+add_namespace = _mutinies
+
+news_event = {
+    id = _mutinies.1
+    title = "Demoralization in the Army"
+    desc = _mutinies.1.d
+
+    is_triggered_only = yes
+    trigger = { 
+        has_war = yes
+        and = { has_war_support < 0.4 longest_war_length > 12 }
+        not = { has_idea = idea_army_demoralization }
+    }
+
+    option = {
+        name = "Awful."
+        add_timed_idea = { idea = idea_army_demoralization months = 6 }
+    }
+}
+
+## -- armistice
+add_namespace = _armistice
+
+news_event = {
+    id = _armistice.0
+    hidden = yes 
+
+    is_triggered_only = yes
+    trigger = {
+        surrender_progress < 0.05
+        not = { any_enemy_country = { surrender_progress < 0.05 } }
+    }
+
+    option = { country_event = _armistice.1 }
+}
+
+country_event = {
+    id = _armistice.1
+    title = "Time to Seek an Armistice?"
+    desc = _armistice.1.d
+
+    is_triggered_only = yes
+    trigger = { has_war = yes has_civil_war = no }
+
+    option = {
+        name = "The time has come."
+        every_enemy_country = {
+            limit = { or = { is_faction_leader = yes is_in_faction = no } }
+            country_event = { id = _armistice.2 hours = 6 random_days = 7 } 
+        }
+        ai_chance = { 
+            factor = 1
+            modifier = { has_war_support < 0.5 factor = 2 }
+            modifier = { has_war_support < 0.2 factor = 3 }
+        }
+    }
+    option = {
+        name = "We shall continue fighting."
+        add_political_power = -75
+
+        ai_chance = { 
+            factor = 1
+            modifier = { has_civil_war = yes factor = 0 }
+            modifier = { 
+                and = { original_tag = FRA not = { controls_state = 16 } }      # FRA surrenders
+                factor = 0
+            }
+        }
+    }
+}
+
+country_event = {
+    id = _armistice.2
+    title = "[FROM.GetName] Offers an Armistice"
+    desc = _armistice.2.d
+
+    is_triggered_only = yes
+ 
+    option = {
+        name = "We agree."
+        start_peace_conference = { tag = FROM score_factor = 0.1 }
+        FROM = { leave_faction = yes }
+        
+        ai_chance = { factor = 4 }
+    } 
+    option = {
+        name = "Ignore them."
+        add_political_power = -75
+        
+        ai_chance = { 
+            factor = 1
+            modifier = { FROM = { is_faction_leader = yes } factor = 0 }            # AI will always accept factions surrendering.
+            modifier = { strength_ratio = { tag = FROM ratio < 0.6 } factor = 0 }   # Also, if we're weaker than them, we should accept it too.
+        }
+    }
+}
+
+## -- equipment
+add_namespace = _equipment
+
+news_event = {
+    id = _equipment.1
+    title = "[FROM.GetAdjective] Arms and Equipment Arrive"
+    desc = _equipment.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "They are most welcome."
+        add_opinion_modifier = { target = FROM modifier = opinion_sent_arms }
+    }
+}
+
+## -- army
+add_namespace = _army
+
+news_event = {
+    id = _army.1
+    title = "The Army Marches in [ROOT.capital.GetCapitalVictoryPointName]"
+    desc = _army.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Such a sight."
+        add_war_support = 0.025
+
+        hidden_effect = { 
+            random = { chance = 50 news_event = { id = _army.2 days = 7 random_days = 7 } }
+            add_named_threat = { threat = 1 name = "The Army Marches in [ROOT.capital.GetCapitalVictoryPointName]" }
+        }
+    }
+}
+
+news_event = {
+    id = _army.2
+    title = "Youths Queue in Conscription Centers"
+    desc = _army.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Everyone a hero."
+        add_manpower = 12000
+    }
+}
+
+## -- mobilization
+add_namespace = _mobilization
+
+news_event = {
+    id = _mobilization.1
+    title = "[ROOT.GetName] Announces Mobilization"
+    desc = _mobilization.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+    }
+}
+
+## -- demonstrations
+add_namespace = _demonstrations
+
+news_event = {
+    id = _demonstrations.1
+    title = "Worker Demonstrations in [event_state.GetCapitalVictoryPointName]"
+    desc = _demonstrations.1.d
+
+    is_triggered_only = yes
+    trigger = { communism > 0.25 not = { has_government = communism } }
+
+    option = {
+        name = "Worrying."
+        add_popularity = { ideology = communism popularity = 0.025 }
+        add_stability = -0.01
+    }
+}
+
+news_event = {
+    id = _demonstrations.2
+    title = "Democrats Assemble in [event_state.GetCapitalVictoryPointName]"
+    desc = _demonstrations.2.d
+
+    is_triggered_only = yes
+    trigger = { democratic > 0.25 not = { has_government = democratic } }
+
+    option = {
+        name = "What do they want now?"
+        add_popularity = { ideology = democratic popularity = 0.025 }
+        add_stability = -0.01
+    }
+}
+
+## -- tensions
+add_namespace = _tensions
+
+country_event = {
+    id = _tensions.1
+    title = "Tensions in the Government"
+    desc = _tensions.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Discredit the government entirely."
+        add_popularity = { ideology = ROOT popularity = -0.05 }
+        add_stability = -0.025
+        
+        hidden_effect = {
+            random = { chance = 50 news_event = { id = _tensions.2 days = 7 random_days = 7 } }
+            random = { chance = 50 news_event = { id = _tensions.3 days = 14 random_days = 7 } }
+        }
+    }
+    option = {
+        name = "Emphasize cooperation."
+        add_stability = 0.025
+    }
+}
+
+news_event = {
+    id = _tensions.2
+    title = "Liberals Question the Economy"
+    desc = _tensions.2.d
+
+    is_triggered_only = yes
+    trigger = { not = { has_government = democratic } }
+
+    option = {
+        name = "Interesting."
+        add_popularity = { ideology = democratic popularity = 0.025 }
+        add_stability = -0.02
+    }
+
+    news_event = {
+        id = _tensions.3
+        title = "Conservatives Warn Against Demoralization"
+        desc = _tensions.3.d
+
+        is_triggered_only = yes
+        trigger = { not = { has_government = monarchism } }
+
+        option = {
+            name = "Alright."
+            add_popularity = { ideology = monarchism popularity = 0.025 }
+            add_stability = -0.02
+        }
+    }
+}
+
+## -- stability
+add_namespace = _stability
+
+country_event = {
+    id = _stability.1
+    title = "Local Officials Attacked in [event_state.GetCapitalVictoryPointName]"
+    desc = _stability.1.d
+
+    is_triggered_only = yes
+    trigger = { has_stability < 0.25 }
+
+    option = {
+        name = "Outrageous."
+        add_popularity = { ideology = ROOT popularity = -0.025 }
+    }
+    option = {
+        name = "Stabilize the situation."
+        add_political_power = -50
+        add_stability = 0.025
+    }
+}
+
+country_event = {
+    id = _stability.2
+    title = "Desertions at the [event_state.GetCapitalVictoryPointName] Garrison"
+    desc = _stability.2.d
+
+    is_triggered_only = yes
+    trigger = { has_stability < 0.25 }
+
+    option = {
+        name = "Why would they do that?"
+        add_war_support = -0.025
+    }
+    option = {
+        name = "Court martial all of them!"
+        add_political_power = -75
+        add_stability = 0.025
+    }
+}
+
+## -- change
+add_namespace = _change
+
+country_event = {
+    id = _change.1
+    title = "Workers Threaten an Uprising!"
+    desc = _change.1.d
+
+    mean_time_to_happen = { months = 1 }
+    trigger = { 
+        is_subject = no
+        has_civil_war = no
+        communism > 0.5 not = { has_government = communism } 
+    }
+
+    option = {
+        name = "We must step down."
+        set_politics = { ruling_party = communism elections_allowed = no }
+        ai_chance = { factor = 1 }
+    }
+    option = {
+        name = "Let them try."
+        start_civil_war = { ideology = communism size = 0.5 }
+        ai_chance = { factor = 0 }
+    }
+}
+
+country_event = {
+    id = _change.2
+    title = "Democrats Demand Elections!"
+    desc = _change.2.d
+
+    mean_time_to_happen = { months = 1 }
+    trigger = { 
+        is_subject = no
+        has_civil_war = no
+        democratic > 0.5 not = { has_government = democratic } 
+    }
+
+    option = {
+        name = "Alright."
+        set_politics = { ruling_party = democratic elections_allowed = no }
+        ai_chance = { factor = 1 }
+    }
+    option = {
+        name = "We will never agree to this!"
+        add_popularity = { ideology = democratic popularity = -0.025 }
+
+        add_political_power = -75
+        ai_chance = { factor = 0 }
+    }
+}
+
+country_event = {
+    id = _change.3
+    title = "Aristocracy Threatens a Coup"
+    desc = _change.3.d
+
+    mean_time_to_happen = { months = 1 }
+    trigger = { 
+        is_subject = no
+        has_civil_war = no
+        monarchism > 0.5 not = { has_government = monarchism } 
+    }
+
+    option = {
+        name = "We must step down."
+        set_politics = { ruling_party = monarchism elections_allowed = no }
+        ai_chance = { factor = 1 }
+    }
+    option = {
+        name = "Let them try."
+        start_civil_war = { ideology = monarchism size = 0.5 }
+        ai_chance = { factor = 0 }
+    }
+}
+
+## -- autonomy
+add_namespace = _autonomy
+
+news_event = {
+    id = _autonomy.1
+    title = "[FROM.GetName] Supports Our Independence Efforts"
+    desc = _autonomy.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Great."
+        add_opinion_modifier = { target = FROM modifier = opinion_supports_our_independence }
+    }
+}
+
+country_event = {
+    id = _autonomy.2
+    title = "[FROM.GetName] Demands Autonomy"
+    desc = _autonomy.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let them go."
+        end_puppet = FROM
+
+        hidden_effect = { FROM = { news_event = { id = _autonomy.3 hours = 6 } } }
+        ai_chance = { factor = 1 }
+    }
+    option = {
+        name = "Never!"
+        hidden_effect = { 
+            end_puppet = FROM
+            if = { 
+                limit = { is_ally_with = FROM } 
+                FROM = { leave_faction = yes }
+            }
+            if = {
+                limit = { FROM = { tag = ROM } }
+                news_event = { id = rom_alliance.3 hours = 6 }      # special event for Romania
+            }
+            else = { FROM = { news_event = { id = _uprising.1 hours = 6 } } }
+        }
+
+        declare_war_on = { target = FROM type = annex_everything }
+        ai_chance = { 
+            factor = 4 
+            modifier = { and = { tag = TUR FROM = { tag = ROM is_guaranteed_by = AUS } } factor = 0.25 }
+        }
+    }
+}
+
+news_event = {
+    id = _autonomy.3
+    title = "[ROOT.GetName] Liberated!"
+    desc = _autonomy.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "A true victory for [ROOT.GetName]."
+    }
+}

@@ -1,0 +1,193 @@
+_head_of_state = {
+    # war support
+    territorial_auxilliaries = {
+        visible = { 
+            is_subject = no
+            or = { has_idea = volunteer_only has_idea = limited_conscription }
+        }
+
+        icon = generic_prepare_civil_war    
+        days_remove = 90
+        cost = 50
+    
+        available = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
+    
+        ai_will_do = {
+            factor = 3
+            modifier = { and = { threat > 0.1 has_war_support < 0.5 } factor = 2 }
+            modifier = { has_war_support > 0.8 factor = 0 }
+        }
+
+        modifier = {
+            war_support_weekly = 0.005
+            weekly_manpower = 600
+        }
+    }
+    honor_the_heroes = {
+        visible = { 
+            is_subject = no
+            not = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
+        }
+
+        icon = generic_nationalism    
+        days_remove = 90
+        cost = 25
+
+        available = { has_war = yes }
+
+        ai_will_do = {
+            factor = 6
+            modifier = { and = { threat > 0.1 has_war_support < 0.3 } add = 6 }
+            modifier = { has_war_support > 0.8 factor = 0 }
+        }
+
+        modifier = {
+            war_support_weekly = 0.005
+            resistance_growth_on_our_occupied_states = 0.1
+        }
+    }
+
+    # propaganda
+    expand_information_services = {
+        visible = { 
+            is_subject = no
+            has_government = monarchism
+        }
+
+        icon = generic_civil_support
+        days_remove = 90
+        cost = 50
+
+        ai_will_do = {
+            factor = 3
+            modifier = { has_stability < 0.6 factor = 2 }
+            modifier = { and = { has_stability < 0.3 } factor = 2 }
+        }
+
+        modifier = {
+            stability_weekly = 0.005
+        }
+
+        remove_effect = {
+            add_popularity = { ideology = ROOT popularity = 0.05 }
+        }
+    }
+    support_liberal_journalists = {
+        visible = { 
+            is_subject = no
+            has_government = democratic
+        }
+
+        icon = generic_civil_support
+        days_remove = 90
+        cost = 50
+
+        ai_will_do = {
+            factor = 3
+            modifier = { has_stability < 0.6 factor = 2 }
+            modifier = { and = { has_stability < 0.3 } factor = 2 }
+        }
+
+        modifier = {
+            stability_weekly = 0.005
+        }
+
+        remove_effect = {
+            add_popularity = { ideology = ROOT popularity = 0.05 }
+        }
+    }
+    intensify_agitation = {
+        visible = { 
+            is_subject = no
+            has_government = communism
+        }
+
+        icon = generic_civil_support
+        days_remove = 90
+        cost = 50
+
+        ai_will_do = {
+            factor = 3
+            modifier = { has_stability < 0.6 factor = 2 }
+            modifier = { and = { has_stability < 0.3 } factor = 2 }
+        }
+
+        modifier = {
+            stability_weekly = 0.005
+        }
+
+        remove_effect = {
+            add_popularity = { ideology = ROOT popularity = 0.05 }
+        }
+    }
+
+    # - dominions
+    appoint_loyalists = {
+        visible = { is_subject = yes }
+
+        icon = generic_civil_support
+        days_remove = 90
+        cost = 50
+
+        ai_will_do = {
+            factor = 0
+
+            # ROM
+            modifier = { has_completed_focus = ROM_adjust_the_government add = 6 }
+        }
+
+        modifier = {
+            stability_weekly = 0.005
+        }
+        remove_effect = {
+            add_popularity = { ideology = ROOT popularity = 0.05 }
+        }
+    }
+    organize_the_underground = {
+        visible = { is_subject = yes }
+
+        icon = generic_prepare_civil_war
+        days_remove = 90
+        cost = 50
+
+        ai_will_do = {
+            factor = 0
+
+            # ROM
+            modifier = { has_completed_focus = ROM_deterrence add = 3 }
+            modifier = { and = { has_stability > 0.2 not = { has_completed_focus = ROM_adjust_the_government } } factor = 6 }
+        }
+
+        modifier = {
+            stability_weekly = -0.015
+            autonomy_gain = 0.5
+        }
+        remove_effect = {
+            add_popularity = { ideology = ROOT popularity = -0.025 }
+        }
+    }
+    demand_autonomy = {
+        visible = { is_subject = yes }
+
+        icon = generic_ignite_civil_war
+        fire_only_once = yes
+        cost = 25
+
+        available = { has_stability < 0.25 }
+
+        ai_will_do = {
+            factor = 2
+
+            # ROM
+            modifier = { 
+                and = { 
+                    not = { has_completed_focus = ROM_adjust_the_government } 
+                    or = { is_guaranteed_by = AUS is_guaranteed_by = GRE is_guaranteed_by = SER } 
+                } 
+                factor = 12
+            }
+        }
+
+        complete_effect = { overlord = { country_event = { id = _autonomy.2 hours = 6 } } }
+    }
+}

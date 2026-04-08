@@ -1,0 +1,92 @@
+division_template = {
+	name = "Lehion Striltsiv"
+	division_names_group = UKR_INF_01
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+        infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+	}
+}
+
+division_template = {
+	name = "Dobrovoltskyi Kurin'"
+	division_names_group = UKR_GAR_01
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+	}
+	priority = 0
+}
+
+
+units = {
+	# Odesa
+    division = {
+		location = 11670
+		division_template = "Lehion Striltsiv"
+        start_equipment_factor = 0.8
+    }
+	division = {
+		location = 11670
+		division_template = "Dobrovoltskyi Kurin'"
+        start_equipment_factor = 0.6
+    }
+	division = {
+		location = 3757
+		division_template = "Dobrovoltskyi Kurin'"
+    }
+
+	# Mykolaiv
+	division = {
+		location = 11683
+		division_template = "Lehion Striltsiv"
+    }
+	division = {
+		location = 3686
+		division_template = "Dobrovoltskyi Kurin'"
+		start_equipment_factor = 0.6
+    }
+	division = {
+		location = 721
+		division_template = "Dobrovoltskyi Kurin'"
+    }
+
+	# Hulyaipole
+	division = {
+		location = 11405
+		division_template = "Lehion Striltsiv"
+    }
+	division = {
+		location = 11405
+		division_template = "Lehion Striltsiv"
+        start_equipment_factor = 0.8
+    }
+
+	division = {
+		location = 429
+		division_template = "Dobrovoltskyi Kurin'"
+		start_equipment_factor = 0.6
+    }
+	division = {
+		location = 6771
+		division_template = "Dobrovoltskyi Kurin'"
+    }
+
+	# Dnipro
+	division = {
+		location = 11437
+		division_template = "Dobrovoltskyi Kurin'"
+		start_equipment_factor = 0.6
+    }
+	division = {
+		location = 11561
+		division_template = "Dobrovoltskyi Kurin'"
+    }
+}

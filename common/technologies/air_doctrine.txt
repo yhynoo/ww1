@@ -1,0 +1,241 @@
+technologies = {
+
+## -- early stage
+    experimental_aviation = {
+        doctrine = yes
+        xp_research_type = air
+		xp_unlock_cost = 150
+
+        path = { leads_to_tech = coordination_in_air     research_cost_coeff = 1 }
+        path = { leads_to_tech = aerial_scouting         research_cost_coeff = 1 }
+
+        folder = {
+			name = air_doctrine_folder
+			position = { x = 0 y = 0 }
+		}
+
+        categories = { air_doctrine }
+    }
+
+    ## tier 2
+    coordination_in_air = {
+        doctrine = yes
+        xp_research_type = air
+		xp_unlock_cost = 150
+
+        path = { leads_to_tech = air_duels research_cost_coeff = 1 }
+
+        folder = {
+			name = air_doctrine_folder
+			position = { x = -2 y = 2 }
+		}
+
+        categories = { air_doctrine }
+    }
+    aerial_scouting = {
+        doctrine = yes
+        xp_research_type = air
+		xp_unlock_cost = 150
+
+        path = { leads_to_tech = air_duels            research_cost_coeff = 1 }
+
+        folder = {
+			name = air_doctrine_folder
+			position = { x = 2 y = 2 }
+		}
+
+        categories = { air_doctrine }
+    }
+
+    ## tier 3
+    air_duels = {
+        doctrine = yes
+        xp_research_type = air
+		xp_unlock_cost = 150
+
+        path = { leads_to_tech = squadron_organization      research_cost_coeff = 1 }
+
+        folder = {
+			name = air_doctrine_folder
+			position = { x = 0 y = 4 }
+		}
+
+        categories = { air_doctrine }
+    }
+    
+    # tier 4
+    squadron_organization = {
+        doctrine = yes
+        xp_research_type = air
+		xp_unlock_cost = 150
+
+        path = { leads_to_tech = dogfighting    research_cost_coeff = 1 }
+        path = { leads_to_tech = ground_support    research_cost_coeff = 1 }
+
+        folder = {
+			name = air_doctrine_folder
+			position = { x = 0 y = 6 }
+		}
+
+        categories = { air_doctrine }
+    }
+
+## -- air superiority
+
+    dogfighting = {
+        doctrine = yes
+        xp_research_type = air
+		xp_unlock_cost = 150
+
+        path = { leads_to_tech = cult_of_the_aces               research_cost_coeff = 1 }
+        path = { leads_to_tech = defensive_cooperation          research_cost_coeff = 1 }
+
+        folder = {
+			name = air_doctrine_folder
+			position = { x = -4 y = 8 }
+		}
+
+        categories = { air_doctrine }
+    }
+
+    ## tier 2
+    cult_of_the_aces = {
+        doctrine = yes
+        xp_research_type = air
+		xp_unlock_cost = 150
+
+        path = { leads_to_tech = standardized_maneuvers research_cost_coeff = 1 }
+        xor = { defensive_cooperation }
+
+        folder = {
+			name = air_doctrine_folder
+			position = { x = -6 y = 10 }
+		}
+
+        categories = { air_doctrine }
+    }
+    defensive_cooperation = {
+        doctrine = yes
+        xp_research_type = air
+		xp_unlock_cost = 150
+
+        path = { leads_to_tech = standardized_maneuvers            research_cost_coeff = 1 }
+        xor = { cult_of_the_aces }
+
+        folder = {
+			name = air_doctrine_folder
+			position = { x = -2 y = 10 }
+		}
+
+        categories = { air_doctrine }
+    }
+
+    ## tier 3
+    standardized_maneuvers = {
+        doctrine = yes
+        xp_research_type = air
+		xp_unlock_cost = 150
+
+        path = { leads_to_tech = command_of_the_air      research_cost_coeff = 1 }
+
+        folder = {
+			name = air_doctrine_folder
+			position = { x = -4 y = 12 }
+		}
+
+        categories = { air_doctrine }
+    }
+    
+    # tier 4
+    command_of_the_air = {
+        doctrine = yes
+        xp_research_type = air
+		xp_unlock_cost = 150
+
+        folder = {
+			name = air_doctrine_folder
+			position = { x = -4 y = 14 }
+		}
+
+        categories = { air_doctrine }
+    }
+
+## -- ground support
+    ground_support = {
+        doctrine = yes
+        xp_research_type = air
+		xp_unlock_cost = 150
+
+        path = { leads_to_tech = trench_strafing               research_cost_coeff = 1 }
+        path = { leads_to_tech = airship_attacks          research_cost_coeff = 1 }
+
+        folder = {
+			name = air_doctrine_folder
+			position = { x = 4 y = 8 }
+		}
+
+        categories = { air_doctrine }
+    }
+
+    ## tier 2
+    trench_strafing = {
+        doctrine = yes
+        xp_research_type = air
+		xp_unlock_cost = 150
+
+        path = { leads_to_tech = area_attacks research_cost_coeff = 1 }
+        xor = { airship_attacks }
+
+        folder = {
+			name = air_doctrine_folder
+			position = { x = 2 y = 10 }
+		}
+
+        categories = { air_doctrine }
+    }
+    airship_attacks = {
+        doctrine = yes
+        xp_research_type = air
+		xp_unlock_cost = 150
+
+        path = { leads_to_tech = area_attacks            research_cost_coeff = 1 }
+        xor = { trench_strafing }
+
+        folder = {
+			name = air_doctrine_folder
+			position = { x = 6 y = 10 }
+		}
+
+        categories = { air_doctrine }
+    }
+
+    ## tier 3
+    area_attacks = {
+        doctrine = yes
+        xp_research_type = air
+		xp_unlock_cost = 150
+
+        path = { leads_to_tech = air_land_cooperation      research_cost_coeff = 1 }
+
+        folder = {
+			name = air_doctrine_folder
+			position = { x = 4 y = 12 }
+		}
+
+        categories = { air_doctrine }
+    }
+    
+    # tier 4
+    air_land_cooperation = {
+        doctrine = yes
+        xp_research_type = air
+		xp_unlock_cost = 150
+
+        folder = {
+			name = air_doctrine_folder
+			position = { x = 4 y = 14 }
+		}
+
+        categories = { air_doctrine }
+    }
+}

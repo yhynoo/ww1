@@ -1,0 +1,52 @@
+at_least_one_convoy = {
+	enable = { always = yes }
+	abort = { always = no }
+
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = convoy
+		value = 1
+	}
+}
+
+default_naval_production = {
+	enable = { always = yes }
+	abort = { always = no }
+
+	# equipment
+	ai_strategy = {
+		type = unit_ratio
+		id = capital_ship
+		value = 10
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = screen_ship
+		value = 60
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = submarine
+		value = 20
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = convoy
+		value = 120
+	}
+}
+
+# navy-focused nations
+extra_dockyards = {
+	allowed = { or = { tag = ENG tag = JAP tag = USA } }
+	enable = { always = yes }
+	abort = { always = no }
+
+	ai_strategy = {
+		type = dockyard_to_military_factory_ratio
+		value = 60
+	}
+}

@@ -1,0 +1,55 @@
+division_template = {
+	name = "Hetevak Divizia"
+	division_names_group = ARM_INF_01
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+        infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+	}
+}
+
+division_template = {
+	name = "Lernayin Divizia"
+	division_names_group = ARM_MTN_01
+	regiments = {
+		mountaineers = { x = 0 y = 0 }
+		mountaineers = { x = 0 y = 1 }
+        mountaineers = { x = 1 y = 0 }
+        mountaineers = { x = 1 y = 1 }
+	}
+}
+
+units = {
+    division = {
+        location = 10472
+		division_template = "Hetevak Divizia"
+        start_equipment_factor = 0.7
+    }
+    division = {
+        location = 10472
+		division_template = "Hetevak Divizia"
+        start_equipment_factor = 0.6
+    }
+
+    division = {
+        location = 3714
+		division_template = "Hetevak Divizia"
+        start_equipment_factor = 0.5
+    }
+    division = {
+        location = 11853
+		division_template = "Hetevak Divizia"
+        start_equipment_factor = 0.8
+    }
+
+    division = {
+        location = 6935
+		division_template = "Lernayin Divizia"
+    }
+    division = {
+        location = 9858
+		division_template = "Lernayin Divizia"
+        start_equipment_factor = 0.8
+    }
+}

@@ -1,0 +1,229 @@
+characters = {
+    AUS_bela_kun = {
+        name = "Béla Kun"
+        country_leader = {
+            ideology = vanguardism
+            traits = { trait_ideological_hardliner }
+        }
+    }
+    AUS_franz_joseph = {
+        name = "Franz Joseph I"
+        country_leader = {
+            ideology = absolutism
+            traits = { trait_good_emperor trait_traditionalist }
+        }
+    }
+    AUS_karl_von_habsburg = {
+        name = "Karl I"
+        country_leader = {
+            ideology = constitutional_monarchy
+            traits = { trait_moderate trait_weakling }
+        }
+    }
+    AUS_karl_renner = {
+        name = "Karl Renner"
+        country_leader = {
+            ideology = liberalism
+            traits = { trait_labor_advocate }
+        }
+    }
+    AUS_conrad_von_hotzendorf = {
+        name = "Conrad von Hötzendorf"
+        portraits = {
+            army = {
+                large = "GFX_Portrait_Europe_Generic_land_4"
+            }
+        }
+        country_leader = {
+            ideology = military_government
+            traits = { trait_aggressive_expansionist }
+        }
+	    field_marshal = {
+            traits = { offensive_doctrine }
+            skill = 1
+            attack_skill = 2
+            defense_skill = 1
+            planning_skill = 1
+            logistics_skill = 1
+        }
+    }
+
+    # advisors
+    AUS_viktor_adler = {
+        name = "Viktor Adler"
+        portraits = {
+            civilian = { small = GFX_viktor_adler_small }
+        }
+        advisor = {
+            slot = political_advisor
+            idea_token = AUS_viktor_adler
+            traits = { communist_agitator }
+        }
+    }
+    AUS_tomas_masaryk = {
+        name = "Tomáš Garrigue Masaryk"
+        portraits = {
+            civilian = { small = GFX_tomas_masaryk_small }
+        }
+        advisor = {
+            slot = political_advisor
+            idea_token = AUS_tomas_masaryk
+            traits = { democratic_advocate }
+        }
+    }
+    AUS_karl_von_sturgkh = {
+        name = "Karl von Stürgkh"
+        portraits = {
+            civilian = { small = GFX_karl_von_sturkgh_small }
+        }
+        advisor = {
+            slot = political_advisor
+            idea_token = AUS_karl_von_sturgkh
+            traits = { conservative_thinker }
+        }
+    }
+    AUS_franz_ferdinand = {
+        name = "Archduke Franz Ferdinand"
+        portraits = {
+            civilian = { small = GFX_franz_ferdinand_small }
+        }
+        advisor = {
+            slot = political_advisor
+            idea_token = AUS_franz_ferdinand
+            traits = { compassionate_gentleman }
+        }
+    }
+    AUS_istvan_tisza = {
+        name = "István Tisza"
+        portraits = {
+            civilian = { small = GFX_istvan_tisza_small }
+        }
+        advisor = {
+            slot = political_advisor
+            idea_token = AUS_istvan_tisza
+            traits = { authoritarian_overseer }
+        }
+    }
+    AUS_karl_wittgenstein = {
+        name = "Karl Wittgenstein"
+        portraits = {
+            civilian = { small = GFX_karl_wittgenstein_small }
+        }
+        advisor = {
+            slot = political_advisor
+            idea_token = AUS_karl_wittgenstein
+            traits = { technocrat }
+        }
+    }
+    AUS_emil_skoda = {
+        name = "Emil Škoda"
+        portraits = {
+            civilian = { small = GFX_emil_skoda_small }
+        }
+        advisor = {
+            slot = political_advisor
+            idea_token = AUS_emil_skoda
+            traits = { war_industrialist }
+        }
+    }
+
+    # navy
+    AUS_anton_bodenstein = {
+        name = "Anton Bodenstein"
+        portraits = {
+            army = {
+                large = "GFX_Portrait_Europe_Generic_navy_1"
+            }
+        }
+        navy_leader = {
+            skill = 3
+            attack_skill = 2
+            defense_skill = 3
+            maneuvering_skill = 3
+            coordination_skill = 3
+        }
+    }
+
+    AUS_hans_von_spee = {
+        name = "Hans von Spee"
+        portraits = {
+            army = {
+                large = "GFX_Portrait_Europe_Generic_navy_2"
+            }
+        }
+        navy_leader = {
+            skill = 4
+            attack_skill = 5
+            defense_skill = 3
+            maneuvering_skill = 4
+            coordination_skill = 4
+        }
+    }
+}
+
+characters = {
+    AUS_alexander_von_linsingen = {
+        name = "Alexander von Linsingen"
+        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_4" } }
+        corps_commander = {
+            traits = { }
+            skill = 1       attack_skill = 1        defense_skill = 2       planning_skill = 1      logistics_skill = 1
+        }
+    }
+    AUS_archduke_eugen_von_habsburg = {
+        name = "Eugen von Habsburg"
+        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_1" } }
+        field_marshall = {
+            traits = { }
+            skill = 2       attack_skill = 1        defense_skill = 2       planning_skill = 2      logistics_skill = 1
+        }
+    }
+    AUS_arthur_arz_von_straussenburg = {
+        name = "Arthur Arz von Straußenburg"
+        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_2" } }
+        corps_commander = {
+            traits = { }
+            skill = 2       attack_skill = 1        defense_skill = 2       planning_skill = 2      logistics_skill = 1
+        }
+    }
+    AUS_eduard_bohm_ermolli = {
+        name = "Eduard von Böhm-Ermolli"
+        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_5" } }
+        corps_commander = {
+            traits = { }
+            skill = 2       attack_skill = 2        defense_skill = 1       planning_skill = 2      logistics_skill = 1
+        }
+    }
+    AUS_moritz_auffenberg_von_komarow = {
+        name = "Moritz Auffenberg von Komarow"
+        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_3" } }
+        corps_commander = {
+            traits = { infantry_leader }
+            skill = 1       attack_skill = 1        defense_skill = 1       planning_skill = 2      logistics_skill = 2
+        }
+    }
+    AUS_oskar_potiorek = {
+        name = "Oskar Potiorek"
+        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_4" } }
+        corps_commander = {
+            traits = { }
+            skill = 1       attack_skill = 1        defense_skill = 1       planning_skill = 1      logistics_skill = 1
+        }
+    }
+    AUS_svetozar_boroevic = {
+        name = "Svetozar Borojević von Bojna"
+        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_1" } }
+        corps_commander = {
+            traits = { commando }
+            skill = 3       attack_skill = 3        defense_skill = 2       planning_skill = 2      logistics_skill = 2
+        }
+    }
+    AUS_viktor_dankl_von_krasnik = {
+        name = "Viktor Dankl von Krasnik"
+        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_2" } }
+        corps_commander = {
+            traits = { }
+            skill = 2       attack_skill = 2        defense_skill = 2       planning_skill = 1      logistics_skill = 1
+        }
+    }
+}

@@ -1,0 +1,98 @@
+capital = 16
+oob = "FRA"
+
+set_research_slots = 3
+set_stability = 0.25
+set_war_support = 0.55
+
+recruit_character = FRA_joseph_caillaux
+recruit_character = FRA_aristide_briand
+recruit_character = FRA_louis_barthou
+recruit_character = FRA_georges_clemenceau
+recruit_character = FRA_edouard_herriot
+recruit_character = FRA_charles_maurras
+recruit_character = FRA_philippe_dorleans
+recruit_character = FRA_jean_jaures
+
+# recruit_character = FRA_edouard_vaillant
+# recruit_character = FRA_alexandre_millerand
+# recruit_character = FRA_francois_de_la_rocque
+# recruit_character = FRA_alexandre_ribot
+# recruit_character = FRA_albert_thomas
+# recruit_character = FRA_etienne_clementel
+
+recruit_character = FRA_joseph_joffre
+recruit_character = FRA_charles_lanrezac
+recruit_character = FRA_no_l_douard_de_castelnau
+recruit_character = FRA_henri_philippe_p_tain
+recruit_character = FRA_ferdinand_foch
+recruit_character = FRA_louis_f_lix_franchet_d_esperey
+
+recruit_character = FRA_auguste_alphonse
+recruit_character = FRA_gaston_toulouse
+recruit_character = FRA_rené_gambiez
+
+add_ideas = {
+}
+
+set_technology = {
+    infantry_1904 = 1
+
+    tech_support = 1
+    basic_train = 1
+
+    artillery_1904 = 1
+    elevation_gear = 1
+
+    early_aircraft = 1
+    fabric_airframes = 1
+
+    capital_ship_1904 = 1
+    light_cruiser_1912 = 1
+    destroyer_1904 = 1
+    submarine_1904 = 1
+
+    tech_telegraph = 1
+    electrification = 1
+    stahlbeton = 1
+}
+
+set_popularities = {
+    communism = 25
+    democratic = 55
+    monarchism = 20
+}
+
+set_politics = {
+    ruling_party = democratic
+    last_election = "1909.3.1"
+    election_frequency = 48
+    elections_allowed = yes
+}
+
+give_guarantee = SOV
+set_major = yes
+
+add_equipment_to_stockpile = {
+    type = convoy
+    amount = 40
+    producer = FRA
+}
+
+21 = {
+    start_resistance = yes
+    set_resistance = 10
+}
+
+461 = {
+    start_resistance = yes
+    set_resistance = 15
+}
+
+462 = {
+    start_resistance = yes
+    set_resistance = 20
+}
+
+add_opinion_modifier = { target = HOL modifier = opinion_intervention_in_flanders }
+add_opinion_modifier = { target = GER modifier = opinion_invasion_of_wallonia }

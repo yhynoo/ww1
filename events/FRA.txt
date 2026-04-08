@@ -1,0 +1,42 @@
+add_namespace = FRA_entente
+
+country_event = {
+    id = FRA_entente.1
+    title = "France Invites Us to the Entente"
+    desc = FRA_entente.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We agree."
+        
+        FROM = { 
+            add_to_faction = ROOT
+            hidden_effect = { news_event = { id = FRA_entente.2 hours = 6 } }
+        }
+
+        # disable ahistorical
+        ai_chance = { 
+            modifier = { and = { is_historical_focus_on = yes tag = SPA } factor = 0 }
+            modifier = { and = { is_historical_focus_on = yes tag = SOV } factor = 0 } 
+        }
+    }
+    option = {
+        name = "This is too dangerous."
+
+        # disable ahistorical
+        ai_chance = { modifier = { and = { is_historical_focus_on = yes tag = ENG } factor = 0 } }
+    }
+}
+
+news_event = {
+    id = FRA_entente.2
+    title = "[FROM.GetName] Agrees!"
+    desc = FRA_entente.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Wonderful."
+    }
+}

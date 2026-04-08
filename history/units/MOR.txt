@@ -1,0 +1,31 @@
+division_template = {
+	name = "Infantry Division"
+	division_names_group = MOR_INF_01
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+	}
+}
+division_template = {
+	name = "Troupes Indigènes"
+	division_names_group = MOR_GAR_01
+	regiments = {
+		camelry = { x = 0 y = 0 }
+		camelry = { x = 0 y = 1 }
+		camelry = { x = 1 y = 0 }
+		camelry = { x = 1 y = 1 }
+	}
+}
+
+# units
+units = {
+	division = { location = 4154		    division_template = "Troupes Indigènes"		start_experience_factor = 0.5 }
+	division = { location = 4108		    division_template = "Troupes Indigènes"		start_experience_factor = 0.5 }
+
+	division = { location = 989		    	division_template = "Infantry Division"		start_experience_factor = 0.5 }
+	division = { location = 989		    	division_template = "Infantry Division"		start_experience_factor = 0.5 }
+	division = { location = 11987		    division_template = "Infantry Division"		start_experience_factor = 0.5 }
+	division = { location = 7069		    division_template = "Infantry Division"		start_experience_factor = 0.5 }
+}

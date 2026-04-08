@@ -1,0 +1,22 @@
+_armor_troops = {
+    role = armor
+    _armor_1917 = {
+        enable = { 
+            has_tech = heavy_1916
+            not = { num_of_military_factories < 10 }
+        }
+        target_template = {
+            regiments = { heavy_armor = 2 }
+        }
+    }
+    _armor_1918 = {
+        enable = { 
+            and = { has_tech = heavy_1916   has_tech = tech_logistics_company }
+            not = { num_of_military_factories < 10 }
+        }
+        target_template = {
+            support = { logistics_company = 1 }
+            regiments = { heavy_armor = 2 }
+        }
+    }
+}

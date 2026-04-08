@@ -1,0 +1,321 @@
+technologies = {
+
+    @1912 = 4
+    @1913 = 6
+    @1914 = 8
+    @1915 = 10
+    @1916 = 12
+    @1917 = 14
+    @1918 = 16
+    @1919 = 18
+    @1920 = 20
+
+    # infrastructure
+    improved_agronomy = {
+        categories = { industry_tech }
+
+        monthly_population = 0.1
+        global_building_slots_factor = 0.15
+
+        research_cost = 1
+        start_year = 1914
+
+        path = {
+            leads_to_tech = efficient_area_management
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+    efficient_area_management = {
+        categories = { industry_tech }
+
+        global_building_slots_factor = 0.15
+        local_resources_factor = 0.1
+
+        research_cost = 1
+        start_year = 1918
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = @1918 }
+        }
+    }
+
+    # output
+    electrification = {
+        categories = { industry_tech industrial_output_tech }
+
+        production_factory_max_efficiency_factor = 0.15
+
+        research_cost = 1
+        start_year = 1904
+
+        path = {
+            leads_to_tech = assembly_line
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = 0 }
+        }
+    }
+    assembly_line = {
+        categories = { industry_tech industrial_output_tech }
+
+        production_factory_max_efficiency_factor = 0.1
+        line_change_production_efficiency_factor = 0.05
+
+        research_cost = 1.5
+        start_year = 1912
+
+        path = {
+            leads_to_tech = early_automation
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+    early_automation = {
+        categories = { industry_tech industrial_output_tech }
+
+        production_factory_max_efficiency_factor = 0.1
+        production_factory_efficiency_gain_factor = 0.05
+
+        research_cost = 1.5
+        start_year = 1915
+
+        path = {
+            leads_to_tech = mass_production_theory
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = @1915 }
+        }
+    }
+    mass_production_theory = {
+        categories = { industry_tech industrial_output_tech }
+
+        production_factory_max_efficiency_factor = 0.15
+        production_factory_efficiency_gain_factor = 0.05
+        line_change_production_efficiency_factor = 0.05
+
+        research_cost = 2
+        start_year = 1918
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = @1918 }
+        }
+    }
+
+    # construction
+    stahlbeton = {
+        categories = { industry_tech industrial_output_tech construction_tech }
+
+        production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+        research_cost = 1.5
+        start_year = 1912
+
+        path = {
+            leads_to_tech = standardized_elements
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+    standardized_elements = {
+        categories = { industry_tech industrial_output_tech construction_tech }
+
+        production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+        research_cost = 1.5
+        start_year = 1915
+
+        path = {
+            leads_to_tech = advanced_standardized_elements
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = @1915 }
+        }
+    }
+    advanced_standardized_elements = {
+        categories = { industry_tech industrial_output_tech construction_tech }
+
+        production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+        research_cost = 1.5
+        start_year = 1918
+
+        path = {
+            leads_to_tech = mechanized_earthworks
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = @1918 }
+        }
+    }
+    mechanized_earthworks = {
+        categories = { industry_tech industrial_output_tech construction_tech }
+
+        production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+        research_cost = 1.5
+        start_year = 1920
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = @1920 }
+        }
+    }
+
+    # synthetic oils
+    coal_gasification = {
+        categories = { industry_tech synth_resources_tech }
+
+        enable_building = {
+			building = synthetic_refinery
+			level = 1
+		}
+
+        research_cost = 1
+        start_year = 1912
+
+        path = {
+            leads_to_tech = synth_dyes_and_rubbers
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+    synth_dyes_and_rubbers = {
+        categories = { industry_tech synth_resources_tech }
+
+        production_lack_of_resource_penalty_factor = -0.1
+        on_research_complete = {
+			modify_building_resources = {
+				building = synthetic_refinery
+				resource = rubber
+				amount = 1
+			}
+		}
+
+        research_cost = 2
+        start_year = 1914
+
+        path = {
+            leads_to_tech = coal_hydrogenation
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+    coal_hydrogenation = {
+        categories = { industry_tech synth_resources_tech }
+
+        fuel_gain_factor_from_states = 0.1
+        on_research_complete = {
+			modify_building_resources = {
+				building = synthetic_refinery
+				resource = rubber
+				amount = 1
+			}
+		}
+
+        research_cost = 2
+        start_year = 1917
+
+        path = {
+            leads_to_tech = fischer_tropsch
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = @1917 }
+        }
+    }
+    fischer_tropsch = {
+        categories = { industry_tech synth_resources_tech }
+
+        fuel_gain_factor_from_states = 0.1
+        on_research_complete = {
+			modify_building_resources = {
+				building = synthetic_refinery
+				resource = rubber
+				amount = 1
+			}
+		}
+
+        research_cost = 2
+        start_year = 1920
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = @1920 }
+        }
+    }
+
+    # extraction
+    crude_oil_refining = {
+        categories = { industry_tech excavation_tech }
+        enable_building = { building = fuel_silo level = 2 }
+
+        fuel_gain_factor = 0.2
+        fuel_gain_factor_from_states = 0.25
+
+        research_cost = 1.5
+        start_year = 1914
+
+        path = {
+            leads_to_tech = strategic_extraction
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+    strategic_extraction = {
+        categories = { industry_tech excavation_tech }
+
+        local_resources_factor = 0.25
+
+        research_cost = 1.5
+        start_year = 1918
+
+        folder = {
+            name = industry_folder
+            position = { x = 0 y = @1918 }
+        }
+    }
+}

@@ -1,0 +1,156 @@
+on_actions = {
+    on_startup = {
+        effect = {
+            AUS = {
+                country_event = { id = aus_evidenzbureau.1 months = 26 random_days = 7 }
+                news_event = { id = aus_emperor.1 months = 58 days = 28 }
+            }
+
+            FRA = {
+                # caillaux
+                country_event = { id = fra_agadir.1 months = 1 random_days = 7 }
+            }
+
+            GER = {
+                # wallonia
+                country_event = { id = ger_wallonia.1 days = 14 }
+
+                # airships
+                random_list = {
+                    1 = { news_event = { id = ger_airships.1 months = 10 random_days = 28 } }
+                    1 = { news_event = { id = ger_airships.2 months = 10 random_days = 28 } }
+                }
+
+                # amarna
+                news_event = { id = ger_amarna.1 months = 11 random_days = 6 }
+
+                # alsace
+                news_event = { id = ger_alsace.1 months = 23 random_days = 28 }
+            }
+
+            GRE = {
+                # delegation
+                country_event = { id = gre_delegation.1 months = 4 random_days = 28 }
+
+                # assassination
+                news_event = { id = gre_assassination.1 months = 14 days = 18 }
+            }
+
+            ITA = {
+                # tripoli
+                country_event = { id = ita_tripoli.1 days = 7 }
+
+                # aeroplane
+                country_event = { id = ita_aeroplane.1 months = 5 random_days = 28 }
+
+                # unrest
+                country_event = { id = ita_torino.1 months = 10 random_days = 14 }
+            }
+
+            ROM = {
+                # orientalism
+                news_event = { id = rom_orientalism.1 months = 2 random_days = 28 }
+
+                # constanta
+                country_event = { id = rom_constanta.1 months = 6 random_days = 28 }
+            }
+
+            SAU = {
+                # governor
+                country_event = { id = sau_expel.1 months = 6 random_days = 28 }
+
+                # ikhwan
+                country_event = { id = sau_ikhwan.1 months = 13 random_days = 28 }
+            }
+
+            SER = {
+                # agrarianists
+                country_event = { id = ser_agrarianists.1 months = 7 random_days = 28 }
+
+                # drina
+                country_event = { id = ser_drina.1 months = 28 random_days = 28 }
+            }
+
+            SOV = {
+                # aircraft
+                news_event = { id = sov_aircraft.1 months = 16 days = 10 }
+            }
+
+            TUR = {
+                # aviators
+                news_event = { id = tur_aviators.1 months = 2 days = 28 }
+                
+                # abdulhamid
+                news_event = { id = tur_abdulhamid.1 months = 61 days = 10 }
+            }
+
+            # atmosphere events
+            USA = {
+                # 1912
+                news_event = { id = _atmosphere.1 months = 3 days = 15 }
+                news_event = { id = _atmosphere.2 months = 6 days = 19 }
+
+                # 1913 - 1915
+                news_event = { id = _atmosphere.3 months = 13 days = 17 }
+                news_event = { id = _atmosphere.4 months = 42 days = 20 }
+
+                # 1917 - 1918
+                news_event = { id = _atmosphere.5 months = 71 days = 6 }
+                news_event = { id = _atmosphere.6 months = 75 random_days = 30 }
+            }
+        }
+    }
+    on_monthly = {
+        effect = {
+            if = {
+                limit = { has_capitulated = no exists = yes }
+                random_owned_controlled_state = { save_event_target_as = event_state }
+
+                # demonstrations and stability
+                random_list = {
+                    1 = { news_event = { id = _demonstrations.1 random_days = 28 } }
+                    1 = { news_event = { id = _demonstrations.2 random_days = 28 } }
+
+                    1 = { country_event = { id = _stability.1 random_days = 28 } }
+                    1 = { country_event = { id = _stability.2 random_days = 28 } }
+                    
+                    8 = { }
+                }
+
+                # war
+                random_list = {
+                    1 = { news_event = { id = _hunger.1 random_days = 28 } }
+                    1 = { news_event = { id = _mutinies.1 random_days = 28 } }
+                    4 = { }
+                }
+            }
+        }
+    }
+    on_war_relation_added = {
+        effect = {
+            if = {
+                limit = { 
+                    or = { tag = GER FROM = { tag = GER } }
+                    GER = { has_war_with = ENG }
+                }
+                GER = { country_event = { id = ger_atlantic.1 months = 6 random_days = 28 } }
+            }
+        }
+    }
+
+    on_ruling_party_change = {
+        effect = {
+            # ROM
+            if = {
+                limit = { tag = ROM old_ideology_token = monarchism }
+                drop_cosmetic_tag = yes
+            }
+            
+            # SOV
+            if = {
+                limit = { tag = SOV old_ideology_token = monarchism }
+                news_event = { id = soviet_tsar.1 hours = 6 }
+            }
+        }
+    }
+}

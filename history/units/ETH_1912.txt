@@ -1,0 +1,26 @@
+division_template = {
+	name = "Infantry Division"
+	division_names_group = ETH_INF_01
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+	}
+}
+division_template = {
+	name = "Royal Guard Division"
+	division_names_group = ETH_GAR_01
+	regiments = {
+		camelry = { x = 0 y = 0 }
+		camelry = { x = 0 y = 1 }
+		camelry = { x = 1 y = 0 }
+		camelry = { x = 1 y = 1 }
+	}
+}
+
+# units
+units = {
+    division = { location = 5010	division_template = "Infantry Division"		start_experience_factor = 0.3 }
+	division = { location = 5010	division_template = "Royal Guard Division"	start_experience_factor = 0.3 }
+}

@@ -1,0 +1,184 @@
+focus_tree = {
+    id = GRE_focus
+    country = { factor = 0 modifier = { original_tag = GRE add = 100 } }
+    
+    continuous_focus_position = { x = 88 y = 770 }
+    shared_focus = XXX_army
+    shared_focus = XXX_infrastructure
+
+## politics
+    focus = {
+        id = GRE_crete
+        icon = GFX_focus_GRE_crete
+
+        x = 0 y = 0
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 100
+        }
+    }
+
+    focus = {
+        id = GRE_oil_and_wheat
+        icon = GFX_focus_GRE_oil_and_wheat
+        prerequisite = { focus = GRE_crete }
+
+        relative_position_id = GRE_crete
+        x = -4 y = 1
+        cost = 10
+
+        completion_reward = {
+        }
+    }
+
+    focus = {
+        id = GRE_albania
+        icon = GFX_focus_GRE_albania
+        prerequisite = { focus = GRE_oil_and_wheat }
+
+        relative_position_id = GRE_oil_and_wheat
+        x = -2 y = 1
+        cost = 10
+
+        completion_reward = {
+            every_state = {
+                limit = { state = 44 }
+                add_claim_by = ROOT
+            }
+        }
+    }
+
+    focus = {
+        id = GRE_settle_epirus
+        icon = GFX_focus_GRE_settle_epirus
+        prerequisite = { focus = GRE_oil_and_wheat }
+
+        relative_position_id = GRE_oil_and_wheat
+        x = 1 y = 1
+        cost = 10
+
+        available = {
+            185 = { is_owned_and_controlled_by = ROOT }
+        }
+
+        completion_reward = {
+        }
+    }
+
+    focus = {
+        id = GRE_cyprus
+        icon = GFX_focus_GRE_cyprus
+        prerequisite = { focus = GRE_settle_epirus }
+
+        relative_position_id = GRE_settle_epirus
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            every_country = {
+                limit = { owns_state = 183 }
+                # event.
+            }
+        }
+    }
+
+    focus = {
+        id = GRE_democracy
+        icon = GFX_focus_GRE_democracy
+        prerequisite = { focus = GRE_crete }
+        mutually_exclusive = { focus = GRE_king }
+
+        relative_position_id = GRE_crete
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+        }
+    }
+
+    focus = {
+        id = GRE_investments
+        icon = GFX_focus_GRE_investments
+        prerequisite = { focus = GRE_democracy }
+
+        relative_position_id = GRE_democracy
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+        }
+    }
+
+    focus = {
+        id = GRE_king
+        icon = GFX_focus_GRE_king
+        prerequisite = { focus = GRE_crete }
+        mutually_exclusive = { focus = GRE_democracy }
+
+        relative_position_id = GRE_crete
+        x = 4 y = 1
+        cost = 10
+
+        completion_reward = {
+        }
+    }
+
+    focus = {
+        id = GRE_officers
+        icon = GFX_focus_GRE_officers
+        prerequisite = { focus = GRE_king }
+
+        relative_position_id = GRE_king
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+        }
+    }
+
+    focus = {
+        id = GRE_german_guarantees
+        icon = GFX_focus_GRE_german_guarantees
+        prerequisite = { focus = GRE_king }
+
+        relative_position_id = GRE_king
+        x = 2 y = 1
+        cost = 10
+
+        completion_reward = {
+        }
+    }
+
+    focus = {
+        id = GRE_end_schism
+        icon = GFX_focus_GRE_end_schism
+        prerequisite = { focus = GRE_investments focus = GRE_officers }
+
+        relative_position_id = GRE_investments
+        x = 2 y = 1
+        cost = 10
+
+        completion_reward = {
+        }
+    }
+
+    focus = {
+        id = GRE_extend_claims
+        icon = GFX_focus_GRE_extend_claims
+        prerequisite = { focus = GRE_end_schism }
+
+        relative_position_id = GRE_end_schism
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            every_state = {
+                limit = { 
+                    or = { state = 339 state = 340 state = 341 }
+                }
+                add_claim_by = ROOT
+            }
+        }
+    }
+}

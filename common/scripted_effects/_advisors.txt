@@ -1,0 +1,24 @@
+_manage_advisors = {
+    if = {
+        limit = { not = { has_government = authoritarianism } }
+        remove_ideas = idea_authoritarianism_tendencies
+    }
+
+    if = {
+        limit = { not = { has_government = democratic } }
+        deactivate_advisor = generic_democratic_advocate_dem
+        remove_ideas = idea_democratic_tendencies
+    }
+
+    if = {
+        limit = { not = { has_government = communism } }
+        deactivate_advisor = generic_communist_agitator_com
+        remove_ideas = idea_communism_tendencies
+    }
+
+    if = {
+        limit = { not = { has_government = monarchism } }
+        deactivate_advisor = generic_conservative_thinker_mon
+        remove_ideas = idea_monarchism_tendencies
+    }
+}

@@ -1,0 +1,131 @@
+airfield_construction = {
+	enable = { 
+		or = {
+			has_war = yes
+			has_tech = fighter_1914 has_tech = cas_bomber_1914 has_tech = airship_1914
+		}
+		any_state = {
+			or = {
+				state = 16 state = 17 state = 34 state = 50				# western front
+				state = 56
+
+				state = 66 state = 80 									# central europe
+				state = 190 state = 95 state = 202 state = 192			# eastern front
+
+				state = 32 state = 161 state = 172						# spain and alps
+				state = 102												# slovenia
+
+				state = 116 state = 183									# mediterranean
+				state = 186	state = 46
+			}
+			is_controlled_by = ROOT
+		}
+	}
+	abort_when_not_enabled = yes
+
+	# WESTERN FRONT
+	ai_strategy = {
+		type = build_building id = air_base value = 3
+		target = 16
+	}
+
+	ai_strategy = {
+		type = build_building id = air_base value = 1
+		target = 17
+	}
+
+	ai_strategy = {
+		type = build_building id = air_base value = 2
+		target = 34
+	}
+
+	ai_strategy = {
+		type = build_building id = air_base value = 3
+		target = 50
+	}
+
+	ai_strategy = {
+		type = build_building id = air_base value = 1
+		target = 56
+	}
+
+	# CENTRAL EUROPE
+
+	ai_strategy = {
+		type = build_building id = air_base value = 2
+		target = 66
+	}
+
+	ai_strategy = {
+		type = build_building id = air_base value = 2
+		target = 80
+	}
+
+	# EASTERN FRONT
+
+	ai_strategy = {
+		type = build_building id = air_base value = 2
+		target = 190
+	}
+
+	ai_strategy = {
+		type = build_building id = air_base value = 2
+		target = 95
+	}
+
+	ai_strategy = {
+		type = build_building id = air_base value = 2
+		target = 202
+	}
+
+	ai_strategy = {
+		type = build_building id = air_base value = 2
+		target = 192
+	}
+
+	# SPAIN AND ALPS
+
+	ai_strategy = {
+		type = build_building id = air_base value = 2
+		target = 32
+	}
+
+	ai_strategy = {
+		type = build_building id = air_base value = 2
+		target = 161
+	}
+
+	ai_strategy = {
+		type = build_building id = air_base value = 2
+		target = 172
+	}
+
+	# SLOVENIA
+
+	ai_strategy = {
+		type = build_building id = air_base value = 2
+		target = 102
+	}
+
+	# MEDITERRANEAN
+
+	ai_strategy = {
+		type = build_building id = air_base value = 2
+		target = 116
+	}
+
+	ai_strategy = {
+		type = build_building id = air_base value = 2
+		target = 183
+	}
+
+	ai_strategy = {
+		type = build_building id = air_base value = 2
+		target = 186
+	}
+
+	ai_strategy = {
+		type = build_building id = air_base value = 2
+		target = 46
+	}
+}

@@ -1,0 +1,40 @@
+# - later
+too_early_for_tanks = {
+    enable = { not = { has_tech = heavy_1916 } not = { has_tech = light_1916 } }
+    abort_when_not_enabled = yes
+
+    ai_strategy = {
+        type = role_ratio
+        id = armor
+        value = -300
+    }
+}
+
+too_early_for_mountaineers = {
+    enable = { not = { has_tech = mountaineers_1 } }
+    abort_when_not_enabled = yes
+
+    ai_strategy = {
+        type = role_ratio
+        id = mountaineers
+        value = -300
+    }
+}
+
+too_early_for_marines = {
+    enable = { not = { has_tech = marines_1 } }
+    abort_when_not_enabled = yes
+
+    ai_strategy = { type = role_ratio       id = marines        value = -300 }
+    ai_strategy = { type = naval_invasion_focus     value = -120 }
+}
+
+# - other
+other_limits = {
+    enable = { always = yes }
+    abort = { always = no }
+
+    ai_strategy = { type = role_ratio   id = suppression    value = -1000 }
+    ai_strategy = { type = role_ratio   id = anti_armor     value = -1000 }
+    ai_strategy = { type = role_ratio   id = paratroopers   value = -1000 }
+}

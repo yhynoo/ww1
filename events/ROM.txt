@@ -1,0 +1,128 @@
+add_namespace = ROM_alliance
+
+country_event = {
+    id = ROM_alliance.1
+    title = "Romania Offers a Defense Agreement"
+    desc = ROM_alliance.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We agree."
+        give_guarantee = FROM 
+        
+        FROM = { 
+            give_guarantee = ROOT 
+            hidden_effect = { news_event = { id = ROM_alliance.2 hours = 6 } }
+        }
+    }
+    option = {
+        name = "This is too dangerous."
+
+        # disable ahistorical
+        ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+    }
+}
+
+news_event = {
+    id = ROM_alliance.2
+    title = "[FROM.GetName] Agrees!"
+    desc = ROM_alliance.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Good."
+    }
+}
+
+
+add_namespace = ROM_arms
+
+country_event = {
+    id = ROM_arms.1
+    title = "Romania Asks for Arms"
+    desc = ROM_arms.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "We agree."
+        
+        send_equipment = { equipment = infantry_equipment   amount = 600    target = FROM }
+        send_equipment = { equipment = fighter_equipment   amount = 4    target = FROM }
+
+        hidden_effect = { FROM = { news_event = { id = ROM_arms.2 hours = 6 } } }
+    }
+    option = {
+        name = "We need this here."
+
+        # disable ahistorical
+        ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+    }
+}
+
+news_event = {
+    id = ROM_alliance.2
+    title = "[FROM.GetName] Agrees!"
+    desc = ROM_alliance.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Good."
+    }
+}
+
+
+add_namespace = ROM_independent
+
+country_event = {
+    id = ROM_independent.1
+    title = "Demands of Independence?"
+    desc = ROM_independent.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Let them have it."
+        set_autonomy = { target = ROM autonomous_state = autonomy_free }
+        hidden_effect = { news_event = { id = ROM_independent.2 hours = 6 } }
+
+        # disable ahistorical
+        ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+    }
+    option = {
+        name = "This means war!"
+        hidden_effect = { 
+            set_autonomy = { target = ROM autonomous_state = autonomy_free }
+            news_event = { id = ROM_independent.3 hours = 6 }
+        }
+        declare_war_on = { target = ROM type = puppet_wargoal_focus }
+    }
+}
+
+news_event = {
+    id = ROM_independent.2
+    title = "[FROM.GetName] Agrees!"
+    desc = ROM_independent.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Wonderful!"
+    }
+}
+
+news_event = {
+    id = ROM_independent.3
+    title = "War in Southeastern Europe"
+    desc = ROM_independent.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Dreadful."
+    }
+}

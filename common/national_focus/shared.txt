@@ -1,0 +1,321 @@
+## army
+
+    shared_focus {
+        id = XXX_army
+        icon = GFX_focus_generic_army
+
+        x = 12 y = 0
+        cost = 10
+
+        completion_reward = {
+            army_experience = 50
+        }
+    }
+
+    shared_focus = {
+        id = XXX_defenses
+        icon = GFX_focus_generic_defenses
+        prerequisite = { focus = XXX_armaments }
+
+        relative_position_id = XXX_armaments
+        x = -3 y = 1
+        cost = 10
+
+        completion_reward = {
+        }
+    }
+
+    shared_focus = {
+        id = XXX_armaments
+        icon = GFX_focus_generic_armaments
+        prerequisite = { focus = XXX_army }
+
+        relative_position_id = XXX_army
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes }
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_equipment
+        icon = GFX_focus_generic_equipment
+        prerequisite = { focus = XXX_armaments }
+
+        relative_position_id = XXX_armaments
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+        }
+    }
+
+    shared_focus = {
+        id = XXX_supply
+        icon = GFX_focus_generic_supply
+        prerequisite = { focus = XXX_armaments }
+
+        relative_position_id = XXX_armaments
+        x = 3 y = 1
+        cost = 10
+
+        completion_reward = {
+        }
+    }
+
+    shared_focus = {
+        id = XXX_tradition
+        icon = GFX_focus_generic_tradition
+        prerequisite = { focus = XXX_equipment }
+        mutually_exclusive = { focus = XXX_innovation }
+
+        relative_position_id = XXX_equipment
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+            army_experience = 100
+        }
+    }
+
+    shared_focus = {
+        id = XXX_innovation
+        icon = GFX_focus_generic_innovation
+        prerequisite = { focus = XXX_equipment }
+        mutually_exclusive = { focus = XXX_tradition }
+
+        relative_position_id = XXX_equipment
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            army_experience = 100
+        }
+    }
+
+    shared_focus = {
+        id = XXX_war_industry
+        icon = GFX_focus_generic_war_industry
+        prerequisite = { focus = XXX_innovation focus = XXX_tradition }
+
+        relative_position_id = XXX_tradition
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes }
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_all_for_the_front
+        icon = GFX_focus_all_for_the_front
+        prerequisite = { focus = XXX_innovation focus = XXX_war_industry }
+
+        relative_position_id = XXX_war_industry
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+        }
+    }
+
+## development
+
+    shared_focus = {
+        id = XXX_infrastructure
+        icon = GFX_focus_generic_infrastructure
+
+        relative_position_id = XXX_army
+        x = 9 y = 0
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes }
+                add_building_construction = { type = infrastructure level = 2 instant_build = yes }
+            }
+            if = {
+                limit = { num_of_owned_states > 3 }
+                random_owned_controlled_state = {
+                    limit = { is_in_home_area = yes }
+                    add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_steel
+        icon = GFX_focus_generic_steel
+        prerequisite = { focus = XXX_infrastructure }
+
+        relative_position_id = XXX_infrastructure
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+        }
+    }
+
+    shared_focus = {
+        id = XXX_civs_1
+        icon = GFX_focus_generic_light_industry
+        prerequisite = { focus = XXX_infrastructure }
+
+        relative_position_id = XXX_infrastructure
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes }
+                hidden_effect = { add_extra_state_shared_building_slots = 2 }
+                add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_capacity
+        icon = GFX_focus_generic_capacity
+        prerequisite = { focus = XXX_steel focus = XXX_civs_1 }
+
+        relative_position_id = XXX_steel
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+        }
+    }
+
+    shared_focus = {
+        id = XXX_airfields
+        icon = GFX_focus_generic_airfields
+        prerequisite = { focus = XXX_capacity }
+        mutually_exclusive = { focus = XXX_harbors }
+
+        relative_position_id = XXX_capacity
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_capital = yes }
+                add_building_construction = { type = air_base level = 2 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_harbors
+        icon = GFX_focus_generic_harbors
+        prerequisite = { focus = XXX_capacity }
+        mutually_exclusive = { focus = XXX_airfields }
+
+        relative_position_id = XXX_capacity
+        x = 1 y = 1
+        cost = 10
+
+        available = {
+            any_owned_controlled_state = { is_in_home_area = yes is_coastal = yes }
+        }
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_coastal = yes is_in_home_area = yes }
+                add_building_construction = { type = naval_base level = 2 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_aircraft
+        icon = GFX_focus_generic_aircraft
+        prerequisite = { focus = XXX_airfields }
+
+        relative_position_id = XXX_airfields
+        x = -2 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes }
+                hidden_effect = { add_extra_state_shared_building_slots = 1 }
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_civs_2
+        icon = GFX_focus_generic_heavy_industry
+        prerequisite = { focus = XXX_airfields focus = XXX_harbors }
+
+        relative_position_id = XXX_airfields
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes }
+                hidden_effect = { add_extra_state_shared_building_slots = 2 }
+                add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_navy
+        icon = GFX_focus_generic_navy
+        prerequisite = { focus = XXX_harbors }
+
+        relative_position_id = XXX_harbors
+        x = 2 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_coastal = yes is_in_home_area = yes }
+                hidden_effect = { add_extra_state_shared_building_slots = 2 }
+                add_building_construction = { type = dockyard level = 2 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_state
+        icon = GFX_focus_generic_state
+        prerequisite = { focus = XXX_civs_2 }
+
+        relative_position_id = XXX_civs_2
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+        }
+    }
+
+    shared_focus = {
+        id = XXX_research
+        icon = GFX_focus_generic_research
+        prerequisite = { focus = XXX_state }
+
+        relative_position_id = XXX_state
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_research_slot = 1
+        }
+    }

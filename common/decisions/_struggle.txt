@@ -1,0 +1,38 @@
+_internal_struggle = {
+    crush_agitators = {
+        visible = { communism > 0.1 }
+
+        icon = oppression
+        days_remove = 90
+        cost = 50
+
+        modifier = {
+            communism_drift = -0.05
+            stability_weekly = -0.005
+        }
+    }
+    attack_activists = {
+        visible = { democratic > 0.1 }
+
+        icon = generic_civil_support
+        days_remove = 90
+        cost = 50
+
+        modifier = {
+            democratic_drift = -0.05
+            stability_weekly = -0.005
+        }
+    }
+    discredit_authority = {
+        visible = { monarchism > 0.1 }
+
+        icon = generic_political_discourse
+        days_remove = 90
+        cost = 50
+
+        modifier = {
+            monarchism_drift = -0.05
+            stability_weekly = -0.005
+        }
+    }
+}

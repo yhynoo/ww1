@@ -1,0 +1,35 @@
+on_actions = {
+    on_startup = {
+        effect = {
+            # resistance
+            every_country = {
+                _starting_resistance = yes
+            }
+
+            # resource rights
+            COL = {
+                give_resource_rights = { receiver = USA state = 312 }
+                give_resource_rights = { receiver = USA state = 317 }
+            }
+
+            MEX = {
+                give_resource_rights = { receiver = USA state = 476 }
+                give_resource_rights = { receiver = USA state = 485 }
+            }
+
+            QAJ = {
+                give_resource_rights = { receiver = ENG state = 412 }
+                give_resource_rights = { receiver = ENG state = 413 }
+            }
+        }
+    }
+
+    on_subject_autonomy_level_change = {
+        effect = {
+            if = {
+                limit = { tag = RAJ     is_subject = no }
+                drop_cosmetic_tag = yes
+            }
+        }
+    }
+}

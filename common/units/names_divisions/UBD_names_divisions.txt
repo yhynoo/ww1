@@ -1,0 +1,39 @@
+UBD_INF_01 = {
+	name = "Infanterie-Division"
+
+	for_countries = { UBD }
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+	fallback_name = "%d. Baltische Inf.-Division"
+
+	ordered = {
+		1 = { "%d. Infanterie-Division 'Reval'" }
+		2 = { "%d. Baltische Inf.-Division" }
+		3 = { "%d. Baltische (Est.) Inf.-Division" }
+		7 = { "%d. Baltische (Lett.) Inf.-Division" }
+		9 = { "%d. Baltische Inf.-Division 'Mitau'" }
+		11 = { "%d. Baltische Inf.-Division 'Kalev'" }
+	}
+}
+
+UBD_GAR_01 = {
+	name = "Sicherungsverbände"
+
+	for_countries = { UBD }
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+	fallback_name = "%d. Baltisches Wachregiment"
+
+	link_numbering_with = { UBD_INF_01 }
+
+	ordered = {
+		2 = { "%d. Estnisches Wachregiment" }
+		5 = { "%d. Lettisches Wachregiment 'Memel'" }
+		6 = { "%d. Sicherungs-Regiment 'Baltija'" }
+		10 = { "%d. Estnisches Wachregiment" }
+		14 = { "%d. Freiwill.-Polizeieinheit 'Dorpat'" }
+		17 = { "%d. Kurländisches Wachregiment" }
+	}
+}

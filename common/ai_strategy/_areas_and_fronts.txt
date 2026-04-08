@@ -1,0 +1,38 @@
+asian_area_priority = {
+	enable = { capital_scope = { is_on_continent = asia } }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {	type = area_priority	id = middle_east		value = 30  }
+	ai_strategy = {	type = area_priority	id = mainland_europe	value = -120 }
+}
+
+european_area_priority = {
+	enable = { capital_scope = { is_on_continent = europe } }
+	abort_when_not_enabled = yes
+
+	ai_strategy = {	type = area_priority	id = mainland_europe	value = 60   }
+	ai_strategy = {	type = area_priority	id = middle_east		value = 30   }
+
+	ai_strategy = { type = area_priority	id = asia				value = -60  }
+	ai_strategy = {	type = area_priority	id = africa				value = -120 }
+	ai_strategy = {	type = area_priority	id = pacific			value = -240 }
+}
+
+
+# FRONTS
+
+defend_allies = {
+	enable = { always = yes }
+	ai_strategy = {
+		type = front_unit_request		country_trigger = { or = { has_guaranteed = FROM is_guaranteed_by = FROM } }
+		value = -200
+	}
+}
+
+defend_weak = {
+	enable = { always = yes }
+	ai_strategy = {
+		type = front_unit_request		country_trigger = { not = { has_war_with = FROM } strength_ratio = { tag = FROM ratio < 0.25 } }
+		value = -60
+	}
+}
