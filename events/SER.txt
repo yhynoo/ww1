@@ -1,0 +1,56 @@
+add_namespace = serbia
+
+# ALBANIA
+    news_event = {
+        id = serbia.1
+        title = "Serbian Claims in Albania"
+        desc = serbia.1.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Worrying."
+        }
+    }
+
+# DEMILITARIZATION
+    country_event = {
+        id = serbia.2
+        title = "Serbia Demands Demilitarization of Albania"
+        desc = serbia.2.d
+
+        trigger = {
+            tag = SER
+            and = { has_completed_focus = SER_albania has_country_flag = southeastern_europe_victory }
+        }
+        fire_only_once = yes
+
+        option = {
+            name = "We can agree to this."
+            44 = { set_demilitarized_zone = yes }
+
+            # effect news
+            news_event = { id = serbia.3 hours = 6 }
+        }
+        option = {
+            name = "How dare they!"
+            SER = { create_wargoal = { target = TUR type = take_state_focus generator = { 44 } } }
+
+            # block non-historical
+            ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+        }
+    }
+
+    news_event = {
+        id = serbia.3
+        title = "Albania Demilitarized"
+        desc = serbia.3.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Good."
+        }
+    }

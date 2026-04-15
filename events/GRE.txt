@@ -1,0 +1,78 @@
+add_namespace = greece
+
+# long
+country_event = {
+    id = greece.1
+    title = "Enosis with Heraklion"
+    desc = greece.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "It is the right time."
+
+        # consequence event
+        CRE = { country_event = { id = greece.2 hours = 6 } }
+
+    }
+    option = {
+        name = "No."
+
+        # block non-historical
+        ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+
+        # effect news
+        random = { chance = 50 news_event = { id = greece.4 hours = 6 } }
+    }
+}
+
+country_event = {
+    id = greece.2
+    title = "Greece Offers Enosis"
+    desc = greece.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Yes!"
+        FROM = {
+            annex_country = { target = CRE }
+            hidden_effect = { news_event = { id = greece.3 hours = 6 } }
+        }
+    }
+    option = {
+        name = "We will do on our own."
+
+        # block non-historical
+        ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+    }
+}
+
+news_event = {
+    id = greece.3
+    title = "Crete Unites with [GRE.GetNameDef]"
+    desc = greece.3.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+        if = {
+            limit = { tag = TUR }
+            country_event = { id = turkey.1 days = 2 }
+        }
+    }
+}
+
+news_event = {
+    id = greece.4
+    title = "Achaean League Marches in Athens"
+    desc = greece.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Worrying."
+    }
+}

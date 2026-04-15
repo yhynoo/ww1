@@ -39,3 +39,27 @@ _civil_war_decisions = {
         }
     }
 }
+
+# OTHER
+
+    GER_french_ultimatum = {
+        visible = {
+            FRA = { has_country_flag = french_ultimatum }
+            or = { 
+                tag = FRA   is_ally_of = FRA 
+                tag = GER   is_ally_of = GER    has_guaranteed = GER
+            }
+        }
+        priority = 10
+    }
+
+    SER_austrian_ultimatum = {
+        visible = {
+            AUS = { has_country_flag = assassination_crisis }
+            or = { 
+                tag = AUS   is_ally_of = AUS 
+                tag = SER   is_ally_of = SER    has_guaranteed = SER
+            }
+        }
+        priority = 10
+    }

@@ -1,0 +1,53 @@
+GER_french_ultimatum = {
+    GER_timeout = {
+        days_mission_timeout = 14
+        available = { 
+            or = { 
+                not = {
+                    any_state = {
+                        or = { state = 8 state = 28 state = 34 }
+                        is_controlled_by = GER
+                    }
+                }
+                FRA = { not = { can_declare_war_on = GER } } 
+            } 
+        }
+        activation = { 
+            FRA = { has_country_flag = french_ultimatum }
+            or = { 
+                tag = FRA   is_ally_of = FRA 
+                tag = GER   is_ally_of = GER    has_guaranteed = GER
+            }
+        }
+
+        timeout_effect = {
+            if = {
+                limit = { tag = GER }
+                FRA = {
+                    news_event = { id = france.14 hours = 6 }
+                    declare_war_on = { target = GER type = take_state_focus generator = { 8 28 34 } }
+                }
+            }
+        }
+    }
+    GER_accept_ultimatum = {
+        allowed = { tag = GER }
+
+        cost = 100
+        fire_only_once = yes
+
+        complete_effect = {
+            news_event = { id = france.15 hours = 6 }
+            FRA = { 
+                every_state = {
+                    limit = {
+                        or = { state = 8 state = 28 state = 34 }
+                        is_controlled_by = GER
+                    }
+                    transfer_state_to = FRA
+                }
+                clr_country_flag = french_ultimatum
+            }
+        }
+    }
+}

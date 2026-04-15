@@ -1,0 +1,166 @@
+add_namespace = turkey
+
+# CRETE
+    country_event = {
+        id = turkey.1
+        title = "What About Crete?"
+        desc = turkey.1.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We must not seek conflict yet."
+
+        }
+        option = {
+            name = "This is an act of war."
+            create_wargoal = { target = GRE type = take_state_focus generator = { 182 } }
+
+            # effect news
+            news_event = { id = turkey.2 hours = 6 }
+
+            # block non-historical
+            ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+        }
+    }
+
+    news_event = {
+        id = turkey.2
+        title = "[TUR.GetName]: War Over Crete"
+        desc = turkey.2.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Worrying."
+        }
+    }
+
+# WAR IN SOUTHEASTERN EUROPE
+    country_event = {
+        id = turkey.3
+        title = "Romania Demands Independence"
+        desc = turkey.3.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "This is war."
+            hidden_effect = { 
+                set_autonomy = { target = ROM autonomous_state = autonomy_free } 
+                set_country_flag = southeastern_europe_war
+            }
+            declare_war_on = { target = ROM type = puppet_wargoal_focus }
+
+            # effect news
+            news_event = { id = turkey.4 hours = 6 }
+        }
+        option = {
+            name = "We must withdraw."
+            set_autonomy = { target = ROM autonomous_state = autonomy_free }
+
+            # block non-historical
+            ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+        }
+    }
+
+    news_event = {
+        id = turkey.4
+        title = "War in Southeastern Europe!"
+        desc = turkey.4.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Awful."
+        }
+    }
+
+# END THE WAR
+    country_event = {
+        id = turkey.5
+        title = "End the War?"
+        desc = turkey.5.d
+
+        trigger = {
+            and = { tag = TUR has_country_flag = southeastern_europe_war }
+            war_length_with = { tag = ROM   months > 3 }
+            has_war_support < 0.5
+        }
+        fire_only_once = yes
+
+        option = {
+            name = "We cannot continue."
+
+            # consequence event
+            every_country = {
+                limit = { or = { tag = GRE tag = SER tag = ROM } has_war_with = TUR }
+                country_event = { id = turkey.6 hours = 6 }
+            }
+        }
+        option = {
+            name = "[TUR.GetNameDefCap] must endure."
+
+            # block non-historical
+            ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+        }
+    }
+
+    country_event = {
+        id = turkey.6
+        title = "The Turks Offer Armistice"
+        desc = turkey.6.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Wonderful."
+            start_peace_conference = { tag = FROM score_factor = 0.1 }
+
+            # consequence/response event
+            FROM = { news_event = { id = turkey.7 hours = 6 } }
+
+            # flag
+            set_country_flag = southeastern_europe_victory
+        }
+        option = {
+            name = "We are not done yet."
+
+            # block non-historical
+            ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+        }
+    }
+
+    news_event = {
+        id = turkey.7
+        title = "[FROM.GetName] Agrees to Armistice"
+        desc = turkey.7.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Interesting."
+        }
+    }
+
+    news_event = {
+        id = turkey.8
+        title = "End of War in Southeastern Europe"
+        desc = turkey.8.d
+
+        trigger = {
+            and = { tag = TUR has_country_flag = southeastern_europe_war }
+            has_war = no
+        }
+        major = yes
+
+        option = {
+            name = "Great."
+            if = {
+                limit = { tag = TUR }
+                clr_country_flag = southeastern_europe_war
+            }
+        }
+    }

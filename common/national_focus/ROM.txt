@@ -62,7 +62,7 @@ focus_tree = {
         completion_reward = {
             every_country = {
                 limit = { or = { tag = GRE tag = SER } }
-                country_event = { id = ROM_alliance.1 hours = 6 }
+                country_event = { id = romania.1 hours = 6 }
             }
         }
     }
@@ -81,7 +81,7 @@ focus_tree = {
         completion_reward = {
             every_country = {
                 limit = { has_subject = ROOT }
-                country_event = { id = ROM_independent.1 hours = 6 }
+                country_event = { id = turkey.3 hours = 6 }
             }
         }
     }
@@ -186,8 +186,7 @@ focus_tree = {
             custom_effect_tooltip = ROM_hungarian_tt
             hidden_effect = {
                 every_state = {
-                    limit = { is_core_of = EGY }
-                    add_claim_by = FRA
+                    limit = { state = 72 state = 82 }
                     owner = { ROOT = { create_wargoal = { target = PREV type = take_state } } }
                 }
             }

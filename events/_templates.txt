@@ -1,0 +1,139 @@
+
+# one shot: news
+news_event = {
+    id = template.1
+    title = ""
+    desc = template.1.d
+
+    is_triggered_only = yes
+    major = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+# one shot: decision
+country_event = {
+    id = template.1
+    title = ""
+    desc = template.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+    }
+    option = {
+        name = ""
+
+        # block non-historical
+        ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+    }
+}
+
+
+# short
+country_event = {
+    id = template.1
+    title = ""
+    desc = template.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+
+        # effect news
+        news_event = { id = template.2 hours = 6 }
+    }
+    option = {
+        name = ""
+
+        # block non-historical
+        ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+    }
+}
+
+news_event = {
+    id = template.2
+    title = ""
+    desc = template.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Alright."
+    }
+}
+
+# long
+country_event = {
+    id = template.1
+    title = ""
+    desc = template.1.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+
+        # consequence event
+        country_event = { id = template.2 hours = 6 }
+
+    }
+    option = {
+        name = ""
+
+        # block non-historical
+        ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+
+        # effect news
+        random = { chance = 50 news_event = { id = template.4 hours = 6 } }
+    }
+}
+
+country_event = {
+    id = template.2
+    title = ""
+    desc = template.2.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = ""
+
+        # consequence/response event
+        FROM = { news_event = { id = template.3 hours = 6 } }
+    }
+    option = {
+        name = ""
+
+        # block non-historical
+        ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+    }
+}
+
+news_event = {
+    id = template.3
+    title = ""
+    desc = template.3.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Interesting."
+    }
+}
+
+news_event = {
+    id = template.4
+    title = ""
+    desc = template.4.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Alright."
+    }
+}

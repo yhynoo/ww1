@@ -1,0 +1,279 @@
+add_namespace = germany
+
+# WALLONIA AND LUXEMBURG
+    country_event = {
+        id = germany.1
+        title = "The Annexation of Wallonia and Luxemburg"
+        desc = germany.1.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Let us do this."
+            every_controlled_state = {
+                limit = { or = { state = 8 state = 34 } }
+                add_core_of = GER
+            }
+
+            # consequence event
+            hidden_effect = { 
+                news_event = { id = germany.4 hours = 6 }
+                random = { chance = 50 news_event = { id = germany.3 days = 7 } }
+            }
+        }
+        option = {
+            name = "This is too much."
+
+            # block non-historical
+            ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+        }
+    }
+
+    country_event = {
+        id = germany.2
+        title = "Unrest Among Workers in Lüttich"
+        desc = germany.2.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Quash the dissent."
+
+            # consequence/response event
+            news_event = { id = germany.3 hours = 6 }
+        }
+        option = {
+            name = "This will dissipate."
+
+            # block non-historical
+            ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+        }
+    }
+
+    news_event = {
+        id = germany.3
+        title = "Germans Shoot at Workers in Lüttich"
+        desc = germany.3.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Awful."
+        }
+    }
+
+    news_event = {
+        id = germany.4
+        title = "Germany Annexes Wallonia and Luxemburg"
+        desc = germany.4.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "They are consolidating their conquests."
+        }
+    }
+
+# ALSACE
+    news_event = {
+        id = germany.5
+        title = "Germany Incorporates Alsace-Lorraine"
+        desc = germany.5.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Interesting."
+        }
+    }
+
+# ALLIANCE
+    news_event = {
+        id = germany.6
+        title = "Germany On Lookout for Allies?"
+        desc = germany.6.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Interesting."
+        }
+    }
+
+# SAVERNE AFFAIR
+    country_event = {
+        id = germany.7
+        title = "The Saverne Affair"
+        desc = germany.7.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "This is unacceptable."
+
+            # effect news
+            random = { chance = 50 news_event = { id = germany.8 hours = 6 } }
+        }
+        option = {
+            name = "We must not escalate the tensions."
+
+            # block non-historical
+            ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+        }
+    }
+
+    news_event = {
+        id = germany.8
+        title = "Tragedy in Saverne"
+        desc = germany.8.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Awful."
+        }
+    }
+    
+# APPROACH THE DUTCH
+    country_event = {
+        id = germany.9
+        title = "Approach the Dutch?"
+        desc = germany.9.d
+
+        trigger = {
+            and = { tag = GER is_faction_leader = yes }
+            FRA = { has_completed_focus = FRA_intervene }                   # If France has broken the Metz agreements.
+        }
+        fire_only_once = yes
+
+        option = {
+            name = "Let us try."
+
+            # consequence event
+            HOL = { country_event = { id = germany.10 hours = 6 } }
+
+        }
+        option = {
+            name = "We must not aggravate London."
+
+            # block non-historical
+            ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+        }
+    }
+
+    country_event = {
+        id = germany.10
+        title = "Germany Offers Alliance"
+        desc = germany.10.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We shall maintain our neutrality."
+
+            # consequence/response event
+            FROM = { news_event = { id = germany.11 hours = 6 } }
+        }
+        option = {
+            name = "An interesting idea."
+
+            GER = { 
+                news_event = { id = germany.12 hours = 6 }
+                add_to_faction = HOL 
+            }
+            6 = { set_demilitarized_zone = no }
+
+            # block non-historical
+            ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+        }
+    }
+
+    news_event = {
+        id = germany.11
+        title = "The Dutch Commit to Metz"
+        desc = germany.11.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Disappointing."
+        }
+    }
+
+    news_event = {
+        id = germany.12
+        title = "The Dutch Allied with Germany!"
+        desc = germany.12.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "The end of the Treaty of Metz."
+        }
+    }
+
+# SUPPORT AUSTRIA
+    country_event = {
+        id = germany.13
+        title = "Offer Support to Vienna?"
+        desc = germany.13.d
+
+        trigger = {
+            and = { tag = GER is_faction_leader = yes }
+            and = { not = { is_ally_with = AUS } AUS = { is_in_faction = no has_country_flag = assassination_crisis } }
+        }
+
+        option = {
+            name = "Yes!"
+
+            # consequence event
+            AUS = { country_event = { id = germany.14 hours = 6 } }
+
+        }
+        option = {
+            name = "It is too dangerous."
+
+            # block non-historical
+            ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+        }
+    }
+
+    country_event = {
+        id = germany.14
+        title = "Germany Offers Support"
+        desc = germany.14.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Wonderful."
+            GER = { add_to_faction = AUS }
+
+            # consequence/response event
+            FROM = { news_event = { id = germany.15 hours = 6 } }
+        }
+        option = {
+            name = "This is our internal affair."
+
+            # block non-historical
+            ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+        }
+    }
+
+    news_event = {
+        id = germany.15
+        title = "Austria and Germany Allied"
+        desc = germany.15.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "This won't end well."
+        }
+    }

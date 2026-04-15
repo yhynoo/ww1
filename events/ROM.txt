@@ -1,128 +1,80 @@
-add_namespace = ROM_alliance
+add_namespace = romania
 
-country_event = {
-    id = ROM_alliance.1
-    title = "Romania Offers a Defense Agreement"
-    desc = ROM_alliance.1.d
+# GUARANTEES
+    country_event = {
+        id = romania.1
+        title = "Anti-Ottoman Defense Agreement?"
+        desc = romania.1.d
 
-    is_triggered_only = yes
+        is_triggered_only = yes
 
-    option = {
-        name = "We agree."
-        give_guarantee = FROM 
-        
-        FROM = { 
-            give_guarantee = ROOT 
-            hidden_effect = { news_event = { id = ROM_alliance.2 hours = 6 } }
+        option = {
+            name = "We agree."
+
+            give_guarantee = FROM
+            FROM = { give_guarantee = ROOT }
+
+            # effect news
+            news_event = { id = romania.2 hours = 6 }
+        }
+        option = {
+            name = "This is too dangerous."
+
+            # block non-historical
+            ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
         }
     }
-    option = {
-        name = "This is too dangerous."
 
-        # disable ahistorical
-        ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
-    }
-}
+    news_event = {
+        id = romania.2
+        title = "[FROM.GetName] Agrees!"
+        desc = romania.2.d
 
-news_event = {
-    id = ROM_alliance.2
-    title = "[FROM.GetName] Agrees!"
-    desc = ROM_alliance.2.d
+        is_triggered_only = yes
 
-    is_triggered_only = yes
-
-    option = {
-        name = "Good."
-    }
-}
-
-
-add_namespace = ROM_arms
-
-country_event = {
-    id = ROM_arms.1
-    title = "Romania Asks for Arms"
-    desc = ROM_arms.1.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "We agree."
-        
-        send_equipment = { equipment = infantry_equipment   amount = 600    target = FROM }
-        send_equipment = { equipment = fighter_equipment   amount = 4    target = FROM }
-
-        hidden_effect = { FROM = { news_event = { id = ROM_arms.2 hours = 6 } } }
-    }
-    option = {
-        name = "We need this here."
-
-        # disable ahistorical
-        ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
-    }
-}
-
-news_event = {
-    id = ROM_alliance.2
-    title = "[FROM.GetName] Agrees!"
-    desc = ROM_alliance.2.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Good."
-    }
-}
-
-
-add_namespace = ROM_independent
-
-country_event = {
-    id = ROM_independent.1
-    title = "Demands of Independence?"
-    desc = ROM_independent.1.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Let them have it."
-        set_autonomy = { target = ROM autonomous_state = autonomy_free }
-        hidden_effect = { news_event = { id = ROM_independent.2 hours = 6 } }
-
-        # disable ahistorical
-        ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
-    }
-    option = {
-        name = "This means war!"
-        hidden_effect = { 
-            set_autonomy = { target = ROM autonomous_state = autonomy_free }
-            news_event = { id = ROM_independent.3 hours = 6 }
+        option = {
+            name = "Great."
         }
-        declare_war_on = { target = ROM type = puppet_wargoal_focus }
     }
-}
 
-news_event = {
-    id = ROM_independent.2
-    title = "[FROM.GetName] Agrees!"
-    desc = ROM_independent.2.d
+# AFTER THE WAR
+    country_event = {
+        id = romania.3
+        title = "Withdraw from Guarantees?"
+        desc = romania.3.d
 
-    is_triggered_only = yes
+        trigger = {
+            tag = ROM
+            has_country_flag = southeastern_europe_victory
+        }
+        fire_only_once = yes
 
-    option = {
-        name = "Wonderful!"
+        option = {
+            name = "We have what we wanted."
+            news_event = { id = romania.4 hours = 6 }
+        }
+        option = {
+            name = "This is not the end of the storm."
+
+            # block non-historical
+            ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+        }
     }
-}
 
-news_event = {
-    id = ROM_independent.3
-    title = "War in Southeastern Europe"
-    desc = ROM_independent.3.d
+    news_event = {
+        id = romania.4
+        title = "End of Defense Agreements in Southeast Europe"
+        desc = romania.4.d
 
-    is_triggered_only = yes
-    major = yes
+        is_triggered_only = yes
+        major = yes
 
-    option = {
-        name = "Dreadful."
+        option = {
+            name = "Okay."
+            if = {
+                limit = { has_guaranteed = ROM }
+                diplomatic_relation = { country = ROM  relation = guarantee    active = no }
+                ROM = { diplomatic_relation = { country = ROOT  relation = guarantee    active = no } }
+            }
+        }
     }
-}

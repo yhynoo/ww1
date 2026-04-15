@@ -1,0 +1,25 @@
+peace_ai_desires = {
+    GRE_southeastern_historical = {
+        peace_action_type = { take_states }
+        enable = {
+            tag = GRE date < 1914.1.1
+            FROM.FROM.FROM = { not = { or = { state = 164 state = 185 state = 586 } } }
+        }
+        ai_desire = -200
+    }
+    ROM_southeastern_historical = {
+        peace_action_type = { take_states }
+        enable = {
+            tag = ROM date < 1914.1.1
+        }
+        ai_desire = -200
+    }
+    SER_southeastern_historical = {
+        peace_action_type = { take_states }
+        enable = {
+            tag = SER date < 1914.1.1
+            FROM.FROM.FROM = { not = { or = { state = 106 state = 404 } } }
+        }
+        ai_desire = -200
+    }
+}
