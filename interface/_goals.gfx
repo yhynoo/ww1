@@ -177,8 +177,78 @@ spriteTypes = {
         legacy_lazy_load = no
     }
 
-## army
+## early military
+    SpriteType = {
+		name = "GFX_focus_generic_local_designs"
+		texturefile = "gfx/interface/goals/focus_research.dds"
+	}
+	spriteType = {
+        name = GFX_focus_generic_local_designs_shine
+        texturefile = gfx/interface/goals/focus_research.dds
+        effectFile = gfx/FX/buttonstate.lua
+        animation = {
+            animationmaskfile = gfx/interface/goals/focus_research.dds
+            animationtexturefile = gfx/interface/goals/shine_overlay.dds
+            animationrotation = -90.0
+            animationlooping = no
+            animationtime = 0.75
+            animationdelay = 0
+            animationblendmode = "add"
+            animationtype = "scrolling"
+            animationrotationoffset = { x = 0.0 y = 0.0 }
+            animationtexturescale = { x = 1.0 y = 1.0 }
+        }
+        animation = {
+            animationmaskfile = gfx/interface/goals/focus_research.dds
+            animationtexturefile = gfx/interface/goals/shine_overlay.dds
+            animationrotation = 90.0
+            animationlooping = no
+            animationtime = 0.75
+            animationdelay = 0
+            animationblendmode = "add"
+            animationtype = "scrolling"
+            animationrotationoffset = { x = 0.0 y = 0.0 }
+            animationtexturescale = { x = 1.0 y = 1.0 }
+        }
+        legacy_lazy_load = no
+    }
 
+    SpriteType = {
+		name = "GFX_focus_generic_coastal"
+		texturefile = "gfx/interface/goals/goal_generic_amphibious_assault.dds"
+	}
+	spriteType = {
+        name = GFX_focus_generic_coastal_shine
+        texturefile = gfx/interface/goals/goal_generic_amphibious_assault.dds
+        effectFile = gfx/FX/buttonstate.lua
+        animation = {
+            animationmaskfile = gfx/interface/goals/goal_generic_amphibious_assault.dds
+            animationtexturefile = gfx/interface/goals/shine_overlay.dds
+            animationrotation = -90.0
+            animationlooping = no
+            animationtime = 0.75
+            animationdelay = 0
+            animationblendmode = "add"
+            animationtype = "scrolling"
+            animationrotationoffset = { x = 0.0 y = 0.0 }
+            animationtexturescale = { x = 1.0 y = 1.0 }
+        }
+        animation = {
+            animationmaskfile = gfx/interface/goals/goal_generic_amphibious_assault.dds
+            animationtexturefile = gfx/interface/goals/shine_overlay.dds
+            animationrotation = 90.0
+            animationlooping = no
+            animationtime = 0.75
+            animationdelay = 0
+            animationblendmode = "add"
+            animationtype = "scrolling"
+            animationrotationoffset = { x = 0.0 y = 0.0 }
+            animationtexturescale = { x = 1.0 y = 1.0 }
+        }
+        legacy_lazy_load = no
+    }
+
+## army
 	SpriteType = {
 		name = "GFX_focus_generic_army"
 		texturefile = "gfx/interface/goals/focus_generic_commonwealth_build_infantry.dds"

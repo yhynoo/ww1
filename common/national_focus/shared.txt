@@ -4,6 +4,8 @@
         id = XXX_army
         icon = GFX_focus_generic_army
 
+        allow_branch = { not = { has_country_flag = early_military } }
+
         x = 12 y = 0
         cost = 10
 
@@ -135,6 +137,8 @@
     shared_focus = {
         id = XXX_infrastructure
         icon = GFX_focus_generic_infrastructure
+
+        allow_branch = { not = { has_country_flag = pre_industrial_state } }
 
         relative_position_id = XXX_army
         x = 9 y = 0

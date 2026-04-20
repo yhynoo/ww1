@@ -1,0 +1,173 @@
+### pre-industrial
+
+    shared_focus {
+        id = XXX_land_use
+        icon = GFX_focus_generic_infrastructure
+
+        allow_branch = { has_country_flag = pre_industrial_state }
+
+        relative_position_id = XXX_army
+        x = 9 y = 0
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 25
+            every_owned_state = {
+                limit = { impassable = no }
+                add_extra_state_shared_building_slots = 1
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_agriculture
+        icon = GFX_focus_XXX_agrarian
+        prerequisite = { focus = XXX_land_use }
+
+        relative_position_id = XXX_land_use
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 25
+            
+            random_owned_controlled_state = {
+                limit = { impassable = no }
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+
+                hidden_effect = {
+                    add_extra_state_shared_building_slots = 1
+                }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_cotton
+        icon = GFX_focus_XXX_cotton
+        prerequisite = { focus = XXX_agriculture }
+        mutually_exclusive = { focus = XXX_mines }
+
+        relative_position_id = XXX_agriculture
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { impassable = no }
+                add_resource = { type = tungsten amount = 12 }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_mines
+        icon = GFX_focus_XXX_mines
+        prerequisite = { focus = XXX_agriculture }
+        mutually_exclusive = { focus = XXX_cotton }
+
+        relative_position_id = XXX_agriculture
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { impassable = no }
+                add_resource = { type = steel amount = 4 }
+                add_resource = { type = aluminium amount = 2 }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_textiles
+        icon = GFX_focus_generic_light_industry
+        prerequisite = { focus = XXX_cotton }
+
+        relative_position_id = XXX_cotton
+        x = -2 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { impassable = no }
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_railways
+        icon = GFX_focus_XXX_railways
+        prerequisite = { focus = XXX_cotton focus = XXX_mines }
+
+        relative_position_id = XXX_cotton
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            if = {
+                limit = { has_tech = basic_train }
+                add_equipment_to_stockpile = {  type = train_equipment_1    amount = 6      producer = ROOT }
+            }
+            else = {
+                add_tech_bonus = { bonus = 0.5  uses = 1    category = train_tech }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_armory
+        icon = GFX_focus_generic_heavy_industry
+        prerequisite = { focus = XXX_mines }
+
+        relative_position_id = XXX_mines
+        x = 2 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_capital = yes impassable = no }
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_energy
+        icon = GFX_focus_XXX_energy
+        prerequisite = { focus = XXX_railways }
+
+        relative_position_id = XXX_railways
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_tech_bonus = { bonus = 0.5  uses = 2    category = industry_tech }
+            random_owned_controlled_state = {
+                limit = { impassable = no }
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_university
+        icon = GFX_focus_generic_research
+        prerequisite = { focus = XXX_energy }
+
+        relative_position_id = XXX_energy
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            clr_country_flag = pre_industrial_state
+            mark_focus_tree_layout_dirty = yes
+
+            add_research_slot = 1
+        }
+    }
