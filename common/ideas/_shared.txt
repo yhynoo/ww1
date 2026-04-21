@@ -1,5 +1,115 @@
 ideas = {
     country = {
+        idea_tribal_state = {
+            modifier = {
+                political_power_factor = -0.25
+            }
+        }
+
+        # uprising
+        idea_uprising = {
+            modifier = {
+                war_support_factor = 0.25
+                conscription_factor = 0.15
+            }
+            cancel = {
+                not = { has_country_flag = during_uprising }
+            }
+        }
+        idea_uprising_administration = {
+            modifier = {
+                supply_factor = 0.05
+                consumer_goods_factor = -0.1
+            }
+            cancel = {
+                not = { has_country_flag = during_uprising }
+            }
+        }
+        idea_extended_draft = {
+            modifier = {
+                conscription = 0.025
+                training_time_factor = -0.25
+            }
+            cancel = {
+                not = { has_country_flag = during_uprising }
+            }
+        }
+
+        # civil war
+        idea_collapsed_administration = {
+            modifier = { 
+                political_power_factor = -0.45 
+            }
+            cancel = {
+                has_idea = idea_eroded_state
+            }   
+        }
+        idea_unstable_administration = {
+            modifier = { 
+                political_power_factor = -0.2
+            }
+            cancel = {
+                has_idea = idea_eroded_state
+            }
+        }
+        idea_dysfunctional_supply = {
+            modifier = {
+                supply_factor = -0.4
+                production_factory_max_efficiency_factor = -0.25
+                consumer_goods_factor = 0.2
+            }
+            cancel = {
+                has_idea = idea_destroyed_industry
+            }
+        }
+        idea_terror = {
+            modifier = {
+                stability_factor = 0.05
+                political_power_factor = -0.15
+            }
+        }
+        idea_eroded_state = {
+            modifier = {
+                political_power_factor = -0.8
+                stability_weekly = -0.025
+            }
+        }
+        idea_destroyed_industry = {
+            modifier = {
+                production_factory_max_efficiency_factor = -0.65
+                supply_factor = -0.45
+                consumer_goods_factor = 0.25
+            }
+        }
+
+        idea_centralization = {
+            modifier = { 
+                army_attack_factor = 0.1 
+                command_power_gain_mult = 0.25
+            }
+            cancel = { 
+                has_civil_war = no 
+            }
+        }
+        idea_dispersed_troops = {
+            modifier = { 
+                army_defence_factor = 0.1
+                conscription_factor = 0.15
+            }
+            cancel = { 
+                has_civil_war = no
+            }
+        }
+        idea_ideological_struggle = {
+            modifier = {
+                conscription_factor = 0.25
+                training_time_factor = -0.15
+            }
+            cancel = { 
+                has_civil_war = no 
+            }
+        }
+
         # generic
         idea_manpower_act = {
             modifier = {

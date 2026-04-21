@@ -1,0 +1,209 @@
+# civil war
+    shared_focus {
+        id = XXX_civil_war
+        icon = GFX_focus_XXX_civil_war
+
+        available = { civil_war_erosion_lock = yes }
+
+        allow_branch = { has_country_flag = during_civil_war }
+
+        x = 30 y = 0
+        cost = 5
+
+        completion_reward = {
+            add_war_support = 0.05
+        }
+    }
+
+    shared_focus = {
+        id = XXX_local_commands
+        icon = GFX_focus_generic_general_staff
+        prerequisite = { focus = XXX_civil_war }
+
+        available = { civil_war_erosion_lock = yes }
+
+        relative_position_id = XXX_civil_war
+        x = 0 y = 1
+        cost = 5
+
+        completion_reward = {
+            custom_effect_tooltip = tt_local_commands
+            swap_ideas = {
+                remove_idea = idea_collapsed_administration
+                add_idea = idea_unstable_administration
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_centralization
+        icon = GFX_focus_XXX_centralization
+        prerequisite = { focus = XXX_local_commands }
+        mutually_exclusive = { focus = XXX_disperse_troops }
+
+        available = { civil_war_erosion_lock = yes }
+
+        relative_position_id = XXX_local_commands
+        x = -1 y = 1
+        cost = 5
+
+        completion_reward = {
+            add_stability = 0.05
+            add_ideas = idea_centralization
+        }
+    }
+
+    shared_focus = {
+        id = XXX_disperse_troops
+        icon = GFX_focus_XXX_disperse_troops
+        prerequisite = { focus = XXX_local_commands }
+        mutually_exclusive = { focus = XXX_centralization }
+
+        available = { civil_war_erosion_lock = yes }
+
+        relative_position_id = XXX_local_commands
+        x = 1 y = 1
+        cost = 5
+
+        completion_reward = {
+            add_war_support = 0.05
+            add_ideas = idea_dispersed_troops
+        }
+    }
+
+    shared_focus = {
+        id = XXX_ideological_struggle
+        icon = GFX_focus_XXX_ideological_struggle
+        prerequisite = { focus = XXX_centralization }
+
+        available = { civil_war_erosion_lock = yes }
+
+        relative_position_id = XXX_centralization
+        x = -2 y = 1
+        cost = 5
+
+        completion_reward = {
+            add_ideas = idea_ideological_struggle
+        }
+    }
+
+    shared_focus = {
+        id = XXX_wheat_and_lead
+        icon = GFX_focus_generic_infrastructure
+        prerequisite = { focus = XXX_centralization focus = XXX_disperse_troops }
+
+        available = { civil_war_erosion_lock = yes }
+
+        relative_position_id = XXX_centralization
+        x = 1 y = 1
+        cost = 5
+
+        completion_reward = {
+            custom_effect_tooltip = tt_wheat_and_lead
+            remove_ideas = idea_dysfunctional_supply
+        }
+    }
+
+    shared_focus = {
+        id = XXX_clandestine_armories
+        icon = GFX_focus_generic_heavy_industry
+        prerequisite = { focus = XXX_disperse_troops }
+
+        available = { civil_war_erosion_lock = yes }
+
+        relative_position_id = XXX_disperse_troops
+        x = 2 y = 1
+        cost = 5
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes impassable = no }
+                hidden_effect = { add_extra_state_shared_building_slots = 1 }   add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_draft_militias
+        icon = GFX_focus_XXX_draft_militias
+        prerequisite = { focus = XXX_wheat_and_lead }
+
+        available = { 
+            has_civil_war = yes
+            civil_war_erosion_lock = yes 
+        }
+        bypass = { has_civil_war = no }
+
+        relative_position_id = XXX_wheat_and_lead
+        x = 0 y = 1
+        cost = 5
+
+        completion_reward = {
+            # setup
+            setup_uprising_troops = yes
+            random_owned_controlled_state = { 
+                limit = { is_capital = yes }
+                create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\"" count = 2 owner = ROOT } 
+            }
+
+            if = {
+                limit = { num_of_controlled_states > 2 }
+                random_owned_controlled_state = { create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\"" count = 2 owner = ROOT } }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_amnesty
+        icon = GFX_focus_XXX_amnesty
+        prerequisite = { focus = XXX_draft_militias }
+        mutually_exclusive = { focus = XXX_terror }
+
+        available = { civil_war_erosion_lock = yes }
+
+        relative_position_id = XXX_draft_militias
+        x = -1 y = 1
+        cost = 5
+
+        completion_reward = {
+            add_popularity = { ideology = democratic popularity = 0.05 }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_terror
+        icon = GFX_focus_XXX_terror
+        prerequisite = { focus = XXX_draft_militias }
+        mutually_exclusive = { focus = XXX_amnesty }
+
+        available = { civil_war_erosion_lock = yes }
+
+        relative_position_id = XXX_draft_militias
+        x = 1 y = 1
+        cost = 5
+
+        available = { not = { has_government = democratic } }
+
+        completion_reward = {
+            add_timed_idea = { idea = idea_terror months = 24 }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_united_again
+        icon = GFX_focus_XXX_united_again
+        prerequisite = { focus = XXX_amnesty focus = XXX_terror }
+
+        relative_position_id = XXX_amnesty
+        x = 1 y = 1
+        cost = 5
+
+        available = { has_civil_war = no }
+
+        completion_reward = {
+            custom_effect_tooltip = tt_united_again
+            remove_ideas = idea_unstable_administration
+
+            hidden_effect = { news_event = { id = shared.20 hours = 6 } }
+        }
+    }

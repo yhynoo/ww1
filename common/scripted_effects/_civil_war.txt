@@ -1,77 +1,15 @@
-italian_civil_war = {
-    random_country = {
-        limit = { original_tag = ITA has_government = communism }
-        set_cosmetic_tag = ITA_reds
-        set_popularities = { communism = 80 democratic = 15 monarchism = 5 }
+setup_civil_war = {
+    set_country_flag = during_civil_war
 
-        setup_civil_war_troops = yes
+    # can't join factions
+    set_rule = { can_join_factions = no }
+    if = { limit = { has_government = communism } set_cosmetic_tag = generic_communism }
+
+    if = {
+        limit = { any_country = { original_tag = ROOT has_country_flag = after_civil_war } }
+        news_event = { id = shared.19 hours = 6 }   # total collapse
     }
-
-    random_country = {
-        limit = { original_tag = ITA not = { has_government = communism } }
-        set_cosmetic_tag = ITA_whites
-    }
-}
-
-mexican_civil_war = {
-    random_country = {
-        limit = { original_tag = MEX has_government = communism }
-        set_cosmetic_tag = MEX_agrarianists
-
-        set_popularities = { communism = 70 democratic = 25 monarchism = 5 }
-    }
-
-    random_country = {
-        limit = { original_tag = MEX has_government = democratic }
-        set_cosmetic_tag = MEX_democrats
-    }
-}
-
-turkish_civil_war = {
-    random_country = {
-        limit = { original_tag = TUR has_government = communism }
-        set_cosmetic_tag = TUR_kemalists
-
-        set_popularities = { communism = 65 democratic = 20 monarchism = 15 }
-        set_capital = { state = 49 }
-    }
-
-    random_country = {
-        limit = { original_tag = TUR has_government = democratic }
-        set_cosmetic_tag = TUR_ottomanists
-    }
-}
-
-ukrainian_civil_war = {
-    random_country = {
-        limit = { original_tag = UKR has_government = communism }
-        set_cosmetic_tag = UKR_makhno
-
-        set_popularities = { communism = 75 democratic = 20 monarchism = 5 }
-        set_capital = { state = 200 }
-    }
-
-    random_country = {
-        limit = { original_tag = UKR not = { has_government = communism } }
-        set_popularities = { communism = 10 democratic = 45 monarchism = 45 }
-
-        set_cosmetic_tag = UKR_state
-        set_state_controller = 202
-    }
-}
-
-# - setup
-setup_civil_war_troops = {
-    setup_uprising_troops = yes
-
-    # add troops
-    every_controlled_state = {
-        random_list = {
-            1 = { create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\" start_equipment_factor = 0.5" count = 1 owner = PREV } }
-            2 = { create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\" start_equipment_factor = 0.4" count = 1 owner = PREV } }
-            
-            2 = { create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\" start_equipment_factor = 0.2" count = 2 owner = PREV } }
-            1 = { }
-        }
+    else = {
+        news_event = { id = shared.18 hours = 6 }
     }
 }

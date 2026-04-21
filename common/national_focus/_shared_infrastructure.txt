@@ -4,7 +4,14 @@
         id = XXX_land_use
         icon = GFX_focus_generic_infrastructure
 
-        allow_branch = { has_country_flag = pre_industrial_state }
+        allow_branch = { 
+            has_country_flag = pre_industrial_state
+            not = { has_country_flag = during_uprising } 
+        }
+
+        available = {
+            civil_war_industry_lock = yes
+        }
 
         relative_position_id = XXX_general_staff
         x = 9 y = 0
@@ -23,6 +30,10 @@
         id = XXX_agriculture
         icon = GFX_focus_XXX_agrarian
         prerequisite = { focus = XXX_land_use }
+
+        available = {
+            civil_war_industry_lock = yes
+        }
 
         relative_position_id = XXX_land_use
         x = 0 y = 1
@@ -47,6 +58,10 @@
         prerequisite = { focus = XXX_agriculture }
         mutually_exclusive = { focus = XXX_mines }
 
+        available = {
+            civil_war_industry_lock = yes
+        }
+
         relative_position_id = XXX_agriculture
         x = -1 y = 1
         cost = 10
@@ -64,6 +79,10 @@
         icon = GFX_focus_generic_steel
         prerequisite = { focus = XXX_agriculture }
         mutually_exclusive = { focus = XXX_cotton }
+
+        available = {
+            civil_war_industry_lock = yes
+        }
 
         relative_position_id = XXX_agriculture
         x = 1 y = 1
@@ -83,6 +102,10 @@
         icon = GFX_focus_generic_light_industry
         prerequisite = { focus = XXX_cotton }
 
+        available = {
+            civil_war_industry_lock = yes
+        }
+
         relative_position_id = XXX_cotton
         x = -2 y = 1
         cost = 10
@@ -100,6 +123,10 @@
         id = XXX_railways
         icon = GFX_focus_XXX_railways
         prerequisite = { focus = XXX_cotton focus = XXX_mines }
+
+        available = {
+            civil_war_industry_lock = yes
+        }
 
         relative_position_id = XXX_cotton
         x = 1 y = 1
@@ -122,6 +149,10 @@
         icon = GFX_focus_generic_heavy_industry
         prerequisite = { focus = XXX_mines }
 
+        available = {
+            civil_war_industry_lock = yes
+        }
+
         relative_position_id = XXX_mines
         x = 2 y = 1
         cost = 10
@@ -139,6 +170,10 @@
         id = XXX_energy
         icon = GFX_focus_XXX_energy
         prerequisite = { focus = XXX_railways }
+
+        available = {
+            civil_war_industry_lock = yes
+        }
 
         relative_position_id = XXX_railways
         x = 0 y = 1
@@ -159,6 +194,10 @@
         icon = GFX_focus_generic_research
         prerequisite = { focus = XXX_energy }
 
+        available = {
+            civil_war_industry_lock = yes
+        }
+
         relative_position_id = XXX_energy
         x = 0 y = 1
         cost = 10
@@ -177,7 +216,14 @@
         id = XXX_infrastructure
         icon = GFX_focus_generic_infrastructure
 
-        allow_branch = { not = { has_country_flag = pre_industrial_state } }
+        allow_branch = { 
+            not = { has_country_flag = pre_industrial_state } 
+            not = { has_country_flag = during_uprising }
+        }
+
+        available = {
+            civil_war_industry_lock = yes
+        }
 
         relative_position_id = XXX_general_staff
         x = 9 y = 0
@@ -203,6 +249,10 @@
         icon = GFX_focus_generic_steel
         prerequisite = { focus = XXX_infrastructure }
 
+        available = {
+            civil_war_industry_lock = yes
+        }
+
         relative_position_id = XXX_infrastructure
         x = -2 y = 1
         cost = 10
@@ -223,6 +273,10 @@
         icon = GFX_focus_generic_light_industry
         prerequisite = { focus = XXX_infrastructure }
 
+        available = {
+            civil_war_industry_lock = yes
+        }
+
         relative_position_id = XXX_infrastructure
         x = 0 y = 1
         cost = 10
@@ -240,6 +294,10 @@
         id = XXX_oil
         icon = GFX_focus_XXX_oil
         prerequisite = { focus = XXX_infrastructure }
+
+        available = {
+            civil_war_industry_lock = yes
+        }
 
         relative_position_id = XXX_infrastructure
         x = 2 y = 1
@@ -264,6 +322,10 @@
         icon = GFX_focus_generic_capacity
         prerequisite = { focus = XXX_civs_1 }
 
+        available = {
+            civil_war_industry_lock = yes
+        }
+
         relative_position_id = XXX_civs_1
         x = 0 y = 1
         cost = 10
@@ -279,6 +341,10 @@
         icon = GFX_focus_generic_airfields
         prerequisite = { focus = XXX_capacity }
         mutually_exclusive = { focus = XXX_harbors }
+
+        available = {
+            civil_war_industry_lock = yes
+        }
 
         relative_position_id = XXX_capacity
         x = -1 y = 1
@@ -297,6 +363,10 @@
         icon = GFX_focus_generic_harbors
         prerequisite = { focus = XXX_capacity }
         mutually_exclusive = { focus = XXX_airfields }
+
+        available = {
+            civil_war_industry_lock = yes
+        }
 
         relative_position_id = XXX_capacity
         x = 1 y = 1
@@ -319,6 +389,10 @@
         icon = GFX_focus_generic_aircraft
         prerequisite = { focus = XXX_airfields }
 
+        available = {
+            civil_war_industry_lock = yes
+        }
+
         relative_position_id = XXX_airfields
         x = -2 y = 1
         cost = 10
@@ -336,6 +410,10 @@
         id = XXX_civs_2
         icon = GFX_focus_generic_heavy_industry
         prerequisite = { focus = XXX_airfields focus = XXX_harbors }
+
+        available = {
+            civil_war_industry_lock = yes
+        }
 
         relative_position_id = XXX_airfields
         x = 1 y = 1
@@ -355,6 +433,10 @@
         icon = GFX_focus_generic_navy
         prerequisite = { focus = XXX_harbors }
 
+        available = {
+            civil_war_industry_lock = yes
+        }
+
         relative_position_id = XXX_harbors
         x = 2 y = 1
         cost = 10
@@ -373,6 +455,10 @@
         icon = GFX_focus_generic_state
         prerequisite = { focus = XXX_civs_2 }
 
+        available = {
+            civil_war_industry_lock = yes
+        }
+
         relative_position_id = XXX_civs_2
         x = 0 y = 1
         cost = 10
@@ -387,6 +473,10 @@
         id = XXX_research
         icon = GFX_focus_generic_research
         prerequisite = { focus = XXX_state }
+
+        available = {
+            civil_war_industry_lock = yes
+        }
 
         relative_position_id = XXX_state
         x = 0 y = 1

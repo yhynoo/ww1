@@ -1,0 +1,109 @@
+organize_uprising = {
+    every_possible_country = {
+        limit = { 
+            exists = no 
+            not = { has_country_flag = started_as_uprising } 
+        }
+
+        random = { 
+            chance = 5 
+            setup_uprising_country = yes 
+        }
+
+        # if creation has succeeded:
+        if = {
+            limit = { exists = yes }
+            every_country = {
+                limit = { original_tag = ROOT }
+                declare_war_on = { target = PREV type = annex_everything }
+            }
+
+            # event to choose sides
+            save_event_target_as = uprising_country
+            ROOT = { country_event = shared.16 }
+
+            # setup
+            if = {
+                limit = { not = { has_country_flag = started_as_uprising } }
+                set_country_flag = started_as_uprising
+                set_country_flag = during_uprising
+                
+                add_timed_idea = { idea = idea_uprising months = 6 }
+            }
+        }
+    }
+}
+
+setup_uprising_country = {
+    # assign states
+    every_core_state = {
+        limit = { and = { owner = { original_tag = ROOT } controller = { original_tag = ROOT } } }
+        transfer_state_to = PREV
+
+        # manage states
+        if = {
+            limit = { is_capital = no }
+            random = { chance = 25 set_state_controller_to = ROOT }
+
+            if = {
+                limit = { not = { any_neighbor_state = { is_capital = yes } } }
+                random = { chance = 75 set_state_controller_to = ROOT }
+            }
+        }
+    }
+
+    # setup specific states
+    every_controlled_state = { setup_uprising_state = yes }
+}
+
+setup_uprising_state = {
+    owner = { setup_uprising_troops = yes }
+    create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\"" count = 1 owner = PREV }
+
+    random = {
+        chance = 60
+        create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\"" count = 1 owner = PREV }
+    }
+}
+
+setup_uprising_troops = {
+    if = {
+        limit = { not = { has_template = "Uprising Troops" } }
+        division_template = {
+            name = "Uprising Troops"
+            regiments = {
+                infantry = { x = 0 y = 0 }      infantry = { x = 1 y = 0 }
+                infantry = { x = 0 y = 1 }      infantry = { x = 1 y = 1 }
+            }
+        }
+    }
+}
+
+setup_guards_units = {
+    if = {
+        limit = { not = { has_template = "Guards Division" } }
+        division_template = {
+            name = "Guards Division"
+            is_locked = yes
+            regiments = {
+                infantry = { x = 0 y = 0 }      infantry = { x = 1 y = 0 }      infantry = { x = 2 y = 0 }
+                infantry = { x = 0 y = 1 }      infantry = { x = 1 y = 1 }
+            }
+            support = {
+                artillery = { x = 0 y = 0 }
+            }
+        }
+    }
+}
+
+setup_local_militias = {
+    if = {
+        limit = { not = { has_template = "Local Militias" } }
+        division_template = {
+            name = "Local Militia"
+            regiments = {
+                infantry = { x = 0 y = 0 }      infantry = { x = 1 y = 0 }
+            }
+        }
+    }
+}

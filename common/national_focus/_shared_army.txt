@@ -4,7 +4,14 @@
         id = XXX_address_troops
         icon = GFX_focus_XXX_address_troops
 
-        allow_branch = { has_country_flag = early_military }
+        allow_branch = { 
+            has_country_flag = early_military 
+            not = { has_country_flag = during_uprising }
+        }
+
+        available = {
+            civil_war_army_lock = yes
+        }
 
         x = 12 y = 0
         cost = 10
@@ -19,6 +26,10 @@
         icon = GFX_focus_XXX_arms_abroad
         prerequisite = { focus = XXX_address_troops }
         mutually_exclusive = { focus = XXX_local_designs }
+
+        available = {
+            civil_war_army_lock = yes
+        }
 
         relative_position_id = XXX_address_troops
         x = -1 y = 1
@@ -35,6 +46,10 @@
         prerequisite = { focus = XXX_address_troops }
         mutually_exclusive = { focus = XXX_arms_abroad }
 
+        available = {
+            civil_war_army_lock = yes
+        }
+
         relative_position_id = XXX_address_troops
         x = 1 y = 1
         cost = 10
@@ -48,6 +63,10 @@
         id = XXX_depots
         icon = GFX_focus_generic_heavy_industry
         prerequisite = { focus = XXX_arms_abroad focus = XXX_local_designs }
+
+        available = {
+            civil_war_army_lock = yes
+        }
 
         relative_position_id = XXX_arms_abroad
         x = 1 y = 1
@@ -65,6 +84,10 @@
         id = XXX_coastal
         icon = GFX_focus_generic_coastal
         prerequisite = { focus = XXX_depots }
+
+        available = {
+            civil_war_army_lock = yes
+        }
 
         available = {
             any_controlled_state = { is_coastal = yes }
@@ -96,6 +119,10 @@
         icon = GFX_focus_XXX_officers
         prerequisite = { focus = XXX_depots }
 
+        available = {
+            civil_war_army_lock = yes
+        }
+
         relative_position_id = XXX_depots
         x = 0 y = 1
         cost = 10
@@ -109,6 +136,10 @@
         id = XXX_militias
         icon = GFX_focus_XXX_militias
         prerequisite = { focus = XXX_depots }
+
+        available = {
+            civil_war_army_lock = yes
+        }
 
         relative_position_id = XXX_depots
         x = 3 y = 1
@@ -129,6 +160,10 @@
         icon = GFX_focus_XXX_unified_army
         prerequisite = { focus = XXX_officers }
 
+        available = {
+            civil_war_army_lock = yes
+        }
+
         relative_position_id = XXX_officers
         x = 0 y = 1
         cost = 10
@@ -146,12 +181,18 @@
     }
 
 ## army
-
     shared_focus {
         id = XXX_general_staff
         icon = GFX_focus_generic_general_staff
 
-        allow_branch = { not = { has_country_flag = early_military } }
+        available = {
+            civil_war_army_lock = yes
+        }
+
+        allow_branch = { 
+            not = { has_country_flag = early_military }
+            not = { has_country_flag = during_uprising }
+        }
 
         x = 12 y = 0
         cost = 10
@@ -167,6 +208,10 @@
         icon = GFX_focus_generic_heavy_industry
         prerequisite = { focus = XXX_general_staff }
         mutually_exclusive = { focus = XXX_navy_expansion }
+
+        available = {
+            civil_war_army_lock = yes
+        }
 
         relative_position_id = XXX_general_staff
         x = -1 y = 1
@@ -186,6 +231,10 @@
         icon = GFX_focus_generic_harbors
         prerequisite = { focus = XXX_general_staff }
         mutually_exclusive = { focus = XXX_armaments }
+
+        available = {
+            civil_war_army_lock = yes
+        }
 
         relative_position_id = XXX_general_staff
         x = 1 y = 1
@@ -207,6 +256,10 @@
         icon = GFX_focus_generic_defenses
         prerequisite = { focus = XXX_armaments }
 
+        available = {
+            civil_war_army_lock = yes
+        }
+
         relative_position_id = XXX_armaments
         x = -2 y = 1
         cost = 10
@@ -225,6 +278,10 @@
         icon = GFX_focus_XXX_doctrine
         prerequisite = { focus = XXX_armaments focus = XXX_navy_expansion }
 
+        available = {
+            civil_war_army_lock = yes
+        }
+
         relative_position_id = XXX_armaments
         x = 1 y = 1
         cost = 10
@@ -238,6 +295,10 @@
         id = XXX_high_seas
         icon = GFX_focus_XXX_high_seas
         prerequisite = { focus = XXX_navy_expansion }
+
+        available = {
+            civil_war_army_lock = yes
+        }
 
         relative_position_id = XXX_navy_expansion
         x = 2 y = 1
@@ -253,6 +314,10 @@
         id = XXX_mobilization
         icon = GFX_focus_XXX_mobilization
         prerequisite = { focus = XXX_doctrine }
+
+        available = {
+            civil_war_army_lock = yes
+        }
 
         relative_position_id = XXX_doctrine
         x = 0 y = 1
@@ -270,7 +335,10 @@
         prerequisite = { focus = XXX_mobilization }
         mutually_exclusive = { focus = XXX_women_at_work }
 
-        available = { has_war = yes }
+        available = {
+            has_war = yes
+            civil_war_army_lock = yes
+        }
 
         relative_position_id = XXX_mobilization
         x = -1 y = 1
@@ -287,7 +355,10 @@
         prerequisite = { focus = XXX_mobilization }
         mutually_exclusive = { focus = XXX_militarized_economy }
 
-        available = { has_war = yes }
+        available = {
+            has_war = yes
+            civil_war_army_lock = yes
+        }
 
         relative_position_id = XXX_mobilization
         x = 1 y = 1
@@ -304,7 +375,10 @@
         icon = GFX_focus_XXX_all_for_the_front
         prerequisite = { focus = XXX_militarized_economy focus = XXX_women_at_work }
 
-        available = { has_war = yes }
+        available = {
+            has_war = yes
+            civil_war_army_lock = yes
+        }
 
         relative_position_id = XXX_militarized_economy
         x = 1 y = 1
@@ -325,7 +399,10 @@
         icon = GFX_focus_XXX_total_war
         prerequisite = { focus = XXX_militarized_economy focus = XXX_women_at_work }
 
-        available = { has_war = yes }
+        available = {
+            has_war = yes
+            civil_war_army_lock = yes
+        }
 
         relative_position_id = XXX_all_for_the_front
         x = 0 y = 1

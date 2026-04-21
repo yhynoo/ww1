@@ -1,0 +1,191 @@
+    shared_focus {
+        id = XXX_uprising
+        icon = GFX_focus_generic_general_staff
+
+        allow_branch = { has_country_flag = during_uprising }
+
+        x = 12 y = 0
+        cost = 5
+
+        completion_reward = {
+            add_war_support = 0.05
+
+            # setup
+            setup_uprising_troops = yes
+            random_owned_controlled_state = { 
+                limit = { is_capital = yes }
+                create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\"" count = 2 owner = ROOT } 
+            }
+
+            if = {
+                limit = { num_of_controlled_states > 2 }
+                random_owned_controlled_state = { create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\"" count = 2 owner = ROOT } }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_improvised
+        icon = GFX_focus_generic_heavy_industry
+        prerequisite = { focus = XXX_uprising }
+
+        relative_position_id = XXX_uprising
+        x = 0 y = 1
+        cost = 5
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes impassable = no }
+                hidden_effect = { add_extra_state_shared_building_slots = 1 }   add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+                hidden_effect = { add_extra_state_shared_building_slots = 1 }   add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_worker_troops
+        icon = GFX_focus_XXX_worker_troops
+        prerequisite = { focus = XXX_improvised }
+        mutually_exclusive = { focus = XXX_aristocratic_officers }
+
+        relative_position_id = XXX_improvised
+        x = -1 y = 1
+        cost = 5
+
+        completion_reward = {
+            add_popularity = { ideology = communism popularity = 0.05 }
+            add_war_support = 0.05
+        }
+    }
+
+    shared_focus = {
+        id = XXX_aristocratic_officers
+        icon = GFX_focus_XXX_aristocratic_officers
+        prerequisite = { focus = XXX_improvised }
+        mutually_exclusive = { focus = XXX_worker_troops }
+
+        relative_position_id = XXX_improvised
+        x = 1 y = 1
+        cost = 5
+
+        completion_reward = {
+            add_popularity = { ideology = monarchism popularity = 0.05 }
+            add_doctrine_cost_reduction = { cost_reduction = 0.5    uses = 1    category = land_doctrine }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_labor_companies
+        icon = GFX_focus_XXX_labor_companies
+        prerequisite = { focus = XXX_worker_troops }
+
+        relative_position_id = XXX_worker_troops
+        x = -2 y = 1
+        cost = 5
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes impassable = no }
+                hidden_effect = { add_extra_state_shared_building_slots = 2 }   add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_uprising_administration
+        icon = GFX_focus_generic_stability
+        prerequisite = { focus = XXX_worker_troops focus = XXX_aristocratic_officers }
+
+        relative_position_id = XXX_worker_troops
+        x = 1 y = 1
+        cost = 5
+
+        completion_reward = {
+            add_ideas = idea_uprising_administration
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes impassable = no }
+                hidden_effect = { add_extra_state_shared_building_slots = 1 }   add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_guards
+        icon = GFX_focus_XXX_guards
+        prerequisite = { focus = XXX_aristocratic_officers }
+
+        relative_position_id = XXX_aristocratic_officers
+        x = 2 y = 1
+        cost = 5
+
+        completion_reward = {
+            # setup
+            setup_guards_units = yes
+            random_owned_controlled_state = { 
+                limit = { is_capital = yes }
+                create_unit = { division = "name = \"Guards Division\" division_template = \"Guards Division\" start_experience_factor = 0.6" count = 2 owner = ROOT } 
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_telegraph
+        icon = GFX_focus_XXX_telegraph
+        prerequisite = { focus = XXX_uprising_administration }
+
+        relative_position_id = XXX_uprising_administration
+        x = 0 y = 1
+        cost = 5
+
+        completion_reward = {
+            add_political_power = 100
+            add_tech_bonus = { bonus = 0.5  uses = 1    category = communications_tech }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_extend_draft
+        icon = GFX_focus_XXX_extend_draft
+        prerequisite = { focus = XXX_telegraph }
+        mutually_exclusive = { focus = XXX_war_economy }
+
+        relative_position_id = XXX_telegraph
+        x = -1 y = 1
+        cost = 5
+
+        completion_reward = {
+        }
+    }
+
+    shared_focus = {
+        id = XXX_war_economy
+        icon = GFX_focus_XXX_war_economy
+        prerequisite = { focus = XXX_telegraph }
+        mutually_exclusive = { focus = XXX_extend_draft }
+
+        relative_position_id = XXX_telegraph
+        x = 1 y = 1
+        cost = 5
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes impassable = no }
+                hidden_effect = { add_extra_state_shared_building_slots = 1 }   add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_interim_government
+        icon = GFX_focus_XXX_interim_government
+        prerequisite = { focus = XXX_extend_draft focus = XXX_war_economy }
+
+        relative_position_id = XXX_extend_draft
+        x = 1 y = 1
+        cost = 5
+
+        completion_reward = {
+            custom_effect_tooltip = tt_interim_government
+            news_event = { id = shared.17 }
+        }
+    }

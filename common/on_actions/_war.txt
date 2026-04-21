@@ -1,0 +1,21 @@
+on_actions = {
+    on_war_relation_added = {
+        effect = {
+            if = {
+                limit = { ROOT = { original_tag = FROM } }      # same tags: civil war.
+                
+                every_country = {
+                    limit = { original_tag = ROOT has_civil_war = yes }
+                    setup_civil_war = yes
+                }
+            }
+        }
+    }
+
+    on_civil_war_end = {
+        effect = {
+            set_rule = { can_join_factions = yes }              # can join factions again.
+            if = { limit = { not = { has_country_flag = after_civil_war } } set_country_flag = after_civil_war }
+        }
+    }
+}

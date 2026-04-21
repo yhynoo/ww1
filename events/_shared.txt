@@ -233,3 +233,97 @@ country_event = {
             mark_focus_tree_layout_dirty = yes
         }
     }
+
+# uprising
+    news_event = {
+        id = shared.15      # delayer event.
+        hidden = yes
+
+        trigger = {
+            or = {
+                has_stability < 0.2
+                has_civil_war = yes
+                and = { has_war = yes surrender_progress > 0.25 stability < 0.4 }
+            }
+        }
+
+        immediate = { organize_uprising = yes }
+    }
+
+    country_event = {
+        id = shared.16
+        title = "Uprising in [uprising_country.GetNameDef]!"
+        desc = shared.16.d
+
+        is_triggered_only = yes
+        trigger = { is_ai = no }
+
+        option = {
+            name = "To arms!"
+            add_war_support = 0.05
+        }
+        option = {
+            name = "Freedom to [uprising_country.GetNameDef]!"
+            event_target:uprising_country = { change_tag_from = ROOT }
+        }
+    }
+
+    news_event = {
+        id = shared.17
+        title = "[ROOT.GetAdjective] Interim Government Established"
+        desc = shared.17.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Great."
+            add_political_power = 100
+
+            remove_ideas = idea_uprising
+            remove_ideas = idea_uprising_administration
+
+            clr_country_flag = during_uprising
+            mark_focus_tree_layout_dirty = yes
+        }
+    }
+
+# civil war
+    news_event = {
+        id = shared.18
+        title = "Collapse of the Administration"
+        desc = shared.18.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Awful."
+            add_ideas = idea_collapsed_administration       add_ideas = idea_dysfunctional_supply
+        }
+    }
+
+    news_event = {
+        id = shared.19
+        title = "Total Erosion of the [ROOT.GetAdjective] State"
+        desc = shared.19.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "It's over."
+            add_ideas = idea_eroded_state       add_ideas = idea_destroyed_industry
+        }
+    }
+
+    news_event = {
+        id = shared.20
+        title = "[ROOT.GetName] United Again?"
+        desc = shared.20.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Let us hope so."
+            add_political_power = 50
+            clr_country_flag = during_civil_war
+        }
+    }

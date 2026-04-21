@@ -3,6 +3,11 @@
         id = XXX_government
         icon = GFX_focus_XXX_government
 
+        available = {
+            uprising_government_lock = yes
+            civil_war_government_lock = yes
+        }
+
         x = 0 y = 0
         cost = 10
 
@@ -15,6 +20,10 @@
         id = XXX_extend
         icon = GFX_focus_XXX_extend
         prerequisite = { focus = XXX_government }
+
+        available = {
+            civil_war_government_lock = yes
+        }
 
         relative_position_id = XXX_government
         x = -4 y = 1
@@ -34,6 +43,10 @@
         id = XXX_claims
         icon = GFX_focus_XXX_claims
         prerequisite = { focus = XXX_extend }
+
+        available = {
+            civil_war_government_lock = yes
+        }
 
         relative_position_id = XXX_extend
         x = -2 y = 1
@@ -55,6 +68,10 @@
         icon = GFX_focus_XXX_men
         prerequisite = { focus = XXX_extend }
 
+        available = {
+            civil_war_government_lock = yes
+        }
+
         relative_position_id = XXX_extend
         x = 1 y = 1
         cost = 10
@@ -68,6 +85,10 @@
         id = XXX_take_ours
         icon = GFX_focus_XXX_take_ours
         prerequisite = { focus = XXX_men }
+
+        available = {
+            civil_war_government_lock = yes
+        }
 
         relative_position_id = XXX_men
         x = 0 y = 1
@@ -95,6 +116,10 @@
         prerequisite = { focus = XXX_government }
         mutually_exclusive = { focus = XXX_adjust_government }
 
+        available = {
+            civil_war_government_lock = yes
+        }
+
         allow_branch = { not = { has_country_flag = starts_as_dominion } }
 
         relative_position_id = XXX_government
@@ -112,6 +137,10 @@
         icon = GFX_focus_XXX_trade_laws
         prerequisite = { focus = XXX_stability }
 
+        available = {
+            civil_war_government_lock = yes
+        }
+
         relative_position_id = XXX_stability
         x = 0 y = 1
         cost = 10
@@ -127,6 +156,10 @@
         icon = GFX_focus_XXX_adjust_government
         prerequisite = { focus = XXX_government }
         mutually_exclusive = { focus = XXX_stability }
+
+        available = {
+            civil_war_government_lock = yes
+        }
 
         allow_branch = { not = { has_country_flag = starts_as_dominion } }
 
@@ -145,6 +178,10 @@
         icon = GFX_focus_XXX_agrarian
         prerequisite = { focus = XXX_adjust_government }
 
+        available = {
+            civil_war_government_lock = yes
+        }
+
         relative_position_id = XXX_adjust_government
         x = -1 y = 1
         cost = 10
@@ -160,6 +197,10 @@
         icon = GFX_focus_XXX_deal_with_unions
         prerequisite = { focus = XXX_adjust_government }
 
+        available = {
+            civil_war_government_lock = yes
+        }
+
         relative_position_id = XXX_adjust_government
         x = 2 y = 1
         cost = 10
@@ -173,8 +214,10 @@
     shared_focus = {
         id = XXX_administration
         icon = GFX_focus_XXX_administration
-        prerequisite = { 
-            focus = XXX_trade_laws focus = XXX_agrarian
+        prerequisite = { focus = XXX_trade_laws focus = XXX_agrarian }
+
+        available = {
+            civil_war_government_lock = yes
         }
 
         relative_position_id = XXX_trade_laws
@@ -201,6 +244,10 @@
         icon = GFX_focus_XXX_unity
         prerequisite = { focus = XXX_administration }
 
+        available = {
+            civil_war_government_lock = yes
+        }
+
         relative_position_id = XXX_administration
         x = 0 y = 1
         cost = 10
@@ -216,6 +263,11 @@
         icon = GFX_focus_XXX_allegiance
         prerequisite = { focus = XXX_government }
         mutually_exclusive = { focus = XXX_on_our_own }
+
+        available = {
+            is_subject = yes
+            civil_war_government_lock = yes
+        }
 
         allow_branch = { has_country_flag = starts_as_dominion }
 
@@ -233,6 +285,12 @@
         id = XXX_colonial_investments
         icon = GFX_focus_XXX_colonial_investments
         prerequisite = { focus = XXX_allegiance }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        bypass = { is_subject = no }
 
         relative_position_id = XXX_allegiance
         x = 0 y = 1
@@ -253,6 +311,13 @@
         prerequisite = { focus = XXX_government }
         mutually_exclusive = { focus = XXX_allegiance }
 
+        available = {
+            is_subject = yes
+            civil_war_government_lock = yes
+        }
+
+        bypass = { is_subject = no }
+
         allow_branch = { has_country_flag = starts_as_dominion }
 
         relative_position_id = XXX_government
@@ -268,6 +333,12 @@
         id = XXX_seek_aid
         icon = GFX_focus_XXX_seek_aid
         prerequisite = { focus = XXX_on_our_own }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        bypass = { is_subject = no }
 
         relative_position_id = XXX_on_our_own
         x = -1 y = 1
@@ -289,6 +360,12 @@
         icon = GFX_focus_XXX_awake
         prerequisite = { focus = XXX_on_our_own }
 
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        bypass = { is_subject = no }
+
         relative_position_id = XXX_on_our_own
         x = 2 y = 1
         cost = 10
@@ -305,8 +382,10 @@
     shared_focus = {
         id = XXX_administration_dominion
         icon = GFX_focus_XXX_administration
-        prerequisite = { 
-            focus = XXX_colonial_investments focus = XXX_seek_aid
+        prerequisite = { focus = XXX_colonial_investments focus = XXX_seek_aid }
+
+        available = {
+            civil_war_government_lock = yes
         }
 
         relative_position_id = XXX_colonial_investments
@@ -332,6 +411,10 @@
         id = XXX_unity_dominion
         icon = GFX_focus_XXX_unity
         prerequisite = { focus = XXX_administration_dominion }
+
+        available = {
+            civil_war_government_lock = yes
+        }
 
         relative_position_id = XXX_administration_dominion
         x = 0 y = 1

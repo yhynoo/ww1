@@ -1,0 +1,64 @@
+civil_war_industry_lock = {
+    if = { 
+        limit = { has_country_flag = during_civil_war }
+        if = {
+            limit = { not = { has_idea = idea_eroded_state } }
+            custom_trigger_tooltip = {
+                tooltip = tt_civil_war_lock
+                and = { has_country_flag = during_civil_war has_completed_focus = XXX_wheat_and_lead }
+            }
+        }
+        else = { 
+            custom_trigger_tooltip = { tooltip = tt_eroded_state    always = no }
+        }
+    }
+}
+
+civil_war_army_lock = {
+    if = { 
+        limit = { has_country_flag = during_civil_war }
+        if = {
+            limit = { not = { has_idea = idea_eroded_state } }
+            custom_trigger_tooltip = {
+                tooltip = tt_civil_war_lock
+                and = { has_country_flag = during_civil_war has_completed_focus = XXX_local_commands }
+            }
+        }
+        else = { 
+            custom_trigger_tooltip = { tooltip = tt_eroded_state    always = no }
+        }
+    }
+}
+
+civil_war_government_lock = {
+    if = { 
+        limit = { has_country_flag = during_civil_war }
+        if = {
+            limit = { not = { has_idea = idea_eroded_state } }
+            custom_trigger_tooltip = {
+                tooltip = tt_civil_war_lock
+                and = { has_country_flag = during_civil_war has_completed_focus = XXX_united_again }
+            }
+        }
+        else = { 
+            custom_trigger_tooltip = { tooltip = tt_eroded_state    always = no }
+        }
+    }
+}
+
+civil_war_erosion_lock = {
+    if = {
+        limit = { has_idea = idea_eroded_state }
+        custom_trigger_tooltip = { tooltip = tt_eroded_state    always = no }
+    }
+}
+
+uprising_government_lock = {
+    if = {
+        limit = { has_country_flag = during_uprising }
+        custom_trigger_tooltip = {
+            tooltip = tt_interim_government_lock
+            not = { has_country_flag = during_uprising }
+        }
+    }
+}
