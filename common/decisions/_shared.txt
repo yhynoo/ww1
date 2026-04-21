@@ -1,0 +1,46 @@
+_mobilization = {
+
+}
+_desperate_measures = {
+    confiscate_automobiles = {
+        icon = rubber
+        days_re_enable = 180
+        cost = 75
+
+        available = {
+            has_tech = early_trucks
+        }
+
+        complete_effect = {
+            add_stability = -0.025
+            add_equipment_to_stockpile = { type = motorized_equipment   amount = 60    producer = ROOT }
+        }
+    }
+    greater_effort = {
+        icon = generic_industry
+        days_remove = 60
+        cost = 50
+
+        modifier = {
+            industrial_capacity_factory = 0.1
+            industrial_capacity_dockyard = 0.1
+        }
+    }
+    organize_desperate_defenses = {
+        visible = { surrender_progress > 0.05 }
+
+        icon = generic_ignite_civil_war
+        days_remove = 60
+        cost = 50
+
+        ai_will_do = {
+            factor = 6
+            modifier = { any_enemy_country = { is_ai = no } add = 3 }
+        }
+
+        modifier = {
+            army_core_defence_factor = 0.05
+            war_support_factor = 0.05
+        }
+    }
+}

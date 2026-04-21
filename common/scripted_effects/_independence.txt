@@ -272,3 +272,15 @@ setup_uprising_troops = {
         }
     }
 }
+
+setup_local_militias = {
+    if = {
+        limit = { not = { has_template = "Local Militias" } }
+        division_template = {
+            name = "Local Militia"
+            regiments = {
+                infantry = { x = 0 y = 0 }      infantry = { x = 1 y = 0 }
+            }
+        }
+    }
+}

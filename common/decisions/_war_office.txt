@@ -23,39 +23,9 @@ _war_office = {
         cancel_trigger = { has_war = no }
     }
 
-    organize_desperate_defenses = {
-        visible = { surrender_progress > 0.05 }
+    
 
-        icon = generic_ignite_civil_war
-        days_remove = 90
-        cost = 50
-
-        ai_will_do = {
-            factor = 6
-            modifier = { any_enemy_country = { is_ai = no } add = 3 }
-        }
-
-        modifier = {
-            army_core_defence_factor = 0.05
-            war_support_factor = 0.05
-        }
-    }
-
-    greater_effort = {
-        icon = generic_industry
-        days_remove = 90
-        cost = 50
-
-        ai_will_do = {
-            factor = 6
-            modifier = { has_war = yes factor = 2 }
-        }
-
-        modifier = {
-            industrial_capacity_factory = 0.1
-            industrial_capacity_dockyard = 0.1
-        }
-    }
+    
 
     withdraw_from_war = {
         visible = { 

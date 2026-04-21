@@ -9,8 +9,8 @@ _war_office = {
     priority = 6
 }
 
-_support_war_effort = {
-    visible = { has_country_flag = public_support_allowed }
+_desperate_measures = {
+    visible = { has_country_flag = desperate_measures_allowed }
     priority = 5
 }
 
@@ -30,36 +30,3 @@ _communist_economic_decisions = {
     visible_when_empty = yes
     priority = 3
 }
-
-_civil_war_decisions = {
-    visible = {
-        or = {
-            has_civil_war = yes 
-            any_neighbor_country = { has_civil_war = yes }
-        }
-    }
-}
-
-# OTHER
-
-    GER_french_ultimatum = {
-        visible = {
-            FRA = { has_country_flag = french_ultimatum }
-            or = { 
-                tag = FRA   is_ally_of = FRA 
-                tag = GER   is_ally_of = GER    has_guaranteed = GER
-            }
-        }
-        priority = 10
-    }
-
-    SER_austrian_ultimatum = {
-        visible = {
-            AUS = { has_country_flag = assassination_crisis }
-            or = { 
-                tag = AUS   is_ally_of = AUS 
-                tag = SER   is_ally_of = SER    has_guaranteed = SER
-            }
-        }
-        priority = 10
-    }

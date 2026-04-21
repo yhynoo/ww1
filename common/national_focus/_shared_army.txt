@@ -1,0 +1,337 @@
+## early military
+
+    shared_focus {
+        id = XXX_address_troops
+        icon = GFX_focus_XXX_address_troops
+
+        allow_branch = { has_country_flag = early_military }
+
+        x = 12 y = 0
+        cost = 10
+
+        completion_reward = {
+            add_war_support = 0.05
+        }
+    }
+
+    shared_focus = {
+        id = XXX_arms_abroad
+        icon = GFX_focus_XXX_arms_abroad
+        prerequisite = { focus = XXX_address_troops }
+        mutually_exclusive = { focus = XXX_local_designs }
+
+        relative_position_id = XXX_address_troops
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_timed_idea = { idea = idea_arms_from_abroad months = 12 }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_local_designs
+        icon = GFX_focus_generic_local_designs
+        prerequisite = { focus = XXX_address_troops }
+        mutually_exclusive = { focus = XXX_arms_abroad }
+
+        relative_position_id = XXX_address_troops
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_tech_bonus = { bonus = 0.5  uses = 2    category = infantry_weapons_tech }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_depots
+        icon = GFX_focus_generic_heavy_industry
+        prerequisite = { focus = XXX_arms_abroad focus = XXX_local_designs }
+
+        relative_position_id = XXX_arms_abroad
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes impassable = no }
+                hidden_effect = { add_extra_state_shared_building_slots = 1 }   add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_coastal
+        icon = GFX_focus_generic_coastal
+        prerequisite = { focus = XXX_depots }
+
+        available = {
+            any_controlled_state = { is_coastal = yes }
+        }
+
+        relative_position_id = XXX_depots
+        x = -3 y = 1
+        cost = 10
+
+        completion_reward = {
+            if = {
+                limit = { any_controlled_state = { is_owned_by = ROOT naval_base > 0 } }
+                every_controlled_state = {
+                    limit = { is_owned_by = ROOT naval_base > 0 }
+                    add_building_construction = {  type = coastal_bunker   level = 1   instant_build = yes  province = { all_provinces = yes limit_to_naval_bases = yes } }
+                }
+            }
+            else = {
+                random_owned_controlled_state = {
+                    limit = { is_coastal = yes }
+                    add_building_construction = {  type = naval_base   level = 2   instant_build = yes }
+                }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_officers
+        icon = GFX_focus_XXX_officers
+        prerequisite = { focus = XXX_depots }
+
+        relative_position_id = XXX_depots
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_doctrine_cost_reduction = { cost_reduction = 0.5    uses = 1    category = land_doctrine }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_militias
+        icon = GFX_focus_XXX_militias
+        prerequisite = { focus = XXX_depots }
+
+        relative_position_id = XXX_depots
+        x = 3 y = 1
+        cost = 10
+
+        completion_reward = {
+            setup_local_militias = yes
+            add_timed_idea = { idea = idea_local_militias months = 6 }
+            random_owned_controlled_state = { 
+                limit = { is_capital = yes }
+                create_unit = { division = "name = \"Local Militia\" division_template = \"Local Militias\"" count = 2 owner = ROOT } 
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_unified_army
+        icon = GFX_focus_XXX_unified_army
+        prerequisite = { focus = XXX_officers }
+
+        relative_position_id = XXX_officers
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            setup_local_militias = yes
+            random_owned_controlled_state = { 
+                limit = { is_in_home_area = yes impassable = no }
+                create_unit = { division = "name = \"Local Militia\" division_template = \"Local Militias\"" count = 2 owner = ROOT } 
+            }
+
+            custom_effect_tooltip = tt_unified_army
+            hidden_effect = { news_event = { id = shared.13 hours = 6 } }
+        }
+    }
+
+## army
+
+    shared_focus {
+        id = XXX_general_staff
+        icon = GFX_focus_generic_general_staff
+
+        allow_branch = { not = { has_country_flag = early_military } }
+
+        x = 12 y = 0
+        cost = 10
+
+        completion_reward = {
+            add_war_support = 0.05
+            add_doctrine_cost_reduction = { cost_reduction = 0.5    uses = 1    category = land_doctrine }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_armaments
+        icon = GFX_focus_generic_heavy_industry
+        prerequisite = { focus = XXX_general_staff }
+        mutually_exclusive = { focus = XXX_navy_expansion }
+
+        relative_position_id = XXX_general_staff
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_tech_bonus = { bonus = 0.5  uses = 1    category = infantry_weapons_tech }
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes infrastructure > 1 }
+                hidden_effect = { add_extra_state_shared_building_slots = 2 }   add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_navy_expansion
+        icon = GFX_focus_generic_harbors
+        prerequisite = { focus = XXX_general_staff }
+        mutually_exclusive = { focus = XXX_armaments }
+
+        relative_position_id = XXX_general_staff
+        x = 1 y = 1
+        cost = 10
+
+        available = { any_controlled_state = { is_in_home_area = yes is_coastal = yes infrastructure > 1 } }
+
+        completion_reward = {
+            add_tech_bonus = { bonus = 0.5  uses = 2    category = naval_equipment_tech }
+            random_owned_controlled_state = {
+                limit = { is_coastal = yes is_in_home_area = yes infrastructure > 1 }
+                hidden_effect = { add_extra_state_shared_building_slots = 2 }   add_building_construction = { type = dockyard level = 2 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_defenses
+        icon = GFX_focus_generic_defenses
+        prerequisite = { focus = XXX_armaments }
+
+        relative_position_id = XXX_armaments
+        x = -2 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_tech_bonus = { bonus = 0.5  uses = 2    category = field_engineering_tech }
+            random_owned_controlled_state = {
+                limit = { any_neighbor_state = { not = { is_controlled_by = ROOT } } is_in_home_area = yes }
+                add_building_construction = { type = bunker   level = 2   instant_build = yes     province = { all_provinces = yes limit_to_victory_point > 0 } }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_doctrine
+        icon = GFX_focus_XXX_doctrine
+        prerequisite = { focus = XXX_armaments focus = XXX_navy_expansion }
+
+        relative_position_id = XXX_armaments
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_doctrine_cost_reduction = { cost_reduction = 0.5    uses = 2    category = land_doctrine }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_high_seas
+        icon = GFX_focus_XXX_high_seas
+        prerequisite = { focus = XXX_navy_expansion }
+
+        relative_position_id = XXX_navy_expansion
+        x = 2 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_tech_bonus = { bonus = 0.5  uses = 1    technology = light_cruiser_1912 technology = light_cruiser_1916 }
+            add_doctrine_cost_reduction = { cost_reduction = 0.5    uses = 2    category = naval_doctrine }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_mobilization
+        icon = GFX_focus_XXX_mobilization
+        prerequisite = { focus = XXX_doctrine }
+
+        relative_position_id = XXX_doctrine
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            set_country_flag = mobilization_allowed
+            custom_effect_tooltip = tt_mobilization
+        }
+    }
+
+    shared_focus = {
+        id = XXX_militarized_economy
+        icon = GFX_focus_XXX_militarized_economy
+        prerequisite = { focus = XXX_mobilization }
+        mutually_exclusive = { focus = XXX_women_at_work }
+
+        available = { has_war = yes }
+
+        relative_position_id = XXX_mobilization
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_ideas = idea_militarized_economy
+        }
+    }
+
+    shared_focus = {
+        id = XXX_women_at_work
+        icon = GFX_focus_XXX_women_at_work
+        prerequisite = { focus = XXX_mobilization }
+        mutually_exclusive = { focus = XXX_militarized_economy }
+
+        available = { has_war = yes }
+
+        relative_position_id = XXX_mobilization
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_ideas = idea_women_at_work
+            add_popularity = { ideology = communism popularity = 0.05 }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_all_for_the_front
+        icon = GFX_focus_XXX_all_for_the_front
+        prerequisite = { focus = XXX_militarized_economy focus = XXX_women_at_work }
+
+        available = { has_war = yes }
+
+        relative_position_id = XXX_militarized_economy
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes }
+                hidden_effect = { add_extra_state_shared_building_slots = 2 }   add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+            }
+            set_country_flag = desperate_measures_allowed
+            custom_effect_tooltip = tt_all_for_the_front
+        }
+    }
+
+    shared_focus = {
+        id = XXX_total_war
+        icon = GFX_focus_XXX_total_war
+        prerequisite = { focus = XXX_militarized_economy focus = XXX_women_at_work }
+
+        available = { has_war = yes }
+
+        relative_position_id = XXX_all_for_the_front
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_war_support = 0.05
+        }
+    }

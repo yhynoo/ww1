@@ -1,0 +1,343 @@
+## state
+    shared_focus = {
+        id = XXX_government
+        icon = GFX_focus_XXX_government
+
+        x = 0 y = 0
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 100
+        }
+    }
+
+    shared_focus = {
+        id = XXX_extend
+        icon = GFX_focus_XXX_extend
+        prerequisite = { focus = XXX_government }
+
+        relative_position_id = XXX_government
+        x = -4 y = 1
+        cost = 10
+
+        completion_reward = {
+            news_event = { id = shared.1 hours = 6 }
+            if = {
+                limit = { is_subject = no }
+                custom_effect_tooltip = tt_extend
+                hidden_effect = { set_rule = { can_create_factions = yes } }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_claims
+        icon = GFX_focus_XXX_claims
+        prerequisite = { focus = XXX_extend }
+
+        relative_position_id = XXX_extend
+        x = -2 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_state = {
+                limit = { 
+                    not = { is_claimed_by = ROOT } any_neighbor_state = { is_owned_by = ROOT }
+                    ROOT = { can_declare_war_on = PREV.owner }
+                }
+                add_claim_by = ROOT
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_men
+        icon = GFX_focus_XXX_men
+        prerequisite = { focus = XXX_extend }
+
+        relative_position_id = XXX_extend
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_timed_idea = { idea = idea_manpower_act     months = 6 }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_take_ours
+        icon = GFX_focus_XXX_take_ours
+        prerequisite = { focus = XXX_men }
+
+        relative_position_id = XXX_men
+        x = 0 y = 1
+        cost = 10
+
+        available = { has_war_support > 0.5 }
+
+        completion_reward = {
+            random_state = {
+                limit = { 
+                    not = { is_claimed_by = ROOT } any_neighbor_state = { is_owned_by = ROOT }
+                    ROOT = { can_declare_war_on = PREV.owner }
+                }
+                save_event_target_as = demand_target
+
+                hidden_effect = { add_claim_by = ROOT }
+                owner = { country_event = { id = shared.2 hours = 6 } }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_stability
+        icon = GFX_focus_XXX_stability
+        prerequisite = { focus = XXX_government }
+        mutually_exclusive = { focus = XXX_adjust_government }
+
+        allow_branch = { not = { has_country_flag = starts_as_dominion } }
+
+        relative_position_id = XXX_government
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 50
+            add_popularity = { ideology = ROOT popularity = 0.05 }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_trade_laws
+        icon = GFX_focus_XXX_trade_laws
+        prerequisite = { focus = XXX_stability }
+
+        relative_position_id = XXX_stability
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_ideas = idea_trade_laws
+            hidden_effect = { random = { chance = 50 country_event = { id = shared.4 hours = 6 } } }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_adjust_government
+        icon = GFX_focus_XXX_adjust_government
+        prerequisite = { focus = XXX_government }
+        mutually_exclusive = { focus = XXX_stability }
+
+        allow_branch = { not = { has_country_flag = starts_as_dominion } }
+
+        relative_position_id = XXX_government
+        x = 4 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_popularity = { ideology = ROOT popularity = -0.05 }
+            random = { chance = 50 news_event = { id = shared.5 hours = 6 } }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_agrarian
+        icon = GFX_focus_XXX_agrarian
+        prerequisite = { focus = XXX_adjust_government }
+
+        relative_position_id = XXX_adjust_government
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_stability = 0.05
+            add_timed_idea = { idea = idea_agrarians months = 24 }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_deal_with_unions
+        icon = GFX_focus_XXX_deal_with_unions
+        prerequisite = { focus = XXX_adjust_government }
+
+        relative_position_id = XXX_adjust_government
+        x = 2 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_popularity = { ideology = communism popularity = 0.05 }
+            add_timed_idea = { idea = idea_deal_with_unions months = 12 }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_administration
+        icon = GFX_focus_XXX_administration
+        prerequisite = { 
+            focus = XXX_trade_laws focus = XXX_agrarian
+        }
+
+        relative_position_id = XXX_trade_laws
+        x = 2 y = 1
+        cost = 10
+
+        completion_reward = {
+            if = {
+                limit = { any_controlled_state = { is_claimed_by = ROOT not = { is_core_of = ROOT } } }
+                every_controlled_state = {
+                    limit = { is_claimed_by = ROOT not = { is_core_of = ROOT } }
+                    add_core_of = ROOT
+                }
+            }
+            else = {
+                custom_effect_tooltip = tt_administration
+            }
+            add_stability = 0.05
+        }
+    }
+
+    shared_focus = {
+        id = XXX_unity
+        icon = GFX_focus_XXX_unity
+        prerequisite = { focus = XXX_administration }
+
+        relative_position_id = XXX_administration
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_ideas = idea_strength_in_unity
+        }
+    }
+
+## dominion
+    shared_focus = {
+        id = XXX_allegiance
+        icon = GFX_focus_XXX_allegiance
+        prerequisite = { focus = XXX_government }
+        mutually_exclusive = { focus = XXX_on_our_own }
+
+        allow_branch = { has_country_flag = starts_as_dominion }
+
+        relative_position_id = XXX_government
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 50
+            add_stability = 0.05
+        }
+    }
+
+    shared_focus = {
+        id = XXX_colonial_investments
+        icon = GFX_focus_XXX_colonial_investments
+        prerequisite = { focus = XXX_allegiance }
+
+        relative_position_id = XXX_allegiance
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_timed_idea = { idea = idea_colonial_investments months = 24 }
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes impassable = no }
+                hidden_effect = { add_extra_state_shared_building_slots = 1 }   add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_on_our_own
+        icon = GFX_focus_XXX_on_our_own
+        prerequisite = { focus = XXX_government }
+        mutually_exclusive = { focus = XXX_allegiance }
+
+        allow_branch = { has_country_flag = starts_as_dominion }
+
+        relative_position_id = XXX_government
+        x = 4 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_war_support = 0.05
+        }
+    }
+
+    shared_focus = {
+        id = XXX_seek_aid
+        icon = GFX_focus_XXX_seek_aid
+        prerequisite = { focus = XXX_on_our_own }
+
+        relative_position_id = XXX_on_our_own
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+            every_country = {
+                limit = {
+                    not = { has_subject = ROOT }
+                    is_major = yes has_opinion = { target = ROOT    value > 0 }
+                }
+            }
+            country_event = { id = shared.9 hours = 6 }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_awake
+        icon = GFX_focus_XXX_awake
+        prerequisite = { focus = XXX_on_our_own }
+
+        relative_position_id = XXX_on_our_own
+        x = 2 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_war_support = 0.1
+            every_country = {
+                limit = { has_subject = ROOT }
+                country_event = { id = shared.11 hours = 6 }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_administration_dominion
+        icon = GFX_focus_XXX_administration
+        prerequisite = { 
+            focus = XXX_colonial_investments focus = XXX_seek_aid
+        }
+
+        relative_position_id = XXX_colonial_investments
+        x = 2 y = 1
+        cost = 10
+
+        completion_reward = {
+            if = {
+                limit = { any_controlled_state = { is_claimed_by = ROOT not = { is_core_of = ROOT } } }
+                every_controlled_state = {
+                    limit = { is_claimed_by = ROOT not = { is_core_of = ROOT } }
+                    add_core_of = ROOT
+                }
+            }
+            else = {
+                custom_effect_tooltip = tt_administration
+            }
+            add_stability = 0.05
+        }
+    }
+
+    shared_focus = {
+        id = XXX_unity_dominion
+        icon = GFX_focus_XXX_unity
+        prerequisite = { focus = XXX_administration_dominion }
+
+        relative_position_id = XXX_administration_dominion
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_ideas = idea_strength_in_unity
+        }
+    }
