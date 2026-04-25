@@ -1,15 +1,13 @@
 ﻿l_english:
-  decision_effect_tooltip: "Completing this focus unlocks §Ynew decisions§!."
-  decision_faction_effect_tooltip: "Completing this focus unlocks §Ynew decisions§! and allows us to §Ycreate our own faction§!."
-  annexations_effect_tooltip: "Completing this focus unlocks decisions to §Yannex§! some of our occupied territories and §Ymake them our cores§!."
 
-  tt_can_fight_us: "We can go to war with the owner"
+# modifiers
+  monarchism_drift: "Daily Monarchism Support"
+  monarchism_drift_tt: " $monarchism_drift$: $RIGHT|+=2$"
+  monarchism_drift: "£boost_popularity_texticon  Daily Monarchism Support"
+
   tt_war_length: "Has been at war with §Y[FROM.GetNameDef]§! at least §Y2 years§! and has §tless than 40%§! war support."
 
-  tt_resource_rights: "Owner of this state controls it, and has the appropriate resource rights."
-  tt_controlled_states: "We control all highlighted states"
-
-  # HEAD OF STATE
+# head of state
   _head_of_state: "Head of State Decisions"
 
   expand_information_services: "Expand State Information Services"
@@ -27,42 +25,45 @@
   territorial_auxilliaries: "Encourage Voluntary Draft"
   territorial_auxilliaries_desc: "Launch a campaign to inspire citizens to enlist before conscription becomes necessary."
 
-  appoint_loyalists: "Appoint Loyalists"
-  appoint_loyalists_desc: ""
-
-  organize_the_underground: "Organize the Underground"
-  organize_the_underground_desc: ""
-
-  demand_autonomy: "Demand Autonomy"
-  demand_autonomy_desc: ""
-
-  ## -- war office
+# war office
   _war_office: "War Office"
 
   inspire_definitive_offensive: "Inspire the Decisive Offensive"
-  inspire_definitive_offensive_desc: ""
+  inspire_definitive_offensive_desc: "The war is almost over: the last thing missing is a final push that will make our enemies submit to us.\n\nWe must deliver though: if we fail to do so, our country will not forgive deception."
+  
+  organize_timetables: "Adjust Train Timetables"
+  organize_timetables_desc: "Our supply lines depend on an effective train network. Let us adjust the train timetables to squeeze every last second out of it."
+  tt_mobilization_decision: "This is a §Hmobilization decision§!; it is unlocked through an appropriate focus."
 
-  organize_desperate_defenses: "Organize Desperate Defenses"
-  organize_desperate_defenses_desc: ""
+  extend_defenses: "Improve the Defensive Lines"
+  extend_defenses_desc: "In anticipation of a defensive campaign, we will make sure our fortifications are up to date."
 
-  greater_effort: "Ask for Greater Industrial Effort"
-  greater_effort_desc: "Demand more effort from our heroic workers to boost the industrial output — despite the economic strain."
+  territorial_adjustments: "Organize Territory Exchange with [FROM.GetNameDef]"
+  territorial_adjustments_desc: "We will offer [FROM.GetName] to exchange our contested territories to make fighting a common enemy easier."
 
   withdraw_from_war: "Offer Armistice to [FROM.GetNameDef]"
   withdraw_from_war_desc: "We will try to step out of the conflict, seeking to preserve our country from further bloodshed."
 
-  ## -- support the war effort
-  _support_war_effort: "Support the War Effort"
+# desperate measures
+  _desperate_measures: "Emergency Measures"
+  _desperate_measures_desc: "The war has put a great strain on our society; we can only win it if we mobilize each and every one of us.\n\nWe shall organize our efforts once again, and mount enough pressure for the damned enemy lines to finally crack open. Even if it comes at a cost, our cause is worth it."
+
+  greater_effort: "Ask for Greater Effort from Industrial Workers"
+  greater_effort_desc: "Demand more effort from our heroic workers to boost the industrial output — despite the economic strain."
 
   all_for_the_frontline: "All for the Front!"
-  all_for_the_frontline_desc: "Redirect all resources toward sustaining the war front through industry and rationing."
+  all_for_the_frontline_desc: "Direct all resources toward sustaining the war front through industry and rationing."
 
-  confiscate_automobiles: "Confiscate Trucks and Automobiles"
-  confiscate_automobiles_desc: ""
+  confiscate_automobiles: "Confiscate Automobiles"
+  confiscate_automobiles_desc: "Take hold of civilian motorized vehicles to improve our supply lines."
 
-  ## -- internal struggle
+  desperate_defenses: "Organize Desperate Defenses"
+  desperate_defenses_desc: "As our state is on the edge of collapse, we will mount all the efforts to hold out a little longer."
+
+# internal struggle
   _internal_struggle: "Internal Struggle"
   _internal_struggle_desc: "Several political factions have grown enough to vie for power in our country, sometimes at the cost of all of us.\n\nLet us take action to curb their efforts and shape our future ourselves: the way we truly want."
+  tt_unexpected_events: "This decision can lead to some §Hunexpected events§!."
 
   crush_agitators: "Crush Communist Agitators"
   crush_agitators_desc: "Stamp out the communist cells before their radical fervor sets the streets aflame."
@@ -73,7 +74,7 @@
   discredit_authority: "Discredit the Conservatives"
   discredit_authority_desc: "Expose the monarchists' failures and erode their legitimacy in the eyes of the people."
 
-  ## -- economic
+# economic
   _economic_decisions: "Economic Decisions"
 
   establish_oil_reserve: "Establish National Fuel Reserve"
@@ -85,6 +86,7 @@
   literacy_campaigns: "Literacy Campaigns"
   literacy_campaigns_desc: "Improve education to raise literacy rates, empowering the population and workforce."
 
+# communist economic
   wheat_requisitions: "Organize Wheat Requisitions"
   wheat_requisitions_desc: ""
 
@@ -93,15 +95,3 @@
 
   literacy_campaigns_communist: "Ideological Education"
   literacy_campaigns_communist_desc: ""
-
-  ## -- civil wars
-  _civil_war_decisions: "Civil Wars"
-
-  generic_send_guns: "Send Arms to [FROM.GetNameDef]"
-  generic_send_guns_desc: "By sending arms and supplies, we can influence the course of the conflict and ensure that our chosen side has the means to fight."
-
-  generic_truce: "Offer Armistice to [FROM.GetNameDef]"
-  generic_truce_desc: "We can use this opportunity to seek peace and bring an end to the war. Offering a truce could allow us to focus on our internal affairs, and winning the civil war."
-
-  generic_cores: "Demand Territories from [FROM.GetNameDef]"
-  generic_cores_desc: "We shall demand that they withdraw from territories that rightfully belong to us. Our people yearn for reunification and the restoration of our sovereign lands."

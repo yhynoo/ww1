@@ -29,13 +29,11 @@ ideas = {
 				}
 
 				if = {
-					limit = { has_idea = idea_harvest_1916 }
-					not = { has_idea = idea_harvest_1916 }
-				}
-
-				if = {
-					limit = { original_tag = USA }
-					not = { has_idea = idea_isolationist_society }
+					limit = { has_idea = idea_demobilized_economy }
+					custom_trigger_tooltip = {
+						tooltip = tt_demobilized_economy_trigger
+						not = { has_idea = idea_demobilized_economy }
+					}
 				}
             }
 
@@ -76,13 +74,11 @@ ideas = {
 					has_war_support > 0.35
 
 					if = {
-						limit = { original_tag = USA }
-						not = { has_idea = idea_isolationist_society }
-					}
-
-					if = {
-						limit = { has_idea = idea_harvest_1916 }
-						not = { has_idea = idea_harvest_1916 }
+						limit = { has_idea = idea_demobilized_economy }
+						custom_trigger_tooltip = {
+							tooltip = tt_demobilized_economy_trigger
+							not = { has_idea = idea_demobilized_economy }
+						}
 					}
 				}
 			}
@@ -115,13 +111,11 @@ ideas = {
 				has_war_support > 0.5
 
 				if = {
-					limit = { original_tag = USA }
-					not = { has_idea = idea_isolationist_society }
-				}
-
-				if = {
-					limit = { has_idea = idea_harvest_1916 }
-					not = { has_idea = idea_harvest_1916 }
+					limit = { has_idea = idea_demobilized_economy }
+					custom_trigger_tooltip = {
+						tooltip = tt_demobilized_economy_trigger
+						not = { has_idea = idea_demobilized_economy }
+					}
 				}
 			}
 

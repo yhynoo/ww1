@@ -6,6 +6,34 @@ ideas = {
             }
         }
 
+        # war
+        idea_war_enthusiasm = {
+            modifier = {
+                war_support_factor = 0.05
+                army_morale_factor = 0.15
+                training_time_factor = -0.1
+            }
+            cancel = {
+                nas_war = no
+            }
+        }
+        idea_widespread_hunger = {
+            modifier = {
+                war_support_weekly = -0.05
+                attrition = 0.15
+                production_factory_max_efficiency_factor = -0.25
+            }
+        }
+
+        # war exhaustion
+        idea_war_exhaustion = {
+            modifier = {
+                war_support_weekly = -0.005
+                army_morale_factor = -0.1
+            }
+        }
+        
+
         # uprising
         idea_uprising = {
             modifier = {

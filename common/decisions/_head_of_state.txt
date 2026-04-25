@@ -8,6 +8,7 @@ _head_of_state = {
         cost = 50
     
         available = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
+        ai_will_do = { modifier = { or = { has_war_support < 0.6 has_manpower < 1000 } } add = 6 }
 
         modifier = {
             war_support_weekly = 0.005
@@ -22,6 +23,7 @@ _head_of_state = {
         cost = 25
 
         available = { has_war = yes }
+        ai_will_do = { modifier = { has_war_support < 0.6 } add = 6 }
 
         modifier = {
             war_support_weekly = 0.005
@@ -37,9 +39,8 @@ _head_of_state = {
         days_remove = 90
         cost = 50
 
-        modifier = {
-            stability_weekly = 0.005
-        }
+        ai_will_do = { modifier = { has_stability < 0.6 } add = 6 }
+        modifier = { stability_weekly = 0.005 }
 
         remove_effect = {
             add_popularity = { ideology = ROOT popularity = 0.05 }
@@ -52,9 +53,8 @@ _head_of_state = {
         days_remove = 90
         cost = 50
 
-        modifier = {
-            stability_weekly = 0.005
-        }
+        ai_will_do = { modifier = { has_stability < 0.6 } add = 6 }
+        modifier = { stability_weekly = 0.005 }
 
         remove_effect = {
             add_popularity = { ideology = ROOT popularity = 0.05 }
@@ -67,9 +67,8 @@ _head_of_state = {
         days_remove = 90
         cost = 50
 
-        modifier = {
-            stability_weekly = 0.005
-        }
+        ai_will_do = { modifier = { has_stability < 0.6 } add = 9 }
+        modifier = { stability_weekly = 0.005 }
 
         remove_effect = {
             add_popularity = { ideology = ROOT popularity = 0.05 }

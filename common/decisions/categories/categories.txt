@@ -4,13 +4,13 @@ _head_of_state = {
 }
 
 _war_office = {
-    visible = { has_war = yes }
+    visible = { or = { has_war = yes has_country_flag = mobilization_decisions_allowed } }
     visible_when_empty = yes
     priority = 6
 }
 
 _desperate_measures = {
-    visible = { has_country_flag = desperate_measures_allowed }
+    visible = { has_war = yes has_country_flag = desperate_measures_allowed }
     priority = 5
 }
 

@@ -10,6 +10,14 @@ _internal_struggle = {
             communism_drift = -0.05
             stability_weekly = -0.005
         }
+
+        remove_effect = {
+            custom_effect_tooltip = tt_unexpected_events
+            hidden_effect = {
+                random = { chance = 15 news_event = { id = shared.29 random_days = 7 } }
+                random = { chance = 15 news_event = { id = shared.35 random_days = 7 } }
+            }
+        }
     }
     attack_activists = {
         visible = { democratic > 0.1 }
@@ -22,6 +30,14 @@ _internal_struggle = {
             democratic_drift = -0.05
             stability_weekly = -0.005
         }
+
+        remove_effect = {
+            custom_effect_tooltip = tt_unexpected_events
+            hidden_effect = {
+                random = { chance = 15 news_event = { id = shared.23 random_days = 7 } }
+                random = { chance = 15 news_event = { id = shared.35 random_days = 7 } }
+            }
+        }
     }
     discredit_authority = {
         visible = { monarchism > 0.1 }
@@ -33,6 +49,14 @@ _internal_struggle = {
         modifier = {
             monarchism_drift = -0.05
             stability_weekly = -0.005
+        }
+
+        remove_effect = {
+            custom_effect_tooltip = tt_unexpected_events
+            hidden_effect = {
+                random = { chance = 15 news_event = { id = shared.23 random_days = 7 } }
+                random = { chance = 15 news_event = { id = shared.29 random_days = 7 } }
+            }
         }
     }
 }

@@ -1,14 +1,14 @@
 _war_office = {
     inspire_definitive_offensive = {
-        visible = { not = { surrender_progress > 0.05 } }
+        visible = { 
+            has_war = yes
+            has_war_support > 0.25
+            not = { surrender_progress > 0.05 }
+        }
 
         icon = generic_ignite_civil_war
         days_remove = 180
-        cost = 50
-
-        available = {
-            has_war_support > 0.25
-        }
+        cost = 100
 
         modifier = {
             army_attack_factor = 0.15
@@ -22,16 +22,81 @@ _war_office = {
 
         cancel_trigger = { has_war = no }
     }
+# mobilization
+    extend_defenses = {
+        icon = ger_military_buildup
+        days_remove = 90
+        cost = 75
 
-    
-
-    
-
-    withdraw_from_war = {
-        visible = { 
-            has_war = yes
-            has_civil_war = no
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = tt_mobilization_decision
+                has_country_flag = mobilization_decisions_allowed
+            }
         }
+
+        modifier = {
+            production_speed_bunker_factor = 0.25
+            max_dig_in_factor = 0.2
+        }
+    }
+    organize_timetables = {
+        icon = generic_prepare_civil_war
+        days_remove = 90
+        cost = 50
+
+        available = {
+            has_tech = basic_train
+            custom_trigger_tooltip = {
+                tooltip = tt_mobilization_decision
+                has_country_flag = mobilization_decisions_allowed
+            }
+        }
+
+        ai_will_do = { modifier = { has_war = yes factor = 6 } }
+
+        modifier = {
+            supply_factor = 0.15
+            army_org_factor = 0.1
+        }
+    }
+
+# territories
+    territorial_adjustments = {             # if we're fighting against the same enemy, we can reorganize our territories to do it more effectively.
+        visible = { has_war = yes }
+
+        icon = border_war
+        days_re_enable = 90
+        cost = 50
+
+        targets_dynamic = yes
+        target_trigger = {
+            FROM = {
+                not = { has_war_with = ROOT }
+                any_enemy_country = { has_war_with = ROOT }
+
+                or = {
+                    any_state = { 
+                        and = { is_controlled_by = FROM not = { is_claimed_by = FROM } }
+                        is_core_of = ROOT
+                    }
+                    any_state = {
+                        and = { is_controlled_by = ROOT not = { is_claimed_by = ROOT } }
+                        is_core_of = FROM
+                    }
+                }
+            }
+        }
+
+        ai_will_do = { factor = 6 }
+
+        days_remove = 7
+        remove_effect = { FROM = { country_event = shared.21 } }
+    }
+
+# armistice
+    withdraw_from_war = {
+        visible = { has_war = yes }
 
         icon = generic_form_nation
         days_re_enable = 90
@@ -42,24 +107,16 @@ _war_office = {
                 surrender_progress > 0.25    
                 custom_trigger_tooltip = {
                     tooltip = tt_war_length
-
-                    has_war_support < 0.4
-                    war_length_with = { tag = FROM months > 23 }
+                    has_war_support < 0.4       war_length_with = { tag = FROM months > 23 }
                 }
             }
-        }
-
-        ai_will_do = {
-            factor = 0
-            modifier = { or = { has_war_support < 0.2 surrender_progress > 0.4 }                    add = 6 }
-            modifier = { or = { war_length_with = { tag = FROM months > 48 } }                      add = 3 }
-            modifier = { or = { has_idea = all_adults_serve has_idea = scraping_the_barrel }        factor = 3 }
         }
 
         targets_dynamic = yes
         target_trigger = { 
             FROM = {
                 has_war_with = ROOT
+                not = { original_tag = ROOT }       # not our civil war enemies.
                 or = { 
                     is_faction_leader = yes 
                     not = { any_country = { has_war_together_with = FROM } }
@@ -67,7 +124,9 @@ _war_office = {
             }
         }
 
-        days_remove = 7
-        remove_effect = { FROM = { country_event = { id = _armistice.2 hours = 6 random_hours = 6 } } }
+        days_remove = 14
+        remove_effect = { 
+            FROM = { country_event = { id = _armistice.2 hours = 6 random_hours = 6 } } 
+        }
     }
 }
