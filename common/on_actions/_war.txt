@@ -4,6 +4,11 @@ on_actions = {
             if = {
                 limit = { ROOT = { original_tag = FROM } }      # same tags: civil war.
                 
+                FROM = { 
+                    add_popularity = { ideology = FROM popularity = 0.15 }
+                    add_popularity = { ideology = ROOT popularity = -0.4 } 
+                }
+
                 every_country = {
                     limit = { original_tag = ROOT has_civil_war = yes }
                     setup_civil_war = yes
@@ -16,6 +21,9 @@ on_actions = {
         effect = {
             set_rule = { can_join_factions = yes }              # can join factions again.
             if = { limit = { not = { has_country_flag = after_civil_war } } set_country_flag = after_civil_war }
+
+            # event
+            news_event = { id = unrest.15 hours = 6 }
         }
     }
 }

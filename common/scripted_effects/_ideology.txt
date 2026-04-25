@@ -1,0 +1,46 @@
+opposition_popularity_effect = {        # requires temp_var_add_popularity
+    if = {
+        limit = { check_variable = { highest_party_ideology@exclude_ruling_party = token:communism } }
+        add_popularity = { ideology = communism popularity = temp_var_add_popularity }
+    }
+
+    if = {
+        limit = { check_variable = { highest_party_ideology@exclude_ruling_party = token:democratic } }
+        add_popularity = { ideology = democratic popularity = temp_var_add_popularity }
+    }
+
+    if = {
+        limit = { check_variable = { highest_party_ideology@exclude_ruling_party = token:monarchism } }
+        add_popularity = { ideology = monarchism popularity = temp_var_add_popularity }
+    }
+}
+
+opposition_coup = {
+    if = {
+        limit = { check_variable = { highest_party_ideology@exclude_ruling_party = token:communism } }
+        set_politics = { ruling_party = communism elections_allowed = no }
+    }
+    if = {
+        limit = { check_variable = { highest_party_ideology@exclude_ruling_party = token:democratic } }
+        set_politics = { ruling_party = democratic elections_allowed = yes }
+    }
+    if = {
+        limit = { check_variable = { highest_party_ideology@exclude_ruling_party = token:monarchism } }
+        set_politics = { ruling_party = monarchism elections_allowed = no }
+    }
+}
+
+opposition_civil_war = {
+    if = {
+        limit = { check_variable = { highest_party_ideology@exclude_ruling_party = token:communism } }
+        start_civil_war = { ideology = communism size = 0.5 }
+    }
+    if = {
+        limit = { check_variable = { highest_party_ideology@exclude_ruling_party = token:democratic } }
+        start_civil_war = { ideology = democratic size = 0.5 }
+    }
+    if = {
+        limit = { check_variable = { highest_party_ideology@exclude_ruling_party = token:monarchism } }
+        start_civil_war = { ideology = monarchism size = 0.5 }
+    }
+}

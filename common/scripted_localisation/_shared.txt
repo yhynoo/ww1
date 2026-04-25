@@ -1,0 +1,15 @@
+defined_text = {
+    name = opposition_party
+    text = {
+        trigger = { check_variable = { highest_party_ideology@exclude_ruling_party = token:communism } }
+        localization_key = communism
+    }
+    text = {
+        trigger = { check_variable = { highest_party_ideology@exclude_ruling_party = token:democratic } }
+        localization_key = democratic
+    }
+    text = {
+        trigger = { check_variable = { highest_party_ideology@exclude_ruling_party = token:monarchism } }
+        localization_key = monarchism
+    }
+}

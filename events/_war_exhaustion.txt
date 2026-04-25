@@ -1,0 +1,95 @@
+add_namespace = war_exhaustion
+
+    news_event = {
+        id = war_exhaustion.1
+        title = "War Enthusiasm"
+        desc = war_exhaustion.1.d
+
+        trigger = {
+            has_war = yes
+            longest_war_length < 2
+
+            has_civil_war = no
+            has_war_support > 0.65
+            and = { not = { has_idea = idea_enthusiasm_timeout } not = { has_idea = idea_war_exhaustion } }
+        }
+
+        option = {
+            name = "Great."
+            add_timed_idea = { idea = idea_war_enthusiasm months = 6 }
+            hidden_effect = { add_timed_idea = { idea = idea_enthusiasm_timeout years = 5 } }
+        }
+    }
+    news_event = {
+        id = war_exhaustion.2
+        title = "War Exhaustion"
+        desc = war_exhaustion.2.d
+
+        trigger = {
+            has_war = yes
+            longest_war_length > 24
+
+            has_war_support < 0.6
+            or = { has_idea = all_adults_serve has_idea = scraping_the_barrel has_idea = war_economy }
+            not = { has_idea = idea_war_exhaustion }
+        }
+
+        option = {
+            name = "We must keep going."
+            add_ideas = idea_war_exhaustion
+        }
+    }
+
+    country_event = {
+        id = war_exhaustion.3
+        title = "Wheat Shortages"
+        desc = war_exhaustion.3.d
+
+        trigger = {
+            has_war = yes
+            longest_war_length > 18
+
+            or = { has_idea = partial_economic_mobilisation has_idea = war_economy }
+            not = { has_idea = hunger_timeout }
+        }
+        immediate = { hidden_effect = { add_timed_idea = { idea = hunger_timeout days = 240 } } }
+
+        option = {
+            name = "Demobilize the economy."
+            add_ideas = civilian_economy
+
+            custom_effect_trigger = tt_demobilized_economy
+            hidden_effect = { add_timed_idea = idea_demobilized_economy }
+        }
+        option = {
+            name = "We must endure."
+            random = { chance = 50 news_event = { id = war_exhaustion.4 days = 28 } }
+        }
+    }
+    news_event = {
+        id = war_exhaustion.4
+        title = "Widespread Hunger"
+        desc = war_exhaustion.4.d
+
+        is_triggered_only = yes
+        trigger = { or = { has_idea = partial_economic_mobilisation has_idea = war_economy } }
+
+        option = {
+            name = "Horrible."
+            add_timed_idea = { idea = idea_widespread_hunger days = 120 }
+            hidden_effect = { chance = 50 news_event = { id = war_exhaustion.5 days = 14 } }
+        }
+    }
+    news_event = {
+        id = war_exhaustion.5
+        title = "Army Trains Looted"
+        desc = war_exhaustion.5.d
+
+        is_triggered_only = yes
+        trigger = { or = { has_idea = partial_economic_mobilisation has_idea = war_economy } }
+
+        option = {
+            name = "These are difficult times."
+            add_stability = -0.025
+        }
+    }

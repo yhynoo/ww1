@@ -1,0 +1,124 @@
+add_namespace = diplomacy
+
+# demands
+    country_event = {
+        id = diplomacy.1
+        title = "[FROM.GetName] Demands [demand_target.GetName]"
+        desc = diplomacy.1.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Let them have it."
+            FROM = { transfer_state = event_target:demand_target }
+
+            # effect news
+            news_event = { id = diplomacy.2 hours = 6 }
+        }
+        option = {
+            name = "Outrageous!"
+            FROM = { create_wargoal = { target = ROOT type = take_claimed_state } }
+            add_war_support = 0.05
+        }
+    }
+
+    news_event = {
+        id = diplomacy.2
+        title = "[FROM.GetName] Agrees!"
+        desc = diplomacy.2.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Wonderful."
+            add_political_power = 50
+        }
+    }
+
+# aid
+    country_event = {
+        id = diplomacy.3
+        title = "[FROM.GetName] Asks for Aid"
+        desc = diplomacy.3.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Sounds good."
+            add_political_power = -25
+
+            # effect news
+            FROM = { news_event = { id = diplomacy.4 hours = 6 } }
+        }
+        option = {
+            name = "We shall not get involved."
+            add_war_support = -0.025
+        }
+    }
+
+    news_event = {
+        id = diplomacy.4
+        title = "Aid from [FROM.GetName] Arrives"
+        desc = diplomacy.4.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Great."
+            add_equipment_to_stockpile = { type = infantry_equipment    amount = 600    producer = ROOT }
+        }
+    }
+
+# independence
+    country_event = {
+        id = diplomacy.5
+        title = "[FROM.GetName] Demands Independence!"
+        desc = diplomacy.5.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We must agree."
+            set_autonomy = { target = FROM  autonomous_state = autonomy_free }
+            add_war_support = -0.05
+        }
+        option = {
+            name = "This means war!"
+            hidden_effect = { set_autonomy = { target = FROM  autonomous_state = autonomy_free } }
+            declare_war_on = { target = FROM type = puppet_wargoal_focus }
+        }
+    }
+
+# territory
+    country_event = {
+        id = diplomacy.6
+        title = "[FROM.GetName] Offers Territorial Adjustments"
+        desc = diplomacy.6.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "This is a welcome initiative."
+
+            every_state = {
+                limit = { 
+                    and = { is_controlled_by = FROM not = { is_claimed_by = FROM } }
+                    is_core_of = ROOT
+                }
+                transfer_state_to = ROOT
+            }
+            every_state = {
+                limit = {
+                    and = { is_controlled_by = ROOT not = { is_claimed_by = ROOT } }
+                    is_core_of = FROM
+                }
+                transfer_state_to = FROM
+            }
+
+            # effect news
+            FROM = { news_event = { id = shared.22 hours = 6 } }
+        }
+        option = {
+            name = "We can’t hold these areas now."
+        }
+    }

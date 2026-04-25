@@ -30,7 +30,7 @@
         cost = 10
 
         completion_reward = {
-            news_event = { id = shared.1 hours = 6 }
+            news_event = { id = other.5 hours = 6 }
             if = {
                 limit = { is_subject = no }
                 custom_effect_tooltip = tt_extend
@@ -105,7 +105,7 @@
                 save_event_target_as = demand_target
 
                 hidden_effect = { add_claim_by = ROOT }
-                owner = { country_event = { id = shared.2 hours = 6 } }
+                owner = { country_event = { id = diplomacy.1 hours = 6 } }
             }
         }
     }
@@ -147,7 +147,6 @@
 
         completion_reward = {
             add_ideas = idea_trade_laws
-            hidden_effect = { random = { chance = 50 country_event = { id = shared.4 hours = 6 } } }
         }
     }
 
@@ -169,7 +168,7 @@
 
         completion_reward = {
             add_popularity = { ideology = ROOT popularity = -0.05 }
-            random = { chance = 50 news_event = { id = shared.5 hours = 6 } }
+            hidden_effect = { random = { chance = 50 news_event = { id = unrest.9 hours = 6 } } }
         }
     }
 
@@ -351,7 +350,7 @@
                     is_major = yes has_opinion = { target = ROOT    value > 0 }
                 }
             }
-            country_event = { id = shared.9 hours = 6 }
+            country_event = { id = diplomacy.3 hours = 6 }
         }
     }
 
@@ -374,7 +373,7 @@
             add_war_support = 0.1
             every_country = {
                 limit = { has_subject = ROOT }
-                country_event = { id = shared.11 hours = 6 }
+                country_event = { id = diplomacy.5 hours = 6 }
             }
         }
     }

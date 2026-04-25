@@ -1,0 +1,86 @@
+add_namespace = other
+
+# uprising
+    news_event = {
+        id = other.1      # delayer event.
+        hidden = yes
+
+        trigger = {
+            or = {
+                has_stability < 0.2
+                has_civil_war = yes
+                and = { has_war = yes surrender_progress > 0.25 stability < 0.4 }
+            }
+        }
+
+        immediate = { organize_uprising = yes }
+    }
+
+    country_event = {
+        id = other.2
+        title = "Uprising in [uprising_country.GetNameDef]!"
+        desc = other.2.d
+
+        is_triggered_only = yes
+        trigger = { is_ai = no }
+
+        option = {
+            name = "To arms!"
+            add_war_support = 0.05
+        }
+        option = {
+            name = "Freedom to [uprising_country.GetNameDef]!"
+            event_target:uprising_country = { change_tag_from = ROOT }
+        }
+    }
+
+    news_event = {
+        id = other.3
+        hidden = yes
+
+        is_triggered_only = yes
+
+        immediate = {
+            clr_country_flag = during_uprising
+            mark_focus_tree_layout_dirty = yes
+        }
+    }
+
+# army
+    news_event = {
+        id = other.4
+        hidden = yes
+
+        is_triggered_only = yes
+
+        option = {
+            clr_country_flag = early_military
+            mark_focus_tree_layout_dirty = yes
+        }
+    }
+
+    news_event = {
+        id = other.5
+        title = "Army Marches in the Capital"
+        desc = other.5.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "What a sight."
+            add_war_support = 0.025
+        }
+    }
+
+# industrialization
+    news_event = {
+        id = other.6
+        hidden = yes
+
+        is_triggered_only = yes
+
+        option = {
+            clr_country_flag = pre_industrial_state
+            mark_focus_tree_layout_dirty = yes
+        }
+    }
