@@ -65,6 +65,7 @@ add_namespace = unrest
 
         trigger = {
             has_civil_war = no
+            not = { has_country_flag = during_uprising }
             or = { 
                 check_variable = { highest_party_ideology@exclude_ruling_party = token:communism }
                 check_variable = { highest_party_ideology@exclude_ruling_party = token:monarchism }
@@ -96,6 +97,8 @@ add_namespace = unrest
 
         trigger = {
             has_civil_war = no
+            not = { has_country_flag = during_uprising }
+            
             check_variable = { highest_party_ideology@exclude_ruling_party = token:democratic }
             check_variable = { highest_party_popularity@exclude_ruling_party > 0.5 }
         }

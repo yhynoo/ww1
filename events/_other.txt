@@ -6,6 +6,7 @@ add_namespace = other
         hidden = yes
 
         trigger = {
+            not = { has_country_flag = during_uprising }
             or = {
                 has_stability < 0.2
                 has_civil_war = yes

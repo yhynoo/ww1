@@ -103,6 +103,7 @@ _war_office = {
         cost = 100
 
         available = { 
+            is_subject = no
             or = {
                 surrender_progress > 0.25    
                 custom_trigger_tooltip = {
@@ -119,14 +120,15 @@ _war_office = {
                 not = { original_tag = ROOT }       # not our civil war enemies.
                 or = { 
                     is_faction_leader = yes 
-                    not = { any_country = { has_war_together_with = FROM } }
+                    is_in_faction = no
                 }
+                is_subject = no
             }
         }
 
         days_remove = 14
         remove_effect = { 
-            FROM = { country_event = { id = _armistice.2 hours = 6 random_hours = 6 } } 
+            FROM = { country_event = { id = diplomacy.8 hours = 6 random_hours = 6 } } 
         }
     }
 }

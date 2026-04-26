@@ -1,0 +1,57 @@
+division_template = {
+	name = "Brigada de Infantaria"
+	division_names_group = POR_INF_01
+	regiments = {
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }
+        infantry = { x = 2 y = 0 }  infantry = { x = 2 y = 1 }
+	}
+}
+
+# units
+units = {
+
+	# mainland
+    division = { location = 11805		division_template = "Brigada de Infantaria"		start_experience_factor = 0.2	}
+	division = { location = 11805		division_template = "Brigada de Infantaria"		start_experience_factor = 0.2	}
+
+	division = { location = 9817		division_template = "Brigada de Infantaria"		start_experience_factor = 0.2	}
+	division = { location = 6880		division_template = "Brigada de Infantaria"		start_experience_factor = 0.2	}
+
+	# Africa
+	division = { location = 8248		division_template = "Brigada de Infantaria"		start_experience_factor = 0.2	}
+	division = { location = 8245		division_template = "Brigada de Infantaria"		start_experience_factor = 0.2	}
+
+	# India
+	division = { location = 1273		division_template = "Brigada de Infantaria"		start_experience_factor = 0.2	}
+
+	# NAVY
+	fleet = {
+        name = "Armada Portuguesa"	
+        naval_base = 11805
+
+        task_force = {
+            name = "Armada Portuguesa"      
+			location = 11805
+
+            # dreadnoughts
+            ship = { name = "Vasco da Gama" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = POR } } }
+			ship = { name = "São Gabriel" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = POR } } }
+
+            # destroyers
+            ship = { name = "Alfonso d'Albuquerque" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = POR } } }
+            ship = { name = "Guadina" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = POR } } }
+        }
+
+		task_force = {
+            name = "Destacamento Angolano"      
+			location = 5158
+
+            # cruiser
+			ship = { name = "Adamastor" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = POR } } }
+
+            # destroyers
+            ship = { name = "Diu" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = POR } } }
+            ship = { name = "Tejo" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = POR } } }
+        }
+	}
+}

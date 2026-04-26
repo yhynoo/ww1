@@ -122,3 +122,71 @@ add_namespace = diplomacy
             name = "We can’t hold these areas now."
         }
     }
+
+# armistice
+    country_event = {
+        id = diplomacy.7
+        title = "Time for an Armistice?"
+        desc = diplomacy.7.d
+
+        trigger = {
+            has_war = yes
+            has_civil_war = no
+
+            is_subject = no
+            has_war_support < 0.25
+            longest_war_length > 6
+
+            any_enemy_country = {
+                or = { is_faction_leader = yes is_in_faction = no }     # any important enemy is undamaged
+                surrender_progress < 0.05
+            }
+
+            not = { has_idea = idea_armistice_timeout }
+        }
+        immediate = { hidden_effect = { add_timed_idea = { idea = idea_armistice_timeout days = 180 } } }
+
+        option = {
+            name = "It is time."
+            every_enemy_country = {
+                limit = { or = { is_faction_leader = yes is_in_faction = no is_subject = no } }
+                country_event = { id = diplomacy.8 hours = 12 }
+            }
+        }
+        option = {
+            name = "We shall fight until victory."
+            add_political_power = -100
+        }
+    }
+
+    country_event = {
+        id = diplomacy.8
+        title = "[FROM.GetName] Offers Armistice"
+        desc = diplomacy.8.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Great."
+            start_peace_conference = { tag = FROM score_factor = 0.1 }
+
+            # effect news
+            news_event = { id = diplomacy.9 days = 1 }
+        }
+        option = {
+            name = "The war shall continue."
+            add_political_power = -50
+        }
+    }
+
+    news_event = {
+        id = diplomacy.9
+        title = "[FROM.GetName] Signs the Armistice"
+        desc = diplomacy.9.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Great."
+        }
+    }
