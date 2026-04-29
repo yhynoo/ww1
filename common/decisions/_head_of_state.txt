@@ -39,7 +39,18 @@ _head_of_state = {
         days_remove = 90
         cost = 50
 
-        ai_will_do = { modifier = { has_stability < 0.6  add = 6 } }
+        ai_will_do = {
+            modifier = {
+                or = {
+                    has_stability < 0.2
+                    and = { 
+                        has_government = monarchism monarchism < 0.6
+                        not = { or = { has_idea = idea_communists_organize has_idea = idea_democrats_organize } }
+                    }
+                }
+                add = 10
+            }
+        }
         modifier = { stability_weekly = 0.005 }
 
         remove_effect = {
@@ -53,7 +64,18 @@ _head_of_state = {
         days_remove = 90
         cost = 50
 
-        ai_will_do = { modifier = { has_stability < 0.6 add = 6 } }
+        ai_will_do = {
+            modifier = {
+                or = {
+                    has_stability < 0.2
+                    and = { 
+                        has_government = democratic democratic < 0.6
+                        not = { or = { has_idea = idea_communists_organize has_idea = idea_monarchists_organize } }
+                    }
+                }
+                add = 10
+            }
+        }
         modifier = { stability_weekly = 0.005 }
 
         remove_effect = {
@@ -67,7 +89,18 @@ _head_of_state = {
         days_remove = 90
         cost = 50
 
-        ai_will_do = { modifier = { has_stability < 0.6  add = 9 } }
+        ai_will_do = {
+            modifier = {
+                or = {
+                    has_stability < 0.2
+                    and = { 
+                        has_government = communism communism < 0.6
+                        not = { or = { has_idea = idea_democrats_organize has_idea = idea_monarchists_organize } }
+                    }
+                }
+                add = 10
+            }
+        }
         modifier = { stability_weekly = 0.005 }
 
         remove_effect = {

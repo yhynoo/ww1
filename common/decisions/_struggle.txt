@@ -6,6 +6,23 @@ _internal_struggle = {
         days_remove = 90
         cost = 50
 
+        ai_will_do = {
+            modifier = {
+                and = {
+                    and = { has_stability > 0.5 communism > 0.2 }
+                    not = { or = { has_government = communism has_idea = idea_communists_organize } }
+                }
+                add = 6
+            }
+            modifier = {
+                and = {
+                    has_government = communism
+                    or = { has_idea = idea_democrats_organize has_idea = idea_monarchists_organize }
+                }
+                add = 6
+            }
+        }
+
         modifier = {
             communism_drift = -0.05
             stability_weekly = -0.005
@@ -18,6 +35,23 @@ _internal_struggle = {
         days_remove = 90
         cost = 50
 
+        ai_will_do = {
+            modifier = {
+                and = {
+                    and = { has_stability > 0.5 democratic > 0.2 }
+                    not = { or = { has_government = democratic has_idea = idea_democrats_organize } }
+                }
+                add = 6
+            }
+            modifier = {
+                and = {
+                    has_government = democratic
+                    or = { has_idea = idea_communists_organize has_idea = idea_monarchists_organize }
+                }
+                add = 6
+            }
+        }
+
         modifier = {
             democratic_drift = -0.05
             stability_weekly = -0.005
@@ -29,6 +63,23 @@ _internal_struggle = {
         icon = generic_political_discourse
         days_remove = 90
         cost = 50
+
+        ai_will_do = {
+            modifier = {
+                and = {
+                    and = { has_stability > 0.5 monarchism > 0.2 }
+                    not = { or = { has_government = monarchism has_idea = idea_monarchists_organize } }
+                }
+                add = 6
+            }
+            modifier = {
+                and = {
+                    has_government = monarchism
+                    or = { has_idea = idea_communists_organize has_idea = idea_democrats_organize }
+                }
+                add = 6
+            }
+        }
 
         modifier = {
             monarchism_drift = -0.05

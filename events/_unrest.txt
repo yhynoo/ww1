@@ -8,19 +8,23 @@ add_namespace = unrest
 
         trigger = {
             has_civil_war = no
-            not = { has_idea = ideology_timeout }
-            and = { check_variable = { highest_party_popularity@exclude_ruling_party > 0.25 }    has_stability < 0.6 }
+            not = { has_idea = idea_ideology_timeout }
+            and = { 
+                date > 1912.2.1
+                check_variable = { highest_party_popularity@exclude_ruling_party > 0.2 }    has_stability < 0.8 
+            }
         }
+        mean_time_to_happen = { months = 2 }
         immediate = { 
             hidden_effect = { 
                 country_event = { id = unrest.2 days = 4 } 
-                add_timed_idea = { idea = ideology_timeout years = 4 }
+                add_timed_idea = { idea = idea_ideology_timeout years = 2 }
             } 
         }
 
         option = {
             name = "Worrying."
-            add_stability = -0.025
+            add_stability = -0.02
         }
     }
 
@@ -32,16 +36,22 @@ add_namespace = unrest
         is_triggered_only = yes
 
         option = {
-            name = "Stop them."
-            add_political_power = -50
+            name = "Arrest them."
+
+            set_temp_variable = { temp_var_add_popularity = -0.05 }
+            opposition_popularity_effect = yes
 
             random = { chance = 40 news_event = { id = unrest.3 days = 2 } }
+            
+            # main option
+            ai_chance = { factor = 2.5 }
         }
         option = {
-            name = "We shall not interfere."
+            name = "Let them act freely."
+            opposition_idea = yes      
 
-            set_temp_variable = { temp_var_add_popularity = 0.05 }
-            opposition_popularity_effect = yes
+            # alternative option
+            ai_chance = { modifier = { is_subject = yes factor = 0 } }      
         }
     }
 
@@ -64,29 +74,48 @@ add_namespace = unrest
         desc = unrest.4.d
 
         trigger = {
-            has_civil_war = no
-            not = { has_country_flag = during_uprising }
-            or = { 
-                check_variable = { highest_party_ideology@exclude_ruling_party = token:communism }
-                check_variable = { highest_party_ideology@exclude_ruling_party = token:monarchism }
-            }
-            or = {
-                check_variable = { highest_party_popularity@exclude_ruling_party > 0.6 }
-                and = { 
-                    check_variable = { party_popularity@ruling_party < 0.5 }   
-                    has_stability < 0.4 
+            and = { has_civil_war = no  not = { has_country_flag = during_uprising } }
+            not = { has_idea = idea_coup_timeout }
+
+            and = {
+                or = { 
+                    check_variable = { highest_party_ideology@exclude_ruling_party = token:communism }
+                    check_variable = { highest_party_ideology@exclude_ruling_party = token:monarchism }
+                }
+                or = {
+                    check_variable = { highest_party_popularity@exclude_ruling_party > 0.55 }
+                    and = { 
+                        check_variable = { party_popularity@ruling_party < 0.45 }   
+                        has_stability < 0.4 
+                    }
                 }
             }
         }
-        immediate = { hidden_effect = { add_timed_idea = { idea = coup_timeout months = 6 } } }
+        immediate = { hidden_effect = { add_timed_idea = { idea = idea_coup_timeout months = 6 } } }
 
         option = {
             name = "We must accept their leadership."
             opposition_coup = yes
+
+            # don't act against self
+            ai_chance = { 
+                modifier = { 
+                    not = { or = { has_idea = idea_communists_organize has_idea = idea_monarchists_organize } } 
+                    factor = 0 
+                } 
+            }
         }
         option = {
             name = "Or what?"
             random = { chance = 80 opposition_civil_war = yes }
+
+            # don't act against self
+            ai_chance = { 
+                modifier = {
+                    or = { has_idea = idea_communists_organize has_idea = idea_monarchists_organize } 
+                    factor = 0 
+                } 
+            }
         }
     }
 
@@ -98,19 +127,26 @@ add_namespace = unrest
         trigger = {
             has_civil_war = no
             not = { has_country_flag = during_uprising }
+            not = { has_idea = idea_coup_timeout }
             
             check_variable = { highest_party_ideology@exclude_ruling_party = token:democratic }
             check_variable = { highest_party_popularity@exclude_ruling_party > 0.5 }
         }
-        immediate = { hidden_effect = { add_timed_idea = { idea = coup_timeout months = 6 } } }
+        immediate = { hidden_effect = { add_timed_idea = { idea = idea_coup_timeout months = 6 } } }
 
         option = {
             name = "We must accept this idea."
             opposition_coup = yes
+
+            # don't act against self
+            ai_chance = { modifier = { not = { has_idea = idea_democrats_organize } factor = 0 } }
         }
         option = {
             name = "Outrageous."
             random = { chance = 80 opposition_civil_war = yes }
+
+            # don't act against self
+            ai_chance = { modifier = { has_idea = idea_democrats_organize factor = 0 } }
         }
     }
 
@@ -121,7 +157,7 @@ add_namespace = unrest
 
         trigger = {
             has_stability < 0.4
-            not = { has_idea = { idea = idea_unrest_timeout } }
+            not = { has_idea = idea_unrest_timeout }
         }
         immediate = {
             add_timed_idea = { idea = idea_unrest_timeout days = 60 }

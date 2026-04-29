@@ -1,0 +1,140 @@
+add_namespace = france
+
+# tree
+    country_event = {
+        id = france.1
+        title = "Action Française Demands Caillaux' Head"
+        desc = france.1.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Dismiss him."
+
+            add_stability = 0.025
+            promote_character = FRA_aristide_briand
+
+            # effect news
+            hidden_effect = { news_event = { id = france.2 hours = 6 } }
+        }
+        option = {
+            name = "This is absurd."
+            add_popularity = { ideology = democratic popularity = 0.025 }
+
+            # block non-historical
+            ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+        }
+    }
+
+    news_event = {
+        id = france.2
+        title = "Caillaux Dismissed!"
+        desc = france.2.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Interesting."
+        }
+    }
+
+    news_event = {
+        id = france.3
+        title = "Agadir Trials End"
+        desc = france.3.d
+
+        is_triggered_only = yes
+        immediate = { hidden_effect = { country_event = { id = france.4 days = 7 } } }
+
+        option = {
+            name = "Great."
+            add_political_power = 25
+        }
+    }
+
+    country_event = {
+        id = france.4
+        title = "Doubts About Trial Outcomes"
+        desc = france.4.d
+
+        is_triggered_only = yes
+        trigger = { monarchism > 0.1 }
+
+        option = {
+            name = "The citizens in Algeria must understand."
+            add_popularity = { ideology = democratic popularity = 0.05 }
+
+            # effect news
+            hidden_effect = { random = { chance = 50 news_event = { id = france.5 days = 7 } } }
+        }
+        option = {
+            name = "We will avenge them eventually."
+            add_war_support = 0.025
+        }
+    }
+
+    news_event = {
+        id = france.5
+        title = "Unrest in Algiers"
+        desc = france.5.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Awful."
+            add_popularity = { ideology = monarchism popularity = 0.04 }
+        }
+    }
+
+    country_event = {
+        id = france.6
+        title = "The Question of Morocco"
+        desc = france.6.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We must follow through."
+
+            add_popularity = { ideology = democratic popularity = 0.05 }
+            add_stability = 0.05
+        }
+        option = {
+            name = "This is a threat and we must address it."
+            add_war_support = 0.05
+
+            460 = { 
+                add_building_construction = { type = bunker level = 2 province = 7132 instant_build = yes } 
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes } 
+            }
+            set_technology = { hidden_camelry = 1 }
+        }
+    }
+
+    news_event = {
+        id = france.7
+        title = "Entente Established!"
+        desc = france.7.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Interesting."
+        }
+    }
+
+    news_event = {
+        id = france.8
+        title = "[FRA.GetName] Withdraws from Casablanca Treaties"
+        desc = france.8.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Worrying."
+        }
+    }

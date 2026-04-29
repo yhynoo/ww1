@@ -26,4 +26,13 @@ on_actions = {
             news_event = { id = unrest.15 hours = 6 }
         }
     }
+
+    on_peace = {
+        effect = {
+            if = {
+                limit = { has_country_flag = during_uprising exists = yes }
+                news_event = other.3
+            }
+        }
+    }
 }

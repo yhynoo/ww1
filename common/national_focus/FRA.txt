@@ -1,0 +1,280 @@
+focus_tree = {
+    id = "FRA_focus"
+    country = {
+        factor = 0
+        modifier = { add = 20   original_tag = FRA }
+    }
+
+    # shared
+    shared_focus = XXX_general_staff
+    shared_focus = XXX_infrastructure
+
+    # special
+    shared_focus = XXX_civil_war
+
+    continuous_focus_position = { x = 88 y = 770 }
+
+# state
+
+    focus = {
+        id = FRA_government
+        icon = GFX_focus_FRA_government
+
+        available = { civil_war_government_lock = yes }
+
+        x = 0 y = 0
+        cost = 10
+
+        completion_reward = {
+            news_event = { id = france.3 hours = 6 }
+            remove_ideas = idea_agadir_trials
+        }
+    }
+
+    focus = {
+        id = FRA_morocco
+        icon = GFX_focus_FRA_morocco
+        prerequisite = { focus = FRA_government }
+
+        available = { civil_war_government_lock = yes }
+
+        relative_position_id = FRA_government
+        x = -4 y = 1
+        cost = 10
+
+        completion_reward = {
+            country_event = { id = france.6 hours = 6 }
+        }
+    }
+
+    focus = {
+        id = FRA_east
+        icon = GFX_focus_FRA_east
+        prerequisite = { focus = FRA_morocco }
+
+        available = { civil_war_government_lock = yes }
+
+        relative_position_id = FRA_morocco
+        x = -5 y = 1
+        cost = 10
+
+        completion_reward = {
+            every_state = {
+                limit = { not = { is_claimed_by = ROOT } or = { state = 553 state = 554 state = 411 state = 350 state = 414 } }
+                add_claim_by = ROOT
+            }
+        }
+    }
+
+    focus = {
+        id = FRA_entente
+        icon = GFX_focus_FRA_entente
+        prerequisite = { focus = FRA_morocco }
+
+        available = { 
+            not = { has_government = communism }
+            civil_war_government_lock = yes 
+        }
+
+        relative_position_id = FRA_morocco
+        x = -2 y = 1
+        cost = 10
+
+        completion_reward = {
+            news_event = { id = france.7 hours = 6 }
+            create_faction = "Entente"
+        }
+    }
+
+    focus = {
+        id = FRA_alsace
+        icon = GFX_focus_FRA_alsace
+        prerequisite = { focus = FRA_entente }
+
+        available = { civil_war_government_lock = yes }
+
+        relative_position_id = FRA_entente
+        x = 0 y = 1
+        cost = 10
+
+        available = { 
+            28 = { is_owned_by = GER }
+        }
+
+        completion_reward = {
+            add_war_support = 0.05
+            create_wargoal = { target = GER    type = take_claimed_state    generator = { 28 } }
+        }
+    }
+
+    focus = {
+        id = FRA_atlas
+        icon = GFX_focus_FRA_atlas
+        prerequisite = { focus = FRA_morocco }
+
+        available = { civil_war_government_lock = yes }
+
+        relative_position_id = FRA_morocco
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            news_event = { id = france.8 hours = 6 }
+            create_wargoal = { target = MOR type = puppet_wargoal_focus }
+        }
+    }
+
+    focus = {
+        id = FRA_alt_expansion
+        icon = GFX_focus_FRA_alt_expansion
+
+        prerequisite = { focus = FRA_atlas }
+        prerequisite = { focus = FRA_militarisation }
+
+        available = { 
+            and = { has_government = monarchism can_declare_war_on = SPA }
+            civil_war_government_lock = yes 
+        }
+
+        relative_position_id = FRA_atlas
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_war_support = 0.05
+            SPA = { country_event = { id = diplomacy.10 hours = 6 } }
+        }
+    }
+
+    focus = {
+        id = FRA_action
+        icon = GFX_focus_FRA_action
+        prerequisite = { focus = FRA_government }
+        mutually_exclusive = { focus = FRA_union }
+
+        available = { civil_war_government_lock = yes }
+
+        allow_branch = { not = { has_country_flag = starts_as_dominion } }
+
+        relative_position_id = FRA_government
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 50
+            add_popularity = { ideology = monarchism popularity = 0.05 }
+        }
+    }
+
+    focus = {
+        id = FRA_militarisation
+        icon = GFX_focus_FRA_militarisation
+        prerequisite = { focus = FRA_action }
+
+        available = { civil_war_government_lock = yes }
+
+        relative_position_id = FRA_action
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_ideas = idea_militarisation
+        }
+    }
+
+    focus = {
+        id = FRA_union
+        icon = GFX_focus_FRA_union
+        prerequisite = { focus = FRA_government }
+        mutually_exclusive = { focus = FRA_action }
+
+        available = { civil_war_government_lock = yes }
+
+        allow_branch = { not = { has_country_flag = starts_as_dominion } }
+
+        relative_position_id = FRA_government
+        x = 4 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_popularity = { ideology = democratic popularity = 0.05 }
+            hidden_effect = { random = { chance = 50 news_event = { id = unrest.9 hours = 6 } } }
+        }
+    }
+
+    focus = {
+        id = FRA_agrarian
+        icon = GFX_focus_generic_agrarian
+        prerequisite = { focus = FRA_union }
+
+        available = { civil_war_government_lock = yes }
+
+        relative_position_id = FRA_union
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_stability = 0.05
+            add_timed_idea = { idea = idea_agrarians months = 24 }
+        }
+    }
+
+    focus = {
+        id = FRA_deal_with_unions
+        icon = GFX_focus_FRA_deal_with_unions
+        prerequisite = { focus = FRA_union }
+
+        available = { civil_war_government_lock = yes }
+
+        relative_position_id = FRA_union
+        x = 2 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_popularity = { ideology = communism popularity = 0.05 }
+            add_timed_idea = { idea = idea_deal_with_unions months = 12 }
+        }
+    }
+
+    focus = {
+        id = FRA_unity
+        icon = GFX_focus_generic_unity
+        prerequisite = { focus = FRA_militarisation focus = FRA_agrarian }
+
+        available = { civil_war_government_lock = yes }
+
+        relative_position_id = FRA_militarisation
+        x = 2 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_ideas = idea_strength_in_unity
+        }
+    }
+
+    focus = {
+        id = FRA_administration
+        icon = GFX_focus_FRA_administration
+        prerequisite = { focus = FRA_unity }
+
+        available = { civil_war_government_lock = yes }
+
+        relative_position_id = FRA_unity
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_stability = 0.05
+            if = {
+                limit = { any_controlled_state = { is_claimed_by = ROOT not = { is_core_of = ROOT } } }
+                every_controlled_state = {
+                    limit = { is_claimed_by = ROOT not = { is_core_of = ROOT } }
+                    add_core_of = ROOT
+                }
+            }
+            else = {
+                custom_effect_tooltip = tt_administration
+            }
+        }
+    }
+}

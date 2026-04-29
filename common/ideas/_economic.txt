@@ -165,13 +165,6 @@ ideas = {
 			cost = 150
 			removal_cost = -1
 
-			available = {
-				if = {
-					limit = { tag = MAN }
-					not = { has_idea = idea_unequal_treaties }
-				}
-			}
-
 			modifier = {
 				min_export = 0.5
 				industrial_capacity_factory = 0.1
@@ -200,13 +193,6 @@ ideas = {
 		limited_exports = {
 			cost = 150
 			removal_cost = -1
-
-			available = {
-				if = {
-					limit = { tag = MAN }
-					not = { has_idea = idea_unequal_treaties }
-				}
-			}
 
 			modifier = {
 				min_export = 0.25
@@ -254,14 +240,7 @@ ideas = {
 			available = {
 				OR = {
 					has_war = yes
-					OR = {
-						has_government = authoritarianism
-						has_government = communism
-					}
-				}
-				if = {
-					limit = { tag = MAN }
-					not = { has_idea = idea_unequal_treaties }
+					has_government = communism
 				}
 			}
 

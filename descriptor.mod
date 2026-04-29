@@ -2,7 +2,7 @@ version="0.2"
 tags={
 	"Alternative History"
 }
-name="echoes_dev"
+name="agadir_dev"
 replace_path="common/ai_equipment"
 replace_path="common/ai_focuses"
 replace_path="common/ai_strategy"

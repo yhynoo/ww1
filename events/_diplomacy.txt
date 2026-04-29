@@ -190,3 +190,39 @@ add_namespace = diplomacy
             name = "Great."
         }
     }
+
+# alignment
+    country_event = {
+        id = diplomacy.10
+        title = "[FROM.GetName] Demands Alignment!"
+        desc = diplomacy.10.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We must agree."
+            FROM = { 
+                set_autonomy = { target = ROOT  autonomous_state = autonomy_dominion } 
+                hidden_effect = { news_event = { id = diplomacy.11 hours = 6 } }
+            }
+        }
+        option = {
+            name = "What an insult!"
+
+            add_war_support = 0.1
+            FROM = { create_wargoal = { target = ROOT type = puppet_wargoal_focus } }
+        }
+    }
+
+    news_event = {
+        id = diplomacy.11
+        title = "[FROM.GetName] Aligns with [ROOT.GetName]"
+        desc = diplomacy.11.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Interesting."
+        }
+    }

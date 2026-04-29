@@ -46,13 +46,15 @@ add_namespace = war_exhaustion
         desc = war_exhaustion.3.d
 
         trigger = {
-            has_war = yes
-            longest_war_length > 18
+            and = {
+                longest_war_length > 18
+                or = { has_idea = partial_economic_mobilisation has_idea = war_economy }
 
-            or = { has_idea = partial_economic_mobilisation has_idea = war_economy }
-            not = { has_idea = hunger_timeout }
+                not = { has_idea = idea_widespread_hunger }
+                not = { has_idea = idea_hunger_timeout }
+            }
         }
-        immediate = { hidden_effect = { add_timed_idea = { idea = hunger_timeout days = 240 } } }
+        immediate = { hidden_effect = { add_timed_idea = { idea = idea_hunger_timeout days = 240 } } }
 
         option = {
             name = "Demobilize the economy."

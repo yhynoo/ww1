@@ -6,6 +6,32 @@ ideas = {
             }
         }
 
+        # ideology
+        idea_communists_organize = {
+            modifier = {
+                communism_drift = 0.05
+            }
+            cancel = {
+                has_government = communism
+            }
+        }
+        idea_democrats_organize = {
+            modifier = {
+                democratic_drift = 0.05
+            }
+            cancel = {
+                has_government = democratic
+            }
+        }
+        idea_monarchists_organize = {
+            modifier = {
+                monarchism_drift = 0.05
+            }
+            cancel = {
+                has_government = monarchism
+            }
+        }
+
         # war
         idea_war_enthusiasm = {
             modifier = {
@@ -14,7 +40,7 @@ ideas = {
                 training_time_factor = -0.1
             }
             cancel = {
-                nas_war = no
+                has_war = no
             }
         }
         idea_widespread_hunger = {
@@ -41,6 +67,7 @@ ideas = {
                 conscription_factor = 0.15
             }
             cancel = {
+                has_war = no
                 not = { has_country_flag = during_uprising }
             }
         }
@@ -50,6 +77,7 @@ ideas = {
                 consumer_goods_factor = -0.1
             }
             cancel = {
+                has_war = no
                 not = { has_country_flag = during_uprising }
             }
         }
@@ -59,6 +87,7 @@ ideas = {
                 training_time_factor = -0.25
             }
             cancel = {
+                has_war = no
                 not = { has_country_flag = during_uprising }
             }
         }

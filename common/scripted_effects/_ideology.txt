@@ -15,6 +15,21 @@ opposition_popularity_effect = {        # requires temp_var_add_popularity
     }
 }
 
+opposition_idea = {
+    if = {
+        limit = { check_variable = { highest_party_ideology@exclude_ruling_party = token:communism } }
+        add_timed_idea = { idea = idea_communists_organize months = 24 }
+    }
+    if = {
+        limit = { check_variable = { highest_party_ideology@exclude_ruling_party = token:democratic } }
+        add_timed_idea = { idea = idea_democrats_organize months = 24 }
+    }
+    if = {
+        limit = { check_variable = { highest_party_ideology@exclude_ruling_party = token:monarchism } }
+        add_timed_idea = { idea = idea_monarchists_organize months = 24 }
+    }
+}
+
 opposition_coup = {
     if = {
         limit = { check_variable = { highest_party_ideology@exclude_ruling_party = token:communism } }
