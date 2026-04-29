@@ -226,3 +226,21 @@ add_namespace = diplomacy
             name = "Interesting."
         }
     }
+
+# alliance
+    country_event = {
+        id = diplomacy.12
+        title = "[FROM.GetName] Offers Alliance"
+        desc = diplomacy.12.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Great."
+            FROM = { add_to_faction = ROOT }
+        }
+        option = {
+            name = "This is too dangerous."
+            add_war_support = -0.025
+        }
+    }

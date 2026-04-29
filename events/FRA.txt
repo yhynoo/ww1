@@ -1,9 +1,9 @@
 add_namespace = france
 
-# tree
+# Caillaux
     country_event = {
         id = france.1
-        title = "Action Française Demands Caillaux' Head"
+        title = "Action Française Demands Caillaux' Dismissal"
         desc = france.1.d
 
         is_triggered_only = yes
@@ -20,9 +20,6 @@ add_namespace = france
         option = {
             name = "This is absurd."
             add_popularity = { ideology = democratic popularity = 0.025 }
-
-            # block non-historical
-            ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
         }
     }
 
@@ -39,9 +36,10 @@ add_namespace = france
         }
     }
 
+# Agadir Trials
     news_event = {
         id = france.3
-        title = "Agadir Trials End"
+        title = "The End of Agadir Trials"
         desc = france.3.d
 
         is_triggered_only = yes
@@ -49,7 +47,7 @@ add_namespace = france
 
         option = {
             name = "Great."
-            add_political_power = 25
+            remove_ideas = idea_agadir_trials
         }
     }
 
@@ -88,31 +86,21 @@ add_namespace = france
         }
     }
 
-    country_event = {
+# Intervene in the Atlas
+    news_event = {
         id = france.6
-        title = "The Question of Morocco"
+        title = "[FRA.GetName] Withdraws from Sedan Treaties"
         desc = france.6.d
 
         is_triggered_only = yes
+        major = yes
 
         option = {
-            name = "We must follow through."
-
-            add_popularity = { ideology = democratic popularity = 0.05 }
-            add_stability = 0.05
-        }
-        option = {
-            name = "This is a threat and we must address it."
-            add_war_support = 0.05
-
-            460 = { 
-                add_building_construction = { type = bunker level = 2 province = 7132 instant_build = yes } 
-                add_building_construction = { type = infrastructure level = 1 instant_build = yes } 
-            }
-            set_technology = { hidden_camelry = 1 }
+            name = "Worrying."
         }
     }
 
+# Entente
     news_event = {
         id = france.7
         title = "Entente Established!"
@@ -126,9 +114,10 @@ add_namespace = france
         }
     }
 
+# Ultimatum to Germany
     news_event = {
         id = france.8
-        title = "[FRA.GetName] Withdraws from Casablanca Treaties"
+        title = "[FRA.GetAdjective] Ultimatum to Germany"
         desc = france.8.d
 
         is_triggered_only = yes
@@ -136,5 +125,18 @@ add_namespace = france
 
         option = {
             name = "Worrying."
+        }
+    }
+
+    news_event = {
+        id = france.9
+        title = "Europe at War!"
+        desc = france.9.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Horrible."
         }
     }

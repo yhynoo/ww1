@@ -15,19 +15,22 @@ focus_tree = {
     continuous_focus_position = { x = 88 y = 770 }
 
 # state
-
     focus = {
         id = FRA_government
         icon = GFX_focus_FRA_government
 
-        available = { civil_war_government_lock = yes }
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        ai_will_do = { factor = 2 }
 
         x = 0 y = 0
         cost = 10
 
         completion_reward = {
-            news_event = { id = france.3 hours = 6 }
-            remove_ideas = idea_agadir_trials
+            custom_effect_tooltip = tt_agadir_trials
+            hidden_effect = { news_event = { id = france.3 hours = 6 } }
         }
     }
 
@@ -35,109 +38,36 @@ focus_tree = {
         id = FRA_morocco
         icon = GFX_focus_FRA_morocco
         prerequisite = { focus = FRA_government }
+        mutually_exclusive = { focus = FRA_atlas }
 
-        available = { civil_war_government_lock = yes }
+        available = {
+            civil_war_government_lock = yes
+        }
 
         relative_position_id = FRA_government
         x = -4 y = 1
         cost = 10
 
         completion_reward = {
-            country_event = { id = france.6 hours = 6 }
+            add_political_power = 50
+            give_guarantee = MOR
         }
     }
 
     focus = {
-        id = FRA_east
-        icon = GFX_focus_FRA_east
+        id = FRA_spain
+        icon = GFX_focus_FRA_spain
         prerequisite = { focus = FRA_morocco }
 
-        available = { civil_war_government_lock = yes }
-
-        relative_position_id = FRA_morocco
-        x = -5 y = 1
-        cost = 10
-
-        completion_reward = {
-            every_state = {
-                limit = { not = { is_claimed_by = ROOT } or = { state = 553 state = 554 state = 411 state = 350 state = 414 } }
-                add_claim_by = ROOT
-            }
+        available = {
+            and = { has_government = monarchism }
+            civil_war_government_lock = yes
         }
-    }
 
-    focus = {
-        id = FRA_entente
-        icon = GFX_focus_FRA_entente
-        prerequisite = { focus = FRA_morocco }
-
-        available = { 
-            not = { has_government = communism }
-            civil_war_government_lock = yes 
-        }
+        ai_will_do = { modifier = { has_war = yes } factor = 0 }        # don't start new wars.
 
         relative_position_id = FRA_morocco
         x = -2 y = 1
-        cost = 10
-
-        completion_reward = {
-            news_event = { id = france.7 hours = 6 }
-            create_faction = "Entente"
-        }
-    }
-
-    focus = {
-        id = FRA_alsace
-        icon = GFX_focus_FRA_alsace
-        prerequisite = { focus = FRA_entente }
-
-        available = { civil_war_government_lock = yes }
-
-        relative_position_id = FRA_entente
-        x = 0 y = 1
-        cost = 10
-
-        available = { 
-            28 = { is_owned_by = GER }
-        }
-
-        completion_reward = {
-            add_war_support = 0.05
-            create_wargoal = { target = GER    type = take_claimed_state    generator = { 28 } }
-        }
-    }
-
-    focus = {
-        id = FRA_atlas
-        icon = GFX_focus_FRA_atlas
-        prerequisite = { focus = FRA_morocco }
-
-        available = { civil_war_government_lock = yes }
-
-        relative_position_id = FRA_morocco
-        x = 1 y = 1
-        cost = 10
-
-        completion_reward = {
-            news_event = { id = france.8 hours = 6 }
-            create_wargoal = { target = MOR type = puppet_wargoal_focus }
-        }
-    }
-
-    focus = {
-        id = FRA_alt_expansion
-        icon = GFX_focus_FRA_alt_expansion
-
-        prerequisite = { focus = FRA_atlas }
-        prerequisite = { focus = FRA_militarisation }
-
-        available = { 
-            and = { has_government = monarchism can_declare_war_on = SPA }
-            civil_war_government_lock = yes 
-        }
-
-        relative_position_id = FRA_atlas
-        x = 1 y = 1
         cost = 10
 
         completion_reward = {
@@ -147,133 +77,223 @@ focus_tree = {
     }
 
     focus = {
-        id = FRA_action
-        icon = GFX_focus_FRA_action
+        id = FRA_algeria
+        icon = GFX_focus_FRA_algeria
+        prerequisite = { focus = FRA_morocco }
+
+        available = {
+            and = {
+                459 = { is_owned_and_controlled_by = ROOT }
+                460 = { is_owned_and_controlled_by = ROOT }
+            }
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = FRA_morocco
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            459 = {
+                add_resource = { type = tungsten amount = 12 }
+                add_core_of = FRA
+            }
+            460 = {
+                add_resource = { type = steel amount = 6 }
+                add_core_of = FRA
+            }
+        }
+    }
+
+    focus = {
+        id = FRA_egypt
+        icon = GFX_focus_FRA_egypt
+        prerequisite = { focus = FRA_algeria }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = FRA_algeria
+        x = 0 y = 1
+        cost = 10
+
+        available = { has_war_support > 0.5 }
+
+        completion_reward = {
+            every_state = {
+                limit = { is_core_of = EGY }
+                add_claim_by = FRA
+            }
+        }
+    }
+
+    focus = {
+        id = FRA_atlas
+        icon = GFX_focus_generic_extend
         prerequisite = { focus = FRA_government }
-        mutually_exclusive = { focus = FRA_union }
+        mutually_exclusive = { focus = FRA_morocco }
 
-        available = { civil_war_government_lock = yes }
+        available = {
+            civil_war_government_lock = yes
+        }
 
-        allow_branch = { not = { has_country_flag = starts_as_dominion } }
+        ai_will_do = { modifier = { has_war = yes } factor = 0 }        # don't start new wars.
 
         relative_position_id = FRA_government
         x = 0 y = 1
         cost = 10
 
         completion_reward = {
-            add_political_power = 50
-            add_popularity = { ideology = monarchism popularity = 0.05 }
+            add_war_support = 0.05
+            create_wargoal = { 
+                target = MOR 
+                type = puppet_wargoal_focus
+            }
+            460 = { 
+                add_building_construction = { type = bunker level = 2 province = 7132 instant_build = yes } 
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes } 
+            }
+
+            # news event
+            hidden_effect = { news_event = { id = france.6 hours = 6 } }
         }
     }
 
     focus = {
-        id = FRA_militarisation
-        icon = GFX_focus_FRA_militarisation
-        prerequisite = { focus = FRA_action }
+        id = FRA_entente
+        icon = GFX_focus_FRA_entente
+        prerequisite = { focus = FRA_atlas }
+        mutually_exclusive = { focus = FRA_action }
 
-        available = { civil_war_government_lock = yes }
+        available = {
+            civil_war_government_lock = yes
+        }
 
-        relative_position_id = FRA_action
+        relative_position_id = FRA_atlas
         x = 0 y = 1
         cost = 10
 
         completion_reward = {
-            add_ideas = idea_militarisation
+            create_faction = "Entente"
+            every_country = {
+                limit = { or = { tag = ENG tag = SPA tag = SOV } not = { is_in_faction = yes has_war_with = FRA } }
+                country_event = { id = diplomacy.12 days = 2 }
+            }
+
+            # news event
+            hidden_effect = { news_event = { id = france.7 hours = 6 } }
         }
     }
 
     focus = {
-        id = FRA_union
-        icon = GFX_focus_FRA_union
+        id = FRA_armament
+        icon = GFX_focus_FRA_armament
         prerequisite = { focus = FRA_government }
-        mutually_exclusive = { focus = FRA_action }
 
-        available = { civil_war_government_lock = yes }
-
-        allow_branch = { not = { has_country_flag = starts_as_dominion } }
+        available = {
+            civil_war_government_lock = yes
+        }
 
         relative_position_id = FRA_government
         x = 4 y = 1
         cost = 10
 
         completion_reward = {
-            add_popularity = { ideology = democratic popularity = 0.05 }
-            hidden_effect = { random = { chance = 50 news_event = { id = unrest.9 hours = 6 } } }
+            add_timed_idea = { idea = idea_armaments years = 2 }
+            20 = {
+                add_resource = { type = tungsten amount = 6 }
+                add_building_construction = { type = arms_factory level = 1 instant_build = 1 }
+            }
         }
     }
 
     focus = {
-        id = FRA_agrarian
-        icon = GFX_focus_generic_agrarian
-        prerequisite = { focus = FRA_union }
+        id = FRA_action
+        icon = GFX_focus_FRA_action
+        prerequisite = { focus = FRA_armament }
+        mutually_exclusive = { focus = FRA_entente }
 
-        available = { civil_war_government_lock = yes }
+        available = {
+            civil_war_government_lock = yes
+        }
 
-        relative_position_id = FRA_union
+        relative_position_id = FRA_armament
         x = -1 y = 1
         cost = 10
 
         completion_reward = {
-            add_stability = 0.05
-            add_timed_idea = { idea = idea_agrarians months = 24 }
+            add_popularity = { ideology = monarchism popularity = 0.05 }
         }
     }
 
     focus = {
-        id = FRA_deal_with_unions
-        icon = GFX_focus_FRA_deal_with_unions
-        prerequisite = { focus = FRA_union }
+        id = FRA_union
+        icon = GFX_focus_generic_stability
+        prerequisite = { focus = FRA_armament }
 
-        available = { civil_war_government_lock = yes }
+        available = {
+            civil_war_government_lock = yes
+        }
 
-        relative_position_id = FRA_union
+        ai_will_do = { modifier = { has_war = no } factor = 0 }        # don't waste it if you're not at war.
+
+        relative_position_id = FRA_armament
         x = 2 y = 1
         cost = 10
 
         completion_reward = {
-            add_popularity = { ideology = communism popularity = 0.05 }
-            add_timed_idea = { idea = idea_deal_with_unions months = 12 }
+            add_timed_idea = { idea = idea_union_sacree years = 2 }
         }
     }
 
     focus = {
-        id = FRA_unity
-        icon = GFX_focus_generic_unity
-        prerequisite = { focus = FRA_militarisation focus = FRA_agrarian }
+        id = FRA_on_les_aura
+        icon = GFX_focus_FRA_on_les_aura
+        prerequisite = { focus = FRA_entente focus = FRA_action }
 
-        available = { civil_war_government_lock = yes }
+        available = {
+            civil_war_government_lock = yes
+            any_core_state = { is_owned_by = GER }
+        }
 
-        relative_position_id = FRA_militarisation
+        ai_will_do = { modifier = { has_war = yes } factor = 0 }        # don't start new wars.
+
+        relative_position_id = FRA_entente
         x = 2 y = 1
         cost = 10
 
         completion_reward = {
-            add_ideas = idea_strength_in_unity
+            custom_effect_tooltip = tt_on_les_aura
+            hidden_effect = {
+                28 = {
+                    save_event_target_as = demand_target
+                    owner = { country_event = { id = diplomacy.1 hours = 6 } }
+                }
+            }
+
+            # news event
+            hidden_effect = { news_event = { id = france.8 hours = 6 } }
         }
     }
 
     focus = {
-        id = FRA_administration
-        icon = GFX_focus_FRA_administration
-        prerequisite = { focus = FRA_unity }
+        id = FRA_east
+        icon = GFX_focus_FRA_east
+        prerequisite = { focus = FRA_on_les_aura }
 
-        available = { civil_war_government_lock = yes }
+        available = {
+            civil_war_government_lock = yes
+        }
 
-        relative_position_id = FRA_unity
+        relative_position_id = FRA_on_les_aura
         x = 0 y = 1
         cost = 10
 
         completion_reward = {
-            add_stability = 0.05
-            if = {
-                limit = { any_controlled_state = { is_claimed_by = ROOT not = { is_core_of = ROOT } } }
-                every_controlled_state = {
-                    limit = { is_claimed_by = ROOT not = { is_core_of = ROOT } }
-                    add_core_of = ROOT
-                }
-            }
-            else = {
-                custom_effect_tooltip = tt_administration
+            every_state = {
+                limit = { not = { is_claimed_by = ROOT } or = { state = 553 state = 554 state = 411 state = 350 state = 414 } }
+                add_claim_by = ROOT
             }
         }
     }
