@@ -6,21 +6,31 @@ ideas = {
                 democratic_drift = -0.02
             }
         }
-        idea_elan = {
+        idea_chaos_in_war_ministry = {
             modifier = {
-                army_attack_core_factor = 0.1
-                army_attack_speed_factor = 0.15
+                supply_factor = -0.1
+                mobilization_laws_cost_factor = 0.25
             }
         }
-        idea_armaments = {
+        idea_elan = {
             modifier = {
-                production_factory_max_efficiency_factor = 0.15
+                army_core_attack_factor = 0.1
+                army_attack_speed_factor = 0.15
+                initiative_factor = 0.05
+            }
+        }
+        idea_deal_with_unrest_south = {
+            modifier = {
+                stability_weekly = 0.005
             }
         }
         idea_union_sacree = {
             modifier = {
                 war_stability_factor = 0.15
                 war_support_factor = 0.05
+            }
+            cancel = {
+                has_war = no
             }
         }
     }

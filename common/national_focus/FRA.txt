@@ -64,7 +64,7 @@ focus_tree = {
             civil_war_government_lock = yes
         }
 
-        ai_will_do = { modifier = { has_war = yes } factor = 0 }        # don't start new wars.
+        ai_will_do = { modifier = { has_war = yes factor = 0 } }        # don't start new wars.
 
         relative_position_id = FRA_morocco
         x = -2 y = 1
@@ -138,7 +138,7 @@ focus_tree = {
             civil_war_government_lock = yes
         }
 
-        ai_will_do = { modifier = { has_war = yes } factor = 0 }        # don't start new wars.
+        ai_will_do = { modifier = { has_war = yes factor = 0 } }        # don't start new wars.
 
         relative_position_id = FRA_government
         x = 0 y = 1
@@ -177,7 +177,7 @@ focus_tree = {
         completion_reward = {
             create_faction = "Entente"
             every_country = {
-                limit = { or = { tag = ENG tag = SPA tag = SOV } not = { is_in_faction = yes has_war_with = FRA } }
+                limit = { or = { tag = ENG tag = RUS tag = SPA } not = { or = { is_in_faction = yes has_war_with = FRA } } }
                 country_event = { id = diplomacy.12 days = 2 }
             }
 
@@ -187,8 +187,8 @@ focus_tree = {
     }
 
     focus = {
-        id = FRA_armament
-        icon = GFX_focus_FRA_armament
+        id = FRA_south_unrest
+        icon = GFX_focus_FRA_south_unrest
         prerequisite = { focus = FRA_government }
 
         available = {
@@ -200,7 +200,7 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            add_timed_idea = { idea = idea_armaments years = 2 }
+            add_timed_idea = { idea = idea_deal_with_unrest_south years = 1 }
             20 = {
                 add_resource = { type = tungsten amount = 6 }
                 add_building_construction = { type = arms_factory level = 1 instant_build = 1 }
@@ -211,18 +211,19 @@ focus_tree = {
     focus = {
         id = FRA_action
         icon = GFX_focus_FRA_action
-        prerequisite = { focus = FRA_armament }
+        prerequisite = { focus = FRA_south_unrest }
         mutually_exclusive = { focus = FRA_entente }
 
         available = {
             civil_war_government_lock = yes
         }
 
-        relative_position_id = FRA_armament
+        relative_position_id = FRA_south_unrest
         x = -1 y = 1
         cost = 10
 
         completion_reward = {
+            add_political_power = 100
             add_popularity = { ideology = monarchism popularity = 0.05 }
         }
     }
@@ -230,20 +231,19 @@ focus_tree = {
     focus = {
         id = FRA_union
         icon = GFX_focus_generic_stability
-        prerequisite = { focus = FRA_armament }
+        prerequisite = { focus = FRA_south_unrest }
 
         available = {
+            has_war = yes
             civil_war_government_lock = yes
         }
 
-        ai_will_do = { modifier = { has_war = no } factor = 0 }        # don't waste it if you're not at war.
-
-        relative_position_id = FRA_armament
+        relative_position_id = FRA_south_unrest
         x = 2 y = 1
         cost = 10
 
         completion_reward = {
-            add_timed_idea = { idea = idea_union_sacree years = 2 }
+            add_ideas = idea_union_sacree
         }
     }
 
@@ -257,7 +257,7 @@ focus_tree = {
             any_core_state = { is_owned_by = GER }
         }
 
-        ai_will_do = { modifier = { has_war = yes } factor = 0 }        # don't start new wars.
+        ai_will_do = { modifier = { has_war = yes factor = 0 } }        # don't start new wars.
 
         relative_position_id = FRA_entente
         x = 2 y = 1

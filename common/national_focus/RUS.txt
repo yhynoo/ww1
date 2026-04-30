@@ -1,0 +1,279 @@
+focus_tree = {
+    id = "RUS_focus"
+    country = {
+        factor = 0
+        modifier = { add = 20   original_tag = RUS }
+    }
+
+    # shared
+    shared_focus = XXX_general_staff
+    shared_focus = XXX_infrastructure
+
+    # special
+    shared_focus = XXX_civil_war
+
+    continuous_focus_position = { x = 88 y = 770 }
+
+# state
+    focus = {
+        id = RUS_government
+        icon = GFX_focus_RUS_government
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        ai_will_do = { factor = 2 }
+
+        x = 0 y = 0
+        cost = 10
+
+        completion_reward = {
+            country_event = { id = russia.1 hours = 6 }
+        }
+    }
+
+    focus = {
+        id = RUS_far_east
+        icon = GFX_focus_RUS_far_east
+        prerequisite = { focus = RUS_government }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = RUS_government
+        x = -4 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                add_building_construction = { type = industrial_complex level = 1 instant_build = 1 }
+                add_resource = { type = steel amount = 8 }
+            }
+            random_owned_controlled_state = {
+                add_building_construction = { type = industrial_complex level = 1 instant_build = 1 }
+                add_resource = { type = steel amount = 4 }
+            }
+        }
+    }
+
+    focus = {
+        id = RUS_steppe
+        icon = GFX_focus_RUS_steppe
+        prerequisite = { focus = RUS_far_east }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = RUS_far_east
+        x = -2 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                add_building_construction = { type = infrastructure level = 1 instant_build = 1 }
+                add_resource = { type = tungsten amount = 10 }
+            }
+            random_owned_controlled_state = {
+                add_building_construction = { type = infrastructure level = 1 instant_build = 1 }
+                add_resource = { type = tungsten amount = 6 }
+            }
+        }
+    }
+
+    focus = {
+        id = RUS_mongolia
+        icon = GFX_focus_RUS_mongolia
+        prerequisite = { focus = RUS_far_east }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = RUS_far_east
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_war_support = 0.05
+            # event
+        }
+    }
+
+    focus = {
+        id = RUS_afghanistan
+        icon = GFX_focus_RUS_afghanistan
+        prerequisite = { focus = RUS_mongolia }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = RUS_mongolia
+        x = 0 y = 1
+        cost = 10
+
+        available = { has_war_support > 0.5 }
+
+        completion_reward = {
+            add_war_support = 0.05
+            create_wargoal = { target = AFG type = puppet_wargoal_focus }
+        }
+    }
+
+    focus = {
+        id = RUS_indivisible
+        icon = GFX_focus_generic_extend
+        prerequisite = { focus = RUS_government }
+        mutually_exclusive = { focus = RUS_agrarian }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        ai_will_do = { modifier = { has_war = yes factor = 0 } }        # don't start new wars.
+
+        relative_position_id = RUS_government
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_popularity = { ideology = monarchism popularity = 0.05 }
+            add_stability = 0.05
+        }
+    }
+
+    focus = {
+        id = RUS_orthodox
+        icon = GFX_focus_RUS_orthodox
+        prerequisite = { focus = RUS_indivisible }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = RUS_indivisible
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 50
+            add_ideas = idea_orthodox_authority
+        }
+    }
+
+    focus = {
+        id = RUS_agrarian
+        icon = GFX_focus_RUS_agrarian
+        prerequisite = { focus = RUS_government }
+        mutually_exclusive = { focus = RUS_indivisible }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = RUS_government
+        x = 4 y = 1
+        cost = 10
+
+        completion_reward = {
+            swap_ideas = {
+                remove_idea = idea_agrarian_economy
+                add_idea = idea_agrarian_communities
+            }
+            random_owned_controlled_state = {
+                limit = { or = { state = 78 state = 442 state = 192 state = 200 state = 137 state = 234 } }
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                add_resource = { type = tungsten amount = 6 }
+            }
+        }
+    }
+
+    focus = {
+        id = RUS_liberalization
+        icon = GFX_focus_RUS_liberalization
+        prerequisite = { focus = RUS_agrarian }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = RUS_agrarian
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_timed_idea = { idea = idea_liberalization years = 2 }
+        }
+    }
+
+    focus = {
+        id = RUS_amnesties
+        icon = GFX_focus_generic_stability
+        prerequisite = { focus = RUS_agrarian }
+
+        available = {
+            has_war = yes
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = RUS_agrarian
+        x = 2 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_popularity = { ideology = democratic popularity = 0.05 }
+            add_political_power = 50
+        }
+    }
+
+    focus = {
+        id = RUS_eastern_entente
+        icon = GFX_focus_RUS_eastern_entente
+        prerequisite = { focus = RUS_orthodox focus = RUS_liberalization }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        ai_will_do = { modifier = { has_war = yes factor = 0 } }        # don't start new wars.
+
+        relative_position_id = RUS_orthodox
+        x = 2 y = 1
+        cost = 10
+
+        completion_reward = {
+            custom_effect_tooltip = tt_eastern_entente
+            hidden_effect = { set_rule = { can_create_factions = yes } }
+            
+            every_country = {
+                limit = { or = { tag = GRE tag = SER tag = ROM } not = { or = { is_in_faction = yes has_war_with = SOV } } }
+                #
+            }
+        }
+    }
+
+    focus = {
+        id = RUS_third_rome
+        icon = GFX_focus_RUS_third_rome
+        prerequisite = { focus = RUS_eastern_entente }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = RUS_eastern_entente
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            every_state = {
+                limit = { not = { is_claimed_by = ROOT } or = { state = 341 } }
+                add_claim_by = ROOT
+                RUS = { create_wargoal = { target = PREV.owner type = take_claimed_state } }
+            }
+        }
+    }
+}

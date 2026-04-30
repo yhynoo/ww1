@@ -1,0 +1,57 @@
+ideas = {
+    country = {
+        idea_anti_authoritarian_intelligentsia = {
+            modifier = {
+                monarchism_drift = -0.02
+                political_power_factor = -0.05
+            }
+            cancel = {
+                not = { has_government = monarchism }
+            }
+        }
+        idea_agrarian_economy = {
+            modifier = {
+                consumer_goods_factor = -0.05
+            }
+        }
+        idea_corrupt_officers = {
+            modifier = {
+                army_morale_factor = -0.1
+                initiative_factor = -0.1
+                unit_upkeep_attrition_factor = 0.2
+            }
+        }
+
+        idea_20_years = {
+            modifier = {
+                production_speed_infrastructure_factor = 0.1
+                local_resources_factor = 0.05
+                research_speed_factor = 0.05
+            }
+            cancel = {
+                has_war = yes
+            }
+        }
+        idea_agrarian_communities = {
+            modifier = {
+                consumer_goods_factor = -0.15
+                political_power_factor = 0.05
+            }
+        }
+        idea_orthodox_authority = {
+            modifier = {
+                army_core_defence_factor = 0.1
+                drift_defence_factor = 0.15
+            }
+            cancel = {
+                not = { has_government = monarchism }
+            }
+        }
+        idea_liberalization = {
+            modifier = {
+                economy_cost_factor = -0.15
+                production_speed_industrial_complex_factor = 0.1
+            }
+        }
+    }
+}

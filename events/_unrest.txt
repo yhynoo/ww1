@@ -96,14 +96,6 @@ add_namespace = unrest
         option = {
             name = "We must accept their leadership."
             opposition_coup = yes
-
-            # don't act against self
-            ai_chance = { 
-                modifier = { 
-                    not = { or = { has_idea = idea_communists_organize has_idea = idea_monarchists_organize } } 
-                    factor = 0 
-                } 
-            }
         }
         option = {
             name = "Or what?"
@@ -137,9 +129,6 @@ add_namespace = unrest
         option = {
             name = "We must accept this idea."
             opposition_coup = yes
-
-            # don't act against self
-            ai_chance = { modifier = { not = { has_idea = idea_democrats_organize } factor = 0 } }
         }
         option = {
             name = "Outrageous."
