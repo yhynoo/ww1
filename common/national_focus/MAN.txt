@@ -1,0 +1,295 @@
+focus_tree = {
+    id = "MAN_focus"
+    country = {
+        factor = 0
+        modifier = { add = 20   original_tag = MAN }
+    }
+
+    # shared
+    shared_focus = XXX_general_staff
+    shared_focus = XXX_infrastructure
+
+    # special
+    shared_focus = XXX_civil_war
+
+    continuous_focus_position = { x = 88 y = 770 }
+
+# state
+    focus = {
+        id = MAN_government
+        icon = GFX_focus_MAN_government
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        ai_will_do = { factor = 2 }
+
+        x = 0 y = 0
+        cost = 10
+
+        completion_reward = {
+            country_event = { id = manchu.1 hours = 6 }
+            remove_ideas = idea_unstable_xinhai_government
+        }
+    }
+
+    focus = {
+        id = MAN_mongolia
+        icon = GFX_focus_MAN_mongolia
+        prerequisite = { focus = MAN_government }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        ai_will_do = { modifier = { has_war = yes factor = 0 } }        # don't start new wars.
+
+        relative_position_id = MAN_government
+        x = -4 y = 1
+        cost = 10
+
+        completion_reward = {
+            create_wargoal = { target = MON type = annex_everything }
+        }
+    }
+
+    focus = {
+        id = MAN_dalian
+        icon = GFX_focus_MAN_dalian
+        prerequisite = { focus = MAN_mongolia }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        ai_will_do = { modifier = { has_war = yes factor = 0 } }        # don't start new wars.
+
+        relative_position_id = MAN_mongolia
+        x = -2 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_war_support = 0.05
+            72 = { ROOT = { create_wargoal = { target = PREV.owner type = take_claimed_state } } }
+        }
+    }
+
+    focus = {
+        id = MAN_manchuria
+        icon = GFX_focus_MAN_manchuria
+        prerequisite = { focus = MAN_mongolia }
+
+        available = {
+            country_exists = FER
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = MAN_mongolia
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_war_support = 0.05
+            # event
+        }
+    }
+
+    focus = {
+        id = MAN_haishenwei
+        icon = GFX_focus_MAN_haishenwei
+        prerequisite = { focus = MAN_manchuria }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        ai_will_do = { modifier = { has_war = yes factor = 0 } }        # don't start new wars.
+
+        relative_position_id = MAN_manchuria
+        x = 0 y = 1
+        cost = 10
+
+        available = { has_war_support > 0.5 }
+
+        completion_reward = {
+            408 = {
+                add_claim_by = ROOT
+                ROOT = { create_wargoal = { target = PREV.owner type = take_claimed_state } }
+            }
+        }
+    }
+
+    focus = {
+        id = MAN_army_loans
+        icon = GFX_focus_generic_extend
+        prerequisite = { focus = MAN_government }
+        mutually_exclusive = { focus = MAN_xinhai }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        ai_will_do = { modifier = { has_war = yes factor = 0 } }        # don't start new wars.
+
+        relative_position_id = MAN_government
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_timed_idea = {
+                idea = idea_army_loans years = 2
+            }
+            random_owned_controlled_state = {
+                prioritize = { 608 610 }
+                add_building_construction = { type = arms_factory level = 1 instant_build = 1 }
+                add_resource = { type = steel amount = 8 }
+            }
+        }
+    }
+
+    focus = {
+        id = MAN_hongxian
+        icon = GFX_focus_MAN_hongxian
+        prerequisite = { focus = MAN_army_loans }
+
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = tt_hongxian
+                monarchism > 0.4
+                has_country_leader = { character = MAN_yuan_shikai ruling_only = yes }
+            }
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = MAN_army_loans
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            set_politics = { ruling_party = monarchism elections_allowed = no }
+        }
+    }
+
+    focus = {
+        id = MAN_xinhai
+        icon = GFX_focus_MAN_xinhai
+        prerequisite = { focus = MAN_government }
+        mutually_exclusive = { focus = MAN_army_loans }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = MAN_government
+        x = 4 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_ideas = idea_xinhai_ideals
+        }
+    }
+
+    focus = {
+        id = MAN_yuans
+        icon = GFX_focus_MAN_yuans
+        prerequisite = { focus = MAN_xinhai }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = MAN_xinhai
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 100
+            add_timed_idea = { idea = idea_organize_yuans years = 1 }
+        }
+    }
+
+    focus = {
+        id = MAN_textile_workers
+        icon = GFX_focus_MAN_textile_workers
+        prerequisite = { focus = MAN_xinhai }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = MAN_xinhai
+        x = 2 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                prioritize = { 606 598 }
+                add_building_construction = { type = industrial_complex level = 1 instant_build = 1 }
+                add_resource = { type = tungsten amount = 10 }
+            }
+            random_owned_controlled_state = {
+                prioritize = { 605 620 }
+                add_building_construction = { type = industrial_complex level = 1 instant_build = 1 }
+                add_resource = { type = tungsten amount = 6 }
+            }
+        }
+    }
+
+    focus = {
+        id = MAN_stabilization
+        icon = GFX_focus_MAN_stabilization
+        prerequisite = { focus = MAN_hongxian focus = MAN_yuans }
+
+        available = {
+            has_stability > 0.6
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = MAN_hongxian
+        x = 2 y = 1 
+        cost = 10
+
+        completion_reward = {
+            add_popularity = { ideology = ROOT popularity = 0.05 }
+            if = {
+                limit = { 
+                    any_country = { is_chinese_warlord = yes exists = yes } 
+                }
+                set_country_flag = additional_warlord_decisions
+                custom_effect_tooltip = tt_additional_warlord_decisions
+            }
+            else = {
+                remove_ideas = idea_warlordism_in_the_countryside
+            }
+        }
+    }
+
+    focus = {
+        id = MAN_one_state
+        icon = GFX_focus_MAN_one_state
+        prerequisite = { focus = MAN_stabilization }
+
+        available = {
+            civil_war_government_lock = yes
+            not = { has_idea = idea_warlordism_in_the_countryside }
+        }
+
+        relative_position_id = MAN_stabilization
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            if = {
+                limit = { any_controlled_state = { is_claimed_by = ROOT not = { is_core_of = ROOT } } }
+                every_controlled_state = {
+                    limit = { is_claimed_by = ROOT not = { is_core_of = ROOT } }
+                    add_core_of = ROOT
+                }
+            }
+            else = {
+                custom_effect_tooltip = tt_administration
+            }
+        }
+    }
+}

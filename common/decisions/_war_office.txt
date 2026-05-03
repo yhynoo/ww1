@@ -74,6 +74,7 @@ _war_office = {
             FROM = {
                 not = { has_war_with = ROOT }
                 any_enemy_country = { has_war_with = ROOT }
+                is_chinese_warlord = no
 
                 or = {
                     any_state = { 
@@ -123,6 +124,9 @@ _war_office = {
                     is_in_faction = no
                 }
                 is_subject = no
+
+                # block chinese warlords
+                is_chinese_warlord = no
             }
         }
 

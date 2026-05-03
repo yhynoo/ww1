@@ -1,7 +1,7 @@
 add_namespace = russia
 
 # stolypin
-country_event = {
+news_event = {
     id = russia.1
     title = "After Stolypin's Death"
     desc = russia.1.d
@@ -12,19 +12,74 @@ country_event = {
         name = "We need 20 years of quiet."
         add_ideas = idea_20_years
     }
-    option = {
-        name = "If you want peace, prepare for war."
-        
-        add_war_support = 0.05
-        random_owned_controlled_state = {
-            limit = { infrastructure > 2 }
-            add_extra_state_shared_building_slots = 1
-            add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+}
+
+# uriankhai
+    country_event = {
+        id = russia.2
+        title = "The Uriankhai Question"
+        desc = russia.2.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Support Uriankhai independence."
+            MON = { country_event = { id = russia.3 hours = 6 } }
+
+            hidden_effect = {
+                329 = { add_core_of = URI }
+            }
         }
-        random_owned_controlled_state = {
-            limit = { infrastructure > 2 }
-            add_extra_state_shared_building_slots = 1
-            add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+        option = {
+            name = "Align all of Mongolia."
+            MON = { country_event = { id = diplomacy.10 hours = 6 } }
         }
     }
-}
+
+    country_event = {
+        id = russia.3
+        title = "[RUS.GetName] Demands Uriankhai Independence"
+        desc = russia.3.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We must accept it."
+            release_on_controlled = URI
+
+            hidden_effect = { 
+                RUS = { puppet = URI } 
+                news_event = { id = russia.4 hours = 6 }
+            }
+        }
+        option = {
+            name = "This means war!"
+            hidden_effect = {
+                URI = {
+                    setup_uprising_country = yes
+                    save_event_target_as = uprising_country
+
+                    # flags
+                    set_country_flag = started_as_uprising      set_country_flag = during_uprising
+                    add_timed_idea = { idea = idea_uprising months = 6 }
+                }
+            }
+            RUS = { give_guarantee = URI }
+            declare_war_on = { target = URI type = annex_everything }
+        }
+    }
+
+    news_event = {
+        id = russia.4
+        title = "Uriankhai Independent"
+        desc = template.4.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Interesting."
+        }
+    }
+
+#

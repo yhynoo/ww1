@@ -1,0 +1,274 @@
+focus_tree = {
+    id = warlord_focus
+    country = {
+        factor = 0
+        modifier = { add = 20   is_chinese_warlord = yes }
+    }
+
+    continuous_focus_position = { x = 88 y = 770 }
+
+    # state
+    shared_focus = XWA_clique
+
+    # army
+    shared_focus = XXX_address_troops
+    shared_focus = XXX_general_staff
+
+    # development
+    shared_focus = XXX_land_use
+    shared_focus = XXX_infrastructure
+
+    # civil war
+    shared_focus = XXX_civil_war
+}
+
+# warlords
+    shared_focus = {
+        id = XWA_clique
+        icon = GFX_focus_XWA_clique
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        x = 0 y = 0
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 50
+        }
+    }
+
+    shared_focus = {
+        id = XWA_central_ambitions
+        icon = GFX_focus_XWA_central_ambitions
+        prerequisite = { focus = XWA_clique }
+        mutually_exclusive = { focus = XWA_local_identity }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = XWA_clique
+        x = -4 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_ideas = idea_central_ambitions
+        }
+    }
+
+    shared_focus = {
+        id = XWA_majors
+        icon = GFX_focus_XWA_majors
+        prerequisite = { focus = XWA_central_ambitions }
+
+        available = {
+            and = { has_government = monarchism }
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = XWA_central_ambitions
+        x = -2 y = 1
+        cost = 10
+
+        completion_reward = {
+            custom_effect_tooltip = tt_majors
+            hidden_effect = {
+                every_country = {
+                    limit = {
+                        not = { has_subject = ROOT }
+                        is_major = yes has_opinion = { target = ROOT    value > 0 }
+                    }
+                }
+                country_event = { id = diplomacy.3 hours = 6 }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XWA_tactical_alliances
+        icon = GFX_focus_XWA_tactical_alliances
+        prerequisite = { focus = XWA_central_ambitions }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = XWA_central_ambitions
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            set_rule = { can_create_factions = yes }
+        }
+    }
+
+    shared_focus = {
+        id = XWA_all_china
+        icon = GFX_focus_XWA_all_china
+        prerequisite = { focus = XWA_tactical_alliances }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = XWA_tactical_alliances
+        x = 0 y = 1
+        cost = 10
+
+        available = { has_war_support > 0.5 }
+
+        completion_reward = {
+            custom_effect_tooltip = tt_unite_china
+            hidden_effect = {
+                every_other_country = {
+                    limit = { or = { is_chinese_warlord = yes original_tag = MAN } }
+                    ROOT = { create_wargoal = { target = PREV type = annex_everything } }
+                }
+            }
+            if = {
+                limit = { is_subject = yes }
+                every_country = {
+                    limit = { has_subject = ROOT }
+                    country_event = { id = diplomacy.5 hours = 6 }
+                }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XWA_local_identity
+        icon = GFX_focus_XWA_local_identity
+        prerequisite = { focus = XWA_clique }
+        mutually_exclusive = { focus = XWA_central_ambitions }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = XWA_clique
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_war_support = 0.05
+        }
+    }
+
+    shared_focus = {
+        id = XWA_old_elites
+        icon = GFX_focus_XWA_old_elites
+        prerequisite = { focus = XWA_local_identity }
+        mutually_exclusive = { focus = XWA_own_clan }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = XWA_local_identity
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_timed_idea = { idea = idea_old_elites years = 2 }
+        }
+    }
+
+    shared_focus = {
+        id = XWA_internal_stability
+        icon = GFX_focus_generic_stability
+        prerequisite = { focus = XWA_clique }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = XWA_clique
+        x = 4 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_popularity = { ideology = ROOT popularity = 0.05 }
+            add_stability = 0.05
+        }
+    }
+
+    shared_focus = {
+        id = XWA_own_clan
+        icon = GFX_focus_XWA_own_clan
+        prerequisite = { focus = XWA_internal_stability }
+        mutually_exclusive = { focus = XWA_old_elites }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = XWA_internal_stability
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 50
+            add_stability = 0.05
+        }
+    }
+
+    shared_focus = {
+        id = XWA_land_grants
+        icon = GFX_focus_generic_agrarian
+        prerequisite = { focus = XWA_internal_stability }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = XWA_internal_stability
+        x = 2 y = 1
+        cost = 10
+
+        completion_reward = {
+            every_owned_state = {
+                limit = { is_capital = yes }
+                add_resource = { type = tungsten amount = 6 }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XWA_mass_mobilization
+        icon = GFX_focus_XWA_mass_mobilization
+        prerequisite = { focus = XWA_old_elites focus = XWA_own_clan }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = XWA_old_elites
+        x = 2 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_war_support = 0.05
+            add_timed_idea = { idea = idea_mass_mobilization years = 1 }
+        }
+    }
+
+    shared_focus = {
+        id = XWA_united_in_struggle
+        icon = GFX_focus_XWA_united_in_struggle
+        prerequisite = { focus = XWA_mass_mobilization }
+
+        available = {
+            has_war = yes
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = XWA_mass_mobilization
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_ideas = idea_united_in_struggle
+        }
+    }

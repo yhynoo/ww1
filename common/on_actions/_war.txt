@@ -35,4 +35,18 @@ on_actions = {
             }
         }
     }
+
+    on_annex = {
+        effect = {
+            # chinese warlords
+            if = {
+                limit = {
+                    FROM = {
+                        or = { tag = EAT tag = FEN tag = GUA tag = XMA tag = ANH tag = SHA tag = YUN }
+                    }
+                }
+                FROM = { set_country_flag = warlord_defeated }
+            }
+        }
+    }
 }

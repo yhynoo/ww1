@@ -12,6 +12,11 @@ on_actions = {
                 give_resource_rights = { receiver = USA state = 317 }
             }
 
+            MAN = {
+                # events
+                country_event = { id = manchu.2 months = 3 days = 4 }
+            }
+
             MEX = {
                 give_resource_rights = { receiver = USA state = 476 }
                 give_resource_rights = { receiver = USA state = 485 }
@@ -20,6 +25,25 @@ on_actions = {
             QAJ = {
                 give_resource_rights = { receiver = ENG state = 412 }
                 give_resource_rights = { receiver = ENG state = 413 }
+            }
+        }
+    }
+
+    on_daily = {
+        effect = {
+            # chinese warlords setup
+            news_event = manchu.5
+
+            if = {
+                limit = { is_chinese_warlord = yes }
+                if = {
+                    limit = { has_war_with = MAN not = { has_cosmetic_tag = MAN_enemy_warlord } }
+                    set_cosmetic_tag = MAN_enemy_warlord
+                }
+                if = {
+                    limit = { not = { has_war_with = MAN } has_cosmetic_tag = MAN_enemy_warlord }
+                    drop_cosmetic_tag = yes
+                }
             }
         }
     }

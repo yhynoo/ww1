@@ -1,0 +1,157 @@
+add_namespace = manchu
+
+# xinhai
+    country_event = {
+        id = manchu.1
+        title = "The Government Agreement"
+        desc = manchu.1.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Honor the agreement."
+
+            add_stability = 0.025
+            promote_character = MAN_yuan_shikai
+        }
+        option = {
+            name = "The army won't lead the country well."
+            add_popularity = { ideology = democratic popularity = 0.05 }
+
+            if = {
+                limit = { or = { has_stability < 0.4 monarchism > 0.1 } }
+                random = {
+                    chance = 80
+                    beiyang_war = yes
+                }
+            }
+        }
+    }
+
+# tibet
+    country_event = {
+        id = manchu.2
+        title = "Dalai Lama Declares Tibetan Independence"
+        desc = manchu.2.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "He is free to do that."
+            release_on_controlled = TIB
+
+            hidden_effect = { news_event = { id = manchu.3 hours = 6 } }
+        }
+        option = {
+            name = "We must maintain the integrity of the state."
+            TIB = {
+                setup_uprising_country = yes
+                save_event_target_as = uprising_country
+
+                # flags
+                set_country_flag = started_as_uprising      set_country_flag = during_uprising
+                add_timed_idea = { idea = idea_uprising months = 6 }
+            }
+            declare_war_on = { target = TIB type = annex_everything }
+        }
+    }
+
+    news_event = {
+        id = manchu.3
+        title = "Tibet Independent Again"
+        desc = manchu.3.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Interesting."
+        }
+    }
+
+# warlords gain autonomy
+    news_event = {
+        id = manchu.4
+        title = "Local Administrators Gain Autonomy"
+        desc = manchu.4.d
+
+        trigger = {
+            has_idea = idea_warlordism_in_the_countryside       not = { has_country_flag = in_warlord_era }
+            or = { has_stability < 0.2 has_civil_war = yes }
+        }
+
+        option = {
+            name = "Worrying."
+            add_popularity = { ideology = ROOT popularity = -0.05 }
+
+            hidden_effect = { 
+                set_country_flag = in_warlord_era
+                set_warlord_cores = yes
+            }
+        }
+    }
+
+    news_event = {
+        id = manchu.5
+        hidden = yes
+
+        is_triggered_only = yes
+        trigger = {
+            is_chinese_warlord = yes
+            not = { has_country_flag = sent_event_to_china }
+            exists = yes
+        }
+
+        immediate = {
+            MAN = { country_event = manchu.6 }
+            set_country_flag = sent_event_to_china
+        }
+    }
+
+    country_event = {
+        id = manchu.6
+        title = "[FROM.GetName] Attempts Self-Governance"
+        desc = manchu.6.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "This is a satisfactory solution for now."
+            add_stability = 0.05
+            set_autonomy = { target = FROM autonomous_state = autonomy_dominion }
+
+            hidden_effect = {
+                FROM = { 
+                    set_politics = { ruling_party = monarchism elections_allowed = no }
+                    set_warlord_ideologies = yes
+                }
+            }
+        }
+        option = {
+            name = "We will not allow this."
+            declare_war_on = { target = FROM type = annex_everything }
+        }
+    }
+
+    news_event = {
+        id = manchu.7
+        title = "End of the Warlord Era"
+        desc = manchu.7.d
+
+        trigger = {
+            has_idea = idea_warlordism_in_the_countryside
+            any_country = { has_country_flag = sent_event_to_china }        # at least one warlord appeared
+            not = {                                                         # there is nobody left who appeared but wasn't defeated
+                any_country = { 
+                    has_country_flag = sent_event_to_china
+                    not = { has_country_flag = warlord_defeated }
+                }
+            }
+        }
+        fire_only_once = yes
+
+        option = {
+            name = "Wonderful."
+            remove_ideas = idea_warlordism_in_the_countryside
+        }
+    }

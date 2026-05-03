@@ -1,7 +1,8 @@
-organize_uprising = {
+trigger_uprising = {
     every_possible_country = {
         limit = { 
             exists = no 
+            is_chinese_warlord = no
             not = { has_country_flag = started_as_uprising } 
         }
 
@@ -11,25 +12,48 @@ organize_uprising = {
         }
 
         # if creation has succeeded:
+        organize_uprising = yes
+    }
+}
+
+trigger_warlord = {
+    every_possible_country = {
+        limit = { 
+            exists = no 
+            not = { has_country_flag = warlord_defeated }
+            is_chinese_warlord = yes
+        }
+
+        random = {
+            chance = 20
+            every_core_state = {
+                limit = { and = { owner = { original_tag = ROOT } controller = { original_tag = ROOT } } }
+                transfer_state_to = PREV
+                setup_uprising_state = yes
+            }
+        }
+    }
+}
+
+organize_uprising = {
+    if = {
+        limit = { exists = yes }
+        every_country = {
+            limit = { original_tag = ROOT }
+            declare_war_on = { target = PREV type = annex_everything }
+        }
+
+        # event to choose sides
+        save_event_target_as = uprising_country
+        ROOT = { country_event = other.2 }
+
+        # setup
         if = {
-            limit = { exists = yes }
-            every_country = {
-                limit = { original_tag = ROOT }
-                declare_war_on = { target = PREV type = annex_everything }
-            }
-
-            # event to choose sides
-            save_event_target_as = uprising_country
-            ROOT = { country_event = other.2 }
-
-            # setup
-            if = {
-                limit = { not = { has_country_flag = started_as_uprising } }
-                set_country_flag = started_as_uprising
-                set_country_flag = during_uprising
-                
-                add_timed_idea = { idea = idea_uprising months = 6 }
-            }
+            limit = { not = { has_country_flag = started_as_uprising } }
+            set_country_flag = started_as_uprising
+            set_country_flag = during_uprising
+            
+            add_timed_idea = { idea = idea_uprising months = 6 }
         }
     }
 }

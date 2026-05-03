@@ -29,7 +29,7 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            country_event = { id = russia.1 hours = 6 }
+            news_event = { id = russia.1 hours = 6 }
         }
     }
 
@@ -88,11 +88,12 @@ focus_tree = {
     }
 
     focus = {
-        id = RUS_mongolia
-        icon = GFX_focus_RUS_mongolia
+        id = RUS_tuva
+        icon = GFX_focus_RUS_tuva
         prerequisite = { focus = RUS_far_east }
 
         available = {
+            329 = { is_owned_and_controlled_by = MON }
             civil_war_government_lock = yes
         }
 
@@ -101,21 +102,22 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            add_war_support = 0.05
-            # event
+            country_event = { id = russia.2 hours = 6 }
         }
     }
 
     focus = {
         id = RUS_afghanistan
         icon = GFX_focus_RUS_afghanistan
-        prerequisite = { focus = RUS_mongolia }
+        prerequisite = { focus = RUS_tuva }
 
         available = {
             civil_war_government_lock = yes
         }
 
-        relative_position_id = RUS_mongolia
+        ai_will_do = { modifier = { has_war = yes factor = 0 } }        # don't start new wars.
+
+        relative_position_id = RUS_tuva
         x = 0 y = 1
         cost = 10
 
@@ -136,8 +138,6 @@ focus_tree = {
         available = {
             civil_war_government_lock = yes
         }
-
-        ai_will_do = { modifier = { has_war = yes factor = 0 } }        # don't start new wars.
 
         relative_position_id = RUS_government
         x = 0 y = 1
@@ -219,7 +219,6 @@ focus_tree = {
         prerequisite = { focus = RUS_agrarian }
 
         available = {
-            has_war = yes
             civil_war_government_lock = yes
         }
 
@@ -241,8 +240,6 @@ focus_tree = {
         available = {
             civil_war_government_lock = yes
         }
-
-        ai_will_do = { modifier = { has_war = yes factor = 0 } }        # don't start new wars.
 
         relative_position_id = RUS_orthodox
         x = 2 y = 1
@@ -267,6 +264,8 @@ focus_tree = {
         available = {
             civil_war_government_lock = yes
         }
+
+        ai_will_do = { modifier = { has_war = yes factor = 0 } }        # don't start new wars.
 
         relative_position_id = RUS_eastern_entente
         x = 0 y = 1

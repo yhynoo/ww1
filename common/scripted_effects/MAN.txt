@@ -1,0 +1,50 @@
+set_warlord_cores = {
+    every_controlled_state = { limit = { or = { state = 613 state = 596 state = 606 state = 598 } } add_core_of = ANH }
+    every_controlled_state = { limit = { or = { state = 618 state = 287 state = 617 state = 611 } } add_core_of = EAT }
+    every_controlled_state = { limit = { or = { state = 296 state = 610 } } add_core_of = FEN }
+    every_controlled_state = { limit = { or = { state = 591 state = 592 state = 593 state = 594 state = 599 } } add_core_of = GUA }
+    every_controlled_state = { limit = { or = { state = 604 state = 612 } } add_core_of = XMA }
+    every_controlled_state = { limit = { or = { state = 622 state = 621 } } add_core_of = SHA }
+    every_controlled_state = { limit = { or = { state = 325 } } add_core_of = YUN }
+}
+
+set_warlord_ideologies = {
+    if = {
+        limit = { tag = ANH }
+        set_popularities = { monarchism = 95    democratic = 5 }
+    }
+    if = {
+        limit = { tag = EAT }
+        set_popularities = { monarchism = 65    communism = 30      democratic = 5 }
+    }
+    if = {
+        limit = { tag = FEN }
+        set_popularities = { monarchism = 85    communism = 5      democratic = 10 }
+    }
+    if = {
+        limit = { tag = GUA }
+        set_popularities = { monarchism = 50    communism = 15      democratic = 35 }
+    }
+    if = {
+        limit = { tag = SHA }
+        set_popularities = { monarchism = 65    communism = 25      democratic = 10 }
+    }
+        if = {
+        limit = { tag = XMA }
+        set_popularities = { monarchism = 100 }
+    }
+    if = {
+        limit = { tag = YUN }
+        set_popularities = { monarchism = 90    democratic = 10 }
+    }
+}
+
+beiyang_war = {
+    set_capital = { state = 613 }
+    start_civil_war = { ideology = monarchism army_ratio = 0.5 states = { 296 610 608 } }
+
+    random_country = {
+        limit = { original_tag = MAN has_government = monarchism }
+        set_cosmetic_tag = MAN_beiyang
+    }
+}

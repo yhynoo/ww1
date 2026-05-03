@@ -1,0 +1,79 @@
+d_warlordism = {
+    empower_old_aristocracy = {
+        icon = generic_nationalism
+        cost = 25
+        days_remove = 90
+
+        modifier = {
+            monarchism_drift = 0.02
+            political_power_factor = 0.15
+        }
+    }
+    invest_in_administration = {
+        icon = generic_civil_support
+        cost = 25
+        days_remove = 90
+
+        modifier = {
+            stability_weekly = 0.005
+        }
+    }
+    hunt_warlord_militias = {
+        icon = generic_prepare_civil_war
+        cost = 50
+        days_remove = 90
+
+        modifier = {
+            supply_factor = 0.1 
+        }
+
+        remove_effect = {
+            add_stability = 0.025
+        }
+    }
+
+    # extras
+    support_civil_warlord = {
+        visible = { has_country_flag = additional_warlord_decisions }
+        icon = generic_political_discourse
+        cost = 50
+        days_remove = 90
+
+        available = { has_government = democratic }
+
+        targets_dynamic = yes
+        target_trigger = { 
+            FROM = {
+                and = { is_chinese_warlord = yes    is_subject_of = MAN }
+                democratic < 0.5
+            }
+        }
+
+        remove_effect = {
+            FROM = {
+                add_popularity = { ideology = democratic popularity = 0.05 }
+                add_autonomy_ratio = { value = -0.1 }
+            }
+        }
+    }
+    eradicate_warlord = {
+        visible = { has_country_flag = additional_warlord_decisions }
+        icon = oppression
+        cost = 75
+        fire_only_once = yes
+
+        targets_dynamic = yes
+        target_non_existing = yes
+
+        target_trigger = { 
+            FROM = {
+                is_chinese_warlord = yes
+                has_country_flag = warlord_defeated
+            }
+        }
+
+        complete_effect = {
+            add_stability = 0.05
+        }
+    }
+}
