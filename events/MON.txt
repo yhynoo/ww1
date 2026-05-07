@@ -1,0 +1,35 @@
+add_namespace = mongolia
+
+# focus
+    country_event = {
+        id = mongolia.1
+        title = "Urga Seeks Acknowledgement of Independence"
+        desc = mongolia.1.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We can agree to that."
+            diplomatic_relation = { country = MON type = non_aggression_pact active = yes }
+
+            # effect news
+            FROM = { news_event = { id = mongolia.2 hours = 6 } }
+        }
+        option = {
+            name = "Ignore them."
+        }
+    }
+
+    news_event = {
+        id = mongolia.14
+        title = "[FROM.GetName] Agrees!"
+        desc = mongolia.14.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Wonderful."
+            add_popularity = { ideology = ROOT popularity = 0.05 }
+            diplomatic_relation = { country = MAN type = non_aggression_pact active = yes }
+        }
+    }

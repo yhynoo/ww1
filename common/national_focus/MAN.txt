@@ -81,7 +81,7 @@ focus_tree = {
         prerequisite = { focus = MAN_mongolia }
 
         available = {
-            country_exists = FER
+            any_other_country = { or = { owns_state = 296 owns_state = 328 owns_state = 619 } }
             civil_war_government_lock = yes
         }
 
@@ -91,7 +91,10 @@ focus_tree = {
 
         completion_reward = {
             add_war_support = 0.05
-            # event
+            every_country = {
+                limit = { or = { owns_state = 296 owns_state = 328 owns_state = 619 } }
+                country_event = { id = harbin.1 hours = 6 }
+            }
         }
     }
 

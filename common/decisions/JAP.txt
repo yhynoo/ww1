@@ -1,0 +1,60 @@
+JAP_decisions_twenty_one = {
+    demand_south_china_resources = {
+        icon = generic_civil_support
+        cost = 50
+
+        fire_only_once = yes
+        available = { not = { 539 = { is_controlled_by = ROOT } } }
+
+        complete_effect = {
+            592 = {
+                save_event_target_as = demand_target
+                owner = { country_event = { id = japan.101 hours = 6 } }
+            }
+        }
+    }
+    demand_sichuan_steel = {
+        icon = steel
+        cost = 50
+
+        fire_only_once = yes
+        available = { not = { 605 = { is_controlled_by = ROOT } } }
+
+        complete_effect = {
+            605 = {
+                save_event_target_as = demand_target
+                owner = { country_event = { id = japan.102 hours = 6 } }
+            }
+        }
+    }
+    demand_military_access = {
+        icon = generic_prepare_civil_war
+        cost = 100
+
+        fire_only_once = yes
+
+        complete_effect = {
+            MAN = {
+                country_event = { id = japan.103 hours = 6 }
+            }
+        }
+    }
+    demand_manchuria = {
+        icon = border_war
+        cost = 100
+
+        fire_only_once = yes
+
+        complete_effect = {
+            every_state = {
+                limit = { or = { state = 296 state = 328 state = 619 } }
+                add_claim_by = JAP
+            }
+
+            every_country = {
+                limit = { or = { owns_state = 296 owns_state = 328 owns_state = 619 } }
+                country_event = { id = harbin.1 hours = 6 }
+            }
+        }
+    }
+}

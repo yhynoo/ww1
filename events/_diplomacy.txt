@@ -138,7 +138,7 @@ add_namespace = diplomacy
             longest_war_length > 6
 
             any_enemy_country = {
-                or = { is_faction_leader = yes is_in_faction = no }     # any important enemy is undamaged
+                or = { is_faction_leader = yes is_in_faction = no is_chinese_warlord = no }     # any important enemy is undamaged
                 surrender_progress < 0.05
             }
 
@@ -149,7 +149,7 @@ add_namespace = diplomacy
         option = {
             name = "It is time."
             every_enemy_country = {
-                limit = { or = { is_faction_leader = yes is_in_faction = no is_subject = no } }
+                limit = { or = { is_faction_leader = yes is_in_faction = no is_subject = no is_chinese_warlord = no } }
                 country_event = { id = diplomacy.8 hours = 12 }
             }
         }
@@ -242,5 +242,76 @@ add_namespace = diplomacy
         option = {
             name = "This is too dangerous."
             add_war_support = -0.025
+        }
+    }
+
+# guarantees
+    country_event = {
+        id = diplomacy.13
+        title = "[FROM.GetName] Offers Mutual Guarantees"
+        desc = diplomacy.13.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "This is a good idea."
+            give_guarantee = FROM
+
+            # effect news
+            FROM = { news_event = { id = diplomacy.14 hours = 6 } }
+        }
+        option = {
+            name = "Ignore them."
+        }
+    }
+
+    news_event = {
+        id = diplomacy.14
+        title = "[FROM.GetName] Agrees!"
+        desc = diplomacy.14.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Wonderful."
+            give_guarantee = FROM
+        }
+    }
+
+# maximalist demands
+    country_event = {
+        id = diplomacy.15
+        title = "[FROM.GetName] Demands Territories"
+        desc = diplomacy.15.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We must agree."
+            every_owned_state = {
+                limit = { is_controlled_by = ROOT or = { is_claimed_by = FROM is_core_of = FROM } }
+                transfer_state_to = FROM
+            }
+
+            # effect news
+            hidden_effect = { FROM = { news_event = { id = diplomacy.16 hours = 6 } } }
+        }
+        option = {
+            name = "We shall not submit to their threats."
+            add_war_support = 0.05
+            FROM = { create_wargoal = { target = ROOT type = take_claimed_state } }
+        }
+    }
+
+    news_event = {
+        id = diplomacy.14
+        title = "More Land for [ROOT.GetNameDef]"
+        desc = diplomacy.14.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Interesting."
         }
     }

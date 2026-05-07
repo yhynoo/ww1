@@ -3,18 +3,13 @@ add_namespace = unrest
 # ideology change
     news_event = {
         id = unrest.1
-        title = "[opposition_party] Gather in the Capital"
+        title = "[opposition_party] Gather in the Streets"
         desc = unrest.1.d
 
         trigger = {
-            has_civil_war = no
-            not = { has_idea = idea_ideology_timeout }
-            and = { 
-                date > 1912.2.1
-                check_variable = { highest_party_popularity@exclude_ruling_party > 0.2 }    has_stability < 0.8 
-            }
+            has_custom_events = no
+            can_have_ideology_event = yes
         }
-        mean_time_to_happen = { months = 2 }
         immediate = { 
             hidden_effect = { 
                 country_event = { id = unrest.2 days = 4 } 
@@ -41,13 +36,13 @@ add_namespace = unrest
             set_temp_variable = { temp_var_add_popularity = -0.05 }
             opposition_popularity_effect = yes
 
-            random = { chance = 40 news_event = { id = unrest.3 days = 2 } }
+            random = { chance = 50 news_event = { id = unrest.3 days = 2 } }
             
             # main option
             ai_chance = { factor = 2.5 }
         }
         option = {
-            name = "Let them act freely."
+            name = "Let them speak."
             opposition_idea = yes      
 
             # alternative option
@@ -74,27 +69,14 @@ add_namespace = unrest
         desc = unrest.4.d
 
         trigger = {
-            and = { has_civil_war = no  not = { has_country_flag = during_uprising } }
-            not = { has_idea = idea_coup_timeout }
-
-            and = {
-                or = { 
-                    check_variable = { highest_party_ideology@exclude_ruling_party = token:communism }
-                    check_variable = { highest_party_ideology@exclude_ruling_party = token:monarchism }
-                }
-                or = {
-                    check_variable = { highest_party_popularity@exclude_ruling_party > 0.55 }
-                    and = { 
-                        check_variable = { party_popularity@ruling_party < 0.45 }   
-                        has_stability < 0.4 
-                    }
-                }
-            }
+            has_custom_events = no
+            can_have_government_change_event = yes
+            not = { check_variable = { highest_party_ideology@exclude_ruling_party = token:democratic } }   # exclude democrats here!
         }
-        immediate = { hidden_effect = { add_timed_idea = { idea = idea_coup_timeout months = 6 } } }
+        immediate = { hidden_effect = { add_timed_idea = { idea = idea_coup_timeout months = 3 } } }
 
         option = {
-            name = "We must accept their leadership."
+            name = "We must accept their demand."
             opposition_coup = yes
         }
         option = {
@@ -117,14 +99,11 @@ add_namespace = unrest
         desc = unrest.5.d
 
         trigger = {
-            has_civil_war = no
-            not = { has_country_flag = during_uprising }
-            not = { has_idea = idea_coup_timeout }
-            
-            check_variable = { highest_party_ideology@exclude_ruling_party = token:democratic }
-            check_variable = { highest_party_popularity@exclude_ruling_party > 0.5 }
+            has_custom_events = no
+            can_have_government_change_event = yes
+            check_variable = { highest_party_ideology@exclude_ruling_party = token:democratic }     # only democrats!
         }
-        immediate = { hidden_effect = { add_timed_idea = { idea = idea_coup_timeout months = 6 } } }
+        immediate = { hidden_effect = { add_timed_idea = { idea = idea_coup_timeout months = 3 } } }
 
         option = {
             name = "We must accept this idea."
@@ -132,7 +111,7 @@ add_namespace = unrest
         }
         option = {
             name = "Outrageous."
-            random = { chance = 80 opposition_civil_war = yes }
+            random = { chance = 50 opposition_civil_war = yes }
 
             # don't act against self
             ai_chance = { modifier = { has_idea = idea_democrats_organize factor = 0 } }
@@ -142,59 +121,58 @@ add_namespace = unrest
 # unrest
     news_event = {
         id = unrest.6
-        hidden = yes
+        title = "Suspicious Gatherings in the Capital"
+        desc = unrest.6.d
 
-        trigger = {
-            has_stability < 0.4
-            not = { has_idea = idea_unrest_timeout }
-        }
-        immediate = {
-            add_timed_idea = { idea = idea_unrest_timeout days = 60 }
-            random_list = {
-                1 = { news_event = { id = unrest.7 random_days = 14 } }
-                1 = { news_event = { id = unrest.8 random_days = 14 } }
+        is_triggered_only = yes
+        trigger = { can_have_unrest_event = yes }
+        immediate = { add_timed_idea = { idea = idea_unrest_timeout days = 60 } }
 
-                # usually nothing.
-                6 = { }
-            }
+        option = {
+            name = "Alright."
+            add_popularity = { ideology = ROOT popularity = -0.015 }
         }
     }
 
     news_event = {
         id = unrest.7
-        title = "Anti-Government Slogans"
+        title = "Industry Disruptions"
         desc = unrest.7.d
 
         is_triggered_only = yes
+        trigger = { can_have_unrest_event = yes }
+        immediate = { add_timed_idea = { idea = idea_unrest_timeout days = 60 } }
 
         option = {
-            name = "Waste of time."
-            add_popularity = { ideology = ROOT popularity = -0.02 }
+            name = "Annoying."
+            add_timed_idea = { idea = idea_industry_disruptions days = 28 }
         }
     }
 
     news_event = {
         id = unrest.8
-        title = "Arsons in the Countryside"
+        title = "Unrest in Rural Areas"
         desc = unrest.8.d
 
         is_triggered_only = yes
+        trigger = { can_have_unrest_event = yes }
+        immediate = { add_timed_idea = { idea = idea_unrest_timeout days = 60 } }
 
         option = {
             name = "Awful."
-            add_stability = -0.025
+            add_timed_idea = { idea = idea_unrest_in_rural_areas days = 28 }
         }
     }
 
     country_event = {
         id = unrest.9
-        title = "Widespread Unrest Among Workers"
+        title = "Tensions Among Workers"
         desc = unrest.9.d
 
         is_triggered_only = yes
 
         option = {
-            name = "Agree to the demands."
+            name = "Agree to meet the delegates."
             add_political_power = -25
 
             # effect news
@@ -287,3 +265,5 @@ add_namespace = unrest
             add_political_power = 50
         }
     }
+
+#

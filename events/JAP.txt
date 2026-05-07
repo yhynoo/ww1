@@ -1,0 +1,310 @@
+add_namespace = japan
+
+## HISTORICAL EVENTS
+    # Meiji Dies (30.7.1912)
+        news_event = {
+            id = japan.1
+            title = "Emperor Meiji Dies"
+            desc = japan.1.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "End of an era in Japan."
+            }
+        }
+
+    # Telescope Affair (14.1.1913)
+        news_event = {
+            id = japan.2
+            title = "The ‘Telescope Affair’"
+            desc = japan.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Worrying."
+                add_political_power = -10       country_event = { id = japan.3 days = 7 }
+            }
+        }
+
+        country_event = {
+            id = japan.3
+            title = "Whispers in the Corridors"
+            desc = japan.3.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Look into it quietly."
+                add_stability = -0.02           news_event = { id = japan.4 hours = 6 }
+            }
+            option = {
+                name = "Silence the matter."       # safe option
+                add_political_power = -50
+            }
+        }
+
+        news_event = {
+            id = japan.4
+            title = "The Emperor's Excentricities"
+            desc = japan.4.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Interesting."
+                add_popularity = { ideology = monarchism popularity = -0.025 }
+            }
+        }
+
+## TREE EVENTS
+    # Legacy of Expansion
+        country_event = {
+            id = japan.5
+            title = "The Legacy of Expansion"
+            desc = japan.5.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Stay the course."
+                add_war_support = 0.05
+            }
+            option = {
+                name = "Consolidate our gains."
+                add_popularity = { ideology = democratic popularity = 0.02 }      add_stability = 0.025
+            }
+        }
+
+    # Expand in the Pacific
+        news_event = {
+            id = japan.6
+            title = "Japan to Expand in the Pacific?"
+            desc = japan.6.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Interesting."
+            }
+        }
+
+    # Demand Singapore
+        country_event = {
+            id = japan.7
+            title = "Scent of the Harbor"
+            desc = japan.7.d
+
+            trigger = { focus_progress = { focus = JAP_singapore progress > 0.5 } }
+            fire_only_once = yes
+
+            option = {
+                name = "Escalate the matter."
+                add_stability = -0.02
+
+                # atmosphere event; can be gated as a "gamble outcome" with random = { chance = 50 ... }
+                random = { 
+                    chance = 50 
+                    news_event = { id = japan.8 hours = 6 } 
+                }
+            }
+            option = {
+                name = "Keep it silent."       # safe option
+                add_political_power = -25
+            }
+        }
+
+        news_event = {
+            id = japan.8
+            title = "Singapore Locals Outraged at the Administration"
+            desc = japan.8.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Interesting."
+                if = { limit = { controls_state = 336 } add_stability = -0.025 }
+            }
+        }
+
+    # Abandon Imperialism
+        news_event = {
+            id = japan.9
+            title = "Unease in the Ministry"
+            desc = japan.9.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "We will see."
+                add_stability = -0.02       country_event = { id = japan.10 days = 7 }
+            }
+        }
+
+        country_event = {
+            id = japan.10
+            title = "A Quiet Meeting"
+            desc = japan.10.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Send them away."
+                add_popularity = { ideology = democratic popularity = 0.025 } 
+
+                # consequence event; full commitment option
+                news_event = { id = japan.11 hours = 6 }
+            }
+            option = {
+                name = "Offer some concessions."       # safe option
+                add_political_power = -15
+            }
+        }
+
+        news_event = {
+            id = japan.11
+            title = "Inspections at Dawn"
+            desc = japan.11.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Very well."
+                
+                if = { limit = { controls_state = 527 } 527 = { add_resource = { type = steel amount = 6 } add_resource = { type = chromium amount = 8 } } }
+                random_core_state = { prioritize = { 534 } add_resource = { type = chromium amount = 12 } }
+            }
+        }
+
+    # Tensions in the Docks
+        country_event = {
+            id = japan.12
+            title = "Clashes in the Docks"
+            desc = japan.12.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Disperse them."
+                add_political_power = -25
+
+                # atmosphere event; can be gated as a "gamble outcome" with random = { chance = 50 ... }
+                random = { 
+                    chance = 50 
+                    news_event = { id = japan.13 hours = 6 }
+                }
+            }
+            option = {
+                name = "Meet with the workers."       # safe option
+                add_popularity = { ideology = communism popularity = 0.05 }
+            }
+        }
+
+        news_event = {
+            id = japan.13
+            title = "Arrests in Osaka"
+            desc = japan.13.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Good."
+                add_stability = 0.04
+            }
+        }
+
+    # Taisho Democracy
+        country_event = {
+            id = japan.14
+            title = "The Question of the Genrō"
+            desc = japan.14.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Time for change."
+                add_popularity = { ideology = democratic popularity = 0.05 }
+
+                # atmosphere event; can be gated as a "gamble outcome" with random = { chance = 50 ... }
+                news_event = { id = japan.15 hours = 6 }
+            }
+            option = {
+                name = "We appreciate their experience."       # safe option
+                add_stability = 0.025
+            }
+        }
+
+        news_event = {
+            id = japan.15
+            title = "A Stroll in Kagoshima"
+            desc = japan.15.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Alright."
+                add_political_power = 10
+            }
+        }
+
+## TWENTY-ONE DEMANDS EVENTS (to check later)
+    country_event = {
+        id = japan.101
+        title = "Tokyo: Access to Resources in South China"
+        desc = japan.101.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We must agree."
+            every_state = {
+                limit = { or = { state = 592 state = 594 } }
+                ROOT = { give_resource_rights = { receiver = JAP state = PREV } }
+            }
+        }
+        option = {
+            name = "No!"
+            JAP = { create_wargoal = { target = FROM type = puppet_wargoal_focus } }
+        }
+    }
+
+    country_event = {
+        id = japan.102
+        title = "Japanese Access to Sichuan Mines"
+        desc = japan.102.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We must agree."
+            every_state = {
+                limit = { or = { state = 605 state = 620 } }
+                ROOT = { give_resource_rights = { receiver = JAP state = PREV resources = { steel } } }
+            }
+        }
+        option = {
+            name = "The mines stay with us."
+            JAP = { create_wargoal = { target = FROM type = puppet_wargoal_focus } }
+        }
+    }
+
+    country_event = {
+        id = japan.103
+        title = "Military Access for Japan?"
+        desc = japan.103.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Let them have it."
+            give_military_access = JAP
+        }
+        option = {
+            name = "Or what?"
+            JAP = { create_wargoal = { target = FROM type = puppet_wargoal_focus } }
+        }
+    }

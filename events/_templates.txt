@@ -1,138 +1,104 @@
+        # one shot: atmosphere
+        news_event = {
+            id = template.1
+            title = ""
+            desc = template.1.d
 
-# one shot: news
-news_event = {
-    id = template.1
-    title = ""
-    desc = template.1.d
+            is_triggered_only = yes
+            major = yes
 
-    is_triggered_only = yes
-    major = yes
+            option = {
+                name = "Interesting."
+            }
+        }
 
-    option = {
-        name = "Interesting."
-    }
-}
+        # one shot: simple decision
+        country_event = {
+            id = template.1
+            title = ""
+            desc = template.1.d
 
-# one shot: decision
-country_event = {
-    id = template.1
-    title = ""
-    desc = template.1.d
+            is_triggered_only = yes
 
-    is_triggered_only = yes
+            option = {
+                name = ""
+            }
+            option = {
+                name = ""
+            }
+        }
 
-    option = {
-        name = ""
-    }
-    option = {
-        name = ""
+        # short: decision + atmosphere event
+        country_event = {
+            id = template.1
+            title = ""
+            desc = template.1.d
 
-        # block non-historical
-        ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
-    }
-}
+            is_triggered_only = yes
 
-# short
-country_event = {
-    id = template.1
-    title = ""
-    desc = template.1.d
+            option = {
+                name = ""
 
-    is_triggered_only = yes
+                # atmosphere event; can be gated as a "gamble outcome" with random = { chance = 50 ... }
+                news_event = { id = template.2 hours = 6 }
+            }
+            option = {
+                name = ""       # safe option
+            }
+        }
 
-    option = {
-        name = ""
+        news_event = {
+            id = template.2
+            title = ""
+            desc = template.2.d
 
-        # effect news
-        news_event = { id = template.2 hours = 6 }
-    }
-    option = {
-        name = ""
+            is_triggered_only = yes
 
-        # block non-historical
-        ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
-    }
-}
+            option = {
+                name = "Ok."
+            }
+        }
 
-news_event = {
-    id = template.2
-    title = ""
-    desc = template.2.d
+        # long: intro event, decision (commit / act safely), atmosphere event if committed.
+        news_event = {
+            id = template.1
+            title = ""
+            desc = template.1.d
 
-    is_triggered_only = yes
+            is_triggered_only = yes
 
-    option = {
-        name = "Alright."
-    }
-}
+            option = {
+                name = "Interesting."
+                country_event = { id = template.2 days = 7 }
+            }
+        }
 
-# long
-country_event = {
-    id = template.1
-    title = ""
-    desc = template.1.d
+        country_event = {
+            id = template.2
+            title = ""
+            desc = template.2.d
 
-    is_triggered_only = yes
+            is_triggered_only = yes
 
-    option = {
-        name = ""
+            option = {
+                name = ""
 
-        # consequence event
-        country_event = { id = template.2 hours = 6 }
+                # consequence event; full commitment option
+                news_event = { id = template.3 hours = 6 }
+            }
+            option = {
+                name = ""       # safe option
+            }
+        }
 
-    }
-    option = {
-        name = ""
+        news_event = {
+            id = template.3
+            title = ""
+            desc = template.3.d
 
-        # block non-historical
-        ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+            is_triggered_only = yes
 
-        # effect news
-        random = { chance = 50 news_event = { id = template.4 hours = 6 } }
-    }
-}
-
-country_event = {
-    id = template.2
-    title = ""
-    desc = template.2.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = ""
-
-        # consequence/response event
-        FROM = { news_event = { id = template.3 hours = 6 } }
-    }
-    option = {
-        name = ""
-
-        # block non-historical
-        ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
-    }
-}
-
-news_event = {
-    id = template.3
-    title = ""
-    desc = template.3.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Interesting."
-    }
-}
-
-news_event = {
-    id = template.4
-    title = ""
-    desc = template.4.d
-
-    is_triggered_only = yes
-
-    option = {
-        name = "Alright."
-    }
-}
+            option = {
+                name = "Interesting."
+            }
+        }

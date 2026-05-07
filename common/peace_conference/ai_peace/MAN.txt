@@ -3,7 +3,7 @@ peace_ai_desires = {
         peace_action_type = { take_states }
         enable = {
             tag = MAN
-            FROM = { or = { tag = EAT tag = FEN tag = GUA tag = XMA tag = MON tag = TIB tag = ANH tag = SHA tag = YUN } }
+            FROM = { or = { tag = TIB is_chinese_warlord = yes } }
         }
         ai_desire = 200
     }
@@ -12,7 +12,7 @@ peace_ai_desires = {
     MAN_warlords_dont_spread = {
         peace_action_type = { take_states }
         enable = {
-            or = { tag = EAT tag = FEN tag = GUA tag = XMA tag = TIB tag = ANH tag = SHA tag = YUN }
+            is_chinese_warlord = yes
             FROM.FROM.FROM = { not = { is_core_of = ROOT } }
         }
         ai_desire = -600

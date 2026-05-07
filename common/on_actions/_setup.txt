@@ -6,6 +6,11 @@ on_actions = {
                 _starting_resistance = yes
             }
 
+            # template lock
+            FER = {
+                country_lock_all_division_template = yes
+            }
+
             # resource rights
             COL = {
                 give_resource_rights = { receiver = USA state = 312 }
@@ -26,6 +31,12 @@ on_actions = {
                 give_resource_rights = { receiver = ENG state = 412 }
                 give_resource_rights = { receiver = ENG state = 413 }
             }
+
+            # events
+            JAP = {
+                news_event = { id = japan.1 months = 6 days = 30 }          # meiji dies
+                news_event = { id = japan.2 months = 12 days = 6 }          # the 'telescope affair'
+            }
         }
     }
 
@@ -45,6 +56,16 @@ on_actions = {
                     drop_cosmetic_tag = yes
                 }
             }
+        }
+    }
+
+    on_monthly = {
+        random_events = {
+            1 = { news_event = { id = unrest.6 random_days = 30 } }     # suspicious gatherings
+            1 = { news_event = { id = unrest.7 random_days = 30 } }     # industry disruptions
+            1 = { news_event = { id = unrest.8 random_days = 30 } }     # unrest in rural areas
+
+            9 = { }
         }
     }
 }
