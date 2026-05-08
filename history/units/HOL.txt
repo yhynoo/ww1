@@ -1,6 +1,6 @@
 division_template = {
-	name = "Infanterie Divisie"
-	division_names_group = HOL_INF_01
+	name = "Infanteriedivisie"
+	division_names_group = HOL_INF_1
 	regiments = {
 		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
         infantry = { x = 2 y = 0 }  infantry = { x = 2 y = 1 }  infantry = { x = 3 y = 0 }  infantry = { x = 3 y = 1 }
@@ -9,31 +9,44 @@ division_template = {
         artillery = { x = 0 y = 0 }
     }
 }
+
 division_template = {
-	name = "Koloniaal Garnizoen"
-	division_names_group = INS_GAR_01
-    regiments = {
+	name = "KNIL/Landstorm"
+	division_names_group = HOL_GAR_1
+	regiments = {
 		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  
         infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
 	}
     priority = 0
 }
 
+division_template = {
+	name = "Cavaleriedivisie"
+	division_names_group = HOL_CAV_1
+	regiments = {
+		cavalry = { x = 0 y = 0 } cavalry = { x = 0 y = 1 } 
+        cavalry = { x = 1 y = 0 } cavalry = { x = 1 y = 1 }
+	}
+    support = {
+        recon = { x = 0 y = 0 }
+    }
+}
+
 # units
 units = {
     
     # Holland
-    division = { location = 391	    division_template = "Infanterie Divisie"	start_equipment_factor = 0.8 }
-	division = { location = 391	    division_template = "Infanterie Divisie"	start_equipment_factor = 0.6 }
+    division = { location = 391	    division_template = "Cavaleriedivisie"	    start_experience_factor = 0.3 }
+	division = { location = 391	    division_template = "Infanteriedivisie"	    start_experience_factor = 0.3 }
 
-    division = { location = 9309	division_template = "Infanterie Divisie"	start_equipment_factor = 0.6 }
-    division = { location = 9363	division_template = "Infanterie Divisie"	start_equipment_factor = 0.6 }
-    division = { location = 11562	division_template = "Infanterie Divisie"	start_equipment_factor = 0.5 }
+    division = { location = 9363	    division_template = "Infanteriedivisie"	    start_experience_factor = 0.3 }
+
+    division = { location = 9335	    division_template = "Infanteriedivisie"	    start_experience_factor = 0.3 }
+    division = { location = 11562	    division_template = "Infanteriedivisie"	    start_experience_factor = 0.3 }
 
     # Indies
-    division = { location = 7381	division_template = "Koloniaal Garnizoen"	start_equipment_factor = 0.6 }
-    division = { location = 7381	division_template = "Koloniaal Garnizoen"	start_equipment_factor = 0.4 }
-    division = { location = 4652	division_template = "Koloniaal Garnizoen"	start_equipment_factor = 0.4 }
+    division = { location = 7381	    division_template = "KNIL/Landstorm"	    start_experience_factor = 0.3 }
+    division = { location = 7381	    division_template = "KNIL/Landstorm"	    start_experience_factor = 0.3 }
 
     # navy
     fleet = {

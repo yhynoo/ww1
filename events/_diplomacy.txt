@@ -10,6 +10,7 @@ add_namespace = diplomacy
 
         option = {
             name = "Let them have it."
+            effect_overlord_wargoal = yes
             FROM = { transfer_state = event_target:demand_target }
 
             # effect news
@@ -278,16 +279,18 @@ add_namespace = diplomacy
         }
     }
 
-# maximalist demands
+# settlement of claims
     country_event = {
         id = diplomacy.15
-        title = "[FROM.GetName] Demands Territories"
+        title = "[FROM.GetName] Demands Settlement of Claims"
         desc = diplomacy.15.d
 
         is_triggered_only = yes
 
         option = {
             name = "We must agree."
+            effect_overlord_wargoal = yes
+            
             every_owned_state = {
                 limit = { is_controlled_by = ROOT or = { is_claimed_by = FROM is_core_of = FROM } }
                 transfer_state_to = FROM
@@ -304,14 +307,13 @@ add_namespace = diplomacy
     }
 
     news_event = {
-        id = diplomacy.14
-        title = "More Land for [ROOT.GetNameDef]"
-        desc = diplomacy.14.d
+        id = diplomacy.16
+        title = "[FROM.GetName] Agrees!"
+        desc = diplomacy.16.d
 
         is_triggered_only = yes
-        major = yes
 
         option = {
-            name = "Interesting."
+            name = "Great."
         }
     }

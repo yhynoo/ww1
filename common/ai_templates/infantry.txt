@@ -1,7 +1,6 @@
 _infantry = {
     role = infantry
     _1912_infantry = {
-        upgrade_prio = { factor = 1 }
         target_template = {
             support = { artillery = 1 }
             regiments = { infantry = 8 }
@@ -24,7 +23,7 @@ _infantry = {
         upgrade_prio = { factor = 4 }
         target_template = {
             support = { artillery = 1 engineer = 1 }
-            regiments = { infantry = 5 artillery_brigade = 2 }
+            regiments = { infantry = 6 artillery_brigade = 1 }
         }
     }
 }
@@ -43,12 +42,8 @@ _garrison_troops = {
 _mountaineer_troops = {
     role = mountaineers
     1912_mountaineers = {
-        enable = {
-            has_tech = mountaineers_1
-        }
-        target_template = {
-            regiments = { mountaineers = 4 } 
-        }
+        enable = { has_tech = mountaineers_1 }
+        target_template = { regiments = { mountaineers = 4 } }
     }
     1914_mountaineers = {
         enable = {
@@ -65,12 +60,8 @@ _mountaineer_troops = {
 _marines_troops = {
     role = marines
     1912_marines = {
-        enable = {
-            has_tech = marines_1
-        }
-        target_template = {
-            regiments = { marine = 4 } 
-        }
+        enable = { has_tech = marines_1 }
+        target_template = { regiments = { marine = 4 } }
     }
     1914_marines = {
         enable = {

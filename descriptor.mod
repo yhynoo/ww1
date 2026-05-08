@@ -35,6 +35,7 @@ replace_path="common/technologies"
 replace_path="common/technology_sharing"
 replace_path="common/unit_medals"
 replace_path="common/units/names"
+replace_path="common/units/names_divisions"
 
 replace_path="events"
 

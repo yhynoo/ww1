@@ -1,28 +1,38 @@
 division_template = {
-	name = "Brigada de Infantaria"
-	division_names_group = POR_INF_01
-	regiments = {
-		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }
-        infantry = { x = 2 y = 0 }  infantry = { x = 2 y = 1 }
+	name = "Divisão de Infantaria"
+	division_names_group = XXX_INF_5
+    regiments = {
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  
+        infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
 	}
+    priority = 0
+}
+
+division_template = {
+	name = "Divisão de Cavalaria"
+	division_names_group = XXX_CAV_5
+	regiments = {
+		cavalry = { x = 0 y = 0 } cavalry = { x = 0 y = 1 } 
+        cavalry = { x = 1 y = 0 } cavalry = { x = 1 y = 1 }
+	}
+    support = {
+        recon = { x = 0 y = 0 }
+    }
 }
 
 # units
 units = {
 
 	# mainland
-    division = { location = 11805		division_template = "Brigada de Infantaria"		start_experience_factor = 0.2	}
-	division = { location = 11805		division_template = "Brigada de Infantaria"		start_experience_factor = 0.2	}
-
-	division = { location = 9817		division_template = "Brigada de Infantaria"		start_experience_factor = 0.2	}
-	division = { location = 6880		division_template = "Brigada de Infantaria"		start_experience_factor = 0.2	}
+    division = { location = 11805		division_template = "Divisão de Cavalaria"		start_experience_factor = 0.2	}
+	division = { location = 9817		division_template = "Divisão de Infantaria"		start_experience_factor = 0.2	}
+	division = { location = 6880		division_template = "Divisão de Infantaria"		start_experience_factor = 0.2	}
 
 	# Africa
-	division = { location = 8248		division_template = "Brigada de Infantaria"		start_experience_factor = 0.2	}
-	division = { location = 8245		division_template = "Brigada de Infantaria"		start_experience_factor = 0.2	}
+	division = { location = 8248		division_template = "Divisão de Infantaria"		start_experience_factor = 0.2	}
 
 	# India
-	division = { location = 1273		division_template = "Brigada de Infantaria"		start_experience_factor = 0.2	}
+	division = { location = 1273		division_template = "Divisão de Infantaria"		start_experience_factor = 0.2	}
 
 	# NAVY
 	fleet = {

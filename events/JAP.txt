@@ -92,63 +92,105 @@ add_namespace = japan
             }
         }
 
-    # Demand Singapore
+    # Twenty-One Demands
         country_event = {
             id = japan.7
-            title = "Scent of the Harbor"
+            title = "The Army Staff's Demand"
             desc = japan.7.d
 
-            trigger = { focus_progress = { focus = JAP_singapore progress > 0.5 } }
-            fire_only_once = yes
+            is_triggered_only = yes
 
             option = {
-                name = "Escalate the matter."
-                add_stability = -0.02
+                name = "Demand their submission."
+                custom_effect_tooltip = tt_twenty_one_demands_maximalist
 
-                # atmosphere event; can be gated as a "gamble outcome" with random = { chance = 50 ... }
-                random = { 
-                    chance = 50 
-                    news_event = { id = japan.8 hours = 6 } 
+                hidden_effect = {
+                    set_country_flag = maximalist_demands
+                    MAN = { country_event = { id = japan.8 hours = 6 } }
                 }
             }
             option = {
-                name = "Keep it silent."       # safe option
-                add_political_power = -25
+                name = "Ask for limited concessions."
+                custom_effect_tooltip = tt_twenty_one_demands_small
+
+                hidden_effect = {
+                    MAN = { country_event = { id = japan.8 hours = 6 } }
+                }
+            }
+        }
+
+        country_event = {
+            id = japan.8
+            title = "A Delegation from Tokyo"
+            desc = japan.8.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "We must agree to this."
+
+                if = {
+                    limit = { JAP = { has_country_flag = maximalist_demands } }
+                    JAP = { set_autonomy = { target = MAN autonomous_state = autonomy_dominion } }
+                    every_state = {
+                        limit = { 
+                            or = { is_controlled_by = ROOT controller = { is_subject_of = ROOT } }
+                            or = { state = 296 state = 619 state = 328 state = 610 } 
+                        }
+                        transfer_state_to = JAP
+                    }
+                }
+                else = {
+                    every_state = {
+                        limit = { 
+                            or = { is_controlled_by = ROOT controller = { is_subject_of = ROOT } }
+                            or = { state = 592 state = 593 state = 594 state = 605 } 
+                        }
+                        ROOT = { give_resource_rights = { receiver = JAP state = PREV } }
+                    }
+                }
+
+                # atmosphere event
+                hidden_effect = { FROM = { news_event = { id = japan.9 hours = 6 } } }
+            }
+            option = {
+                name = "Send them away."
+                JAP = { create_wargoal = { target = ROOT type = puppet_wargoal_focus } }
             }
         }
 
         news_event = {
-            id = japan.8
-            title = "Singapore Locals Outraged at the Administration"
-            desc = japan.8.d
+            id = japan.9
+            title = "The Kantō Army Enters Mukden"
+            desc = japan.9.d
 
             is_triggered_only = yes
-            major = yes
+            trigger = { JAP = { controls_state = 296 } }
 
             option = {
-                name = "Interesting."
-                if = { limit = { controls_state = 336 } add_stability = -0.025 }
+                name = "Such a wondrous sight."
+                add_popularity = { ideology = monarchism popularity = 0.025 }
             }
         }
 
     # Abandon Imperialism
         news_event = {
-            id = japan.9
+            id = japan.10
             title = "Unease in the Ministry"
-            desc = japan.9.d
+            desc = japan.10.d
 
             is_triggered_only = yes
 
             option = {
                 name = "We will see."
-                add_stability = -0.02       country_event = { id = japan.10 days = 7 }
+                add_stability = -0.02       country_event = { id = japan.11 days = 7 }
             }
         }
 
         country_event = {
-            id = japan.10
+            id = japan.11
             title = "A Quiet Meeting"
-            desc = japan.10.d
+            desc = japan.11.d
 
             is_triggered_only = yes
 
@@ -157,7 +199,7 @@ add_namespace = japan
                 add_popularity = { ideology = democratic popularity = 0.025 } 
 
                 # consequence event; full commitment option
-                news_event = { id = japan.11 hours = 6 }
+                news_event = { id = japan.12 hours = 6 }
             }
             option = {
                 name = "Offer some concessions."       # safe option
@@ -166,9 +208,9 @@ add_namespace = japan
         }
 
         news_event = {
-            id = japan.11
+            id = japan.12
             title = "Inspections at Dawn"
-            desc = japan.11.d
+            desc = japan.12.d
 
             is_triggered_only = yes
 
@@ -182,9 +224,9 @@ add_namespace = japan
 
     # Tensions in the Docks
         country_event = {
-            id = japan.12
+            id = japan.13
             title = "Clashes in the Docks"
-            desc = japan.12.d
+            desc = japan.13.d
 
             is_triggered_only = yes
 
@@ -195,7 +237,7 @@ add_namespace = japan
                 # atmosphere event; can be gated as a "gamble outcome" with random = { chance = 50 ... }
                 random = { 
                     chance = 50 
-                    news_event = { id = japan.13 hours = 6 }
+                    news_event = { id = japan.14 hours = 6 }
                 }
             }
             option = {
@@ -205,9 +247,9 @@ add_namespace = japan
         }
 
         news_event = {
-            id = japan.13
+            id = japan.14
             title = "Arrests in Osaka"
-            desc = japan.13.d
+            desc = japan.14.d
 
             is_triggered_only = yes
 
@@ -219,9 +261,9 @@ add_namespace = japan
 
     # Taisho Democracy
         country_event = {
-            id = japan.14
+            id = japan.15
             title = "The Question of the Genrō"
-            desc = japan.14.d
+            desc = japan.15.d
 
             is_triggered_only = yes
 
@@ -230,7 +272,7 @@ add_namespace = japan
                 add_popularity = { ideology = democratic popularity = 0.05 }
 
                 # atmosphere event; can be gated as a "gamble outcome" with random = { chance = 50 ... }
-                news_event = { id = japan.15 hours = 6 }
+                news_event = { id = japan.16 hours = 6 }
             }
             option = {
                 name = "We appreciate their experience."       # safe option
@@ -239,9 +281,9 @@ add_namespace = japan
         }
 
         news_event = {
-            id = japan.15
+            id = japan.16
             title = "A Stroll in Kagoshima"
-            desc = japan.15.d
+            desc = japan.16.d
 
             is_triggered_only = yes
 
@@ -249,62 +291,5 @@ add_namespace = japan
                 name = "Alright."
                 add_political_power = 10
             }
-        }
-
-## TWENTY-ONE DEMANDS EVENTS (to check later)
-    country_event = {
-        id = japan.101
-        title = "Tokyo: Access to Resources in South China"
-        desc = japan.101.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "We must agree."
-            every_state = {
-                limit = { or = { state = 592 state = 594 } }
-                ROOT = { give_resource_rights = { receiver = JAP state = PREV } }
-            }
-        }
-        option = {
-            name = "No!"
-            JAP = { create_wargoal = { target = FROM type = puppet_wargoal_focus } }
-        }
-    }
-
-    country_event = {
-        id = japan.102
-        title = "Japanese Access to Sichuan Mines"
-        desc = japan.102.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "We must agree."
-            every_state = {
-                limit = { or = { state = 605 state = 620 } }
-                ROOT = { give_resource_rights = { receiver = JAP state = PREV resources = { steel } } }
-            }
-        }
-        option = {
-            name = "The mines stay with us."
-            JAP = { create_wargoal = { target = FROM type = puppet_wargoal_focus } }
-        }
-    }
-
-    country_event = {
-        id = japan.103
-        title = "Military Access for Japan?"
-        desc = japan.103.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Let them have it."
-            give_military_access = JAP
-        }
-        option = {
-            name = "Or what?"
-            JAP = { create_wargoal = { target = FROM type = puppet_wargoal_focus } }
-        }
-    }
+        } 
+    

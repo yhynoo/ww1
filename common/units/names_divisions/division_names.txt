@@ -1,0 +1,623 @@
+# GENERIC - ENG
+    XXX_INF_1 = {
+        name = "Infantry Division"
+
+        for_countries = { AST AFG BUK EAT ETH KHI MON QAJ RAJ SAF TIB USA }
+        can_use = { always = yes }      fallback_name = "%dth Infantry Div."
+        division_types = { "infantry" "mountaineers" "marines" }
+
+        ordered = {
+            1 = { "%dst Infantry Div." }     2 = { "%dnd Infantry Div." }     3 = { "%drd Infantry Div." }
+            21 = { "%dst Infantry Div." }    22 = { "%dnd Infantry Div." }    23 = { "%drd Infantry Div." }
+        }
+    }
+
+    XXX_GAR_1 = {
+        name = "Garrison Troops"
+
+        for_countries = { AST AFG BUK EAT ETH KHI MON QAJ RAJ SAF TIB USA }
+        can_use = { always = yes }      fallback_name = "%dth Garrison Div."    link_numbering_with = { XXX_INF_1 }
+        division_types = { "infantry" }
+
+        ordered = {
+            1 = { "%dst Garrison Div." }     2 = { "%dnd Garrison Div." }     3 = { "%drd Garrison Div." }
+            21 = { "%dst Garrison Div." }    22 = { "%dnd Garrison Div." }    23 = { "%drd Garrison Div." }
+        }
+    }
+
+    XXX_CAV_1 = {
+        name = "Cavalry"
+
+        for_countries = { AST AFG BUK EAT ETH KHI MON QAJ RAJ SAF TIB USA }
+        can_use = { always = yes }      fallback_name = "%dth Cavalry Div."
+        division_types = { "cavalry" "camelry" }
+
+        ordered = {
+            1 = { "%dst Cavalry Div." }     2 = { "%dnd Cavalry Div." }     3 = { "%drd Cavalry Div." }
+            21 = { "%dst Cavalry Div." }    22 = { "%dnd Cavalry Div." }    23 = { "%drd Cavalry Div." }
+        }
+    }
+
+# GENERIC - SPA
+    XXX_INF_2 = {
+        name = "División de Infantería"
+
+        for_countries = { ADE ARG COL MEX SPA }
+        can_use = { always = yes }      fallback_name = "%da División de Infantería"
+        division_types = { "infantry" "mountaineers" "marines" }
+
+        ordered = {
+            1 = { "%da División de Infantería" }     2 = { "%da División de Infantería" }     3 = { "%da División de Infantería" }
+        }
+    }
+
+    XXX_GAR_2 = {
+        name = "Guardia Civíl"
+
+        for_countries = { ADE ARG COL MEX SPA }
+        can_use = { always = yes }      fallback_name = "%da Guardia Civíl"    link_numbering_with = { XXX_INF_2 }
+        division_types = { "infantry" }
+
+        ordered = {
+            1 = { "%da Guardia Civíl" }     2 = { "%da Guardia Civíl" }     3 = { "%da Guardia Civíl" }
+        }
+    }
+
+    XXX_CAV_2 = {
+        name = "División de Caballería"
+
+        for_countries = { ADE ARG COL MEX SPA }
+        can_use = { always = yes }      fallback_name = "%da División de Caballería"
+        division_types = { "cavalry" "camelry" }
+
+        ordered = {
+            1 = { "%da División de Caballería" }     2 = { "%da División de Caballería" }     3 = { "%da División de Caballería" }
+        }
+    }
+
+# GENERIC - GER
+    XXX_INF_3 = {
+        name = "Infanterie-Division"
+
+        for_countries = { AUS SWI }
+        can_use = { always = yes }      fallback_name = "%d. Division"      
+        division_types = { "infantry" "mountaineers" "marines" }
+
+        ordered = {
+            1 = { "%d. Division" }     2 = { "%d. Division" }     3 = { "%d. Division" }
+        }
+    }
+
+    XXX_GAR_3 = {
+        name = "Landwehr"
+
+        for_countries = { SWI }
+        can_use = { always = yes }      fallback_name = "%d. Landwehr-Div."    link_numbering_with = { XXX_INF_3 }
+        division_types = { "infantry" }
+
+        ordered = {
+            1 = { "%d. Landwehr-Div." }     2 = { "%d. Landwehr-Div." }     3 = { "%d. Landwehr-Div." }
+        }
+    }
+
+    XXX_CAV_3 = {
+        name = "Kavallerie-Division"
+
+        for_countries = { AUS SWI }
+        can_use = { always = yes }      fallback_name = "%d. Kavallerie-Div."
+        division_types = { "cavalry" }
+
+        ordered = {
+            1 = { "%d. Kavallerie-Div." }     2 = { "%d. Kavallerie-Div." }     3 = { "%d. Kavallerie-Div." }
+        }
+    }
+
+# GENERIC - FRA
+    XXX_INF_4 = {
+        name = "Division d’Infanterie"
+
+        for_countries = { BEL FRA }
+        can_use = { always = yes }      fallback_name = "%d. Division d’Infanterie"      
+        division_types = { "infantry" "mountaineers" "marines" }
+
+        ordered = {
+            1 = { "%d. Division d’Infanterie" }     2 = { "%d. Division d’Infanterie" }     3 = { "%d. Division d’Infanterie" }
+        }
+    }
+
+    XXX_GAR_4 = {
+        name = "Troupes Coloniales"
+
+        for_countries = { BEL FRA }
+        can_use = { always = yes }      fallback_name = "%d. Troupes Coloniales"    link_numbering_with = { XXX_INF_3 }
+        division_types = { "infantry" }
+
+        ordered = {
+            1 = { "%d. Troupes Coloniales" }     2 = { "%d. Troupes Coloniales" }     3 = { "%d. Troupes Coloniales" }
+        }
+    }
+
+    XXX_CAV_4 = {
+        name = "Division de Cavalerie"
+
+        for_countries = { BEL FRA }
+        can_use = { always = yes }      fallback_name = "%d. Division de Cavalerie"
+        division_types = { "cavalry" }
+
+        ordered = {
+            1 = { "%d. Division de Cavalerie" }     2 = { "%d. Division de Cavalerie" }     3 = { "%d. Division de Cavalerie" }
+        }
+    }
+
+# GENERIC - POR
+    XXX_INF_5 = {
+        name = "Divisão de Infantaria"
+
+        for_countries = { BRA POR }
+        can_use = { always = yes }      fallback_name = "%d. Divisão de Infantaria"      
+        division_types = { "infantry" "mountaineers" "marines" }
+
+        ordered = {
+            1 = { "%d. Divisão de Infantaria" }     2 = { "%d. Divisão de Infantaria" }     3 = { "%d. Divisão de Infantaria" }
+        }
+    }
+
+    XXX_GAR_5 = {
+        name = "Guarda Colonial"
+
+        for_countries = { POR }
+        can_use = { always = yes }      fallback_name = "%d. Div. de Guarda Colonial"      link_numbering_with = { XXX_INF_5 }
+        division_types = { "infantry" }
+
+        ordered = {
+            1 = { "%d. Div. de Guarda Colonial" }     2 = { "%d. Div. de Guarda Colonial" }     3 = { "%d. Div. de Guarda Colonial" }
+        }
+    }
+
+    XXX_CAV_5 = {
+        name = "Divisão de Cavalaria"
+
+        for_countries = { BRA POR }
+        can_use = { always = yes }      fallback_name = "%d. Divisão de Cavalaria"      
+        division_types = { "infantry" "mountaineers" "marines" }
+
+        ordered = {
+            1 = { "%d. Divisão de Cavalaria" }     2 = { "%d. Divisão de Cavalaria" }     3 = { "%d. Divisão de Cavalaria" }
+        }
+    }
+
+# GENERIC - ARA
+    XXX_INF_6 = {
+        name = "Firqat al-Mushāt"
+
+        for_countries = { ALG EGY MOR OMA SAU TUN YEM }
+        can_use = { always = yes }      fallback_name = "Firqat al-Mushāt al-%da"      
+        division_types = { "infantry" "mountaineers" "marines" }
+
+        ordered = {
+            1 = { "Firqat al-Mushāt al-%da" }     2 = { "Firqat al-Mushāt al-%da" }     3 = { "Firqat al-Mushāt al-%da" }
+        }
+    }
+
+    XXX_GAR_6 = {
+        name = "Quwwāt al-Hāmiyah"
+
+        for_countries = { ALG EGY MOR OMA SAU TUN YEM }
+        can_use = { always = yes }      fallback_name = "Quwwāt al-Hāmiyah al-%da"    link_numbering_with = { XXX_INF_6 }
+        division_types = { "infantry" }
+
+        ordered = {
+            1 = { "Quwwāt al-Hāmiyah al-%da" }     2 = { "Quwwāt al-Hāmiyah al-%da" }     3 = { "Quwwāt al-Hāmiyah al-%da" }
+        }
+    }
+
+    XXX_CAV_6 = {
+        name = "Firqat al-Fursān"
+
+        for_countries = { ALG EGY MOR OMA SAU TUN YEM }
+        can_use = { always = yes }      fallback_name = "Firqat al-Fursān al-%da"
+        division_types = { "cavalry" "camelry" }
+
+        ordered = {
+            1 = { "Firqat al-Fursān al-%da" }     2 = { "Firqat al-Fursān al-%da" }     3 = { "Firqat al-Fursān al-%da" }
+        }
+    }
+
+# Austria-Hungary
+    AUS_GAR_1 = {
+        name = "Landsturm"
+
+        for_countries = { AUS }
+        can_use = { always = yes }      fallback_name = "%d. Landsturm-Div."        link_numbering_with = { XXX_INF_3 }
+        division_types = { "infantry" }
+
+        ordered = {
+            1 = { "%d. Honvéd Hadosztály" }         2 = { "%d. Katonai Kerület" }     3 = { "%d. Kraljevsko Hrv. Domobr." }
+            4 = { "%d. Slovansko Domobranstvo" }    5 = { "%d. Katonai Kerület" }     6 = { "%d. Landsturm-Div." }
+        }
+    }
+
+    AUS_MNT_1 = {
+        name = "Kaiserjäger"
+
+        for_countries = { AUS }
+        can_use = { always = yes }      fallback_name = "%d. Kaiserjäger-Div."
+        division_types = { "mountaineers" }
+
+        ordered = {
+            1 = { "%d. Tiroler Kaiserjäger" }       2 = { "%d. Kaiserjäger-Div." }    3 = { "%d. Tsch. Kaiserjäger-Div." }
+            4 = { "%d. Kroat. Kaiserjäger-Div." }    5 = { "%d. Innsbrucker Kaiserjäger" }     6 = { "%d. Kaiserjäger-Div." }
+        }
+    }
+#
+
+# China
+    MAN_INF_1 = {
+        name = "Bubing Shi"
+
+        for_countries = { ANH FEN GUA MAN XMA YUN }
+        can_use = { always = yes }      fallback_name = "%d Bubing Shi"      
+        division_types = { "infantry" "mountaineers" "marines" }
+
+        ordered = {
+            1 = { "%d Bubing Shi" }     2 = { "%d Bubing Shi" }     3 = { "%d Bubing Shi" }
+        }
+    }
+
+    MAN_GAR_1 = {
+        name = "Lüying"
+
+        for_countries = { ANH FEN GUA MAN XMA YUN }
+        can_use = { always = yes }      fallback_name = "%d Lüying"    link_numbering_with = { MAN_INF_1 }
+        division_types = { "infantry" }
+
+        ordered = {
+            1 = { "%d Lüying" }     2 = { "%d Lüying" }     3 = { "%d Lüying" }
+        }
+    }
+
+    MAN_CAV_1 = {
+        name = "Qibing Shi"
+
+        for_countries = { ANH FEN GUA MAN XMA YUN }
+        can_use = { always = yes }      fallback_name = "%d Qibing Shi"
+        division_types = { "cavalry" }
+
+        ordered = {
+            1 = { "%d Qibing Shi" }     2 = { "%d Qibing Shi" }     3 = { "%d Qibing Shi" }
+        }
+    }
+
+# Duchy of Wallachia and Moldova
+    ROM_INF_1 = {
+        name = "Divizie de Infanterie"
+
+        for_countries = { ROM }
+        can_use = { always = yes }      fallback_name = "%d. Divizie de Infanterie"
+        division_types = { "infantry" "mountaineers" "marines" }
+
+        ordered = {
+            1 = { "%d. Divizie de Infanterie" }         2 = { "%d. Divizie de Infanterie" }     3 = { "%d. Divizie de Infanterie" }
+        }
+    }
+
+    ROM_CAV_1 = {
+        name = "Divizie de Cavalerie"
+
+        for_countries = { ROM }
+        can_use = { always = yes }      fallback_name = "%d. Divizie de Cavalerie"
+        division_types = { "cavalry" }
+
+        ordered = {
+            1 = { "%d. Divizie de Cavalerie" }         2 = { "%d. Divizie de Cavalerie" }     3 = { "%d. Divizie de Cavalerie" }
+        }
+    }
+
+# Germany
+    GER_INF_1 = {
+        name = "Infanterie-Division"
+
+        for_countries = { GER UBD }
+        can_use = { always = yes }      fallback_name = "%d. Infanterie-Division"
+        division_types = { "infantry" "mountaineers" "marines" }
+
+        ordered = {
+            1 = { "%d. Infanterie-Division" }         2 = { "%d. Infanterie-Division" }     3 = { "%d. Infanterie-Division" }
+        }
+    }
+
+    GER_GAR_1 = {
+        name = "Schutztruppe"
+
+        for_countries = { GER }
+        can_use = { always = yes }      fallback_name = "%d. Schutztruppe-Div."
+        division_types = { "infantry" }
+
+        ordered = {
+            1 = { "%d. Schutztruppe-Div. 'Windhoek'" }         2 = { "%d. Schutztruppe-Div. 'Askari'" }     3 = { "%d. Schutztruppe-Div. 'Kiautschou'" }
+        }
+    }
+
+    GER_CAV_1 = {
+        name = "Kavallerie-Division"
+
+        for_countries = { GER UBD }
+        can_use = { always = yes }      fallback_name = "%d. Kavallerie-Division"
+        division_types = { "cavalry" }
+
+        ordered = {
+            1 = { "%d. Garde-Husaren-Division" }         2 = { "%d. Kavallerie-Division" }     3 = { "%d. Kavallerie-Div. 'Kronprinz'" }
+        }
+    }
+
+# Greece
+    GRE_INF_1 = {
+        name = "Merarchía Pezikoú"
+
+        for_countries = { CRE GRE }
+        can_use = { always = yes }      fallback_name = "%d. Merarchía Pezikoú"
+        division_types = { "infantry" "mountaineers" "marines" }
+
+        ordered = {
+            1 = { "%d. Merarchía Pezikoú" }         2 = { "%d. Merarchía Pezikoú" }     3 = { "%d. Merarchía Pezikoú" }
+        }
+    }
+
+    GRE_CAV_1 = {
+        name = "Merarchía Ippikoú"
+
+        for_countries = { CRE GRE }
+        can_use = { always = yes }      fallback_name = "%d. Merarchía Ippikoú"
+        division_types = { "cavalry" }
+
+        ordered = {
+            1 = { "%d. Merarchía Ippikoú" }         2 = { "%d. Merarchía Ippikoú" }     3 = { "%d. Merarchía Ippikoú" }
+        }
+    }
+
+# Holland
+    HOL_INF_1 = {
+        name = "Infanteriedivisie"
+
+        for_countries = { HOL }
+        can_use = { always = yes }      fallback_name = "%d. Infanteriedivisie"
+        division_types = { "infantry" "mountaineers" "marines" }
+
+        ordered = {
+            1 = { "%d. Infanteriedivisie" }         2 = { "%d. Infanteriedivisie" }     3 = { "%d. Infanteriedivisie" }
+        }
+    }
+
+    HOL_GAR_1 = {
+        name = "KNIL/Landstorm"
+
+        for_countries = { HOL }
+        can_use = { always = yes }      fallback_name = "%d. Landstormdivisie"
+        division_types = { "infantry" }
+
+        ordered = {
+            1 = { "%d. KNIL Divisie 'Java'" }       2 = { "%d. KNIL Divisie" }     3 = { "%d. KNIL Divisie 'Soematra'" }
+        }
+    }
+
+    HOL_CAV_1 = {
+        name = "Cavaleriedivisie"
+
+        for_countries = { HOL }
+        can_use = { always = yes }      fallback_name = "%d. Cavaleriedivisie"
+        division_types = { "cavalry" }
+
+        ordered = {
+            1 = { "%d. Cavaleriedivisie" }         2 = { "%d. Cavaleriedivisie" }     3 = { "%d. Cavaleriedivisie" }
+        }
+    }
+
+# Italy
+    ITA_INF_1 = {
+        name = "Divisione di Fanteria"
+
+        for_countries = { ITA }
+        can_use = { always = yes }      fallback_name = "%da Divisione di Fanteria"
+        division_types = { "infantry" "marines" }
+
+        ordered = {
+            1 = { "%da Divisione di Fanteria" }         2 = { "%da Divisione di Fanteria" }     3 = { "%da Divisione di Fanteria" }
+        }
+    }
+
+    ITA_GAR_1 = {
+        name = "Truppe Coloniali"
+
+        for_countries = { ITA }
+        can_use = { always = yes }      fallback_name = "%da Div. degli Truppe Coloniali"
+        division_types = { "infantry" }
+
+        ordered = {
+            1 = { "%da Div. degli Truppe Coloniali" }       2 = { "%da Div. degli Truppe Coloniali" }     3 = { "%da Div. degli Truppe Coloniali" }
+        }
+    }
+
+    ITA_MNT_1 = {
+        name = "Alpini"
+
+        for_countries = { ITA }
+        can_use = { always = yes }      fallback_name = "%da Divisione Alpini"
+        division_types = { "mountaineers" }
+
+        ordered = {
+            1 = { "%da Divisione Alpini" }       2 = { "%da Divisione Alpini" }     3 = { "%da Divisione Alpini" }
+        }
+    }
+
+    ITA_CAV_1 = {
+        name = "Divisione di Cavalleria"
+
+        for_countries = { ITA }
+        can_use = { always = yes }      fallback_name = "%da Divisione di Cavalleria"
+        division_types = { "cavalry" }
+
+        ordered = {
+            1 = { "%da Divisione di Cavalleria" }         2 = { "%da Divisione di Cavalleria" }     3 = { "%da Divisione di Cavalleria" }
+        }
+    }
+
+# Japan
+    JAP_INF_1 = {
+        name = "Hohei Shidan"
+
+        for_countries = { JAP KAN }
+        can_use = { always = yes }      fallback_name = "%d. Hohei Shidan"
+        division_types = { "infantry" "mountaineers" }
+
+        ordered = {
+            1 = { "%d. Hohei Shidan" }         2 = { "%d. Hohei Shidan" }     3 = { "%d. Hohei Shidan" }
+        }
+    }
+
+    JAP_GAR_1 = {
+        name = "Chūton Guntai"
+
+        for_countries = { JAP KAN  }
+        can_use = { always = yes }      fallback_name = "%d. Chūton Guntai"
+        division_types = { "infantry" }
+
+        ordered = {
+            1 = { "%d. Chūton Guntai" }       2 = { "%d. Chūton Guntai" }     3 = { "%d. Chūton Guntai" }
+        }
+    }
+
+    JAP_MAR_1 = {
+        name = "Rikusentai Shidan"
+
+        for_countries = { JAP KAN  }
+        can_use = { always = yes }      fallback_name = "%d. Rikusentai Shidan"
+        division_types = { "marines" }
+
+        ordered = {
+            1 = { "%d. Rikusentai Shidan" }       2 = { "%d. Rikusentai Shidan" }     3 = { "%d. Rikusentai Shidan" }
+        }
+    }
+
+    JAP_CAV_1 = {
+        name = "Kihei Shidan"
+
+        for_countries = { JAP KAN  }
+        can_use = { always = yes }      fallback_name = "%d. Kihei Shidan"
+        division_types = { "cavalry" }
+
+        ordered = {
+            1 = { "%d. Kihei Shidan" }         2 = { "%d. Kihei Shidan" }     3 = { "%d. Kihei Shidan" }
+        }
+    }
+
+# Ottomans
+    TUR_INF_1 = {
+        name = "Piyade Fırkası"
+
+        for_countries = { TUR }
+        can_use = { always = yes }      fallback_name = "%d. Piyade Fırkası"
+        division_types = { "infantry" "mountaineers" "marines" }
+
+        ordered = {
+            1 = { "%d. Piyade Fırkası" }         2 = { "%d. Piyade Fırkası" }     3 = { "%d. Piyade Fırkası" }
+        }
+    }
+
+    TUR_GAR_1 = {
+        name = "Piyade Tümeni"
+
+        for_countries = { TUR }
+        can_use = { always = yes }      fallback_name = "%d. Piyade Tümeni"
+        division_types = { "infantry" }
+
+        ordered = {
+            1 = { "%d. Piyade Tümeni" }       2 = { "%d. Piyade Tümeni" }     3 = { "%d. Piyade Tümeni" }
+        }
+    }
+
+    TUR_CAV_1 = {
+        name = "Süvari Fırkası"
+
+        for_countries = { TUR }
+        can_use = { always = yes }      fallback_name = "%d. Süvari Fırkası"
+        division_types = { "cavalry" "camelry" }
+
+        ordered = {
+            1 = { "%d. Süvari Fırkası" }         2 = { "%d. Süvari Fırkası" }     3 = { "%d. Süvari Fırkası" }
+        }
+    }
+
+# Russia
+    RUS_INF_1 = {
+        name = "Pekhotnaya Diviziya"
+
+        for_countries = { FER RUS }
+        can_use = { always = yes }      fallback_name = "%d-a Pekhotnaya Diviziya"
+        division_types = { "infantry" "mountaineers" "marines" }
+
+        ordered = {
+            1 = { "%d-a Pekhotnaya Diviziya" }         2 = { "%d-a Pekhotnaya Diviziya" }     3 = { "%d-a Pekhotnaya Diviziya" }
+        }
+    }
+
+    RUS_GAR_1 = {
+        name = "Voennyi Okrug"
+
+        for_countries = { FER RUS }
+        can_use = { always = yes }      fallback_name = "%d-yi Voennyi Okrug"
+        division_types = { "infantry" }
+
+        ordered = {
+            1 = { "%d-yi Voennyi Okrug" }       2 = { "%d-yi Voennyi Okrug" }     3 = { "%d-yi Voennyi Okrug" }
+        }
+    }
+
+    RUS_KAV_1 = {
+        name = "Kavaleriyskaya Diviziya"
+
+        for_countries = { FER RUS }
+        can_use = { always = yes }      fallback_name = "%d-a Kavaleriyskaya Diviziya"
+        division_types = { "cavalry" "camelry" }
+
+        ordered = {
+            1 = { "%d-a Kavaleriyskaya Diviziya" }         2 = { "%d-a Kavaleriyskaya Diviziya" }     3 = { "%d-a Kavaleriyskaya Diviziya" }
+        }
+    }
+
+# Serbia
+    SER_INF_1 = {
+        name = "Pešadijska Divizija"
+
+        for_countries = { SER }
+        can_use = { always = yes }      fallback_name = "%d. Pešadijska Divizija"
+        division_types = { "infantry" "mountaineers" "marines" }
+
+        ordered = {
+            1 = { "%d. Pešadijska Divizija" }         2 = { "%d. Pešadijska Divizija" }     3 = { "%d. Pešadijska Divizija" }
+        }
+    }
+
+    SER_CAV_1 = {
+        name = "Konjička Divizija"
+
+        for_countries = { SER }
+        can_use = { always = yes }      fallback_name = "%d. Konjička Divizija"
+        division_types = { "cavalry" }
+
+        ordered = {
+            1 = { "%d. Konjička Divizija" }         2 = { "%d. Konjička Divizija" }     3 = { "%d. Konjička Divizija" }
+        }
+    }
+
+# United Kingdom
+    ENG_MAR_1 = {
+        name = "Marines"
+
+        for_countries = { AST ENG }
+        can_use = { always = yes }      fallback_name = "%dth Marine Infantry Div."
+        division_types = { "marines" }
+
+        ordered = {
+            1 = { "%dsth Marine Infantry Div." }       2 = { "%dnd Marine Infantry Div." }     3 = { "%drd Marine Infantry Div." }
+        }
+    }

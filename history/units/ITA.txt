@@ -1,0 +1,113 @@
+division_template = {
+	name = "Divisione di Fanteria"
+	division_names_group = ITA_INF_1
+    regiments = {
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
+        infantry = { x = 2 y = 0 }  infantry = { x = 2 y = 1 }  infantry = { x = 3 y = 0 }  infantry = { x = 3 y = 1 }
+	}
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
+}
+
+division_template = {
+	name = "Truppe Coloniali"
+	division_names_group = ITA_GAR_1
+    regiments = {
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  
+        infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
+	}
+    priority = 0
+}
+
+division_template = {
+	name = "Alpini"
+	division_names_group = ITA_MNT_1
+    regiments = {
+		mountaineers = { x = 0 y = 0 }  mountaineers = { x = 0 y = 1 }  
+        mountaineers = { x = 1 y = 0 }  mountaineers = { x = 1 y = 1 }
+	}
+}
+
+division_template = {
+	name = "Divisione di Cavalleria"
+	division_names_group = ITA_CAV_1
+	regiments = {
+		cavalry = { x = 0 y = 0 } cavalry = { x = 0 y = 1 } 
+        cavalry = { x = 1 y = 0 } cavalry = { x = 1 y = 1 }
+	}
+    support = {
+        recon = { x = 0 y = 0 }
+    }
+}
+
+# units
+units = {
+    # veneto
+    division = { location = 11584	division_template = "Divisione di Fanteria"	start_experience_factor = 0.3 }
+    division = { location = 11584	division_template = "Divisione di Fanteria"	start_experience_factor = 0.3 }
+
+    division = { location = 3780	division_template = "Divisione di Cavalleria"	start_experience_factor = 0.3 }
+    division = { location = 6606	division_template = "Divisione di Fanteria"	start_experience_factor = 0.3 }
+
+    # alpini
+    division = { location = 3657	division_template = "Alpini"	start_experience_factor = 0.3 }
+
+    # roma
+    division = { location = 9904	division_template = "Divisione di Cavalleria"	start_experience_factor = 0.3 }
+    division = { location = 9904	division_template = "Divisione di Fanteria"	start_experience_factor = 0.3 }
+
+    # mediterraneo
+    division = { location = 10074	division_template = "Divisione di Fanteria"	start_experience_factor = 0.3 }
+    division = { location = 11773	division_template = "Divisione di Fanteria"	start_experience_factor = 0.3 }
+
+    # abissynia
+    division = { location = 12766	division_template = "Truppe Coloniali"	start_experience_factor = 0.3 }
+
+    division = { location = 12991	division_template = "Truppe Coloniali"	start_experience_factor = 0.3 }
+    division = { location = 12991	division_template = "Truppe Coloniali"	start_experience_factor = 0.3 }
+
+	# navy
+	fleet = {
+        name = "Regia Marina"	
+        naval_base = 11837                  # Taranto
+
+        # Mediterranean
+        task_force = {
+            name = "I Divisione"      
+			location = 11837 	            # Taranto 
+
+            # dreadnoughts
+            ship = { name = "Dante Alighieri" definition = heavy_cruiser equipment = { heavy_cruiser_2 = { amount = 1 owner = ITA } } }
+            ship = { name = "Vittorio Emanuele" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = ITA } } }
+
+            # cruisers
+            ship = { name = "Amalfi" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = ITA } } }
+
+            # destroyers
+            ship = { name = "Impavido" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ITA } } }
+            ship = { name = "Insidioso" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ITA } } }
+            ship = { name = "Irrequeito" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ITA } } }
+            ship = { name = "Turbine" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ITA } } }
+        }
+
+        # North
+        task_force = {
+            name = "II Divisione"      
+			location = 6788 	        # Genova 
+
+            # cruisers
+            ship = { name = "Varese" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = ITA } } }
+
+            # destroyers
+            ship = { name = "Ardito" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ITA } } }
+            ship = { name = "Audace" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ITA } } }
+            ship = { name = "Fuciliere" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ITA } } }
+            ship = { name = "Strale" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = ITA } } }
+       	}
+    }
+}
+
+air_wings = {
+    117 = { fighter_equipment_0 = { owner = "ITA" amount = 10 } }
+}
