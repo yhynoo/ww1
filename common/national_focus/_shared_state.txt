@@ -20,8 +20,10 @@
         id = XXX_extend
         icon = GFX_focus_generic_extend
         prerequisite = { focus = XXX_government }
+        mutually_exclusive = { focus = XXX_deterrence }
 
         available = {
+            is_subject = no
             civil_war_government_lock = yes
         }
 
@@ -30,7 +32,7 @@
         cost = 10
 
         completion_reward = {
-            news_event = { id = other.5 hours = 6 }
+            add_war_support = 0.05
             if = {
                 limit = { is_subject = no }
                 custom_effect_tooltip = tt_extend
@@ -45,6 +47,7 @@
         prerequisite = { focus = XXX_extend }
 
         available = {
+            is_subject = no
             civil_war_government_lock = yes
         }
 
@@ -69,6 +72,7 @@
         prerequisite = { focus = XXX_extend }
 
         available = {
+            is_subject = no
             civil_war_government_lock = yes
         }
 
@@ -87,6 +91,7 @@
         prerequisite = { focus = XXX_men }
 
         available = {
+            is_subject = no
             civil_war_government_lock = yes
         }
 
@@ -94,9 +99,8 @@
         x = 0 y = 1
         cost = 10
 
-        available = { has_war_support > 0.5 }
-
         completion_reward = {
+            add_war_support = 0.05
             random_state = {
                 limit = { 
                     not = { is_claimed_by = ROOT } any_neighbor_state = { is_owned_by = ROOT }
@@ -111,10 +115,10 @@
     }
 
     shared_focus = {
-        id = XXX_stability
-        icon = GFX_focus_generic_stability
+        id = XXX_deterrence
+        icon = GFX_focus_XXX_deterrence
         prerequisite = { focus = XXX_government }
-        mutually_exclusive = { focus = XXX_adjust_government }
+        mutually_exclusive = { focus = XXX_extend }
 
         available = {
             civil_war_government_lock = yes
@@ -128,33 +132,33 @@
 
         completion_reward = {
             add_political_power = 50
-            add_popularity = { ideology = ROOT popularity = 0.05 }
+            add_timed_idea = { idea = idea_deterrence months = 12 }
         }
     }
 
     shared_focus = {
-        id = XXX_trade_laws
-        icon = GFX_focus_XXX_trade_laws
-        prerequisite = { focus = XXX_stability }
+        id = XXX_idealism
+        icon = GFX_focus_XXX_idealism
+        prerequisite = { focus = XXX_deterrence }
+        mutually_exclusive = { focus = XXX_ethnocentrism }
 
         available = {
             civil_war_government_lock = yes
         }
 
-        relative_position_id = XXX_stability
+        relative_position_id = XXX_deterrence
         x = 0 y = 1
         cost = 10
 
         completion_reward = {
-            add_ideas = idea_trade_laws
+            add_ideas = idea_idealism
         }
     }
 
     shared_focus = {
-        id = XXX_adjust_government
-        icon = GFX_focus_XXX_adjust_government
+        id = XXX_stability
+        icon = GFX_focus_generic_stability
         prerequisite = { focus = XXX_government }
-        mutually_exclusive = { focus = XXX_stability }
 
         available = {
             civil_war_government_lock = yes
@@ -167,59 +171,59 @@
         cost = 10
 
         completion_reward = {
-            add_popularity = { ideology = ROOT popularity = -0.05 }
-            hidden_effect = { random = { chance = 50 news_event = { id = unrest.9 hours = 6 } } }
+            add_popularity = { ideology = ROOT popularity = 0.05 }
+            add_stability = 0.05
         }
     }
 
     shared_focus = {
-        id = XXX_agrarian
-        icon = GFX_focus_generic_agrarian
-        prerequisite = { focus = XXX_adjust_government }
+        id = XXX_ethnocentrism
+        icon = GFX_focus_XXX_ethnocentrism
+        prerequisite = { focus = XXX_stability }
+        mutually_exclusive = { focus = XXX_idealism }
 
         available = {
             civil_war_government_lock = yes
         }
 
-        relative_position_id = XXX_adjust_government
+        relative_position_id = XXX_stability
         x = -1 y = 1
         cost = 10
 
         completion_reward = {
-            add_stability = 0.05
-            add_timed_idea = { idea = idea_agrarians months = 24 }
+            add_ideas = idea_ethnocentrism
         }
     }
 
     shared_focus = {
-        id = XXX_deal_with_unions
-        icon = GFX_focus_XXX_deal_with_unions
-        prerequisite = { focus = XXX_adjust_government }
+        id = XXX_agrarianism
+        icon = GFX_focus_generic_agrarian
+        prerequisite = { focus = XXX_stability }
 
         available = {
             civil_war_government_lock = yes
         }
 
-        relative_position_id = XXX_adjust_government
+        relative_position_id = XXX_stability
         x = 2 y = 1
         cost = 10
 
         completion_reward = {
-            add_popularity = { ideology = communism popularity = 0.05 }
-            add_timed_idea = { idea = idea_deal_with_unions months = 12 }
+            add_political_power = 50
+            add_timed_idea = { idea = idea_agrarians years = 2 }
         }
     }
 
     shared_focus = {
         id = XXX_administration
         icon = GFX_focus_XXX_administration
-        prerequisite = { focus = XXX_trade_laws focus = XXX_agrarian }
+        prerequisite = { focus = XXX_idealism focus = XXX_ethnocentrism }
 
         available = {
             civil_war_government_lock = yes
         }
 
-        relative_position_id = XXX_trade_laws
+        relative_position_id = XXX_idealism
         x = 2 y = 1
         cost = 10
 

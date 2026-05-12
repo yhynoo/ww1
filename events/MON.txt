@@ -1,35 +1,179 @@
 add_namespace = mongolia
 
-# focus
-    country_event = {
-        id = mongolia.1
-        title = "Urga Seeks Acknowledgement of Independence"
-        desc = mongolia.1.d
+# FOCUS TREE
+    # Legacy of the Khans
+        news_event = {
+            id = mongolia.1
+            title = "Old Chronicles Displayed in Urga"
+            desc = mongolia.1.d
 
-        is_triggered_only = yes
+            is_triggered_only = yes
 
-        option = {
-            name = "We can agree to that."
-            diplomatic_relation = { country = MON type = non_aggression_pact active = yes }
-
-            # effect news
-            FROM = { news_event = { id = mongolia.2 hours = 6 } }
+            option = {
+                name = "Great."
+                add_war_support = 0.05
+            }
         }
-        option = {
-            name = "Ignore them."
+
+    # Chinese Acknowledgement
+        country_event = {
+            id = mongolia.2
+            title = "Envoys from Urga"
+            desc = mongolia.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Accept their mission."
+                diplomatic_relation = { country = FROM relation = non_aggression_pact active = yes }
+
+                # atmosphere event; can be gated as a "gamble outcome" with random = { chance = 50 ... }
+                MON = { news_event = { id = mongolia.3 hours = 6 } }
+            }
+            option = {
+                name = "Ignore them."       # safe option
+            }
         }
-    }
 
-    news_event = {
-        id = mongolia.14
-        title = "[FROM.GetName] Agrees!"
-        desc = mongolia.14.d
+        news_event = {
+            id = mongolia.3
+            title = "[FROM.GetName] Accepts"
+            desc = mongolia.3.d
 
-        is_triggered_only = yes
+            is_triggered_only = yes
 
-        option = {
-            name = "Wonderful."
-            add_popularity = { ideology = ROOT popularity = 0.05 }
-            diplomatic_relation = { country = MAN type = non_aggression_pact active = yes }
+            option = {
+                add_political_power = 100
+                diplomatic_relation = { country = FROM relation = non_aggression_pact active = yes }
+
+                name = "Wonderful."
+            }
         }
-    }
+    
+    # Address the Clans
+        country_event = {
+            id = mongolia.4
+            title = "The Council in Urga"
+            desc = mongolia.4.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Support the elders."
+                add_popularity = { ideology = monarchism popularity = 0.025 }
+                add_stability = 0.05
+
+                # consequence event; full commitment option
+                news_event = { id = mongolia.5 hours = 6 }
+            }
+            option = {
+                name = "Empower the modernizers."       # safe option
+                add_popularity = { ideology = communism popularity = 0.05 }
+            }
+        }
+
+        news_event = {
+            id = mongolia.5
+            title = "Lines Drawn in Silence"
+            desc = mongolia.5.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Ok."
+                add_political_power = 25
+            }
+        }
+
+    # Lamas
+        news_event = {
+            id = mongolia.6
+            title = "The Lamas' Estates"
+            desc = mongolia.6.d
+
+            trigger = {
+                has_completed_focus = MON_lamas
+                has_stability > 0.5
+            }
+            fire_only_once = yes
+
+            option = {
+                name = "A survey is a good idea."
+                add_political_power = 25
+
+                country_event = { id = mongolia.7 days = 7 }
+            }
+        }
+
+        country_event = {
+            id = mongolia.7
+            title = "Organizing the Survey"
+            desc = mongolia.7.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Continue."
+                add_political_power = 15
+                add_timed_idea = { idea = idea_estate_survey months = 6 }
+
+                # atmosphere event; can be gated as a "gamble outcome" with random = { chance = 50 ... }
+                random = {
+                    chance = 50
+                    news_event = { id = mongolia.8 hours = 6 }
+                }
+            }
+            option = {
+                name = "Withdraw from the idea."       # safe option
+                add_stability = 0.025
+            }
+        }
+
+        news_event = {
+            id = mongolia.8
+            title = "A Ledger in the Dust"
+            desc = mongolia.8.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Unfortunate."
+                add_political_power = -50
+            }
+        }
+
+    # Conflicts with settlers
+        country_event = {
+            id = mongolia.9
+            title = "Conflicts Among the Colonists"
+            desc = mongolia.9.d
+
+            trigger = {
+                has_completed_focus = MON_invite_colonists
+                has_stability < 0.5
+            }
+            fire_only_once = yes
+
+            option = {
+                name = "Side with local elites."
+                add_political_power = 25
+            }
+            option = {
+                name = "Defend the colonists."
+                add_popularity = { ideology = democratic popularity = 0.025 }
+            }
+        } 
+
+    # Altaic Union
+        news_event = {
+            id = mongolia.10
+            title = "Altaic Union Announced"
+            desc = mongolia.10.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Interesting."
+            }
+        }

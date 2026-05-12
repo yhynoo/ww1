@@ -21,9 +21,13 @@ on_actions = {
         effect = {
             set_rule = { can_join_factions = yes }              # can join factions again.
             if = { limit = { not = { has_country_flag = after_civil_war } } set_country_flag = after_civil_war }
+        }
+    }
 
-            # event
-            news_event = { id = unrest.15 hours = 6 }
+    on_peaceconference_ended = {
+        effect = {
+            where_all_streets_end_effect = yes
+            FROM = { where_all_streets_end_effect = yes }
         }
     }
 

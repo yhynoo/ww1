@@ -4,6 +4,8 @@ MAN_decisions_warlordism = {
         cost = 25
         days_remove = 90
 
+        ai_will_do = { modifier = { has_country_leader = { character = MAN_yuan_shikai ruling_only = yes } add = 9 } }
+
         modifier = {
             monarchism_drift = 0.02
             political_power_factor = 0.15
@@ -13,6 +15,8 @@ MAN_decisions_warlordism = {
         icon = generic_civil_support
         cost = 25
         days_remove = 90
+        
+        ai_will_do = { modifier = { has_country_leader = { character = MAN_sun_yat_sen ruling_only = yes } add = 9 } }
 
         modifier = {
             stability_weekly = 0.005
@@ -40,6 +44,7 @@ MAN_decisions_warlordism = {
         days_remove = 90
 
         available = { has_government = democratic }
+        ai_will_do = { modifier = { has_country_leader = { character = MAN_sun_yat_sen ruling_only = yes } add = 9 } }
 
         targets_dynamic = yes
         target_trigger = { 
@@ -65,6 +70,8 @@ MAN_decisions_warlordism = {
         targets_dynamic = yes
         target_non_existing = yes
 
+        ai_will_do = { add = 9 }
+
         target_trigger = { 
             FROM = {
                 is_chinese_warlord = yes
@@ -74,6 +81,73 @@ MAN_decisions_warlordism = {
 
         complete_effect = {
             add_stability = 0.05
+        }
+    }
+}
+
+MAN_decisions_coronation = {
+    coronation_timeout = {
+        icon = generic_nationalism
+        days_mission_timeout = 180
+        is_good = yes
+
+        activation = { has_country_flag = yuan_shikai_coronation }
+        
+        # early completion trigger
+        available = {
+            always = no
+        }
+
+        # cancellation trigger
+        cancel_trigger = {
+            not = { has_country_leader = { character = MAN_yuan_shikai ruling_only = yes } }
+            clr_country_flag = yuan_shikai_coronation
+        }
+
+        # effect at all cases
+        timeout_effect = {
+            country_event = { id = manchukuo.14 hours = 6 }
+            clr_country_flag = yuan_shikai_coronation
+        }
+    }
+    corrupt_local_warlords = {
+        icon = generic_civil_support
+        cost = 25
+
+        days_remove = 60
+        modifier = {
+            consumer_goods_factor = 0.05
+            monarchism_drift = 0.025
+        }
+        cancel_trigger = {
+            not = { has_active_mission = coronation_timeout }
+        }
+    }
+    tighten_control = {
+        icon = oppression
+        cost = 25
+
+        days_remove = 60
+        ai_will_do = { add = 6 }
+
+        modifier = {
+            monarchism_drift = 0.02
+        }
+        cancel_trigger = {
+            not = { has_active_mission = coronation_timeout }
+        }
+    }
+    expose_army_scandals = {
+        icon = generic_political_discourse
+        cost = 25
+
+        days_remove = 60
+        modifier = {
+            stability_weekly = -0.005
+            monarchism_drift = -0.04
+        }
+        cancel_trigger = {
+            not = { has_active_mission = coronation_timeout }
         }
     }
 }

@@ -29,7 +29,7 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            country_event = { id = manchu.1 hours = 6 }
+            country_event = { id = manchukuo.7 hours = 6 }
             remove_ideas = idea_unstable_xinhai_government
         }
     }
@@ -135,7 +135,7 @@ focus_tree = {
             civil_war_government_lock = yes
         }
 
-        ai_will_do = { modifier = { has_war = yes factor = 0 } }        # don't start new wars.
+        ai_will_do = { modifier = { not = { has_country_leader = { character = MAN_yuan_shikai ruling_only = yes } } factor = 0 } }
 
         relative_position_id = MAN_government
         x = 0 y = 1
@@ -159,12 +159,15 @@ focus_tree = {
         prerequisite = { focus = MAN_army_loans }
 
         available = {
-            custom_trigger_tooltip = {
-                tooltip = tt_hongxian
-                monarchism > 0.4
-                has_country_leader = { character = MAN_yuan_shikai ruling_only = yes }
-            }
+            monarchism > 0.25
+            has_country_leader = { character = MAN_yuan_shikai ruling_only = yes }
             civil_war_government_lock = yes
+        }
+        bypass = {
+            custom_trigger_tooltip = {
+                tooltip = tt_yuan_shikai_died
+                has_country_flag = yuan_shikai_died
+            }
         }
 
         relative_position_id = MAN_army_loans
@@ -172,7 +175,8 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            set_politics = { ruling_party = monarchism elections_allowed = no }
+            custom_effect_tooltip = tt_hongxian
+            news_event = { id = manchukuo.13 hours = 6 }
         }
     }
 

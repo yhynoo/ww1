@@ -1,0 +1,170 @@
+add_namespace = generic
+
+# EVENTS
+    # UNREST
+        news_event = {
+            id = generic.1
+            title = "Strikes"
+            desc = generic.1.d
+
+            is_triggered_only = yes
+            trigger = { can_have_unrest_event = yes }
+            immediate = { hidden_effect = { add_timed_idea = { idea = idea_unrest_timeout months = 6 } } }
+
+            option = {
+                name = "Awful."
+                add_popularity = { ideology = ROOT popularity = -0.025 }        add_timed_idea = { idea = idea_strikes months = 2 }
+            }
+        }
+
+    # IDEOLOGY
+        country_event = {
+            id = generic.2
+            title = "Government Alignment Contested?"
+            desc = generic.2.d
+
+            is_triggered_only = yes
+            trigger = { can_have_ideology_event = yes }
+            immediate = { hidden_effect = { add_timed_idea = { idea = idea_ideology_timeout months = 24 } } }
+
+            option = {
+                name = "Arrest them."
+                add_political_power = 25
+
+                # atmosphere event; can be gated as a "gamble outcome" with random = { chance = 50 ... }
+                random = {
+                    chance = 50 
+                    news_event = { id = generic.3 hours = 6 }
+                }
+            }
+            option = {
+                name = "Ignore them."       # safe option
+                opposition_idea = yes
+            }
+        }
+
+        news_event = {
+            id = generic.3
+            title = "Whispers of Oppression"
+            desc = generic.3.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Ok."
+                add_stability = -0.05
+            }
+        }
+
+    # CHANGE
+        country_event = {
+            id = generic.4
+            title = "Election Time?"
+            desc = generic.4.d
+
+            is_triggered_only = yes
+            trigger = {
+                can_have_government_change_event = yes
+                and = { not = { has_government = democratic } democratic > 0.5 }
+            }
+
+            option = {
+                name = "We must withdraw."
+                set_politics = { ruling_party = democratic elections_allowed = yes }
+            }
+            option = {
+                name = "No!"
+                start_civil_war = { ideology = democratic size = 0.5 }
+            }
+        }
+
+        country_event = {
+            id = generic.5
+            title = "Unions Threaten General Strike"
+            desc = generic.5.d
+
+            is_triggered_only = yes
+            trigger = {
+                can_have_government_change_event = yes
+                and = { not = { has_government = communism } communism > 0.5 }
+            }
+
+            option = {
+                name = "We must accept it."
+                set_politics = { ruling_party = communism elections_allowed = no }
+            }
+            option = {
+                name = "Outrageous!"
+                start_civil_war = { ideology = communism size = 0.5 }
+            }
+        }
+
+        country_event = {
+            id = generic.6
+            title = "Assault on Government Offices"
+            desc = generic.6.d
+
+            is_triggered_only = yes
+            trigger = {
+                can_have_government_change_event = yes
+                and = { not = { has_government = monarchism } monarchism > 0.5 }
+            }
+
+            option = {
+                name = "They have won."
+                set_politics = { ruling_party = monarchism elections_allowed = no }
+            }
+            option = {
+                name = "To arms!"
+                start_civil_war = { ideology = monarchism size = 0.5 }
+            }
+        }
+
+    # ELECTION
+
+    # WAR EXHAUSTION
+        news_event = {
+            id = generic.8
+            title = "Wheat Affair in War Ministry"
+            desc = generic.8.d
+
+            is_triggered_only = yes
+            trigger = { can_have_war_exhaustion_event = yes }
+            immediate = { set_country_flag = had_wheat_affair }
+
+            option = {
+                name = "Treason."
+                add_timed_idea = { idea = idea_wheat_affair months = 2 }
+            }
+        }
+
+    # ARMISTICE
+        country_event = {
+            id = generic.9
+            title = "Time for Armistice?"
+            desc = generic.9.d
+
+            is_triggered_only = yes
+            trigger = { can_have_armistice_event = yes }
+            immediate = { hidden_effect = { add_timed_idea = { idea = idea_armistice_timeout months = 6 } } }
+
+            option = {
+                name = "This war has lasted too long."
+                every_enemy_country = {
+                    limit = { or = { is_faction_leader = yes is_in_faction = no is_subject = no } }
+                    country_event = { id = diplomacy.8 hours = 12 }
+                }
+            }
+            option = {
+                name = "We must continue."
+                if = {
+                    limit = { not = { has_idea = idea_war_exhaustion } }
+                    add_ideas = idea_war_exhaustion
+                }
+                else = {
+                    add_popularity = { ideology = ROOT popularity = -0.05 }
+                }
+            }
+        }
+
+#

@@ -1,12 +1,16 @@
 
 has_custom_events = {
-    or = { }       # list of tags.
-    always = no
+    or = { 
+        or = { }    # list of tags.
+
+        # other special conditions
+        has_country_flag = yuan_shikai_coronation       # don't fire government change events if we're during the transition.
+    }       
 }
 
 can_have_unrest_event = {
     not = { has_idea = idea_unrest_timeout }
-    and = { check_variable = { highest_party_popularity@exclude_ruling_party > 0.05 } stability < 0.4 }
+    has_stability < 0.4
 }
 
 can_have_ideology_event = {
@@ -15,8 +19,8 @@ can_have_ideology_event = {
 
     has_civil_war = no
     or = {
-        and = { check_variable = { highest_party_popularity@exclude_ruling_party > 0.2 } stability < 0.5 }
-        and = { check_variable = { highest_party_popularity@exclude_ruling_party > 0.25 } stability < 0.65 }
+        and = { check_variable = { highest_party_popularity@exclude_ruling_party > 0.25 } stability < 0.4 }
+        check_variable = { highest_party_popularity@exclude_ruling_party > 0.4 }
     }
 
     date > 1912.2.1
@@ -25,30 +29,16 @@ can_have_ideology_event = {
 can_have_government_change_event = {
     not = { has_country_flag = during_uprising }
     has_civil_war = no
+}
 
-    or = {
-        and = {
-            or = { 
-                check_variable = { highest_party_ideology@exclude_ruling_party = token:communism }
-                check_variable = { highest_party_ideology@exclude_ruling_party = token:monarchism }
-            }
-            or = {
-                and = { 
-                    not = { has_idea = idea_coup_timeout }
-                    or = {
-                        and = { check_variable = { highest_party_popularity@exclude_ruling_party > 0.45 } stability < 0.5 }
-                        and = { check_variable = { highest_party_popularity@exclude_ruling_party > 0.55 } stability < 0.65 }
-                    }
-                }
-                and = {
-                    has_idea = idea_coup_timeout
-                    check_variable = { highest_party_popularity@exclude_ruling_party > 0.25 } stability < 0.1
-                }
-            }
-        }
-        and = {
-            check_variable = { highest_party_ideology@exclude_ruling_party = token:democratic }
-            check_variable = { highest_party_popularity@exclude_ruling_party > 0.5 }
-        }
-    }
+can_have_war_exhaustion_event = {
+    longest_war_length > 12
+    or = { has_idea = partial_economic_mobilisation has_idea = war_economy }
+    not = { has_country_flag = had_wheat_affair }
+}
+
+can_have_armistice_event = {
+    longest_war_length > 24
+    has_war_support < 0.25
+    not = { has_idea = idea_armistice_timeout }
 }

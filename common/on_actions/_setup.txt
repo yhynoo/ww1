@@ -14,7 +14,10 @@ on_actions = {
 
             MAN = {
                 # events
-                country_event = { id = manchu.2 months = 3 days = 4 }
+                country_event = { id = manchukuo.1 months = 3 days = 4 }
+
+                # add cores of warlord states
+                set_warlord_cores = yes
             }
 
             MEX = {
@@ -37,30 +40,74 @@ on_actions = {
 
     on_daily = {
         effect = {
-            # chinese warlords setup
-            news_event = manchu.5
+            if = {
+                limit = { is_chinese_warlord = yes not = { has_country_flag = sent_event_to_china } }
+                MAN = { country_event = manchukuo.18 }
+                set_country_flag = sent_event_to_china
+            }
 
             if = {
-                limit = { is_chinese_warlord = yes }
-                if = {
-                    limit = { has_war_with = MAN not = { has_cosmetic_tag = MAN_enemy_warlord } }
-                    set_cosmetic_tag = MAN_enemy_warlord
+                limit = { or = { original_tag = MAN is_chinese_warlord = yes } has_war_with = MAN }
+                set_cosmetic_tag = MAN_enemy_warlord
+            }
+            if = {
+                limit = { not = { has_war_with = MAN } has_cosmetic_tag = MAN_enemy_warlord }
+                drop_cosmetic_tag = yes
+            }
+
+            # cleanup of chinese empire tag
+            if = {
+                limit = { has_cosmetic_tag = MAN_empire not = { has_government = monarchism } }
+                drop_cosmetic_tag = yes
+            }
+
+            # cleanup of india tag
+            if = {
+                limit = { original_tag = RAJ is_subject = no }
+                drop_cosmetic_tag = yes
+            }
+        }
+    }
+
+    on_daily_MAN = {
+        effect = {
+            # chinese warlords setup
+            if = {
+                limit = {
+                    or = { has_stability < 0.2 has_civil_war = yes }
+                    has_idea = idea_warlordism_in_the_countryside
                 }
-                if = {
-                    limit = { not = { has_war_with = MAN } has_cosmetic_tag = MAN_enemy_warlord }
-                    drop_cosmetic_tag = yes
+
+                # trigger random warlord states
+                every_possible_country = {
+                    limit = { is_chinese_warlord = yes }
+                    random = {
+                        chance = 2
+                        trigger_warlord = yes
+                    }
                 }
             }
         }
     }
 
     on_monthly = {
-        random_events = {
-            1 = { news_event = { id = unrest.6 random_days = 30 } }     # suspicious gatherings
-            1 = { news_event = { id = unrest.7 random_days = 30 } }     # industry disruptions
-            1 = { news_event = { id = unrest.8 random_days = 30 } }     # unrest in rural areas
+        effect = {
+            # unrest
+            random = { chance = 40 news_event = { id = generic.1 random_days = 28 } }
 
-            9 = { }
+            # ideology
+            country_event = { id = generic.2 random_days = 28 }
+
+            # gov't
+            country_event = { id = generic.4 random_days = 28 }
+            country_event = { id = generic.5 random_days = 28 }
+            country_event = { id = generic.6 random_days = 28 }
+
+            # war exhaustion
+            random = { chance = 10 news_event = { id = generic.8 random_days = 28 } }
+
+            # armistice
+            country_event = { id = generic.9 random_days = 28 }
         }
     }
 }

@@ -6,68 +6,46 @@ ideas = {
             }
         }
 
-        # ideology
-        idea_industry_disruptions = {
+    # IDEOLOGY
+        idea_strikes = {
             modifier = { production_factory_max_efficiency_factor = -0.1 }
         }
-        idea_unrest_in_rural_areas = {
-            modifier = { consumer_goods_factor = -0.05 }
-        }
-
-        idea_communists_organize = {
+        idea_wheat_affair = {
             modifier = {
-                communism_drift = 0.05
-            }
-            cancel = {
-                has_government = communism
-            }
-        }
-        idea_democrats_organize = {
-            modifier = {
-                democratic_drift = 0.05
-            }
-            cancel = {
-                has_government = democratic
+                consumer_goods_factor = 0.15
+                war_support_weekly = -0.005
+                attrition = 0.25
             }
         }
-        idea_monarchists_organize = {
-            modifier = {
-                monarchism_drift = 0.05
-            }
-            cancel = {
-                has_government = monarchism
-            }
-        }
-
-        # war
-        idea_war_enthusiasm = {
-            modifier = {
-                war_support_factor = 0.05
-                army_morale_factor = 0.15
-                training_time_factor = -0.1
-            }
-            cancel = {
-                has_war = no
-            }
-        }
-        idea_widespread_hunger = {
-            modifier = {
-                war_support_weekly = -0.05
-                attrition = 0.15
-                production_factory_max_efficiency_factor = -0.25
-            }
-        }
-
-        # war exhaustion
         idea_war_exhaustion = {
             modifier = {
                 war_support_weekly = -0.005
-                army_morale_factor = -0.1
+                drift_defence_factor = -0.15
+            }
+            civil_war_allowed = { 
+                always = yes 
             }
         }
+        idea_where_all_streets_end = {
+            modifier = {
+                political_power_factor = -0.25
+                stability_weekly = -0.005
+            }
+        }
+        idea_communists_organize = {
+            modifier = { communism_drift = 0.05 }
+            cancel = { has_government = communism }
+        }
+        idea_democrats_organize = {
+            modifier = { democratic_drift = 0.05 }
+            cancel = { has_government = democratic }
+        }
+        idea_monarchists_organize = {
+            modifier = { monarchism_drift = 0.05 }
+            cancel = { has_government = monarchism }
+        }        
         
-
-        # uprising
+    # UPRISING
         idea_uprising = {
             modifier = {
                 war_support_factor = 0.25
@@ -99,7 +77,7 @@ ideas = {
             }
         }
 
-        # civil war
+    # CIVIL WAR
         idea_collapsed_administration = {
             modifier = { 
                 political_power_factor = -0.45 
@@ -174,27 +152,32 @@ ideas = {
             }
         }
 
-        # generic
+    # STATE IDEAS
         idea_manpower_act = {
             modifier = {
                 conscription_factor = 0.1
             }
         }
-        idea_trade_laws = {
+        idea_deterrence = {
             modifier = {
-                trade_opinion_factor = 0.15
-                local_resources_factor = 0.05
+                production_speed_bunker_factor = 0.25
+            }
+        }
+        idea_idealism = {
+            modifier = {
+                guarantee_tension = -0.25
+                send_volunteers_tension = -0.15
+            }
+        }
+        idea_ethnocentrism = {
+            modifier = {
+                mobilization_laws_cost_factor = -0.5
+                conscription_factor = 0.1
             }
         }
         idea_agrarians = {
             modifier = {
                 consumer_goods_factor = -0.1
-            }
-        }
-        idea_deal_with_unions = {
-            modifier = {
-                production_speed_buildings_factor = 0.05
-                production_factory_max_efficiency_factor = 0.1
             }
         }
         idea_strength_in_unity = {
@@ -209,7 +192,7 @@ ideas = {
             }
         }
 
-        # army
+    # ARMY IDEAS
         idea_arms_from_abroad = {
             modifier = {
                 license_purchase_cost = -0.5
@@ -233,7 +216,7 @@ ideas = {
             }
         }
 
-        # industry
+    # INDUSTRY IDEAS
         idea_state_transport = {
             modifier = {
                 production_speed_infrastructure_factor = -0.1
@@ -251,6 +234,7 @@ ideas = {
             }
         }
 
+    # COUNTRY-SPECIFIC IDEAS
         # warlords
         idea_central_ambitions = {
             modifier = {

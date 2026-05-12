@@ -50,18 +50,24 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            add_war_support = 0.05
+            news_event = { id = mongolia.1 hours = 6 }
             add_ideas = idea_legacy_of_khans
         }
     }
 
     focus = {
-        id = MON_japanese
-        icon = GFX_focus_MON_japanese
+        id = MON_central_asia
+        icon = GFX_focus_MON_central_asia
         prerequisite = { focus = MON_khans }
 
         available = {
-            JAP = { has_opinion = { target = ROOT value > 49 } }
+            custom_trigger_tooltip = {
+                tooltip = tt_central_asia_trigger
+                any_country = {
+                    or = { tag = AFG tag = TIB }
+                    and = { is_subject = no has_opinion = { target = ROOT value > 49 } }
+                }
+            }
             civil_war_government_lock = yes
         }
 
@@ -70,7 +76,24 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            JAP = { country_event = { id = diplomacy.13 hours = 6 } }
+            if = {
+                limit = {
+                    any_country = {
+                        or = { tag = AFG tag = TIB }
+                        and = { is_subject = no has_opinion = { target = ROOT value > 49 } }
+                    }
+                }
+                every_country = {
+                    limit = {
+                        or = { tag = AFG tag = TIB } 
+                        and = { is_subject = no has_opinion = { target = ROOT value > 49 } }
+                    }
+                    country_event = { id = diplomacy.13 hours = 6 }
+                }
+            }
+            else = {
+                custom_effect_tooltip = tt_central_asia
+            }
         }
     }
 
@@ -139,7 +162,7 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            MAN = { country_event = { id = mongolia.1 hours = 6 } }
+            MAN = { country_event = { id = mongolia.2 hours = 6 } }
         }
     }
 
@@ -147,7 +170,7 @@ focus_tree = {
         id = MON_invite_colonists
         icon = GFX_focus_MON_invite_colonists
         prerequisite = { focus = MON_chinese }
-        mutually_exclusive = { focus = MON_clans }
+        mutually_exclusive = { focus = MON_elders }
 
         available = {
             civil_war_government_lock = yes
@@ -168,7 +191,7 @@ focus_tree = {
 
     focus = {
         id = MON_state_organization
-        icon = GFX_focus_generic_stability
+        icon = GFX_focus_MON_state_organization
         prerequisite = { focus = MON_government }
 
         available = {
@@ -180,14 +203,14 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
+            country_event = { id = mongolia.4 hours = 6 }
             add_political_power = 50
-            add_stability = 0.05
         }
     }
 
     focus = {
-        id = MON_clans
-        icon = GFX_focus_MON_clans
+        id = MON_elders
+        icon = GFX_focus_generic_stability
         prerequisite = { focus = MON_state_organization }
         mutually_exclusive = { focus = MON_invite_colonists }
 
@@ -200,7 +223,7 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            add_timed_idea = { idea = idea_union_of_clans years = 1 }
+            remove_ideas = idea_tributary_administration
         }
     }
 
@@ -218,7 +241,7 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            add_popularity = { ideology = monarchism value = 0.05 }
+            add_popularity = { ideology = monarchism popularity = 0.05 }
             add_ideas = idea_lamas
         }
     }
@@ -226,7 +249,7 @@ focus_tree = {
     focus = {
         id = MON_siberia
         icon = GFX_focus_MON_siberia
-        prerequisite = { focus = MON_invite_colonists focus = MON_clans }
+        prerequisite = { focus = MON_invite_colonists focus = MON_elders }
 
         available = {
             civil_war_government_lock = yes
@@ -264,6 +287,7 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
+            news_event = { id = mongolia.10 hours = 6 }
             if = {
                 limit = { any_controlled_state = { is_claimed_by = ROOT not = { is_core_of = ROOT } } }
                 every_controlled_state = {

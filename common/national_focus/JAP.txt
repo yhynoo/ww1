@@ -107,8 +107,10 @@ focus_tree = {
         prerequisite = { focus = JAP_twenty_one_demands }
 
         available = {
-            has_war_support > 0.5
-            not = { owns_state = 336 }
+            any_state = {
+                    limit = { or = { state = 624 state = 199 state = 286 } }
+                    not = { is_owned_by = JAP }
+                }
             civil_war_government_lock = yes
         }
 
@@ -119,6 +121,12 @@ focus_tree = {
         ai_will_do = { modifier = { has_war = yes factor = 0 } }        # don't start new wars.
 
         completion_reward = {
+            hidden_effect = {
+                every_state = {
+                    limit = { or = { state = 624 state = 199 state = 286 } }
+                    add_claim_by = ROOT
+                }
+            }
             every_country = {
                 limit = { or = { owns_state = 624 owns_state = 199 owns_state = 286 } }
                 country_event = { id = diplomacy.15 hours = 6 }

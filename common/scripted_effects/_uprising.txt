@@ -16,25 +16,6 @@ trigger_uprising = {
     }
 }
 
-trigger_warlord = {
-    every_possible_country = {
-        limit = { 
-            exists = no 
-            not = { has_country_flag = warlord_defeated }
-            is_chinese_warlord = yes
-        }
-
-        random = {
-            chance = 20
-            every_core_state = {
-                limit = { and = { owner = { original_tag = ROOT } controller = { original_tag = ROOT } } }
-                transfer_state_to = PREV
-                setup_uprising_state = yes
-            }
-        }
-    }
-}
-
 organize_uprising = {
     if = {
         limit = { exists = yes }

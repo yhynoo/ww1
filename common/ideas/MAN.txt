@@ -13,7 +13,7 @@ ideas = {
                 supply_factor = -0.05
             }
             allowed_civil_war = {
-                has_government = democratic
+                not = { has_country_leader = MAN_puyi }
             }
         }
 
@@ -33,6 +33,17 @@ ideas = {
             modifier = {
                 production_speed_industrial_complex_factor = 0.1
                 local_resources_factor = 0.05
+            }
+        }
+
+    # events
+        idea_council_of_generals = {
+            modifier = {
+                stability_factor = -0.05
+                consumer_goods_factor = 0.15
+            }
+            cancel = {
+                not = { has_government = monarchism }
             }
         }
     }

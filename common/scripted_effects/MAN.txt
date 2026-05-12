@@ -39,12 +39,22 @@ set_warlord_ideologies = {
     }
 }
 
+trigger_warlord = {
+    limit = { 
+        exists = no 
+        not = { has_country_flag = warlord_defeated }
+    }
+
+    every_core_state = {
+        limit = { and = { owner = { original_tag = ROOT } controller = { original_tag = ROOT } } }
+        transfer_state_to = PREV
+        setup_uprising_state = yes
+    }
+}
+
 beiyang_war = {
     set_capital = { state = 613 }
-    start_civil_war = { ideology = monarchism army_ratio = 0.5 states = { 296 610 608 } }
 
-    random_country = {
-        limit = { original_tag = MAN has_government = monarchism }
-        set_cosmetic_tag = MAN_beiyang
-    }
+    promote_character = { character = MAN_yuan_shikai ideology = absolutism }
+    start_civil_war = { ideology = monarchism army_ratio = 0.5 states = { 296 610 608 } }
 }
