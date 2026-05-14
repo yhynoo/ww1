@@ -104,7 +104,7 @@
                 limit = { any_controlled_state = { is_owned_by = ROOT naval_base > 0 } }
                 every_controlled_state = {
                     limit = { is_owned_by = ROOT naval_base > 0 }
-                    add_building_construction = {  type = coastal_bunker   level = 1   instant_build = yes  province = { all_provinces = yes limit_to_naval_bases = yes } }
+                    add_building_construction = {  type = coastal_bunker   level = 2   instant_build = yes  province = { all_provinces = yes limit_to_naval_bases = yes } }
                 }
             }
             else = {
@@ -206,10 +206,10 @@
     }
 
     shared_focus = {
-        id = XXX_armaments
-        icon = GFX_focus_generic_heavy_industry
+        id = XXX_army_expansion
+        icon = GFX_focus_XXX_army_expansion
         prerequisite = { focus = XXX_general_staff }
-        mutually_exclusive = { focus = XXX_navy_expansion }
+        mutually_exclusive = { focus = XXX_shock_ability }
 
         available = {
             civil_war_army_lock = yes
@@ -220,19 +220,16 @@
         cost = 10
 
         completion_reward = {
-            add_tech_bonus = { bonus = 0.5  uses = 1    category = infantry_weapons_tech }
-            random_owned_controlled_state = {
-                limit = { is_in_home_area = yes infrastructure > 1 }
-                hidden_effect = { add_extra_state_shared_building_slots = 2 }   add_building_construction = { type = arms_factory level = 2 instant_build = yes }
-            }
+            add_doctrine_cost_reduction = { cost_reduction = 0.5    uses = 1    category = mass_army_doctrine }
+            add_tech_bonus = { bonus = 1    uses = 2    category = infantry_weapons_tech category = support_tech }
         }
     }
 
     shared_focus = {
-        id = XXX_navy_expansion
-        icon = GFX_focus_generic_harbors
+        id = XXX_shock_ability
+        icon = GFX_focus_generic_decisive_strike
         prerequisite = { focus = XXX_general_staff }
-        mutually_exclusive = { focus = XXX_armaments }
+        mutually_exclusive = { focus = XXX_army_expansion }
 
         available = {
             civil_war_army_lock = yes
@@ -242,27 +239,23 @@
         x = 1 y = 1
         cost = 10
 
-        available = { any_controlled_state = { is_in_home_area = yes is_coastal = yes infrastructure > 1 } }
-
         completion_reward = {
-            add_tech_bonus = { bonus = 0.5  uses = 2    category = naval_equipment_tech }
-            random_owned_controlled_state = {
-                limit = { is_coastal = yes is_in_home_area = yes infrastructure > 1 }
-                hidden_effect = { add_extra_state_shared_building_slots = 2 }   add_building_construction = { type = dockyard level = 2 instant_build = yes }
-            }
+            add_doctrine_cost_reduction = { cost_reduction = 0.5    uses = 1    category = maneuver_doctrine }
+            add_tech_bonus = { bonus = 1    uses = 1    category = artillery_tech category = mechanized_tech }
         }
     }
 
     shared_focus = {
-        id = XXX_defenses
-        icon = GFX_focus_generic_defenses
-        prerequisite = { focus = XXX_armaments }
+        id = XXX_expand_defenses
+        icon = GFX_focus_XXX_expand_defenses
+        prerequisite = { focus = XXX_army_expansion }
 
         available = {
+            any_state = { is_coastal = yes }
             civil_war_army_lock = yes
         }
 
-        relative_position_id = XXX_armaments
+        relative_position_id = XXX_army_expansion
         x = -2 y = 1
         cost = 10
 
@@ -276,52 +269,66 @@
     }
 
     shared_focus = {
-        id = XXX_doctrine
-        icon = GFX_focus_XXX_doctrine
-        prerequisite = { focus = XXX_armaments focus = XXX_navy_expansion }
+        id = XXX_armaments
+        icon = GFX_focus_generic_heavy_industry
+        prerequisite = { focus = XXX_army_expansion focus = XXX_shock_ability }
 
         available = {
             civil_war_army_lock = yes
         }
 
-        relative_position_id = XXX_armaments
+        relative_position_id = XXX_army_expansion
         x = 1 y = 1
         cost = 10
 
         completion_reward = {
-            add_doctrine_cost_reduction = { cost_reduction = 0.5    uses = 2    category = land_doctrine }
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes infrastructure > 1 }
+                add_resource = { type = steel amount = 4 }
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes infrastructure > 1 }
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
         }
     }
 
     shared_focus = {
-        id = XXX_high_seas
-        icon = GFX_focus_XXX_high_seas
-        prerequisite = { focus = XXX_navy_expansion }
+        id = XXX_dreadnoughts
+        icon = GFX_focus_generic_dreadnoughts
+        prerequisite = { focus = XXX_shock_ability }
 
         available = {
+            any_state = { is_coastal = yes }
             civil_war_army_lock = yes
         }
 
-        relative_position_id = XXX_navy_expansion
+        relative_position_id = XXX_shock_ability
         x = 2 y = 1
         cost = 10
 
         completion_reward = {
-            add_tech_bonus = { bonus = 0.5  uses = 1    technology = light_cruiser_1912 technology = light_cruiser_1916 }
-            add_doctrine_cost_reduction = { cost_reduction = 0.5    uses = 2    category = naval_doctrine }
+            add_tech_bonus = { bonus = 1    uses = 1    category = capital_ship_tech }
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes is_coastal = yes }
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = { type = dockyard level = 2 instant_build = yes }
+            }
         }
     }
 
     shared_focus = {
         id = XXX_mobilization
         icon = GFX_focus_XXX_mobilization
-        prerequisite = { focus = XXX_doctrine }
+        prerequisite = { focus = XXX_armaments }
 
         available = {
             civil_war_army_lock = yes
         }
 
-        relative_position_id = XXX_doctrine
+        relative_position_id = XXX_armaments
         x = 0 y = 1
         cost = 10
 
@@ -332,10 +339,10 @@
     }
 
     shared_focus = {
-        id = XXX_militarized_economy
-        icon = GFX_focus_XXX_militarized_economy
+        id = XXX_women_at_work
+        icon = GFX_focus_XXX_women_at_work
         prerequisite = { focus = XXX_mobilization }
-        mutually_exclusive = { focus = XXX_women_at_work }
+        mutually_exclusive = { focus = XXX_economic_warfare }
 
         available = {
             has_war = yes
@@ -347,15 +354,34 @@
         cost = 10
 
         completion_reward = {
-            add_ideas = idea_militarized_economy
+            add_ideas = idea_women_at_work
         }
     }
 
     shared_focus = {
-        id = XXX_women_at_work
-        icon = GFX_focus_XXX_women_at_work
+        id = XXX_austerity_measures
+        icon = GFX_focus_XXX_austerity_measures
+        prerequisite = { focus = XXX_women_at_work }
+
+        available = {
+            has_war = yes
+            civil_war_army_lock = yes
+        }
+
+        relative_position_id = XXX_women_at_work
+        x = -2 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_ideas = idea_austerity_measures
+        }
+    }
+
+    shared_focus = {
+        id = XXX_economic_warfare
+        icon = GFX_focus_XXX_economic_warfare
         prerequisite = { focus = XXX_mobilization }
-        mutually_exclusive = { focus = XXX_militarized_economy }
+        mutually_exclusive = { focus = XXX_women_at_work }
 
         available = {
             has_war = yes
@@ -367,39 +393,60 @@
         cost = 10
 
         completion_reward = {
-            add_ideas = idea_women_at_work
-            add_popularity = { ideology = communism popularity = 0.05 }
+            add_tech_bonus = { bonus = 1    uses = 1    category = submarines_tech }
+            add_ideas = idea_economic_warfare
         }
     }
 
     shared_focus = {
-        id = XXX_all_for_the_front
-        icon = GFX_focus_XXX_all_for_the_front
-        prerequisite = { focus = XXX_militarized_economy focus = XXX_women_at_work }
+        id = XXX_capacity_strikes
+        icon = GFX_focus_generic_capacity_strikes
+        prerequisite = { focus = XXX_economic_warfare }
 
         available = {
             has_war = yes
             civil_war_army_lock = yes
         }
 
-        relative_position_id = XXX_militarized_economy
-        x = 1 y = 1
+        relative_position_id = XXX_economic_warfare
+        x = 2 y = 1
         cost = 10
 
         completion_reward = {
-            random_owned_controlled_state = {
-                limit = { is_in_home_area = yes }
-                hidden_effect = { add_extra_state_shared_building_slots = 2 }   add_building_construction = { type = arms_factory level = 2 instant_build = yes }
-            }
+            add_tech_bonus = { bonus = 1    uses = 1    category = airship_tech }
+            add_ideas = idea_attacks_on_capacity
+        }
+    }
+
+    shared_focus = {
+        id = XXX_all_for_the_front
+        icon = GFX_focus_XXX_all_for_the_front
+        prerequisite = { focus = XXX_economic_warfare focus = XXX_women_at_work }
+
+        available = {
+            has_war = yes
+            civil_war_army_lock = yes
+        }
+
+        relative_position_id = XXX_economic_warfare
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
             set_country_flag = desperate_measures_allowed
             custom_effect_tooltip = tt_all_for_the_front
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes }
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+            }
         }
     }
 
     shared_focus = {
         id = XXX_total_war
-        icon = GFX_focus_XXX_total_war
-        prerequisite = { focus = XXX_militarized_economy focus = XXX_women_at_work }
+        icon = GFX_focus_generic_total_war1
+        prerequisite = { focus = XXX_all_for_the_front }
 
         available = {
             has_war = yes

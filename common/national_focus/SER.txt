@@ -1,6 +1,6 @@
 focus_tree = {
-    id = JAP_focus
-    country = { factor = 0  modifier = { add = 20   original_tag = JAP } }
+    id = SER_focus
+    country = { factor = 0  modifier = { add = 20   original_tag = SER } }
     continuous_focus_position = { x = 88 y = 770 }
 
     shared_focus = XXX_government
@@ -11,12 +11,12 @@ focus_tree = {
 
 # TARGETS
     focus = {
-        id = JAP_extend
+        id = SER_extend
         icon = GFX_focus_generic_extend
         prerequisite = { focus = XXX_government }
         mutually_exclusive = { focus = XXX_deterrence }
 
-        allow_branch = { original_tag = JAP }
+        allow_branch = { original_tag = SER }
 
         available = {
             is_subject = no
@@ -33,85 +33,80 @@ focus_tree = {
                 custom_effect_tooltip = tt_extend
                 hidden_effect = { set_rule = { can_create_factions = yes } }
             }
-            every_controlled_state = {
-                limit = { is_core_of = KOR }
-                add_core_of = JAP
-                add_building_construction = { type = dockyard level = 1 instant_build = yes }
+            every_country = {
+                limit = { owns_state = 404 owns_state = 106 }
+                country_event = { id = diplomacy.15 hours = 6 }
             }
         }
     }
 
     focus = {
-        id = JAP_claims
-        icon = GFX_focus_JAP_claims
-        prerequisite = { focus = JAP_extend }
+        id = SER_claims
+        icon = GFX_focus_SER_claims
+        prerequisite = { focus = SER_extend }
 
         available = {
             is_subject = no
             civil_war_government_lock = yes
         }
 
-        relative_position_id = JAP_extend
+        relative_position_id = SER_extend
         x = -2 y = 1
         cost = 10
 
         completion_reward = {
-            add_political_power = 50
-            MAN = {
-                country_event = { id = diplomacy.10 hours = 6 }
+            add_war_support = 0.05
+            every_state = {
+                limit = { or = { state = 44 } }
+                add_claim_by = SER
             }
         }
     }
 
     focus = {
-        id = JAP_men
-        icon = GFX_focus_JAP_men
-        prerequisite = { focus = JAP_extend }
+        id = SER_men
+        icon = GFX_focus_SER_men
+        prerequisite = { focus = SER_extend }
 
         available = {
             is_subject = no
-            controls_state = 524
             civil_war_government_lock = yes
         }
 
-        relative_position_id = JAP_extend
+        relative_position_id = SER_extend
         x = 1 y = 1
         cost = 10
 
         completion_reward = {
-            every_state = {
-                limit = { state = 524 }
-                add_core_of = JAP
-                add_resource = { type = tungsten amount = 8 }
+            add_political_power = 50
+            108 = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+            105 = {
+                add_resource = { type = steel amount = 6 }
+                add_extra_state_shared_building_slots = 2
             }
         }
     }
 
     focus = {
-        id = JAP_take_ours
-        icon = GFX_focus_JAP_take_ours
-        prerequisite = { focus = JAP_men }
+        id = SER_take_ours
+        icon = GFX_focus_SER_take_ours
+        prerequisite = { focus = SER_men }
 
         available = {
             is_subject = no
             civil_war_government_lock = yes
         }
 
-        relative_position_id = JAP_men
+        relative_position_id = SER_men
         x = 0 y = 1
         cost = 10
 
         completion_reward = {
+            create_wargoal = { target = AUS type = take_claimed_state }
             add_war_support = 0.05
-            431 = {
-                save_event_target_as = demand_target
-                hidden_effect = { add_claim_by = ROOT }
-
-                owner = { 
-                    country_event = { id = diplomacy.1 hours = 6 } 
-                    effect_overlord_warning = yes
-                }
-            }
         }
     }
 }

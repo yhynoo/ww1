@@ -1,6 +1,6 @@
 focus_tree = {
-    id = JAP_focus
-    country = { factor = 0  modifier = { add = 20   original_tag = JAP } }
+    id = GRE_focus
+    country = { factor = 0  modifier = { add = 20   original_tag = GRE } }
     continuous_focus_position = { x = 88 y = 770 }
 
     shared_focus = XXX_government
@@ -11,12 +11,12 @@ focus_tree = {
 
 # TARGETS
     focus = {
-        id = JAP_extend
+        id = GRE_extend
         icon = GFX_focus_generic_extend
         prerequisite = { focus = XXX_government }
         mutually_exclusive = { focus = XXX_deterrence }
 
-        allow_branch = { original_tag = JAP }
+        allow_branch = { original_tag = GRE }
 
         available = {
             is_subject = no
@@ -33,79 +33,84 @@ focus_tree = {
                 custom_effect_tooltip = tt_extend
                 hidden_effect = { set_rule = { can_create_factions = yes } }
             }
-            every_controlled_state = {
-                limit = { is_core_of = KOR }
-                add_core_of = JAP
-                add_building_construction = { type = dockyard level = 1 instant_build = yes }
+            182 = {
+                save_event_target_as = demand_target
+                owner = { 
+                    country_event = { id = diplomacy.1 hours = 6 } 
+                    effect_overlord_warning = yes
+                }
             }
         }
     }
 
     focus = {
-        id = JAP_claims
-        icon = GFX_focus_JAP_claims
-        prerequisite = { focus = JAP_extend }
+        id = GRE_claims
+        icon = GFX_focus_GRE_claims
+        prerequisite = { focus = GRE_extend }
 
         available = {
             is_subject = no
             civil_war_government_lock = yes
         }
 
-        relative_position_id = JAP_extend
+        relative_position_id = GRE_extend
         x = -2 y = 1
         cost = 10
 
         completion_reward = {
-            add_political_power = 50
-            MAN = {
-                country_event = { id = diplomacy.10 hours = 6 }
+            add_war_support = 0.05
+            every_state = {
+                limit = { or = { state = 341 state = 340 state = 339 state = 164 } }
+                add_claim_by = GRE
             }
         }
     }
 
     focus = {
-        id = JAP_men
-        icon = GFX_focus_JAP_men
-        prerequisite = { focus = JAP_extend }
+        id = GRE_men
+        icon = GFX_focus_GRE_men
+        prerequisite = { focus = GRE_extend }
 
         available = {
             is_subject = no
-            controls_state = 524
             civil_war_government_lock = yes
         }
 
-        relative_position_id = JAP_extend
+        relative_position_id = GRE_extend
         x = 1 y = 1
         cost = 10
 
         completion_reward = {
-            every_state = {
-                limit = { state = 524 }
-                add_core_of = JAP
-                add_resource = { type = tungsten amount = 8 }
+            add_political_power = 50
+            47 = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+            186 = {
+                add_resource = { type = steel amount = 6 }
+                add_extra_state_shared_building_slots = 1
             }
         }
     }
 
     focus = {
-        id = JAP_take_ours
-        icon = GFX_focus_JAP_take_ours
-        prerequisite = { focus = JAP_men }
+        id = GRE_take_ours
+        icon = GFX_focus_GRE_take_ours
+        prerequisite = { focus = GRE_men }
 
         available = {
             is_subject = no
             civil_war_government_lock = yes
         }
 
-        relative_position_id = JAP_men
+        relative_position_id = GRE_men
         x = 0 y = 1
         cost = 10
 
         completion_reward = {
-            add_war_support = 0.05
-            431 = {
+            every_state = {
+                limit = { state = 183 }
                 save_event_target_as = demand_target
-                hidden_effect = { add_claim_by = ROOT }
 
                 owner = { 
                     country_event = { id = diplomacy.1 hours = 6 } 

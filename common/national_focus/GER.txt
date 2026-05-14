@@ -1,0 +1,105 @@
+focus_tree = {
+    id = GER_focus
+    country = { factor = 0  modifier = { add = 20   original_tag = GER } }
+    continuous_focus_position = { x = 88 y = 770 }
+
+    shared_focus = XXX_government
+    shared_focus = XXX_general_staff
+    shared_focus = XXX_infrastructure
+
+    shared_focus = XXX_civil_war
+
+# TARGETS
+    focus = {
+        id = GER_extend
+        icon = GFX_focus_generic_extend
+        prerequisite = { focus = XXX_government }
+        mutually_exclusive = { focus = XXX_deterrence }
+
+        allow_branch = { original_tag = GER }
+
+        available = {
+            is_subject = no
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = XXX_government
+        x = -4 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 100
+            every_state = {
+                limit = { or = { state = 28 } }
+                add_core_of = ROOT
+            }
+        }
+    }
+
+    focus = {
+        id = GER_claims
+        icon = GFX_focus_GER_claims
+        prerequisite = { focus = GER_extend }
+
+        available = {
+            is_subject = no
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = GER_extend
+        x = -2 y = 1
+        cost = 10
+
+        completion_reward = {
+            custom_effect_tooltip = tt_GER_claims
+            hidden_effect = {
+                414 = {
+                    save_event_target_as = demand_target
+                    owner = { country_event = { id = oil.1 hours = 6 } }
+                }
+            }
+        }
+    }
+
+    focus = {
+        id = GER_men
+        icon = GFX_focus_GER_men
+        prerequisite = { focus = GER_extend }
+
+        available = {
+            is_subject = no
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = GER_extend
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 50
+            HOL = {
+                country_event = { id = diplomacy.10 hours = 6 }
+            }
+        }
+    }
+
+    focus = {
+        id = GER_take_ours
+        icon = GFX_focus_GER_take_ours
+        prerequisite = { focus = GER_men }
+
+        available = {
+            is_subject = no
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = GER_men
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            create_wargoal = { target = FRA type = puppet_wargoal_focus }
+            add_war_support = 0.05
+        }
+    }
+}

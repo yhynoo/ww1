@@ -1,6 +1,6 @@
 focus_tree = {
-    id = FRA_focus
-    country = { factor = 0  modifier = { add = 20   original_tag = FRA } }
+    id = TUR_focus
+    country = { factor = 0  modifier = { add = 20   original_tag = TUR } }
     continuous_focus_position = { x = 88 y = 770 }
 
     shared_focus = XXX_government
@@ -11,12 +11,12 @@ focus_tree = {
 
 # TARGETS
     focus = {
-        id = FRA_extend
+        id = TUR_extend
         icon = GFX_focus_generic_extend
         prerequisite = { focus = XXX_government }
         mutually_exclusive = { focus = XXX_deterrence }
 
-        allow_branch = { original_tag = FRA }
+        allow_branch = { original_tag = TUR }
 
         available = {
             is_subject = no
@@ -28,80 +28,81 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
+            if = {
+                limit = { is_subject = no }
+                custom_effect_tooltip = tt_extend
+                hidden_effect = { set_rule = { can_create_factions = yes } }
+            }
             add_war_support = 0.05
-            create_wargoal = { target = MOR type = puppet_wargoal_focus }
         }
     }
 
     focus = {
-        id = FRA_claims
-        icon = GFX_focus_FRA_claims
-        prerequisite = { focus = FRA_extend }
+        id = TUR_claims
+        icon = GFX_focus_TUR_claims
+        prerequisite = { focus = TUR_extend }
 
         available = {
             is_subject = no
             civil_war_government_lock = yes
         }
 
-        relative_position_id = FRA_extend
+        relative_position_id = TUR_extend
         x = -2 y = 1
         cost = 10
 
         completion_reward = {
-            every_country = {
-                limit = { controls_state = 28 }
-                country_event = { id = diplomacy.15 hours = 6 }
-                effect_overlord_warning = yes
+            add_political_power = 50
+            GRE = {
+                country_event = { id = diplomacy.10 hours = 6 }
             }
         }
     }
 
     focus = {
-        id = FRA_men
-        icon = GFX_focus_FRA_men
-        prerequisite = { focus = FRA_extend }
+        id = TUR_men
+        icon = GFX_focus_TUR_men
+        prerequisite = { focus = TUR_extend }
 
         available = {
             is_subject = no
+            or = { controls_state = 554 controls_state = 411 }
             civil_war_government_lock = yes
         }
 
-        relative_position_id = FRA_extend
+        relative_position_id = TUR_extend
         x = 1 y = 1
         cost = 10
 
         completion_reward = {
-            add_political_power = 50
-            459 = {
-                add_core_of = ROOT
+            411 = {
+                add_extra_state_shared_building_slots = 1
                 add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
             }
-            460 = {
-                add_core_of = ROOT
-                add_resource = { type = tungsten amount = 8 }
+            554 = {
+                add_resource = { type = steel amount = 6 }
+                add_extra_state_shared_building_slots = 1
             }
         }
     }
 
     focus = {
-        id = FRA_take_ours
-        icon = GFX_focus_FRA_take_ours
-        prerequisite = { focus = FRA_men }
+        id = TUR_take_ours
+        icon = GFX_focus_TUR_take_ours
+        prerequisite = { focus = TUR_men }
 
         available = {
             is_subject = no
             civil_war_government_lock = yes
         }
 
-        relative_position_id = FRA_men
+        relative_position_id = TUR_men
         x = 0 y = 1
         cost = 10
 
         completion_reward = {
-            every_state = {
-                limit = { is_core_of = EGY }
-                add_claim_by = FRA
-            }
+            create_wargoal = { target = RUS type = liberate_wargoal }
+            add_war_support = 0.05
         }
     }
 }

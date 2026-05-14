@@ -1,0 +1,114 @@
+focus_tree = {
+    id = HOL_focus
+    country = { factor = 0  modifier = { add = 20   original_tag = HOL } }
+    continuous_focus_position = { x = 88 y = 770 }
+
+    shared_focus = XXX_government
+    shared_focus = XXX_general_staff
+    shared_focus = XXX_infrastructure
+
+    shared_focus = XXX_civil_war
+
+# TARGETS
+    focus = {
+        id = HOL_extend
+        icon = GFX_focus_generic_extend
+        prerequisite = { focus = XXX_government }
+        mutually_exclusive = { focus = XXX_deterrence }
+
+        allow_branch = { original_tag = HOL }
+
+        available = {
+            is_subject = no
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = XXX_government
+        x = -4 y = 1
+        cost = 10
+
+        completion_reward = {
+            every_state = {
+                limit = { state = 6 }
+                add_core_of = ROOT
+                set_demilitarized_zone = no 
+            }
+        }
+    }
+
+    focus = {
+        id = HOL_claims
+        icon = GFX_focus_HOL_claims
+        prerequisite = { focus = HOL_extend }
+
+        available = {
+            is_subject = no
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = HOL_extend
+        x = -2 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_war_support = 0.05
+            every_state = {
+                limit = { or = { state = 8 state = 29 state = 34 state = 56 }}
+                add_claim_by = ROOT
+            }
+        }
+    }
+
+    focus = {
+        id = HOL_men
+        icon = GFX_focus_HOL_men
+        prerequisite = { focus = HOL_extend }
+
+        available = {
+            is_subject = no
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = HOL_extend
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 50
+            SAF = {
+                country_event = { id = diplomacy.10 hours = 6 }
+            }
+        }
+    }
+
+    focus = {
+        id = HOL_take_ours
+        icon = GFX_focus_HOL_take_ours
+        prerequisite = { focus = HOL_men }
+
+        available = {
+            is_subject = no
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = HOL_men
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_war_support = 0.05
+            hidden_effect = {
+                every_state = {
+                    limit = { or = { state = 310 state = 347 } }
+                    add_claim_by = ROOT
+                }
+            }
+            every_country = {
+                limit = { or = { owns_state = 310 owns_state = 347 } }
+                
+                country_event = { id = diplomacy.15 hours = 6 } 
+                effect_overlord_warning = yes
+            }
+        }
+    }
+}

@@ -12,7 +12,7 @@
         cost = 10
 
         completion_reward = {
-            add_political_power = 100
+            custom_original_question = yes
         }
     }
 
@@ -21,6 +21,9 @@
         icon = GFX_focus_generic_extend
         prerequisite = { focus = XXX_government }
         mutually_exclusive = { focus = XXX_deterrence }
+
+        allow_branch = { has_custom_expansion_targets = no }
+        ai_will_do = { modifier = { has_war_support < 0.6 factor = 0.2 } }      # if you don't want to fight, then don't.
 
         available = {
             is_subject = no
@@ -109,7 +112,10 @@
                 save_event_target_as = demand_target
 
                 hidden_effect = { add_claim_by = ROOT }
-                owner = { country_event = { id = diplomacy.1 hours = 6 } }
+                owner = { 
+                    country_event = { id = diplomacy.1 hours = 6 } 
+                    effect_overlord_warning = yes
+                }
             }
         }
     }
@@ -118,7 +124,11 @@
         id = XXX_deterrence
         icon = GFX_focus_XXX_deterrence
         prerequisite = { focus = XXX_government }
-        mutually_exclusive = { focus = XXX_extend }
+        mutually_exclusive = { 
+            focus = XXX_extend 
+            focus = AUS_extend      focus = ENG_extend      focus = FRA_extend      focus = GER_extend      focus = RUS_extend      focus = TUR_extend   
+            focus = JAP_extend      focus = MAN_extend      focus = SPA_extend      focus = GRE_extend      focus = HOL_extend      focus = SER_extend
+        }
 
         available = {
             civil_war_government_lock = yes
