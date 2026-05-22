@@ -33,9 +33,14 @@ focus_tree = {
                 custom_effect_tooltip = tt_extend
                 hidden_effect = { set_rule = { can_create_factions = yes } }
             }
-            FER = {
-                country_event = { id = diplomacy.10 hours = 6 }
-                effect_overlord_warning = yes
+            every_state = {
+                limit = { is_core_of = FER }
+                
+                custom_effect_tooltip = tt_ultimatum
+                owner = {
+                    hidden_effect = { country_event = { id = diplomacy.15 hours = 6 } }
+                    effect_overlord_warning = yes
+                }
             }
         }
     }

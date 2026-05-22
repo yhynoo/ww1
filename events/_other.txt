@@ -1,54 +1,5 @@
 add_namespace = other
 
-# uprising
-    news_event = {
-        id = other.1      # delayer event.
-        hidden = yes
-
-        trigger = {
-            not = { has_country_flag = during_uprising }
-            or = {
-                has_stability < 0.2
-                has_civil_war = yes
-                and = { has_war = yes surrender_progress > 0.25 stability < 0.4 }
-            }
-        }
-
-        immediate = { 
-            trigger_uprising = yes
-        }
-    }
-
-    country_event = {
-        id = other.2
-        title = "Uprising in [uprising_country.GetNameDef]!"
-        desc = other.2.d
-
-        is_triggered_only = yes
-        trigger = { is_ai = no }
-
-        option = {
-            name = "To arms!"
-            add_war_support = 0.05
-        }
-        option = {
-            name = "Freedom to [uprising_country.GetNameDef]!"
-            event_target:uprising_country = { change_tag_from = ROOT }
-        }
-    }
-
-    news_event = {
-        id = other.3
-        hidden = yes
-
-        is_triggered_only = yes
-
-        immediate = {
-            clr_country_flag = during_uprising
-            mark_focus_tree_layout_dirty = yes
-        }
-    }
-
 # army
     news_event = {
         id = other.4

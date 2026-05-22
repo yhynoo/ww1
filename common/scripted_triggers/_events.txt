@@ -1,13 +1,16 @@
+is_austrian_subject = {
+    or = { tag = BOS tag = CZE tag = CRO tag = GAL tag = HUN }
+    any_core_state = { is_controlled_by = AUS }
+}
+
 is_chinese_warlord = {
     or = { tag = EAT tag = FEN tag = GUA tag = XMA tag = ANH tag = SHA tag = YUN }
+    any_core_state = { is_controlled_by = MAN }
 }
 
 has_custom_events = {
     or = { 
         or = { }    # list of tags.
-
-        # other special conditions
-        has_country_flag = yuan_shikai_coronation       # don't fire government change events if we're during the transition.
     }       
 }
 

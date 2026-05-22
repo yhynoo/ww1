@@ -2,39 +2,36 @@ trigger_uprising = {
     every_possible_country = {
         limit = { 
             exists = no 
-            not = { has_country_flag = started_as_uprising } 
+            not = { has_country_flag = started_as_uprising }
+            
+            # special cases
+            is_austrian_subject = no
+            is_chinese_warlord = no
         }
 
         random = { 
             chance = 5 
             setup_uprising_country = yes 
         }
-
-        # if creation has succeeded:
-        organize_uprising = yes
     }
 }
 
-organize_uprising = {
-    if = {
-        limit = { exists = yes }
-        every_country = {
-            limit = { original_tag = ROOT }
-            declare_war_on = { target = PREV type = annex_everything }
+uprising_reaction_event = {
+    save_event_target_as = uprising_country
+    every_country = {
+        limit = {
+            or = {
+                tag = PREV.PREV
+                any_state = {
+                    is_owned_by = event_target:uprising_country
+                    or = { 
+                        is_core_of = PREV 
+                        is_claimed_by = PREV 
+                    }
+                }
+            }
         }
-
-        # event to choose sides
-        save_event_target_as = uprising_country
-        ROOT = { country_event = other.2 }
-
-        # setup
-        if = {
-            limit = { not = { has_country_flag = started_as_uprising } }
-            set_country_flag = started_as_uprising
-            set_country_flag = during_uprising
-            
-            add_timed_idea = { idea = idea_uprising months = 6 }
-        }
+        country_event = uprising.1
     }
 }
 
@@ -58,6 +55,17 @@ setup_uprising_country = {
 
     # setup specific states
     every_controlled_state = { setup_uprising_state = yes }
+
+    # flags and focuses
+    if = {
+        limit = { not = { has_country_flag = started_as_uprising } }
+        set_country_flag = started_as_uprising
+        set_country_flag = during_uprising
+        
+        add_timed_idea = { idea = idea_uprising months = 6 }
+    }
+
+    uprising_reaction_event = yes
 }
 
 setup_uprising_state = {

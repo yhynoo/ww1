@@ -1,6 +1,6 @@
 effect_overlord_warning = {
     if = { 
-        limit = { is_subject = yes } 
+        limit = { is_subject = yes }
         custom_effect_tooltip = tt_overlord_wargoal
     }
 }
@@ -11,6 +11,8 @@ effect_overlord_wargoal = {
         hidden_effect = {
             every_country = {
                 limit = { has_subject = ROOT not = { tag = FROM } }
+                
+                # create_wargoal = { target = ROOT type = puppet_wargoal_focus }
                 create_wargoal = { target = FROM type = liberate_wargoal }
             }
         }

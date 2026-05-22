@@ -35,7 +35,33 @@ on_actions = {
         effect = {
             if = {
                 limit = { has_country_flag = during_uprising exists = yes }
-                news_event = other.3
+                news_event = uprising.2
+            }
+        }
+    }
+
+    on_state_control_changed = {
+        effect = {
+            if = {
+                limit = { 
+                    ROOT = { has_war_with = FROM }
+                    FROM.FROM = {
+                        or = {
+                            state = 10  state = 202  state = 192  state = 229                                   # Warsaw, Kyiv, Odesa, Baku
+                            state = 5   state = 85   state = 28   state = 58                                    # Königsberg, Danzig, Strasburg, Hamburg
+                            state = 89  state = 80   state = 33   state = 103  state = 104                      # Lviv, Kraków, Triest, Rijeka, Sarajevo
+                            state = 29  state = 20   state = 228                                                # Verdun, Marseille, Amiens
+                            state = 341 state = 339  state = 554  state = 454 state = 586 state = 212           # Constantinople, Izmir, Damascus, Jerusalem, Saloniki, Sofia
+                            state = 47                                                                          # Athens
+                            state = 447 state = 459 state = 461                                                 # Cairo, Algiers, Casablanca
+                        }
+                    } 
+                }
+
+                FROM.FROM = {
+                    save_event_target_as = conquered_state
+                    owner = { news_event = war.1 }
+                }
             }
         }
     }
@@ -49,7 +75,7 @@ on_actions = {
                         or = { tag = EAT tag = FEN tag = GUA tag = XMA tag = ANH tag = SHA tag = YUN }
                     }
                 }
-                FROM = { set_country_flag = warlord_defeated }
+                FROM = { set_country_flag = country_defeated }
             }
         }
     }

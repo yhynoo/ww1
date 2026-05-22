@@ -52,8 +52,10 @@ ideas = {
                 conscription_factor = 0.15
             }
             cancel = {
-                has_war = no
-                not = { has_country_flag = during_uprising }
+                or = {
+                    has_war = no
+                    not = { has_country_flag = during_uprising }
+                }
             }
         }
         idea_uprising_administration = {

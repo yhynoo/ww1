@@ -78,10 +78,14 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            every_country = {
-                limit = { any_controlled_state = { is_core_of = EGY } }
-                country_event = { id = diplomacy.15 hours = 6 }
-                effect_overlord_warning = yes
+            every_state = {
+                limit = { is_core_of = EGY }
+
+                custom_effect_tooltip = tt_ultimatum
+                owner = {
+                    hidden_effect = { country_event = { id = diplomacy.15 hours = 6 } }
+                    effect_overlord_warning = yes
+                }
             }
         }
     }

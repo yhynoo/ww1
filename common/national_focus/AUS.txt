@@ -32,6 +32,7 @@ focus_tree = {
             every_state = {
                 limit = { or = { state = 104 } }
                 add_core_of = ROOT
+                add_resource = { type = steel amount = 8 }
             }
         }
     }
@@ -51,7 +52,20 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            create_wargoal = { target = SER type = annex_everything }
+            add_war_support = 0.05
+            if = {
+                limit = { is_ally_with = GER }
+                leave_faction = yes
+            }
+            every_state = {
+                limit = { or = { state = 66 state = 67 } }
+
+                custom_effect_tooltip = tt_ultimatum
+                owner = {
+                    hidden_effect = { country_event = { id = diplomacy.15 hours = 6 } }
+                    effect_overlord_warning = yes
+                }
+            }
         }
     }
 
@@ -71,14 +85,7 @@ focus_tree = {
 
         completion_reward = {
             add_political_power = 50
-            33 = {
-                add_extra_state_shared_building_slots = 1
-                add_building_construction = { type = dockyard level = 1 instant_build = yes }
-            }
-            103 = {
-                add_resource = { type = steel amount = 8 }
-                add_extra_state_shared_building_slots = 2   
-            }
+            SER = { country_event = { id = diplomacy.10 hours = 6 } }
         }
     }
 
@@ -97,9 +104,9 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            every_state = {
-                limit = { or = { state = 470 state = 280 } }
-                add_claim_by = AUS
+            every_country = {
+                limit = { original_tag = TUR }
+                ROOT = { create_wargoal = { target = PREV type = annex_everything }
             }
         }
     }

@@ -12,14 +12,6 @@ on_actions = {
                 give_resource_rights = { receiver = USA state = 317 }
             }
 
-            MAN = {
-                # events
-                country_event = { id = manchukuo.1 months = 3 days = 4 }
-
-                # add cores of warlord states
-                set_warlord_cores = yes
-            }
-
             MEX = {
                 give_resource_rights = { receiver = USA state = 476 }
                 give_resource_rights = { receiver = USA state = 485 }
@@ -29,23 +21,11 @@ on_actions = {
                 give_resource_rights = { receiver = ENG state = 412 }
                 give_resource_rights = { receiver = ENG state = 413 }
             }
-
-            # events
-            JAP = {
-                news_event = { id = japan.1 months = 6 days = 30 }          # meiji dies
-                news_event = { id = japan.2 months = 12 days = 6 }          # the 'telescope affair'
-            }
         }
     }
 
     on_daily = {
         effect = {
-            if = {
-                limit = { is_chinese_warlord = yes not = { has_country_flag = sent_event_to_china } }
-                MAN = { country_event = manchukuo.18 }
-                set_country_flag = sent_event_to_china
-            }
-
             if = {
                 limit = { or = { original_tag = MAN is_chinese_warlord = yes } has_war_with = MAN }
                 set_cosmetic_tag = MAN_enemy_warlord
@@ -53,6 +33,12 @@ on_actions = {
             if = {
                 limit = { not = { has_war_with = MAN } has_cosmetic_tag = MAN_enemy_warlord }
                 drop_cosmetic_tag = yes
+            }
+
+            # clean uprising tags
+            if = {
+                limit = { has_country_flag = during_uprising has_war = no }
+                country_event = uprising.2
             }
 
             # cleanup of chinese empire tag
@@ -69,12 +55,37 @@ on_actions = {
         }
     }
 
+# specific countries
+    on_daily_AUS = {
+        effect = {
+            # austrian disintegration
+            if = {
+                limit = {
+                    or = { has_stability < 0.4 has_civil_war = yes }
+                    has_idea = idea_decentralizing_tensions
+                }
+
+                # trigger random austrian subjects
+                every_possible_country = {
+                    limit = { 
+                        is_austrian_subject = yes 
+                        exists = no has_capitulated = no not = { has_country_flag = country_defeated }
+                    }
+                    random = {
+                        chance = 3
+                        trigger_austrian_subject = yes
+                    }
+                }
+            }
+        }
+    }
+
     on_daily_MAN = {
         effect = {
             # chinese warlords setup
             if = {
                 limit = {
-                    or = { has_stability < 0.2 has_civil_war = yes }
+                    or = { has_stability < 0.4 has_civil_war = yes }
                     has_idea = idea_warlordism_in_the_countryside
                 }
 
@@ -82,7 +93,7 @@ on_actions = {
                 every_possible_country = {
                     limit = { is_chinese_warlord = yes }
                     random = {
-                        chance = 2
+                        chance = 5
                         trigger_warlord = yes
                     }
                 }
