@@ -68,11 +68,11 @@ on_actions = {
 
     on_annex = {
         effect = {
-            # chinese warlords
             if = {
                 limit = {
-                    FROM = {
-                        or = { tag = EAT tag = FEN tag = GUA tag = XMA tag = ANH tag = SHA tag = YUN }
+                    or = {
+                        is_chinese_warlord = yes
+                        has_country_flag = during_uprising
                     }
                 }
                 FROM = { set_country_flag = country_defeated }

@@ -78,11 +78,11 @@ _war_office = {
 
                 or = {
                     any_state = { 
-                        and = { is_controlled_by = FROM not = { is_claimed_by = FROM } }
+                        and = { is_controlled_by = FROM not = { is_claimed_by = FROM } not = { is_owned_by = FROM } }
                         is_core_of = ROOT
                     }
                     any_state = {
-                        and = { is_controlled_by = ROOT not = { is_claimed_by = ROOT } }
+                        and = { is_controlled_by = ROOT not = { is_claimed_by = ROOT } not = { is_owned_by = ROOT } }
                         is_core_of = FROM
                     }
                 }
@@ -96,23 +96,16 @@ _war_office = {
     }
 
 # armistice
-    withdraw_from_war = {
-        visible = { has_war = yes }
+    withdraw_from_war = {                   # if the war has lasted long enough (at least 6 months)
+        visible = { 
+            has_war = yes 
+            is_subject = no
+            war_length_with = { tag = FROM months > 5 }
+        }
 
         icon = generic_form_nation
         days_re_enable = 90
         cost = 100
-
-        available = { 
-            is_subject = no
-            or = {
-                surrender_progress > 0.25    
-                custom_trigger_tooltip = {
-                    tooltip = tt_war_length
-                    has_war_support < 0.4       war_length_with = { tag = FROM months > 23 }
-                }
-            }
-        }
 
         targets_dynamic = yes
         target_trigger = { 
@@ -130,9 +123,71 @@ _war_office = {
             }
         }
 
+        ai_will_do = {
+            modifier = { has_war_support < 0.5 add = 4 }    # entry condition: if we have more war support, we won't even think about it.
+            modifier = { or = { has_idea = idea_war_exhaustion has_stability < 0.2 } factor = 2 }
+            modifier = { surrender_progress > 0.15 factor = 1.5 }
+        }
+
         days_remove = 14
         remove_effect = { 
             FROM = { country_event = { id = diplomacy.8 hours = 6 random_hours = 6 } } 
+        }
+    }
+
+    demand_surrender = {
+        visible = { 
+            has_war = yes 
+            is_subject = no
+
+            or = {
+               is_faction_leader = yes
+               is_in_faction = no
+            }
+
+            FROM = { surrender_progress > 0.05 }
+            war_length_with = { tag = FROM months > 2 }
+        }
+
+        icon = generic_public_support
+        days_re_enable = 90
+        cost = 75
+
+        available = { 
+            FROM = {
+                or = { 
+                    surrender_progress > 0.15 
+                    has_war_support < 0.25 
+                }
+            }
+        }
+
+        ai_will_do = {
+            modifier = { always = yes add = 4 }     # if we can, there is a chance we will do it.
+            modifier = { or = { has_idea = idea_war_exhaustion has_war_support < 0.6 has_stability < 0.4 } factor = 3 }   # if we sort of want out of it, we will ask more certainly.
+            modifier = { FROM = { surrender_progress > 0.6 } factor = 0.2 } # if we're close to winning, we might as well just finish the job.
+        }
+
+        targets_dynamic = yes
+        target_trigger = { 
+            FROM = {
+                has_war_with = ROOT
+                not = { original_tag = ROOT }       # not our civil war enemies.
+
+                or = { 
+                    is_faction_leader = yes 
+                    is_in_faction = no
+                }
+                is_subject = no
+
+                # block chinese warlords
+                is_chinese_warlord = no
+            }
+        }
+
+        days_remove = 14
+        remove_effect = { 
+            FROM = { country_event = { id = diplomacy.17 hours = 6 random_hours = 6 } } 
         }
     }
 }

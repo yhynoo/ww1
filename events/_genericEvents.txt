@@ -137,18 +137,30 @@ add_namespace = generic
                 add_timed_idea = { idea = idea_wheat_affair months = 2 }
             }
         }
-
-    # ARMISTICE
-        country_event = {
+        news_event = {
             id = generic.9
-            title = "Time for Armistice?"
+            title = "Mutinees in the Army"
             desc = generic.9.d
 
             is_triggered_only = yes
-            trigger = { can_have_armistice_event = yes }
-            immediate = { 
-                hidden_effect = { add_timed_idea = { idea = idea_armistice_timeout months = 6 } } 
+            trigger = { can_have_mutinees_event = yes }
+            immediate = { hidden_effect = { add_timed_idea = { idea = idea_mutinees_timeout months = 9 } } }
+
+            option = {
+                name = "Awful."
+                add_timed_idea = { idea = idea_wheat_affair months = 3 }
             }
+        }
+
+    # ARMISTICE
+        country_event = {
+            id = generic.10
+            title = "Time for Armistice?"
+            desc = generic.10.d
+
+            is_triggered_only = yes
+            trigger = { can_have_armistice_event = yes }
+            immediate = { hidden_effect = { add_timed_idea = { idea = idea_armistice_timeout months = 6 } } }
 
             option = {
                 name = "This war has lasted too long."
@@ -169,4 +181,43 @@ add_namespace = generic
             }
         }
 
+    # DEMOBILIZATION
+        country_event = {
+            id = generic.11
+            title = "‘Send Them Home!’"
+            desc = generic.11.d
+
+            is_triggered_only = yes
+            trigger = { can_have_army_demobilization_event = yes }
+            immediate = { hidden_effect = { add_timed_idea = { idea = idea_army_demobilization_timeout months = 3 } } }
+
+            option = {
+                name = "Demobilize the army."
+                add_ideas = limited_conscription
+            }
+            option = {
+                name = "We must maintain our ability to act."
+                add_popularity = { ideology = ROOT popularity = -0.05 }
+                add_stability = -0.025
+            }
+        }
+
+        country_event = {
+            id = generic.12
+            title = "War Economy Unsustainable?"
+            desc = generic.12.d
+
+            is_triggered_only = yes
+            trigger = { can_have_economic_demobilization_event = yes }
+            immediate = { hidden_effect = { add_timed_idea = { idea = idea_economic_demobilization_timeout months = 3 } } }
+
+            option = {
+                name = "Demobilize the economy."
+                add_ideas = civilian_economy
+            }
+            option = {
+                name = "We must endure a little longer."
+                add_popularity = { ideology = ROOT popularity = -0.25 }
+            }
+        }
 #

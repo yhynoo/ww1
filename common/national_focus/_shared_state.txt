@@ -128,7 +128,7 @@
             focus = XXX_extend 
             focus = AUS_extend      focus = ENG_extend      focus = FRA_extend      focus = GER_extend      focus = RUS_extend      focus = TUR_extend   
             focus = JAP_extend      focus = MAN_extend      focus = SPA_extend      focus = GRE_extend      focus = HOL_extend      focus = SER_extend
-            focus = ITA_extend
+            focus = ITA_extend      focus = ROM_extend
         }
 
         available = {
@@ -375,6 +375,7 @@
         prerequisite = { focus = XXX_on_our_own }
 
         available = {
+            has_war_support > 0.6
             civil_war_government_lock = yes
         }
 
@@ -385,7 +386,6 @@
         cost = 10
 
         completion_reward = {
-            add_war_support = 0.1
             every_country = {
                 limit = { has_subject = ROOT }
                 country_event = { id = diplomacy.5 hours = 6 }

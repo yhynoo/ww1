@@ -103,14 +103,14 @@ add_namespace = diplomacy
 
             every_state = {
                 limit = { 
-                    and = { is_controlled_by = FROM not = { is_claimed_by = FROM } }
+                    and = { is_controlled_by = FROM not = { is_claimed_by = FROM } not = { is_owned_by = FROM } }
                     is_core_of = ROOT
                 }
                 transfer_state_to = ROOT
             }
             every_state = {
                 limit = {
-                    and = { is_controlled_by = ROOT not = { is_claimed_by = ROOT } }
+                    and = { is_controlled_by = ROOT not = { is_claimed_by = ROOT } not = { is_owned_by = ROOT } }
                     is_core_of = FROM
                 }
                 transfer_state_to = FROM
@@ -318,6 +318,32 @@ add_namespace = diplomacy
 
         option = {
             name = "Great."
+        }
+    }
+
+# demand surrender
+    country_event = {
+        id = diplomacy.17
+        title = "[FROM.GetName] Demands Our Surrender"
+        desc = diplomacy.17.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We must agree."
+            FROM = { start_peace_conference = { tag = ROOT score_factor = 0.15 } }
+
+            # effect news
+            news_event = { id = diplomacy.9 days = 1 }
+        }
+        option = {
+            name = "We shall fight on!"
+            add_war_support = 0.025
+
+            ai_chance = {
+                modifier = { has_stability < 0.4 factor = 0.5 } 
+                modifier = { surrender_progress > 0.4 factor = 0.2 } 
+            }
         }
     }
 

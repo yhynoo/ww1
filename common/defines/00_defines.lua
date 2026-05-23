@@ -46,7 +46,7 @@ NDiplomacy = {
 	TRUCE_BREAK_COST_PP = 200,						-- Base cost in PP of breaking a truce by joining a war or accepting a call to war ( you cannot declare war yourself until the truce if up ), this is then multiplied by the time left on the truce ( so once half the truce is up it only cost 50% of this )
 	BASE_PEACE_PUPPET_FACTOR = 100,					-- Base factor for puppet in %.
 	BASE_PEACE_LIBERATE_FACTOR = 100,				-- Base factor for liberate in %.
-	BASE_PEACE_TAKE_UNCONTROLLED_STATE_FACTOR = 10.0, -- Base factor for taking state you do not control
+	BASE_PEACE_TAKE_UNCONTROLLED_STATE_FACTOR = 10.0, -- [MOD, vanilla: 10.0] Base factor for taking state you do not control
 	BASE_PEACE_TAKE_FACTION_CONTROLLED_STATE_FACTOR = 0.5, -- Base factor for taking state you do not control, but someone in faction does
 	BASE_PEACE_FORCE_GOVERNMENT_COST = 100, 		-- Base cost for forcing a country to change government.
 	-- In peace conference, cost is factored based on how many times the state has been contested and for how long it has been uncontested (for everyone else)
@@ -82,17 +82,17 @@ NDiplomacy = {
 	--   if distance is between [0, NEUTRAL_DIST], we lerp the cost modifier between [MIN_DIST_COST_MODIFIER, 1.0]
 	--   if distance is between [NEUTRAL_DIST, MAX_DIST], we lerp the cost modifier between [1.0, MAX_DIST_COST_MODIFIER]
 	-- The below values represent (pixel distance / INFLUENCE_DISTANCE_DIVISOR)
-	INFLUENCE_NEUTRAL_DIST_CAPITAL = 30.0,          -- distance to capital that results in a cost modifier of 1.0
-	INFLUENCE_MAX_DIST_CAPITAL = 45.0,              -- distance to capital that results in a cost modifier of INFLUENCE_MAX_DIST_COST_MODIFIER
-	INFLUENCE_NEUTRAL_DIST_CORE = 3.0,              -- distance to nearest core state that results in a cost modifier of 1.0
-	INFLUENCE_MAX_DIST_CORE = 8.0,                 -- distance to nearest core state that results in a cost modifier of INFLUENCE_MAX_DIST_COST_MODIFIER
-	INFLUENCE_NEUTRAL_DIST_CONTROLLED = 6.0,       -- distance to nearest controlled state that results in a cost modifier of 1.0
+	INFLUENCE_NEUTRAL_DIST_CAPITAL = 5.0,          -- distance to capital that results in a cost modifier of 1.0
+	INFLUENCE_MAX_DIST_CAPITAL = 30.0,              -- distance to capital that results in a cost modifier of INFLUENCE_MAX_DIST_COST_MODIFIER
+	INFLUENCE_NEUTRAL_DIST_CORE = 1.5,              -- distance to nearest core state that results in a cost modifier of 1.0
+	INFLUENCE_MAX_DIST_CORE = 6.0,                 -- distance to nearest core state that results in a cost modifier of INFLUENCE_MAX_DIST_COST_MODIFIER
+	INFLUENCE_NEUTRAL_DIST_CONTROLLED = 3.0,       -- distance to nearest controlled state that results in a cost modifier of 1.0
 	INFLUENCE_MAX_DIST_CONTROLLED = 12.0,           -- distance to nearest controlled state that results in a cost modifier of INFLUENCE_MAX_DIST_COST_MODIFIER
-	INFLUENCE_MIN_DIST_COST_MODIFIER = 1.0,        	-- Cost modifier at min (zero) distance
-	INFLUENCE_MAX_DIST_COST_MODIFIER = 20.0,       	-- Cost modifier at max distance
+	INFLUENCE_MIN_DIST_COST_MODIFIER = 0.5,        	-- Cost modifier at min (zero) distance
+	INFLUENCE_MAX_DIST_COST_MODIFIER = 25.0,       	-- Cost modifier at max distance
 	INFLUENCE_RATIO_CAPITAL = 0.05,                 -- Ratio of influence based on distance to capital
-	INFLUENCE_RATIO_CORE = 0.45,                    -- Ratio of influence based on distance to nearest core territory
-	INFLUENCE_RATIO_CONTROLLED = 0.5,               -- Ratio of influence based on distance to neared controlled territory (including uncontested peace conference bids)
+	INFLUENCE_RATIO_CORE = 0.25,                    -- Ratio of influence based on distance to nearest core territory
+	INFLUENCE_RATIO_CONTROLLED = 0.7,               -- Ratio of influence based on distance to neared controlled territory (including uncontested peace conference bids)
 	INFLUENCE_DISTANCE_DIVISOR = 22.0,              -- Divide pixel distance with this when determining distance to capital / core / controlled states. Just an arbitrary way of scaling the distance numbers.
 	INFLUENCE_PER_ADJACENCY = 0.05,					-- How much influence to add per uncontested adjacent state in the PC (blob, don't snake)
 	INFLUENCE_MAJOR_FACTOR = 1.0,					--How much influence discount an AI major will get (inverse)
@@ -318,8 +318,8 @@ NCountry = {
 	MAX_COUP_STABILITY_FACTOR = 2.0,				-- Max value of coup factor in stability
 	MIN_COUP_SUCCESS_STABILITY = 0.8,				-- Max stability when coup will happen
 	WAR_SUPPORT_OFFNSIVE_WAR = -0.1,				-- [MOD; vanilla had -0.2] Impact of being in offensive war
-	WAR_SUPPORT_DEFENSIVE_WAR = 0.1,				-- [MOD; vanilla had 0.2] Impact of being in defensive war
-	WAR_SUPPORT_TENSION_IMPACT = 0.2,				-- [MOD; vanilla had 0.4] Total impact of world tension
+	WAR_SUPPORT_DEFENSIVE_WAR = 0.15,				-- [MOD; vanilla had 0.2] Impact of being in defensive war
+	WAR_SUPPORT_TENSION_IMPACT = 0.1,				-- [MOD; vanilla had 0.4] Total impact of world tension
 	MIN_STABILITY = 0.0,
 	MAX_STABILITY = 1.0,
 	MIN_WAR_SUPPORT = 0.0,
@@ -376,10 +376,10 @@ NCountry = {
 	BOMBING_WEEKLY_WAR_SUPPORT_PENALTY_DECAY = 0.0025,		-- Weekly decay of bomber damage war support penalty
 	MAX_BOMBING_WAR_SUPPORT_IMPACT = -0.4,					-- [MOD; vanilla had -0.3] Max total penalty from bomber's damage
 
-	HEROES_BEING_KILLED_WAR_SUPPORT_PENALTY_SCALE = -0.03,			-- Scaling of war heroes manpower lost to war support impact, will be added weekly as a war support penalty
+	HEROES_BEING_KILLED_WAR_SUPPORT_PENALTY_SCALE = -0.15,			-- Scaling of war heroes manpower lost to war support impact, will be added weekly as a war support penalty
 	MAX_HEROES_BEING_KILLED_WEEKLY_WAR_SUPPORT_PENALTY = -0.015,	-- [MOD; vanilla had -0.006] Max penalty that will gained per week from war heroes manpower lost
 	HEROES_BEING_KILLED_WEEKLY_WAR_SUPPORT_PENALTY_DECAY = 0.005,	-- [MOD; vanilla had -0.002] Weekly decay of war heroes manpower lost war support penalty
-	MAX_HEROES_BEING_KILLED_WAR_SUPPORT_IMPACT = -0.5,				-- Max total penalty from war heroes manpower lost
+	MAX_HEROES_BEING_KILLED_WAR_SUPPORT_IMPACT = -0.6,				-- Max total penalty from war heroes manpower lost
 	WAR_SUPPORT_FROM_CASUALTIES = 0.1,								-- [MOD; vanilla had 0.025] Base value (inverted) for calculating heroes being killed
 
 	CONVOYS_BEING_RAIDED_WAR_SUPPORT_PENALTY_SCALE = -0.05,			-- Scaling of trade convoy raided to war support impact, will be added weekly as a war support penalty

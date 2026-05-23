@@ -17,6 +17,12 @@ ideas = {
                 attrition = 0.25
             }
         }
+        idea_army_mutinees = {
+            modifier = {
+                stability_weekly = -0.01
+                army_attack_factor = -0.25
+            }
+        }
         idea_war_exhaustion = {
             modifier = {
                 war_support_weekly = -0.005
@@ -26,12 +32,7 @@ ideas = {
                 always = yes 
             }
         }
-        idea_where_all_streets_end = {
-            modifier = {
-                political_power_factor = -0.25
-                stability_weekly = -0.005
-            }
-        }
+
         idea_communists_organize = {
             modifier = { communism_drift = 0.05 }
             cancel = { has_government = communism }
