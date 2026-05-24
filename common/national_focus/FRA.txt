@@ -14,7 +14,7 @@ focus_tree = {
         id = FRA_extend
         icon = GFX_focus_generic_extend
         prerequisite = { focus = XXX_government }
-        mutually_exclusive = { focus = XXX_deterrence }
+        mutually_exclusive = { focus = FRA_deterrence }
 
         allow_branch = { original_tag = FRA }
 
@@ -105,6 +105,40 @@ focus_tree = {
             every_state = {
                 limit = { is_core_of = EGY }
                 add_claim_by = FRA
+            }
+        }
+    }
+
+# DETERRENCE
+    focus = {
+        id = FRA_deterrence
+        icon = GFX_focus_FRA_deterrence
+        prerequisite = { focus = XXX_government }
+        mutually_exclusive = { focus = FRA_extend }
+
+        available = {
+            is_subject = no
+            civil_war_government_lock = yes
+        }
+
+        allow_branch = {
+            original_tag = FRA
+        }
+
+        ai_will_do = {
+            modifier = { has_war_support < 0.6  factor = 2 }
+            modifier = { has_war_support > 0.65 factor = 0.4 }
+        }
+
+        relative_position_id = XXX_government
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 50
+            every_country = {
+                limit = { or = { tag = ENG tag = RUS tag = SPA } }
+                country_event = { id = diplomacy.12 hours = 6 }
             }
         }
     }

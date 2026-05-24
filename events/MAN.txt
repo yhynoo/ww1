@@ -1,0 +1,39 @@
+add_namespace = manchukuo
+
+## HISTORICAL EVENTS
+    # Tibet Announces Independence (2.04.1912)
+    country_event = {
+            id = manchukuo.1
+            title = "Dalai Lama’s Announcement"
+            desc = manchukuo.1.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Accept the announcement."
+                release_on_controlled = TIB
+
+                # atmosphere event; can be gated as a "gamble outcome" with random = { chance = 50 ... }
+                news_event = { id = manchukuo.2 hours = 6 }
+            }
+            option = {
+                name = "He can announce whatever he likes."
+                TIB = {
+                    setup_uprising_country = yes
+                    set_country_flag = started_as_uprising      set_country_flag = during_uprising      add_timed_idea = { idea = idea_uprising months = 6 }
+                }
+                declare_war_on = { target = TIB type = annex_everything }
+            }
+        }
+
+        news_event = {
+            id = manchukuo.2
+            title = "Tibet Independent"
+            desc = manchukuo.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Interesting."
+            }
+        }

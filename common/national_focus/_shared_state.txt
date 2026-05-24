@@ -12,7 +12,7 @@
         cost = 10
 
         completion_reward = {
-            custom_original_question = yes
+            add_political_power = 100
         }
     }
 
@@ -126,7 +126,7 @@
         prerequisite = { focus = XXX_government }
         mutually_exclusive = { 
             focus = XXX_extend 
-            focus = AUS_extend      focus = ENG_extend      focus = FRA_extend      focus = GER_extend      focus = RUS_extend      focus = TUR_extend   
+            focus = AUS_extend      focus = ENG_extend      focus = RUS_extend      focus = TUR_extend   
             focus = JAP_extend      focus = MAN_extend      focus = SPA_extend      focus = GRE_extend      focus = HOL_extend      focus = SER_extend
             focus = ITA_extend      focus = ROM_extend
         }
@@ -135,11 +135,19 @@
             civil_war_government_lock = yes
         }
 
-        allow_branch = { not = { has_country_flag = starts_as_dominion } }
+        allow_branch = { 
+            not = { or = { original_tag = FRA original_tag = GER } }
+            not = { has_country_flag = starts_as_dominion } 
+        }
 
         relative_position_id = XXX_government
         x = 0 y = 1
         cost = 10
+
+        ai_will_do = {
+            modifier = { has_war_support < 0.6  factor = 2 }
+            modifier = { has_war_support > 0.65 factor = 0.4 }
+        }
 
         completion_reward = {
             add_political_power = 50
@@ -150,15 +158,19 @@
     shared_focus = {
         id = XXX_idealism
         icon = GFX_focus_XXX_idealism
-        prerequisite = { focus = XXX_deterrence }
+        prerequisite = { focus = XXX_deterrence focus = FRA_deterrence focus = GER_deterrence }
         mutually_exclusive = { focus = XXX_ethnocentrism }
 
         available = {
             civil_war_government_lock = yes
         }
 
-        relative_position_id = XXX_deterrence
-        x = 0 y = 1
+        ai_will_do = {
+            modifier = { has_government = monarchism factor = 0.5 }
+        }
+
+        relative_position_id = XXX_government
+        x = 0 y = 2
         cost = 10
 
         completion_reward = {

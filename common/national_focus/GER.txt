@@ -14,7 +14,7 @@ focus_tree = {
         id = GER_extend
         icon = GFX_focus_generic_extend
         prerequisite = { focus = XXX_government }
-        mutually_exclusive = { focus = XXX_deterrence }
+        mutually_exclusive = { focus = GER_deterrence }
 
         allow_branch = { original_tag = GER }
 
@@ -28,9 +28,9 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            add_political_power = 100
+            add_war_support = 0.05
             every_state = {
-                limit = { or = { state = 28 } }
+                limit = { or = { state = 28 state = 34 } }
                 add_core_of = ROOT
             }
         }
@@ -98,8 +98,39 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            create_wargoal = { target = FRA type = puppet_wargoal_focus }
             add_war_support = 0.05
+            create_wargoal = { target = FRA type = puppet_wargoal_focus }
+        }
+    }
+
+# DETERRENCE
+    focus = {
+        id = GER_deterrence
+        icon = GFX_focus_GER_deterrence
+        prerequisite = { focus = XXX_government }
+        mutually_exclusive = { focus = GER_extend }
+
+        available = {
+            is_subject = no
+            civil_war_government_lock = yes
+        }
+
+        allow_branch = {
+            original_tag = GER
+        }
+
+        ai_will_do = {
+            modifier = { has_war_support < 0.6  factor = 2 }
+            modifier = { has_war_support > 0.65 factor = 0.4 }
+        }
+
+        relative_position_id = XXX_government
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 50
+            ENG = { country_event = { id = germany.1 hours = 6 } }
         }
     }
 }

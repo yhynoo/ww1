@@ -66,7 +66,10 @@ setup_uprising_country = {
         add_timed_idea = { idea = idea_uprising months = 6 }
     }
 
-    uprising_reaction_event = yes
+    if = {
+        limit = { is_chinese_warlord = no }
+        uprising_reaction_event = yes
+    }
 }
 
 setup_uprising_state = {

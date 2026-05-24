@@ -1,0 +1,34 @@
+add_namespace = germany
+
+# FOCUS EVENTS
+    # Appeal to London
+        country_event = {
+            id = germany.1
+            title = "Germany: End the Naval Armaments?"
+            desc = germany.1.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "They are welcome."
+                diplomatic_relation = { country = FROM  relation = non_aggression_pact  active = yes }
+                hidden_effect = { GER = { news_event = { id = germany.2 hours = 6 } } }
+            }
+            option = {
+                name = "How can we trust them?"
+                add_war_support = 0.05
+            }
+        }
+
+        news_event = {
+            id = germany.2
+            title = "[ENG.GetName] Agrees!"
+            desc = germany.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Very well."
+                remove_ideas = idea_naval_armaments
+            }
+        }

@@ -30,17 +30,12 @@ set_warlord_ideologies = {
 }
 
 trigger_warlord = {
-    limit = { 
-        exists = no 
-        has_capitulated = no
-        not = { has_country_flag = country_defeated }
-    }
+    setup_uprising_country = yes 
+    set_warlord_ideologies = yes
 
-    every_core_state = {
-        limit = { and = { owner = { original_tag = ROOT } controller = { original_tag = ROOT } } }
-        transfer_state_to = PREV
-        setup_uprising_state = yes
-    }
+    # event
+    save_event_target_as = warlord_country
+    MAN = { country_event = uprising.3 }
 }
 
 beiyang_war = {
