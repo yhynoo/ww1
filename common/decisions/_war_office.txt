@@ -73,6 +73,7 @@ _war_office = {
         target_trigger = {
             FROM = {
                 not = { has_war_with = ROOT }
+                not = { any_enemy_country = { original_tag = FROM } }       # not civil war sides.
                 any_enemy_country = { has_war_with = ROOT }
                 is_chinese_warlord = no
 
@@ -127,6 +128,9 @@ _war_office = {
             modifier = { has_war_support < 0.5 add = 4 }    # entry condition: if we have more war support, we won't even think about it.
             modifier = { or = { has_idea = idea_war_exhaustion has_stability < 0.2 } factor = 2 }
             modifier = { surrender_progress > 0.15 factor = 1.5 }
+
+            # if we're done, we're done.
+            modifier = { has_capitulated = yes add = 12 }
         }
 
         days_remove = 14

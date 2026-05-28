@@ -26,8 +26,11 @@ on_actions = {
 
     on_peaceconference_ended = {
         effect = {
-            where_all_streets_end_effect = yes
-            FROM = { where_all_streets_end_effect = yes }
+            if = {
+                limit = { has_war = no }
+                add_timed_idea = { idea = idea_war_winner months = 12 }
+            }
+            FROM = { add_timed_idea = { idea = idea_war_loser months = 18 } }
         }
     }
 

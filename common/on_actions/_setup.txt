@@ -23,6 +23,15 @@ on_actions = {
                 }
 
             # events
+                FRA = {
+                    country_event = { id = france_algeria.1 days = 12 }                 # Caillaux (12.1.1912)
+                }
+
+                GER = {
+                    news_event = { id = germany_historical.1 months = 11 days = 6 }     # Amarna (6.12.1912)
+                    news_event = { id = germany_historical.2 months = 21 days = 17 }    # Johannisthal (17.10.1913)
+                }
+
                 MAN = {
                     country_event = { id = manchukuo.1 months = 3 days = 2 }        # Tibetan Independence (2.04.1912)
                 }
@@ -31,6 +40,39 @@ on_actions = {
 
     on_daily = {
         effect = {
+        # uprisings     
+            if = {
+                limit = { or = { has_stability < 0.2 has_civil_war = yes } }
+                every_possible_country = {
+                    limit = { 
+                        and = {
+                            any_core_state = { is_controlled_by = PREV.PREV }
+                            is_austrian_subject = no is_chinese_warlord = no is_middle_eastern_turkish_subject = no 
+                        }
+                        exists = no has_capitulated = no not = { has_country_flag = country_defeated }
+                    }
+                    random = {
+                        chance = 1
+                        trigger_uprising = yes
+                    }
+                }
+            }       
+
+            # clean uprising tags
+            if = {
+                limit = { has_country_flag = during_uprising has_war = no }
+                country_event = uprising.2
+            }
+
+        # austria
+            # set austrian tag if hungary exists
+            if = {
+                limit = { country_exists = HUN }
+                AUS = { set_cosmetic_tag = AUS_alone }
+            }
+
+        # china
+            # china tags
             if = {
                 limit = { or = { original_tag = MAN is_chinese_warlord = yes } has_war_with = MAN }
                 set_cosmetic_tag = MAN_enemy_warlord
@@ -39,25 +81,12 @@ on_actions = {
                 limit = { not = { has_war_with = MAN } has_cosmetic_tag = MAN_enemy_warlord }
                 drop_cosmetic_tag = yes
             }
-
-            # clean uprising tags
-            if = {
-                limit = { has_country_flag = during_uprising has_war = no }
-                country_event = uprising.2
-            }
-
-            # cleanup of chinese empire tag
             if = {
                 limit = { has_cosmetic_tag = MAN_empire not = { has_government = monarchism } }
                 drop_cosmetic_tag = yes
             }
 
-            # set austrian tag if hungary exists
-            if = {
-                limit = { country_exists = HUN }
-                AUS = { set_cosmetic_tag = AUS_alone }
-            }
-
+        # india
             # cleanup of india tag
             if = {
                 limit = { original_tag = RAJ is_subject = no }

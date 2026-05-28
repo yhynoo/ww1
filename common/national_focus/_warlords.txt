@@ -2,7 +2,10 @@ focus_tree = {
     id = warlord_focus
     country = {
         factor = 0
-        modifier = { add = 20   is_chinese_warlord = yes }
+        modifier = { 
+            add = 20   
+            and = { is_chinese_warlord = yes not = { has_government = communism } }
+        }
     }
 
     continuous_focus_position = { x = 88 y = 770 }
@@ -64,7 +67,6 @@ focus_tree = {
         prerequisite = { focus = XWA_central_ambitions }
 
         available = {
-            and = { has_government = monarchism }
             civil_war_government_lock = yes
         }
 

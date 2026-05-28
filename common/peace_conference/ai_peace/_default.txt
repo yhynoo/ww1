@@ -11,9 +11,7 @@ peace_ai_desires = {
         peace_action_type = { take_states }
         enable = {
             FROM.FROM.FROM = {
-                any_neighboring_state = {
-                    or = { is_owned_by = ROOT is_claimed_by = ROOT }
-                }
+                or = { is_claimed_by = ROOT is_controlled_by = ROOT }
             }
         }
         ai_desire = 30
@@ -23,26 +21,40 @@ peace_ai_desires = {
         peace_action_type = { take_states }
         enable = {
             FROM.FROM.FROM = {
-                or = {
-                    and = { is_coastal = yes is_on_continent = africa }
-                    any_neighboring_state = {
-                        pc_is_state_claimed_and_taken_by = ROOT
+                if = {
+                    limit = { ROOT = { is_major = no } }        # if we're not majors, we're not interested in africa
+                    is_on_continent = africa
+                }
+                not = { 
+                    or = {
+                        is_controlled_by = ROOT 
+                        is_claimed_by = ROOT
+                        is_core_of = ROOT
                     }
                 }
             }
         }
-        ai_desire = 20
-    }
-
-    dont_take_africa_as_a_minor = {
-        peace_action_type = { take_states }
-        enable = {
-            is_major = no
-            FROM.FROM.FROM = { is_on_continent = africa }
-        }
         ai_desire = -200
     }
 
+    dont_take_nonsens = {
+        peace_action_type = { take_states }
+        enable = {
+            FROM.FROM.FROM = {
+                or = {
+                    not = {
+                        any_neighboring_state = {
+                            is_owned_by = ROOT
+                            pc_is_state_claimed_and_taken_by = ROOT
+                        }
+                    }
+                    is_coastal = no
+                }
+            }
+        }
+        ai_desire = -600
+    }
+    
     # DOMINIONS
     keep_them_tight = {
         peace_action_type = { puppet }

@@ -18,3 +18,23 @@ effect_overlord_wargoal = {
         }
     }
 }
+
+effect_warlike_option = {
+    if = {
+        limit = { has_war_support > 0.4 }
+        add_war_support = 0.05
+    }
+    else = {
+        add_political_power = -15
+    }
+}
+
+effect_quiet_option = {
+    if = {
+        limit = { has_stability < 0.4 }
+        add_stability = 0.025
+    }
+    else = {
+        add_war_support = -0.025
+    }
+}

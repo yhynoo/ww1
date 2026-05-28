@@ -3,7 +3,7 @@ add_namespace = uprising
 # uprising
     country_event = {
         id = uprising.1
-        title = "Uprising in [warlord_country.GetNameDef]!"
+        title = "Uprising in [uprising_country.GetNameDef]!"
         desc = uprising.1.d
 
         is_triggered_only = yes
@@ -11,30 +11,21 @@ add_namespace = uprising
         option = {
             name = "To arms!"
             add_war_support = 0.05
-            declare_war_on = { target = event_target:warlord_country type = take_claimed_state }
+            declare_war_on = { target = event_target:uprising_country type = take_claimed_state }
         }
         option = {
             name = "Let them do as they wish."
             add_political_power = -15
             
             every_state = {
-                limit = { is_owned_by = event_target:warlord_country is_core_of = ROOT }
+                limit = { is_owned_by = event_target:uprising_country is_core_of = ROOT }
                 remove_core_of = ROOT
             }
 
             every_state = {
-                limit = { is_owned_by = event_target:warlord_country is_claimed_by = ROOT }
+                limit = { is_owned_by = event_target:uprising_country is_claimed_by = ROOT }
                 remove_claim_by = ROOT
             }
-        }
-        option = {
-            trigger = { 
-                is_ai = no
-                event_target:warlord_country = { is_ai = yes } 
-            }
-
-            name = "Freedom to [warlord_country.GetNameDef]!"
-            event_target:warlord_country = { change_tag_from = ROOT }
         }
     }
 

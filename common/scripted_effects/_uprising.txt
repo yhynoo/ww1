@@ -1,39 +1,6 @@
 trigger_uprising = {
-    every_possible_country = {
-        limit = { 
-            exists = no 
-            not = { has_country_flag = started_as_uprising }
-            
-            # special cases
-            is_austrian_subject = no
-            is_chinese_warlord = no
-            is_middle_eastern_turkish_subject = no
-        }
-
-        random = { 
-            chance = 5 
-            setup_uprising_country = yes 
-        }
-    }
-}
-
-uprising_reaction_event = {
-    save_event_target_as = uprising_country
-    every_country = {
-        limit = {
-            or = {
-                tag = PREV.PREV
-                any_state = {
-                    is_owned_by = event_target:uprising_country
-                    or = { 
-                        is_core_of = PREV 
-                        is_claimed_by = PREV 
-                    }
-                }
-            }
-        }
-        country_event = uprising.1
-    }
+    setup_uprising_country = yes 
+    uprising_reaction_event = yes
 }
 
 setup_uprising_country = {
@@ -65,10 +32,24 @@ setup_uprising_country = {
         
         add_timed_idea = { idea = idea_uprising months = 6 }
     }
+}
 
-    if = {
-        limit = { is_chinese_warlord = no }
-        uprising_reaction_event = yes
+uprising_reaction_event = {
+    save_event_target_as = uprising_country
+    every_country = {
+        limit = {
+            or = {
+                tag = PREV.PREV
+                any_state = {
+                    is_owned_by = event_target:uprising_country
+                    or = { 
+                        is_core_of = PREV 
+                        is_claimed_by = PREV 
+                    }
+                }
+            }
+        }
+        country_event = uprising.1
     }
 }
 

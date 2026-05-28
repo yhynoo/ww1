@@ -1,0 +1,14 @@
+on_actions = {
+    on_ruling_party_change = {
+        effect = {
+            if = {
+                limit = { has_government = communism }
+                set_cosmetic_tag = generic_communism        
+                load_focus_tree = communist_focus
+
+                # events
+                country_event = { id = communism.1 days = 2 random_days = 7 }
+            }
+        }
+    }
+}

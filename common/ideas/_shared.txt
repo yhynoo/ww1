@@ -32,6 +32,31 @@ ideas = {
                 always = yes 
             }
         }
+        idea_war_winner = {
+            modifier = {
+                # nothing.
+            }
+        }
+        idea_war_loser = {
+            on_add = {
+                add_war_support = -0.25
+                add_popularity = { ideology = ROOT popularity = -0.15 }
+
+                if = {
+                    limit = { is_faction_leader = yes }
+                    dismantle_faction = yes
+                }
+                else = {
+                    if = {
+                        limit = { is_in_faction = yes }
+                        leave_faction = yes
+                    }
+                }
+            }
+            rule = {
+                can_join_factions = no
+            }
+        }
 
         idea_communists_organize = {
             modifier = { communism_drift = 0.05 }
@@ -192,6 +217,78 @@ ideas = {
         idea_colonial_investments = {
             modifier = {
                 production_speed_industrial_complex_factor = 0.1
+            }
+        }
+
+    # COMMUNIST IDEAS
+        idea_organize_the_movement = {
+            modifier = {
+                conscription_factor = 0.05
+                local_non_core_manpower = 0.1
+            }
+            cancel = {
+                not = { has_government = communism }
+            }
+        }
+        idea_export_the_ideals = {
+            modifier = {
+                justify_war_goal_time = -0.4
+            }
+            cancel = {
+                not = { has_government = communism }
+            }
+        }
+        idea_local_councils = {
+            modifier = {
+                political_power_factor = 0.15
+                stability_factor = 0.05
+            }
+            cancel = {
+                not = { has_government = communism }
+            }
+        }
+        idea_syndicates = {
+            modifier = {
+                production_factory_max_efficiency_factor = 0.1
+                production_speed_industrial_complex_factor = 0.15
+            }
+            cancel = {
+                not = { has_government = communism }
+            }
+        }
+        idea_agrarian_collectives = {
+            modifier = {
+                consumer_goods_factor = 0.1
+                communism_drift = 0.02
+            }
+            cancel = {
+                not = { has_government = communism }
+            }
+        }
+        idea_against_factionalism = {
+            modifier = {
+                drift_defence_factor = 0.1
+                stability_weekly = 0.005
+            }
+            cancel = {
+                not = { has_government = communism }
+            }
+        }
+        idea_state_apparatus = {
+            modifier = {
+                political_advisor_cost_factor = -0.25
+            }
+            cancel = {
+                not = { has_government = communism }
+            }
+        }
+        idea_world_state = {
+            modifier = {
+                compliance_gain = 0.15
+                offensive_war_stability_factor = 0.05
+            }
+            cancel = {
+                not = { has_government = communism }
             }
         }
 
