@@ -46,10 +46,6 @@ fascist_major_scorer = { #Finds biggest Fascist
 				add = 50
 			}
 			modifier = {
-				NOT = { has_government = authoritarianism }
-				factor = 0 
-			}
-			modifier = {
 				exists = no 
 				factor = 0
 			}
@@ -288,10 +284,6 @@ local_fascist_country = {
 				always = yes 
 				add = num_of_factories
 			}
-			modifier = {
-				NOT = { has_government = authoritarianism }
-				factor = 0 
-			}
 		}
 	}
 }
@@ -342,10 +334,6 @@ fascist_bully_scorer = { #Finds meanest fascist
 			modifier = {
 				is_faction_leader = yes 
 				add = 100
-			}
-			modifier = {
-				NOT = { has_government = authoritarianism }
-				factor = 0 
 			}
 		}
 	}
@@ -506,10 +494,6 @@ european_fascist_major_scorer = { #Finds biggest Fascist in Europe
 			modifier = {
 				is_faction_leader = yes 
 				add = 50
-			}
-			modifier = {
-				NOT = { has_government = authoritarianism }
-				factor = 0 
 			}
 			modifier = {
 				NOT = { THIS.capital_scope = { is_on_continent = europe } }
@@ -710,10 +694,6 @@ asian_fascist_major_scorer = { #Finds biggest Fascist in Asia
 			modifier = {
 				is_faction_leader = yes 
 				add = 50
-			}
-			modifier = {
-				NOT = { has_government = authoritarianism }
-				factor = 0 
 			}
 			modifier = {
 				OR = { 
@@ -919,10 +899,6 @@ american_fascist_major_scorer = { #Finds biggest Fascist in the Americas
 			modifier = {
 				is_faction_leader = yes 
 				add = 50
-			}
-			modifier = {
-				NOT = { has_government = authoritarianism }
-				factor = 0 
 			}
 			modifier = {
 				OR = { 
