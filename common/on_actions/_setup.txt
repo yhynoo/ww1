@@ -137,8 +137,8 @@ on_actions = {
             # turkish middle eastern subjects
             if = {
                 limit = {
-                    or = { has_stability < 0.4 has_civil_war = yes }
-                    has_idea = idea_unrest_in_the_middle_east
+                    has_stability < 0.4
+                    or = {  has_idea = idea_unrest_in_the_middle_east has_civil_war = yes }  
                 }
 
                 # trigger random turkish subjects
@@ -156,7 +156,13 @@ on_actions = {
         }
     }
 
-# -- GENERIC EVENT LAUNCHER
+# - elections
+    on_new_term_election = {
+        effect = {
+        }
+    }
+
+# - generic event launcher
     on_monthly = {
         effect = {
             # unrest
@@ -172,14 +178,10 @@ on_actions = {
 
             # war exhaustion
             random = { chance = 10 news_event = { id = generic.8 random_days = 28 } }
-            random = { chance = 10 news_event = { id = generic.9 random_days = 28 } }
 
             # armistice
-            country_event = { id = generic.10 random_days = 28 }
-
-            # demobilization
-            random = { chance = 40 country_event = { id = generic.11 random_days = 28 } }
-            random = { chance = 20 country_event = { id = generic.12 random_days = 28 } }
+            news_event = { id = generic.11 random_days = 28 }
+            country_event = { id = generic.12 random_days = 28 }
         }
     }
 }

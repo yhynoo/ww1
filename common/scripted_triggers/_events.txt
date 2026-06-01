@@ -55,25 +55,14 @@ can_have_mutinees_event = {
     or = { has_war_support < 0.5 surrender_progress > 0.1 }
 }
 
-can_have_armistice_event = {
+can_have_war_exhaustion_event = {
     longest_war_length > 24
+    has_war_support < 0.4
+    not = { has_idea = idea_war_exhaustion }
+}
+
+can_have_armistice_event = {
     has_war_support < 0.25
+    has_idea = idea_war_exhaustion
     not = { has_idea = idea_armistice_timeout }
-}
-
-can_have_economic_demobilization_event = {
-    not = { has_idea = idea_economic_demobilization_timeout }
-
-    has_war = no
-    or = { has_idea = partial_economic_mobilisation has_idea = war_economy }
-}
-
-can_have_army_demobilization_event = {
-    not = { has_idea = idea_army_demobilization_timeout }
-
-    has_war = no
-    or = { 
-        and = { has_idea = extensive_conscription not = { has_war_support > 0.8 } }
-        has_idea = service_by_requirement has_idea = all_adults_serve has_idea = scraping_the_barrel 
-    }
 }

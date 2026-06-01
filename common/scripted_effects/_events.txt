@@ -1,0 +1,35 @@
+election_option_change_leader = {
+    # to figure out.
+}
+
+leave_alliances = {
+    if = {
+        limit = { is_faction_leader = yes }
+        dismantle_faction = yes
+    }
+    else = {
+        if = {
+            limit = { is_in_faction = yes }
+            leave_faction = yes
+        }
+    }
+    every_country = {
+        limit = { is_guaranteed_by = ROOT }
+        ROOT = { diplomatic_relation = { country = PREV relation = guarantee active = no } }
+    }
+    every_country = {
+        limit = { has_non_aggression_pact_with = ROOT }
+        ROOT = { diplomatic_relation = { country = PREV relation = non_aggression_pact active = no } }
+    }
+}
+
+leave_alliances_answer = {
+    if = {
+        limit = { has_guaranteed = FROM }
+        diplomatic_relation = { country = FROM relation = guarantee active = no }
+    }
+    if = {
+        limit = { has_non_aggression_pact_with = FROM }
+        diplomatic_relation = { country = FROM relation = non_aggression_pact active = no }
+    }
+}

@@ -121,6 +121,7 @@ add_namespace = generic
         }
 
     # ELECTION
+        
 
     # WAR EXHAUSTION
         news_event = {
@@ -137,26 +138,61 @@ add_namespace = generic
                 add_timed_idea = { idea = idea_wheat_affair months = 2 }
             }
         }
-        news_event = {
+
+        country_event = {
             id = generic.9
-            title = "Mutinees in the Army"
+            title = "Change in Alliances?"
             desc = generic.9.d
 
             is_triggered_only = yes
-            trigger = { can_have_mutinees_event = yes }
-            immediate = { hidden_effect = { add_timed_idea = { idea = idea_mutinees_timeout months = 9 } } }
 
             option = {
-                name = "Awful."
-                add_timed_idea = { idea = idea_wheat_affair months = 3 }
+                name = "We are not subjects to old treaties."
+                leave_alliances = yes
+
+                # atmosphere event; can be gated as a "gamble outcome" with random = { chance = 50 ... }
+                news_event = { id = generic.10 hours = 6 }
+            }
+            option = {
+                name = "Why would we do that?"       # safe option
+                add_political_power = -75
+            }
+        }
+
+        news_event = {
+            id = generic.10
+            title = "[FROM.GetName] Withdraws from Alliances"
+            desc = generic.10.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "As expected."
+                leave_alliances_answer = yes
             }
         }
 
     # ARMISTICE
+        news_event = {
+            id = generic.11
+            title = "War Exhaustion"
+            desc = generic.11.d
+
+            is_triggered_only = yes
+            trigger = { can_have_war_exhaustion_event = yes }
+            major = yes
+
+            option = {
+                name = "We must hold on."
+                add_ideas = idea_war_exhaustion
+            }
+        }
+
         country_event = {
-            id = generic.10
+            id = generic.12
             title = "Time for Armistice?"
-            desc = generic.10.d
+            desc = generic.12.d
 
             is_triggered_only = yes
             trigger = { can_have_armistice_event = yes }
@@ -170,53 +206,9 @@ add_namespace = generic
                 }
             }
             option = {
-                name = "We must continue."
-                if = {
-                    limit = { not = { has_idea = idea_war_exhaustion } }
-                    add_ideas = idea_war_exhaustion
-                }
-                else = {
-                    add_popularity = { ideology = ROOT popularity = -0.05 }
-                }
-            }
-        }
-
-    # DEMOBILIZATION
-        country_event = {
-            id = generic.11
-            title = "‘Send Them Home!’"
-            desc = generic.11.d
-
-            is_triggered_only = yes
-            trigger = { can_have_army_demobilization_event = yes }
-            immediate = { hidden_effect = { add_timed_idea = { idea = idea_army_demobilization_timeout months = 3 } } }
-
-            option = {
-                name = "Demobilize the army."
-                add_ideas = limited_conscription
-            }
-            option = {
-                name = "We must maintain our ability to act."
+                name = "Until victory."
                 add_popularity = { ideology = ROOT popularity = -0.05 }
                 add_stability = -0.025
             }
         }
-
-        country_event = {
-            id = generic.12
-            title = "War Economy Unsustainable?"
-            desc = generic.12.d
-
-            is_triggered_only = yes
-            trigger = { can_have_economic_demobilization_event = yes }
-            immediate = { hidden_effect = { add_timed_idea = { idea = idea_economic_demobilization_timeout months = 3 } } }
-
-            option = {
-                name = "Demobilize the economy."
-                add_ideas = civilian_economy
-            }
-            option = {
-                name = "We must endure a little longer."
-                add_popularity = { ideology = ROOT popularity = -0.25 }
-            }
-        }
+#
