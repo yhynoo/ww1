@@ -1,0 +1,154 @@
+division_template = {
+	name = "Division d’Infanterie"
+	division_names_group = XXX_INF_4
+	regiments = {
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
+        infantry = { x = 2 y = 0 }  infantry = { x = 2 y = 1 }  infantry = { x = 3 y = 0 }  infantry = { x = 3 y = 1 }
+	}
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
+}
+
+division_template = {
+	name = "Troupes Coloniales"
+	division_names_group = XXX_GAR_4
+	regiments = {
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  
+        infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
+	}
+    priority = 0
+}
+
+division_template = {
+	name = "Division de Cavalerie"
+	division_names_group = XXX_CAV_4
+	regiments = {
+		cavalry = { x = 0 y = 0 } cavalry = { x = 0 y = 1 } 
+        cavalry = { x = 1 y = 0 } cavalry = { x = 1 y = 1 }
+	}
+}
+
+# units
+units = {
+    # flandre
+    division = { location = 11483	division_template = "Division d’Infanterie"	start_experience_factor = 0.3 }
+    division = { location = 11483	division_template = "Division d’Infanterie"	start_experience_factor = 0.3 }
+
+    division = { location = 11420	division_template = "Division de Cavalerie"	start_experience_factor = 0.3 }
+    division = { location = 11420	division_template = "Division d’Infanterie"	start_experience_factor = 0.3 }
+
+    division = { location = 3447	division_template = "Division de Cavalerie"	start_experience_factor = 0.3 }
+
+    # sedan
+    division = { location = 3560	division_template = "Division d’Infanterie"	start_experience_factor = 0.3 }
+    division = { location = 3560	division_template = "Division d’Infanterie"	start_experience_factor = 0.3 }
+
+    division = { location = 5291	division_template = "Division d’Infanterie"	start_experience_factor = 0.3 }
+    division = { location = 5291	division_template = "Division d’Infanterie"	start_experience_factor = 0.3 }
+
+    division = { location = 13011	division_template = "Division d’Infanterie"	start_experience_factor = 0.3 }
+
+    # alsace
+    division = { location = 11516	division_template = "Division de Cavalerie"	start_experience_factor = 0.3 }
+
+    division = { location = 521	    division_template = "Division d’Infanterie"	start_experience_factor = 0.3 }
+    division = { location = 698	    division_template = "Division d’Infanterie"	start_experience_factor = 0.3 }
+
+    # alpes
+    division = { location = 9909	division_template = "Division d’Infanterie"	start_experience_factor = 0.3 }
+    division = { location = 3768	division_template = "Division d’Infanterie"	start_experience_factor = 0.3 }
+
+    # paris
+    division = { location = 9523	division_template = "Division d’Infanterie"	start_experience_factor = 0.3 }
+    division = { location = 9523	division_template = "Division d’Infanterie"	start_experience_factor = 0.3 }
+    division = { location = 6613	division_template = "Division d’Infanterie"	start_experience_factor = 0.3 }
+    division = { location = 11834	division_template = "Division d’Infanterie"	start_experience_factor = 0.3 }
+
+    # algerie
+    division = { location = 7132	division_template = "Division d’Infanterie"	start_experience_factor = 0.3 }
+    division = { location = 7132	division_template = "Division d’Infanterie"	start_experience_factor = 0.3 }
+
+    division = { location = 3991	division_template = "Troupes Coloniales"	start_experience_factor = 0.3 }
+    division = { location = 1145	division_template = "Troupes Coloniales"	start_experience_factor = 0.3 }
+
+    division = { location = 11969	division_template = "Troupes Coloniales"	start_experience_factor = 0.3 }
+
+    # congo
+    division = { location = 10968	division_template = "Troupes Coloniales"	start_experience_factor = 0.3 }
+
+    # indochine
+    division = { location = 4401	division_template = "Troupes Coloniales"	start_experience_factor = 0.3 }
+    division = { location = 4075	division_template = "Troupes Coloniales"	start_experience_factor = 0.3 }
+
+    # - NAVY
+    fleet = {
+        name = "Marine"	
+        naval_base = 911                # Toulon
+
+        # Mediterranean
+        task_force = {
+            name = "Armée Navale Méditerranée"      
+			location = 911 	# Toulon 
+
+            # dreadnoughts
+            ship = { name = "Liberté" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = FRA } } }
+            ship = { name = "Démocratie" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = FRA } } }
+
+            # cruisers
+            ship = { name = "Gloire" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = FRA } } }
+            ship = { name = "D’Entrecasteaux" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = FRA } } }
+
+            # destroyers
+            ship = { name = "Chasseur" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = FRA } } }
+            ship = { name = "Cavalier" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = FRA } } }
+            ship = { name = "Janissaire" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = FRA } } }
+            ship = { name = "Spahi" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = FRA } } }
+
+            ship = { name = "Tirailleur" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = FRA } } }
+            ship = { name = "Voltigeur" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = FRA } } }
+
+            # subs
+            ship = { name = "Curie" definition = submarine equipment = { submarine_1 = { amount = 1 owner = FRA } } }
+            ship = { name = "Joule" definition = submarine equipment = { submarine_1 = { amount = 1 owner = FRA } } }
+        }
+
+        # North
+        task_force = {
+            name = "Escadre du Nord"      
+			location = 575 	        # Dunkerque 
+
+            # cruisers
+            ship = { name = "Marseillaise" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = FRA } } }
+
+            # destroyers
+            ship = { name = "Aigrette" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = FRA } } }
+            ship = { name = "Omega" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = FRA } } }
+        }
+
+        # Algiers
+        task_force = {
+            name = "Escadre d'Afrique"
+            location = 7132         # Oran
+
+            ship = { name = "Archimede" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = FRA } } }
+            ship = { name = "Mariotte" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = FRA } } }
+        }
+
+        # Saigon
+        task_force = {
+            name = "Escadre d'Indochine"
+            location = 4401
+
+            ship = { name = "Dunois" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = FRA } } }
+            ship = { name = "La Hire" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = FRA } } }
+        }
+    }
+
+}
+
+air_wings = {
+    18 = { fighter_equipment_0 = { owner = "FRA" amount = 24 } }
+    31 = { fighter_equipment_0 = { owner = "FRA" amount = 8 } }
+    458 = { fighter_equipment_0 = { owner = "FRA" amount = 4 } }
+}

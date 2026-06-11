@@ -1,0 +1,127 @@
+division_template = {
+	name = "Hohei Shidan"
+	division_names_group = JAP_INF_1
+    regiments = {
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
+        infantry = { x = 2 y = 0 }  infantry = { x = 2 y = 1 }  infantry = { x = 3 y = 0 }  infantry = { x = 3 y = 1 }
+	}
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
+}
+
+division_template = {
+	name = "Chūton Guntai"
+	division_names_group = JAP_GAR_1
+    regiments = {
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  
+        infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
+	}
+    priority = 0
+}
+
+division_template = {
+	name = "Rikusentai Shidan"
+	division_names_group = JAP_MAR_1
+    regiments = {
+		marine = { x = 0 y = 0 }  marine = { x = 0 y = 1 }  
+        marine = { x = 1 y = 0 }  marine = { x = 1 y = 1 }
+	}
+}
+
+division_template = {
+	name = "Kihei Shidan"
+	division_names_group = JAP_CAV_1
+	regiments = {
+		cavalry = { x = 0 y = 0 } cavalry = { x = 0 y = 1 } 
+        cavalry = { x = 1 y = 0 } cavalry = { x = 1 y = 1 }
+	}
+}
+
+# units
+units = {
+    # home islands
+    division = { location = 1182		division_template = "Chūton Guntai"			start_experience_factor = 0.3 }
+    division = { location = 7072		division_template = "Chūton Guntai"			start_experience_factor = 0.3 }
+
+    division = { location = 1092		division_template = "Chūton Guntai"			start_experience_factor = 0.3 }
+
+    division = { location = 1025		division_template = "Hohei Shidan"			start_experience_factor = 0.3 }
+
+    # korea
+    division = { location = 4052		division_template = "Kihei Shidan"			start_experience_factor = 0.3 }
+    division = { location = 4052		division_template = "Hohei Shidan"			start_experience_factor = 0.3 }
+    division = { location = 7125		division_template = "Hohei Shidan"			start_experience_factor = 0.3 }
+
+    division = { location = 11828		division_template = "Kihei Shidan"			start_experience_factor = 0.3 }
+    division = { location = 11828		division_template = "Hohei Shidan"			start_experience_factor = 0.3 }
+
+    division = { location = 6822		division_template = "Hohei Shidan"			start_experience_factor = 0.3 }
+
+    # okinawa
+    division = { location = 11932		division_template = "Rikusentai Shidan"		start_experience_factor = 0.3 }
+
+    # taiwan
+    division = { location = 7186		division_template = "Hohei Shidan"			start_experience_factor = 0.3 }
+
+# NAVY
+    fleet = {
+        name = "Dai-Nippon Teikoku Kaigun"	
+        naval_base = 7072                  # Osaka
+
+        # Osaka
+        task_force = {
+            name = "Osaka Squadron"      
+			location = 7072 	            # Osaka 
+
+            # dreadnoughts
+            ship = { name = "Kawachi" definition = heavy_cruiser equipment = { heavy_cruiser_2 = { amount = 1 owner = RUS } } }
+            ship = { name = "Satsuma" definition = heavy_cruiser equipment = { heavy_cruiser_2 = { amount = 1 owner = RUS } } }
+
+            # cruisers
+            ship = { name = "Asama" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = RUS } } }
+            ship = { name = "Tokiwa" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = RUS } } }
+
+            # destroyers
+            ship = { name = "Akebono" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = RUS } } }
+            ship = { name = "Ikazuchi" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = RUS } } }
+            ship = { name = "Kagero" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = RUS } } }
+            ship = { name = "Kasumi" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = RUS } } }
+
+            ship = { name = "Shiranui" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = RUS } } }
+            ship = { name = "Shirakumo" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = RUS } } }
+        }
+
+        # Ryojun
+        task_force = {
+            name = "Ryojun Squadron"      
+			location = 1150 	 
+
+            # dreadnoughts
+            ship = { name = "Settsu" definition = heavy_cruiser equipment = { heavy_cruiser_2 = { amount = 1 owner = RUS } } }
+
+            # cruisers
+            ship = { name = "Iwate" definition = light_cruiser equipment = { light_cruiser_1 = { amount = 1 owner = RUS } } }
+
+            # destroyers
+            ship = { name = "Momo" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = RUS } } }
+            ship = { name = "Sugi" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = RUS } } }
+            ship = { name = "Tokitsukaze" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = RUS } } }
+            ship = { name = "Tsubaki" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = RUS } } }
+        
+            # submarines
+            ship = { name = "No. 1" definition = submarine equipment = { submarine_1 = { amount = 1 owner = RUS } } }
+            ship = { name = "No. 2" definition = submarine equipment = { submarine_1 = { amount = 1 owner = RUS } } }
+        }
+
+        # Okinawa
+        task_force = {
+            name = "Okinawa Squadron"      
+			location = 11932 
+
+            # destroyers
+            ship = { name = "Amatsukaze" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = RUS } } }
+            ship = { name = "Hamakaze" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = RUS } } }
+       }
+    }
+}

@@ -1,0 +1,567 @@
+guiTypes = {
+	containerWindowType = {
+		name = "countrydoctrineview"
+		position = { x=-3 y=78 }
+		size = { width = 100%% height = 100%% }
+		fade_time = 400
+		fade_type = linear
+
+		background = {
+			name = "Background"
+			quadTextureSprite ="GFX_tiled_plain_bg2"
+		}
+
+		containerWindowType = {
+			name = "land_doctrine_folder"
+			position = { x=0 y=47 }
+			size = { width = 100%% height = 100%% }
+			margin = { top = 13 left = 13 bottom = 24 right = 24 }
+			drag_scroll = { left middle }
+			verticalScrollbar = "right_vertical_slider"
+			horizontalScrollbar = "bottom_horizontal_slider"
+			scroll_wheel_factor = 40
+
+			background = {
+				name = "Background"
+				quadTextureSprite ="GFX_tiled_window_2b_border"
+			}
+
+			containerWindowType = {
+				name = "size_filler"
+				position = { x=0 y=0 }
+				size = { width = 1980 height = 1000 }
+			}
+
+			iconType = {
+				name ="land_doctrine_bg"
+				spriteType = "GFX_land_doctrine_bg"
+				position = { x = 0 y = 0 }
+				alwaystransparent = yes
+			}
+			
+			# MASS WARFARE
+
+			iconType = {
+				name ="mass_bg"
+				spriteType = "GFX_doctrine_land_bg"
+				position = { x=104 y=28 }
+			}	
+
+			instantTextBoxType = {
+				name = "mass_title"
+				position = { x = 370 y = 42 }
+				font = "hoi_22tech"
+				borderSize = {x = 0 y = 4 }
+				text = "Mass Warfare Doctrine"
+				maxWidth = 300
+				maxHeight = 122
+				format = center
+				Orientation = "UPPER_LEFT"
+			}
+
+			instantTextBoxType = {
+				name = "mass_desc"
+				position = { x = 270 y = 77 }
+				font = "hoi_20b"
+				borderSize = {x = 0 y = 4}
+				text = "We will focus on our mobilization capabilities, firepower, and organization of the army as a whole — and by doing so, prepare it for a long, exhausting war."
+				maxWidth = 500
+				maxHeight = 122
+				format = center
+				Orientation = "UPPER_LEFT"
+			}
+
+			gridboxtype = {
+				name = "mass_army_doctrine_tree"
+				position = { x= 100 y = 172 }
+				size = { width = 840 height = 1000 }
+				slotsize = { width = 60 height = 60 }
+				format = "UP"
+
+				background = {
+					name = "Background"
+					quadTextureSprite ="GFX_fullborder_tiled"
+					position = { x=0 y=-156 }					
+				}
+			}
+
+			# MANEUVER
+
+			iconType = {
+				name ="maneuver_bg"
+				spriteType = "GFX_doctrine_land_bg"
+				position = { x=1044 y=28 }
+			}	
+
+			instantTextBoxType = {
+				name = "maneuver_title"
+				position = { x = 1310 y = 42 }
+				font = "hoi_22tech"
+				borderSize = {x = 0 y = 4 }
+				text = "Maneuver Doctrine"
+				maxWidth = 300
+				maxHeight = 122
+				format = center
+				Orientation = "UPPER_LEFT"
+			}
+
+			instantTextBoxType = {
+				name = "maneuver_desc"
+				position = { x = 1210 y = 77 }
+				font = "hoi_20b"
+				borderSize = {x = 0 y = 4}
+				text = "We will focus on technological advantage, tactical flexibility, and individual training to ensure that our army can destroy the enemy quickly, using well-executed, deadly strikes."
+				maxWidth = 500
+				maxHeight = 122
+				format = center
+				Orientation = "UPPER_LEFT"
+			}
+
+			gridboxtype = {
+				name = "maneuver_doctrine_tree"
+				position = { x= 1040 y = 172 }
+				size = { width = 840 height = 1000 }
+				slotsize = { width = 60 height = 60 }
+				format = "UP"
+
+				background = {
+					name = "Background"
+					quadTextureSprite ="GFX_fullborder_tiled"
+					position = { x=0 y=-156 }					
+				}
+			}
+		}
+
+		containerWindowType = {
+			name = "naval_doctrine_folder"
+			position = { x=0 y=47 }
+			size = { width = 100%% height = 100%% }
+			margin = { top = 13 left = 13 bottom = 24 right = 25}
+			drag_scroll = { left middle }
+			verticalScrollbar = "right_vertical_slider"
+			horizontalScrollbar = "bottom_horizontal_slider"
+			scroll_wheel_factor = 40
+
+			background = {
+				name = "Background"
+				quadTextureSprite ="GFX_tiled_window_2b_border"
+			}
+
+			containerWindowType = {
+				name = "size_filler"
+				position = { x=0 y=0 }
+				size = { width = 1565 height = 100% }
+			}
+
+			iconType = {
+				name ="fleet_in_being_bg"
+				spriteType = "GFX_fleet_in_being_bg"
+				position = { x=85 y=33 }
+			}			
+				
+			iconType = {
+				name ="trade_direct_artillery_support_bg"
+				spriteType = "GFX_trade_direct_artillery_support_bg"
+				position = { x=575 y=33 }
+			}	
+	
+			iconType = {
+				name ="base_strike_bg"
+				spriteType = "GFX_base_strike_bg"
+				position = { x=1052 y=33 }
+			}			
+			
+			instantTextBoxType = {
+				name = "fleet_in_being_title"
+				position = { x = 120 y = 35 }
+				textureFile = ""
+				font = "hoi_22tech"
+				borderSize = {x = 0 y = 4}
+				text = "TITLE_FLEET_IN_BEING"
+				maxWidth = 400
+				maxHeight = 122
+				format = center
+				Orientation = "UPPER_LEFT"
+			}
+
+			instantTextBoxType = {
+				name = "fleet_in_being_desc"
+				position = { x = 130 y = 70 }
+				textureFile = ""
+				font = "hoi_20b"
+				borderSize = {x = 0 y = 4}
+				text = "FLEET_IN_BEING_DESC"
+				maxWidth = 380
+				maxHeight = 122
+				format = center
+				Orientation = "UPPER_LEFT"
+			}
+			
+			instantTextBoxType = {
+				name = "trade_direct_artillery_support_title"
+				position = { x = 610 y = 35 }
+				textureFile = ""
+				font = "hoi_22tech"
+				borderSize = {x = 0 y = 4}
+				text = "TITLE_TRADE_INTERDICTION"
+				maxWidth = 400
+				maxHeight = 122
+				format = center
+				Orientation = "UPPER_LEFT"
+			}
+
+			instantTextBoxType = {
+				name = "trade_direct_artillery_support_desc"
+				position = { x = 610 y = 70 }
+				textureFile = ""
+				font = "hoi_20b"
+				borderSize = {x = 0 y = 4}
+				text = "TRADE_INTERDICTION_DESC"
+				maxWidth = 380
+				maxHeight = 122
+				format = center
+				Orientation = "UPPER_LEFT"
+			}
+
+			instantTextBoxType = {
+				name = "base_strike_title"
+				position = { x = 1085 y = 35 }
+				textureFile = ""
+				font = "hoi_22tech"
+				borderSize = {x = 0 y = 4}
+				text = "TITLE_BASE_STRIKE"
+				maxWidth = 400
+				maxHeight = 122
+				format = center
+				Orientation = "UPPER_LEFT"
+			}
+
+			instantTextBoxType = {
+				name = "base_strike_desc"
+				position = { x = 1095 y = 70 }
+				textureFile = ""
+				font = "hoi_20b"
+				borderSize = {x = 0 y = 4}
+				text = "BASE_STRIKE_DESC"
+				maxWidth = 380
+				maxHeight = 122
+				format = center
+				Orientation = "UPPER_LEFT"
+			}
+
+			gridboxtype = {
+				name = "fleet_in_being_tree"
+				position = { x=80 y=172 }
+				size = { width = 478 height = 1000 }
+				slotsize = { width=60 height= 60 }
+				format = "UP"
+
+				background = {
+					name = "Background"
+					quadTextureSprite ="GFX_fullborder_tiled"
+					position = { x=0 y=-150 }					
+				}					
+				
+			}
+
+			gridboxtype = {
+				name = "trade_direct_artillery_support_tree"
+				position = { x=560 y=172 }
+				size = { width = 480 height = 1000 }
+				slotsize = { width=60 height= 60 }
+				format = "UP"
+				
+				background = {
+					name = "Background"
+					quadTextureSprite ="GFX_fullborder_tiled"
+					position = { x=0 y=-150 }					
+				}
+			}
+
+			gridboxtype = {
+				name = "base_strike_tree"
+				position = { x=1042 y=172 }
+				size = { width = 480 height = 1000 }
+				slotsize = { width=60 height= 60 }
+				format = "UP"
+				
+				background = {
+					name = "Background"
+					quadTextureSprite ="GFX_fullborder_tiled"
+					position = { x=0 y=-150 }					
+				}
+			}
+		}
+
+		containerWindowType = {
+			name = "air_doctrine_folder"
+			position = { x=0 y=47 }
+			size = { width = 100%% height = 100%% }
+			margin = { top = 13 left = 13 bottom = 24 right = 25}
+			drag_scroll = { left middle }
+			verticalScrollbar = "right_vertical_slider"
+			horizontalScrollbar = "bottom_horizontal_slider"
+			scroll_wheel_factor = 40
+
+			background = {
+				name = "Background"
+				quadTextureSprite ="GFX_tiled_window_2b_border"
+			}
+
+			containerWindowType = {
+				name = "size_filler"
+				position = { x=0 y=0 }
+				size = { width = 1440 height = 1482 }	
+			}
+
+			iconType = {
+				name ="air_doctrine_bg"
+				spriteType = "GFX_air_doctrine_bg"
+				position = { x = 0 y = 0 }
+				alwaystransparent = yes
+			}
+
+			# AIR DOCTRINE
+
+			iconType = {
+				name ="air_bg"
+				spriteType = "GFX_doctrine_air_bg"
+				position = { x=104 y=28 }
+			}	
+
+			instantTextBoxType = {
+				name = "air_title"
+				position = { x = 420 y = 42 }
+				font = "hoi_22tech"
+				borderSize = {x = 0 y = 4 }
+				text = "Air Doctrine"
+				maxWidth = 300
+				maxHeight = 122
+				format = center
+				Orientation = "UPPER_LEFT"
+			}
+
+			instantTextBoxType = {
+				name = "air_desc"
+				position = { x = 320 y = 77 }
+				font = "hoi_20b"
+				borderSize = {x = 0 y = 4}
+				text = "Airplane — the greatest invention of the last decade — will certainly change how war is fought around the world. What exactly will happen though, is yet to be found out."
+				maxWidth = 500
+				maxHeight = 122
+				format = center
+				Orientation = "UPPER_LEFT"
+			}
+
+			gridboxtype = {
+				name = "experimental_aviation_tree"
+				position = { x= 100 y = 172 }
+				size = { width = 940 height = 1140 }
+				slotsize = { width = 60 height = 60 }
+				format = "UP"
+
+				background = {
+					name = "Background"
+					quadTextureSprite ="GFX_fullborder_tiled"
+					position = { x=0 y=-156 }					
+				}
+			}
+		}
+
+		containerWindowType = {
+			name = "folder_tabs"
+			position = { x=350 y=7 }
+			size = { width = 100%% height = 30 }
+	
+			buttonType = {
+				name = "land_doctrine_folder_tab"
+				position = { x = -250 y = 0 }
+				quadTextureSprite = "GFX_landdoctrine_tab_large"
+				frame = 1
+				clicksound = ui_doctrine_tab_land
+			}
+			instantTextBoxType = {
+				name = "army_doctrine_folder_title"
+				text = "land_doctrine"
+				position = { x=-190 y=18}
+				font = "hoi_20bs"
+				maxWidth = 160
+				maxHeight = 20
+				format = center
+				alwaystransparent = "yes"
+			}
+			iconType = {
+				name = "highlight_land_doctrine_folder"
+				spriteType = "GFX_tutorial_research_folder_icon_glow"
+				position = { x=-182 y= 0}
+				hide = yes
+				alwaystransparent = yes
+			}
+			buttonType = {
+				name = "naval_doctrine_folder_tab"
+				position = { x = 0 y = 0 }
+				quadTextureSprite = "GFX_navaldoctrine_tab_large"
+				frame = 1
+				clicksound = ui_doctrine_tab_naval
+			}
+			instantTextBoxType = {
+				name = "navy_doctrine_folder_title"
+				text = "naval_doctrine"
+				position = { x=60 y=18}
+				font = "hoi_20bs"
+				maxWidth = 160
+				maxHeight = 20
+				format = center
+				alwaystransparent = "yes"
+			}			
+			buttonType = {
+				name = "air_doctrine_folder_tab"
+				position = { x = 250 y = 0 }
+				quadTextureSprite = "GFX_airdoctrine_tab_large"
+				frame = 1
+				clicksound = ui_doctrine_tab_air
+			}
+			instantTextBoxType = {
+				name = "air_doctrine_folder_title"
+				text = "air_doctrine"
+				position = { x=310 y=18}
+				font = "hoi_20bs"
+				maxWidth = 160
+				maxHeight = 20
+				format = center
+				alwaystransparent = "yes"
+			}	
+		}
+
+		buttonType = {
+			name = "close_button"
+			position = { x = -50 y = 11 }
+			quadTextureSprite ="GFX_closebutton"
+			buttonFont = "Main_14_black"
+			shortcut = "ESCAPE"
+			Orientation = "UPPER_RIGHT"
+			clicksound = click_close
+			pdx_tooltip = "CLOSE"
+		}
+	}
+	
+	containerWindowType = {
+		name = "techtree_land_doctrine_folder_item"
+		position = { x=0 y=5 }
+		size = { width = 72 height = 72 }
+		clipping = no
+
+		background = {
+			name = "Background"
+			quadTextureSprite ="GFX_technology_unavailable_item_bg"
+		}
+
+		iconType = {
+			name = "Icon"
+			position = { x=3 y=3 }
+			spriteType = "GFX_technology_medium"
+			alwaystransparent = yes
+		}
+		iconType = {
+			name = "bonus_icon"
+			position = { x=-1 y=-22 }
+			spriteType = "GFX_tech_bonus"
+		}
+		
+		instantTextBoxType = {
+			name = "bonus"
+			position = { x = -1 y = -22 }
+			textureFile = ""
+			font = "hoi_16mbs"
+			borderSize = {x = 4 y = 4}
+			text = "lol boat"
+			maxWidth = 80
+			maxHeight = 20
+			format = center
+		}
+	}
+
+	containerWindowType = {
+		name = "techtree_naval_doctrine_folder_item"
+		position = { x=0 y=5 }
+		size = { width = 72 height = 72 }
+		clipping = no
+
+		background = {
+			name = "Background"
+			quadTextureSprite ="GFX_technology_unavailable_item_bg"
+		}
+
+		iconType = {
+			name = "Icon"
+			position = { x=3 y=3 }
+			spriteType = "GFX_technology_medium"
+			alwaystransparent = yes
+		}
+		iconType = {
+			name = "bonus_icon"
+			position = { x=-1 y=-22 }
+			spriteType = "GFX_tech_bonus"
+		}
+		
+		instantTextBoxType = {
+			name = "bonus"
+			position = { x = -1 y = -22 }
+			textureFile = ""
+			font = "hoi_16mbs"
+			borderSize = {x = 4 y = 4}
+			text = "lol boat"
+			maxWidth = 80
+			maxHeight = 20
+			format = center
+		}
+	}
+
+	containerWindowType = {
+		name = "techtree_air_doctrine_folder_item"
+		position = { x=0 y=5 }
+		size = { width = 72 height = 72 }
+		clipping = no
+
+		background = {
+			name = "Background"
+			quadTextureSprite ="GFX_technology_unavailable_item_bg"			
+		}
+
+		iconType = {
+			name = "Icon"
+			position = { x=3 y=3 }
+			spriteType = "GFX_technology_medium"
+			alwaystransparent = yes
+		}
+		iconType = {
+			name = "bonus_icon"
+			position = { x=-1 y=-22 }
+			spriteType = "GFX_tech_bonus"
+		}
+		
+		instantTextBoxType = {
+			name = "bonus"
+			position = { x = -1 y = -22 }
+			textureFile = ""
+			font = "hoi_16mbs"
+			borderSize = {x = 4 y = 4}
+			text = "lol boat"
+			maxWidth = 80
+			maxHeight = 20
+			format = center
+		}
+	}
+
+	containerWindowType = {
+		name = "technology_air_mission_entry"
+		position = { x=5 y=22 }
+		size = { width = 40 height = 40 }	
+		clipping = no
+
+		iconType = {
+			name ="mission_icon"
+			spriteType = "GFX_strategicair_mission_types"
+		}
+	}
+}

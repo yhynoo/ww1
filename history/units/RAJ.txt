@@ -1,0 +1,35 @@
+division_template = {
+	name = "Garrison Troops"
+	division_names_group = XXX_GAR_1
+	regiments = {
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  
+        infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
+	}
+    priority = 0
+}
+
+division_template = {
+	name = "Cavalry"
+	division_names_group = XXX_CAV_1
+	regiments = {
+		cavalry = { x = 0 y = 0 } cavalry = { x = 0 y = 1 } 
+        cavalry = { x = 1 y = 0 } cavalry = { x = 1 y = 1 }
+	}
+}
+
+units = {
+	# delhi
+	division = { location = 2086	division_template = "Cavalry"	start_experience_factor = 0.3 }
+    division = { location = 2086	division_template = "Garrison Troops"	start_experience_factor = 0.3 }
+
+	# karachi
+    division = { location = 3456 	division_template = "Garrison Troops"	start_experience_factor = 0.3 }
+
+	# lahore
+	division = { location = 10887	division_template = "Garrison Troops"	start_experience_factor = 0.3 }
+	division = { location = 10887	division_template = "Garrison Troops"	start_experience_factor = 0.3 }
+	division = { location = 12763	division_template = "Garrison Troops"	start_experience_factor = 0.3 }
+
+	# east
+	division = { location = 4245	division_template = "Garrison Troops"	start_experience_factor = 0.3 }
+}

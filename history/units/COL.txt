@@ -1,0 +1,64 @@
+division_template = {
+	name = "División de Infantería"
+	division_names_group = XXX_INF_2
+	regiments = {
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
+        infantry = { x = 2 y = 0 }  infantry = { x = 2 y = 1 }  infantry = { x = 3 y = 0 }  infantry = { x = 3 y = 1 }
+	}
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
+}
+
+division_template = {
+	name = "Guardia Civíl"
+	division_names_group = XXX_GAR_2
+    regiments = {
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  
+        infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
+	}
+    priority = 0
+}
+
+division_template = {
+	name = "División de Caballería"
+	division_names_group = XXX_CAV_2
+	regiments = {
+		cavalry = { x = 0 y = 0 } cavalry = { x = 0 y = 1 } 
+        cavalry = { x = 1 y = 0 } cavalry = { x = 1 y = 1 }
+	}
+}
+
+# units
+units = {
+    # guatemala
+    division = { location = 4904	division_template = "División de Infantería"	start_experience_factor = 0.2 }
+	division = { location = 4991	division_template = "División de Infantería"	start_experience_factor = 0.2 }
+
+	division = { location = 10842	division_template = "División de Infantería"	start_experience_factor = 0.2 }
+	division = { location = 10842	division_template = "Guardia Civíl"				start_experience_factor = 0.2 }
+	division = { location = 10886	division_template = "Guardia Civíl"				start_experience_factor = 0.2 }
+
+	# panama
+	division = { location = 13087	division_template = "División de Infantería"	start_experience_factor = 0.2 }
+
+	# colombia
+	division = { location = 7630	division_template = "Guardia Civíl"				start_experience_factor = 0.2 }
+	division = { location = 10747	division_template = "Guardia Civíl"				start_experience_factor = 0.2 }
+
+	# NAVY
+	fleet = {
+        name = "Armada de Gran Colombia"	
+        naval_base = 12790
+
+        task_force = {
+            name = "Armada de Gran Colombia"      
+			location = 12790
+
+            # destroyers
+            ship = { name = "Almirante Lezo" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = COL } } }
+            ship = { name = "Hércules" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = COL } } }
+            ship = { name = "Miranda" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = COL } } }
+        }
+    }
+}

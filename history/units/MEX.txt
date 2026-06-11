@@ -1,0 +1,77 @@
+division_template = {
+	name = "División de Infantería"
+	division_names_group = XXX_INF_2
+	regiments = {
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
+        infantry = { x = 2 y = 0 }  infantry = { x = 2 y = 1 }  infantry = { x = 3 y = 0 }  infantry = { x = 3 y = 1 }
+	}
+    support = {
+        artillery = { x = 0 y = 0 }
+    }
+}
+
+division_template = {
+	name = "Guardia Civíl"
+	division_names_group = XXX_GAR_2
+    regiments = {
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  
+        infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
+	}
+    priority = 0
+}
+
+division_template = {
+	name = "División de Caballería"
+	division_names_group = XXX_CAV_2
+	regiments = {
+		cavalry = { x = 0 y = 0 } cavalry = { x = 0 y = 1 } 
+        cavalry = { x = 1 y = 0 } cavalry = { x = 1 y = 1 }
+	}
+}
+
+# units
+units = {
+    # chiapas
+    division = { location = 12753	division_template = "División de Caballería"	start_experience_factor = 0.2 }
+	division = { location = 12753	division_template = "Guardia Civíl"				start_experience_factor = 0.2 }
+
+	division = { location = 1900	division_template = "División de Infantería"	start_experience_factor = 0.2 }
+	division = { location = 12867	division_template = "División de Infantería"	start_experience_factor = 0.2 }
+
+	# mexico city
+	division = { location = 1965	division_template = "División de Infantería"	start_experience_factor = 0.2 }
+
+	division = { location = 8032	division_template = "Guardia Civíl"				start_experience_factor = 0.2 }
+	division = { location = 12835	division_template = "Guardia Civíl"				start_experience_factor = 0.2 }
+
+	# veracruz
+	division = { location = 12810	division_template = "Guardia Civíl"				start_experience_factor = 0.2 }
+
+	fleet = {
+        name = "Armada de México"	
+        naval_base = 12810
+
+        task_force = {
+            name = "Flota del Golfo"      
+			location = 12810
+
+            # dreadnoughts
+            ship = { name = "Zaragoza" definition = heavy_cruiser equipment = { heavy_cruiser_1 = { amount = 1 owner = MEX } } }
+ 
+            # destroyers
+            ship = { name = "Democrata" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = MEX } } }
+            ship = { name = "Guadalupe" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = MEX } } }
+            ship = { name = "Independencia" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = MEX } } }
+
+        }
+
+        task_force = {
+            name = "Flota del Pacífico"      
+			location = 8032
+
+            # destroyers
+            ship = { name = "General Guerrero" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = MEX } } }
+            ship = { name = "Tampico" definition = destroyer equipment = { destroyer_1 = { amount = 1 owner = MEX } } }
+        }
+    }
+}
