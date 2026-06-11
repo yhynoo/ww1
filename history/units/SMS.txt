@@ -1,0 +1,22 @@
+division_template = {
+	name = "Merarchía Pezikoú"
+	division_names_group = GRE_INF_1
+    regiments = {
+		infantry = { x = 0 y = 0 }  infantry = { x = 0 y = 1 }  
+        infantry = { x = 1 y = 0 }  infantry = { x = 1 y = 1 }
+	}
+}
+
+division_template = {
+	name = "Merarchía Ippikoú"
+	division_names_group = GRE_CAV_1
+	regiments = {
+		cavalry = { x = 0 y = 0 } cavalry = { x = 0 y = 1 } 
+        cavalry = { x = 1 y = 0 } cavalry = { x = 1 y = 1 }
+	}
+}
+
+units = {
+    # divisions
+    division = { location = 6550		division_template = "Merarchía Pezikoú"		start_experience_factor = 0.3 }
+}

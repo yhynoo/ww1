@@ -1,12 +1,30 @@
 focus_tree = {
     id = GRE_focus
-    country = { factor = 0  modifier = { add = 20   original_tag = GRE } }
+    country = { 
+        factor = 0  
+        modifier = { 
+            add = 20   
+            or = {
+                original_tag = GRE 
+                and = { is_greek_state = yes has_country_flag = completed_unification }
+            }
+        } 
+    }
+    
     continuous_focus_position = { x = 88 y = 770 }
 
+    # state
     shared_focus = XXX_government
+
+    # army
+    shared_focus = XXX_address_troops
     shared_focus = XXX_general_staff
+
+    # development
+    shared_focus = XXX_land_use
     shared_focus = XXX_infrastructure
 
+    # civil war
     shared_focus = XXX_civil_war
 
 # TARGETS
@@ -28,18 +46,13 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            if = {
-                limit = { is_subject = no }
-                custom_effect_tooltip = tt_extend
-                hidden_effect = { set_rule = { can_create_factions = yes } }
-            }
-            182 = {
-                save_event_target_as = demand_target
-                owner = { 
-                    country_event = { id = diplomacy.1 hours = 6 }
-                    effect_overlord_warning = yes 
-                }
-            }
+            add_war_support = 0.05
+            
+            custom_effect_tooltip = tt_unite_greece
+            set_country_flag = allow_unification_decisions
+
+            custom_effect_tooltip = tt_extend
+            hidden_effect = { set_rule = { can_create_factions = yes } }
         }
     }
 

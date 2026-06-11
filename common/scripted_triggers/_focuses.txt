@@ -1,8 +1,36 @@
+has_custom_deterrence = {
+    or = { original_tag = GER original_tag = FRA }
+}
+
 has_custom_expansion_targets = {
     or = { 
         original_tag = AUS original_tag = ENG original_tag = FRA original_tag = GER original_tag = RUS original_tag = TUR
         original_tag = JAP original_tag = MAN original_tag = SPA original_tag = GRE original_tag = HOL original_tag = SER
         original_tag = ITA original_tag = ROM original_tag = SAF
+    }
+}
+
+has_dominion_focuses = {
+    is_subject = yes
+    has_country_flag = starts_as_dominion
+}
+
+has_unification_focuses = {
+    or = {
+        # Arabs
+        is_arab_state = yes
+
+        # China
+        is_chinese_warlord = yes
+
+        # Greeks
+        is_greek_state = yes
+    }
+    not = { has_country_flag = completed_unification }
+
+    if = {
+        limit = { can_choose_ambition = yes }
+        has_country_flag = chose_unifier_identity
     }
 }
 

@@ -22,8 +22,12 @@
         prerequisite = { focus = XXX_government }
         mutually_exclusive = { focus = XXX_deterrence }
 
-        allow_branch = { has_custom_expansion_targets = no }
-        ai_will_do = { modifier = { has_war_support < 0.6 factor = 0.2 } }      # if you don't want to fight, then don't.
+        allow_branch = {
+            has_dominion_focuses = no
+            has_unification_focuses = no
+            has_custom_expansion_targets = no 
+        }
+        ai_will_do = { modifier = { has_war_support < 0.2 factor = 0 } }      # if you don't want to fight, then don't.
 
         available = {
             is_subject = no
@@ -136,8 +140,9 @@
         }
 
         allow_branch = { 
-            not = { or = { original_tag = FRA original_tag = GER } }
-            not = { has_country_flag = starts_as_dominion } 
+            has_custom_deterrence = no
+            has_dominion_focuses = no
+            has_unification_focuses = no
         }
 
         relative_position_id = XXX_government
@@ -145,7 +150,7 @@
         cost = 10
 
         ai_will_do = {
-            modifier = { has_war_support < 0.6  factor = 2 }
+            modifier = { has_war_support < 0.4  factor = 2 }
             modifier = { has_war_support > 0.65 factor = 0.4 }
         }
 
@@ -186,8 +191,6 @@
         available = {
             civil_war_government_lock = yes
         }
-
-        allow_branch = { not = { has_country_flag = starts_as_dominion } }
 
         relative_position_id = XXX_government
         x = 4 y = 1
@@ -240,7 +243,10 @@
     shared_focus = {
         id = XXX_administration
         icon = GFX_focus_XXX_administration
-        prerequisite = { focus = XXX_idealism focus = XXX_ethnocentrism }
+        prerequisite = { 
+            focus = XXX_idealism focus = XXX_ethnocentrism 
+            focus = XXX_colonial_investments focus = XXX_old_elites
+        }
 
         available = {
             civil_war_government_lock = yes
@@ -282,172 +288,3 @@
             add_ideas = idea_strength_in_unity
         }
     }
-
-## dominion
-    shared_focus = {
-        id = XXX_allegiance
-        icon = GFX_focus_XXX_allegiance
-        prerequisite = { focus = XXX_government }
-        mutually_exclusive = { focus = XXX_on_our_own }
-
-        available = {
-            is_subject = yes
-            civil_war_government_lock = yes
-        }
-
-        allow_branch = { has_country_flag = starts_as_dominion }
-
-        relative_position_id = XXX_government
-        x = 0 y = 1
-        cost = 10
-
-        completion_reward = {
-            add_political_power = 50
-            add_stability = 0.05
-        }
-    }
-
-    shared_focus = {
-        id = XXX_colonial_investments
-        icon = GFX_focus_XXX_colonial_investments
-        prerequisite = { focus = XXX_allegiance }
-
-        available = {
-            civil_war_government_lock = yes
-        }
-
-        bypass = { is_subject = no }
-
-        relative_position_id = XXX_allegiance
-        x = 0 y = 1
-        cost = 10
-
-        completion_reward = {
-            add_timed_idea = { idea = idea_colonial_investments months = 24 }
-            random_owned_controlled_state = {
-                limit = { is_in_home_area = yes impassable = no }
-                hidden_effect = { add_extra_state_shared_building_slots = 1 }   add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-            }
-        }
-    }
-
-    shared_focus = {
-        id = XXX_on_our_own
-        icon = GFX_focus_XXX_on_our_own
-        prerequisite = { focus = XXX_government }
-        mutually_exclusive = { focus = XXX_allegiance }
-
-        available = {
-            is_subject = yes
-            civil_war_government_lock = yes
-        }
-
-        bypass = { is_subject = no }
-
-        allow_branch = { has_country_flag = starts_as_dominion }
-
-        relative_position_id = XXX_government
-        x = 4 y = 1
-        cost = 10
-
-        completion_reward = {
-            add_war_support = 0.05
-        }
-    }
-
-    shared_focus = {
-        id = XXX_seek_aid
-        icon = GFX_focus_XXX_seek_aid
-        prerequisite = { focus = XXX_on_our_own }
-
-        available = {
-            civil_war_government_lock = yes
-        }
-
-        bypass = { is_subject = no }
-
-        relative_position_id = XXX_on_our_own
-        x = -1 y = 1
-        cost = 10
-
-        completion_reward = {
-            every_country = {
-                limit = {
-                    not = { has_subject = ROOT }
-                    is_major = yes has_opinion = { target = ROOT    value > 0 }
-                }
-            }
-            country_event = { id = diplomacy.3 hours = 6 }
-        }
-    }
-
-    shared_focus = {
-        id = XXX_awake
-        icon = GFX_focus_XXX_awake
-        prerequisite = { focus = XXX_on_our_own }
-
-        available = {
-            has_war_support > 0.6
-            civil_war_government_lock = yes
-        }
-
-        bypass = { is_subject = no }
-
-        relative_position_id = XXX_on_our_own
-        x = 2 y = 1
-        cost = 10
-
-        completion_reward = {
-            every_country = {
-                limit = { has_subject = ROOT }
-                country_event = { id = diplomacy.5 hours = 6 }
-            }
-        }
-    }
-
-    shared_focus = {
-        id = XXX_administration_dominion
-        icon = GFX_focus_XXX_administration
-        prerequisite = { focus = XXX_colonial_investments focus = XXX_seek_aid }
-
-        available = {
-            civil_war_government_lock = yes
-        }
-
-        relative_position_id = XXX_colonial_investments
-        x = 2 y = 1
-        cost = 10
-
-        completion_reward = {
-            if = {
-                limit = { any_controlled_state = { is_claimed_by = ROOT not = { is_core_of = ROOT } } }
-                every_controlled_state = {
-                    limit = { is_claimed_by = ROOT not = { is_core_of = ROOT } }
-                    add_core_of = ROOT
-                }
-            }
-            else = {
-                custom_effect_tooltip = tt_administration
-            }
-            add_stability = 0.05
-        }
-    }
-
-    shared_focus = {
-        id = XXX_unity_dominion
-        icon = GFX_focus_generic_unity
-        prerequisite = { focus = XXX_administration_dominion }
-
-        available = {
-            civil_war_government_lock = yes
-        }
-
-        relative_position_id = XXX_administration_dominion
-        x = 0 y = 1
-        cost = 10
-
-        completion_reward = {
-            add_ideas = idea_strength_in_unity
-        }
-    }
-#

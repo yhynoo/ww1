@@ -1,0 +1,124 @@
+# TARGETS
+    shared_focus = {
+        id = XXX_unification
+        icon = GFX_focus_generic_extend
+        prerequisite = { focus = XXX_government }
+        mutually_exclusive = { focus = XXX_local_identity }
+
+        allow_branch = {
+            has_dominion_focuses = no
+            has_unification_focuses = yes
+        }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = XXX_government
+        x = -4 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_ideas = idea_unification_ambitions
+            set_country_flag = allow_unification_decisions
+        }
+    }
+
+    shared_focus = {
+        id = XXX_volunteers
+        icon = GFX_focus_XXX_volunteers
+        prerequisite = { focus = XXX_unification }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = XXX_unification
+        x = -2 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_war_support = 0.05
+        }
+    }
+
+    shared_focus = {
+        id = XXX_tactical_alliances
+        icon = GFX_focus_XXX_tactical_alliances
+        prerequisite = { focus = XXX_unification }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = XXX_unification
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            set_rule = { can_create_factions = yes }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_destiny
+        icon = GFX_focus_XXX_destiny
+        prerequisite = { focus = XXX_tactical_alliances }
+
+        available = {
+            has_war_support > 0.6
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = XXX_tactical_alliances
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 100
+            custom_effect_tooltip = tt_destiny
+        }
+    }
+
+# DETERRENCE
+    shared_focus = {
+        id = XXX_local_identity
+        icon = GFX_focus_XXX_local_identity
+        prerequisite = { focus = XXX_government }
+        mutually_exclusive = { focus = XXX_unification }
+
+        allow_branch = {
+            has_dominion_focuses = no
+            has_unification_focuses = yes
+        }
+
+        relative_position_id = XXX_government
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 50
+        }
+    }
+
+    shared_focus = {
+        id = XXX_old_elites
+        icon = GFX_focus_XXX_old_elites
+        prerequisite = { focus = XXX_local_identity }
+        mutually_exclusive = { focus = XXX_ethnocentrism }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        bypass = { is_subject = no }
+
+        relative_position_id = XXX_local_identity
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_timed_idea = { idea = idea_old_elites years = 2 }
+        }
+    }
+#

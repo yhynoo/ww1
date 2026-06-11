@@ -1,13 +1,13 @@
 effect_overlord_warning = {
     if = { 
-        limit = { is_subject = yes }
+        limit = { any_other_country = { has_subject = PREV } }
         custom_effect_tooltip = tt_overlord_wargoal
     }
 }
 
 effect_overlord_wargoal = {
     if = {
-        limit = { is_subject = yes }
+        limit = { any_other_country = { has_subject = PREV } }
         hidden_effect = {
             every_country = {
                 limit = { has_subject = ROOT not = { tag = FROM } }

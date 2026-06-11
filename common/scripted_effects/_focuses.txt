@@ -9,3 +9,19 @@ first_focus_effect = {
         add_political_power = 100
     }
 }
+
+# dominions
+    allegiance_politics_effect = {
+        if = {
+            limit = { overlord = { has_government = communism } }
+            add_popularity = { ideology = communism popularity = 0.05 }
+        }
+        if = {
+            limit = { overlord = { has_government = democratic } }
+            add_popularity = { ideology = democratic popularity = 0.05 }
+        }
+        if = {
+            limit = { overlord = { has_government = monarchism } }
+            add_popularity = { ideology = monarchism popularity = 0.05 }
+        }
+    }

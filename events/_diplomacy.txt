@@ -37,58 +37,9 @@ add_namespace = diplomacy
     }
 
 # aid
-    country_event = {
-        id = diplomacy.3
-        title = "[FROM.GetName] Asks for Aid"
-        desc = diplomacy.3.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Sounds good."
-            add_political_power = -25
-
-            # effect news
-            FROM = { news_event = { id = diplomacy.4 hours = 6 } }
-        }
-        option = {
-            name = "We shall not get involved."
-            add_war_support = -0.025
-        }
-    }
-
-    news_event = {
-        id = diplomacy.4
-        title = "Aid from [FROM.GetName] Arrives"
-        desc = diplomacy.4.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Great."
-            add_equipment_to_stockpile = { type = infantry_equipment    amount = 600    producer = ROOT }
-        }
-    }
 
 # independence
-    country_event = {
-        id = diplomacy.5
-        title = "[FROM.GetName] Demands Independence!"
-        desc = diplomacy.5.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "We must agree."
-            set_autonomy = { target = FROM  autonomous_state = autonomy_free }
-            add_war_support = -0.05
-        }
-        option = {
-            name = "This means war!"
-            hidden_effect = { set_autonomy = { target = FROM  autonomous_state = autonomy_free } }
-            declare_war_on = { target = FROM type = puppet_wargoal_focus }
-        }
-    }
+    
 
 # territory
     country_event = {

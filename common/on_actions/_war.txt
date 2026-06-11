@@ -6,12 +6,20 @@ on_actions = {
                 
                 FROM = { 
                     add_popularity = { ideology = FROM popularity = 0.15 }
-                    add_popularity = { ideology = ROOT popularity = -0.4 } 
+                    add_popularity = { ideology = ROOT popularity = -0.25 } 
                 }
 
                 every_country = {
                     limit = { original_tag = ROOT has_civil_war = yes }
                     setup_civil_war = yes
+                }
+            }
+
+            if = {
+                limit = { any_country = { is_subject_of = ROOT has_completed_focus = XXX_autonomy } }
+                every_country = {
+                    limit = { is_subject_of = ROOT has_completed_focus = XXX_autonomy }
+                    country_event = { id = dominion.7 days = 2 }
                 }
             }
         }

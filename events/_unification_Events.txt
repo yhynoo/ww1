@@ -1,0 +1,46 @@
+add_namespace = unification
+
+# Choose identity
+    country_event = {
+        id = unification.1
+        title = "The Fate of [ROOT.GetNameDef]"
+        desc = unification.1.d
+
+        is_triggered_only = yes
+        immediate = { set_country_flag = had_ambition_event }
+
+        option = {
+            name = "We are made for greatness!"
+            set_country_flag = chose_unifier_identity
+
+            add_war_support = 0.05
+        }
+        option = {
+            name = "We shall strive for a modern, ethnic state."
+            add_political_power = 100
+        }
+    }
+
+# Unifier Demands Submission
+    country_event = {
+        id = unification.2
+        title = "[FROM.GetName] Demands Unification"
+        desc = unification.2.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Together we are stronger."
+            effect_overlord_wargoal = yes
+
+            FROM = { annex_country = { target = ROOT transfer_troops = yes } }
+        }
+        option = {
+            name = "Never."
+            add_war_support = 0.05
+
+            FROM = { create_wargoal = { target = ROOT type = annex_everything } }
+        }
+    }
+
+#

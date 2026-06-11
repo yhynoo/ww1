@@ -1,0 +1,42 @@
+_arab_unification = {
+    visible = { 
+        and = {
+            is_arab_state = yes 
+            has_country_flag = allow_unification_decisions
+        }
+    }
+    visible_when_empty = yes
+    priority = 2
+}
+
+_chinese_unification = {
+    visible = { 
+        or = { 
+            and = { 
+                original_tag = MAN 
+                any_country = { 
+                    or = { is_chinese_warlord = yes original_tag = TIB } 
+                    exists = yes 
+                } 
+            }
+            and = {
+                is_chinese_warlord = yes 
+                has_country_flag = allow_unification_decisions
+            }
+        }
+    }
+    visible_when_empty = yes
+    priority = 2
+}
+
+_greek_unification = {
+    visible = { 
+        or = { 
+            original_tag = GRE 
+            is_greek_state = yes 
+        }
+        has_country_flag = allow_unification_decisions
+    }
+    visible_when_empty = yes
+    priority = 2
+}
