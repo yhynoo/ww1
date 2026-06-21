@@ -26,6 +26,16 @@ ai_army_marines = {
 	ai_strategy = {	type = role_ratio	id = marines		value = 2  }
 }
 
+ai_army_light_tanks = {
+	enable = { has_tech = light_1916 }
+	ai_strategy = {	type = role_ratio	id = light_armor	value = 2  }
+}
+
+ai_army_heavy_tanks = {
+	enable = { has_tech = heavy_1916 }
+	ai_strategy = {	type = role_ratio	id = heavy_armor	value = 2  }
+}
+
 # local specifics
 central_asian_army = {
 	allowed = { or = { original_tag = BUK original_tag = EAT original_tag = KHI original_tag = MON } } 

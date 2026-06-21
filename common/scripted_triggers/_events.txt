@@ -52,3 +52,22 @@ can_have_armistice_event = {
     has_idea = idea_war_exhaustion
     not = { has_idea = idea_armistice_timeout }
 }
+
+can_fall_apart = {
+    or = { 
+        has_civil_war = yes 
+        or = {
+            and = { surrender_progress > 0.1 has_stability < 0.6 }
+            and = { surrender_progress > 0.25 has_stability < 0.8 }
+        }
+        and = { has_idea = idea_war_loser has_stability < 0.45 }
+        has_stability < 0.2 
+    }
+}
+
+can_trigger_uprising = {
+    exists = no 
+    has_capitulated = no 
+    not = { has_country_flag = country_defeated }
+    any_core_state = { is_controlled_by = ROOT }
+}

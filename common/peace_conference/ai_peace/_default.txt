@@ -1,81 +1,116 @@
 peace_ai_desires = {
 
     # TAKING STATES
-    take_cores = {
-        peace_action_type = { take_states }
-        enable = { FROM.FROM.FROM = { is_core_of = ROOT } }        # first, just grab cores and neighboring states.
-        ai_desire = 200
-    }
-
-    take_around = {
-        peace_action_type = { take_states }
-        enable = {
-            FROM.FROM.FROM = {
-                or = { is_claimed_by = ROOT is_controlled_by = ROOT }
-            }
+        take_cores = {
+            peace_action_type = { take_states }
+            enable = { FROM.FROM.FROM = { is_core_of = ROOT } }        # first, just grab cores and neighboring states.
+            ai_desire = 200
         }
-        ai_desire = 30
-    }
 
-    take_farther = {
-        peace_action_type = { take_states }
-        enable = {
-            FROM.FROM.FROM = {
-                if = {
-                    limit = { ROOT = { is_major = no } }        # if we're not majors, we're not interested in africa
-                    is_on_continent = africa
-                }
-                not = { 
+        take_around = {
+            peace_action_type = { take_states }
+            enable = {
+                FROM.FROM.FROM = {
+                    or = { is_claimed_by = ROOT is_controlled_by = ROOT }
                     or = {
-                        is_controlled_by = ROOT 
-                        is_claimed_by = ROOT
-                        is_core_of = ROOT
-                    }
-                }
-            }
-        }
-        ai_desire = -200
-    }
-
-    dont_take_nonsens = {
-        peace_action_type = { take_states }
-        enable = {
-            FROM.FROM.FROM = {
-                or = {
-                    not = {
-                        any_neighboring_state = {
-                            is_owned_by = ROOT
-                            pc_is_state_claimed_and_taken_by = ROOT
+                        and = { 
+                            or = { is_on_continent = africa is_on_continent = asia }
+                            or = { 
+                                is_coastal = yes 
+                                any_neighboring_state = { is_owned_by = ROOT }
+                            }
                         }
                     }
-                    is_coastal = no
                 }
             }
+            ai_desire = 60
         }
-        ai_desire = -600
-    }
+
+        take_farther = {
+            peace_action_type = { take_states }
+            enable = {
+                FROM.FROM.FROM = {
+                    not = { any_neighboring_state = { is_claimed_by = ROOT  is_core_of = ROOT } }
+                }
+            }
+            ai_desire = -30
+        }
     
     # DOMINIONS
-    keep_them_tight = {
-        peace_action_type = { puppet }
-        enable = {
-            FROM.FROM.FROM = {
-                any_neighboring_state = { pc_is_puppeted_by = ROOT }
+        keep_them_tight = {
+            peace_action_type = { puppet }
+            enable = {
+                FROM.FROM.FROM = {
+                    any_neighboring_state = { pc_is_puppeted_by = ROOT }
+                }
             }
+            ai_desire = 30
         }
-        ai_desire = 30
-    }
 
-    dont_take_states_from_dominions = {
-        peace_action_type = { take_state }
-        enable = { FROM = { pc_is_puppeted_by = ROOT } }
-        ai_desire = -100
-    }
+        dont_take_states_from_dominions = {
+            peace_action_type = { take_state }
+            enable = { FROM = { pc_is_puppeted_by = ROOT } }
+            ai_desire = -100
+        }
+
+    # LIBERATE & PUPPET
+        majors_can_puppet = {
+            peace_action_type = { puppet }
+            enable = {
+                is_major = yes
+                not = { has_government = democratic }
+                FROM = { num_of_controlled_states < 6 not = { has_country_flag = started_as_uprising } }
+            }
+            ai_desire = 120
+        }
+
+        dont_liberate_existing_countries = {
+            peace_action_type = { liberate puppet }
+            enable = { 
+                FROM = {
+                    any_other_country = {
+                        exists = yes
+                        original_tag = FROM
+                    }
+                }
+                not = {
+                    any_other_country = {
+                        FROM = { pc_is_puppeted_by = PREV }
+                    }
+                }
+            }
+            ai_desire = -600
+        }
+
+        dont_liberate_german_states = {
+            peace_action_type = { liberate puppet }
+            enable = { 
+                FROM = { is_german_state = yes }
+            }
+            ai_desire = -600
+        }
+
+    # GOVERNMENT
+        democratic_majors_can_force_government = {
+            peace_action_type = { force_government }
+            enable = {
+                is_major = yes
+                has_government = democratic
+                FROM = { num_of_controlled_states < 6 }
+            }
+            ai_desire = 60
+        }
+
+        monarchists_dont_force_government = {
+            peace_action_type = { force_government }
+            enable = { has_government = monarchism }
+            ai_desire = -60
+        }
 
     # OTHER
-    dont_do_other_things = {
-        peace_action_type = { puppet liberate force_government }
-        enable = { always = yes }
-        ai_desire = -600
-    }
+        dont_do_other_things = {
+            peace_action_type = { puppet force_government }
+            enable = { always = yes }
+            ai_desire = -60
+        }
 }

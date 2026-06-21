@@ -1,0 +1,24 @@
+ideas = {
+    country = {
+        idea_aviation_schools = {
+            modifier = {
+                experience_gain_air_factor = 0.1
+                air_training_xp_gain_factor = 0.15
+            }
+        }
+        idea_echoes_of_agadir = {
+            modifier = {
+                political_power_factor = -0.15
+                democratic_drift = -0.02
+            }
+            cancel = {
+                not = { has_government = democratic }
+            }
+        }
+        idea_elan = {
+            modifier = {
+                army_attack_factor = 0.05
+            }
+        }
+    }
+}

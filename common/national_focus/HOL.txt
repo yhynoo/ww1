@@ -52,9 +52,8 @@ focus_tree = {
 
         completion_reward = {
             add_war_support = 0.05
-            every_state = {
-                limit = { or = { state = 8 state = 29 state = 34 state = 56 }}
-                add_claim_by = ROOT
+            SAF = {
+                country_event = { id = diplomacy.10 hours = 6 }
             }
         }
     }
@@ -75,8 +74,13 @@ focus_tree = {
 
         completion_reward = {
             add_political_power = 50
-            SAF = {
-                country_event = { id = diplomacy.10 hours = 6 }
+            6 = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+            35 = {
+                add_resource = { type = steel amount = 6 }
+                add_extra_state_shared_building_slots = 2
             }
         }
     }

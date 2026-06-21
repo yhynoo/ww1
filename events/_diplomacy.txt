@@ -297,39 +297,3 @@ add_namespace = diplomacy
             }
         }
     }
-
-# oil
-    add_namespace = oil
-
-    country_event = {
-        id = oil.1
-        title = "Oil Access for Guarantees?"
-        desc = oil.1.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Sounds good."
-            give_resource_rights = { receiver = FROM state = event_target:demand_target }
-
-            # effect news
-            news_event = { id = oil.2 hours = 6 }
-        }
-        option = {
-            name = "Their guarantees are not worth that much."
-            event_target:demand_target = { add_claim_by = FROM }
-        }
-    }
-
-    news_event = {
-        id = oil.2
-        title = "[FROM.GetName] Agrees!"
-        desc = oil.2.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Wonderful."
-            give_guarantee = FROM
-        }
-    }

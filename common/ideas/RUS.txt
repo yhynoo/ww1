@@ -1,0 +1,30 @@
+ideas = {
+    country = {
+        idea_anti_authoritarian_intelligentsia = {
+            modifier = {
+                monarchism_drift = -0.03
+            }
+            cancel = {
+                not = { has_government = monarchism }
+            }
+        }
+        idea_corrupt_army = {
+            modifier = {
+                attrition = 0.15
+                supply_factor = -0.1
+            }
+            civil_war_allowed = {
+                has_government = monarchism
+            }
+        }
+        idea_twenty_years_of_quiet = {
+            modifier = {
+                production_speed_infrastructure_factor = 0.1
+                research_speed_factor = 0.1
+            }
+            cancel = {
+                has_war = yes
+            }
+        }
+    }
+}

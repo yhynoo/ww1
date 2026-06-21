@@ -1,0 +1,15 @@
+ENG_middle_east = {
+    allowed = { not = { original_tag = ENG } }
+    enable = { original_tag = AFG original_tag = ARM original_tag = GRE original_tag = QAJ }
+
+    enable_reverse = {
+        ENG = {
+            not = { has_government = communism }
+        }
+    }
+
+    reversed = yes
+    abort_when_not_enabled = yes
+
+    ai_strategy = { type = support id = ENG value = 30 }
+}

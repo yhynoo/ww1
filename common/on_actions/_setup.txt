@@ -31,32 +31,30 @@ on_actions = {
 
     on_daily = {
         effect = {
-        # uprisings     
-            if = {
-                limit = { or = { has_stability < 0.2 has_civil_war = yes } }
-                every_possible_country = {
-                    limit = { 
-                        and = {
-                            any_core_state = { is_controlled_by = PREV.PREV }
-                            is_austrian_subject = no is_chinese_warlord = no is_middle_eastern_turkish_subject = no 
-                        }
-                        exists = no has_capitulated = no not = { has_country_flag = country_defeated }
-                    }
-                    random = {
-                        chance = 1
-                        trigger_uprising = yes
-                    }
-                }
-            }       
-
+        # uprisings  
             # clean uprising tags
             if = {
                 limit = { has_country_flag = during_uprising has_war = no }
                 country_event = uprising.2
             }
 
-        # liberation from overlords
+            # set up the uprising
+            if = {
+                limit = { can_fall_apart = yes }
+                every_possible_country = {
+                    limit = { 
+                        is_chinese_warlord = no
+                        is_german_state = no
+                        can_trigger_uprising = yes
+                    }
+                    random = {
+                        chance = 2
+                        trigger_uprising = yes
+                    }
+                }
+            }       
 
+        # liberation from overlords
             # clean dominion trees
             if = {
                 limit = { has_country_flag = starts_as_dominion is_subject = no }
@@ -73,13 +71,37 @@ on_actions = {
             }
 
         # austria
-            # set austrian tag if hungary exists
             if = {
-                limit = { country_exists = HUN }
-                AUS = { set_cosmetic_tag = AUS_alone }
+                limit = { original_tag = AUS }
+                if = {
+                    limit = { country_exists = HUN }
+                    drop_cosmetic_tag = yes
+                }
             }
 
         # china
+            if = {
+                limit = { original_tag = MAN }
+                if = {
+                    limit = {
+                        can_fall_apart = yes
+                        has_idea = idea_warlordism_in_the_countryside
+                    }
+
+                    # trigger random warlord states
+                    every_possible_country = {
+                        limit = { 
+                            is_chinese_warlord = yes
+                            can_trigger_uprising = yes
+                        }
+                        random = {
+                            chance = 3
+                            trigger_warlord = yes
+                        }
+                    }
+                }
+            }
+
             # china tags
             if = {
                 limit = { 
@@ -106,82 +128,6 @@ on_actions = {
         }
     }
 
-# specific countries
-    on_daily_AUS = {
-        effect = {
-            # austrian disintegration
-            if = {
-                limit = {
-                    or = { has_stability < 0.4 has_civil_war = yes }
-                    has_idea = idea_decentralizing_tensions
-                }
-
-                # trigger random austrian subjects
-                every_possible_country = {
-                    limit = { 
-                        is_austrian_subject = yes 
-                        any_core_state = { is_controlled_by = AUS }
-                        exists = no has_capitulated = no not = { has_country_flag = country_defeated }
-                    }
-                    random = {
-                        chance = 3
-                        trigger_subject = yes
-                    }
-                }
-            }
-        }
-    }
-
-    on_daily_MAN = {
-        effect = {
-            # chinese warlords setup
-            if = {
-                limit = {
-                    or = { has_stability < 0.25 has_civil_war = yes }
-                    has_idea = idea_warlordism_in_the_countryside
-                }
-
-                # trigger random warlord states
-                every_possible_country = {
-                    limit = { 
-                        is_chinese_warlord = yes
-                        any_core_state = { is_controlled_by = MAN }
-                        exists = no has_capitulated = no not = { has_country_flag = country_defeated }
-                    }
-                    random = {
-                        chance = 3
-                        trigger_warlord = yes
-                    }
-                }
-            }
-        }
-    }
-
-    on_daily_TUR = {
-        effect = {
-            # turkish middle eastern subjects
-            if = {
-                limit = {
-                    has_stability < 0.4
-                    or = {  has_idea = idea_unrest_in_the_middle_east has_civil_war = yes }  
-                }
-
-                # trigger random turkish subjects
-                every_possible_country = {
-                    limit = { 
-                        is_middle_eastern_turkish_subject = yes 
-                        any_core_state = { is_controlled_by = TUR }
-                        exists = no has_capitulated = no not = { has_country_flag = country_defeated }
-                    }
-                    random = {
-                        chance = 1
-                        trigger_subject = yes
-                    }
-                }
-            }
-        }
-    }
-
 # - elections
     on_new_term_election = {
         effect = {
@@ -192,7 +138,7 @@ on_actions = {
     on_monthly = {
         effect = {
             # unrest
-            random = { chance = 40 news_event = { id = generic.1 random_days = 28 } }
+            random = { chance = 40 country_event = { id = generic.1 random_days = 28 } }
 
             # ideology
             country_event = { id = generic.2 random_days = 28 }
@@ -203,10 +149,10 @@ on_actions = {
             country_event = { id = generic.6 random_days = 28 }
 
             # war exhaustion
-            random = { chance = 10 news_event = { id = generic.8 random_days = 28 } }
+            random = { chance = 10 country_event = { id = generic.8 random_days = 28 } }
 
             # armistice
-            news_event = { id = generic.11 random_days = 28 }
+            country_event = { id = generic.11 random_days = 28 }
             country_event = { id = generic.12 random_days = 28 }
         }
     }

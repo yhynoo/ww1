@@ -30,7 +30,7 @@ focus_tree = {
         completion_reward = {
             add_war_support = 0.05
             every_state = {
-                limit = { or = { state = 28 state = 34 } }
+                limit = { or = { state = 8 state = 28 state = 34 } }
                 add_core_of = ROOT
             }
         }
@@ -51,12 +51,10 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            custom_effect_tooltip = tt_GER_claims
-            hidden_effect = {
-                414 = {
-                    save_event_target_as = demand_target
-                    owner = { country_event = { id = oil.1 hours = 6 } }
-                }
+            add_political_power = 50
+            HOL = {
+                country_event = { id = diplomacy.10 hours = 6 }
+                effect_overlord_warning = yes
             }
         }
     }
@@ -76,9 +74,13 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            add_political_power = 50
-            HOL = {
-                country_event = { id = diplomacy.10 hours = 6 }
+            34 = {
+                add_building_construction = { type = supply_node    level = 1   instant_build = yes     province = 9536 }
+                build_railway = { start_province = 587 target_province = 9536 level = 2 }
+            }
+            51 = {
+                add_building_construction = { type = synthetic_refinery    level = 1   instant_build = yes }
+                add_extra_state_shared_building_slots = 2
             }
         }
     }

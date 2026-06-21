@@ -29,6 +29,26 @@ _chinese_unification = {
     priority = 2
 }
 
+_german_unification = {
+    visible = { 
+        or = { 
+            and = { 
+                original_tag = GER 
+                any_country = { 
+                    or = { is_german_state = yes } 
+                    exists = yes 
+                } 
+            }
+            and = {
+                is_german_state = yes 
+                has_country_flag = allow_unification_decisions
+            }
+        }
+    }
+    visible_when_empty = yes
+    priority = 2
+}
+
 _greek_unification = {
     visible = { 
         or = { 

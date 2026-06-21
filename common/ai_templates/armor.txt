@@ -1,22 +1,35 @@
-_armor_troops = {
-    role = armor
-    _armor_1917 = {
-        enable = { 
+_heavy_armor = {
+    role = heavy_armor
+    1916_heavy_armor = {
+        enable = {
             has_tech = heavy_1916
-            not = { num_of_military_factories < 10 }
+            has_tech = tech_engineers
         }
         target_template = {
-            regiments = { heavy_armor = 2 }
+            support = { engineer = 1 artillery = 1 }
+            regiments = { 
+                infantry = 5
+                artillery_brigade = 2
+                heavy_armor = 1
+            } 
         }
     }
-    _armor_1918 = {
-        enable = { 
-            and = { has_tech = heavy_1916   has_tech = tech_logistics_company }
-            not = { num_of_military_factories < 10 }
+}
+
+_light_armor = {
+    role = light_armor
+    1916_light_armor = {
+        enable = {
+            has_tech = light_1916
+            has_tech = armored_car_1912
         }
         target_template = {
-            support = { logistics_company = 1 }
-            regiments = { heavy_armor = 2 }
+            support = { artillery = 1 }
+            regiments = { 
+                cavalry = 3
+                armored_car = 2
+                light_armor = 2
+            } 
         }
     }
 }
