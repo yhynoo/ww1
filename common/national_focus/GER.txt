@@ -33,6 +33,10 @@ focus_tree = {
                 limit = { or = { state = 8 state = 28 state = 34 } }
                 add_core_of = ROOT
             }
+
+            hidden_effect = {
+                news_event = { id = alsace.1 hours = 6 }
+            }
         }
     }
 
@@ -44,6 +48,8 @@ focus_tree = {
         available = {
             is_subject = no
             civil_war_government_lock = yes
+
+            not = { is_ally_with = HOL }
         }
 
         relative_position_id = GER_extend
@@ -102,6 +108,9 @@ focus_tree = {
         completion_reward = {
             add_war_support = 0.05
             create_wargoal = { target = FRA type = puppet_wargoal_focus }
+
+            # war
+            will_lead_to_war_with = FRA
         }
     }
 

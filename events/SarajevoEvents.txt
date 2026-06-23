@@ -1,0 +1,72 @@
+# Annexation of Sarajevo
+    add_namespace = sarajevo
+
+    # announcement
+        news_event = {
+            id = sarajevo.1
+            title = "[AUS.GetName] Annexes Sarajevo"
+            desc = sarajevo.1.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                trigger = { tag = AUS }
+                name = "Wonderful."
+
+                add_named_threat = { name = "Annexation of Sarajevo" threat = 2 }
+            }
+            option = {
+                trigger = { not = { tag = AUS } }
+                name = "Interesting."
+
+                if = {
+                    limit = { or = { original_tag = SER original_tag = TUR } }
+                    country_event = { id = sarajevo.2 days = 2 }
+                }
+            }
+        }
+
+    # warnings
+        country_event = {
+            id = sarajevo.2
+            title = "Our Answer to Austrian Annexations"
+            desc = sarajevo.2.d
+
+            is_triggered_only = yes
+            trigger = { not = { has_war_with = AUS } }
+
+            option = {
+                name = "They can do what they want."
+                add_stability = 0.02
+            }
+            option = {
+                name = "We shall issue a warning."
+                add_war_support = 0.02
+
+                hidden_effect = {
+                    news_event = { id = sarajevo.3 hours = 6 }
+                    add_named_threat = { name = "[FROM.GetAdjective] Warning over Sarajevo Annexation" threat = 2 }
+                }
+            }
+            option = {
+                name = "This is an open act of aggression!"
+                declare_war_on = { target = AUS type = take_claimed_state generator = { 104 } }
+
+                # ai:
+                ai_chance = { modifier = { has_war = yes } factor = 0 }
+            }
+        }
+
+        news_event = {
+            id = sarajevo.3
+            title = "[ROOT.GetName] Warns Vienna"
+            desc = sarajevo.3.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Worrying."
+            }
+        }

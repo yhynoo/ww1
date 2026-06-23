@@ -13,6 +13,10 @@
             civil_war_government_lock = yes
         }
 
+        ai_will_do = {
+            modifier = { tag = ROM factor = 2 }
+        }
+
         relative_position_id = XXX_government
         x = -4 y = 1
         cost = 10
@@ -20,6 +24,7 @@
         completion_reward = {
             add_war_support = 0.05
             custom_effect_tooltip = tt_autonomy
+
             hidden_effect = { OVERLORD = { country_event = { id = dominion.1 hours = 6 } } }
         }
     }
@@ -86,6 +91,9 @@
                 limit = { has_subject = ROOT }
                 country_event = { id = dominion.4 hours = 6 }
             }
+
+            # war
+            will_lead_to_war_with = OVERLORD
         }
     }
 

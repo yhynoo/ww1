@@ -34,6 +34,7 @@ focus_tree = {
                 add_building_construction = { type = infrastructure    level = 1   instant_build = yes }
                 add_core_of = ROOT
             }
+            hidden_effect = { news_event = { id = sarajevo.1 hours = 6 } }
         }
     }
 
@@ -106,6 +107,9 @@ focus_tree = {
         completion_reward = {
             add_war_support = 0.05
             create_wargoal = { target = SER type = annex_everything }
+
+            # war
+            will_lead_to_war_with = SER
         }
     }
 }

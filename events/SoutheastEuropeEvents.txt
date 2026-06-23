@@ -1,0 +1,258 @@
+# Assassination of George I
+    add_namespace = assassination_of_george_i
+
+    # announcement
+        news_event = {
+            id = assassination_of_george_i.1
+            title = "Assassination of George I"
+            desc = assassination_of_george_i.1.d
+
+            is_triggered_only = yes
+            trigger = { GRE = { has_government = monarchism } }
+            major = yes
+
+            option = {
+                trigger = { tag = GRE }
+                name = "What a tragedy."
+
+                add_stability = -0.05
+                retire_character = GRE_georgios_i
+            }
+            option = {
+                trigger = { not = { tag = GRE } }
+                name = "Awful."
+            }
+        }
+
+# Assassination in Samos
+    add_namespace = assassination_in_samos
+
+    # announcement
+        news_event = {
+            id = assassination_in_samos.1
+            title = "Assassination of the Samian Hegemon"
+            desc = assassination_in_samos.1.d
+
+            is_triggered_only = yes
+            trigger = { SMS = { has_government = monarchism } }
+            major = yes
+
+            option = {
+                trigger = { tag = SMS }
+                name = "What a tragedy."
+
+                add_stability = -0.05
+                retire_character = SMS_andreas_kopasis
+            }
+            option = {
+                trigger = { not = { tag = SMS } }
+                name = "Awful."
+            }
+        }
+
+    # investigation
+        country_event = {
+            id = assassination_in_samos.2
+            title = "Investigate the Assassination?"
+            desc = assassination_in_samos.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "We demand justice."
+                country_event = { id = assassination_in_samos.3 hours = 6 }
+            }
+            option = {
+                name = "Whatever happened, happened."
+                add_popularity = { ideology = monarchism popularity = -0.05 }
+            }
+        }
+
+        country_event = {
+            id = assassination_in_samos.3
+            title = "Democratic Exiles Guilty?"
+            desc = assassination_in_samos.3.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Interesting."
+                add_political_power = 25
+            }
+        }
+
+
+# Demilitarization of Albania
+    add_namespace = demilitarization_of_albania
+
+    # starting event
+        country_event = {
+            id = demilitarization_of_albania.1
+            title = "Demilitarization of Albania"
+            desc = demilitarization_of_albania.1.d
+
+            trigger = {
+                tag = SER
+                44 = { 
+                    is_claimed_by = SER 
+                    owner = { 
+                        has_idea = idea_war_loser 
+                        controls_state = 44
+                    }
+                }
+            }
+            fire_only_once = yes
+
+            option = {
+                name = "Demand withdrawal of the troops."
+                every_country = {
+                    limit = { owns_state = 44 }
+                    country_event = { id = demilitarization_of_albania.2 }
+                }
+            }
+            option = {
+                name = "This is unnecessary."
+                add_war_support = 0.05
+            }
+        }
+
+    # demilitarization option
+        country_event = {
+            id = demilitarization_of_albania.2
+            title = "Serbia Demands Troops Out of Albania"
+            desc = demilitarization_of_albania.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Let them have it."
+                add_war_support = -0.025
+                44 = { set_demilitarized_zone = yes }
+                
+                hidden_effect = { news_event = { id = demilitarization_of_albania.3 hours = 6 } }
+            }
+            option = {
+                name = "And what else?"
+                FROM = { create_wargoal = { target = ROOT type = take_claimed_state generator = { 44 } } }
+            }
+        }
+
+        news_event = {
+            id = demilitarization_of_albania.3
+            title = "[TUR.GetAdjective] Troops Out of Albania"
+            desc = demilitarization_of_albania.3.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Interesting."
+            }
+        }
+
+# Sofouilis Arrives in Samos
+    add_namespace = sofoulis_arrives
+    
+    # announcement
+        country_event = {
+            id = sofoulis_arrives.1
+            title = "Themistoklis Sofoulis Arrives in Samos"
+            desc = sofoulis_arrives.1.d
+
+            trigger = {
+                tag = SMS
+                focus_progress = { focus = XXX_autonomy progress > 0.6 }
+            }
+
+            option = {
+                name = "Alright."
+
+                add_popularity = { ideology = democratic popularity = 0.025 }
+                hidden_effect = { recruit_character = SMS_themistokolis_sophoulis }
+                
+                if = {
+                    limit = { not = { has_government = democratic } }
+                    promote_character = SMS_themistokolis_sophoulis 
+                }
+            }
+        }
+
+# Wallachian Independence War
+    add_namespace = wallachian_independence
+
+    # starting event
+        country_event = {
+            id = wallachian_independence.1
+            title = "A United Opposition to the Turks?"
+            desc = wallachian_independence.1.d
+
+            trigger = {
+                tag = ROM
+                is_in_faction = no
+                focus_progress = { focus = XXX_seek_aid progress > 0.4 }
+            }
+            fire_only_once = yes
+
+            option = {
+                name = "Organize the talks."
+                every_country = {
+                    limit = { or = { tag = CRE tag = GRE tag = SER tag = SMS } is_subject = no is_in_faction = no }
+                    country_event = { id = wallachian_independence.2 hours = 6 } 
+                }
+            }
+            option = {
+                name = "We will manage ourselves."
+                add_war_support = 0.05
+
+                ai_chance = { factor = 0.25 }
+            }
+        }
+
+    # guarantees
+        country_event = {
+            id = wallachian_independence.2
+            title = "Anti-Turkish Defense Alliance?"
+            desc = wallachian_independence.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Sounds good."
+
+                give_guarantee = FROM
+                FROM = { give_guarantee = ROOT }
+            }
+            option = {
+                name = "We are not interested."
+                FROM = { country_event = { id = wallachian_independence.3 hours = 6 } }
+            }
+        }
+
+        country_event = {
+            id = wallachian_independence.3
+            title = "Our Alliance Offer Declined"
+            desc = wallachian_independence.3.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Shame."
+                add_political_power = -5
+            }
+        }
+
+    # war
+        news_event = {
+            id = wallachian_independence.4
+            title = "War in Southeastern Europe"
+            desc = wallachian_independence.4.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Awful."
+            }
+        }
+
+#

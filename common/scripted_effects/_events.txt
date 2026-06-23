@@ -2,6 +2,16 @@ election_option_change_leader = {
     # to figure out.
 }
 
+independence_war_events = {
+    if = {
+        limit = { tag = ROM }
+        news_event = { id = wallachian_independence.4 hours = 6 }
+    }
+    else = {
+        news_event = { id = dominion.6 hours = 6 }
+    }
+}
+
 leave_alliances = {
     if = {
         limit = { is_faction_leader = yes }

@@ -66,19 +66,7 @@ peace_ai_desires = {
 
         dont_liberate_existing_countries = {
             peace_action_type = { liberate puppet }
-            enable = { 
-                FROM = {
-                    any_other_country = {
-                        exists = yes
-                        original_tag = FROM
-                    }
-                }
-                not = {
-                    any_other_country = {
-                        FROM = { pc_is_puppeted_by = PREV }
-                    }
-                }
-            }
+            enable = { any_other_country = { exists = yes tag = FROM } }
             ai_desire = -600
         }
 

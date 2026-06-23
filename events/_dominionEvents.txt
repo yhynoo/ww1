@@ -82,7 +82,9 @@ add_namespace = dominion
                 }
 
                 # news
-                hidden_effect = { FROM = { news_event = { id = dominion.6 hours = 6 } } }
+                hidden_effect = { 
+                    FROM = { independence_war_events = yes }
+                }
             }
         }
 
@@ -119,6 +121,7 @@ add_namespace = dominion
             desc = dominion.7.d
 
             is_triggered_only = yes
+            trigger = { has_civil_war = no }
 
             option = {
                 name = "This is the time."

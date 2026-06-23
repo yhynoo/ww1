@@ -48,14 +48,10 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            every_state = {
-                limit = { or = { state = 28 } }
-                
-                custom_effect_tooltip = tt_ultimatum
-                owner = {
-                    hidden_effect = { country_event = { id = diplomacy.15 hours = 6 } }
-                    effect_overlord_warning = yes
-                }
+            add_political_power = 50
+            SPA = {
+                country_event = { id = diplomacy.10 hours = 6 }
+                effect_overlord_warning = yes
             }
         }
     }

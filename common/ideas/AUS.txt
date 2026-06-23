@@ -2,7 +2,9 @@ ideas = {
     country = {
         idea_aristocratic_officers = {
             modifier = {
-                army_morale_factor = -0.05
+                army_morale_factor = -0.1
+                command_power_gain_mult = -0.15
+                planning_speed = -0.2
             }
             cancel = {
                 not = { has_government = monarchism }
@@ -10,8 +12,13 @@ ideas = {
         }
         idea_decentralizing_tensions = {
             modifier = {
-                political_power_factor = -0.15
-                monarchism_drift = -0.02
+                political_power_factor = -0.1
+            }
+            cancel = {
+                or = { 
+                    not = { has_government = monarchism }
+                    HUN = { exists = yes } 
+                }
             }
             allowed_civil_war = {
                 always = yes

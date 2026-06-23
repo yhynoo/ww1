@@ -1,0 +1,303 @@
+# Annexation of Alsace and Wallonia
+    add_namespace = alsace
+
+    # announcement
+        news_event = {
+            id = alsace.1
+            title = "[GER.GetAdjective] Annexations in the West"
+            desc = alsace.1.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                trigger = { tag = GER }
+                name = "Wonderful."
+
+                add_named_threat = { name = "Annexation of Alsace, Luxemburg, and Wallonia" threat = 4 }
+
+                hidden_effect = {
+                    country_event = { id = alsace.4 days = 12 }
+                }
+            }
+            option = {
+                trigger = { not = { tag = GER } }
+                name = "Worrying."
+
+                if = {
+                    limit = { or = { original_tag = FRA } }
+                    country_event = { id = alsace.2 days = 2 }
+                }
+            }
+        }
+
+    # warnings
+        country_event = {
+            id = alsace.2
+            title = "Our Answer to German Aggression"
+            desc = alsace.2.d
+
+            is_triggered_only = yes
+            trigger = { not = { has_war_with = GER } }
+
+            option = {
+                name = "They can do what they want."
+                add_popularity = { ideology = democratic popularity = -0.05 }
+            }
+            option = {
+                name = "We shall issue a warning."
+                add_war_support = 0.02
+
+                hidden_effect = {
+                    news_event = { id = alsace.3 hours = 6 }
+                    add_named_threat = { name = "[FROM.GetAdjective] Warning over the Annexation of Alsace" threat = 2 }
+                }
+            }
+            option = {
+                name = "This means war."
+                declare_war_on = { target = GER type = take_claimed_state generator = { 28 } }
+
+                # ai:
+                ai_chance = { modifier = { has_war = yes } factor = 0 }
+            }
+        }
+
+        news_event = {
+            id = alsace.3
+            title = "[ROOT.GetName] Warns [GER.GetNameDef]"
+            desc = alsace.3.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "This will end in another war."
+            }
+        }
+
+     # luik
+        country_event = {
+            id = alsace.4
+            title = "Unrest in Lüttich"
+            desc = alsace.4.d
+
+            is_triggered_only = yes
+            trigger = { has_stability < 0.65 }
+
+            option = {
+                name = "Send in the troops."
+                random = { chance = 50 news_event = { id = alsace.5 hours = 6 } }
+            }
+            option = {
+                name = "This will dissipate."
+                add_stability = -0.02
+            }
+        }
+
+        news_event = {
+            id = alsace.5
+            title = "Tragedy in Lüttich"
+            desc = alsace.5.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Awful."
+                if = {
+                    limit = { tag = GER }
+                    add_named_threat = { name = "Tragedy in Lüttich" threat = 2 }
+                }
+            }
+        }
+
+# European War
+    add_namespace = europe_war
+
+    # announcement
+        news_event = {
+            id = europe_war.1
+            title = "Great War in Europe"
+            desc = europe_war.1.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "The Old World descends into madness."
+            }
+        }
+
+# Germany Announces Claims
+    add_namespace = war_with_france
+
+    # starting event
+        country_event = {
+            id = war_with_france.1
+            title = "War Aims in the West"
+            desc = war_with_france.1.d
+
+            trigger = {
+                tag = GER
+                has_war_with = FRA
+            }
+            fire_only_once = yes
+
+            option = {
+                name = "Declare offensive aims."
+                add_war_support = 0.05
+
+                every_state = {
+                    limit = { 
+                        is_owned_by = FRA 
+                        or = { state = 17 state = 18 state = 228 state = 29 }
+                    }
+                    add_claim_by = GER
+                }
+
+                hidden_effect = { news_event = { id = war_with_france.2 hours = 12 } }
+            }
+            option = {
+                name = "We are fighting a defensive war."
+                add_stability = 0.05
+            }
+        }
+
+    # announcements
+        news_event = {
+            id = war_with_france.2
+            title = "[GER.GetName] Announces War Aims"
+            desc = war_with_france.2.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Interesting."
+            }
+        }
+
+# Saverne Affair
+    add_namespace = saverne
+
+    # main chain
+        news_event = {
+            id = saverne.1
+            title = "Saverne Affair"
+            desc = saverne.1.d
+
+            is_triggered_only = yes
+            trigger = { GER = { controls_state = 28 } }
+            major = yes
+
+            option = {
+                name = "Worrying."
+                if = {
+                    limit = { tag = GER }
+                    country_event = { id = saverne.2 days = 7 }
+
+                    hidden_effect = {
+                        add_named_threat = { name = "Saverne Affair" threat = 1 }
+                    }
+                }
+            }
+        }
+
+        country_event = {
+            id = saverne.2
+            title = "Aftermath of Saverne"
+            desc = saverne.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Take these morons out of there."
+                news_event = { id = saverne.3 hours = 6 }
+            }
+            option = {
+                name = "Why would we withdraw?"
+                add_popularity = { ideology = monarchism popularity = 0.025 }
+
+                hidden_effect = {
+                    country_event = { id = saverne.4 days = 6 }
+                }
+            }
+        }
+
+        news_event = {
+            id = saverne.3
+            title = "German Garrison Withdrawn from Saverne?"
+            desc = saverne.3.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Interesting."
+            }
+        }
+
+    # escalation
+        country_event = {
+            id = saverne.4
+            title = "More Inflammatory Acts in Alsace?"
+            desc = saverne.4.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "The military must do its duty."
+                add_popularity = { ideology = monarchism popularity = 0.025 }
+
+                # hidden
+                hidden_effect = { random = { chance = 60 news_event = { id = saverne.5 hours = 6 } } }
+            }
+            option = {
+                name = "This must end."
+                add_political_power = -50
+            }
+        }
+
+        news_event = {
+            id = saverne.5
+            title = "Civilians Shot in Mülhausen"
+            desc = saverne.5.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Horrible."
+
+                if = {
+                    limit = { original_tag = GER }
+                    add_named_threat = { name = "Civilians Shot in Mülhausen" threat = 2 }
+                }
+
+                if = {
+                    limit = { original_tag = FRA }
+                    hidden_effect = { country_event = { id = saverne.6 days = 2 } }
+                }
+            }
+        }
+
+    # French ultimatum
+        country_event = {
+            id = saverne.6
+            title = "Operation in Alsace-Lorraine?"
+            desc = saverne.6.d
+
+            is_triggered_only = yes
+            trigger = { has_war_support > 0.5 }
+
+            option = {
+                name = "This is the time."
+                add_war_support = 0.05
+                create_wargoal = { target = GER type = take_claimed_state generator = { 28 } }
+            }
+            option = {
+                name = "We must not escalate the situation."
+                add_stability = 0.02
+            }
+        }
+#
