@@ -40,29 +40,9 @@ can_have_government_change_event = {
 }
 
 can_have_war_exhaustion_event = {
-    longest_war_length > 12
-    or = { has_idea = partial_economic_mobilisation has_idea = war_economy }
-    not = { has_country_flag = had_wheat_affair }
-}
-
-can_have_mutinees_event = {
-    not = { has_idea = idea_mutinees_timeout }
-
-    longest_war_length > 18
-    or = { has_idea = extensive_conscription has_idea = service_by_requirement has_idea = all_adults_serve has_idea = scraping_the_barrel }
-    or = { has_war_support < 0.5 surrender_progress > 0.1 }
-}
-
-can_have_war_exhaustion_event = {
     longest_war_length > 24
-    has_war_support < 0.4
+    or = { has_idea = partial_economic_mobilisation has_idea = war_economy }
     not = { has_idea = idea_war_exhaustion }
-}
-
-can_have_armistice_event = {
-    has_war_support < 0.25
-    has_idea = idea_war_exhaustion
-    not = { has_idea = idea_armistice_timeout }
 }
 
 can_fall_apart = {

@@ -61,41 +61,6 @@ _war_office = {
         }
     }
 
-# territories
-    territorial_adjustments = {             # if we're fighting against the same enemy, we can reorganize our territories to do it more effectively.
-        visible = { has_war = yes }
-
-        icon = border_war
-        days_re_enable = 90
-        cost = 50
-
-        targets_dynamic = yes
-        target_trigger = {
-            FROM = {
-                not = { has_war_with = ROOT }
-                not = { any_enemy_country = { original_tag = FROM } }       # not civil war sides.
-                any_enemy_country = { has_war_with = ROOT }
-                is_chinese_warlord = no
-
-                or = {
-                    any_state = { 
-                        and = { is_controlled_by = FROM not = { is_claimed_by = FROM } not = { is_owned_by = FROM } }
-                        is_core_of = ROOT
-                    }
-                    any_state = {
-                        and = { is_controlled_by = ROOT not = { is_claimed_by = ROOT } not = { is_owned_by = ROOT } }
-                        is_core_of = FROM
-                    }
-                }
-            }
-        }
-
-        ai_will_do = { factor = 6 }
-
-        days_remove = 7
-        remove_effect = { FROM = { country_event = adjustments.1 } }
-    }
-
 # armistice
     withdraw_from_war = {                   # if the war has lasted long enough (at least 6 months)
         visible = { 
@@ -135,7 +100,7 @@ _war_office = {
 
         days_remove = 14
         remove_effect = { 
-            FROM = { country_event = { id = armistice_offer.1 hours = 6 random_hours = 6 } } 
+            FROM = { country_event = { id = armistice.1 hours = 6 random_hours = 6 } } 
         }
     }
 }
