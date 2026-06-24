@@ -1,0 +1,31 @@
+add_namespace = russia_steppe
+
+# historical
+
+# tree
+    # alsace
+        news_event = {
+            id = russia_steppe.1
+            title = "[RUS.GetName] to Expand in Central Asia?"
+            desc = russia_steppe.1.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                trigger = { tag = RUS }
+                name = "Alright."
+                add_named_threat = { name = "[RUS.GetAdjective]" threat = 2 }
+            }
+            option = {
+                trigger = { not = { tag = RUS } }
+                name = "Worrying."
+
+                if = {
+                    limit = { or = { original_tag = ENG } }
+                    answer_warning = yes
+                }
+            }
+        }
+
+#

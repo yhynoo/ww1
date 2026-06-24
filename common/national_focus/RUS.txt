@@ -37,6 +37,9 @@ focus_tree = {
                 limit = { or = { state = 419 state = 266 state = 420 } }
                 add_claim_by = RUS
             }
+
+            # event
+            hidden_effect = { news_event = { id = russia_steppe.1 hours = 6 } }
         }
     }
 
@@ -75,11 +78,11 @@ focus_tree = {
 
         completion_reward = {
             add_political_power = 50
-            585 = {
+            405 = {
                 add_extra_state_shared_building_slots = 1
                 add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
             }
-            648 = {
+            415 = {
                 add_resource = { type = tungsten amount = 12 }
                 add_extra_state_shared_building_slots = 1
             }
@@ -102,7 +105,7 @@ focus_tree = {
 
         completion_reward = {
             MON = {
-                country_event = { id = diplomacy.10 hours = 6 }
+                country_event = { id = demands.3 hours = 6 }
                 effect_overlord_warning = yes
             }
         }

@@ -1,0 +1,231 @@
+add_namespace = alliance
+add_namespace = armistice
+add_namespace = defiant
+add_namespace = demands
+add_namespace = guarantees
+add_namespace = warning
+
+# alliance
+    country_event = {
+        id = alliance.1
+        title = "[FROM.GetName] Offers Alliance"
+        desc = alliance.1.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Great."
+            FROM = { 
+                custom_effect_tooltip = tt_alliance
+                hidden_effect = { add_to_faction = ROOT }
+            }
+
+            # ai
+            ai_chance = { modifier = { ai_wants_alliance = yes factor = 4 } }
+            add_ai_strategy = { type = alliance id = FROM value = 20 }
+        }
+        option = {
+            name = "This is too dangerous."
+            add_war_support = -0.025
+        }
+    }
+
+    country_event = {
+        id = alliance.2
+        title = "[FROM.GetName] Dismisses Alliance Offer"
+        desc = alliance.2.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Their loss."
+        }
+    }
+
+# armistice
+    country_event = {
+        id = armistice.1
+        title = "[FROM.GetName] Offers an Armistice"
+        desc = armistice.1.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Great."
+            start_peace_conference = { tag = FROM score_factor = 0.1 }
+
+            # AI + event
+            ai_chance = { modifier = { ai_wants_armistice = yes factor = 4 } }
+        }
+        option = {
+            name = "The war shall continue."
+        }
+    }
+
+# defiant
+    country_event = {
+        id = defiant.1
+        title = "[FROM.GetName] Defiant!"
+        desc = defiant.1.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We shall see about it."
+            create_wargoal = { target = FROM type = annex_everything }
+        }
+    }
+
+# demands
+    country_event = {
+        id = demands.1
+        title = "[FROM.GetName] Demands [demand_target.GetName]"
+        desc = demands.1.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Let them have it."
+
+            effect_overlord_wargoal = yes
+            FROM = { transfer_state = event_target:demand_target }
+        }
+        option = {
+            name = "Outrageous!"
+            add_war_support = 0.05
+
+            # defiant
+            answer_defiant = yes
+        }
+    }
+
+    country_event = {
+        id = demands.2
+        title = "[FROM.GetName] Demands Territories"
+        desc = demands.2.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We must agree."
+
+            effect_overlord_wargoal = yes
+            every_owned_state = {
+                limit = { is_controlled_by = ROOT or = { is_claimed_by = FROM is_core_of = FROM } }
+                transfer_state_to = FROM
+            }
+        }
+        option = {
+            name = "We shall not submit to their threats."
+            add_war_support = 0.05
+            
+            # defiant
+            answer_defiant = yes
+        }
+    }
+
+    country_event = {
+        id = demands.3
+        title = "[FROM.GetName] Demands Alignment!"
+        desc = demands.3.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We must agree."
+
+            effect_overlord_wargoal = yes
+            FROM = { set_autonomy = { target = ROOT  autonomous_state = autonomy_dominion    end_wars = no } }
+        }
+        option = {
+            name = "What an insult!"
+            add_war_support = 0.05
+
+            # defiant
+            answer_defiant = yes
+        }
+    }
+
+# guarantees
+    country_event = {
+        id = guarantees.1
+        title = "[FROM.GetAdjective] Defense Agreement Offer"
+        desc = guarantees.1.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "This is a good idea."
+
+            give_guarantee = FROM
+            FROM = { give_guarantee = ROOT }
+
+            # ai
+            add_ai_strategy = { type = support id = FROM value = 20 }
+            FROM = { add_ai_strategy = { type = support id = ROOT value = 20 } }
+            
+        }
+        option = {
+            name = "We do not wish to get involved."
+            FROM = { country_event = { id = guarantees.2 hours = 6 } }
+        }
+    }
+
+    country_event = {
+        id = guarantees.2
+        title = "[FROM.GetName] Dismisses Our Offer"
+        desc = guarantees.2.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Unfortunate."
+        }
+    }
+
+# warning
+    country_event = {
+        id = warning.1
+        title = "Answer the [FROM.GetAdjective] Aggression?"
+        desc = warning.1.d
+
+        is_triggered_only = yes
+        trigger = { not = { has_war_with = FROM } }
+
+        option = {
+            name = "This does not concern us."
+            add_stability = 0.025
+        }
+        option = {
+            name = "We shall issue a warning."
+            add_war_support = 0.05
+
+            FROM = { country_event = { id = warning.2 hours = 6 } }
+            add_opinion_modifier = { target = FROM modifier = diplomatic_warning }
+
+            # ai
+            add_ai_strategy = { type = contain id = FROM value = 20 }
+        }
+        option = {
+            name = "This is an open act of aggression!"
+            create_wargoal = { target = FROM type = puppet_wargoal_focus }
+
+            # ai
+            ai_chance = { modifier = { has_war = yes factor = 0 } }
+        }
+    }
+
+    country_event = {
+        id = warning.2
+        title = "[FROM.GetName] Sends a Diplomatic Warning"
+        desc = warning.2.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "So what?"
+            add_opinion_modifier = { target = FROM modifier = diplomatic_warning }
+        }
+    }
+
+#

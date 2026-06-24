@@ -1,18 +1,110 @@
-add_namespace = germany
+add_namespace = germany_aims
+add_namespace = germany_alsace
 
-# FOCUS EVENTS
-    # Appeal to London
+add_namespace = germany_london
+
+add_namespace = germany_saverne
+
+# historical
+    # 1913 - saverne
+        news_event = {
+            id = germany_saverne.1
+            title = "Saverne Affair"
+            desc = germany_saverne.1.d
+
+            is_triggered_only = yes
+            trigger = { GER = { controls_state = 28 } }
+            major = yes
+
+            option = {
+                name = "Worrying."
+                if = {
+                    limit = { tag = GER }
+                    add_stability = -0.025
+
+                    hidden_effect = {
+                        country_event = { id = germany_saverne.2 days = 7 }
+                        add_named_threat = { name = "Saverne Affair" threat = 1 }
+                    }
+                }
+            }
+        }
+
         country_event = {
-            id = germany.1
-            title = "Germany: End the Naval Armaments?"
-            desc = germany.1.d
+            id = germany_saverne.2
+            title = "Aftermath of Saverne"
+            desc = germany_saverne.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Withdraw the garrison."
+                add_popularity = { ideology = monarchism popularity = -0.025 }
+
+                news_event = { id = germany_saverne.3 hours = 6 }
+            }
+            option = {
+                name = "The army must do its duty."
+
+                every_country = {
+                    limit = { or = { original_tag = FRA } }                    
+                    custom_effect_tooltip = tt_warning
+                    answer_warning = yes
+                }
+            }
+        }
+
+        news_event = {
+            id = germany_saverne.3
+            title = "German Garrison Withdrawn from Saverne?"
+            desc = germany_saverne.3.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Interesting."
+            }
+        }
+
+# tree
+    # alsace
+        news_event = {
+            id = germany_alsace.1
+            title = "[GER.GetAdjective] Annexations in the West"
+            desc = germany_alsace.1.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                trigger = { tag = GER }
+                name = "Wonderful."
+                add_named_threat = { name = "Annexation of Alsace, Luxemburg, and Wallonia" threat = 4 }
+            }
+            option = {
+                trigger = { not = { tag = GER } }
+                name = "Worrying."
+
+                if = {
+                    limit = { or = { original_tag = FRA } }
+                    answer_warning = yes
+                }
+            }
+        }
+
+    # appeal to london
+        country_event = {
+            id = germany_london.1
+            title = "germany_london: End the Naval Armaments?"
+            desc = germany_london.1.d
 
             is_triggered_only = yes
 
             option = {
                 name = "They are welcome."
                 diplomatic_relation = { country = FROM  relation = non_aggression_pact  active = yes }
-                hidden_effect = { GER = { news_event = { id = germany.2 hours = 6 } } }
+                hidden_effect = { GER = { news_event = { id = germany_london.2 hours = 6 } } }
             }
             option = {
                 name = "How can we trust them?"
@@ -21,9 +113,9 @@ add_namespace = germany
         }
 
         news_event = {
-            id = germany.2
+            id = germany_london.2
             title = "[ENG.GetName] Agrees!"
-            desc = germany.2.d
+            desc = germany_london.2.d
 
             is_triggered_only = yes
 
@@ -32,3 +124,58 @@ add_namespace = germany
                 remove_ideas = idea_naval_armaments
             }
         }
+
+# other
+    # starting event
+        country_event = {
+            id = germany_aims.1
+            title = "War Aims in the West"
+            desc = germany_aims.1.d
+
+            trigger = {
+                tag = GER
+                has_war_with = FRA
+            }
+            fire_only_once = yes
+
+            option = {
+                name = "Declare offensive aims."
+                add_war_support = 0.05
+
+                every_state = {
+                    limit = { 
+                        is_owned_by = FRA 
+                        or = { state = 17 state = 18 state = 228 state = 29 }
+                    }
+                    add_claim_by = GER
+                }
+
+                # event
+                hidden_effect = { news_event = { id = germany_aims.2 hours = 12 } }
+
+                # ai
+                ai_chance = { modifier = { has_completed_focus = GER_deterrence factor = 0 } }
+            }
+            option = {
+                name = "We are fighting a defensive war."
+                add_stability = 0.05
+
+                # ai
+                ai_chance = { modifier = { has_completed_focus = GER_expand factor = 0 } }
+            }
+        }
+
+        news_event = {
+            id = germany_aims.2
+            title = "[GER.GetName] Announces War Aims"
+            desc = germany_aims.2.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Alright."
+            }
+        }
+
+#

@@ -1,299 +1,69 @@
-add_namespace = diplomacy
 
-# demands
-    country_event = {
-        id = diplomacy.1
-        title = "[FROM.GetName] Demands [demand_target.GetName]"
-        desc = diplomacy.1.d
+    # stalemate
+        country_event = {
+            id = armistice_later.1
+            title = "The Offensive Effort Stalls"
+            desc = armistice_later.1.d
 
-        is_triggered_only = yes
-
-        option = {
-            name = "Let them have it."
-            effect_overlord_wargoal = yes
-            FROM = { transfer_state = event_target:demand_target }
-
-            # effect news
-            hidden_effect = { news_event = { id = diplomacy.2 hours = 6 } }
-        }
-        option = {
-            name = "Outrageous!"
-            FROM = { create_wargoal = { target = ROOT type = take_claimed_state } }
-            add_war_support = 0.05
-        }
-    }
-
-    news_event = {
-        id = diplomacy.2
-        title = "[FROM.GetName] Agrees!"
-        desc = diplomacy.2.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Wonderful."
-            add_political_power = 50
-        }
-    }
-
-# aid
-
-# independence
-    
-
-# territory
-    country_event = {
-        id = diplomacy.6
-        title = "[FROM.GetName] Offers Territorial Adjustments"
-        desc = diplomacy.6.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "This is a welcome initiative."
-
-            every_state = {
-                limit = { 
-                    and = { is_controlled_by = FROM not = { is_claimed_by = FROM } not = { is_owned_by = FROM } }
-                    is_core_of = ROOT
+            trigger = {
+                longest_war_length > 2          # already after three months
+                not = {
+                    any_enemy_country = {
+                        is_war_target = yes
+                        surrender_progress > 0.05
+                    }
                 }
-                transfer_state_to = ROOT
+                not = { has_idea = idea_armistice_later_timeout }
             }
-            every_state = {
-                limit = {
-                    and = { is_controlled_by = ROOT not = { is_claimed_by = ROOT } not = { is_owned_by = ROOT } }
-                    is_core_of = FROM
+            immediate = { 
+                hidden_effect = { add_timed_idea = { idea = idea_armistice_later_timeout days = 180 } } 
+            }
+
+            option = {
+                name = "We shall ask for an armistice_later."
+                every_enemy_country = {
+                    limit = { is_war_target = yes }
+                    
+                    custom_effect_tooltip = tt_ask_for_armistice_later
+                    # event
                 }
-                transfer_state_to = FROM
             }
-
-            # effect news
-            FROM = { news_event = { id = shared.22 hours = 6 } }
-        }
-        option = {
-            name = "We can’t do this now."
-            ai_chance = { factor = 0 }
-        }
-    }
-
-# armistice
-    country_event = {
-        id = diplomacy.7
-        title = "Time for an Armistice?"
-        desc = diplomacy.7.d
-
-        trigger = {
-            has_war = yes
-            has_civil_war = no
-
-            is_subject = no
-            has_war_support < 0.25
-            longest_war_length > 6
-
-            any_enemy_country = {
-                or = { is_faction_leader = yes is_in_faction = no is_chinese_warlord = no }     # any important enemy is undamaged
-                surrender_progress < 0.05
-            }
-
-            not = { has_idea = idea_armistice_timeout }
-        }
-        immediate = { hidden_effect = { add_timed_idea = { idea = idea_armistice_timeout days = 180 } } }
-
-        option = {
-            name = "It is time."
-            every_enemy_country = {
-                limit = { or = { is_faction_leader = yes is_in_faction = no is_subject = no is_chinese_warlord = no } }
-                country_event = { id = diplomacy.8 hours = 12 }
+            option = {
+                name = "We must fight until we achieve our goals."
+                add_political_power = -50
             }
         }
-        option = {
-            name = "We shall fight until victory."
-            add_political_power = -100
-        }
-    }
 
-    country_event = {
-        id = diplomacy.8
-        title = "[FROM.GetName] Offers Armistice"
-        desc = diplomacy.8.d
+    # opposition
+        country_event = {
+            id = armistice_later.2
+            title = "Opposition Demands an Armistice_later"
+            desc = armistice_later.2.d
 
-        is_triggered_only = yes
+            trigger = {
+                or = {
+                    and = { has_war = yes has_war_support < 0.4 longest_war_length > 11 }
+                    surrender_progress > 0.15
+                }
 
-        option = {
-            name = "Great."
-            start_peace_conference = { tag = FROM score_factor = 0.1 }
-
-            # effect news
-            news_event = { id = diplomacy.9 days = 1 }
-        }
-        option = {
-            name = "The war shall continue."
-            add_political_power = -50
-        }
-    }
-
-    news_event = {
-        id = diplomacy.9
-        title = "[FROM.GetName] Signs the Armistice"
-        desc = diplomacy.9.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Great."
-        }
-    }
-
-# alignment
-    country_event = {
-        id = diplomacy.10
-        title = "[FROM.GetName] Demands Alignment!"
-        desc = diplomacy.10.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "We must agree."
-            effect_overlord_wargoal = yes
-            
-            FROM = { 
-                set_autonomy = { target = ROOT  autonomous_state = autonomy_dominion    end_wars = no } 
-                hidden_effect = { news_event = { id = diplomacy.11 hours = 6 } }
+                check_variable = { highest_party_popularity@exclude_ruling_party > 0.25 }
+                not = { has_idea = idea_armistice_later_timeout }
             }
-        }
-        option = {
-            name = "What an insult!"
-
-            add_war_support = 0.1
-            FROM = { create_wargoal = { target = ROOT type = puppet_wargoal_focus } }
-        }
-    }
-
-    news_event = {
-        id = diplomacy.11
-        title = "[FROM.GetName] Aligns with [ROOT.GetName]"
-        desc = diplomacy.11.d
-
-        is_triggered_only = yes
-        major = yes
-
-        option = {
-            name = "Interesting."
-        }
-    }
-
-# alliance
-    country_event = {
-        id = diplomacy.12
-        title = "[FROM.GetName] Offers Alliance"
-        desc = diplomacy.12.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Great."
-            FROM = { add_to_faction = ROOT }
-        }
-        option = {
-            name = "This is too dangerous."
-            add_war_support = -0.025
-        }
-    }
-
-# guarantees
-    country_event = {
-        id = diplomacy.13
-        title = "[FROM.GetName] Offers Mutual Guarantees"
-        desc = diplomacy.13.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "This is a good idea."
-            give_guarantee = FROM
-
-            # effect news
-            FROM = { news_event = { id = diplomacy.14 hours = 6 } }
-        }
-        option = {
-            name = "Ignore them."
-        }
-    }
-
-    news_event = {
-        id = diplomacy.14
-        title = "[FROM.GetName] Agrees!"
-        desc = diplomacy.14.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Wonderful."
-            give_guarantee = FROM
-        }
-    }
-
-# settlement of claims
-    country_event = {
-        id = diplomacy.15
-        title = "[FROM.GetName] Demands Settlement of Claims"
-        desc = diplomacy.15.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "We must agree."
-            effect_overlord_wargoal = yes
-            
-            every_owned_state = {
-                limit = { is_controlled_by = ROOT or = { is_claimed_by = FROM is_core_of = FROM } }
-                transfer_state_to = FROM
+            immediate = { 
+                hidden_effect = { add_timed_idea = { idea = idea_armistice_later_timeout days = 180 } } 
             }
 
-            # effect news
-            hidden_effect = { FROM = { news_event = { id = diplomacy.16 hours = 6 } } }
-        }
-        option = {
-            name = "We shall not submit to their threats."
-            add_war_support = 0.05
-            FROM = { create_wargoal = { target = ROOT type = take_claimed_state } }
-        }
-    }
-
-    news_event = {
-        id = diplomacy.16
-        title = "[FROM.GetName] Agrees!"
-        desc = diplomacy.16.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Great."
-        }
-    }
-
-# demand surrender
-    country_event = {
-        id = diplomacy.17
-        title = "[FROM.GetName] Demands Our Surrender"
-        desc = diplomacy.17.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "We must agree."
-            FROM = { start_peace_conference = { tag = ROOT score_factor = 0.15 } }
-
-            # effect news
-            news_event = { id = diplomacy.9 days = 1 }
-        }
-        option = {
-            name = "We shall fight on!"
-            add_war_support = 0.025
-
-            ai_chance = {
-                modifier = { has_stability < 0.4 factor = 0.5 } 
-                modifier = { surrender_progress > 0.4 factor = 0.2 } 
+            option = {
+                name = "They are right."
+                every_enemy_country = {
+                    limit = { is_diplomatically_able = yes }
+                    
+                    custom_effect_tooltip = tt_ask_for_armistice_later
+                    # event
+                }
+            }
+            option = {
+                name = "The war is not over yet."
+                add_popularity = { ideology = ROOT popularity = -0.05 }
             }
         }
-    }

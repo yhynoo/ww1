@@ -1,7 +1,19 @@
-has_custom_events = {
-    or = { 
-        or = { }    # list of tags.
-    }       
+ai_wants_alliance = {
+    or = {
+        has_opinion = { target = FROM value > 25 }
+        and = { 
+            has_opinion = { target = FROM value > 10 } 
+            threat > 0.4 
+        }
+    }
+}
+
+ai_wants_armistice = {
+    or = {
+        has_idea = idea_war_exhaustion
+        surrender_progress > 0.05
+        has_war_support < 0.25
+    }
 }
 
 can_have_unrest_event = {
@@ -70,4 +82,24 @@ can_trigger_uprising = {
     has_capitulated = no 
     not = { has_country_flag = country_defeated }
     any_core_state = { is_controlled_by = ROOT }
+}
+
+is_diplomatically_able = {
+    or = { is_faction_leader = yes is_in_faction = no is_subject = no }
+}
+
+is_guaranteeable = {
+    is_diplomatically_able = yes
+    not = { is_guaranteed_by = FROM }
+}
+
+is_war_target = {
+    ROOT = { has_offensive_war_with = PREV }
+    is_diplomatically_able = yes
+}
+
+has_custom_events = {
+    or = { 
+        or = { }    # list of tags.
+    }       
 }

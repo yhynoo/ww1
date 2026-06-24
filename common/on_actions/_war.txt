@@ -59,32 +59,6 @@ on_actions = {
         }
     }
 
-    on_state_control_changed = {
-        effect = {
-            if = {
-                limit = { 
-                    ROOT = { has_war_with = FROM }
-                    FROM.FROM = {
-                        or = {
-                            state = 10  state = 202  state = 192  state = 229                                   # Warsaw, Kyiv, Odesa, Baku
-                            state = 5   state = 85   state = 28                                                 # Königsberg, Danzig, Strasburg
-                            state = 89  state = 33   state = 104                                                # Lviv, Triest, Sarajevo
-                            state = 29  state = 20   state = 228                                                # Verdun, Marseille, Amiens
-                            state = 341 state = 339  state = 454 state = 586 state = 212                        # Constantinople, Izmir, Jerusalem, Saloniki, Sofia
-                            state = 47                                                                          # Athens
-                            state = 447 state = 459 state = 461                                                 # Cairo, Algiers, Casablanca
-                        }
-                    } 
-                }
-
-                FROM.FROM = {
-                    save_event_target_as = conquered_state
-                    owner = { news_event = war.1 }
-                }
-            }
-        }
-    }
-
     on_annex = {
         effect = {
             if = {

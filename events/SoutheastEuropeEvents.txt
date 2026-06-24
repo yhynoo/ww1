@@ -196,48 +196,16 @@
             option = {
                 name = "Organize the talks."
                 every_country = {
-                    limit = { or = { tag = CRE tag = GRE tag = SER tag = SMS } is_subject = no is_in_faction = no }
-                    country_event = { id = wallachian_independence.2 hours = 6 } 
+                    limit = { or = { tag = CRE tag = GRE tag = SER tag = SMS } is_guaranteeable = yes }
+                    country_event = { id = guarantees.1 hours = 6 } 
                 }
             }
             option = {
                 name = "We will manage ourselves."
                 add_war_support = 0.05
 
-                ai_chance = { factor = 0.25 }
-            }
-        }
-
-    # guarantees
-        country_event = {
-            id = wallachian_independence.2
-            title = "Anti-Turkish Defense Alliance?"
-            desc = wallachian_independence.2.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "Sounds good."
-
-                give_guarantee = FROM
-                FROM = { give_guarantee = ROOT }
-            }
-            option = {
-                name = "We are not interested."
-                FROM = { country_event = { id = wallachian_independence.3 hours = 6 } }
-            }
-        }
-
-        country_event = {
-            id = wallachian_independence.3
-            title = "Our Alliance Offer Declined"
-            desc = wallachian_independence.3.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "Shame."
-                add_political_power = -5
+                # ai
+                ai_chance = { factor = 0 }
             }
         }
 

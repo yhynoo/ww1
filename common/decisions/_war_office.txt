@@ -93,7 +93,7 @@ _war_office = {
         ai_will_do = { factor = 6 }
 
         days_remove = 7
-        remove_effect = { FROM = { country_event = diplomacy.6 } }
+        remove_effect = { FROM = { country_event = adjustments.1 } }
     }
 
 # armistice
@@ -106,7 +106,7 @@ _war_office = {
 
         icon = generic_form_nation
         days_re_enable = 90
-        cost = 100
+        cost = 50
 
         targets_dynamic = yes
         target_trigger = { 
@@ -125,7 +125,7 @@ _war_office = {
         }
 
         ai_will_do = {
-            modifier = { has_war_support < 0.5 add = 4 }    # entry condition: if we have more war support, we won't even think about it.
+            modifier = { has_war_support < 0.6 add = 4 }    # entry condition: if we have more war support, we won't even think about it.
             modifier = { or = { has_idea = idea_war_exhaustion has_stability < 0.2 } factor = 2 }
             modifier = { surrender_progress > 0.15 factor = 1.5 }
 
@@ -135,63 +135,7 @@ _war_office = {
 
         days_remove = 14
         remove_effect = { 
-            FROM = { country_event = { id = diplomacy.8 hours = 6 random_hours = 6 } } 
-        }
-    }
-
-    demand_surrender = {
-        visible = { 
-            has_war = yes 
-            is_subject = no
-
-            or = {
-               is_faction_leader = yes
-               is_in_faction = no
-            }
-
-            FROM = { surrender_progress > 0.05 }
-            war_length_with = { tag = FROM months > 2 }
-        }
-
-        icon = generic_public_support
-        days_re_enable = 90
-        cost = 75
-
-        available = { 
-            FROM = {
-                or = { 
-                    surrender_progress > 0.15 
-                    has_war_support < 0.25 
-                }
-            }
-        }
-
-        ai_will_do = {
-            modifier = { always = yes add = 4 }     # if we can, there is a chance we will do it.
-            modifier = { or = { has_idea = idea_war_exhaustion has_war_support < 0.6 has_stability < 0.4 } factor = 3 }   # if we sort of want out of it, we will ask more certainly.
-            modifier = { FROM = { surrender_progress > 0.6 } factor = 0.2 } # if we're close to winning, we might as well just finish the job.
-        }
-
-        targets_dynamic = yes
-        target_trigger = { 
-            FROM = {
-                has_war_with = ROOT
-                not = { original_tag = ROOT }       # not our civil war enemies.
-
-                or = { 
-                    is_faction_leader = yes 
-                    is_in_faction = no
-                }
-                is_subject = no
-
-                # block chinese warlords
-                is_chinese_warlord = no
-            }
-        }
-
-        days_remove = 14
-        remove_effect = { 
-            FROM = { country_event = { id = diplomacy.17 hours = 6 random_hours = 6 } } 
+            FROM = { country_event = { id = armistice_offer.1 hours = 6 random_hours = 6 } } 
         }
     }
 }
