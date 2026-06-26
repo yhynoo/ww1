@@ -1,14 +1,64 @@
 add_namespace = germany_aims
 add_namespace = germany_alsace
 
+add_namespace = germany_johannisthal
+
 add_namespace = germany_london
+add_namespace = germany_luftfahrtausstellung
+
+add_namespace = germany_oil
 
 add_namespace = germany_saverne
 
 add_namespace = germany_warsaw
 
 # historical
-    # 1913 - saverne
+    # johannisthal
+        news_event = {
+            id = germany_johannisthal.1
+            title = "Tragedy at the Johannisthal Air Show"
+            desc = germany_johannisthal.1.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Horrible."
+            }
+        }
+
+    # luftfahrt-ausstellung
+        news_event = {
+            id = germany_luftfahrtausstellung.1
+            title = "Allgemeine Luftfahrt-Ausstellung"
+            desc = germany_luftfahrtausstellung.1.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Interesting."
+                hidden_effect = { country_event = { id = germany_luftfahrtausstellung.2 days = 2 } }
+            }
+        }
+
+        country_event = {
+            id = germany_luftfahrtausstellung.2
+            title = "Direction for German Aviation?"
+            desc = germany_luftfahrtausstellung.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Encourage the introduction of aeroplanes."
+                add_timed_idea = { idea = idea_aeroplan_spende months = 6 }
+            }
+            option = {
+                name = "Airships are the future."
+                add_tech_bonus = { bonus = 0.5      uses = 1    category = airship_tech }
+            }
+        }
+
+    # saverne
         news_event = {
             id = germany_saverne.1
             title = "Saverne Affair"
@@ -124,6 +174,83 @@ add_namespace = germany_warsaw
             option = {
                 name = "Very well."
                 remove_ideas = idea_naval_armaments
+            }
+        }
+
+    # oil 
+        # question
+        country_event = {
+            id = germany_oil.1
+            title = "Oil for Guarantees?"
+            desc = germany_oil.1.d
+
+            trigger = {
+                tag = GER
+                has_completed_focus = XXX_oil
+                any_country = {
+                    or = { has_resources_rights = { state = 229 } has_resources_rights = { state = 414 } }
+                    is_guaranteeable = yes
+                }
+            }
+            fire_only_once = yes
+
+            option = {
+                trigger = { 414 = { owner = { has_resources_rights = { state = 414 } is_guaranteeable = yes } } }
+                name = "Try our luck in Iraq."
+
+                414 = { 
+                    save_event_target_as = oil_state 
+                    owner = { country_event = { id = germany_oil.2 hours = 6 } }
+                }
+            }
+            option = {
+                trigger = { 232 = { owner = { has_resources_rights = { state = 232 } is_guaranteeable = yes } } }
+                name = "Seek access to the Dagestan oil."
+
+                232 = { 
+                    save_event_target_as = oil_state 
+                    owner = { country_event = { id = germany_oil.2 hours = 6 } }
+                }
+            }
+            option = {
+                name = "We will manage on our own."
+            }
+        }
+
+        # answer
+        country_event = {
+            id = germany_oil.2
+            title = "[GER.GetName]: Oil for Guarantees?"
+            desc = germany_oil.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "This is a good deal."
+
+                FROM = { give_guarantee = ROOT }
+                give_resource_rights = { receiver = FROM state = event_target:oil_state }
+
+                hidden_effect = {
+                    event_target:oil_state = { save_event_target_as = oil_state_news }
+                    news_event = { id = germany_oil.3 hours = 6 }
+                }
+            }
+            option = {
+                name = "We are not interested."
+                add_war_support = 0.025
+            }
+        }
+
+        news_event = {
+            id = germany_oil.3
+            title = "[GER.GetName] Accesses Oil in [oil_state.GetName]"
+            desc = germany_oil.3.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Ok."
             }
         }
 

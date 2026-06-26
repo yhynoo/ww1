@@ -1,0 +1,21 @@
+add_namespace = turkey_aviators
+
+# historical
+    # aviators
+        country_event = {
+            id = turkey_aviators.1
+            title = "Aviators Arrive from Training in France"
+            desc = turkey_aviators.1.d
+
+            is_triggered_only = yes
+            trigger = { controls_state = 341 has_equipment = { fighter_equipment_0 < 1 } }
+
+            option = {
+                name = "Great."
+                
+                341 = { add_building_construction = { type = air_base level = 1 instant_build = yes } }
+                add_equipment_to_stockpile = { type = fighter_equipment_0 amount = 4 producer = FRA }
+            }
+        }
+
+# tree 

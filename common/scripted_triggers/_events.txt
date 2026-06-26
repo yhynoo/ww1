@@ -70,7 +70,10 @@ is_diplomatically_able = {
 
 is_guaranteeable = {
     is_diplomatically_able = yes
-    not = { is_guaranteed_by = FROM }
+    and = {
+         not = { is_guaranteed_by = FROM }
+         not = { has_war_with = FROM }
+    }
 }
 
 is_war_target = {

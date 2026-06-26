@@ -23,20 +23,25 @@ on_actions = {
                 }
 
             # events
-                AST = {
-                    # amundsen
+                ENG = {
+                    # titanic
                     random_list = {
-                        2 = { news_event = { id = atmosphere.1 months = 2 days = 7 } }
-                        1 = { news_event = { id = atmosphere.2 months = 3 } }
+                        2 = { news_event = { id = england_titanic.1 months = 3 days = 15 } }
+                        1 = { news_event = { id = england_titanic.2 months = 3 days = 16 } }
                     }
                 }
 
                 FRA = {
-                    country_event = { id = caillaux.1 days = 12 }
+                    country_event = { id = france_caillaux.1 days = 12 }
+
+                    # aviator
+                    news_event = { id = france_aviator.1 months = 20 days = 23 }
                 }
 
                 GER = {
-                    news_event = { id = germany_saverne.1 months = 23 days = 6 }
+                    news_event = { id = germany_luftfahrtausstellung.1  months = 3 days = 3 }
+                    news_event = { id = germany_johannisthal.1          months = 21 days = 13 }
+                    news_event = { id = germany_saverne.1               months = 23 days = 6 }
                 }
 
                 GRE = {
@@ -47,17 +52,22 @@ on_actions = {
                     country_event = { id = manchukuo.1 months = 3 days = 2 }        # Tibetan Independence (2.04.1912)
                 }
 
+                NOR = {
+                    # amundsen
+                    random_list = {
+                        2 = { news_event = { id = norway_amundsen.1 months = 2 days = 7 } }
+                        1 = { news_event = { id = norway_amundsen.2 months = 3 } }
+                    }
+                }
+
                 SMS = {
                     news_event = { id = assassination_in_samos.1 months = 2 days = 22 }
                 }
 
-                USA = {
-                    # titanic
-                    random_list = {
-                        2 = { news_event = { id = atmosphere.3 months = 3 days = 15 } }
-                        1 = { news_event = { id = atmosphere.4 months = 3 days = 16 } }
-                    }
+                TUR = {
+                    country_event = { id = turkey_aviators.1 months = 6 days = 7 }
                 }
+            }
         }
     }
 
