@@ -1,0 +1,51 @@
+add_namespace = samos_assassination
+add_namespace = samos_sofoulis
+
+# historical
+    # assasination
+        news_event = {
+            id = assassination_in_samos.1
+            title = "Hegemon of Samos Assassinated!"
+            desc = assassination_in_samos.1.d
+
+            is_triggered_only = yes
+            trigger = { SMS = { has_government = monarchism } }
+            major = yes
+
+            option = {
+                trigger = { tag = SMS }
+                name = "What a tragedy."
+
+                add_stability = -0.05
+                retire_character = SMS_andreas_kopasis
+            }
+            option = {
+                trigger = { not = { tag = SMS } }
+                name = "Awful."
+            }
+        }
+
+# tree
+    # sofoulis arrives
+        country_event = {
+            id = samos_sofoulis.1
+            title = "Themistoklis Sofoulis Arrives in Samos"
+            desc = samos_sofoulis.1.d
+
+            trigger = {
+                tag = SMS
+                focus_progress = { focus = XXX_autonomy progress > 0.6 }
+            }
+
+            option = {
+                name = "Alright."
+
+                add_popularity = { ideology = democratic popularity = 0.025 }
+                hidden_effect = { recruit_character = SMS_themistoklis_sophoulis }
+                
+                if = {
+                    limit = { not = { has_government = democratic } }
+                    promote_character = SMS_themistoklis_sophoulis 
+                }
+            }
+        }

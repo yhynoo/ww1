@@ -23,6 +23,10 @@ focus_tree = {
             civil_war_government_lock = yes
         }
 
+        ai_will_do = {
+            modifier = { has_idea = idea_after_the_intervention factor = 2 }
+        }
+
         relative_position_id = XXX_government
         x = -4 y = 1
         cost = 10
@@ -105,7 +109,7 @@ focus_tree = {
         completion_reward = {
             add_war_support = 0.05
             every_state = {
-                limit = { or = { state = 310 state = 347 } }
+                limit = { or = { state = 8 state = 34 state = 56 state = 29 } }
                 hidden_effect = { add_claim_by = ROOT }
 
                 custom_effect_tooltip = tt_ultimatum 

@@ -1,72 +1,71 @@
 on_actions = {
     on_startup = {
         effect = {
-            # template lock
-                FER = {
-                    country_lock_all_division_template = yes
-                }
+        # template lock
+            FER = {
+                country_lock_all_division_template = yes
+            }
 
-            # resource rights
-                COL = {
-                    give_resource_rights = { receiver = USA state = 312 }
-                    give_resource_rights = { receiver = USA state = 317 }
-                }
+        # resource rights
+            COL = {
+                give_resource_rights = { receiver = USA state = 312 }
+                give_resource_rights = { receiver = USA state = 317 }
+            }
 
-                MEX = {
-                    give_resource_rights = { receiver = USA state = 476 }
-                    give_resource_rights = { receiver = USA state = 485 }
-                }
+            MEX = {
+                give_resource_rights = { receiver = USA state = 476 }
+                give_resource_rights = { receiver = USA state = 485 }
+            }
 
-                QAJ = {
-                    give_resource_rights = { receiver = ENG state = 412 }
-                    give_resource_rights = { receiver = ENG state = 413 }
-                }
+            QAJ = {
+                give_resource_rights = { receiver = ENG state = 412 }
+                give_resource_rights = { receiver = ENG state = 413 }
+            }
 
-            # events
-                ENG = {
-                    # titanic
-                    random_list = {
-                        2 = { news_event = { id = england_titanic.1 months = 3 days = 15 } }
-                        1 = { news_event = { id = england_titanic.2 months = 3 days = 16 } }
-                    }
+        # events
+            ENG = {
+                # titanic
+                random_list = {
+                    2 = { news_event = { id = england_titanic.1 months = 3 days = 15 } }
+                    1 = { news_event = { id = england_titanic.2 months = 3 days = 16 } }
                 }
+            }
 
-                FRA = {
-                    country_event = { id = france_caillaux.1 days = 12 }
+            FRA = {
+                country_event = { id = france_caillaux.1 days = 12 }
 
-                    # aviator
-                    news_event = { id = france_aviator.1 months = 20 days = 23 }
+                # aviator
+                news_event = { id = france_aviator.1 months = 20 days = 23 }
+            }
+
+            GER = {
+                news_event = { id = germany_luftfahrtausstellung.1  months = 3 days = 3 }
+                news_event = { id = germany_johannisthal.1          months = 21 days = 13 }
+                news_event = { id = germany_saverne.1               months = 23 days = 6 }
+            }
+
+            GRE = {
+                news_event = { id = assassination_of_george_i.1 months = 14 days = 18 }
+            }
+
+            MAN = {
+                country_event = { id = manchukuo.1 months = 3 days = 2 }
+            }
+
+            NOR = {
+                # amundsen
+                random_list = {
+                    2 = { news_event = { id = norway_amundsen.1 months = 2 days = 7 } }
+                    1 = { news_event = { id = norway_amundsen.2 months = 3 } }
                 }
+            }
 
-                GER = {
-                    news_event = { id = germany_luftfahrtausstellung.1  months = 3 days = 3 }
-                    news_event = { id = germany_johannisthal.1          months = 21 days = 13 }
-                    news_event = { id = germany_saverne.1               months = 23 days = 6 }
-                }
+            SMS = {
+                news_event = { id = samos_assassination.1 months = 2 days = 22 }
+            }
 
-                GRE = {
-                    news_event = { id = assassination_of_george_i.1 months = 14 days = 18 }
-                }
-
-                MAN = {
-                    country_event = { id = manchukuo.1 months = 3 days = 2 }        # Tibetan Independence (2.04.1912)
-                }
-
-                NOR = {
-                    # amundsen
-                    random_list = {
-                        2 = { news_event = { id = norway_amundsen.1 months = 2 days = 7 } }
-                        1 = { news_event = { id = norway_amundsen.2 months = 3 } }
-                    }
-                }
-
-                SMS = {
-                    news_event = { id = assassination_in_samos.1 months = 2 days = 22 }
-                }
-
-                TUR = {
-                    country_event = { id = turkey_aviators.1 months = 6 days = 7 }
-                }
+            TUR = {
+                country_event = { id = turkey_aviators.1 months = 6 days = 7 }
             }
         }
     }
@@ -172,7 +171,8 @@ on_actions = {
 
 # - elections
     on_new_term_election = {
-        effect = {
+        random_events = {
+            100 = { country_event = france_election.1 }
         }
     }
 

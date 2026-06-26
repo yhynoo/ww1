@@ -3,6 +3,7 @@ add_namespace = germany_alsace
 
 add_namespace = germany_johannisthal
 
+add_namespace = germany_lenin
 add_namespace = germany_london
 add_namespace = germany_luftfahrtausstellung
 
@@ -255,6 +256,49 @@ add_namespace = germany_warsaw
         }
 
 # other
+    # lenin
+        country_event = {
+            id = germany_lenin.1
+            title = "An Eager Communist Ideologue"
+            desc = germany_lenin.1.d
+
+            trigger = {
+                tag = GER
+                RUS = {
+                    war_length_with = { tag = GER length > 12 }
+                    or = { has_government = democratic has_stability < 0.5 }
+                }
+            }
+            fire_only_once = yes
+
+            option = {
+                name = "Send him."
+                add_political_power = -25
+
+                random = { chance = 80 news_event = { id = germany_lenin.2 hours = 6 } }
+            }
+            option = {
+                name = "This will only lead to endless disasters."
+            }
+        }
+
+        news_event = {
+            id = germany_lenin.2
+            title = "Lenin Appears in Moscow?"
+            desc = germany_lenin.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Interesting."
+                if = {
+                    limit = { tag = RUS }
+                    add_popularity = { ideology = communism popularity = 0.025 }
+                    promote_character = RUS_vladimir_lenin
+                }
+            }
+        }
+
     # war aims
         country_event = {
             id = germany_aims.1

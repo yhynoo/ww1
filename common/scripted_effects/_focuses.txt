@@ -3,9 +3,20 @@ first_focus_effect = {
         limit = { original_tag = FRA has_government = democratic }
         
         add_political_power = 50
-        news_event = { id = france_algeria.3 hours = 6 }
+        news_event = { id = france_agadir.1 hours = 6 }
     }
-    else = {
+    if = {
+        limit = { original_tag = HOL }
+        add_political_power = 50
+        news_event = { id = holland_after.1 hours = 6 }
+    }
+
+    # otherwise
+    if = {
+        limit = {
+            not = { original_tag = FRA has_government = democratic }
+            not = { original_tag = HOL }
+        }
         add_political_power = 100
     }
 }

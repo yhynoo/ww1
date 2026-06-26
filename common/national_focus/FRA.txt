@@ -30,6 +30,12 @@ focus_tree = {
         completion_reward = {
             add_war_support = 0.05
             create_wargoal = { target = MOR type = puppet_wargoal_focus }
+
+            # event
+            hidden_effect = { news_event = { id = france_sedan.1 hours = 6 } }
+
+            # war
+            will_lead_to_war_with = MOR
         }
     }
 
@@ -102,6 +108,9 @@ focus_tree = {
                 limit = { is_core_of = EGY }
                 add_claim_by = FRA
             }
+
+            # event
+            hidden_effect = { news_event = { id = france_egypt.1 hours = 6 } }
         }
     }
 

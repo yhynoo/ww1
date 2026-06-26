@@ -1,32 +1,6 @@
 add_namespace = election
 
 # France
-    country_event = {
-        id = election.1
-        title = "Elections of [GetYear]"
-        desc = election.1.d
-
-        is_triggered_only = yes
-        trigger = { tag = FRA }
-        
-        option = {
-            name = "[ROOT.GetLeader]."
-            add_stability = 0.025
-        }
-
-        # other choices
-        option = {
-            trigger = { FRA_joseph_caillaux = { can_be_country_leader = yes is_country_leader = no } }
-
-            name = "Joseph Caillaux."
-            promote_character = FRA_joseph_caillaux
-        }
-        option = {
-            trigger = { FRA_aristide_briand = { can_be_country_leader = yes is_country_leader = no } }
-            
-            name = "Aristide Briand."
-            promote_character = FRA_aristide_briand
-        }
-    }
+    
 
 #

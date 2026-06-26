@@ -1,4 +1,6 @@
+add_namespace = holland_after
 add_namespace = holland_antwerpen
+
 add_namespace = holland_soesterberg
 
 # historical
@@ -21,6 +23,45 @@ add_namespace = holland_soesterberg
         }
 
 # tree
+    # after the intervention
+        country_event = {
+            id = holland_after.1
+            title = "After the Intervention"
+            desc = holland_after.1.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "We must commit to the civilian government."
+                remove_ideas = idea_after_the_intervention
+
+                # event
+                news_event = { id = holland_after.2 hours = 6 }
+            }
+            option = {
+                name = "We did nothing wrong."
+                add_popularity = { ideology = monarchism popularity = 0.05 }
+
+                hidden_effect = {
+                    remove_ideas = idea_after_the_intervention
+                    add_timed_ideas = { idea = idea_after_the_intervention months = 6 }
+                }
+            }
+        }
+
+        news_event = {
+            id = holland_after.2
+            title = "[HOL.GetName] to Maintain Democracy?"
+            desc = holland_after.2.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Interesting."
+            }
+        }
+
     # antwerpen
         news_event = {
             id = holland_antwerpen.1
@@ -33,7 +74,9 @@ add_namespace = holland_soesterberg
             option = {
                 trigger = { tag = HOL }
                 name = "Great."
-                add_named_threat = { name = "Antwerp Affair" threat = 2 }
+
+                add_popularity = { ideology = monarchism popularity = 0.05 }
+                add_named_threat = { name = "[HOL.GetAdjective] Army Enters Antwerp" threat = 2 }
             }
             option = {
                 trigger = { not = { tag = HOL } }
