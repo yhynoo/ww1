@@ -1,0 +1,16 @@
+after_the_intervention = {
+    visible = { original_tag = HOL has_completed_focus = XXX_government }
+    priority = 6
+}
+
+armed_neutrality = {
+    visible = { 
+        has_country_flag = affirmed_neutrality 
+        any_country = {
+            limit = { or = { original_tag = ENG original_tag = FRA } }
+            has_war_with = GER
+        }
+    }
+    priority = 6
+    visible_when_empty = yes
+}

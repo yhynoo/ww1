@@ -62,9 +62,6 @@ add_namespace = dominion
 
             option = {
                 name = "We must agree."
-
-                # effect
-                set_autonomy = { target = FROM  autonomous_state = autonomy_free }
                 add_war_support = -0.05
 
                 # news
@@ -72,18 +69,12 @@ add_namespace = dominion
             }
             option = {
                 name = "This means war!"
-
-                # effect
-                hidden_effect = { set_autonomy = { target = FROM  autonomous_state = autonomy_free } }
                 declare_war_on = { target = FROM type = annex_everything }
-                every_state = { 
-                    limit = { is_owned_by = FROM }  
-                    add_claim_by = ROOT
-                }
 
                 # news
                 hidden_effect = { 
                     FROM = { independence_war_events = yes }
+                    every_state = { limit = { is_owned_by = FROM }  add_claim_by = ROOT }
                 }
             }
         }
@@ -135,20 +126,6 @@ add_namespace = dominion
             option = {
                 name = "We should sit this one out."
                 add_political_power = -50
-            }
-        }
-
-    # Acts of sabotage
-        country_event = {
-            id = dominion.8
-            title = "Acts of Sabotage in [sabotage_state.GetName]"
-            desc = dominion.8.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "Awful."
-                add_stability = -0.015
             }
         }
 

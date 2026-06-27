@@ -204,6 +204,9 @@ add_namespace = france_sedan
                     limit = { or = { original_tag = GER original_tag = SPA } }
                     answer_warning = yes
                 }
+
+                if = { limit = { owns_state = 6 } }
+                6 = { set_demilitarized_zone = no }
             }
         }
 

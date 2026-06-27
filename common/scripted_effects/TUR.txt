@@ -1,0 +1,14 @@
+manage_turkish_debt = {
+    if = {
+        limit = {
+            has_idea = idea_amassed_foreign_debt
+        }
+        swap_ideas = {
+            remove_idea = idea_amassed_foreign_debt 
+            add_idea = idea_limited_foreign_debt
+        }
+    }
+    else = {
+        remove_ideas = idea_limited_foreign_debt
+    }
+}

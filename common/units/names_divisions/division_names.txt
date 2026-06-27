@@ -380,7 +380,7 @@
     HOL_INF_1 = {
         name = "Infanteriedivisie"
 
-        for_countries = { HOL }
+        for_countries = { HOL INS }
         can_use = { always = yes }      fallback_name = "%d. Infanteriedivisie"
         division_types = { "infantry" "mountaineers" "marines" }
 
@@ -390,21 +390,30 @@
     }
 
     HOL_GAR_1 = {
-        name = "KNIL/Landstorm"
+        name = "Landstorm"
 
         for_countries = { HOL }
         can_use = { always = yes }      fallback_name = "%d. Landstormdivisie"
         division_types = { "infantry" }
+    }
+
+    HOL_GAR_2 = {
+        name = "KNIL"
+
+        for_countries = { HOL INS }
+        can_use = { always = yes }      fallback_name = "%d. KNIL Divisie"
+        division_types = { "infantry" }
 
         ordered = {
             1 = { "%d. KNIL Divisie 'Java'" }       2 = { "%d. KNIL Divisie" }     3 = { "%d. KNIL Divisie 'Soematra'" }
+            4 = { "%d. KNIL Divisie 'Timor'" }      5 = { "%d. KNIL Divisie 'Atjeh'" }     6 = { "%d. KNIL Divisie" }
         }
     }
 
     HOL_CAV_1 = {
         name = "Cavaleriedivisie"
 
-        for_countries = { HOL }
+        for_countries = { HOL INS }
         can_use = { always = yes }      fallback_name = "%d. Cavaleriedivisie"
         division_types = { "cavalry" }
 

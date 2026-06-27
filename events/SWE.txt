@@ -1,0 +1,20 @@
+add_namespace = sweden_olympics
+
+# historical
+    # 1912 olympics
+        news_event = {
+            id = sweden_olympics.1
+            title = "1912 Olympic Games in Stockholm"
+            desc = sweden_olympics.1.d
+
+            is_triggered_only = yes
+            trigger = { 
+                threat < 0.2
+                141 = { owner = { has_war = no } } 
+            }
+            major = yes
+
+            option = {
+                name = "Citius, altius, fortius."
+            }
+        }

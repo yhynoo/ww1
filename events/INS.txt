@@ -1,0 +1,64 @@
+add_namespace = east_indies_germany
+add_namespace = east_indies_islam
+
+# historical
+    # sarekat islam
+        news_event = {
+            id = east_indies_islam.1
+            title = "‘Sarekat Islam’ Established"
+            desc = east_indies_islam.1.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Interesting."
+                add_ideas = idea_sarekat_islam
+            }
+        }
+
+# other
+    # allegiance to germany
+        country_event = {
+            id = east_indies_germany.1
+            title = "Our Allegiance to Germany?"
+            desc = east_indies_germany.1.d
+
+            trigger = {
+                tag = INS
+                is_subject = no
+                HOL = { is_subject_of = GER }
+            }
+            fire_only_once = yes
+
+            option = {
+                name = "Our fate is our own."
+                GER = {
+                    news_event = { id = east_indies_germany.2 hours = 6 }
+                    custom_effect_tooltip = tt_defiant
+                }
+            }
+            option = {
+                name = "We recognize German authority."
+                set_cosmetic_tag = INS_GER
+                GER = { set_autonomy = { target = ROOT autonomous_state = autonomy_colony } }
+
+                mark_focus_tree_layout_dirty = yes
+            }
+        }
+
+        news_event = {
+            id = east_indies_germany.2
+            title = "Dutch East Indies to Stand Alone?"
+            desc = east_indies_germany.2.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Interesting."
+                if = {
+                    limit = { tag = GER }
+                    create_wargoal = { target = INS type = puppet_wargoal_focus }
+                }
+            }
+        }

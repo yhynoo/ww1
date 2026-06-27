@@ -1,5 +1,9 @@
 add_namespace = turkey_aviators
 
+add_namespace = turkey_default
+
+add_namespace = turkey_egypt
+
 # historical
     # aviators
         country_event = {
@@ -19,3 +23,55 @@ add_namespace = turkey_aviators
         }
 
 # tree 
+
+# other
+    # default
+        news_event = {
+            id = turkey_default.1
+            title = "Constantinople Withdraws from the Debt Scheme"
+            desc = turkey_default.1.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Interesting."
+            }
+        }
+
+    # egypt
+        country_event = {
+            id = turkey_egypt.1
+            title = "Constantinople Offers the Sale of Egypt"
+            desc = turkey_egypt.1.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "This is a good deal."
+                puppet = EGY
+
+                # news
+                hidden_effect = { news_event = { id = turkey_egypt.2 hours = 6 } }
+            }
+            option = {
+                name = "We are not interested."
+            }
+        }
+
+        news_event = {
+            id = turkey_egypt.2
+            title = "United Kingdom Acquires Egypt!"
+            desc = turkey_egypt.2.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+                if = {
+                    limit = { tag = TUR }
+                    manage_turkish_debt = yes
+                }
+            }
+        }

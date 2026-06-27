@@ -16,12 +16,9 @@ focus_tree = {
         prerequisite = { focus = XXX_government }
         mutually_exclusive = { focus = FRA_deterrence }
 
-        allow_branch = { original_tag = FRA }
-
-        available = {
-            is_subject = no
-            civil_war_government_lock = yes
-        }
+        allow_branch = { original_tag = FRA is_subject = no }
+        available = { civil_war_government_lock = yes }
+        ai_will_do = { modifier = { has_country_leader = { character = FRA_joseph_caillaux ruling_only = yes } factor = 0 } } 
 
         relative_position_id = XXX_government
         x = -4 y = 1

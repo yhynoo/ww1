@@ -9,6 +9,17 @@ on_actions = {
                 # events
                 country_event = { id = generic.9 days = 2 random_days = 7 }
             }
+
+            if = {
+                limit = { tag = HOL has_government = monarchism }
+                country_event = { id = holland_snijders.1 hours = 6 }
+            }
+        }
+    }
+
+    on_subject_free = {
+        effect = {
+            mark_focus_tree_layout_dirty = yes
         }
     }
 }

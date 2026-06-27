@@ -1,7 +1,16 @@
+add_namespace = holland_affirm_neutrality
 add_namespace = holland_after
 add_namespace = holland_antwerpen
 
+add_namespace = holland_elections
+add_namespace = holland_entente
+
+add_namespace = holland_germany
+
+add_namespace = holland_snijders
 add_namespace = holland_soesterberg
+
+add_namespace = holland_trial
 
 # historical
     # soesterberg
@@ -32,40 +41,27 @@ add_namespace = holland_soesterberg
             is_triggered_only = yes
 
             option = {
-                name = "We must commit to the civilian government."
-                remove_ideas = idea_after_the_intervention
+                name = "We must commit to the civilian administration."
+                add_popularity = { ideology = democratic popularity = 0.05 }
 
-                # event
-                news_event = { id = holland_after.2 hours = 6 }
+                # ai
+                ai_chance = { factor = 2 }
+                set_country_flag = hol_democratic
             }
             option = {
                 name = "We did nothing wrong."
-                add_popularity = { ideology = monarchism popularity = 0.05 }
+                add_war_support = 0.05
 
-                hidden_effect = {
-                    remove_ideas = idea_after_the_intervention
-                    add_timed_ideas = { idea = idea_after_the_intervention months = 6 }
-                }
-            }
-        }
-
-        news_event = {
-            id = holland_after.2
-            title = "[HOL.GetName] to Maintain Democracy?"
-            desc = holland_after.2.d
-
-            is_triggered_only = yes
-            major = yes
-
-            option = {
-                name = "Interesting."
+                #
+                ai_chance = { factor = 1 }
+                set_country_flag = hol_militarist
             }
         }
 
     # antwerpen
         news_event = {
             id = holland_antwerpen.1
-            title = "[HOL.GetAdjective] Army Enters Antwerp"
+            title = "[HOL.GetAdjective] Army Enters Antwerpen"
             desc = holland_antwerpen.1.d
 
             is_triggered_only = yes
@@ -76,7 +72,7 @@ add_namespace = holland_soesterberg
                 name = "Great."
 
                 add_popularity = { ideology = monarchism popularity = 0.05 }
-                add_named_threat = { name = "[HOL.GetAdjective] Army Enters Antwerp" threat = 2 }
+                hidden_effect = { add_named_threat = { name = "[HOL.GetAdjective] Army Enters Antwerpen" threat = 2 } }
             }
             option = {
                 trigger = { not = { tag = HOL } }
@@ -86,6 +82,212 @@ add_namespace = holland_soesterberg
                     limit = { or = { original_tag = ENG original_tag = FRA } }
                     answer_warning = yes
                 }
+            }
+        }
+    
+    # approach entente
+        news_event = {
+            id = holland_entente.1
+            title = "[GER.GetAdjective] Influence Among the Elites"
+            desc = holland_entente.1.d
+
+            trigger = {
+                tag = HOL
+                is_in_faction = no
+                GER = { focus_progress = { focus = GER_claims progress > 0.2 } }
+            }
+            fire_only_once = yes
+
+            option = {
+                name = "Worrying."
+                add_stability = -0.02
+                hidden_effect = { country_event = { id = holland_entente.2 days = 7 } }
+            }
+        }
+        country_event = {
+            id = holland_entente.2
+            title = "Approach the Entente?"
+            desc = holland_entente.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Seek the support of democratic countries."
+                every_country = { 
+                    limit = { or = { original_tag = ENG original_tag = FRA } }
+                    country_event = { id = guarantees.1 hours = 6 }
+                }
+
+                hidden_effect = { random = { chance = 50 news_event = { id = holland_entente.3 days = 7 random_days = 7 } } }
+            }
+            option = {
+                name = "We will manage ourselves."
+                add_war_support = 0.05
+
+                # ai
+                ai_chance = { factor = 0 }
+            }
+        }
+        news_event = {
+            id = holland_entente.3
+            title = "Arson in ‘De Telegraaf’"
+            desc = holland_entente.3.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Disturbing."
+                add_stability = -0.025
+            }
+        }
+
+    # approach germany
+        country_event = {
+            id = holland_germany.1
+            title = "Approach [GER.GetNameDef]"
+            desc = holland_germany.1.d
+
+            trigger = {
+                tag = HOL
+                is_in_faction = no
+                focus_progress = { focus = GER_extend progress > 0.2 }
+            }
+            fire_only_once = yes
+
+            option = {
+                name = "Seek German support."
+                GER = { country_event = { id = guarantees.1 hours = 6 } }
+            }
+            option = {
+                name = "We will manage ourselves."
+                add_war_support = 0.05
+
+                # ai
+                ai_chance = { factor = 0 }
+            }
+        }
+
+# other 
+    # army coup
+        country_event = {
+            id = holland_snijders.1
+            title = "The Unanswered Question"
+            desc = holland_snijders.1.d
+
+            is_triggered_only = yes
+            trigger = { 
+                is_subject = no
+                has_country_leader = { character = HOL_cornelis_snijders ruling_only = no } 
+            }
+
+            option = {
+                name = "Establish a military dictatorship."
+                promote_character = HOL_cornelis_snijders
+
+                # consequence event; full commitment option
+                news_event = { id = holland_snijders.2 hours = 6 }
+            }
+            option = {
+                name = "Queen Wilhelmina."
+                add_stability = 0.05
+            }
+        }
+
+        news_event = {
+            id = holland_snijders.2
+            title = "The Army Takes Over [HOL.GetName]"
+            desc = holland_snijders.2.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+
+    # elections
+        country_event = {
+            id = holland_elections.1
+            title = "Elections of [GetYear]"
+            desc = holland_elections.1.d
+
+            is_triggered_only = yes
+            trigger = { tag = HOL }
+            
+            option = {
+                name = "[ROOT.GetLeader]."
+                add_stability = 0.025
+            }
+
+            # choices
+            option = {
+                trigger = { HOL_theo_heemskerk = { can_be_country_leader = yes is_country_leader = no } }
+                name = "Theo Heemskerk."   promote_character = HOL_theo_heemskerk
+            }
+            option = {
+                trigger = { HOL_pieter_cort_van_der_linden = { can_be_country_leader = yes is_country_leader = no } }
+                name = "Pieter Cort van der Linden."   promote_character = HOL_pieter_cort_van_der_linden
+            }
+        }
+
+    # neutrality
+        country_event = {
+            id = holland_affirm_neutrality.1
+            title = "Affirm Our Neutrality?"
+            desc = holland_affirm_neutrality.1.d
+
+            trigger = {
+                tag = HOL
+                has_idea = idea_armed_neutrality
+                any_country = {
+                    limit = { or = { original_tag = ENG original_tag = FRA } }
+                    has_war_with = GER
+                }
+            }
+            fire_only_once = yes
+
+            option = {
+                name = "This is the right choice."
+                add_stability = 0.05
+
+                # event
+                set_country_flag = affirmed_neutrality
+                hidden_effect = { news_event = { id = holland_affirm_neutrality.2 hours = 6 } }
+            }
+            option = {
+                name = "We should keep our options open."
+
+                add_war_support = 0.025
+                remove_ideas = idea_armed_neutrality
+            }
+        }
+
+        news_event = {
+            id = holland_affirm_neutrality.2
+            title = "The Hague Committed to Impartiality"
+            desc = holland_affirm_neutrality.2.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+
+    # trial
+        country_event = {
+            id = holland_trial.1
+            title = "The Trial of Cornelis Snijders"
+            desc = holland_trial.1.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "We have restored order in the army."
+                retire_character = HOL_cornelis_snijders
+                remove_ideas = idea_disobedient_army
             }
         }
 #

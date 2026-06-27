@@ -1,19 +1,81 @@
 add_namespace = germany_aims
 add_namespace = germany_alsace
+add_namespace = germany_amarna
 
 add_namespace = germany_johannisthal
+
+add_namespace = germany_kroller
 
 add_namespace = germany_lenin
 add_namespace = germany_london
 add_namespace = germany_luftfahrtausstellung
 
 add_namespace = germany_oil
+add_namespace = germany_olympics
 
 add_namespace = germany_saverne
 
 add_namespace = germany_warsaw
 
 # historical
+    # amarna
+        news_event = {
+            id = germany_amarna.1
+            title = "Excavations in Amarna"
+            desc = germany_amarna.1.d
+
+            is_triggered_only = yes
+            trigger = {
+                EGY = {
+                    controls_state = 456
+                    not = { has_war_with = GER }
+                }
+            }
+            major = yes
+
+            option = {
+                name = "Interesting."
+                if = { 
+                    limit = { tag = GER }
+                    hidden_effect = { country_event = { id = germany_amarna.2 days = 7 } }
+                }
+            }
+        }
+
+        country_event = {
+            id = germany_amarna.2
+            title = "A Diplomatic Opportunity"
+            desc = germany_amarna.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Gift the statue to the Turks."
+                news_event = { id = germany_amarna.3 hours = 6 }
+            }
+            option = {
+                name = "We will keep her."
+                add_political_power = 10
+            }
+        }
+
+        news_event = {
+            id = germany_amarna.3
+            title = "Egyptian Queen Arrives in Constantinople"
+            desc = germany_amarna.3.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Splendid."
+                if = {
+                    limit = { tag = TUR }
+                    add_opinion_modifier = { target = GER modifier = sent_queen }
+                }
+            }
+        }
+
     # johannisthal
         news_event = {
             id = germany_johannisthal.1
@@ -56,6 +118,24 @@ add_namespace = germany_warsaw
             option = {
                 name = "Airships are the future."
                 add_tech_bonus = { bonus = 0.5      uses = 1    category = airship_tech }
+            }
+        }
+
+    # 1916 olympics
+        news_event = {
+            id = germany_olympics.1
+            title = "1916 Olympic Games in Berlin"
+            desc = germany_olympics.1.d
+
+            is_triggered_only = yes
+            trigger = { 
+                threat < 0.2
+                64 = { owner = { has_war = no } } 
+            }
+            major = yes
+
+            option = {
+                name = "Heroes of our times."
             }
         }
 
@@ -256,6 +336,45 @@ add_namespace = germany_warsaw
         }
 
 # other
+    # kröller
+        country_event = {
+            id = germany_kroller.1
+            title = "Appoint Kröller in the Netherlands?"
+            desc = germany_kroller.1.d
+
+            trigger = { 
+                tag = GER
+                HOL = { is_subject_of = GER }
+            }
+            fire_only_once = yes
+
+            option = {
+                name = "He is the right person."
+                HOL = { 
+                    promote_character = HOL_anton_kroller 
+                    news_event = { id = germany_kroller.2 hours = 6 }
+                }
+
+                # consequence event; full commitment option
+                
+            }
+            option = {
+                name = "The queen will legitimize our rule."
+                add_political_power = 10
+            }
+        }
+
+        news_event = {
+            id = germany_kroller.2
+            title = "Anton Kröller Appointed as Stadhouder"
+            desc = germany_kroller.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
     # lenin
         country_event = {
             id = germany_lenin.1

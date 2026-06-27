@@ -157,11 +157,12 @@ add_namespace = generic
 
         trigger = {
             longest_war_length > 5          # already after six months
-            not = {
-                any_enemy_country = {
-                    is_war_target = yes
-                    surrender_progress > 0.05
-                }
+            has_offensive_war = yes
+
+            is_subject = no
+            any_enemy_country = {
+                is_armistice_target = yes
+                not = { surrender_progress > 0.05 }
             }
             not = { has_idea = idea_armistice_timeout }
         }
@@ -172,11 +173,14 @@ add_namespace = generic
         option = {
             name = "We shall ask for an armistice."
             every_enemy_country = {
-                limit = { is_war_target = yes }
+                limit = { is_armistice_target = yes }
                 
                 custom_effect_tooltip = tt_ask_for_armistice
                 hidden_effect = { country_event = { id = armistice.1 days = 2 } }
             }
+
+            # ai
+            ai_chance = { modifier = { has_war_support > 0.25  factor = 0 } }
         }
         option = {
             name = "We must fight until we achieve our goals."
@@ -190,25 +194,27 @@ add_namespace = generic
         desc = generic.10.d
 
         trigger = {
+            is_subject = no
             or = {
                 and = { has_war = yes has_war_support < 0.4 longest_war_length > 11 }
                 surrender_progress > 0.15
             }
+            any_enemy_country = { is_armistice_target = yes }
 
             check_variable = { highest_party_popularity@exclude_ruling_party > 0.25 }
-            not = { has_idea = idea_armistice_later_timeout }
+            not = { has_idea = idea_armistice_timeout }
         }
         immediate = { 
-            hidden_effect = { add_timed_idea = { idea = idea_armistice_later_timeout days = 180 } } 
+            hidden_effect = { add_timed_idea = { idea = idea_armistice_timeout days = 180 } } 
         }
 
         option = {
             name = "They are right."
             every_enemy_country = {
-                limit = { is_diplomatically_able = yes }
+                limit = { is_armistice_target = yes }
                 
-                custom_effect_tooltip = tt_ask_for_armistice_later
-                # event
+                custom_effect_tooltip = tt_ask_for_armistice
+                country_event = { id = armistice.1 days = 2 }
             }
         }
         option = {

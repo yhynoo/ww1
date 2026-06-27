@@ -14,14 +14,10 @@ focus_tree = {
         id = HOL_extend
         icon = GFX_focus_generic_extend
         prerequisite = { focus = XXX_government }
-        mutually_exclusive = { focus = XXX_deterrence }
+        mutually_exclusive = { focus = HOL_deterrence }
 
-        allow_branch = { original_tag = HOL }
-
-        available = {
-            is_subject = no
-            civil_war_government_lock = yes
-        }
+        allow_branch = { original_tag = HOL is_subject = no }
+        available = { civil_war_government_lock = yes controls_state = 6 }
 
         ai_will_do = {
             modifier = { has_idea = idea_after_the_intervention factor = 2 }
@@ -58,9 +54,9 @@ focus_tree = {
         cost = 10
 
         completion_reward = {
-            add_war_support = 0.05
-            SAF = {
-                country_event = { id = demands.3 hours = 6 }
+            SAF = { 
+                country_event = { id = demands.3 hours = 6 } 
+                effect_overlord_warning = yes
             }
         }
     }
@@ -118,6 +114,35 @@ focus_tree = {
                     effect_overlord_warning = yes
                 }
             }
+        }
+    }
+
+# DETERRENCE
+    focus = {
+        id = HOL_deterrence
+        icon = GFX_focus_HOL_deterrence
+        prerequisite = { focus = XXX_government }
+        mutually_exclusive = { focus = HOL_extend }
+
+        available = {
+            is_subject = no
+            civil_war_government_lock = yes
+        }
+
+        allow_branch = {
+            original_tag = HOL
+        }
+
+        ai_will_do = {
+            modifier = { has_idea = idea_after_the_intervention factor = 0 }
+        }
+
+        relative_position_id = XXX_government
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_ideas = idea_armed_neutrality
         }
     }
 }

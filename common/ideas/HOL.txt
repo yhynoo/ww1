@@ -3,7 +3,38 @@ ideas = {
         idea_after_the_intervention = {
             modifier = {
                 stability_factor = -0.1
-                monarchism_drift = 0.05
+                democratic_drift = -0.02
+            }
+            cancel = {
+                or = { 
+                    is_subject = yes
+                    not = { controls_state = 6 } 
+                    has_completed_focus = HOL_extend
+                }
+            }
+        }
+
+        idea_disobedient_army = {
+            modifier = {
+                army_attack_factor = -0.4
+                army_defence_factor = -0.25
+                army_morale_factor = -0.2
+            }
+            cancel = {
+                has_government = monarchism
+            }
+        }
+
+        idea_armed_neutrality = {
+            modifier = {
+                army_core_defence_factor = 0.25
+                enemy_justify_war_goal_time = 0.4
+            }
+            rule = {
+                can_join_factions = no
+            }
+            cancel = {
+                has_offensive_war = yes
             }
         }
     }

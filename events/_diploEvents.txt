@@ -1,5 +1,6 @@
 add_namespace = alliance
 add_namespace = armistice
+add_namespace = civil_war
 add_namespace = defiant
 add_namespace = demands
 add_namespace = exchange
@@ -61,6 +62,71 @@ add_namespace = warning
         option = {
             name = "The war shall continue."
         }
+    }
+
+# civil war
+    country_event = {
+        id = civil_war.1
+        title = "Declare War on [FROM.GetNameDef]"
+        desc = civil_war.1.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We do not care about their internal divisions."
+            declare_war_on = { target = FROM type = annex_everything }
+        }
+        option = {
+            name = "The sooner this ends, the better."
+            add_political_power = -10
+        }
+    }
+
+    country_event = {
+        id = civil_war.2
+        title = "Collapse of the Administration"
+        desc = civil_war.2.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Awful."
+            add_ideas = idea_collapsed_administration       add_ideas = idea_dysfunctional_supply
+        }
+    }
+
+    country_event = {
+        id = civil_war.3
+        title = "Total Erosion of the [ROOT.GetAdjective] State"
+        desc = civil_war.3.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "It's over."
+            add_ideas = idea_eroded_state       add_ideas = idea_destroyed_industry
+        }
+    }
+
+    news_event = {
+        id = civil_war.4
+        title = "[ROOT.GetAdjective] Civil War Erupts"
+        desc = civil_war.4.d
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Awful."
+        }
+    }
+
+    news_event = {
+        id = civil_war.5
+        hidden = yes
+
+        is_triggered_only = yes
+        immediate = { clr_country_flag = during_civil_war }
     }
 
 # defiant
@@ -192,7 +258,7 @@ add_namespace = warning
 # guarantees
     country_event = {
         id = guarantees.1
-        title = "[FROM.GetAdjective] Defense Agreement Offer"
+        title = "[FROM.GetName] Offers a Defense Agreement"
         desc = guarantees.1.d
 
         is_triggered_only = yes
@@ -206,6 +272,8 @@ add_namespace = warning
             # ai
             add_ai_strategy = { type = support id = FROM value = 20 }
             FROM = { add_ai_strategy = { type = support id = ROOT value = 20 } }
+
+            ai_chance = { modifier = { has_opinion = { target = FROM value > 25 } factor = 2 } }
             
         }
         option = {

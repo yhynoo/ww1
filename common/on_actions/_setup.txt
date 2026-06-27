@@ -33,19 +33,23 @@ on_actions = {
 
             FRA = {
                 country_event = { id = france_caillaux.1 days = 12 }
-
-                # aviator
                 news_event = { id = france_aviator.1 months = 20 days = 23 }
             }
 
             GER = {
                 news_event = { id = germany_luftfahrtausstellung.1  months = 3 days = 3 }
+                news_event = { id = germany_amarna.1                months = 11 days = 4 }
                 news_event = { id = germany_johannisthal.1          months = 21 days = 13 }
                 news_event = { id = germany_saverne.1               months = 23 days = 6 }
+                news_event = { id = germany_olympics.1              months = 54 days = 3 }
             }
 
             GRE = {
                 news_event = { id = assassination_of_george_i.1 months = 14 days = 18 }
+            }
+
+            INS = {
+                news_event = { id = east_indies_islam.1 months = 8 days = 19 }
             }
 
             MAN = {
@@ -62,6 +66,10 @@ on_actions = {
 
             SMS = {
                 news_event = { id = samos_assassination.1 months = 2 days = 22 }
+            }
+
+            SWE = {
+                news_event = { id = sweden_olympics.1 months = 6 days = 6 }
             }
 
             TUR = {
@@ -95,12 +103,11 @@ on_actions = {
                 }
             }       
 
-        # liberation from overlords
-            # clean dominion trees
+        # autonomy loss
             if = {
-                limit = { has_country_flag = starts_as_dominion is_subject = no }
-                mark_focus_tree_layout_dirty = yes
-            }  
+                limit = { is_subject = yes has_elections = yes }
+                set_politics = { elections_allowed = no }
+            }
 
         # unifiers' ambitions
             if = {
@@ -169,10 +176,11 @@ on_actions = {
         }
     }
 
-# - elections
+# - elections }
     on_new_term_election = {
         random_events = {
-            100 = { country_event = france_election.1 }
+            100 = france_elections.1
+            100 = holland_elections.1
         }
     }
 

@@ -64,8 +64,17 @@ can_trigger_uprising = {
     any_core_state = { is_controlled_by = ROOT }
 }
 
+is_armistice_target = {
+    and = { has_war_with = ROOT not = { original_tag = ROOT } }     # not our civil war enemies.
+    is_diplomatically_able = yes
+
+    # block chinese warlords
+    is_chinese_warlord = no
+}
+
 is_diplomatically_able = {
-    or = { is_faction_leader = yes is_in_faction = no is_subject = no }
+    or = { is_faction_leader = yes is_in_faction = no }
+    is_subject = no
 }
 
 is_guaranteeable = {
@@ -74,11 +83,6 @@ is_guaranteeable = {
          not = { is_guaranteed_by = FROM }
          not = { has_war_with = FROM }
     }
-}
-
-is_war_target = {
-    ROOT = { has_offensive_war_with = PREV }
-    is_diplomatically_able = yes
 }
 
 has_custom_events = {

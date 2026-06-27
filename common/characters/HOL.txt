@@ -3,22 +3,25 @@ characters = {
         name = HOL_wilhelmina
         gender = female
         portraits = {
-            civilian = {
-                large = "GFX_portrait_hol_wilhelmina"
-            }
+            civilian = { large = "GFX_portrait_hol_wilhelmina" }
         }
-        country_leader = {
-            ideology = constitutional_monarchy
-            traits = { trait_one_of_us }
-        }
+        country_leader = { ideology = constitutional_monarchy   traits = { trait_one_of_us } }
     }
+    HOL_anton_kroller = {
+        name = "Anton Kröller"
+        country_leader = {  ideology = state_autocracy     traits = { trait_agrarianist trait_obedient_appointee } }
+    }
+
     HOL_theo_heemskerk = {
         name = "Theo Heemskerk"
-        country_leader = {
-            ideology = conservatism
-            traits = { trait_anonymous_administrator }
-        }
+        country_leader = {  ideology = conservatism     traits = { trait_anonymous_administrator } }
     }
+    HOL_pieter_cort_van_der_linden = {
+        name = "Pieter Cort van der Linden"
+        country_leader = {  ideology = liberalism     traits = { trait_moderate } }
+    }
+    
+    
     HOL_pieter_jelles_troelstra = {
         name = "Pieter Jelles Troelstra"
         country_leader = {
@@ -28,103 +31,35 @@ characters = {
     }
     HOL_cornelis_snijders = {
         name = "Cornelis Snijders"
+        country_leader = {  ideology = state_autocracy    traits = { trait_staunch_militarist } }
+        
         portraits = {
             army = {
-                large = "GFX_Portrait_Europe_Generic_land_2"
+                large = "GFX_Portrait_Europe_Generic_land_1"
             }
         }
         corps_commander = {
             traits = { organizer }
-            skill = 2
-            attack_skill = 2
-            defense_skill = 1
-            planning_skill = 2
-            logistics_skill = 2
-        }
-    }
-
-    # advisors
-    HOL_david_wijnkoop = {
-        name = "David Wijnkoop"
-        portraits = {
-            civilian = { small = GFX_david_wijnkoop_small }
-        }
-        advisor = {
-            slot = political_advisor
-            idea_token = HOL_david_wijnkoop
-            traits = { communist_agitator }
-        }
-    }
-    HOL_samuel_van_houten = {
-        name = "Samuel van Houten"
-        portraits = {
-            civilian = { small = GFX_samuel_van_houten_small }
-        }
-        advisor = {
-            slot = political_advisor
-            idea_token = HOL_samuel_van_houten
-            traits = { democratic_advocate }
-        }
-    }
-    HOL_alexander_de_savornin_lohman = {
-        name = "Alexander de Savornin-Lohman"
-        portraits = {
-            civilian = { small = GFX_alexander_de_savornin_lohman_small }
-        }
-        advisor = {
-            slot = political_advisor
-            idea_token = HOL_alexander_de_savornin_lohman
-            traits = { aristocratic_thinker }
-        }
-    }
-    HOL_hendrikus_colijn = {
-        name = "Hendrikus Colijn"
-        portraits = {
-            civilian = { small = GFX_hendrikus_colijn_small }
-        }
-        advisor = {
-            slot = political_advisor
-            idea_token = HOL_hendrikus_colijn
-            traits = { authoritarian_overseer }
-        }
-    }
-    HOL_cornelis_lely = {
-        name = "Cornelis Lely"
-        portraits = {
-            civilian = { small = GFX_cornelis_lely_small }
-        }
-        advisor = {
-            slot = political_advisor
-            idea_token = HOL_cornelis_lely
-            traits = { technocrat }
-        }
-    }
-    HOL_anton_kroller = {
-        name = "Anton Kröller"
-        portraits = {
-            civilian = { small = GFX_anton_kroller_small }
-        }
-        advisor = {
-            slot = political_advisor
-            idea_token = HOL_anton_kroller
-            traits = { economist }
+            skill = 2       attack_skill = 2        defense_skill = 1       planning_skill = 2      logistics_skill = 1
         }
     }
 
     # army
-    HOL_lodewijk_thomson = {
-        name = "Lodewijk Thomson"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_Europe_Generic_land_3"
-            }
-        }
+    HOL_izaak_reijnders = {
+        name = "Izaak Herman Reijndeers"
+        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_2" } }
         corps_commander = {
-            skill = 2
-            attack_skill = 1
-            defense_skill = 3
-            planning_skill = 2
-            logistics_skill = 1
+            traits = { trait_engineer }
+            skill = 1       attack_skill = 1        defense_skill = 2       planning_skill = 2      logistics_skill = 1
+        }
+    }
+
+    HOL_willem_pop = {
+        name = "Willem Pop"
+        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_3" } }
+        corps_commander = {
+            traits = { }
+            skill = 1       attack_skill = 1        defense_skill = 1       planning_skill = 2      logistics_skill = 2
         }
     }
 

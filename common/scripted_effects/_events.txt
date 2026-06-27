@@ -1,7 +1,7 @@
 answer_defiant = {
     FROM = {
         country_event = { id = defiant.1 hours = 6 }
-        custom_effect_tooltip = tt_defiant_claims
+        custom_effect_tooltip = tt_defiant
     }
 }
 
@@ -10,13 +10,7 @@ answer_warning = {
 }
 
 independence_war_events = {
-    if = {
-        limit = { tag = ROM }
-        news_event = { id = wallachian_independence.4 hours = 6 }
-    }
-    else = {
-        news_event = { id = dominion.6 hours = 6 }
-    }
+    news_event = { id = dominion.6 hours = 6 }
 }
 
 leave_alliances = {

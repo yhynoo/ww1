@@ -1,0 +1,67 @@
+debt_administration = {
+    default_on_the_debt = {
+        icon = generic_ignite_civil_war
+        cost = 75
+
+        complete_effect = {
+            add_stability = -0.05
+            every_country = {
+                limit = { or = { tag = ENG tag = FRA } }
+                create_wargoal = { target = ROOT type = puppet_wargoal_focus }
+            }
+
+            # event 
+            hidden_effect = { news_event = { id = turkey_default.1 hours = 6 } }
+        }
+    }
+    management_efforts = {
+        icon = generic_consumer_goods
+        cost = 50
+
+        days_remove = 240
+        modifier = {
+            consumer_goods_factor = 0.25
+            production_speed_infrastructure_factor = 0.1
+        }
+
+        complete_effect = {
+            manage_turkish_debt = yes
+        }
+    }
+    offer_egypt = {
+        icon = generic_form_nation
+        cost = 50
+
+        fire_only_once = yes
+
+        targets = { ENG }
+        available = { 
+            ENG = { exists = yes has_opinion = { target = TUR value > 49 } } 
+            EGY = { is_subject_of = ROOT }
+        }
+
+        complete_effect = {
+            ENG = { country_event = { id = turkey_egypt.1 hours = 6 } }
+        }
+    }
+    shipyard_investments = {
+        icon = generic_naval
+        cost = 50
+
+        fire_only_once = yes
+
+        targets = { FRA }
+        available = { FRA = { exists = yes has_opinion = { target = TUR value > 49 } } }
+
+        complete_effect = {
+            manage_turkish_debt = yes
+            random_owned_controlled_state = {
+                limit = { is_coastal = yes priority = { 339 } }
+
+                add_building_construction = { type = dockyard level = 2 instant_build = yes }
+                add_extra_state_shared_building_slots = 2
+            }
+        }
+    }
+
+}

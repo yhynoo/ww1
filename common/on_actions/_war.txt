@@ -3,6 +3,12 @@ on_actions = {
         effect = {
             if = {
                 limit = { ROOT = { original_tag = FROM } }      # same tags: civil war.
+                news_event = { id = civil_war.4 hours = 6 }
+
+                every_country = {
+                    limit = { is_diplomatically_able = yes has_offensive_war_with = FROM }
+                    country_event = { id = civil_war.1 hours = 6 }
+                }
                 
                 FROM = { 
                     add_popularity = { ideology = FROM popularity = 0.15 }

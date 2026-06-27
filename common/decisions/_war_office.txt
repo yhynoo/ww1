@@ -75,18 +75,7 @@ _war_office = {
 
         targets_dynamic = yes
         target_trigger = { 
-            FROM = {
-                has_war_with = ROOT
-                not = { original_tag = ROOT }       # not our civil war enemies.
-                or = { 
-                    is_faction_leader = yes 
-                    is_in_faction = no
-                }
-                is_subject = no
-
-                # block chinese warlords
-                is_chinese_warlord = no
-            }
+            FROM = { is_armistice_target = yes }
         }
 
         ai_will_do = {
