@@ -3,7 +3,10 @@ peace_ai_desires = {
     # TAKING STATES
         take_cores = {
             peace_action_type = { take_states }
-            enable = { FROM.FROM.FROM = { or = { is_core_of = ROOT is_claimed_by = ROOT } } }
+            enable = { 
+                FROM.FROM.FROM = { or = { is_core_of = ROOT is_claimed_by = ROOT } } 
+                has_wargoal_against = { target = FROM type = annex_everything }
+            }
             ai_desire = 100
         }
 
@@ -50,15 +53,18 @@ peace_ai_desires = {
             peace_action_type = { puppet }
             enable = {
                 is_major = yes
-                FROM = {
-                    capital_scope = { is_on_continent = europe }
-                    num_of_controlled_states < 5
+                or = {
+                    has_wargoal_against = { target = FROM type = puppet_wargoal_focus }
+                    FROM = {
+                        capital_scope = { is_on_continent = europe }
+                        num_of_controlled_states < 5
 
-                    pc_is_puppeted = no
-                    pc_is_loser = yes
+                        pc_is_puppeted = no
+                        pc_is_loser = yes
+                    }
                 }
             }
-            ai_desire = 20
+            ai_desire = 60
         }
 
         other_dominions = {
@@ -66,24 +72,26 @@ peace_ai_desires = {
             enable = {
                 or = {
                     is_major = no
-                    FROM = {
-                        or = {
-                            capital_scope = { is_on_continent = europe }
-                            num_of_controlled_states < 5
+                    not = {
+                        FROM = {
+                            or = {
+                                capital_scope = { is_on_continent = europe }
+                                num_of_controlled_states < 5
 
-                            pc_is_puppeted = no
-                            pc_is_loser = yes
+                                pc_is_puppeted = no
+                                pc_is_loser = yes
+                            }
                         }
                     }
                 }
             }
-            ai_desire = -600
+            ai_desire = -100
         }
 
     # OTHER
         dont_do_other_things = {
             peace_action_type = { force_government liberate }
             enable = { always = yes }
-            ai_desire = -600
+            ai_desire = -100
         }
 }

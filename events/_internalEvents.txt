@@ -1,0 +1,165 @@
+add_namespace = drift
+add_namespace = exhaustion
+add_namespace = government
+add_namespace = opposition
+add_namespace = unrest
+
+# drift
+    news_event = {
+        id = drift.1
+        title = "Our Alignment Contested?"
+        desc = drift.1.d
+
+        trigger = { can_have_ideology_event = yes }
+        immediate = { hidden_effect = { add_timed_idea = { idea = idea_ideology_timeout months = 24 } } }
+        mean_time_to_happen = { months = 2 }
+
+        option = {
+            name = "Interesting."
+            add_stability = -0.025
+            hidden_effect = { country_event = { id = drift.2 days = 7 random_days = 14 } }
+        }
+    }
+
+    country_event = {
+        id = drift.2
+        title = "Opposition Leader Addresses the Masses"
+        desc = drift.2.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Arrest them."
+            add_political_power = 25
+
+            # consequence event; full commitment option
+            random = { chance = 50 news_event = { id = drift.3 days = 2 } }
+        }
+        option = {
+            name = "Ignore them."
+            opposition_idea = yes
+        }
+    }
+
+    news_event = {
+        id = drift.3
+        title = "Shots in the Streets"
+        desc = drift.3.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Worrying."
+            add_stability = -0.025
+        }
+    }
+
+# exhaustion
+    # wheat affair
+        country_event = {
+            id = exhaustion.1
+            title = "Scandal in Army Supplies Offices?"
+            desc = exhaustion.1.d
+
+            is_triggered_only = yes
+            trigger = { can_have_wheat_affair = yes not = { has_country_flag = had_wheat_affair } }
+            immediate = { set_country_flag = had_wheat_affair }
+
+            option = {
+                name = "Try to cover it up."
+                add_political_power = -25
+
+                # atmosphere event; can be gated as a "gamble outcome" with random = { chance = 50 ... }
+                random = { chance = 50 news_event = { id = exhaustion.2 hours = 6 } }
+            }
+            option = {
+                name = "Admit to the scandal."
+                add_war_support = -0.05
+            }
+        }
+
+        news_event = {
+            id = exhaustion.2
+            title = "Wheat Affair"
+            desc = exhaustion.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Appaling."
+                add_timed_idea = { idea = idea_wheat_affair months = 6 }
+            }
+        }
+
+    # war exhaustion
+        country_event = {
+            id = generic.8
+            title = "War Exhaustion"
+            desc = generic.8.d
+
+            is_triggered_only = yes
+            trigger = { can_have_wheat_affair = yes not = { has_idea = idea_war_exhaustion } }
+
+            option = {
+                name = "We must hold on."
+                add_ideas = idea_war_exhaustion
+            }
+        }
+
+# government
+    country_event = {
+        id = government.1
+        title = "Change of Government?"
+        desc = government.1.d
+
+        trigger = { can_have_government_change_event = yes }
+
+        option = {
+            name = "We must agree."
+            change_government = yes
+        }
+        option = {
+            name = "Everyone must oppose this!"
+            change_government_opposed = yes
+        }
+    }
+
+# opposition
+    country_event = {
+        id = opposition.1
+        title = "Opposition Demands an Armistice"
+        desc = opposition.1.d
+
+        trigger = { can_have_opposition_event = yes }
+        immediate = { hidden_effect = { add_timed_idea = { idea = idea_armistice_timeout days = 180 } } }
+
+        option = {
+            name = "They are right."
+            every_enemy_country = {
+                limit = { is_armistice_target = yes }
+                custom_effect_tooltip = tt_ask_for_armistice        country_event = { id = armistice.1 days = 2 }
+            }
+        }
+        option = {
+            name = "The war is not over yet."
+            add_popularity = { ideology = ROOT popularity = -0.05 }
+        }
+    }
+
+# unrest
+    country_event = {
+        id = unrest.1
+        title = "Strikes"
+        desc = unrest.1.d
+
+        is_triggered_only = yes
+        trigger = { can_have_unrest_event = yes }
+        immediate = { hidden_effect = { add_timed_idea = { idea = idea_unrest_timeout months = 6 } } }
+
+        option = {
+            name = "Awful."
+            add_popularity = { ideology = ROOT popularity = -0.05 }        add_timed_idea = { idea = idea_strikes months = 2 }
+        }
+    }
+
+#

@@ -53,7 +53,7 @@ _war_office = {
             }
         }
 
-        ai_will_do = { modifier = { has_war = yes factor = 6 } }
+        ai_will_do = { modifier = { has_war = yes add = 6 } }
 
         modifier = {
             supply_factor = 0.15
@@ -79,7 +79,7 @@ _war_office = {
         }
 
         ai_will_do = {
-            modifier = { has_war_support < 0.6 add = 4 }    # entry condition: if we have more war support, we won't even think about it.
+            modifier = { or = { has_war_support < 0.6 has_stability < 0.4 } add = 4 }    # entry condition: if we have more war support, we won't even think about it.
             modifier = { or = { has_idea = idea_war_exhaustion has_stability < 0.2 } factor = 2 }
             modifier = { surrender_progress > 0.15 factor = 1.5 }
 

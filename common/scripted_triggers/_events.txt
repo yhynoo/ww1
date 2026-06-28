@@ -30,19 +30,30 @@ can_have_ideology_event = {
         and = { check_variable = { highest_party_popularity@exclude_ruling_party > 0.25 } stability < 0.4 }
         check_variable = { highest_party_popularity@exclude_ruling_party > 0.4 }
     }
-
-    date > 1912.2.1
 }
 
 can_have_government_change_event = {
+    check_variable = { highest_party_popularity@exclude_ruling_party > 0.5 }
     not = { has_country_flag = during_uprising }
     has_civil_war = no
 }
 
-can_have_war_exhaustion_event = {
+can_have_wheat_affair = {
     longest_war_length > 24
     or = { has_idea = partial_economic_mobilisation has_idea = war_economy }
     not = { has_idea = idea_war_exhaustion }
+}
+
+can_have_opposition_event = {
+    is_subject = no
+    or = {
+        and = { has_war = yes has_war_support < 0.4 longest_war_length > 11 }
+        surrender_progress > 0.15
+    }
+    any_enemy_country = { is_armistice_target = yes }
+
+    check_variable = { highest_party_popularity@exclude_ruling_party > 0.25 }
+    not = { has_idea = idea_armistice_timeout }
 }
 
 can_fall_apart = {

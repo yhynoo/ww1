@@ -1,10 +1,6 @@
 on_actions = {
     on_startup = {
         effect = {
-        # template lock
-            FER = {
-                country_lock_all_division_template = yes
-            }
 
         # resource rights
             COL = {
@@ -23,58 +19,7 @@ on_actions = {
             }
 
         # events
-            ENG = {
-                # titanic
-                random_list = {
-                    2 = { news_event = { id = england_titanic.1 months = 3 days = 15 } }
-                    1 = { news_event = { id = england_titanic.2 months = 3 days = 16 } }
-                }
-            }
-
-            FRA = {
-                country_event = { id = france_caillaux.1 days = 12 }
-                news_event = { id = france_aviator.1 months = 20 days = 23 }
-            }
-
-            GER = {
-                news_event = { id = germany_luftfahrtausstellung.1  months = 3 days = 3 }
-                news_event = { id = germany_amarna.1                months = 11 days = 4 }
-                news_event = { id = germany_johannisthal.1          months = 21 days = 13 }
-                news_event = { id = germany_saverne.1               months = 23 days = 6 }
-                news_event = { id = germany_olympics.1              months = 54 days = 3 }
-            }
-
-            GRE = {
-                news_event = { id = assassination_of_george_i.1 months = 14 days = 18 }
-            }
-
-            INS = {
-                news_event = { id = east_indies_islam.1 months = 8 days = 19 }
-            }
-
-            MAN = {
-                country_event = { id = manchukuo.1 months = 3 days = 2 }
-            }
-
-            NOR = {
-                # amundsen
-                random_list = {
-                    2 = { news_event = { id = norway_amundsen.1 months = 2 days = 7 } }
-                    1 = { news_event = { id = norway_amundsen.2 months = 3 } }
-                }
-            }
-
-            SMS = {
-                news_event = { id = samos_assassination.1 months = 2 days = 22 }
-            }
-
-            SWE = {
-                news_event = { id = sweden_olympics.1 months = 6 days = 6 }
-            }
-
-            TUR = {
-                country_event = { id = turkey_aviators.1 months = 6 days = 7 }
-            }
+            
         }
     }
 
@@ -178,32 +123,17 @@ on_actions = {
 
 # - elections }
     on_new_term_election = {
-        random_events = {
-            100 = france_elections.1
-            100 = holland_elections.1
-        }
     }
 
 # - generic event launcher
     on_monthly = {
         effect = {
+            # exhaustion
+            random = { chance = 10 country_event = { id = exhaustion.1 random_days = 28 } }
+            random = { chance = 10 country_event = { id = exhaustion.3 random_days = 28 } }
+
             # unrest
-            random = { chance = 40 country_event = { id = generic.1 random_days = 28 } }
-
-            # ideology
-            country_event = { id = generic.2 random_days = 28 }
-
-            # gov't
-            country_event = { id = generic.4 random_days = 28 }
-            country_event = { id = generic.5 random_days = 28 }
-            country_event = { id = generic.6 random_days = 28 }
-
-            # war exhaustion
-            random = { chance = 10 country_event = { id = generic.8 random_days = 28 } }
-
-            # armistice
-            country_event = { id = generic.11 random_days = 28 }
-            country_event = { id = generic.12 random_days = 28 }
+            random = { chance = 50 country_event = { id = unrest.1 random_days = 28 } }
         }
     }
 }

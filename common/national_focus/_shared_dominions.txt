@@ -87,18 +87,13 @@
         cost = 10
 
         completion_reward = {
-            hidden_effect = { 
-                leave_faction = yes 
-                set_autonomy = { target = FROM  autonomous_state = autonomy_free }
-            }
+            hidden_effect = { leave_faction = yes }
 
             every_country = {
                 limit = { has_subject = ROOT }
                 country_event = { id = dominion.4 hours = 6 }
+                hidden_effect = { set_autonomy = { target = FROM  autonomous_state = autonomy_free } }
             }
-
-            # war
-            will_lead_to_war_with = OVERLORD
         }
     }
 

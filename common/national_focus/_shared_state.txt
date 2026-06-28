@@ -12,7 +12,7 @@
         cost = 10
 
         completion_reward = {
-            first_focus_effect = yes
+            state_government_effect = yes
         }
     }
 
@@ -22,15 +22,10 @@
         prerequisite = { focus = XXX_government }
         mutually_exclusive = { focus = XXX_deterrence }
 
-        allow_branch = {
-            has_dominion_focuses = no
-            has_unification_focuses = no
-            has_custom_expansion_targets = no 
-        }
-        ai_will_do = { modifier = { has_war_support < 0.2 factor = 0 } }      # if you don't want to fight, then don't.
+        allow_branch = { has_dominion_focuses = no has_unification_focuses = no }
+        ai_will_do = { modifier = { has_war_support < 0.5 factor = 0.5 } }
 
         available = {
-            is_subject = no
             civil_war_government_lock = yes
         }
 
@@ -39,12 +34,11 @@
         cost = 10
 
         completion_reward = {
-            add_war_support = 0.05
-            if = {
-                limit = { is_subject = no }
-                custom_effect_tooltip = tt_extend
-                hidden_effect = { set_rule = { can_create_factions = yes } }
-            }
+            # factions
+            if = { limit = { is_faction_leader = no } custom_effect_tooltip = tt_extend }
+            hidden_effect = { set_rule = { can_create_factions = yes } }
+
+            state_extend_effect = yes
         }
     }
 
@@ -54,22 +48,18 @@
         prerequisite = { focus = XXX_extend }
 
         available = {
-            is_subject = no
             civil_war_government_lock = yes
         }
+
+        ai_will_do = { modifier = { has_war = yes factor = 0 } }
 
         relative_position_id = XXX_extend
         x = -2 y = 1
         cost = 10
 
         completion_reward = {
-            random_state = {
-                limit = { 
-                    not = { is_claimed_by = ROOT } any_neighbor_state = { is_owned_by = ROOT }
-                    ROOT = { can_declare_war_on = PREV.owner }
-                }
-                add_claim_by = ROOT
-            }
+            add_war_support = 0.05
+            state_claims_effect = yes
         }
     }
 
@@ -79,7 +69,6 @@
         prerequisite = { focus = XXX_extend }
 
         available = {
-            is_subject = no
             civil_war_government_lock = yes
         }
 
@@ -98,9 +87,10 @@
         prerequisite = { focus = XXX_men }
 
         available = {
-            is_subject = no
             civil_war_government_lock = yes
         }
+
+        ai_will_do = { modifier = { has_war = yes factor = 0 } }
 
         relative_position_id = XXX_men
         x = 0 y = 1
@@ -108,19 +98,7 @@
 
         completion_reward = {
             add_war_support = 0.05
-            random_state = {
-                limit = { 
-                    not = { is_claimed_by = ROOT } any_neighbor_state = { is_owned_by = ROOT }
-                    ROOT = { can_declare_war_on = PREV.owner }
-                }
-                save_event_target_as = demand_target
-
-                hidden_effect = { add_claim_by = ROOT }
-                owner = { 
-                    country_event = { id = demands.1 hours = 6 } 
-                    effect_overlord_warning = yes
-                }
-            }
+            state_take_ours_effect = yes
         }
     }
 
@@ -128,42 +106,28 @@
         id = XXX_deterrence
         icon = GFX_focus_XXX_deterrence
         prerequisite = { focus = XXX_government }
-        mutually_exclusive = { 
-            focus = XXX_extend 
-            focus = AUS_extend      focus = ENG_extend      focus = RUS_extend      focus = TUR_extend   
-            focus = JAP_extend      focus = MAN_extend      focus = SPA_extend      focus = GRE_extend      focus = HOL_extend      focus = SER_extend
-            focus = ITA_extend      focus = ROM_extend      focus = SAF_extend
-        }
+        mutually_exclusive = { focus = XXX_extend }
+
+        allow_branch = { has_dominion_focuses = no has_unification_focuses = no }
+        ai_will_do = { modifier = { has_war_support > 0.5 factor = 0.5 } }
 
         available = {
             civil_war_government_lock = yes
-        }
-
-        allow_branch = { 
-            has_custom_deterrence = no
-            has_dominion_focuses = no
-            has_unification_focuses = no
         }
 
         relative_position_id = XXX_government
         x = 0 y = 1
         cost = 10
 
-        ai_will_do = {
-            modifier = { has_war_support < 0.25 factor = 2 }
-            modifier = { has_war_support > 0.65 factor = 0.5 }
-        }
-
         completion_reward = {
-            add_political_power = 50
-            add_timed_idea = { idea = idea_deterrence months = 12 }
+            state_deterrence_effect = yes
         }
     }
 
     shared_focus = {
         id = XXX_idealism
         icon = GFX_focus_XXX_idealism
-        prerequisite = { focus = XXX_deterrence focus = FRA_deterrence focus = GER_deterrence focus = HOL_deterrence }
+        prerequisite = { focus = XXX_deterrence }
         mutually_exclusive = { focus = XXX_ethnocentrism }
 
         available = {
@@ -197,8 +161,8 @@
         cost = 10
 
         completion_reward = {
-            add_popularity = { ideology = ROOT popularity = 0.05 }
             add_stability = 0.05
+            add_popularity = { ideology = ROOT popularity = 0.05 }
         }
     }
 
@@ -223,7 +187,7 @@
 
     shared_focus = {
         id = XXX_agrarianism
-        icon = GFX_focus_generic_agrarian
+        icon = GFX_focus_XXX_agrarian
         prerequisite = { focus = XXX_stability }
 
         available = {
@@ -236,24 +200,39 @@
 
         completion_reward = {
             add_political_power = 50
-            add_timed_idea = { idea = idea_agrarians years = 2 }
+            state_agrarianism_effect = yes
+        }
+    }
+
+    shared_focus = {
+        id = XXX_unity
+        icon = GFX_focus_XXX_unity
+        prerequisite = { focus = XXX_idealism   focus = XXX_ethnocentrism   focus = XXX_colonial_investments    focus = XXX_old_elites }
+
+        available = {
+            civil_war_government_lock = yes
+        }
+
+        relative_position_id = XXX_ethnocentrism
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+            state_unity_effect = yes
         }
     }
 
     shared_focus = {
         id = XXX_administration
         icon = GFX_focus_XXX_administration
-        prerequisite = { 
-            focus = XXX_idealism focus = XXX_ethnocentrism 
-            focus = XXX_colonial_investments focus = XXX_old_elites
-        }
+        prerequisite = { focus = XXX_unity }
 
         available = {
             civil_war_government_lock = yes
         }
 
-        relative_position_id = XXX_idealism
-        x = 2 y = 1
+        relative_position_id = XXX_unity
+        x = 0 y = 1
         cost = 10
 
         completion_reward = {
@@ -268,23 +247,5 @@
                 custom_effect_tooltip = tt_administration
             }
             add_stability = 0.05
-        }
-    }
-
-    shared_focus = {
-        id = XXX_unity
-        icon = GFX_focus_generic_unity
-        prerequisite = { focus = XXX_administration }
-
-        available = {
-            civil_war_government_lock = yes
-        }
-
-        relative_position_id = XXX_administration
-        x = 0 y = 1
-        cost = 10
-
-        completion_reward = {
-            add_ideas = idea_strength_in_unity
         }
     }

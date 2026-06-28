@@ -1,490 +1,278 @@
-### tribal
+shared_focus = {
+    id = XXX_infrastructure
+    icon = GFX_focus_generic_infrastructure
 
-    shared_focus {
-        id = XXX_land_use
-        icon = GFX_focus_generic_infrastructure
-
-        allow_branch = { 
-            has_country_flag = pre_industrial_state
-            not = { has_country_flag = during_uprising } 
-        }
-
-        available = {
-            civil_war_industry_lock = yes
-        }
-
-        ai_will_do = { factor = 2 }
-
-        relative_position_id = XXX_general_staff
-        x = 9 y = 0
-        cost = 10
-
-        completion_reward = {
-            add_political_power = 25
-            every_owned_state = {
-                limit = { impassable = no }
-                add_extra_state_shared_building_slots = 1
-            }
-        }
+    allow_branch = { 
+        not = { has_country_flag = pre_industrial_state } 
+        not = { has_country_flag = during_uprising }
     }
 
-    shared_focus = {
-        id = XXX_agriculture
-        icon = GFX_focus_generic_agrarian
-        prerequisite = { focus = XXX_land_use }
+    available = {
+        civil_war_industry_lock = yes
+    }
 
-        available = {
-            civil_war_industry_lock = yes
+    relative_position_id = XXX_general_staff
+    x = 9 y = 0
+    cost = 10
+
+    completion_reward = {
+        random_owned_controlled_state = {
+            limit = { is_in_home_area = yes }
+            add_building_construction = { type = infrastructure level = 2 instant_build = yes }
         }
-
-        relative_position_id = XXX_land_use
-        x = 0 y = 1
-        cost = 10
-
-        completion_reward = {
-            add_political_power = 25
-            
+        if = {
+            limit = { num_of_controlled_states > 3 }
             random_owned_controlled_state = {
-                limit = { impassable = no }
+                limit = { is_in_home_area = yes }
                 add_building_construction = { type = infrastructure level = 1 instant_build = yes }
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-
-                hidden_effect = { add_extra_state_shared_building_slots = 1 } 
             }
         }
     }
+}
 
-    shared_focus = {
-        id = XXX_cotton
-        icon = GFX_focus_XXX_cotton
-        prerequisite = { focus = XXX_agriculture }
-        mutually_exclusive = { focus = XXX_mines }
+shared_focus = {
+    id = XXX_steel
+    icon = GFX_focus_generic_steel
+    prerequisite = { focus = XXX_infrastructure }
 
-        available = {
-            civil_war_industry_lock = yes
+    available = {
+        civil_war_industry_lock = yes
+    }
+
+    relative_position_id = XXX_infrastructure
+    x = -2 y = 1
+    cost = 10
+
+    completion_reward = {
+        random_owned_controlled_state = {
+            limit = { is_in_home_area = yes impassable = no }
+            add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+            add_resource = { type = steel amount = 6 }
+
+            hidden_effect = { add_extra_state_shared_building_slots = 1 }
         }
+    }
+}
 
-        relative_position_id = XXX_agriculture
-        x = -1 y = 1
-        cost = 10
+shared_focus = {
+    id = XXX_civs_1
+    icon = GFX_focus_generic_light_industry
+    prerequisite = { focus = XXX_infrastructure }
 
-        completion_reward = {
+    available = {
+        civil_war_industry_lock = yes
+    }
+
+    relative_position_id = XXX_infrastructure
+    x = 0 y = 1
+    cost = 10
+
+    completion_reward = {
+        random_owned_controlled_state = {
+            limit = { is_in_home_area = yes }
+            hidden_effect = { add_extra_state_shared_building_slots = 2 }
+            add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+        }
+    }
+}
+
+shared_focus = {
+    id = XXX_oil
+    icon = GFX_focus_XXX_oil
+    prerequisite = { focus = XXX_infrastructure }
+
+    available = {
+        civil_war_industry_lock = yes
+    }
+
+    relative_position_id = XXX_infrastructure
+    x = 2 y = 1
+    cost = 10
+
+    completion_reward = {
+        if = {
+            limit = { any_owned_state = { is_controlled_by = ROOT oil > 0 } }
             random_owned_controlled_state = {
-                limit = { impassable = no }
-                add_resource = { type = tungsten amount = 12 }
+                limit = { oil > 0 }
+                add_resource = { type = oil amount = 12 }
             }
         }
-    }
-
-    shared_focus = {
-        id = XXX_mines
-        icon = GFX_focus_generic_steel
-        prerequisite = { focus = XXX_agriculture }
-        mutually_exclusive = { focus = XXX_cotton }
-
-        available = {
-            civil_war_industry_lock = yes
-        }
-
-        relative_position_id = XXX_agriculture
-        x = 1 y = 1
-        cost = 10
-
-        completion_reward = {
-            random_owned_controlled_state = {
-                limit = { impassable = no }
-                add_resource = { type = steel amount = 4 }
-                add_resource = { type = aluminium amount = 2 }
-            }
+        else = {
+            add_tech_bonus = { bonus = 0.5  uses = 1  category = synth_resources_tech }
         }
     }
+}
 
-    shared_focus = {
-        id = XXX_textiles
-        icon = GFX_focus_generic_light_industry
-        prerequisite = { focus = XXX_cotton }
+shared_focus = {
+    id = XXX_capacity
+    icon = GFX_focus_generic_capacity
+    prerequisite = { focus = XXX_civs_1 }
 
-        available = {
-            civil_war_industry_lock = yes
-        }
-
-        relative_position_id = XXX_cotton
-        x = -2 y = 1
-        cost = 10
-
-        completion_reward = {
-            random_owned_controlled_state = {
-                limit = { impassable = no }
-                hidden_effect = { add_extra_state_shared_building_slots = 1 } 
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-            }
-        }
+    available = {
+        civil_war_industry_lock = yes
     }
 
-    shared_focus = {
-        id = XXX_railways
-        icon = GFX_focus_XXX_railways
-        prerequisite = { focus = XXX_cotton focus = XXX_mines }
+    relative_position_id = XXX_civs_1
+    x = 0 y = 1
+    cost = 10
 
-        available = {
-            civil_war_industry_lock = yes
-        }
+    completion_reward = {
+        add_tech_bonus = { bonus = 0.5  uses = 1  category = construction_tech }
+        add_ideas = idea_industrial_capacity
+    }
+}
 
-        relative_position_id = XXX_cotton
-        x = 1 y = 1
-        cost = 10
+shared_focus = {
+    id = XXX_airfields
+    icon = GFX_focus_generic_airfields
+    prerequisite = { focus = XXX_capacity }
+    mutually_exclusive = { focus = XXX_harbors }
 
-        completion_reward = {
-            add_timed_idea = { idea = idea_state_transport months = 12 }
-            if = {
-                limit = { has_tech = basic_train }
-                add_equipment_to_stockpile = {  type = train_equipment_1    amount = 6      producer = ROOT }
-            }
-            else = {
-                add_tech_bonus = { bonus = 0.5  uses = 1    category = train_tech }
-            }
-        }
+    available = {
+        civil_war_industry_lock = yes
     }
 
-    shared_focus = {
-        id = XXX_armory
-        icon = GFX_focus_generic_heavy_industry
-        prerequisite = { focus = XXX_mines }
+    relative_position_id = XXX_capacity
+    x = -1 y = 1
+    cost = 10
 
-        available = {
-            civil_war_industry_lock = yes
-        }
-
-        relative_position_id = XXX_mines
-        x = 2 y = 1
-        cost = 10
-
-        completion_reward = {
-            random_owned_controlled_state = {
-                limit = { is_capital = yes impassable = no }
-                hidden_effect = { add_extra_state_shared_building_slots = 1 } 
-                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
-            }
+    completion_reward = {
+        random_owned_controlled_state = {
+            limit = { is_capital = yes }
+            add_building_construction = { type = air_base level = 2 instant_build = yes }
         }
     }
+}
 
-    shared_focus = {
-        id = XXX_energy
-        icon = GFX_focus_XXX_energy
-        prerequisite = { focus = XXX_railways }
+shared_focus = {
+    id = XXX_harbors
+    icon = GFX_focus_generic_harbors
+    prerequisite = { focus = XXX_capacity }
+    mutually_exclusive = { focus = XXX_airfields }
 
-        available = {
-            civil_war_industry_lock = yes
-        }
-
-        relative_position_id = XXX_railways
-        x = 0 y = 1
-        cost = 10
-
-        completion_reward = {
-            add_tech_bonus = { bonus = 0.5  uses = 2    category = industry_tech }
-            random_owned_controlled_state = {
-                limit = { impassable = no }
-                hidden_effect = { add_extra_state_shared_building_slots = 1 } 
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-            }
-        }
+    available = {
+        civil_war_industry_lock = yes
     }
 
-    shared_focus = {
-        id = XXX_university
-        icon = GFX_focus_generic_research
-        prerequisite = { focus = XXX_energy }
+    relative_position_id = XXX_capacity
+    x = 1 y = 1
+    cost = 10
 
-        available = {
-            civil_war_industry_lock = yes
-        }
-
-        relative_position_id = XXX_energy
-        x = 0 y = 1
-        cost = 10
-
-        completion_reward = {
-            add_research_slot = 1
-            custom_effect_tooltip = tt_university
-
-            hidden_effect = { news_event = other.6 }
-        }
+    available = {
+        any_controlled_state = { is_in_home_area = yes is_coastal = yes }
     }
 
-## industrial
-
-    shared_focus = {
-        id = XXX_infrastructure
-        icon = GFX_focus_generic_infrastructure
-
-        allow_branch = { 
-            not = { has_country_flag = pre_industrial_state } 
-            not = { has_country_flag = during_uprising }
-        }
-
-        available = {
-            civil_war_industry_lock = yes
-        }
-
-        relative_position_id = XXX_general_staff
-        x = 9 y = 0
-        cost = 10
-
-        completion_reward = {
-            random_owned_controlled_state = {
-                limit = { is_in_home_area = yes }
-                add_building_construction = { type = infrastructure level = 2 instant_build = yes }
-            }
-            if = {
-                limit = { num_of_controlled_states > 3 }
-                random_owned_controlled_state = {
-                    limit = { is_in_home_area = yes }
-                    add_building_construction = { type = infrastructure level = 1 instant_build = yes }
-                }
-            }
+    completion_reward = {
+        random_controlled_state = {
+            limit = { is_coastal = yes is_in_home_area = yes }
+            add_building_construction = { type = naval_base level = 2 instant_build = yes }
         }
     }
+}
 
-    shared_focus = {
-        id = XXX_steel
-        icon = GFX_focus_generic_steel
-        prerequisite = { focus = XXX_infrastructure }
+shared_focus = {
+    id = XXX_aircraft
+    icon = GFX_focus_generic_aircraft
+    prerequisite = { focus = XXX_airfields }
 
-        available = {
-            civil_war_industry_lock = yes
-        }
-
-        relative_position_id = XXX_infrastructure
-        x = -2 y = 1
-        cost = 10
-
-        completion_reward = {
-            random_owned_controlled_state = {
-                limit = { is_in_home_area = yes impassable = no }
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-                add_resource = { type = steel amount = 6 }
-
-                hidden_effect = { add_extra_state_shared_building_slots = 1 }
-            }
-        }
+    available = {
+        civil_war_industry_lock = yes
     }
 
-    shared_focus = {
-        id = XXX_civs_1
-        icon = GFX_focus_generic_light_industry
-        prerequisite = { focus = XXX_infrastructure }
+    relative_position_id = XXX_airfields
+    x = -2 y = 1
+    cost = 10
 
-        available = {
-            civil_war_industry_lock = yes
-        }
+    completion_reward = {
+        random_owned_controlled_state = {
+            limit = { is_in_home_area = yes }
+            hidden_effect = { add_extra_state_shared_building_slots = 1 }
 
-        relative_position_id = XXX_infrastructure
-        x = 0 y = 1
-        cost = 10
-
-        completion_reward = {
-            random_owned_controlled_state = {
-                limit = { is_in_home_area = yes }
-                hidden_effect = { add_extra_state_shared_building_slots = 2 }
-                add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
-            }
+            add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            add_building_construction = { type = air_base level = 2 instant_build = yes }
         }
     }
+}
 
-    shared_focus = {
-        id = XXX_oil
-        icon = GFX_focus_XXX_oil
-        prerequisite = { focus = XXX_infrastructure }
+shared_focus = {
+    id = XXX_civs_2
+    icon = GFX_focus_generic_heavy_industry
+    prerequisite = { focus = XXX_airfields focus = XXX_harbors }
 
-        available = {
-            civil_war_industry_lock = yes
-        }
-
-        relative_position_id = XXX_infrastructure
-        x = 2 y = 1
-        cost = 10
-
-        completion_reward = {
-            if = {
-                limit = { any_owned_state = { is_controlled_by = ROOT oil > 0 } }
-                random_owned_controlled_state = {
-                    limit = { oil > 0 }
-                    add_resource = { type = oil amount = 12 }
-                }
-            }
-            else = {
-                add_tech_bonus = { bonus = 0.5  uses = 1  category = synth_resources_tech }
-            }
-        }
+    available = {
+        civil_war_industry_lock = yes
     }
 
-    shared_focus = {
-        id = XXX_capacity
-        icon = GFX_focus_generic_capacity
-        prerequisite = { focus = XXX_civs_1 }
+    relative_position_id = XXX_airfields
+    x = 1 y = 1
+    cost = 10
 
-        available = {
-            civil_war_industry_lock = yes
-        }
+    completion_reward = {
+        random_owned_controlled_state = {
+            limit = { is_in_home_area = yes }
+            hidden_effect = { add_extra_state_shared_building_slots = 2 }
 
-        relative_position_id = XXX_civs_1
-        x = 0 y = 1
-        cost = 10
-
-        completion_reward = {
-            add_tech_bonus = { bonus = 0.5  uses = 1  category = construction_tech }
-            add_ideas = idea_industrial_capacity
+            add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+            add_building_construction = { type = naval_base level = 2 instant_build = yes }
         }
     }
+}
 
-    shared_focus = {
-        id = XXX_airfields
-        icon = GFX_focus_generic_airfields
-        prerequisite = { focus = XXX_capacity }
-        mutually_exclusive = { focus = XXX_harbors }
+shared_focus = {
+    id = XXX_navy
+    icon = GFX_focus_generic_navy
+    prerequisite = { focus = XXX_harbors }
 
-        available = {
-            civil_war_industry_lock = yes
-        }
-
-        relative_position_id = XXX_capacity
-        x = -1 y = 1
-        cost = 10
-
-        completion_reward = {
-            random_owned_controlled_state = {
-                limit = { is_capital = yes }
-                add_building_construction = { type = air_base level = 2 instant_build = yes }
-            }
-        }
+    available = {
+        civil_war_industry_lock = yes
     }
 
-    shared_focus = {
-        id = XXX_harbors
-        icon = GFX_focus_generic_harbors
-        prerequisite = { focus = XXX_capacity }
-        mutually_exclusive = { focus = XXX_airfields }
+    relative_position_id = XXX_harbors
+    x = 2 y = 1
+    cost = 10
 
-        available = {
-            civil_war_industry_lock = yes
-        }
-
-        relative_position_id = XXX_capacity
-        x = 1 y = 1
-        cost = 10
-
-        available = {
-            any_controlled_state = { is_in_home_area = yes is_coastal = yes }
-        }
-
-        completion_reward = {
-            random_controlled_state = {
-                limit = { is_coastal = yes is_in_home_area = yes }
-                add_building_construction = { type = naval_base level = 2 instant_build = yes }
-            }
+    completion_reward = {
+        random_owned_controlled_state = {
+            limit = { is_coastal = yes is_in_home_area = yes }
+            hidden_effect = { add_extra_state_shared_building_slots = 2 }
+            add_building_construction = { type = dockyard level = 2 instant_build = yes }
         }
     }
+}
 
-    shared_focus = {
-        id = XXX_aircraft
-        icon = GFX_focus_generic_aircraft
-        prerequisite = { focus = XXX_airfields }
+shared_focus = {
+    id = XXX_state
+    icon = GFX_focus_generic_state
+    prerequisite = { focus = XXX_civs_2 }
 
-        available = {
-            civil_war_industry_lock = yes
-        }
-
-        relative_position_id = XXX_airfields
-        x = -2 y = 1
-        cost = 10
-
-        completion_reward = {
-            random_owned_controlled_state = {
-                limit = { is_in_home_area = yes }
-                hidden_effect = { add_extra_state_shared_building_slots = 1 }
-                add_building_construction = { type = arms_factory level = 1 instant_build = yes }
-            }
-        }
+    available = {
+        civil_war_industry_lock = yes
     }
 
-    shared_focus = {
-        id = XXX_civs_2
-        icon = GFX_focus_generic_heavy_industry
-        prerequisite = { focus = XXX_airfields focus = XXX_harbors }
+    relative_position_id = XXX_civs_2
+    x = 0 y = 1
+    cost = 10
 
-        available = {
-            civil_war_industry_lock = yes
-        }
+    completion_reward = {
+        add_tech_bonus = { bonus = 0.5  uses = 2  category = industry_tech }
+        add_timed_idea = { idea = idea_state_subsidies years = 2 }
+    }
+}
 
-        relative_position_id = XXX_airfields
-        x = 1 y = 1
-        cost = 10
+shared_focus = {
+    id = XXX_research
+    icon = GFX_focus_generic_research
+    prerequisite = { focus = XXX_state }
 
-        completion_reward = {
-            random_owned_controlled_state = {
-                limit = { is_in_home_area = yes }
-                hidden_effect = { add_extra_state_shared_building_slots = 2 }
-                add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
-            }
-        }
+    available = {
+        civil_war_industry_lock = yes
     }
 
-    shared_focus = {
-        id = XXX_navy
-        icon = GFX_focus_generic_navy
-        prerequisite = { focus = XXX_harbors }
+    relative_position_id = XXX_state
+    x = 0 y = 1
+    cost = 10
 
-        available = {
-            civil_war_industry_lock = yes
-        }
-
-        relative_position_id = XXX_harbors
-        x = 2 y = 1
-        cost = 10
-
-        completion_reward = {
-            random_owned_controlled_state = {
-                limit = { is_coastal = yes is_in_home_area = yes }
-                hidden_effect = { add_extra_state_shared_building_slots = 2 }
-                add_building_construction = { type = dockyard level = 2 instant_build = yes }
-            }
-        }
+    completion_reward = {
+        add_research_slot = 1
     }
-
-    shared_focus = {
-        id = XXX_state
-        icon = GFX_focus_generic_state
-        prerequisite = { focus = XXX_civs_2 }
-
-        available = {
-            civil_war_industry_lock = yes
-        }
-
-        relative_position_id = XXX_civs_2
-        x = 0 y = 1
-        cost = 10
-
-        completion_reward = {
-            add_tech_bonus = { bonus = 0.5  uses = 2  category = industry_tech }
-            add_ideas = idea_state_subsidies
-        }
-    }
-
-    shared_focus = {
-        id = XXX_research
-        icon = GFX_focus_generic_research
-        prerequisite = { focus = XXX_state }
-
-        available = {
-            civil_war_industry_lock = yes
-        }
-
-        relative_position_id = XXX_state
-        x = 0 y = 1
-        cost = 10
-
-        completion_reward = {
-            add_research_slot = 1
-        }
-    }
+}

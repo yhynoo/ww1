@@ -1,3 +1,230 @@
+
+# tree
+    add_namespace = XXX_government_event
+    add_namespace = XXX_extend_event
+    add_namespace = XXX_manpower_event
+    add_namespace = XXX_deterrence_event
+    add_namespace = XXX_stability_event
+    add_namespace = XXX_ethnocentrism_event
+    add_namespace = XXX_unity_event
+
+    # government
+        country_event = {
+            id = XXX_government_event.1
+            title = ""
+            desc = XXX_government_event.1.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = ""
+
+                # event
+                hidden_effect = { news_event = { id = XXX_government_event.2 hours = 6 } }
+            }
+            option = {
+                name = ""
+            }
+        }
+
+        news_event = {
+            id = XXX_government_event.2
+            title = ""
+            desc = XXX_government_event.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+
+    # extend
+        news_event = {
+            id = XXX_extend_event.1
+            title = ""
+            desc = XXX_extend_event.1.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Worrying."
+                if = {
+                    limit = { or = { } }    # here go tags
+                    answer_warning = yes
+                }
+            }
+        }
+
+    # manpower act
+        country_event = {
+            id = XXX_manpower_event.1
+            title = ""
+            desc = XXX_manpower_event.1.d
+
+            trigger = { tag = XXX focus_progress = { focus = XXX_men progress > 0.4 } }
+            fire_only_once = yes
+
+            option = {
+                name = ""
+
+                # gamble
+                random = { chance = 50 news_event = { id = XXX_manpower_event.2 hours = 6 } }
+            }
+            option = {
+                name = ""
+            }
+        }
+
+        news_event = {
+            id = XXX_manpower_event.2
+            title = ""
+            desc = XXX_manpower_event.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Awful."
+            }
+        }
+
+    # deterrence
+        country_event = {
+            id = XXX_deterrence_event.1
+            title = ""
+            desc = XXX_deterrence_event.1.d
+
+            trigger = {
+                tag = XXX
+                and = { has_completed_focus = XXX_deterrence    any_country = { has_wargoal_against = ROOT } }
+            }
+            fire_only_once = yes
+
+            option = {
+                name = "We must do it."
+                every_country = {
+                    limit = { or = { } }
+                    country_event = { id = guarantees.1 hours = 6 }
+                }
+            }
+            option = {
+                name = "We will handle this on our own."
+                add_war_support = 0.05
+            }
+        }
+
+    # stability
+        country_event = {
+            id = XXX_stability_event.1
+            title = ""
+            desc = XXX_stability_event.1.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = ""
+
+                # event
+                random = { chance = 50 news_event = { id = XXX_stability_event.2 days = 7 } }
+            }
+            option = {
+                name = ""
+            }
+        }
+
+        news_event = {
+            id = XXX_stability_event.2
+            title = ""
+            desc = XXX_stability_event.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Well..."
+            }
+        }
+
+    # ethnocentrism
+        news_event = {
+            id = XXX_ethnocentrism_event.1
+            title = ""
+            desc = XXX_ethnocentrism_event.1.d
+
+            trigger = { has_completed_focus = XXX_ethnocentrism }
+            mean_time_to_happen = { months = 3 }
+            fire_only_once = yes
+
+            option = {
+                name = "Interesting."
+                country_event = { id = XXX_ethnocentrism_event.2 days = 7 }
+            }
+        }
+
+        country_event = {
+            id = XXX_ethnocentrism_event.2
+            title = ""
+            desc = XXX_ethnocentrism_event.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = ""
+
+                # event
+                news_event = { id = XXX_ethnocentrism_event.3 hours = 6 }
+            }
+            option = {
+                name = ""
+            }
+        }
+
+        news_event = {
+            id = XXX_ethnocentrism_event.3
+            title = ""
+            desc = XXX_ethnocentrism_event.3.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Alright."
+            }
+        }
+
+    # unity
+        country_event = {
+            id = XXX_unity_event.1
+            title = ""
+            desc = XXX_unity_event.1.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = ""
+
+                # news
+               hidden_effect = { news_event = { id = XXX_unity_event.2 hours = 6 } }
+            }
+            option = {
+                name = ""
+            }
+        }
+
+        news_event = {
+            id = XXX_unity_event.2
+            title = ""
+            desc = XXX_unity_event.2.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Okay."
+            }
+        }
+
+
+# single chains
         # one shot: atmosphere
         news_event = {
             id = template.1
