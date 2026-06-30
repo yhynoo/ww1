@@ -1,0 +1,169 @@
+# tree
+    add_namespace = FRA_government_event
+    add_namespace = FRA_extend_event
+    add_namespace = FRA_manpower_event
+    add_namespace = FRA_ethnocentrism_event
+    add_namespace = FRA_unity_event
+
+    # agadir trials
+        news_event = {
+            id = FRA_government_event.1
+            title = "‘Agadir Trials’ Commence in Algiers"
+            desc = FRA_government_event.1.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Alright."
+                if = {
+                    limit = { tag = FRA }
+                    custom_effect_tooltip = tt_agadir_trials        hidden_effect = { activate_decision = agadir_trials_mission }
+                }
+            }
+        }
+
+        country_event = {
+            id = FRA_government_event.2
+            title = "Dubious Evidence"
+            desc = FRA_government_event.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Justice is justice."
+                news_event = { id = FRA_government_event.3 hours = 6 }
+            }
+            option = {
+                name = "It is about sending the message."
+            }
+        }
+
+        news_event = {
+            id = FRA_government_event.3
+            title = "Action Française Questions Trial Outcome"
+            desc = FRA_government_event.3.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Well..."
+            }
+        }
+
+    # ignite the atlas
+        news_event = {
+            id = FRA_extend_event.1
+            title = "France to Engage in Morocco Again?"
+            desc = FRA_extend_event.1.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Worrying."
+                if = {
+                    limit = { original_tag = FRA }
+                    add_war_support = 0.025
+                }
+                if = {
+                    limit = { or = { original_tag = ENG original_tag = GER } }
+                    answer_warning = yes
+                }
+            }
+        }
+
+    # l'indigenat
+        country_event = {
+            id = FRA_manpower_event.1
+            title = "L’Indigénat"
+            desc = FRA_manpower_event.1.d
+
+            trigger = { tag = FRA focus_progress = { focus = FRA_men progress > 0.4 } }
+            fire_only_once = yes
+
+            option = {
+                name = ""
+
+                # gamble
+                random = { chance = 50 news_event = { id = FRA_manpower_event.2 hours = 6 } }
+            }
+            option = {
+                name = ""
+            }
+        }
+
+        news_event = {
+            id = FRA_manpower_event.2
+            title = "Unrest in Algiers"
+            desc = FRA_manpower_event.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Awful."
+            }
+        }
+
+    # exile act
+        news_event = {
+            id = FRA_ethnocentrism_event.1
+            title = "Discussions over the Exile Act"
+            desc = FRA_ethnocentrism_event.1.d
+
+            trigger = { has_completed_focus = FRA_ethnocentrism monarchism > 0.4 }
+            mean_time_to_happen = { months = 3 }
+            fire_only_once = yes
+
+            option = {
+                name = "Interesting."
+                country_event = { id = FRA_ethnocentrism_event.2 days = 7 }
+            }
+        }
+
+        country_event = {
+            id = FRA_ethnocentrism_event.2
+            title = "End of the Exile?"
+            desc = FRA_ethnocentrism_event.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = ""
+
+                # event
+                news_event = { id = FRA_ethnocentrism_event.3 hours = 6 }
+            }
+            option = {
+                name = ""
+            }
+        }
+
+        news_event = {
+            id = FRA_ethnocentrism_event.3
+            title = "Another Emperor in France?"
+            desc = FRA_ethnocentrism_event.3.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Alright."
+            }
+        }
+
+    # union sacrée
+        news_event = {
+            id = FRA_unity_event.1
+            title = "Union Sacrée Announced in France"
+            desc = FRA_unity_event.1.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Alright."
+            }
+        }
+
+# elections

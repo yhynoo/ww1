@@ -1,0 +1,139 @@
+debt_administration = {
+    withdraw_from_debt = {
+        icon = generic_ignite_civil_war
+        cost = 75
+
+        complete_effect = {
+            if = {
+                limit = { has_idea = idea_amassed_foreign_debt }
+                remove_ideas = idea_amassed_foreign_debt
+            }
+            if = {
+                limit = { has_idea = idea_limited_foreign_debt }
+                remove_ideas = idea_limited_foreign_debt
+            }
+
+            every_country = {
+                limit = { or = { original_tag = ENG original_tag = FRA } }
+                create_wargoal = { target = ROOT type = puppet_wargoal_focus }
+            }
+        }
+    }
+    double_the_efforts = {
+        icon = generic_construction
+        cost = 75
+
+        days_remove = 120
+        modifier = {
+            consumer_goods_factor = 0.25
+            production_speed_infrastructure_factor = 0.1
+        }
+
+        remove_effect = {
+            manage_turkish_debt = yes
+        }
+    }
+    french_naval_investments = {
+        icon = generic_naval
+        cost = 50
+
+        fire_only_once = yes
+        targets = { FRA }
+        available = { FROM = { has_opinion = { target = ROOT value > 49 } } }
+
+        complete_effect = {
+            random_owned_controlled_state = {
+                priority = { 339 }
+                add_building_construction = { type = dockyard level = 2 instant_build = yes }
+            }
+
+            manage_turkish_debt = yes
+        }
+    }
+    offer_egypt = {
+        icon = generic_civil_support
+        cost = 50
+
+        fire_only_once = yes
+        targets = { ENG }
+
+        available = { 
+            EGY = { is_subject_of = ROOT }
+            FROM = { has_opinion = { target = ROOT value > 19 } } 
+        }
+
+        complete_effect = {
+            FROM = { country_event = TUR_egypt.1 }
+        }
+    }
+}
+
+heal_the_sick_man = {
+    # young turk options
+        organize_anatolia = {
+            visible = { has_country_flag = tur_young_turk }
+            icon = generic_prepare_civil_war
+
+            days_remove = 60
+            modifier = {
+                communism_drift = 0.05
+                war_support_weekly = 0.005
+            }
+        }
+        escalate_ethnic_tensions = {
+            visible = { has_country_flag = tur_young_turk }
+            icon = generic_political_discourse
+
+            days_remove = 60
+            modifier = {
+                stability_weekly = -0.005
+                monarchism_drift = -0.025
+            }
+        }
+        coup_turkey = {
+            visible = { has_country_flag = tur_young_turk }
+            icon = generic_ignite_civil_war
+
+            available = { communism > 0.25 }
+            complete_effect = {
+                custom_effect_tooltip = tt_coup_turkey
+                hidden_effect = { start_civil_war = { ruling_party = communism ideology = ROOT states_filter = { not = { state = 49 state = 184 state = 344 state = 345 state = 586 } } army_ratio = 0.4 } }
+            }
+        }
+
+    # state options
+        increase_army_spending = {
+            visible = { has_country_flag = tur_conservative }
+            icon = generic_industry
+
+            available = { not = { has_idea = civilian_economy } }
+
+            days_remove = 180
+            modifier = {
+                consumer_goods_factor = 0.25
+                production_speed_arms_factory_factor = 0.1
+            }
+
+            remove_effect = {
+                manage_turkish_officers = yes
+            }
+        }
+        arrest_tur_young_turk_generals = {
+            visible = { has_country_flag = tur_conservative }
+            icon = oppression
+
+            days_remove = 7
+            remove_effect = {
+                country_event = { id = TUR_arrests.1 hours = 6 }
+
+                if = {
+                    limit = { has_idea = idea_hostile_officer_corps }
+                    remove_ideas = idea_hostile_officer_corps
+                }
+                if = {
+                    limit = { has_idea = idea_disobedient_officer_corps }
+                    remove_ideas = idea_disobedient_officer_corps
+                }
+            }
+        }
+}

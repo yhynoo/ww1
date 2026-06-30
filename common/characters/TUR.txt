@@ -20,108 +20,72 @@ characters = {
             traits = { trait_weakling }
         }
     }
-
-    # army
-    TUR_ahmed_izzet_pasha = {
-        name = "Ahmed Izzet Pasha"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_South_America_Generic_land_4"
-            }
-        }
-        field_marshal = {
-            traits = { }
-            skill = 2
-            attack_skill = 2
-            defense_skill = 2
-            planning_skill = 2
-            logistics_skill = 1
-        }
-    }
-
     TUR_mustafa_kemal = {
-        name = "Mustafa Kemal Pasha"
+        name = "Mustafa Kemal Paşa"
+        country_leader = { ideology = agrarism traits = { trait_ethnic_chauvinist trait_intellectual } }
+        
         portraits = {
-            army = {
-                large = "GFX_portrait_TUR_kemal_pasha"
-            }
-        }
-        country_leader = {
-            ideology = agrarianism
-            traits = { trait_ethnic_chauvinist trait_intellectual }
+            civilian = { large = "GFX_portrait_TUR_kemal_pasha"}
+            army = { large = "GFX_portrait_TUR_kemal_pasha" }
         }
         corps_commander = {
             traits = { infantry_expert }
-            skill = 3
-            attack_skill = 2
-            defense_skill = 3
-            planning_skill = 3
-            logistics_skill = 2
-        }
-    }
-    TUR_enver_pasha = {
-        name = "Enver Pasha"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_South_America_Generic_land_2"
-            }
-        }
-        field_marshal = {
-            traits = { aggressive_assaulter }
-            skill = 2
-            attack_skill = 2
-            defense_skill = 1
-            planning_skill = 1
-            logistics_skill = 1
-        }
-    }
-    TUR_fehmi_pasha = {
-        name = "Fehmi Pasha"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_South_America_Generic_land_2"
-            }
-        }
-        corps_commander = {
-            skill = 2
-            attack_skill = 1
-            defense_skill = 2
-            planning_skill = 2
-            logistics_skill = 1
+            skill = 3       attack_skill = 2        defense_skill = 2       planning_skill = 3      logistics_skill = 2
         }
     }
 
-    TUR_ali_fethi_okyar = {
-        name = "Ali Fethi Okyar"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_South_America_Generic_land_1"
-            }
+    # army
+    TUR_enver = {
+        name = "Enver Paşa"
+        portraits = { army = { large = "GFX_Portrait_South_America_Generic_land_1" } }
+        field_marshal = {
+            traits = { }
+            skill = 1       attack_skill = 2        defense_skill = 1       planning_skill = 1      logistics_skill = 1
         }
+    }
+
+    TUR_ahmet_izzet = {
+        name = "Ahmet Izzet Paşa"
+        portraits = { army = { large = "GFX_Portrait_South_America_Generic_land_2" } }
+        field_marshal = {
+            traits = { organizer }
+            skill = 2       attack_skill = 1        defense_skill = 1       planning_skill = 2      logistics_skill = 2
+        }
+    }
+
+    TUR_mehmet_esat = {
+        name = "Mehmet Esat Bülkat"
+        portraits = { army = { large = "GFX_Portrait_South_America_Generic_land_3" } }
         corps_commander = {
-            traits = { infantry_leader }
-            skill = 1
-            attack_skill = 1
-            defense_skill = 2
-            planning_skill = 1
-            logistics_skill = 2
+            traits = { }
+            skill = 2       attack_skill = 1        defense_skill = 3       planning_skill = 2      logistics_skill = 1
+        }
+    }
+
+    TUR_halil_kut = {
+        name = "Halil Kut"
+        portraits = { army = { large = "GFX_Portrait_South_America_Generic_land_2" } }
+        corps_commander = {
+            traits = { }
+            skill = 1       attack_skill = 1        defense_skill = 2       planning_skill = 1      logistics_skill = 1
+        }
+    }
+
+    TUR_ahmet_cemal = {
+        name = "Ahmet Cemal Paşa"
+        portraits = { army = { large = "GFX_Portrait_South_America_Generic_land_4" } }
+        corps_commander = {
+            traits = { cavalry_leader }
+            skill = 1       attack_skill = 2        defense_skill = 1       planning_skill = 1      logistics_skill = 2
         }
     }
 
     # navy
-    TUR_hüseyin_rauf_orbay = {
-        name = "Hüseyin Rauf Orbay"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_South_America_Generic_navy_1"
-            }
-        }
+    TUR_arif_bey = {
+        name = "Arif Ahmed Bey"
+        portraits = { army = { large = "GFX_Portrait_South_America_Generic_navy_1" } }
         navy_leader = {
-            skill = 2
-            attack_skill = 2
-            defense_skill = 1
-            maneuvering_skill = 2
-            coordination_skill = 1
+            skill = 1       attack_skill = 1        defense_skill = 1       maneuvering_skill = 2       coordination_skill = 1
         }
     }
 }

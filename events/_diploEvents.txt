@@ -223,7 +223,7 @@ add_namespace = warning
             any_allied_country = {
                 any_state = {
                     or = { is_core_of = PREV is_claimed_by = PREV } 
-                    and = { is_fully_controlled_by = ROOT not = { or = { is_core_of = ROOT is_claimed_by = ROOT } } }
+                    and = { is_fully_controlled_by = ROOT not = { or = { is_core_of = ROOT is_owned_by = ROOT is_claimed_by = ROOT } } }
                 }
             }
         }

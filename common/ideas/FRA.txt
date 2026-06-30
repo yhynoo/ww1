@@ -13,13 +13,10 @@ ideas = {
                 democratic_drift = -0.02
             }
             cancel = {
-                not = { has_government = democratic }
-            }
-        }
-        idea_agadir_trials = {
-            modifier = {
-                political_power_factor = -0.25
-                democratic_drift = -0.05
+                or = {
+                    has_decision = agadir_trials_mission
+                    not = { has_government = democratic }
+                }
             }
         }
 

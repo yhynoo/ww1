@@ -1,0 +1,104 @@
+# historical
+    add_namespace = GER_equestrian
+
+    # equestrian monument
+        news_event = {
+            id = GER_equestrian.1
+            title = "The ‘Equestrian Monument’ Unveiled in Windhoek"
+            desc = GER_equestrian.1.d
+
+            is_triggered_only = yes
+            trigger = { controls_state = 541 }
+
+            option = {
+                name = "Great."
+            }
+        }
+
+# tree
+    add_namespace = GER_stability_event
+
+    # who gets the sun
+        news_event = {
+            id = GER_stability_event.1
+            title = "Haase: ‘Who Gets the Sun?’"
+            desc = GER_stability_event.1.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Alright."
+                add_political_power = 25
+                
+                hidden_effect = { country_event = { id = GER_stability_event.2 days = 7 } }
+            }
+        }
+
+        country_event = {
+            id = GER_stability_event.2
+            title = "Agitators in Miners’ Canteens"
+            desc = GER_stability_event.2.d
+
+            is_triggered_only = yes
+            trigger = { has_stability < 0.8 }
+
+            option = {
+                name = "Arrest them."
+                add_stability = 0.02
+
+                # gamble
+                random = { chance = 50 news_event = { id = GER_stability_event.3 hours = 6 } }
+            }
+            option = {
+                name = "Let them speak."
+                add_popularity = { ideology = communism popularity = 0.05 }
+            }
+        }
+
+        news_event = {
+            id = GER_stability_event.3
+            title = "All-Out Strike in the Mines!"
+            desc = GER_stability_event.3.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Awful."
+                add_timed_idea = { idea = idea_all_out_miners_strike months = 3 }
+            }
+        }
+
+    # colonial scandal
+        country_event = {
+            id = GER_stability_event.4
+            title = "Another Colonial Scandal?"
+            desc = GER_stability_event.4.d
+
+            trigger = { tag = GER has_completed_focus = XXX_stability controls_state = 541 }
+            mean_time_to_happen = { months = 3 }
+            fire_only_once = yes
+
+            option = {
+                name = "Affirm his decision."
+                add_stability = 0.02
+
+                random = { chance = 50 news_event = { id = GER_stability_event.5 hours = 12 } }
+            }
+            option = {
+                name = "Dismiss Seitz."
+                add_popularity = { ideology = monarchism popularity = -0.025 }
+            }
+        }
+
+        news_event = {
+            id = GER_stability_event.2
+            title = "Outrage over the ‘Mischlinge-Verordnung’"
+            desc = GER_stability_event.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Well..."
+                add_popularity = { ideology = democratic popularity = 0.025 }
+            }
+        }
