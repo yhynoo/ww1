@@ -1,40 +1,8 @@
 ideas = {
     country = {
-        idea_fading_empire = {
+        idea_anarchists_in_the_countryside = {
             modifier = {
-                monarchism_drift = -0.02
-                war_support_factor = -0.05
-            }
-            cancel = {
-                or = {
-                    not = { has_government = monarchism }
-                    has_navy_size = { size > 5 type = capital_ship }
-                }
-            }
-            allowed_civil_war = { 
-                has_government = monarchism
-            }
-        }
-        idea_after_semana_tragica = {
-            modifier = {
-                conscription_factor = -0.25
-                war_support_factor = -0.2
-                stability_factor = -0.1
-            }
-            cancel = {
-                or = {
-                    communism < 0.1
-                    CAT = { exists = yes }
-                }
-            }
-            allowed_civil_war = { 
-                always = yes 
-            }
-        }
-        idea_violent_anarchist_organizations = {
-            modifier = {
-                communism_drift = 0.04
-                consumer_goods_factor = 0.1 
+                communism_drift = 0.05
             }
             cancel = {
                 has_government = communism

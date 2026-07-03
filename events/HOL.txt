@@ -10,20 +10,30 @@
             desc = HOL_government_event.1.d
 
             is_triggered_only = yes
+            immediate = { hidden_effect = { remove_ideas = idea_disobedient_army } }
 
             option = {
-                name = "We must commit to the civilian administration."
-                add_popularity = { ideology = democratic popularity = 0.05 }        set_country_flag = HOL_democratic
+                name = "It is time to arrest him."
+                retire_character = HOL_cornelis_snijders
 
-                # ai
-                ai_chance = { modifier = { is_going_monarchist = yes factor = 0 } }
+                # news
+                hidden_effect = { news_event = { id = HOL_government_event.2 hours = 6 } }
             }
             option = {
                 name = "We did nothing wrong."
-                add_war_support = 0.05      set_country_flag = HOL_monarchist
+                add_ideas = idea_authoritarian_tendencies_in_the_army
+            }
+        }
+        news_event = {
+            id = HOL_government_event.2
+            title = "The Dutch Arrest the Authoritarian General"
+            desc = HOL_government_event.2.d
 
-                # ai
-                ai_chance = { modifier = { is_going_democrat = yes factor = 0 } }
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
             }
         }
 
@@ -88,25 +98,6 @@
                 add_stability = -0.025
             }
         }
-
-# decisions
-    add_namespace = HOL_trial
-    
-    # trial
-        country_event = {
-            id = HOL_trial.1
-            title = "The Trial of Cornelis Snijders"
-            desc = HOL_trial.1.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "We have restored order in the army."
-                retire_character = HOL_cornelis_snijders
-                remove_ideas = idea_disobedient_army
-            }
-        }
-
 
 # elections
     add_namespace = HOL_elections

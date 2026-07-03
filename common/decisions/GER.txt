@@ -30,26 +30,4 @@ afrika_amt = {
             }
         }
     }
-    demand_congo = {
-        icon = generic_form_nation
-
-        cost = 50
-        fire_only_once = yes
-
-        targets_dynamic = yes
-        target_trigger = {
-            FROM = {
-                or = { owns_state = 295 owns_state = 538 owns_state = 576 }
-            }
-        }
-
-        complete_effect = {
-            FROM = {
-                every_owned_state = {
-                    limit = { or = { state = 295 state = 538 state = 576 } }
-                    send_ultimatum_multiple_states = yes
-                }
-            }
-        }
-    }
 }

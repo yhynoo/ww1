@@ -57,10 +57,14 @@ add_namespace = warning
             start_peace_conference = { tag = FROM score_factor = 0.25 }
 
             # AI + event
-            ai_chance = { modifier = { ai_wants_armistice = yes factor = 2.5 } }
+            ai_chance = { 
+                modifier = { ai_wants_armistice = yes factor = 2.5 } 
+                modifier = { FROM = { has_idea = idea_uprising } factor = 0.25 }
+            }
         }
         option = {
             name = "The war shall continue."
+            add_political_power = -25
         }
     }
 

@@ -37,127 +37,53 @@ debt_administration = {
             manage_turkish_debt = yes
         }
     }
-    french_naval_investments = {
-        icon = generic_naval
-        cost = 50
-
-        fire_only_once = yes
-        targets = { FRA }
-        available = { FROM = { has_opinion = { target = ROOT value > 49 } } }
-        ai_will_do = { modifier = { always = yes add = 9 } }
-
-        complete_effect = {
-            random_owned_controlled_state = {
-                priority = { 339 340 }
-                add_building_construction = { type = dockyard level = 2 instant_build = yes }
-            }
-
-            manage_turkish_debt = yes
-        }
-    }
-    offer_egypt = {
-        icon = generic_civil_support
-        cost = 50
-
-        ai_will_do = { modifier = { always = yes add = 9 } }
-        fire_only_once = yes
-        targets = { ENG }
-
-        available = { 
-            EGY = { is_subject_of = ROOT }
-            FROM = { has_opinion = { target = ROOT value > 19 } } 
-        }
-
-        complete_effect = {
-            FROM = { country_event = TUR_egypt.1 }
-        }
-    }
 }
 
 heal_the_sick_man = {
-    # young turk options
-        organize_anatolia = {
-            visible = { has_country_flag = TUR_young_turk }
-            icon = generic_prepare_civil_war
-            cost = 25
+    increase_army_spending = {
+        icon = generic_industry
+        cost = 25
 
-            ai_will_do = { modifier = { always = yes add = 9 } }
+        available = { not = { has_idea = civilian_economy } }
+        ai_will_do = { modifier = { always = yes add = 9 } }
 
-            days_remove = 60
-            modifier = {
-                communism_drift = 0.05
-            }
-        }
-        escalate_ethnic_tensions = {
-            visible = { has_country_flag = TUR_young_turk }
-            icon = generic_political_discourse
-            cost = 25
-
-            days_remove = 60
-            modifier = {
-                stability_weekly = -0.025
-                monarchism_drift = -0.05
-            }
-
-            remove_effect = {
-                every_possible_country = {
-                    limit = { any_core_state = { is_controlled_by = TUR } }
-                    custom_effect_tooltip = tt_ethnic_tensions hidden_effect = { random = { chance = 10 trigger_uprising = yes } }
-                }
-            }
-        }
-        coup_turkey = {
-            visible = { has_country_flag = TUR_young_turk }
-            icon = generic_ignite_civil_war
-            cost = 50
-
-            available = { communism > 0.25 }
-            ai_will_do = { modifier = { has_stability < 0.4 add = 6 } }
-
-            complete_effect = {
-                custom_effect_tooltip = tt_coup_turkey
-                hidden_effect = { turkish_officers_coup = yes }
-            }
+        days_remove = 180
+        modifier = {
+            consumer_goods_factor = 0.25
+            production_speed_arms_factory_factor = 0.1
         }
 
-    # state options
-        increase_army_spending = {
-            visible = { has_country_flag = TUR_conservative }
-            icon = generic_industry
-            cost = 25
+        remove_effect = {
+            manage_turkish_officers = yes
+        }
+    }
+    arrest_young_turk_generals = {
+        icon = oppression
+        cost = 50
 
-            available = { not = { has_idea = civilian_economy } }
-            ai_will_do = { modifier = { always = yes add = 9 } }
+        ai_will_do = { modifier = { or = { has_government = democratic is_ally_with = FRA } add = 12 } }
 
-            days_remove = 180
-            modifier = {
-                consumer_goods_factor = 0.25
-                production_speed_arms_factory_factor = 0.1
+        days_remove = 7
+        remove_effect = {
+            country_event = { id = TUR_arrests.1 hours = 6 }
+
+            if = {
+                limit = { has_idea = idea_hostile_officer_corps }
+                remove_ideas = idea_hostile_officer_corps
             }
-
-            remove_effect = {
-                manage_turkish_officers = yes
+            if = {
+                limit = { has_idea = idea_disobedient_officer_corps }
+                remove_ideas = idea_disobedient_officer_corps
             }
         }
-        arrest_young_turk_generals = {
-            visible = { has_country_flag = TUR_conservative }
-            icon = oppression
-            cost = 50
+    }
+    organize_anatolia = {
+        icon = generic_prepare_civil_war
+        cost = 25
 
-            ai_will_do = { modifier = { or = { has_government = democratic is_ally_with = FRA } add = 12 } }
-
-            days_remove = 7
-            remove_effect = {
-                country_event = { id = TUR_arrests.1 hours = 6 }
-
-                if = {
-                    limit = { has_idea = idea_hostile_officer_corps }
-                    remove_ideas = idea_hostile_officer_corps
-                }
-                if = {
-                    limit = { has_idea = idea_disobedient_officer_corps }
-                    remove_ideas = idea_disobedient_officer_corps
-                }
-            }
+        days_remove = 60
+        modifier = {
+            communism_drift = 0.05
         }
+    }
 }

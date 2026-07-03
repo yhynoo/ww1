@@ -1,36 +1,9 @@
-# tree
-    add_namespace = TUR_government_event
-
-    # heal the sick man
-        country_event = {
-            id = TUR_government_event.1
-            title = "Heal the Sick Man"
-            desc = TUR_government_event.1.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "We must all work on stabilizing the empire."
-                add_stability = 0.05        set_country_flag = TUR_conservative
-
-                # ai
-                ai_chance = { modifier = { is_going_communist = yes factor = 0 } }
-            }
-            option = {
-                name = "The Young Turks will win, eventually."
-                add_political_power = 50     set_country_flag = TUR_young_turk
-
-                # ai
-                ai_chance = { modifier = { or = { is_going_democrat = yes is_going_monarchist = yes } factor = 0 } }
-            }
-        }
-
 # decisions
     add_namespace = TUR_arrests
     add_namespace = TUR_egypt
 
     # arrests
-        country_event = {
+        news_event = {
             id = TUR_arrests.1
             title = "Young Turk Generals Arrested"
             desc = TUR_arrests.1.d
@@ -39,10 +12,42 @@
 
             option = {
                 name = "Alright."
+                retire_character = TUR_mustafa_kemal    retire_character = TUR_enver    retire_character = TUR_ahmet_cemal
+                
+                hidden_effect = { country_event = { id = TUR_arrests.2 days = 7 } }
+            }
+        }
 
-                retire_character = TUR_mustafa_kemal
-                retire_character = TUR_enver
-                retire_character = TUR_ahmet_cemal
+        country_event = {
+            id = TUR_arrests.2
+            title = "Opposition to Arrests"
+            desc = TUR_arrests.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Get it done once and for all."
+                custom_effect_tooltip = tt_young_turk_uprising
+                add_stability = 0.05
+
+                hidden_effect = { random = { chance = 25 news_event = { id = TUR_arrests.3 days = 7 } } }
+            }
+            option = {
+                name = "We must show understanding."
+                add_popularity = { ideology = communism popularity = 0.025 }
+            }
+        }
+
+        news_event = {
+            id = TUR_arrests.3
+            title = "Red Tea in the Harbor"
+            desc = TUR_arrests.3.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "We shall see."
+                start_civil_war = { ideology = communism army_ratio = 0.6 states = { 49 344 345 356 586 } }
             }
         }
 

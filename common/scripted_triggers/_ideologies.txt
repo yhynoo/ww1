@@ -2,8 +2,9 @@
     is_aggressive = {
         or = {
             has_country_flag = FRA_action_francaise
-            has_country_flag = HOL_monarchist
-            has_country_leader = { character = SPA_valeriano_weyler ruling_only = yes }
+
+            # HOL
+            has_idea = idea_authoritarian_tendencies_in_the_army
         }
     }
 
@@ -12,7 +13,6 @@
         or = {
             and = { original_tag = FRA not = { has_government = monarchism } }
             has_country_flag = HOL_democratic
-            has_country_flag = SPA_democratic
         }
     }
 

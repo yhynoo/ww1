@@ -47,11 +47,13 @@ can_have_wheat_affair = {
 
 can_have_opposition_event = {
     is_subject = no
+    longest_war_length > 5
+    any_enemy_country = { is_armistice_target = yes }
+
     or = {
-        and = { has_war = yes has_war_support < 0.4 longest_war_length > 11 }
+        has_war_support < 0.4
         surrender_progress > 0.15
     }
-    any_enemy_country = { is_armistice_target = yes }
 
     check_variable = { highest_party_popularity@exclude_ruling_party > 0.25 }
     not = { has_idea = idea_armistice_timeout }
@@ -80,10 +82,6 @@ can_trigger_uprising = {
         and = {                                 # germany won't fall apart unless in civil war.
             is_german_state = yes
             GER = { has_civil_war = no }
-        }
-        and = {
-            tag = ALG
-            FRA = { has_war_with = MOR }        # this is artificial for now, to make it playable until a better system is in place.
         }
     }
 }

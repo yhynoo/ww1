@@ -26,7 +26,7 @@
         if = {
             limit = { original_tag = TUR }
             add_political_power = 50
-            country_event = { id = TUR_government_event.1 hours = 6 }
+            custom_effect_tooltip = tt_sick_man
         }
         
         # default
@@ -231,8 +231,8 @@
         if = {
             limit = { original_tag = ITA }
             every_state = {
-                limit = { or = { state = 164 state = 204 state = 208 state = 273 } }
-                send_ultimatum_multiple_states = yes
+                limit = { or = { state = 44 state = 404 state = 106 state = 185 } }
+                add_claim_by = ROOT
             }
         }
 
@@ -361,13 +361,9 @@
         # ITA
         if = {
             limit = { original_tag = ITA }
-            if = {
-                limit = { not = { is_ally_with = AUS } }
-                every_state = { limit = { state = 39 } send_ultimatum_one_state = yes }
-            }
-            else = {
-                # if we're allies with Austria
-                every_state = { limit = { or = { state = 1 state = 32 } } send_ultimatum_multiple_states = yes }
+            every_state = {
+                limit = { or = { state = 164 state = 204 state = 208 state = 273 } }
+                send_ultimatum_multiple_states = yes
             }
         }
 
@@ -516,11 +512,11 @@
         # FRA
         if = {
             limit = { original_tag = FRA }
-            459 = {
+            460 = {
                 add_core_of = ROOT
                 add_resource = { type = tungsten amount = 8 }
             }
-            460 = {
+            459 = {
                 add_core_of = ROOT
                 add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
             }
@@ -616,6 +612,12 @@
         if = {
             limit = { original_tag = FRA }
             hidden_effect = { news_event = { id = FRA_unity_event.1 hours = 6 } }
+        }
+
+        # GER
+        if = {
+            limit = { original_tag = GER }
+            #
         }
 
         # ITA

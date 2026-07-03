@@ -1,5 +1,8 @@
 heal_the_sick_man = {
-    visible = { or = { has_idea = idea_hostile_officer_corps has_idea = idea_disobedient_officer_corps } }
+    visible = { 
+        has_completed_focus = XXX_government
+        or = { has_idea = idea_hostile_officer_corps has_idea = idea_disobedient_officer_corps }
+    }
     priority = 6
 }
 
