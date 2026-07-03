@@ -1,75 +1,68 @@
 characters = {
     SPA_jose_canalejas = {
         name = "José Canalejas"
-        country_leader = {
-            ideology = liberalism
-            traits = { trait_moderate }
-        }
+        country_leader = { ideology = liberalism    traits = { trait_moderate } }
     }
 
     SPA_eduardo_dato = {
         name = "Eduardo Dato"
-        country_leader = {
-            ideology = conservatism
-            traits = { trait_accountant }
-        }
+        country_leader = { ideology = conservatism  traits = { trait_accountant } }
     }
     SPA_alvaro_de_figueroa = {
         name = "Álvaro de Figueroa"
-        country_leader = {
-            ideology = liberalism
-            traits = { trait_opportunist }
-        }
-    }
-    SPA_antonio_maura = {
-        name = "Antonio Maura"
-        country_leader = {
-            ideology = conservatism
-            traits = { trait_war_enthusiast }
-        }
-    }
-    SPA_manuel_garcia_prieto = {
-        name = "Manuel García Prieto"
-        country_leader = {
-            ideology = liberalism
-            traits = { trait_moderate }
-        }
+        country_leader = { ideology = liberalism    traits = { trait_opportunist } }
     }
 
     SPA_alfonso_xiii = {
         name = "Alfonso XIII"
-        country_leader = {
-            ideology = absolutism
-            traits = { trait_weakling }
-        }
+        country_leader = { ideology = absolutism    traits = { trait_weakling } }
     }
     SPA_pablo_iglesias = {
         name = "Pablo Iglesias Posse"
-        country_leader = {
-            ideology = vanguardism
-            traits = { trait_labor_advocate }
+        country_leader = { ideology = vanguardism   traits = { trait_labor_advocate } }
+    }
+
+# army
+    SPA_valeriano_weyler = {
+        name = "Valeriano Weyler"
+        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_4" } }
+
+        country_leader = { ideology = state_autocracy trait = { trait_aggressive_expansionist trait_hardliner } }
+        corps_commander = {
+            traits = { ruthless }
+            skill = 3       attack_skill = 2        defense_skill = 1       planning_skill = 3      logistics_skill = 3
+        }
+    }
+    SPA_damaso_berenguer = {
+        name = "Dámaso Berenguer"
+        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_2" } }
+        corps_commander = {
+            traits = { organizer }
+            skill = 2       attack_skill = 1        defense_skill = 2       planning_skill = 2      logistics_skill = 1
+        }
+    }
+    SPA_jose_marina_vega = {
+        name = "José Marina Vega"
+        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_1" } }
+        corps_commander = {
+            traits = {  }
+            skill = 1       attack_skill = 1        defense_skill = 1       planning_skill = 1      logistics_skill = 2
         }
     }
 
-    # army
-    SPA_valeriano_weyler = {
-        name = "Valeriano Weyler"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_Europe_Generic_land_4"
-            }
+# navy
+    SPA_juan_bautista_aznar = {
+        name = "Juan Bautista Aznar"
+        portraits = { army = { large = "GFX_Portrait_Europe_Generic_navy_1" } }
+        navy_leader = {
+            skill = 2       attack_skill = 1        defense_skill = 2       maneuvering_skill = 2       coordination_skill = 1
         }
-        country_leader = {
-            ideology = constitutional_monarchy
-            trait = { trait_aggressive_expansionist trait_hardliner }
-        }
-        corps_commander = {
-            traits = { ruthless }
-            skill = 1
-            attack_skill = 2
-            defense_skill = 2
-            planning_skill = 1
-            logistics_skill = 1
+    }
+    SPA_jose_ferrandiz = {
+        name = "José Ferrándiz"
+        portraits = { army = { large = "GFX_Portrait_Europe_Generic_navy_2" } }
+        navy_leader = {
+            skill = 1       attack_skill = 2        defense_skill = 1       maneuvering_skill = 1       coordination_skill = 1
         }
     }
 }

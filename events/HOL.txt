@@ -13,11 +13,17 @@
 
             option = {
                 name = "We must commit to the civilian administration."
-                add_popularity = { ideology = democratic popularity = 0.05 }        set_country_flag = hol_democratic
+                add_popularity = { ideology = democratic popularity = 0.05 }        set_country_flag = HOL_democratic
+
+                # ai
+                ai_chance = { modifier = { is_going_monarchist = yes factor = 0 } }
             }
             option = {
                 name = "We did nothing wrong."
-                add_war_support = 0.05      set_country_flag = hol_militarist
+                add_war_support = 0.05      set_country_flag = HOL_monarchist
+
+                # ai
+                ai_chance = { modifier = { is_going_democrat = yes factor = 0 } }
             }
         }
 

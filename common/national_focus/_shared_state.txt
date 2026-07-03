@@ -11,6 +11,8 @@
         x = 0 y = 0
         cost = 10
 
+        ai_will_do = { factor = 1.5 }
+
         completion_reward = {
             state_government_effect = yes
         }
@@ -23,7 +25,10 @@
         mutually_exclusive = { focus = XXX_deterrence }
 
         allow_branch = { has_dominion_focuses = no has_unification_focuses = no }
-        ai_will_do = { modifier = { has_war_support < 0.5 factor = 0.5 } }
+        ai_will_do = { 
+            modifier = { has_war_support < 0.5 factor = 0.5 }
+            modifier = { is_defensive = yes factor = 0 }
+        } 
 
         available = {
             civil_war_government_lock = yes
@@ -69,6 +74,7 @@
         prerequisite = { focus = XXX_extend }
 
         available = {
+            has_war_support > 0.4
             civil_war_government_lock = yes
         }
 
@@ -109,7 +115,10 @@
         mutually_exclusive = { focus = XXX_extend }
 
         allow_branch = { has_dominion_focuses = no has_unification_focuses = no }
-        ai_will_do = { modifier = { has_war_support > 0.5 factor = 0.5 } }
+        ai_will_do = { 
+            modifier = { has_war_support > 0.5 factor = 0.5 } 
+            modifier = { is_aggressive = yes factor = 0 }
+        }
 
         available = {
             civil_war_government_lock = yes
@@ -211,6 +220,7 @@
 
         available = {
             civil_war_government_lock = yes
+            has_war = yes
         }
 
         relative_position_id = XXX_ethnocentrism

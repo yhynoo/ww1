@@ -1,3 +1,59 @@
+# historical
+    add_namespace = FRA_aviator
+    add_namespace = FRA_caillaux
+
+    # aviator
+        news_event = {
+            id = FRA_aviator.1
+            title = "French Aviator Crosses the Mediterranean"
+            desc = FRA_aviator.1.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Impressive."
+            }
+        }
+
+    # caillaux
+        country_event = {
+            id = FRA_caillaux.1
+            title = "Who Failed at Agadir?"
+            desc = FRA_caillaux.1.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Dismiss him."
+                retire_character = FRA_joseph_caillaux      set_country_flag = FRA_action_francaise
+
+                # event
+                hidden_effect = { news_event = { id = FRA_caillaux.2 hours = 6 } }
+            }
+            option = {
+                name = "This does not solve anything."
+                add_popularity = { ideology = democratic popularity = 0.05 }    set_country_flag = FRA_democratic
+                
+                # ai
+                ai_chance = { factor = 2 }
+            }
+        }
+
+        news_event = {
+            id = FRA_caillaux.2
+            title = "Caillaux Dismissed!"
+            desc = FRA_caillaux.2.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Echoes of Agadir shake France."
+            }
+        }
+
+
 # tree
     add_namespace = FRA_government_event
     add_namespace = FRA_extend_event
@@ -32,10 +88,16 @@
 
             option = {
                 name = "Justice is justice."
-                news_event = { id = FRA_government_event.3 hours = 6 }
+                add_stability = 0.025
+
+                random = { chance = 50 news_event = { id = FRA_government_event.3 days = 2 } }
+
+                # ai
+                ai_chance = { modifier = { is_going_monarchist = yes factor = 0 } }
             }
             option = {
                 name = "It is about sending the message."
+                add_popularity = { ideology = monarchism popularity = 0.05 }
             }
         }
 
@@ -48,13 +110,14 @@
 
             option = {
                 name = "Well..."
+                add_popularity = { ideology = democratic popularity = -0.02 }
             }
         }
 
     # ignite the atlas
         news_event = {
             id = FRA_extend_event.1
-            title = "France to Engage in Morocco Again?"
+            title = "France to Ignite the Atlas Again?"
             desc = FRA_extend_event.1.d
 
             is_triggered_only = yes
@@ -67,7 +130,7 @@
                     add_war_support = 0.025
                 }
                 if = {
-                    limit = { or = { original_tag = ENG original_tag = GER } }
+                    limit = { or = { original_tag = ENG original_tag = GER original_tag = SPA } }
                     answer_warning = yes
                 }
             }
@@ -79,7 +142,7 @@
             title = "L’Indigénat"
             desc = FRA_manpower_event.1.d
 
-            trigger = { tag = FRA focus_progress = { focus = FRA_men progress > 0.4 } }
+            trigger = { tag = FRA focus_progress = { focus = XXX_men progress > 0.4 } controls_state = 459 }
             fire_only_once = yes
 
             option = {

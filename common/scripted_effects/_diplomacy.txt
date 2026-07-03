@@ -45,3 +45,28 @@ effect_quiet_option = {
         add_war_support = -0.025
     }
 }
+
+manage_client_state_tags = {
+    # china
+        if = {
+            limit = { 
+                or = { original_tag = MAN is_chinese_warlord = yes } has_war_with = MAN 
+                not = { original_tag = FER }
+            }
+            set_cosmetic_tag = MAN_enemy_warlord
+        }
+        if = {
+            limit = { not = { has_war_with = MAN } has_cosmetic_tag = MAN_enemy_warlord }
+            drop_cosmetic_tag = yes
+        }
+        if = {
+            limit = { has_cosmetic_tag = MAN_empire not = { has_government = monarchism } }
+            drop_cosmetic_tag = yes
+        }
+
+    # cleanup of india tag
+        if = {
+            limit = { original_tag = RAJ is_subject = no }
+            drop_cosmetic_tag = yes
+        }
+}

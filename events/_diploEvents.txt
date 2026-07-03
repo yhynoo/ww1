@@ -23,7 +23,7 @@ add_namespace = warning
             }
 
             # ai
-            ai_chance = { modifier = { ai_wants_alliance = yes factor = 4 } }
+            ai_chance = { modifier = { ai_wants_alliance = yes factor = 2 } }
             add_ai_strategy = { type = alliance id = FROM value = 20 }
         }
         option = {
@@ -54,10 +54,10 @@ add_namespace = warning
 
         option = {
             name = "Great."
-            start_peace_conference = { tag = FROM score_factor = 0.1 }
+            start_peace_conference = { tag = FROM score_factor = 0.25 }
 
             # AI + event
-            ai_chance = { modifier = { ai_wants_armistice = yes factor = 4 } }
+            ai_chance = { modifier = { ai_wants_armistice = yes factor = 2.5 } }
         }
         option = {
             name = "The war shall continue."
@@ -188,6 +188,9 @@ add_namespace = warning
             
             # defiant
             answer_defiant = yes
+
+            # ai
+            ai_chance = { modifier = { has_idea = idea_war_loser factor = 0 } }
         }
     }
 
@@ -315,14 +318,13 @@ add_namespace = warning
             add_opinion_modifier = { target = FROM modifier = diplomatic_warning }
 
             # ai
-            add_ai_strategy = { type = contain id = FROM value = 20 }
+            ai_chance = { modifier = { has_opinion = { target = FROM value > 0 } factor = 0.5 } }
         }
         option = {
+            trigger = { has_opinion = { target = FROM value < 0 } }  # only if we hate them.
+
             name = "This is an open act of aggression!"
             create_wargoal = { target = FROM type = puppet_wargoal_focus }
-
-            # ai
-            ai_chance = { modifier = { has_war = yes factor = 0 } }
         }
     }
 

@@ -8,17 +8,7 @@ _internal_struggle = {
 
         ai_will_do = {
             modifier = {
-                and = {
-                    and = { has_stability > 0.5 communism > 0.2 }
-                    not = { or = { has_government = communism has_idea = idea_communists_organize } }
-                }
-                add = 6
-            }
-            modifier = {
-                and = {
-                    has_government = communism
-                    or = { has_idea = idea_democrats_organize has_idea = idea_monarchists_organize }
-                }
+                or = { is_going_democrat = yes is_going_monarchist = yes }
                 add = 6
             }
         }
@@ -37,17 +27,7 @@ _internal_struggle = {
 
         ai_will_do = {
             modifier = {
-                and = {
-                    and = { has_stability > 0.5 democratic > 0.2 }
-                    not = { or = { has_government = democratic has_idea = idea_democrats_organize } }
-                }
-                add = 6
-            }
-            modifier = {
-                and = {
-                    has_government = democratic
-                    or = { has_idea = idea_communists_organize has_idea = idea_monarchists_organize }
-                }
+                or = { is_going_communist = yes is_going_monarchist = yes }
                 add = 6
             }
         }
@@ -66,17 +46,7 @@ _internal_struggle = {
 
         ai_will_do = {
             modifier = {
-                and = {
-                    and = { has_stability > 0.5 monarchism > 0.2 }
-                    not = { or = { has_government = monarchism has_idea = idea_monarchists_organize } }
-                }
-                add = 6
-            }
-            modifier = {
-                and = {
-                    has_government = monarchism
-                    or = { has_idea = idea_communists_organize has_idea = idea_democrats_organize }
-                }
+                or = { is_going_communist = yes is_going_democrat = yes }
                 add = 6
             }
         }

@@ -7,7 +7,7 @@ add_namespace = unrest
 # drift
     news_event = {
         id = drift.1
-        title = "Our Alignment Contested?"
+        title = "[opposition_party] Question Our Leadership?"
         desc = drift.1.d
 
         trigger = { can_have_ideology_event = yes }
@@ -15,7 +15,7 @@ add_namespace = unrest
         mean_time_to_happen = { months = 2 }
 
         option = {
-            name = "Interesting."
+            name = "What do they know?"
             add_stability = -0.025
             hidden_effect = { country_event = { id = drift.2 days = 7 random_days = 14 } }
         }
@@ -38,6 +38,12 @@ add_namespace = unrest
         option = {
             name = "Ignore them."
             opposition_idea = yes
+
+            # ai
+            ai_chance = {
+                modifier = { always = yes factor = 0.5 }
+                modifier = { is_ideologically_committed = yes factor = 0 }      # if we're already on trajectory - don't.
+            }
         }
     }
 
@@ -121,6 +127,9 @@ add_namespace = unrest
         option = {
             name = "Everyone must oppose this!"
             change_government_opposed = yes
+
+            # ai
+            ai_chance = { modifier = { is_ideologically_committed = yes factor = 0.5 } }
         }
     }
 

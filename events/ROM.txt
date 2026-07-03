@@ -1,0 +1,26 @@
+# other
+    add_namespace = ROM_alliance
+
+    # alliance with Greece and Serbia
+        country_event = {
+            id = ROM_alliance.1
+            title = "Alliance Against the Turks?"
+            desc = ROM_alliance.1.d
+
+            trigger = { tag = ROM focus_progress = { focus = XXX_awake progress > 0.4 } }
+            fire_only_once = yes
+
+            option = {
+                name = "Yes!"
+                every_country = {
+                    limit = {
+                        or = { tag = CRE tag = GRE tag = SER tag = SMS }
+                        is_guaranteeable = yes
+                    }
+                    country_event = { id = guarantees.1 hours = 6 }
+                }
+            }
+            option = {
+                name = "We will manage on our own."
+            }
+        }

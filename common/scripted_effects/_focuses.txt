@@ -15,6 +15,13 @@
             custom_effect_tooltip = tt_after_the_intervention       hidden_effect = { country_event = { id = HOL_government_event.1 hours = 6 } }
         }
 
+        # SPA
+        if = {
+            limit = { original_tag = SPA }
+            add_political_power = 50
+            country_event = { id = SPA_government_event.1 hours = 6 }
+        }
+
         # TUR
         if = {
             limit = { original_tag = TUR }
@@ -24,7 +31,7 @@
         
         # default
         if = {
-            limit = { not = { or = { original_tag = FRA original_tag = GER original_tag = HOL original_tag = ITA original_tag = JAP original_tag = MAN original_tag = RUS original_tag = TUR } } }
+            limit = { not = { or = { original_tag = FRA original_tag = GER original_tag = HOL original_tag = ITA original_tag = JAP original_tag = MAN original_tag = RUS original_tag = SPA original_tag = TUR } } }
             add_political_power = 100
         }
     }
@@ -160,6 +167,10 @@
         # SPA
         if = {
             limit = { original_tag = SPA }
+            169 = {
+                add_building_construction = { type = dockyard level = 1 instant_build = yes }
+                add_extra_state_shared_building_slots = 2
+            }
             290 = {
                 add_core_of = SPA
                 add_building_construction = { type = bunker   level = 2   instant_build = yes     province = { all_provinces = yes limit_to_victory_point > 0 } }
@@ -409,7 +420,7 @@
         if = {
             limit = { original_tag = SER }
             every_state = {
-                limit = { or = { is_core_of = CRO state = 33 state = 102 state = 84 } }
+                limit = { or = { is_core_of = CRO state = 33 state = 102 } }
                 add_claim_by = ROOT
             }
         }
@@ -465,16 +476,19 @@
         if = {
             limit = { original_tag = RUS }
             every_country = {
-                limit = { or = { tag = CRE tag = GRE tag = SER tag = SMS tag = ROM } is_subject = no not = { is_guaranteed_by = ROOT } }
+                limit = { or = { tag = CRE tag = GRE tag = SER tag = SMS tag = ROM } is_guaranteeable = yes }
                 country_event = { id = guarantees.1 hours = 6 }
-            }
-            every_state = {
-                limit = { is_core_of = GAL }
-                add_claim_by = ROOT
             }
         }
 
         # TUR
+        if = {
+            limit = { original_tag = TUR }
+            every_country = {
+                limit = { or = { tag = ENG tag = FRA } is_guaranteeable = yes }
+                country_event = { id = guarantees.1 hours = 6 }
+            }
+        }
 
         # default
         if = {
@@ -487,6 +501,7 @@
     # stability
     state_stability_effect = {
         
+        # GER
         if = {
             limit = { original_tag = GER }
             country_event = { id = GER_stability_event.1 hours = 6 }
@@ -566,6 +581,12 @@
             }
         }
 
+        # SPA
+        if = {
+            limit = { original_tag = SPA }
+            custom_effect_tooltip = tt_agrarian_unrest_in_spain
+        }
+
         # TUR
         if = {
             limit = { original_tag = TUR }
@@ -581,7 +602,7 @@
 
         # default
         if = {
-            limit = { not = { or = { original_tag = FRA original_tag = GER original_tag = GRE original_tag = JAP original_tag = RUS original_tag = SER original_tag = TUR } } }
+            limit = { not = { or = { original_tag = FRA original_tag = GER original_tag = GRE original_tag = JAP original_tag = RUS original_tag = SER original_tag = SPA original_tag = TUR } } }
             add_timed_idea = { idea = idea_agrarians years = 2 }
         }
     }

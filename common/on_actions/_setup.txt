@@ -19,8 +19,20 @@ on_actions = {
             }
 
         # events
+            FRA = {
+                # 1912
+                country_event = { id = FRA_caillaux.1 days = 12 }
+
+                # 1913
+                news_event = { id = FRA_aviator.1 months = 20 days = 23 }
+            }
+
             GER = {
                 news_event = { id = GER_equestrian.1 days = 26 }
+            }
+
+            SPA = {
+                news_event = { id = SPA_canalejas.1 months = 10 days = 12 }
             }
         }
     }
@@ -55,6 +67,9 @@ on_actions = {
                 limit = { is_subject = yes has_elections = yes }
                 set_politics = { elections_allowed = no }
             }
+
+        # tags 
+            manage_client_state_tags = yes
 
         # unifiers' ambitions
             if = {
@@ -95,30 +110,6 @@ on_actions = {
                         }
                     }
                 }
-            }
-
-            # china tags
-            if = {
-                limit = { 
-                    or = { original_tag = MAN is_chinese_warlord = yes } has_war_with = MAN 
-                    not = { original_tag = FER }
-                }
-                set_cosmetic_tag = MAN_enemy_warlord
-            }
-            if = {
-                limit = { not = { has_war_with = MAN } has_cosmetic_tag = MAN_enemy_warlord }
-                drop_cosmetic_tag = yes
-            }
-            if = {
-                limit = { has_cosmetic_tag = MAN_empire not = { has_government = monarchism } }
-                drop_cosmetic_tag = yes
-            }
-
-        # india
-            # cleanup of india tag
-            if = {
-                limit = { original_tag = RAJ is_subject = no }
-                drop_cosmetic_tag = yes
             }
         }
     }

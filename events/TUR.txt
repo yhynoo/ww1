@@ -11,11 +11,17 @@
 
             option = {
                 name = "We must all work on stabilizing the empire."
-                add_stability = 0.05        set_country_flag = tur_conservative
+                add_stability = 0.05        set_country_flag = TUR_conservative
+
+                # ai
+                ai_chance = { modifier = { is_going_communist = yes factor = 0 } }
             }
             option = {
                 name = "The Young Turks will win, eventually."
-                add_political_power = 50     set_country_flag = tur_young_turk
+                add_political_power = 50     set_country_flag = TUR_young_turk
+
+                # ai
+                ai_chance = { modifier = { or = { is_going_democrat = yes is_going_monarchist = yes } factor = 0 } }
             }
         }
 

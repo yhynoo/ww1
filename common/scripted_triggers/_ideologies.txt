@@ -1,0 +1,71 @@
+# this trigger excludes the deterrence path
+    is_aggressive = {
+        or = {
+            has_country_flag = FRA_action_francaise
+            has_country_flag = HOL_monarchist
+            has_country_leader = { character = SPA_valeriano_weyler ruling_only = yes }
+        }
+    }
+
+# this trigger excludes taking the aggressive path
+    is_defensive = {
+        or = {
+            and = { original_tag = FRA not = { has_government = monarchism } }
+            has_country_flag = HOL_democratic
+            has_country_flag = SPA_democratic
+        }
+    }
+
+# this is used to check whether the ai should choose a political direction, or it already has one.
+    is_ideologically_committed = {
+        or = {
+            is_subject = yes
+            and = {
+                check_variable = { highest_party_ideology@exclude_ruling_party = token:communism }
+                or = { is_going_democrat = yes is_going_monarchist = yes }
+            }
+            and = {
+                check_variable = { highest_party_ideology@exclude_ruling_party = token:democratic }
+                or = { is_going_communist = yes is_going_monarchist = yes }
+            }
+            and = {
+                check_variable = { highest_party_ideology@exclude_ruling_party = token:monarchism }
+                or = { is_going_communist = yes is_going_democrat = yes }
+            }
+        }
+    }
+
+# transitions
+    is_going_communist = {
+        not = { has_government = communism }
+        or = {
+            or = { has_country_flag = TUR_young_turk }
+            has_idea = idea_communists_organize
+        }
+    }
+
+    is_going_democrat = {
+        not = { has_government = democratic }
+        or = {
+            or = { 
+                has_country_flag = HOL_democratic 
+                has_country_flag = SPA_democratic
+                and = { tag = TUR has_completed_focus = XXX_deterrence }
+            }
+
+            has_idea = idea_democrats_organize
+        }
+    }
+
+    is_going_monarchist = {
+        not = { has_government = monarchism }
+        or = {
+            or = { 
+                has_country_flag = HOL_monarchist 
+                has_country_flag = FRA_action_francaise 
+                has_country_flag = SPA_monarchist 
+            }
+
+            has_idea = idea_monarchists_organize
+        }
+    }

@@ -22,7 +22,7 @@ ideas = {
                 war_support_weekly = -0.005
                 drift_defence_factor = -0.15
             }
-            civil_war_allowed = { 
+            allowed_civil_war = { 
                 always = yes 
             }
         }
@@ -33,8 +33,8 @@ ideas = {
         }
         idea_war_loser = {
             on_add = {
-                add_war_support = -0.25
-                add_popularity = { ideology = ROOT popularity = -0.15 }
+                add_war_support = -0.5
+                add_popularity = { ideology = ROOT popularity = -0.25 }
 
                 if = {
                     limit = { is_faction_leader = yes }
@@ -46,10 +46,17 @@ ideas = {
                         leave_faction = yes
                     }
                 }
+
+                set_rule = {
+                    can_create_factions = no
+                }
+            }
+            allowed_civil_war = { 
+                always = yes 
             }
             rule = {
                 can_join_factions = no
-                can_create_faction = no
+                can_create_factions = no
             }
         }
 
@@ -77,6 +84,9 @@ ideas = {
                     has_war = no
                     not = { has_country_flag = during_uprising }
                 }
+            }
+            rule = {
+                can_join_factions = no
             }
         }
         idea_uprising_administration = {

@@ -1,0 +1,119 @@
+peace_ai_desires = {
+
+    # taking
+        take_your_cores_and_claims = {                           # highest imperative
+            peace_action_type = { take_states }
+            enable = { ROOT.FROM.FROM.FROM = { or = { is_core_of = ROOT is_claimed_by = ROOT } } }
+
+            ai_desire = 100
+        }
+
+        take_close_or_colonies = {
+            peace_action_type = { take_states }
+            enable = { 
+                ROOT.FROM.FROM.FROM = { 
+                    or = { 
+                        not = { is_core_of = ROOT.FROM }
+                        any_neighbor_state = { or = { is_owned_by = ROOT is_core_of = ROOT } } 
+                    }
+                } 
+            }
+            ai_desire = 10
+        }
+
+        costa_del_sol = {
+            peace_action_type = { take_states }
+            enable = { 
+                ROOT.FROM.FROM.FROM = { is_coastal = yes }
+            }
+            ai_desire = 5
+        }
+
+        avoid_their_cores = {
+            peace_action_type = { take_states }
+            enable = {
+                ROOT.FROM.FROM.FROM = { 
+                    and = {
+                        not = { or = { is_core_of = ROOT is_claimed_by = ROOT } }
+                        or = {
+                            is_on_continent = europe
+                            and = {
+                                is_coastal = no
+                                not = { any_neighbor_state = { or = { is_owned_by = ROOT is_core_of = ROOT } } }
+                            }
+                        }
+                    }
+                }
+            }
+            ai_desire = -300
+        }
+
+    # puppeting
+        set_up_dominions = {
+            peace_action_type = { puppet }
+            enable = {
+                or = {
+                    ROOT.FROM = { 
+                        exists = no
+                        capital_scope = { is_on_continent = europe }
+                    }
+                }
+            }
+            ai_desire = 30
+        }
+
+        puppet_until_done = {
+            peace_action_type = { puppet }
+            enable = { ROOT.FROM = { pc_is_puppeted_by = ROOT } }
+            ai_desire = 200
+        }
+
+        dont_puppet_otherwise = {
+            peace_action_type = { puppet }
+            enable = {
+                or = {
+                    and = { ROOT = { has_government = democratic } ROOT.FROM = { has_government = democratic } }
+                    ROOT.FROM = { is_puppeted = yes }
+                }
+            }
+            ai_desire = -60
+        }
+
+    # liberate
+        democrats_liberate = {
+            peace_action_type = { liberate }
+            enable = {
+                ROOT = { has_government = democratic }
+                ROOT.FROM = { has_government = democratic }
+            }
+
+            ai_desire = 60
+        }
+
+        liberate_until_done = {
+            peace_action_type = { liberate }
+            enable = { ROOT.FROM = { pc_is_liberated = yes } }
+            ai_desire = 200
+        }
+
+        dont_liberate_monarchies = {
+            peace_action_type = liberate
+            enable = {
+                or = {
+                    has_government = monarchism
+                    and = {
+                        ROOT = { has_government = democratic }
+                        ROOT.FROM = { has_government = monarchism }
+                    }
+                }
+            }
+            ai_desire = -200
+        }
+
+    # other
+        dont_force = {
+            peace_action_type = { force_government }
+            enable = { always = yes }
+            ai_desire = -200
+        }
+}

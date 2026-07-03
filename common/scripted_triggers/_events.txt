@@ -11,8 +11,9 @@ ai_wants_alliance = {
 ai_wants_armistice = {
     or = {
         has_idea = idea_war_exhaustion
-        surrender_progress > 0.05
+        surrender_progress > 0.15
         has_war_support < 0.25
+        has_stability < 0.2
     }
 }
 
@@ -63,7 +64,7 @@ can_fall_apart = {
             and = { surrender_progress > 0.1 has_stability < 0.6 }
             and = { surrender_progress > 0.25 has_stability < 0.8 }
         }
-        and = { has_idea = idea_war_loser has_stability < 0.45 }
+        and = { has_idea = idea_war_loser has_stability < 0.8 }
         has_stability < 0.2 
     }
 }
@@ -71,8 +72,20 @@ can_fall_apart = {
 can_trigger_uprising = {
     exists = no 
     has_capitulated = no 
+    
     not = { has_country_flag = country_defeated }
     any_core_state = { is_controlled_by = ROOT }
+
+    not = {
+        and = {                                 # germany won't fall apart unless in civil war.
+            is_german_state = yes
+            GER = { has_civil_war = no }
+        }
+        and = {
+            tag = ALG
+            FRA = { has_war_with = MOR }        # this is artificial for now, to make it playable until a better system is in place.
+        }
+    }
 }
 
 is_armistice_target = {

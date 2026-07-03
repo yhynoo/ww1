@@ -2,6 +2,10 @@ can_choose_ambition = {
     or = { original_tag = EGY original_tag = FER original_tag = SYR }
 }
 
+is_austrian_subject = {
+    or = { original_tag = BOS original_tag = CRO original_tag = CZE original_tag = GAL original_tag = HUN original_tag = TRA }
+}
+
 is_arab_state = {
     or = { original_tag = EGY original_tag = LEB original_tag = OMA original_tag = SAU original_tag = SYR original_tag = YEM }
 }
@@ -11,7 +15,10 @@ is_chinese_warlord = {
 }
 
 is_german_state = {
-    or = { original_tag = BAD original_tag = BAY original_tag = HAN original_tag = LUX original_tag = MEK original_tag = PRU original_tag = SAX original_tag = SCH original_tag = THU original_tag = WES }
+    or = { 
+        original_tag = BAD original_tag = BAY original_tag = HAN original_tag = LUX original_tag = MEK original_tag = SAX original_tag = SCH original_tag = THU original_tag = WES 
+        has_cosmetic_tag = GER_kingdom_of_prussia
+    }
 }
 
 is_greek_state = {

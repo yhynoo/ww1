@@ -1,4 +1,4 @@
-FRA_against_germany = {
+FRA_against_GER = {
     allowed = { original_tag = FRA }
     enable = { always = yes }
 
@@ -6,7 +6,16 @@ FRA_against_germany = {
     ai_strategy = { type = alliance     id = RUS    value = 60 }
 
     # GER
-    ai_strategy = { type = contain     id = GER    value = 60 }
+    ai_strategy = { type = contain        id = GER    value = 20 }
+    ai_strategy = { type = antagonize     id = GER    value = 60 }
+}
+
+FRA_against_HOL = {
+    allowed = { original_tag = FRA }
+    enable = { HOL = { controls_state = 6 } }
+
+    ai_strategy = { type = contain        id = HOL    value = 20 }
+    ai_strategy = { type = antagonize     id = HOL    value = 30 }
 }
 
 FRA_supports = {
