@@ -38,6 +38,7 @@ uprising_reaction_event = {
     save_event_target_as = uprising_country
     every_country = {
         limit = {
+            not = { tag = PREV }
             or = {
                 tag = PREV.PREV
                 any_state = {
@@ -94,10 +95,15 @@ setup_local_militias = {
     if = {
         limit = { not = { has_template = "Local Militias" } }
         division_template = {
-            name = "Local Militia"
+            name = "Local Militias"
             regiments = {
                 infantry = { x = 0 y = 0 }      infantry = { x = 1 y = 0 }
             }
         }
     }
+}
+
+setup_colonialist_militias = {
+    PREV = { setup_local_militias = yes }
+    create_unit = { division = "name = \"Local Militias\" division_template = \"Local Militias\"" count = 3 owner = PREV }
 }

@@ -1,0 +1,97 @@
+add_namespace = uprising
+add_namespace = warlords
+
+# uprising
+    # choice
+        country_event = {
+            id = uprising.1
+            title = "Uprising in [uprising_country.GetNameDef]!"
+            desc = uprising.1.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "To arms!"
+                declare_war_on = { target = event_target:uprising_country type = take_claimed_state }
+
+                # event
+                event_target:uprising_country = { news_event = uprising.2 }
+            }
+            option = {
+                name = "Let them do as they wish."
+                add_political_power = -15
+                
+                every_state = {
+                    limit = { is_owned_by = event_target:uprising_country is_core_of = ROOT }
+                    remove_core_of = ROOT
+                }
+                every_state = {
+                    limit = { is_owned_by = event_target:uprising_country is_claimed_by = ROOT }
+                    remove_claim_by = ROOT
+                }
+
+                # event
+                event_target:uprising_country = { news_event = uprising.3 }
+            }
+        }
+    
+    # outcomes
+        news_event = {
+            id = uprising.2
+            title = "[ROOT.GetAdjective] Uprising"
+            desc = uprising.2.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+
+        news_event = {
+            id = uprising.3
+            title = "[ROOT.GetName] Independent!"
+            desc = uprising.3.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Alright."
+            }
+        }
+
+    # after
+        news_event = {
+            id = uprising.4
+            hidden = yes
+
+            is_triggered_only = yes
+
+            immediate = {
+                clr_country_flag = during_uprising
+                mark_focus_tree_layout_dirty = yes
+            }
+        }
+
+# warlords
+    country_event = {
+        id = warlords.1
+        title = "[warlord_country.GetNameDefCap] Attempts Self-Governance"
+        desc = warlords.1.d
+
+        is_triggered_only = yes
+
+        option = {
+            name = "This is unacceptable."
+            add_war_support = 0.05
+            declare_war_on = { target = event_target:warlord_country type = take_claimed_state }
+        }
+        option = {
+            name = "We shall accept this."
+            puppet = event_target:warlord_country
+        }
+    }
+
+#

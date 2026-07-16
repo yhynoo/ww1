@@ -1,5 +1,6 @@
 state_government_text = {
     name = state_government_text
+    text = { trigger = { original_tag = AUS } localization_key = AUS_government }
     text = { trigger = { original_tag = ENG } localization_key = ENG_government }
     text = { trigger = { original_tag = FRA } localization_key = FRA_government }
     text = { trigger = { original_tag = GER } localization_key = GER_government }
@@ -20,12 +21,10 @@ state_extend_text = {
     text = { trigger = { original_tag = ENG } localization_key = ENG_extend }
     text = { trigger = { original_tag = FRA } localization_key = FRA_extend }
     text = { trigger = { original_tag = GER } localization_key = GER_extend }
-    text = { trigger = { original_tag = GRE } localization_key = GRE_extend }
     text = { trigger = { original_tag = HOL } localization_key = HOL_extend }
     text = { trigger = { original_tag = ITA } localization_key = ITA_extend }
     text = { trigger = { original_tag = JAP } localization_key = JAP_extend }
     text = { trigger = { original_tag = MAN } localization_key = MAN_extend }
-    text = { trigger = { original_tag = ROM } localization_key = ROM_extend }
     text = { trigger = { original_tag = RUS } localization_key = RUS_extend }
     text = { trigger = { original_tag = SAF } localization_key = SAF_extend }
     text = { trigger = { original_tag = SER } localization_key = SER_extend }
@@ -93,8 +92,18 @@ state_deterrence_text = {
     text = { localization_key = default_deterrence }
 }
 
+state_stability_text = {
+    name = state_stability_text
+    text = { trigger = { original_tag = GER } localization_key = GER_stability }
+    text = { trigger = { original_tag = RUS } localization_key = RUS_stability }
+
+    # default
+    text = { localization_key = default_stability }
+}
+
 state_agrarianism_text = {
     name = state_agrarianism_text
+    text = { trigger = { original_tag = AUS } localization_key = AUS_agrarianism }
     text = { trigger = { original_tag = ENG } localization_key = ENG_agrarianism }
     text = { trigger = { original_tag = FRA } localization_key = FRA_agrarianism }
     text = { trigger = { original_tag = GER } localization_key = GER_agrarianism }
@@ -111,12 +120,23 @@ state_agrarianism_text = {
 
 state_unity_text = {
     name = state_unity_text
+    text = { trigger = { original_tag = AUS } localization_key = AUS_unity }
     text = { trigger = { original_tag = ENG } localization_key = ENG_unity }
     text = { trigger = { original_tag = FRA } localization_key = FRA_unity }
     text = { trigger = { original_tag = GER } localization_key = GER_unity }
     text = { trigger = { original_tag = ITA } localization_key = ITA_unity }
     text = { trigger = { original_tag = MAN } localization_key = MAN_unity }
+    text = { trigger = { original_tag = RUS } localization_key = RUS_unity }
+    text = { trigger = { original_tag = SER } localization_key = SER_unity }
 
     # default
     text = { localization_key = default_unity }
+}
+
+state_administration_text = {
+    name = state_administration_text
+    text = { trigger = { original_tag = GER } localization_key = GER_administration }
+
+    # default
+    text = { localization_key = default_administration }
 }

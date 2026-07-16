@@ -129,6 +129,18 @@ add_namespace = dominion
             }
         }
 
+    # reset tree
+        country_event = {
+            id = dominion.8
+            hidden = yes
+
+            immediate = {
+                uncomplete_national_focus = { focus = XXX_autonomy uncomplete_children = yes }
+                uncomplete_national_focus = { focus = XXX_allegiance uncomplete_children = yes }
+                # mark_focus_tree_layout_dirty = yes
+            }
+        }
+
 # ALLEGIANCE
     # Subject chose the allegiance path
         country_event = {

@@ -1,270 +1,50 @@
-_arab_unification = {
-    assume_arab_legacy = {
+
+default_unification = {
+    announce_unification = {
         icon = generic_nationalism
 
         available = { 
-            has_completed_focus = XXX_destiny
+            check_whether_unified = yes
         }
-        ai_will_do = { add = 6 }
+
+        ai_will_do = { modifier = { always = yes add = 24 } }
 
         complete_effect = {
-            set_country_flag = completed_unification
+            set_country_flag = assumed_legacy
             mark_focus_tree_layout_dirty = yes
-            
-            # event to choose capital
-            remove_ideas = idea_united_in_destiny
         }
     }
-    demand_arab_submit = {
+    demand_submit = {
         icon = generic_prepare_civil_war
         fire_only_once = yes
-        
+        cost = 50
+
         targets_dynamic = yes
         target_trigger = {
             FROM = {
                 not = { has_war_with = ROOT }
-                or = { 
-                    original_tag = ASY
-                    is_arab_state = yes 
-                }
+                check_unification_targets = yes
             }
         }
 
-        cost = 75
         ai_will_do = {
-            modifier = { 
-                or = {
-                    FROM = { is_subject = no }
-                    any_country = { limit = { has_subject = FROM } has_war = yes }
+            modifier = { has_war = no add = 2 }
+            modifier = { strength_ratio = { tag = FROM ratio > 2 } add = 3.5 } 
+            modifier = {
+                FROM = { 
+                    or = {
+                        is_subject = no
+                        and = { is_subject = yes any_country = { has_subject = FROM has_war = yes } }
+                    } 
+                    factor = 2 
                 }
-                factor = 2
-            }
-            modifier = {
-                has_completed_focus = XXX_ethnocentrism
-                add = 2
-            }
-            modifier = {
-                strength_ratio = { tag = FROM ratio > 1.5 }
-                add = 4
             }
         }
 
         complete_effect = {
-            every_state = {
-                limit = { 
-                    is_owned_by = FROM 
-                    not = { or = { is_claimed_by = ROOT is_core_of = ROOT } }
-                }
-                add_claim_by = ROOT
-            }
-
             FROM = {
                 country_event = { id = unification.2 hours = 6 }
-                effect_overlord_warning = yes
-            }
-        }
-    }
-}
-
-_chinese_unification = {
-    assume_chinese_legacy = {
-        visible = { not = { original_tag = MAN } }
-        icon = generic_nationalism
-
-        available = { 
-            has_completed_focus = XXX_destiny
-            MAN = { exists = no } 
-        }
-        ai_will_do = { add = 6 }
-
-        complete_effect = {
-            set_country_flag = completed_unification
-            mark_focus_tree_layout_dirty = yes
-            
-            set_capital = { state = 608 }
-            remove_ideas = idea_united_in_destiny
-        }
-    }
-    demand_chinese_submit = {
-        icon = generic_prepare_civil_war
-        fire_only_once = yes
-        
-        targets_dynamic = yes
-        target_trigger = {
-            FROM = {
-                not = { has_war_with = ROOT }
-                or = { 
-                    original_tag = MAN original_tag = TIB 
-                    is_chinese_warlord = yes 
-                }
-            }
-        }
-
-        cost = 75
-        ai_will_do = {
-            modifier = { 
-                or = {
-                    FROM = { is_subject = no }
-                    any_country = { limit = { has_subject = FROM } has_war = yes }
-                }
-                factor = 2
-            }
-            modifier = {
-                has_completed_focus = XXX_ethnocentrism
-                add = 2
-            }
-            modifier = {
-                strength_ratio = { tag = FROM ratio > 1.5 }
-                add = 4
-            }
-        }
-
-        complete_effect = {
-            every_state = {
-                limit = { 
-                    is_owned_by = FROM 
-                    not = { or = { is_claimed_by = ROOT is_core_of = ROOT } }
-                }
-                add_claim_by = ROOT
-            }
-
-            FROM = {
-                country_event = { id = unification.2 hours = 6 }
-                effect_overlord_warning = yes
-            }
-        }
-    }
-}
-
-_german_unification = {
-    assume_german_legacy = {
-        visible = { not = { original_tag = GER } }
-        icon = generic_nationalism
-
-        available = { 
-            has_completed_focus = XXX_destiny
-            GRE = { exists = no } 
-        }
-        ai_will_do = { add = 6 }
-
-        complete_effect = {
-            set_country_flag = completed_unification
-            mark_focus_tree_layout_dirty = yes
-            
-            set_capital = { state = 47 }
-            remove_ideas = idea_united_in_destiny
-        }
-    }
-    demand_germans_submit = {
-        icon = generic_prepare_civil_war
-        fire_only_once = yes
-        
-        targets_dynamic = yes
-        target_trigger = {
-            FROM = {
-                not = { has_war_with = ROOT }
-                or = { original_tag = GER is_german_state = yes }
-            }
-        }
-
-        cost = 75
-        ai_will_do = {
-            modifier = { 
-                or = {
-                    FROM = { is_subject = no }
-                    any_country = { limit = { has_subject = FROM } has_war = yes }
-                }
-                factor = 2
-            }
-            modifier = {
-                has_completed_focus = XXX_ethnocentrism
-                add = 2
-            }
-            modifier = {
-                strength_ratio = { tag = FROM ratio > 1.5 }
-                add = 4
-            }
-        }
-
-        complete_effect = {
-            every_state = {
-                limit = { 
-                    is_owned_by = FROM 
-                    not = { or = { is_claimed_by = ROOT is_core_of = ROOT } }
-                }
-                add_claim_by = ROOT
-            }
-
-            FROM = {
-                country_event = { id = unification.2 hours = 6 }
-                effect_overlord_warning = yes
-            }
-        }
-    }
-}
-
-_greek_unification = {
-    assume_greek_legacy = {
-        visible = { not = { original_tag = GRE } }
-        icon = generic_nationalism
-
-        available = { 
-            has_completed_focus = XXX_destiny
-            GRE = { exists = no } 
-        }
-        ai_will_do = { add = 6 }
-
-        complete_effect = {
-            set_country_flag = completed_unification
-            mark_focus_tree_layout_dirty = yes
-            
-            set_capital = { state = 47 }
-            remove_ideas = idea_united_in_destiny
-        }
-    }
-    demand_greeks_submit = {
-        icon = generic_prepare_civil_war
-        fire_only_once = yes
-        
-        targets_dynamic = yes
-        target_trigger = {
-            FROM = {
-                not = { has_war_with = ROOT }
-                or = { original_tag = GRE is_greek_state = yes }
-            }
-        }
-
-        cost = 75
-        ai_will_do = {
-            modifier = { 
-                or = {
-                    FROM = { is_subject = no }
-                    any_country = { limit = { has_subject = FROM } has_war = yes }
-                }
-                factor = 2
-            }
-            modifier = {
-                has_completed_focus = XXX_ethnocentrism
-                add = 2
-            }
-            modifier = {
-                strength_ratio = { tag = FROM ratio > 1.5 }
-                add = 4
-            }
-        }
-
-        complete_effect = {
-            every_state = {
-                limit = { 
-                    is_owned_by = FROM 
-                    not = { or = { is_claimed_by = ROOT is_core_of = ROOT } }
-                }
-                add_claim_by = ROOT
-            }
-
-            FROM = {
-                country_event = { id = unification.2 hours = 6 }
-                effect_overlord_warning = yes
+                effect_overlord_warning_country = yes
             }
         }
     }

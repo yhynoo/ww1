@@ -19,7 +19,7 @@
     # caillaux
         country_event = {
             id = FRA_caillaux.1
-            title = "Who Failed at Agadir?"
+            title = "Who Abandoned Agadir?"
             desc = FRA_caillaux.1.d
 
             is_triggered_only = yes
@@ -55,7 +55,7 @@
 
 
 # tree
-    add_namespace = FRA_government_event
+    add_namespace = FRA_agadir
     add_namespace = FRA_extend_event
     add_namespace = FRA_manpower_event
     add_namespace = FRA_ethnocentrism_event
@@ -63,9 +63,9 @@
 
     # agadir trials
         news_event = {
-            id = FRA_government_event.1
+            id = FRA_agadir.1
             title = "‘Agadir Trials’ Commence in Algiers"
-            desc = FRA_government_event.1.d
+            desc = FRA_agadir.1.d
 
             is_triggered_only = yes
             major = yes
@@ -75,44 +75,118 @@
                 if = {
                     limit = { tag = FRA }
                     custom_effect_tooltip = tt_agadir_trials        hidden_effect = { activate_decision = agadir_trials_mission }
+
+                    hidden_effect = {
+                        country_event = { id = FRA_agadir.3 days = 7 }
+                        country_event = { id = FRA_agadir.4 days = 7 random_days = 14 }
+                    }
                 }
             }
         }
 
         country_event = {
-            id = FRA_government_event.2
-            title = "Dubious Evidence"
-            desc = FRA_government_event.2.d
+            id = FRA_agadir.2
+            title = "Trial Evidence Inconclusive"
+            desc = FRA_agadir.2.d
 
             is_triggered_only = yes
 
             option = {
-                name = "Justice is justice."
+                name = "We shall see about it."
                 add_stability = 0.025
-
-                random = { chance = 50 news_event = { id = FRA_government_event.3 days = 2 } }
-
-                # ai
-                ai_chance = { modifier = { is_going_monarchist = yes factor = 0 } }
-            }
-            option = {
-                name = "It is about sending the message."
-                add_popularity = { ideology = monarchism popularity = 0.05 }
             }
         }
 
-        news_event = {
-            id = FRA_government_event.3
-            title = "Action Française Questions Trial Outcome"
-            desc = FRA_government_event.3.d
+        # emir khalid (if stability > 30%)
+            country_event = {
+                id = FRA_agadir.3
+                title = "‘With You in Times of Danger’"
+                desc = FRA_agadir.3.d
 
-            is_triggered_only = yes
+                is_triggered_only = yes
+                trigger = { has_stability > 0.3 }
 
-            option = {
-                name = "Well..."
-                add_popularity = { ideology = democratic popularity = -0.02 }
+                option = {
+                    name = "Very well."
+                    every_state = {
+                        limit = { or = { state = 459 state = 460 } }
+                        add_compliance = 0.05
+                    }
+                }
             }
-        }
+
+        # ferhat abbas appears in Oran (if stability < 60%)
+            country_event = {
+                id = FRA_agadir.4
+                title = "Ferhat Abbas Appears in Oran"
+                desc = FRA_agadir.4.d
+
+                is_triggered_only = yes
+                trigger = { has_stability < 0.6 }
+
+                option = {
+                    name = "Invite their delegation."
+                    add_popularity = { ideology = democratic popularity = 0.025 }                
+                }
+                option = {
+                    name = "Arrest them."
+                    add_stability = 0.025
+
+                    # follow-up
+                    hidden_effect = { country_event = { id = FRA_agadir.5 days = 7 } }
+                }
+            }
+
+            country_event = {
+                id = FRA_agadir.5
+                title = "The Fox Awakens in the Desert"
+                desc = FRA_agadir.5.d
+
+                is_triggered_only = yes
+
+                option = {
+                    name = "Worrying."
+                    every_state = {
+                        limit = { or = { state = 459 state = 460 state = 514 } }
+                        add_core_of = ALG
+                    }
+
+                    hidden_effect = {
+                        random = { 
+                            chance = 50 
+                            country_event = { id = FRA_agadir.6 days = 14 }
+                        }
+                    }
+                }
+            }
+
+            country_event = {
+                id = FRA_agadir.6
+                hidden = yes
+
+                is_triggered_only = yes
+                immediate = { 
+                    ALG = { trigger_uprising = yes } 
+                    country_event = { id = FRA_agadir.7 days = 7 random_days = 7 }
+                }
+            }
+
+        # french algerian militias
+            country_event = {
+                id = FRA_agadir.7
+                title = "French Algerians Organize"
+                desc = FRA_agadir.7.d
+
+                is_triggered_only = yes
+                trigger = { has_war_with = ALG }
+
+                option = {
+                    name = "Good."
+                    set_province_controller = 7132      set_province_controller = 1013      set_province_controller = 4150          set_province_controller = 4116
+                    459 = { setup_colonialist_militias = yes }
+                }
+            }
+        #
 
     # ignite the atlas
         news_event = {

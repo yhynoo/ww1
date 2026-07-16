@@ -2,25 +2,34 @@ has_dominion_focuses = {
     is_subject = yes
 }
 
+# unification
 has_unification_focuses = {
+    check_whether_unified = no
+    not = { has_country_flag = assumed_legacy }
+}
+
+check_unification_targets = {
     or = {
-        # Arabia
-        is_arab_state = yes
+        and = { 
+            ROOT = { or = { original_tag = GRE is_greek_state = yes } }
+            and = { not = { tag = ROOT } or = { original_tag = GRE is_greek_state = yes } }
+        }
 
-        # China
-        is_chinese_warlord = yes
-
-        # Germany
-        is_german_state = yes
-
-        # Greece
-        is_greek_state = yes
+        # default
+        and = { not = { tag = ROOT } original_tag = ROOT }
     }
-    not = { has_country_flag = completed_unification }
+}
 
-    if = {
-        limit = { can_choose_ambition = yes }
-        has_country_flag = chose_unifier_identity
+check_whether_unified = {
+    not = {
+        or = {
+            and = { is_chinese_state = yes any_other_country = { or = { is_chinese_state = yes } exists = yes } }
+            and = { is_greek_state = yes any_other_country = { or = { is_greek_state = yes } exists = yes } }
+            and = { is_german_state = yes any_other_country = { or = { is_german_state = yes } exists = yes } }
+
+            # default
+            any_other_country = { original_tag = ROOT exists = yes }
+        }
     }
 }
 

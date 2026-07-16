@@ -220,7 +220,6 @@
 
         available = {
             civil_war_government_lock = yes
-            has_war = yes
         }
 
         relative_position_id = XXX_ethnocentrism
@@ -246,16 +245,7 @@
         cost = 10
 
         completion_reward = {
-            if = {
-                limit = { any_controlled_state = { is_claimed_by = ROOT not = { is_core_of = ROOT } } }
-                every_controlled_state = {
-                    limit = { is_claimed_by = ROOT not = { is_core_of = ROOT } }
-                    add_core_of = ROOT
-                }
-            }
-            else = {
-                custom_effect_tooltip = tt_administration
-            }
             add_stability = 0.05
+            state_administration_effect = yes
         }
     }

@@ -49,18 +49,39 @@ on_actions = {
     on_peaceconference_ended = {
         effect = {
             if = {
-                limit = { has_war = no }
+                limit = {
+                    # if we have the great war idea, but the following conditions are not met - the great war has ended.
+                    has_idea = idea_great_war
+                    not = {
+                        and = {
+                            or = { is_major = yes any_country = { has_war_together_with = ROOT is_major = yes } }
+                            any_enemy_country = is_major
+                        }
+                    }
+                }
                 add_timed_idea = { idea = idea_war_winner months = 12 }
-            }
-            FROM = { add_timed_idea = { idea = idea_war_loser months = 18 } }
-        }
-    }
 
-    on_peace = {
-        effect = {
-            if = {
-                limit = { has_country_flag = during_uprising exists = yes }
-                news_event = uprising.2
+                # the great war has ended.
+                every_country = {
+                    limit = { has_idea = idea_great_war }
+                    remove_ideas = idea_great_war
+                }
+            }
+
+            FROM = { 
+                if = {
+                    limit = {
+                        # if we have the great war idea, but the following conditions are not met - the great war has ended.
+                        has_idea = idea_great_war
+                        not = {
+                            and = {
+                                or = { is_major = yes any_country = { has_war_together_with = ROOT is_major = yes } }
+                                any_enemy_country = is_major
+                            }
+                        }
+                    }
+                    add_timed_idea = { idea = idea_war_loser months = 18 } 
+                }
             }
         }
     }
@@ -70,7 +91,7 @@ on_actions = {
             if = {
                 limit = {
                     or = {
-                        is_chinese_warlord = yes
+                        is_chinese_state = yes
                         has_country_flag = during_uprising
                     }
                 }

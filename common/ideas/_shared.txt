@@ -5,6 +5,9 @@ ideas = {
                 political_power_factor = -0.25
             }
         }
+        idea_great_war = {
+            #
+        }
 
     # IDEOLOGY
         idea_strikes = {
@@ -35,6 +38,9 @@ ideas = {
             on_add = {
                 add_war_support = -0.5
                 add_popularity = { ideology = ROOT popularity = -0.25 }
+                
+                # update the focus tree - maybe some puppets were released? or we were partitioned?
+                mark_focus_tree_layout_dirty = yes
 
                 if = {
                     limit = { is_faction_leader = yes }
@@ -56,7 +62,6 @@ ideas = {
             }
             rule = {
                 can_join_factions = no
-                can_create_factions = no
             }
         }
 
@@ -84,9 +89,6 @@ ideas = {
                     has_war = no
                     not = { has_country_flag = during_uprising }
                 }
-            }
-            rule = {
-                can_join_factions = no
             }
         }
         idea_uprising_administration = {
@@ -369,10 +371,18 @@ ideas = {
                 conscription_factor = 0.05
             }
         }
+        idea_volunteers = {
+            modifier = {
+                weekly_manpower = 400
+            }
+            on_add = {
+                add_equipment_to_stockpile = { type = infantry_equipment amount = 240 producer = ROOT }
+            }
+        }
         idea_united_in_destiny = {
             modifier = {
+                army_core_attack_factor = 0.05
                 offensive_war_stability_factor = 0.1
-                weekly_casualties_war_support = 0.1
             }
         }
         idea_old_elites = {

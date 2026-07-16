@@ -148,6 +148,11 @@ add_namespace = unrest
                 limit = { is_armistice_target = yes }
                 custom_effect_tooltip = tt_ask_for_armistice        country_event = { id = armistice.1 days = 2 }
             }
+
+            ai_chance = { 
+                modifier = { has_war_support > 0.4 factor = 0 } 
+                modifier = { has_war_support > 0.2 factor = 0.2 } 
+            }
         }
         option = {
             name = "The war is not over yet."

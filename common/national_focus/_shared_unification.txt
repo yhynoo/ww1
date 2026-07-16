@@ -20,7 +20,6 @@
 
         completion_reward = {
             add_ideas = idea_unification_ambitions
-            set_country_flag = allow_unification_decisions
         }
     }
 
@@ -39,6 +38,7 @@
 
         completion_reward = {
             add_war_support = 0.05
+            add_timed_idea = { idea = idea_volunteers years = 1 }
         }
     }
 
@@ -76,7 +76,7 @@
 
         completion_reward = {
             add_political_power = 100
-            custom_effect_tooltip = tt_destiny
+            add_ideas = idea_united_in_destiny
         }
     }
 
@@ -90,6 +90,10 @@
         allow_branch = {
             has_dominion_focuses = no
             has_unification_focuses = yes
+        }
+
+        available = {
+            civil_war_government_lock = yes
         }
 
         relative_position_id = XXX_government
