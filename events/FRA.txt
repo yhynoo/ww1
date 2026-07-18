@@ -1,6 +1,6 @@
 # historical
     add_namespace = FRA_aviator
-    add_namespace = FRA_caillaux
+    add_namespace = FRA_echoes
 
     # aviator
         news_event = {
@@ -16,24 +16,39 @@
             }
         }
 
-    # caillaux
+    # echoes of agadir
+        # march
         country_event = {
-            id = FRA_caillaux.1
+            id = FRA_echoes.1
+            title = "Action Française Marches in Marseille"
+            desc = FRA_echoes.1.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Worrying."
+                add_popularity = { ideology = monarchism popularity = 0.02 }
+            }
+        }
+
+        # caillaux
+        country_event = {
+            id = FRA_echoes.2
             title = "Who Abandoned Agadir?"
-            desc = FRA_caillaux.1.d
+            desc = FRA_echoes.2.d
 
             is_triggered_only = yes
 
             option = {
                 name = "Dismiss him."
-                retire_character = FRA_joseph_caillaux      set_country_flag = FRA_action_francaise
+                retire_character = FRA_joseph_caillaux
 
                 # event
-                hidden_effect = { news_event = { id = FRA_caillaux.2 hours = 6 } }
+                hidden_effect = { news_event = { id = FRA_echoes.3 hours = 6 } }
             }
             option = {
                 name = "This does not solve anything."
-                add_popularity = { ideology = democratic popularity = 0.05 }    set_country_flag = FRA_democratic
+                add_popularity = { ideology = democratic popularity = 0.05 }
                 
                 # ai
                 ai_chance = { factor = 2 }
@@ -41,9 +56,9 @@
         }
 
         news_event = {
-            id = FRA_caillaux.2
+            id = FRA_echoes.3
             title = "Caillaux Dismissed!"
-            desc = FRA_caillaux.2.d
+            desc = FRA_echoes.3.d
 
             is_triggered_only = yes
             major = yes
@@ -56,10 +71,10 @@
 
 # tree
     add_namespace = FRA_agadir
-    add_namespace = FRA_extend_event
-    add_namespace = FRA_manpower_event
-    add_namespace = FRA_ethnocentrism_event
-    add_namespace = FRA_unity_event
+    add_namespace = FRA_atlas
+    add_namespace = FRA_indigenat
+    add_namespace = FRA_entente
+    add_namespace = FRA_west_africa
 
     # agadir trials
         news_event = {
@@ -77,122 +92,113 @@
                     custom_effect_tooltip = tt_agadir_trials        hidden_effect = { activate_decision = agadir_trials_mission }
 
                     hidden_effect = {
-                        country_event = { id = FRA_agadir.3 days = 7 }
-                        country_event = { id = FRA_agadir.4 days = 7 random_days = 14 }
+                        country_event = { id = FRA_agadir.3 days = 7 random_days = 14 }
                     }
                 }
             }
         }
 
+        # 'with you in times of danger'
         country_event = {
             id = FRA_agadir.2
-            title = "Trial Evidence Inconclusive"
+            title = "‘With You in Times of Danger’"
             desc = FRA_agadir.2.d
 
             is_triggered_only = yes
 
             option = {
-                name = "We shall see about it."
-                add_stability = 0.025
+                name = "Very well."
+                every_state = { limit = { or = { state = 459 state = 460 } } add_compliance = 0.05 }
             }
         }
 
-        # emir khalid (if stability > 30%)
-            country_event = {
-                id = FRA_agadir.3
-                title = "‘With You in Times of Danger’"
-                desc = FRA_agadir.3.d
-
-                is_triggered_only = yes
-                trigger = { has_stability > 0.3 }
-
-                option = {
-                    name = "Very well."
-                    every_state = {
-                        limit = { or = { state = 459 state = 460 } }
-                        add_compliance = 0.05
-                    }
-                }
-            }
-
         # ferhat abbas appears in Oran (if stability < 60%)
-            country_event = {
-                id = FRA_agadir.4
-                title = "Ferhat Abbas Appears in Oran"
-                desc = FRA_agadir.4.d
+        country_event = {
+            id = FRA_agadir.3
+            title = "Ferhat Abbas Appears in Oran"
+            desc = FRA_agadir.3.d
 
-                is_triggered_only = yes
-                trigger = { has_stability < 0.6 }
+            is_triggered_only = yes
+            trigger = { has_stability < 0.6 }
 
-                option = {
-                    name = "Invite their delegation."
-                    add_popularity = { ideology = democratic popularity = 0.025 }                
-                }
-                option = {
-                    name = "Arrest them."
-                    add_stability = 0.025
+            option = {
+                name = "Arrest them."
+                add_stability = 0.025
 
-                    # follow-up
-                    hidden_effect = { country_event = { id = FRA_agadir.5 days = 7 } }
-                }
+                # event
+                hidden_effect = { country_event = { id = FRA_agadir.4 days = 7 } }
             }
-
-            country_event = {
-                id = FRA_agadir.5
-                title = "The Fox Awakens in the Desert"
-                desc = FRA_agadir.5.d
-
-                is_triggered_only = yes
-
-                option = {
-                    name = "Worrying."
-                    every_state = {
-                        limit = { or = { state = 459 state = 460 state = 514 } }
-                        add_core_of = ALG
-                    }
-
-                    hidden_effect = {
-                        random = { 
-                            chance = 50 
-                            country_event = { id = FRA_agadir.6 days = 14 }
-                        }
-                    }
-                }
+            option = {
+                name = "Invite their delegation."
+                add_popularity = { ideology = democratic popularity = 0.025 }                
             }
+        }
 
-            country_event = {
-                id = FRA_agadir.6
-                hidden = yes
+        country_event = {
+            id = FRA_agadir.4
+            title = "The Fox Awakens in the Desert"
+            desc = FRA_agadir.4.d
 
-                is_triggered_only = yes
-                immediate = { 
-                    ALG = { trigger_uprising = yes } 
-                    country_event = { id = FRA_agadir.7 days = 7 random_days = 7 }
+            is_triggered_only = yes
+
+            option = {
+                name = "Worrying."
+                every_state = {
+                    limit = { or = { state = 459 state = 460 state = 514 } }
+                    add_core_of = ALG
                 }
+
+                # hidden effect
+                hidden_effect = { random = { chance = 50 country_event = { id = FRA_agadir.5 days = 14 } } }
             }
+        }
+
+        country_event = {
+            id = FRA_agadir.5
+            hidden = yes
+
+            is_triggered_only = yes
+            immediate = { 
+                ALG = { trigger_uprising = yes } 
+                country_event = { id = FRA_agadir.6 days = 7 random_days = 7 }
+            }
+        }
 
         # french algerian militias
-            country_event = {
-                id = FRA_agadir.7
-                title = "French Algerians Organize"
-                desc = FRA_agadir.7.d
+        country_event = {
+            id = FRA_agadir.6
+            title = "French Algerians Organize"
+            desc = FRA_agadir.6.d
 
-                is_triggered_only = yes
-                trigger = { has_war_with = ALG }
+            is_triggered_only = yes
+            trigger = { has_war_with = ALG }
 
-                option = {
-                    name = "Good."
-                    set_province_controller = 7132      set_province_controller = 1013      set_province_controller = 4150          set_province_controller = 4116
-                    459 = { setup_colonialist_militias = yes }
-                }
+            option = {
+                name = "Good."
+                hidden_effect = { set_province_controller = 7132      set_province_controller = 1013      set_province_controller = 4150          set_province_controller = 4116 }
+                459 = { setup_colonialist_militias = yes }
             }
-        #
+        }
+
+        # end of trials
+        country_event = {
+            id = FRA_agadir.7
+            title = "Trials End Without Definitive Outcomes"
+            desc = FRA_agadir.7.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "We shall see about it."
+                add_political_power = 25
+            }
+        }
 
     # ignite the atlas
         news_event = {
-            id = FRA_extend_event.1
+            id = FRA_atlas.1
             title = "France to Ignite the Atlas Again?"
-            desc = FRA_extend_event.1.d
+            desc = FRA_atlas.1.d
 
             is_triggered_only = yes
             major = yes
@@ -212,95 +218,92 @@
 
     # l'indigenat
         country_event = {
-            id = FRA_manpower_event.1
+            id = FRA_indigenat.1
             title = "L’Indigénat"
-            desc = FRA_manpower_event.1.d
+            desc = FRA_indigenat.1.d
 
             trigger = { tag = FRA focus_progress = { focus = XXX_men progress > 0.4 } controls_state = 459 }
             fire_only_once = yes
 
             option = {
-                name = ""
+                name = "Abolish the ‘Evolué’ status."
+                add_ideas = idea_extended_citizenship
 
                 # gamble
-                random = { chance = 50 news_event = { id = FRA_manpower_event.2 hours = 6 } }
+                random = { chance = 50 news_event = { id = FRA_indigenat.2 hours = 6 } }
             }
             option = {
-                name = ""
+                name = "Maintain the code."
+                add_stability = 0.025
             }
         }
 
         news_event = {
-            id = FRA_manpower_event.2
-            title = "Unrest in Algiers"
-            desc = FRA_manpower_event.2.d
+            id = FRA_indigenat.2
+            title = "Unrest in the Colonies"
+            desc = FRA_indigenat.2.d
 
             is_triggered_only = yes
 
             option = {
                 name = "Awful."
+                add_political_power = -50
             }
         }
-
-    # exile act
+    
+    # entente
         news_event = {
-            id = FRA_ethnocentrism_event.1
-            title = "Discussions over the Exile Act"
-            desc = FRA_ethnocentrism_event.1.d
+            id = FRA_entente.1
+            title = "France Affirms the Entente"
+            desc = FRA_entente.1.d
 
-            trigger = { has_completed_focus = FRA_ethnocentrism monarchism > 0.4 }
-            mean_time_to_happen = { months = 3 }
-            fire_only_once = yes
+            is_triggered_only = yes
+            major = yes
 
             option = {
                 name = "Interesting."
-                country_event = { id = FRA_ethnocentrism_event.2 days = 7 }
             }
         }
 
-        country_event = {
-            id = FRA_ethnocentrism_event.2
-            title = "End of the Exile?"
-            desc = FRA_ethnocentrism_event.2.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = ""
-
-                # event
-                news_event = { id = FRA_ethnocentrism_event.3 hours = 6 }
-            }
-            option = {
-                name = ""
-            }
-        }
-
-        news_event = {
-            id = FRA_ethnocentrism_event.3
-            title = "Another Emperor in France?"
-            desc = FRA_ethnocentrism_event.3.d
-
-            is_triggered_only = yes
-            major = yes
-
-            option = {
-                name = "Alright."
-            }
-        }
-
-    # union sacrée
-        news_event = {
-            id = FRA_unity_event.1
-            title = "Union Sacrée Announced in France"
-            desc = FRA_unity_event.1.d
-
-            is_triggered_only = yes
-            major = yes
-
-            option = {
-                name = "Alright."
-            }
-        }
+    # west african uprising
 
 # elections
+    add_namespace = FRA_elections
+
+    country_event = {
+        id = FRA_elections.1
+        title = "Elections of [GetYear]"
+        desc = FRA_elections.1.d
+
+        is_triggered_only = yes
+        trigger = { tag = FRA }
+        
+        option = {
+            name = "[ROOT.GetLeader]."
+            add_stability = 0.025
+        }
+
+        # choices
+        option = {
+            trigger = { FRA_joseph_caillaux = { can_be_country_leader = yes is_country_leader = no } }
+            name = "Joseph Caillaux."   promote_character = FRA_joseph_caillaux
+        }
+        option = {
+            trigger = { 
+                FRA_edouard_herriot = { can_be_country_leader = yes is_country_leader = no } 
+                FRA_joseph_caillaux = { can_be_country_leader = no }
+            }
+            name = "Édouard Herriot."   promote_character = FRA_edouard_herriot
+        }
+        option = {
+            trigger = { FRA_emile_driant = { can_be_country_leader = yes is_country_leader = no } }
+            name = "Émile Driant."   promote_character = FRA_emile_driant
+        }
+        option = {
+            trigger = { 
+                FRA_georges_clemenceau = { can_be_country_leader = yes is_country_leader = no }
+                and = { has_war = yes has_completed_focus = XXX_unity } 
+            }
+            name = "Georges Clemenceau."   promote_character = FRA_georges_clemenceau
+        }
+    }

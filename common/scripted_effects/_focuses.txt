@@ -67,7 +67,7 @@
             create_wargoal = { target = MOR type = puppet_wargoal_focus } 
             
             # event
-            hidden_effect = { news_event = { id = FRA_extend_event.1 hours = 6 } }
+            hidden_effect = { news_event = { id = FRA_atlas.1 hours = 6 } }
         }
 
         # GER
@@ -188,10 +188,7 @@
         }
 
         # FRA
-        if = {
-            limit = { original_tag = FRA }
-            SPA = { country_event = { id = demands.3 hours = 6 } effect_overlord_warning_country = yes }
-        }
+        # to do
 
         # GER
         if = {
@@ -447,10 +444,8 @@
             limit = { original_tag = FRA }
             create_faction = "Entente"
 
-            every_country = {
-                limit = { or = { tag = ENG tag = RUS tag = SPA } }
-                country_event = { id = alliance.1 hours = 6 }
-            }
+            hidden_effect = { news_event = { id = FRA_entente.1 hours = 6 } }
+            every_country = { limit = { or = { tag = ENG tag = RUS tag = SPA } } country_event = { id = alliance.1 hours = 6 } }
         }
 
         # GER
@@ -640,15 +635,9 @@
 
     state_administration_effect = {
 
-        # GER
-        if = {
-            limit = { original_tag = GER }
-            custom_effect_tooltip = tt_mitteleuropa
-        }
-
         # default
         if = {
-            limit = { not = { or = { original_tag = GER } } }
+            limit = { always = yes }
             if = {
                 limit = { any_controlled_state = { is_claimed_by = ROOT not = { is_core_of = ROOT } } }
                 every_controlled_state = {

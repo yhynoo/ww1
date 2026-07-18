@@ -21,7 +21,8 @@ on_actions = {
         # events
             FRA = {
                 # 1912
-                country_event = { id = FRA_caillaux.1 days = 12 }
+                country_event = { id = FRA_echoes.1 days = 6 }
+                country_event = { id = FRA_echoes.2 days = 21 }
 
                 # 1913
                 news_event = { id = FRA_aviator.1 months = 20 days = 23 }
@@ -108,6 +109,7 @@ on_actions = {
 # - elections }
     on_new_term_election = {
         random_events = {
+            100 = FRA_elections.1
             100 = HOL_elections.1
         }
     }

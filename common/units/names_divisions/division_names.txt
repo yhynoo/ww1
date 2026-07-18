@@ -128,8 +128,8 @@
     XXX_GAR_4 = {
         name = "Troupes Coloniales"
 
-        for_countries = { BEL FRA }
-        can_use = { always = yes }      fallback_name = "%d. Troupes Coloniales"    link_numbering_with = { XXX_INF_3 }
+        for_countries = { FRA }
+        can_use = { always = yes }      fallback_name = "%d. Troupes Coloniales"    link_numbering_with = { XXX_INF_4 }
         division_types = { "infantry" }
 
         ordered = {
@@ -247,6 +247,20 @@
         ordered = {
             1 = { "%d. Tiroler Kaiserjäger" }       2 = { "%d. Kaiserjäger-Div." }    3 = { "%d. Tsch. Kaiserjäger-Div." }
             4 = { "%d. Kroat. Kaiserjäger-Div." }    5 = { "%d. Innsbrucker Kaiserjäger" }     6 = { "%d. Kaiserjäger-Div." }
+        }
+    }
+#
+
+# Belgium
+    BEL_GAR_1 = {
+        name = "Force Publique"
+
+        for_countries = { BEL }
+        can_use = { always = yes }      fallback_name = "%d. Reg. de Force Publique"    link_numbering_with = { XXX_INF_4 }
+        division_types = { "infantry" }
+
+        ordered = {
+            1 = { "%d. Reg. de Force Publique" }     2 = { "%d. Reg. de Force Publique" }     3 = { "%d. Reg. de Force Publique" }
         }
     }
 #
