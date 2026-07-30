@@ -1,89 +1,100 @@
-# decisions
-    add_namespace = TUR_arrests
-    add_namespace = TUR_egypt
+add_namespace = TUR_end
+add_namespace = TUR_capitulate
+add_namespace = TUR_southeast_war
 
-    # arrests
-        news_event = {
-            id = TUR_arrests.1
-            title = "Young Turk Generals Arrested"
-            desc = TUR_arrests.1.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "Alright."
-                retire_character = TUR_mustafa_kemal    retire_character = TUR_enver    retire_character = TUR_ahmet_cemal
-                
-                hidden_effect = { country_event = { id = TUR_arrests.2 days = 7 } }
-            }
-        }
-
+    # capitulate
         country_event = {
-            id = TUR_arrests.2
-            title = "Opposition to Arrests"
-            desc = TUR_arrests.2.d
+            id = TUR_capitulate.1
+            title = "[FROM.GetName] Offers an Armistice"
+            desc = TUR_capitulate.1.d
 
             is_triggered_only = yes
 
             option = {
-                name = "Get it done once and for all."
-                custom_effect_tooltip = tt_young_turk_uprising
-                add_stability = 0.05
-
-                hidden_effect = { random = { chance = 25 news_event = { id = TUR_arrests.3 days = 7 } } }
+                name = "Great."
+                start_peace_conference = { tag = TUR score_factor = 0.05 }
             }
             option = {
-                name = "We must show understanding."
-                add_popularity = { ideology = communism popularity = 0.025 }
+                name = "The war shall continue."
+                add_political_power = -25
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
             }
         }
 
+    # end
         news_event = {
-            id = TUR_arrests.3
-            title = "Red Tea in the Harbor"
-            desc = TUR_arrests.3.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "We shall see."
-                start_civil_war = { ideology = communism army_ratio = 0.6 states = { 49 344 345 356 586 } }
-            }
-        }
-
-    # egypt
-        country_event = {
-            id = TUR_egypt.1
-            title = "[TUR.GetNameDefCap] Offers Egypt"
-            desc = TUR_egypt.1.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "This is a good deal."
-                set_autonomy = { tag = EGY autonomous_state = autonomy_dominion }
-
-                # event
-                hidden_effect = { news_event = { id = TUR_egypt.2 hours = 6 } }
-            }
-            option = {
-                name = "We are not interested."
-            }
-        }
-
-        news_event = {
-            id = TUR_egypt.2
-            title = "The Turks Sell Egypt to [ENG.GetNameDef]"
-            desc = TUR_egypt.2.d
+            id = TUR_end.1
+            title = "War in Southeastern Europe Ends"
+            desc = TUR_end.1.d
 
             is_triggered_only = yes
             major = yes
 
             option = {
-                name = "Interesting."
-                if = {
-                    limit = { original_tag = TUR }
-                    manage_turkish_debt = yes
+                name = "Good."
+            }
+        }
+
+    # southeastern_europe_war
+        news_event = {
+            id = TUR_southeast_war.1
+            title = "Army Officers Threaten Another Coup?"
+            desc = TUR_southeast_war.1.d
+
+            trigger = {
+                tag = TUR
+                and = {
+                    has_war_with = ROM
+                    has_country_flag = southeastern_europe_war
                 }
+                or = {
+                    not = { controls_state = 211 } not = { controls_state = 212 } not = { controls_state = 586 }
+                }
+            }
+            fire_only_once = yes
+
+            option = {
+                name = "Traitors."
+                add_war_support = -0.05
+
+                hidden_effect = { country_event = { id = TUR_southeast_war.2 days = 7 } }
+            }
+        }
+
+        country_event = {
+            id = TUR_southeast_war.2
+            title = "Demands of TUR_capitulate"
+            desc = TUR_southeast_war.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Onwards we go."
+                add_political_power = -25
+
+                # event
+                random = { chance = 80 news_event = { id = TUR_southeast_war.3 hours = 6 } }
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+            }
+            option = {
+                name = "We must agree to their demands."
+                every_enemy_country = { country_event = TUR_capitulate.1 }
+            }
+        }
+
+        news_event = {
+            id = TUR_southeast_war.3
+            title = "Young Turk Officers Attack the Government!"
+            desc = TUR_southeast_war.3.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "To arms!"
+                start_civil_war = { ideology = communism states = { 49 344 345 } army_ratio = 0.45 }
             }
         }

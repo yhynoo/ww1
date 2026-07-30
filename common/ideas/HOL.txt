@@ -1,38 +1,5 @@
 ideas = {
     country = {
-        idea_after_the_intervention = {
-            modifier = {
-                stability_factor = -0.1
-                democratic_drift = -0.02
-            }
-            cancel = {
-                or = { 
-                    has_government = monarchism
-                    not = { controls_state = 6 }
-                }
-            }
-        }
-
-        idea_disobedient_army = {
-            modifier = {
-                army_attack_factor = -0.25
-                army_defence_factor = -0.2
-                initiative_factor = -0.15
-            }
-            cancel = {
-                has_government = monarchism
-            }
-        }
-        idea_authoritarian_tendencies_in_the_army = {
-            modifier = {
-                democratic_drift = -0.05
-                army_morale_factor = -0.1
-            }
-            cancel = {
-                has_government = monarchism
-            }
-        }
-
         idea_armed_neutrality = {
             modifier = {
                 army_core_defence_factor = 0.25

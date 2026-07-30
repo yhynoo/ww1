@@ -19,21 +19,18 @@ on_actions = {
             }
 
         # events
-            FRA = {
-                # 1912
-                country_event = { id = FRA_echoes.1 days = 6 }
-                country_event = { id = FRA_echoes.2 days = 21 }
+            
+        }
+    }
 
-                # 1913
-                news_event = { id = FRA_aviator.1 months = 20 days = 23 }
-            }
-
-            GER = {
-                news_event = { id = GER_equestrian.1 days = 26 }
-            }
-
-            SPA = {
-                news_event = { id = SPA_canalejas.1 months = 10 days = 12 }
+    on_weekly = {
+        effect = {
+            if = {
+                limit = { has_country_flag = southeastern_europe_war has_war = no }
+                clr_country_flag = southeastern_europe_war
+                
+                # event
+                news_event = TUR_end.1
             }
         }
     }

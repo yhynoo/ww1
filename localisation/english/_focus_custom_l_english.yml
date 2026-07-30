@@ -7,23 +7,25 @@
     default_take_ours: "Take Ours!"
 
     default_deterrence: "Deterrence"
-    default_stability: "Stability"
+    default_stability: "Internal Affairs"
     default_agrarianism: "Agrarian Committees"
 
     default_unity: "Strength in Unity"
     default_administration: "Administration Effort"
 
+    default_autonomy: "On Our Own"
+    default_aid: "Seek External Aid"
+
   # AUS
     AUS_government: "Address the Imperial Council"
 
     AUS_extend: "Annex Sarajevo"
-    AUS_claims: "Align Wallachia and Moldova"
-    AUS_take_ours: "The Lemberg Act"
+    AUS_claims: "Align Serbia"
+    AUS_take_ours: "War with [TUR.GetNameDef]"
 
-    AUS_agrarianism: "Equal Development Act"
-    tt_ausgleich: "Unlocks the §YEqual Development§! decisions to adjust our §Yeconomic orientation§! within the Empire."
-
-    AUS_unity: "Align Serbia"
+    AUS_stability: "Deal with Ethnic Tensions"
+    AUS_agrarianism: "Ausgleich of [GetYear]"
+    tt_ausgleich: "Unlocks the §YAusgleich of [GetYear]§! decisions to adjust the §internal organization§! of the Empire."
 
   # ENG
     ENG_government: "The Mansion House Debacle"
@@ -40,28 +42,41 @@
   # FRA
     FRA_government: "Echoes of Agadir" 
 
-    FRA_extend: "Intervene in the Atlas"
-    FRA_claims: "Approach [TUR.GetNameDef]"
-    FRA_take_ours: "Claims in Egypt"
+    FRA_extend: "Appoint Driant"
+    FRA_claims: "Investments in Algeria"
+    FRA_men: "Expand the Oran Harbor"
+    FRA_take_ours: "Atlas Intervention"
 
     FRA_deterrence: "Entente"
-    FRA_agrarianism: "Algerian Investments"
-    FRA_unity: "‘On Les Aura!’"
+    FRA_idealism: "Arabian Oil Deals"
+
+    FRA_stability: "On Our Own"
+    FRA_ethnocentrism: "Claims in the Levant"
+    FRA_agrarianism: ""
+
+    FRA_unity: "Union Sacrée"
+    FRA_administration: ""
 
   # GER
     GER_government: "The Treaty of Aachen"
 
-    GER_extend: "Annex Alsace"
-    GER_claims: "Align the Dutch"
-    GER_take_ours: "War with France"
+    GER_extend: "Approach the Tsar"
+    GER_claims: "Access Dagestan Oil"
+    GER_men: "Investments in the Caspian"
+    tt_caspian_investments: "Controls §YTsaritsyn§!, §YAstrakhan§! and §YSaratov§!."
+    GER_take_ours: "Grain Deal"
 
-    GER_deterrence: "Détente with London"
-    GER_stability: "‘Whose is the Sun?’"
+    GER_deterrence: "To the East"
+    tt_to_the_east: "We will gain claims on territories up until §YWarsaw§! and §Ostart a mission to go to war with§! §Y[RUS.GetNameWithFlag]§!."
+    GER_idealism: "Ottoman Alliance"
 
-    GER_agrarianism: "Afrika-Amt"
-    tt_afrika_amt: "Unlocks the §YAfrika-Amt§! decisions to manage our §YAfrican colonies§!."
+    GER_stability: ""
+    GER_ethnocentrism: "Ally the Hashemites"
+    tt_arab_uprising: "Triggers §Oan uprising§! in §YMecca§!. "
+    GER_agrarianism: "Encourage the Aliyah"
 
-    GER_unity: "Aufmarsch Ost"
+    GER_unity: "Gott Strafe England!"
+    GER_administration: ""
 
   # GRE
     GRE_claims: "Claims in the Aegean"
@@ -69,14 +84,7 @@
 
     GRE_agrarianism: "Investments in Attica"
 
-  # HOL
-    HOL_government: "After the Intervention"
-    tt_after_the_intervention: "Unlocks the §HAfter the Intervention§! decisions and allows us to §Orestore order in the army§!."
-
-    HOL_extend: "The Antwerpen Affair"
-    HOL_claims: "Align South Africa"
-    HOL_take_ours: "Unite the Low Countries"
-    
+  # HOL    
     HOL_deterrence: "Armed Neutrality"
 
   # ITA
@@ -86,8 +94,6 @@
     tt_once_again: "The mission to §Oerase the shame of Tripolis§! and take hold of §Your African claims§! will start immediately."
     ITA_claims: "Adriatic Ambitions"
     ITA_take_ours: "Demands in the Aegean and Africa"
-
-    ITA_unity: "End Trasformismo"
 
   # JAP
     JAP_government: "Triumph in Korea"
@@ -108,8 +114,23 @@
     MAN_unity: "One Union"
 
   # ROM
-    ROM_claims: "Across the Carpathians"
-    ROM_take_ours: "Towards Chisinău"
+    ROM_government: "The Wallachian Government"
+
+    ROM_extend: "Against the Ottomans"
+    ROM_claims: "Approach the French"
+    ROM_men: "Organize the Troops"
+    ROM_take_ours: "Awake!"
+
+    ROM_deterrence: ""
+    ROM_idealism: ""
+
+    ROM_stability: ""
+    ROM_ethnocentrism: ""
+    ROM_agrarianism: ""
+
+    ROM_unity: "Unite the Lands"
+    ROM_administration: ""
+
 
   # RUS
     RUS_government: "Twenty Years of Quiet"
@@ -121,11 +142,9 @@
     RUS_take_ours: "Demand Dalnyi"
 
     RUS_deterrence: "Orthodox Alliance"
+    RUS_agrarianism: "Deal with the Urban Opposition"
 
-    RUS_stability: "The Fourth Duma"
-    RUS_agrarianism: "Address the Intelligentsia"
-
-    RUS_unity: "Towards the Straits"
+    RUS_unity: "One and Indivisible"
 
   # SAF
     SAF_extend: "Claim Lesotho and Swaziland"
@@ -133,10 +152,13 @@
     SAF_take_ours: "Trek Again"
 
   # SER
-    SER_extend: "Demands in the South"
+    SER_government: "The Austrian Threat"
+
+    SER_extend: "Southern Expansion"
     SER_claims: "Claim Albania"
     SER_take_ours: "Unite South Slavs"
 
+    SER_deterrence: "Approach the Turks"
     SER_agrarianism: "Appease the Agrarians"
 
     SER_unity: "The Fate of Apis"

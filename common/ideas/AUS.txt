@@ -3,16 +3,28 @@ ideas = {
         idea_aristocratic_officers = {
             modifier = {
                 army_morale_factor = -0.1
-                command_power_gain_mult = -0.15
-                planning_speed = -0.2
+                initiative_factor = -0.2
             }
             cancel = {
                 not = { has_government = monarchism }
             }
         }
-        idea_decentralizing_tensions = {
+        idea_ausgleich = {
             modifier = {
-                political_power_factor = -0.1
+                economy_cost_factor = 0.25
+                trade_laws_cost_factor = 0.25
+                mobilization_laws_cost_factor = 0.4
+            }
+            cancel = {
+                or = { 
+                    not = { has_government = monarchism }
+                    HUN = { exists = yes } 
+                }
+            }
+        }
+        idea_ethnic_tensions = {
+            modifier = {
+                political_power_factor = -0.15
             }
             cancel = {
                 or = { 

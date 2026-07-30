@@ -1,182 +1,210 @@
-# historical
-    add_namespace = GER_equestrian
+add_namespace = GER_altneuland
+add_namespace = GER_approach_the_tsar
+add_namespace = GER_caspian
+add_namespace = GER_dagestan
+add_namespace = GER_deal
+add_namespace = GER_wallonia
+add_namespace = GER_weizmann
 
-    # equestrian monument
+    # altneuland
         news_event = {
-            id = GER_equestrian.1
-            title = "The ‘Equestrian Monument’ Unveiled in Windhoek"
-            desc = GER_equestrian.1.d
+            id = GER_altneuland.1
+            title = "“Altneuland”"
+            desc = GER_altneuland.1.d
 
             is_triggered_only = yes
-            trigger = { controls_state = 541 }
-
-            option = {
-                name = "Great."
-            }
-        }
-
-# tree
-    add_namespace = GER_stability_event
-
-    # who gets the sun
-        news_event = {
-            id = GER_stability_event.1
-            title = "Haase: ‘Who Gets the Sun?’"
-            desc = GER_stability_event.1.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "Alright."
-                add_political_power = 25
-                
-                hidden_effect = { country_event = { id = GER_stability_event.2 days = 7 } }
-            }
-        }
-
-        country_event = {
-            id = GER_stability_event.2
-            title = "Agitators in Miners’ Canteens"
-            desc = GER_stability_event.2.d
-
-            is_triggered_only = yes
-            trigger = { has_stability < 0.8 }
-
-            option = {
-                name = "Arrest them."
-                add_stability = 0.02
-
-                # gamble
-                random = { chance = 50 news_event = { id = GER_stability_event.3 hours = 6 } }
-            }
-            option = {
-                name = "Let them speak."
-                add_popularity = { ideology = communism popularity = 0.05 }
-            }
-        }
-
-        news_event = {
-            id = GER_stability_event.3
-            title = "All-Out Strike in the Mines!"
-            desc = GER_stability_event.3.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "Awful."
-                add_timed_idea = { idea = idea_all_out_miners_strike months = 3 }
-            }
-        }
-
-    # colonial scandal
-        country_event = {
-            id = GER_stability_event.4
-            title = "Another Colonial Scandal?"
-            desc = GER_stability_event.4.d
-
-            trigger = { tag = GER has_completed_focus = XXX_stability controls_state = 541 }
-            mean_time_to_happen = { months = 3 }
-            fire_only_once = yes
-
-            option = {
-                name = "Affirm his decision."
-                add_stability = 0.02
-
-                random = { chance = 50 news_event = { id = GER_stability_event.5 hours = 12 } }
-            }
-            option = {
-                name = "Dismiss Seitz."
-                add_popularity = { ideology = monarchism popularity = -0.025 }
-            }
-        }
-
-        news_event = {
-            id = GER_stability_event.2
-            title = "Outrage over the ‘Mischlinge-Verordnung’"
-            desc = GER_stability_event.2.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "Well..."
-                add_popularity = { ideology = democratic popularity = 0.025 }
-            }
-        }
-
-# decisions
-
-# other
-    add_namespace = GER_aims
-    add_namespace = GER_end
-
-    # aims in the west
-        country_event = {
-            id = GER_aims.1
-            title = "War Aims in the West"
-            desc = GER_aims.1.d
-
-            trigger = {
-                tag = GER
-                has_war_with = FRA
-            }
-            fire_only_once = yes
-
-            option = {
-                name = "We must make our demands clear."
-                every_state = {
-                    limit = { or = { state = 17 state = 25 } }
-                    add_claim_by = ROOT
-                }
-
-                hidden_effect = { news_event = { id = GER_aims.2 hours = 6 } }
-            }
-            option = {
-                name = "This is a defensive war."
-                add_war_support = 0.05
-            }
-        }
-
-        news_event = {
-            id = GER_aims.2
-            title = "[GER.GetName] Announces Claims Against France"
-            desc = GER_aims.2.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "Alright."
-            }
-        }
-
-    # end of the German Empire
-        news_event = {
-            id = GER_end.1
-            title = "End of the German Empire"
-            desc = GER_end.1.d
-
-            trigger = {
-                and = { tag = GER has_idea = idea_war_loser has_government = monarchism }
-                not = { has_cosmetic_tag = GER_kingdom_of_prussia }
-
-                any_country = {
-                    and = { is_german_state = yes }
-                    exists = yes
-                }
-            }
             major = yes
 
             option = {
-                name = "Europe starts anew."
+                name = "Will the settlers fulfill their ambitions?"
+            }
+        }
+
+    # approach_the_tsar
+        news_event = {
+            id = GER_approach_the_tsar.1
+            title = "Germany to Honor the Tsar’s Ambitions?"
+            desc = GER_approach_the_tsar.1.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "A change of alliances?"
+            }
+        }
+
+    # caspian
+        news_event = {
+            id = GER_caspian.1
+            title = "[GER.GetAdjective] Investments in the Caspian Area"
+            desc = GER_caspian.1.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Wonderful."
+                add_opinion_modifier = { target = GER modifier = large_increase }
+            }
+        }
+
+    # dagestan
+        country_event = {
+            id = GER_dagestan.1
+            title = "Germany Seeks Access to Dagestan Oil"
+            desc = GER_dagestan.1.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Yes."
+                232 = {
+                    controller = { give_resource_rights = { receiver = GER state = 232 } }
+                    add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                }
+
+                # event
+                hidden_effect = { news_event = { id = GER_dagestan.2 hours = 6 } }
+            }
+            option = {
+                name = "We are not interested."
+                add_political_power = -10
+
+                # historical ai
+                ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+            }
+        }
+
+        news_event = {
+            id = GER_dagestan.2
+            title = "[GER.GetName] Accesses Oil in Dagestan"
+            desc = GER_dagestan.2.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+
+    # deal
+        country_event = {
+            id = GER_deal.1
+            title = "[GER.GetName] Offers a Grain Deal"
+            desc = GER_deal.1.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "This is a great opportunity."
+
+                add_ideas = idea_grain_deal_with_germany
+                FROM = { give_guarantee = RUS }
+
+                # event
+                hidden_effect = { news_event = { id = GER_deal.2 hours = 6 } }
+            }
+            option = {
+                name = "We are not interested."
+                FROM = { add_opinion_modifier = { target = ROOT modifier = large_decrease } }
+
+                # historical ai
+                ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+            }
+        }
+
+        news_event = {
+            id = GER_deal.2
+            title = "[GER.GetName] Secures Grain from the East!"
+            desc = GER_deal.2.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Alright."
                 if = {
                     limit = { tag = GER }
-                    set_cosmetic_tag = GER_kingdom_of_prussia
+                    add_ideas = idea_grain_deal_with_russia
+                }
+            }
+        }
 
-                    # reload focuses
-                    mark_focus_tree_layout_dirty = yes
-                    every_core_state = {
-                        limit = { owner = { is_german_state = yes not = { tag = ROOT } } }
-                        remove_core_of = ROOT
-                    }
+    # wallonia
+        news_event = {
+            id = GER_wallonia.1
+            title = "German Troops Enter Wallonia"
+            desc = GER_wallonia.1.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Worrying."
+                if = { 
+                    limit = { controls_state = 34 } 
+                    34 = { set_demilitarized_zone = no } 
+                }
+            }
+        }
+
+    # weizmann
+        news_event = {
+            id = GER_weizmann.1
+            title = "Weizmann’s Appeal"
+            desc = GER_weizmann.1.d
+
+            trigger = { 
+                has_completed_focus = GER_stability     # we did Orientalism
+                454 = { enemy_control = yes }           # if we're at war with whoever controls Israel
+            }     
+            fire_only_once = yes
+
+            option = {
+                name = "We might use this..."
+                hidden_effect = { country_event = { id = GER_weizmann.2 days = 14 } }
+            }
+        }
+
+        country_event = {
+            id = GER_weizmann.2
+            title = "Jewish War Effort"
+            desc = GER_weizmann.2.d
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Support their ambitions."
+
+                454 = { add_core_of = ISR }
+                add_equipment_to_stockpile = { type = infantry_equipment    amount = -600 }
+
+                # event
+                hidden_effect = { news_event = { id = GER_weizmann.3 hours = 6 } }
+            }
+            option = {
+                name = "How can we trust them?"
+                add_political_power = -10
+
+                # historical ai
+                ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+            }
+        }
+
+        news_event = {
+            id = GER_weizmann.3
+            title = "[GER.GetName] to Aid the Yishuv?"
+            desc = GER_weizmann.3.d
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Interesting."
+                if = { 
+                    limit = { 454 = { is_controlled_by = ROOT is_claimed_by = ROOT is_core_of = ROOT } not = { tag = ISR } }
+                    add_opinion_modifier = { target = GER modifier = medium_decrease }
                 }
             }
         }

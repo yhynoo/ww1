@@ -75,10 +75,11 @@ can_fall_apart = {
 
 can_trigger_uprising = {
     exists = no 
-    has_capitulated = no 
+    has_capitulated = no
+    is_dynamic_country = no
     
     not = { has_country_flag = country_defeated has_idea = idea_war_loser }
-    any_core_state = { is_controlled_by = ROOT }
+    capital_scope = { is_fully_controlled_by = ROOT }
 
     not = {
         and = {                                 # germany won't fall apart unless in civil war.

@@ -1,0 +1,234 @@
+focus_tree = {
+    id = YYY_focus
+    country = { factor = 0  modifier = { add = 20   original_tag = YYY } }
+    continuous_focus_position = { x = 88 y = 770 }
+    
+    # shared    
+    shared_focus = XXX_general_staff
+    shared_focus = XXX_infrastructure
+    shared_focus = XXX_civil_war
+
+    # main state tree
+        focus = {
+            id = YYY_government
+            icon = GFX_focus_generic_stability
+
+            available = {
+                uprising_government_lock = yes
+                civil_war_government_lock = yes
+            }
+
+            x = 0 y = 0
+            cost = 10
+
+            completion_reward = {
+                add_political_power = 50
+            }
+        }
+
+        focus = {
+            id = YYY_extend
+            icon = GFX_focus_YYY_extend
+            prerequisite = { focus = YYY_government }
+            mutually_exclusive = { focus = YYY_deterrence }
+
+            available = {
+                civil_war_government_lock = yes
+            }
+
+            relative_position_id = YYY_government
+            x = -4 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = YYY_claims
+            icon = GFX_focus_YYY_claims
+            prerequisite = { focus = YYY_extend }
+
+            available = {
+                civil_war_government_lock = yes
+            }
+
+            relative_position_id = YYY_extend
+            x = -2 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = YYY_men
+            icon = GFX_focus_YYY_men
+            prerequisite = { focus = YYY_extend }
+
+            available = {
+                civil_war_government_lock = yes
+            }
+
+            relative_position_id = YYY_extend
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = YYY_take_ours
+            icon = GFX_focus_YYY_take_ours
+            prerequisite = { focus = YYY_men }
+
+            available = {
+                civil_war_government_lock = yes
+            }
+
+            relative_position_id = YYY_men
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = YYY_deterrence
+            icon = GFX_focus_YYY_deterrence
+            prerequisite = { focus = YYY_government }
+            mutually_exclusive = { focus = YYY_extend }
+
+            available = {
+                civil_war_government_lock = yes
+            }
+
+            relative_position_id = YYY_government
+            x = 0 y = 1
+            cost = 10
+
+            ai_will_do = {
+                modifier = { is_historical_focus_on = yes factor = 0 }
+            }
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = YYY_idealism
+            icon = GFX_focus_YYY_idealism
+            prerequisite = { focus = YYY_deterrence }
+            mutually_exclusive = { focus = YYY_ethnocentrism }
+
+            available = {
+                civil_war_government_lock = yes
+            }
+
+            relative_position_id = YYY_government
+            x = 0 y = 2
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = YYY_stability
+            icon = GFX_focus_YYY_stability
+            prerequisite = { focus = YYY_government }
+
+            available = {
+                civil_war_government_lock = yes
+            }
+
+            relative_position_id = YYY_government
+            x = 4 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = YYY_ethnocentrism
+            icon = GFX_focus_YYY_ethnocentrism
+            prerequisite = { focus = YYY_stability }
+            mutually_exclusive = { focus = YYY_idealism }
+
+            available = {
+                civil_war_government_lock = yes
+            }
+
+            relative_position_id = YYY_stability
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = YYY_agrarianism
+            icon = GFX_focus_YYY_agrarian
+            prerequisite = { focus = YYY_stability }
+
+            available = {
+                civil_war_government_lock = yes
+            }
+
+            relative_position_id = YYY_stability
+            x = 2 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = YYY_unity
+            icon = GFX_focus_YYY_unity
+            prerequisite = { focus = YYY_idealism   focus = YYY_ethnocentrism }
+
+            available = {
+                civil_war_government_lock = yes
+            }
+
+            relative_position_id = YYY_ethnocentrism
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = YYY_administration
+            icon = GFX_focus_YYY_administration
+            prerequisite = { focus = YYY_unity }
+
+            available = {
+                civil_war_government_lock = yes
+            }
+
+            relative_position_id = YYY_unity
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+}

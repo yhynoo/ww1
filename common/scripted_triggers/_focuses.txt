@@ -1,3 +1,17 @@
+allied_control = {
+    custom_trigger_tooltip = {
+        tooltip = tt_allied_control
+        controller = { or = { tag = ROOT       is_ally_with = ROOT } }
+    }
+}
+
+enemy_control = {
+    custom_trigger_tooltip = {
+        tooltip = tt_enemy_control
+        controller = { has_war_with = ROOT }
+    }
+}
+
 has_dominion_focuses = {
     is_subject = yes
 }

@@ -153,10 +153,9 @@ shared_focus = {
 }
 
 shared_focus = {
-    id = XXX_women_at_work
-    icon = GFX_focus_XXX_women_at_work
+    id = XXX_austerity_measures
+    icon = GFX_focus_generic_austerity_measures
     prerequisite = { focus = XXX_mobilization }
-    mutually_exclusive = { focus = XXX_economic_warfare }
 
     available = {
         has_war = yes
@@ -168,34 +167,14 @@ shared_focus = {
     cost = 10
 
     completion_reward = {
-        add_ideas = idea_women_at_work
-    }
-}
-
-shared_focus = {
-    id = XXX_austerity_measures
-    icon = GFX_focus_generic_austerity_measures
-    prerequisite = { focus = XXX_women_at_work }
-
-    available = {
-        has_war = yes
-        civil_war_army_lock = yes
-    }
-
-    relative_position_id = XXX_women_at_work
-    x = -2 y = 1
-    cost = 10
-
-    completion_reward = {
         add_ideas = idea_austerity_measures
     }
 }
 
 shared_focus = {
-    id = XXX_economic_warfare
-    icon = GFX_focus_XXX_economic_warfare
+    id = XXX_capacity_strikes
+    icon = GFX_focus_generic_capacity_strikes
     prerequisite = { focus = XXX_mobilization }
-    mutually_exclusive = { focus = XXX_women_at_work }
 
     available = {
         has_war = yes
@@ -207,48 +186,29 @@ shared_focus = {
     cost = 10
 
     completion_reward = {
-        add_tech_bonus = { bonus = 1    uses = 1    category = submarines_tech }
-        add_ideas = idea_economic_warfare
-    }
-}
-
-shared_focus = {
-    id = XXX_capacity_strikes
-    icon = GFX_focus_generic_capacity_strikes
-    prerequisite = { focus = XXX_economic_warfare }
-
-    available = {
-        has_war = yes
-        civil_war_army_lock = yes
-    }
-
-    relative_position_id = XXX_economic_warfare
-    x = 2 y = 1
-    cost = 10
-
-    completion_reward = {
         add_tech_bonus = { bonus = 1    uses = 1    category = airship_tech }
-        add_ideas = idea_attacks_on_capacity
+        add_tech_bonus = { bonus = 1    uses = 1    category = submarines_tech }
     }
 }
 
 shared_focus = {
     id = XXX_all_for_the_front
     icon = GFX_focus_XXX_all_for_the_front
-    prerequisite = { focus = XXX_economic_warfare focus = XXX_women_at_work }
+    prerequisite = { focus = XXX_austerity_measures focus = XXX_capacity_strikes }
 
     available = {
         has_war = yes
         civil_war_army_lock = yes
     }
 
-    relative_position_id = XXX_economic_warfare
-    x = -1 y = 1
+    relative_position_id = XXX_austerity_measures
+    x = 1 y = 1
     cost = 10
 
     completion_reward = {
         set_country_flag = desperate_measures_allowed
         custom_effect_tooltip = tt_all_for_the_front
+        
         random_owned_controlled_state = {
             limit = { is_in_home_area = yes }
             add_extra_state_shared_building_slots = 2
