@@ -1,0 +1,54 @@
+add_namespace = ser_albania
+add_namespace = ser_war
+
+# albania
+    news_event = {
+        id = ser_albania.1
+        title = "Serbia Eyes Albania"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            44 = { add_claim_by = SER }
+            TUR = { country_event = { id = tur_albania.1 days = 14 } }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# war
+    country_event = {
+        id = ser_war.1
+        title = "A Unique Opportunity"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We must strike now."
+            declare_war_on = { target = AUS type = take_claimed_state }
+
+            # event
+            news_event = { id = ser_war.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = ser_war.2
+        title = "Serbian Offensive Against Austria!"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }

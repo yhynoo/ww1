@@ -1,148 +1,125 @@
-add_namespace = ROM_aid
-add_namespace = ROM_approach
-add_namespace = ROM_guarantees
-add_namespace = ROM_independence
+add_namespace = rom_alliance
+add_namespace = rom_anti_ottoman
+add_namespace = rom_disband_alliance
+add_namespace = rom_thrace
+add_namespace = rom_war
 
-    # aid
-        country_event = {
-            id = ROM_aid.1
-            title = "[ROM.GetName] Asks for Equipment"
-            desc = ROM_aid.1.d
+# alliance    
+    country_event = {
+        id = rom_alliance.1
+        title = "[ROM.GetName] Offers a Defence Agreement"
 
-            is_triggered_only = yes
+        is_triggered_only = yes
 
-            option = {
-                name = "We shall help them."
-                add_equipment_to_stockpile = { type = infantry_equipment    amount = -600 }
+        option = {
+            name = "Yes."
 
-                # event
-                hidden_effect = { news_event = { id = ROM_aid.2 hours = 6 } }
-            }
-            option = {
-                name = "We need this stuff."
+            ROM = { give_guarantee = ROOT }
+            give_guarantee = ROM
+        }
+        option = {
+            name = "No."
 
-                # ai
-                ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+# thrace
+    country_event = {
+        id = rom_thrace.1
+        title = "The Fate of Thrace"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Let them have it."
+            release_puppet = THR
+
+            # event
+            news_event = { id = rom_thrace.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = rom_thrace.2
+        title = "[THR.GetName] Established"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# war
+    news_event = {
+        id = rom_war.1
+        title = "War in Southeastern Europe!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            drop_cosmetic_tag = yes
+            set_global_flag = southeastern_europe_war
+            
+            # more issues
+            CRE = { country_event = { id = cre_enosis.1 days = 14 } }
+            TUR = { 
+                country_event = { id = sms_turks.1 days = 21 } 
+                news_event = { id = arm_uprising.1 months = 2 random_days = 14 }
             }
         }
 
-        news_event = {
-            id = ROM_aid.2
-            title = "French Aid Arrives"
-            desc = ROM_aid.2.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "Ok."
-                add_equipment_to_stockpile = { type = infantry_equipment    amount = 600 }
-
-                # relations
-                hidden_effect = { add_opinion_modifier = { target = FRA modifier = large_increase } }
-            }
-        }
-
-    # approach
-        country_event = {
-            id = ROM_approach.1
-            title = "Approach Greeks and Serbs?"
-            desc = ROM_approach.1.d
-
-            trigger = {
-                tag = ROM
-                focus_progress = { focus = ROM_take_ours    progress > 0.2 }
-            }
-            fire_only_once = yes
-
-            option = {
-                name = "We must use this opportunity."
-                every_country = {
-                    limit = { or = { tag = GRE tag = SER } }
-                    country_event = ROM_guarantees.1
-                }
-            }
-            option = {
-                name = "This is our own affair."
-                add_war_support = 0.05 
-
-                # ai
-                ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
-            }
-        }
-    
-    # guarantees
-        country_event = {
-            id = ROM_guarantees.1
-            title = "[ROM.GetName] Offers a Defense Agreement"
-            desc = ROM_guarantees.1.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "Yes."
-                give_guarantee = FROM
-                FROM = { give_guarantee = ROOT }
-
-                hidden_effect = { FROM = { news_event = { id = ROM_guarantees.2 hours = 6 } } }
-            }
-            option = {
-                name = "We are not interested."
-                FROM = { add_opinion_modifier = { target = ROOT modifier = small_decrease } }
-
-                # ai
-                ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
-            }
-        }
-
-        news_event = {
-            id = ROM_guarantees.2
-            title = "[FROM.GetName] Accepts!"
-            desc = ROM_guarantees.2.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "Great."
-                add_opinion_modifier = { target = FROM modifier = small_increase }
-            }
-        }
-
-    # independence war
-        country_event = {
-            id = ROM_independence.1
-            title = "[ROM.GetName] Announces Its Independence"
-            desc = ROM_independence.1.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "This means war!"
+        option = {
+            name = "Ok."
+            if = {
+                limit = { tag = TUR }
+                set_autonomy = { target = ROM autonomy_state = autonomy_free }
                 declare_war_on = { target = ROM type = annex_everything }
+            }
+        }
+    }
 
-                # event
-                hidden_effect = { 
-                    news_event = { id = ROM_independence.2 hours = 6 } 
-                    set_country_flag = southeastern_europe_war
+    news_event = {
+        id = rom_war.2
+        title = "End of War in Southeastern Europe"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            GRE = {
+                set_state_owner = 187
+                if = {
+                    limit = { SMS = { exists = yes } }
+                    SMS = { news_event = { id = sms_unite.1 days = 14 } }
+                }
+                else = {
+                    set_state_owner = 27
                 }
             }
-            option = {
-                name = "We must accept this."
-                add_popularity = { ideology = ROOT popularity = -0.15 }
-
-                # ai
-                ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+            SER = {
+                set_state_owner = 404
+                country_event = { id = ser_albania.1 months = 2 }
+            }
+            RUS = {
+                country_event = { id = arm_guarantees.1 days = 7 }
+            }
+            TUR = {
+                country_event = { id = rom_thrace.1 months = 2 days = 12 }
             }
         }
 
-        news_event = {
-            id = ROM_independence.2
-            title = "War in Southeastern Europe!"
-            desc = ROM_independence.2.d
-
-            is_triggered_only = yes
-            major = yes
-
-            option = {
-                name = "Awful."
-            }
+        option = {
+            name = "Ok."
         }
+    }

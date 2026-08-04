@@ -1,0 +1,59 @@
+AUS_guard_south = {
+    allowed = { original_tag = AUS }
+    enable = { has_war_with = TUR }
+
+    # buffers
+    ai_strategy = { type = prepare_for_war id = SER value = 40 }
+}
+
+AUS_support = {
+    allowed = { or = { original_tag = ROM original_tag = THR } }
+    enable = { AUS = { has_war_with = TUR } }
+
+    ai_strategy = { type = send_volunteers_desire id = AUS value = 100 }
+    ai_strategy = { type = support id = AUS value = 80 }
+}
+
+AFG_support = {
+    allowed = { original_tag = RUS }
+    enable = { and = { ARM = { is_ally_with = GER } GER = { has_idea = idea_wheat_deal } } }
+
+    # support
+    ai_strategy = { type = support id = AFG value = 80 }
+}
+
+ARM_support = {
+    allowed = { original_tag = RUS }
+    enable = { and = { ARM = { is_ally_with = GER } GER = { has_idea = idea_wheat_deal } } }
+
+    ai_strategy = { type = send_volunteers_desire id = ARM value = 100 }
+    ai_strategy = { type = support id = ARM value = 80 }
+}
+
+minors_stay_allied = {
+    allowed = { or = { original_tag = AFG original_tag = ARM } }
+    enable = { GER = { has_war_with = TUR } is_historical_focus = yes }
+
+    ai_strategy = { type = alliance id = GER value = 300 }
+}
+
+GER_army_expansion = {
+    allowed = { original_tag = GER }
+    enable = { is_historical_focus = yes }
+
+    # extra boosts
+    ai_strategy = {	type = role_ratio	id = infantry		value = 50 }
+    ai_strategy = {	type = role_ratio	id = cavalry		value = 20 }
+
+    # buffers
+    ai_strategy = { type = prepare_for_war id = FRA value = 20 }
+    ai_strategy = { type = put_unit_buffers states = { 461 462 } ratio = 0.25 }
+}
+
+GER_support = {
+    allowed = { original_tag = RUS }
+    enable = { GER = { has_idea = idea_wheat_deal } }
+
+    # support
+    ai_strategy = { type = support id = GER value = 80 }
+}

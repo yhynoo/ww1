@@ -1,0 +1,40 @@
+add_namespace = eng_danger
+
+# danger
+    country_event = {
+        id = eng_danger.1
+        title = "Danger in the Mediterranean"
+
+        is_triggered_only = yes
+        fire_only_once = yes
+
+        option = {
+            name = "Join the Entente."
+            FRA = { add_to_faction = ENG }
+
+            # event
+            news_event = { id = eng_danger.2 hours = 6 }
+        }
+        option = {
+            name = "It is not that serious."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = eng_danger.2
+        title = "[ENG.GetName] Joins the Entente"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            news_event = { id = por_entente.1 days = 5 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

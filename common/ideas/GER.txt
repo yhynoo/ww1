@@ -13,14 +13,30 @@ ideas = {
             }
         }
 
-        idea_all_out_miners_strike = {
+        idea_wheat_deal = {
             modifier = {
-                communism_drift = 0.05
-                industrial_capacity_dockyard = -0.2
-                production_factory_max_efficiency_factor = -0.25
+                consumer_goods_factor = -0.2
+                supply_factor = 0.05
+                conscription = 0.025
             }
-            cancel = {
-                has_government = communism
+            on_add = {
+                add_opinion_modifier = { target = RUS modifier = opinion_wheat_deal }
+            }
+        }
+        idea_harvest_1917 = {
+            modifier = {
+                consumer_goods_factor = 0.05
+                stability_factor = -0.05
+            }
+        }
+        idea_wheat_shortages = {
+            modifier = {
+                consumer_goods_factor = 0.1
+                supply_factor = -0.15
+                stability_factor = -0.1
+            }
+            on_add = {
+                remove_ideas = idea_harvest_1917
             }
         }
     }

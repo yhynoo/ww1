@@ -78,23 +78,6 @@ _war_office = {
             FROM = { is_armistice_target = yes }
         }
 
-        ai_will_do = {
-            modifier = { or = { has_war_support < 0.4 has_stability < 0.25 surrender_progress > 0.4 } add = 2 }    # entry condition: if we have more war support, we won't even think about it.
-            modifier = { or = { has_idea = idea_war_exhaustion has_stability < 0.2 } factor = 2 }
-            modifier = { surrender_progress > 0.15 factor = 1.5 }
-            modifier = { surrender_progress > 0.25 factor = 2 }
-
-            modifier = { has_idea = service_by_requirement add = 1 }
-            modifier = { or = { has_idea = all_adults_serve has_idea = scraping_the_barrel } add = 2 }
-
-            # if we're done, we're done.
-            modifier = { has_capitulated = yes add = 100 }
-
-            # if we're winning or are major, don't do it.
-            modifier = { FROM = { is_major = yes factor = 0.75 } }
-            modifier = { FROM = { surrender_progress > 0.2 factor = 0.5 } }
-        }
-
         days_remove = 14
         remove_effect = { 
             FROM = { country_event = { id = armistice.1 hours = 6 random_hours = 6 } } 

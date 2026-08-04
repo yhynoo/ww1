@@ -1,0 +1,40 @@
+add_namespace = mor_atlas
+add_namespace = mor_end
+
+# atmosphere
+    news_event = {
+        id = mor_atlas.1
+        title = "Atlas on Fire!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            GER = { puppet = MOR }
+        }
+
+        option = {
+            name = "Ok."
+            if = {
+                limit = { tag = MOR }
+                start_civil_war = { ideology = democratic size = 0.5 army_ratio = 0.25 }
+            }
+        }
+    }
+
+# end
+    news_event = {
+        id = mor_end.1
+        title = "End of the Moroccan Campaign?"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            set_country_flag = end_of_morocco
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

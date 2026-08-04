@@ -1,0 +1,42 @@
+add_namespace = usa_entente
+add_namespace = usa_wilson
+
+# entente
+    news_event = {
+        id = usa_entente.1
+        title = "[USA.GetName] Joins the Entente"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            FRA = { add_to_faction = USA }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# wilson
+    news_event = {
+        id = usa_wilson.1
+        title = "Wilson Announces the Twelve Points"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            set_global_flag = twelve_points
+            every_country = { limit = { original_tag = RUS }    white_peace = POL }
+
+            # france endorses
+            news_event = { id = fra_wilson.1 days = 7 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+    

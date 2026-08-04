@@ -1,0 +1,38 @@
+add_namespace = sms_turks
+add_namespace = sms_unite
+
+# atmosphere
+    news_event = {
+        id = sms_turks.1
+        title = "Samos Turns Against the Turks"
+
+        immediate = {
+            set_autonomy = { target = SMS autonomous_state = autonomy_free }
+            every_enemy_country = { white_peace = SMS }
+            SMS = { declare_war_on = { target = TUR type = independence_wargoal } }
+        }
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# atmosphere
+    news_event = {
+        id = sms_unite.1
+        title = "Samos Unites with Greece!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            GRE = { annex_country = { target = SMS transfer_troops = yes } }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

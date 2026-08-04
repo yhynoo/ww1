@@ -10,36 +10,19 @@ ideas = {
         idea_echoes_of_agadir = {
             modifier = {
                 political_power_factor = -0.15
-                democratic_drift = -0.02
+                stability_factor = -0.02
             }
             cancel = {
-                or = {
-                    has_decision = agadir_trials_mission
-                    not = { has_government = democratic }
-                }
+                not = { has_government = democratic }
             }
         }
-
-        idea_elan = {
+        idea_agadir_trials = {
             modifier = {
-                army_attack_factor = 0.05
-                initiative_factor = 0.1
-            }
-        }
-        idea_on_les_aura = {
-            modifier = {
-                army_core_defense_factor = 0.1
-            }
-        }
-
-        idea_extended_citizenship = {
-            modifier = {
-                non_core_manpower = 0.1
-                compliance_growth_on_our_occupied_states = 0.05
-                required_garrison_factor = -0.05
+                political_power_factor = -0.4
+                stability_factor = -0.05
             }
             on_add = {
-                set_technology = { hidden_camelry = 1 }
+                remove_ideas = idea_echoes_of_agadir
             }
         }
     }

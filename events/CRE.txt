@@ -1,0 +1,39 @@
+add_namespace = cre_enosis
+
+# crete
+    country_event = {
+        id = cre_enosis.1
+        title = "Unification with Greece?"
+
+        is_triggered_only = yes
+        fire_only_once = yes
+
+        option = {
+            name = "This is the time."
+
+            # event
+            news_event = { id = cre_enosis.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = cre_enosis.2
+        title = "The Enosis of Crete"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            GRE = { annex_country = { target = CRE transfer_troops = yes } }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

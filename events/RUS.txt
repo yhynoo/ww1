@@ -1,0 +1,35 @@
+add_namespace = rus_wheat
+
+# wheat 
+    country_event = {
+        id = rus_wheat.1
+        title = "Kadets Oppose Wheat Exports"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Ok."
+
+            news_event = { id = rus_wheat.2 months = 2 days = 6 }
+        }
+    }
+
+    news_event = {
+        id = rus_wheat.2
+        title = "Milyukov Denounces the Tsarist Government!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            GER = { remove_ideas = idea_wheat_deal }
+            start_civil_war = { ideology = democratic size = 0.5 }
+
+            # ukraine
+            news_event = { id = ukr_uprising.1 days = 2 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

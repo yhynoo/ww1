@@ -1,100 +1,113 @@
-add_namespace = TUR_end
-add_namespace = TUR_capitulate
-add_namespace = TUR_southeast_war
+add_namespace = tur_albania
+add_namespace = tur_coup
+add_namespace = tur_demonstrations
+add_namespace = tur_entente
 
-    # capitulate
-        country_event = {
-            id = TUR_capitulate.1
-            title = "[FROM.GetName] Offers an Armistice"
-            desc = TUR_capitulate.1.d
+# albania
+    country_event = {
+        id = tur_albania.1
+        title = "Withdrawal from Albania or War"
 
-            is_triggered_only = yes
+        is_triggered_only = yes
 
-            option = {
-                name = "Great."
-                start_peace_conference = { tag = TUR score_factor = 0.05 }
-            }
-            option = {
-                name = "The war shall continue."
-                add_political_power = -25
+        option = {
+            name = "Yes."
+            44 = { set_demilitarized_zone = yes }
 
-                # ai
-                ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+            # event
+            news_event = { id = tur_albania.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+            SER = { declare_war_on = { target = TUR type = take_claimed_state } }
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = tur_albania.2
+        title = "[TUR.GetName] Withdraws from Albania"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# coup
+    country_event = {
+        id = tur_coup.1
+        title = "Another Young Turk Coup?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Offer armistice."
+            every_enemy_country = {
+                white_peace = TUR
             }
         }
+        option = {
+            name = "No."
 
-    # end
-        news_event = {
-            id = TUR_end.1
-            title = "War in Southeastern Europe Ends"
-            desc = TUR_end.1.d
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
 
-            is_triggered_only = yes
-            major = yes
+# demonstrations
+    country_event = {
+        id = tur_demonstrations.1
+        title = "Demonstrations in Constantinople"
 
-            option = {
-                name = "Good."
-            }
+        is_triggered_only = yes
+
+        option = {
+            name = "We must agree."
+            set_politics = { ruling_party = democratic elections_allowed = yes }
+            set_popularities = { democratic = 60 monarchism = 25 communism = 15 }
+
+            # event
+            news_event = { id = tur_demonstrations.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = tur_demonstrations.2
+        title = "Turkish Sultan Abdicates!"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# entente
+    news_event = {
+        id = tur_entente.1
+        title = "[TUR.GetName] Joins the Entente"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            FRA = { add_to_faction = TUR }
+            GER = { country_event = { id = ger_armenia_and_afghanistan.1 days = 6 } }
         }
 
-    # southeastern_europe_war
-        news_event = {
-            id = TUR_southeast_war.1
-            title = "Army Officers Threaten Another Coup?"
-            desc = TUR_southeast_war.1.d
-
-            trigger = {
-                tag = TUR
-                and = {
-                    has_war_with = ROM
-                    has_country_flag = southeastern_europe_war
-                }
-                or = {
-                    not = { controls_state = 211 } not = { controls_state = 212 } not = { controls_state = 586 }
-                }
-            }
-            fire_only_once = yes
-
-            option = {
-                name = "Traitors."
-                add_war_support = -0.05
-
-                hidden_effect = { country_event = { id = TUR_southeast_war.2 days = 7 } }
-            }
+        option = {
+            name = "Ok."
         }
-
-        country_event = {
-            id = TUR_southeast_war.2
-            title = "Demands of TUR_capitulate"
-            desc = TUR_southeast_war.2.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "Onwards we go."
-                add_political_power = -25
-
-                # event
-                random = { chance = 80 news_event = { id = TUR_southeast_war.3 hours = 6 } }
-
-                # ai
-                ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
-            }
-            option = {
-                name = "We must agree to their demands."
-                every_enemy_country = { country_event = TUR_capitulate.1 }
-            }
-        }
-
-        news_event = {
-            id = TUR_southeast_war.3
-            title = "Young Turk Officers Attack the Government!"
-            desc = TUR_southeast_war.3.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "To arms!"
-                start_civil_war = { ideology = communism states = { 49 344 345 } army_ratio = 0.45 }
-            }
-        }
+    }

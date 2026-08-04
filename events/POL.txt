@@ -1,0 +1,50 @@
+add_namespace = pol_entente
+add_namespace = pol_uprising
+
+# entente
+    news_event = {
+        id = pol_entente.1
+        title = "[POL.GetName] Joins the Entente"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            POL = { declare_war_on = { target = GER type = take_claimed_state } }
+            FRA = { add_to_faction = POL }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# uprising
+    news_event = {
+        id = pol_uprising.1
+        title = "Uprising in Poland!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            POL = {
+                every_core_state = { 
+                    limit = { controller = { original_tag = ROOT } } 
+                    PREV = { 
+                        set_state_owner = PREV
+                        declare_war_on = { target = PREV.controller type = independence_wargoal }
+                    } 
+                }
+                load_oob = POL
+
+                set_province_controller = 3544
+                set_province_controller = 9508
+                set_province_controller = 11399
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

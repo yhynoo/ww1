@@ -1,0 +1,34 @@
+add_namespace = ukr_uprising
+
+# uprising
+    news_event = {
+        id = ukr_uprising.1
+        title = "Uprising in Ukraine!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            UKR = {
+                every_core_state = { 
+                    limit = { controller = { original_tag = ROOT } } 
+                    PREV = { 
+                        set_state_owner = PREV
+                        declare_war_on = { target = PREV.controller type = independence_wargoal }
+                    } 
+                }
+                load_oob = UKR
+
+                set_province_controller = 525
+                set_province_controller = 572
+                set_province_controller = 11670
+            }
+
+            # german reaction
+            GER = { country_event = { id = ger_ukraine.1 days = 2 } }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

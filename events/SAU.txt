@@ -1,0 +1,23 @@
+add_namespace = sau_autonomy
+
+# autonomy
+    country_event = {
+        id = sau_autonomy.1
+        title = "Ha’il Expels Turkish Officials"
+
+        is_triggered_only = yes
+        immediate = {
+            set_autonomy = { target = SAU autonomous_state = autonomy_free }
+        }
+
+        option = {
+            name = "Whatever."
+        }
+        option = {
+            name = "No."
+            declare_war_on = { target = SAU type = annex_everything }
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }

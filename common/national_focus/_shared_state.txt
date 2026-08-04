@@ -1,7 +1,7 @@
 ## state
     shared_focus = {
         id = XXX_government
-        icon = GFX_focus_XXX_government
+        icon = GFX_focus_generic_government
 
         available = {
             uprising_government_lock = yes
@@ -11,10 +11,8 @@
         x = 0 y = 0
         cost = 10
 
-        ai_will_do = { factor = 1.5 }
-
         completion_reward = {
-            state_government_effect = yes
+            add_political_power = 100
         }
     }
 
@@ -23,12 +21,6 @@
         icon = GFX_focus_generic_extend
         prerequisite = { focus = XXX_government }
         mutually_exclusive = { focus = XXX_deterrence }
-
-        allow_branch = { has_dominion_focuses = no has_unification_focuses = no }
-        ai_will_do = { 
-            modifier = { has_war_support < 0.5 factor = 0.5 }
-            modifier = { is_defensive = yes factor = 0 }
-        } 
 
         available = {
             civil_war_government_lock = yes
@@ -39,11 +31,11 @@
         cost = 10
 
         completion_reward = {
+            add_political_power = 50
+
             # factions
             if = { limit = { is_faction_leader = no } custom_effect_tooltip = tt_extend }
             hidden_effect = { set_rule = { can_create_factions = yes } }
-
-            state_extend_effect = yes
         }
     }
 
@@ -56,15 +48,12 @@
             civil_war_government_lock = yes
         }
 
-        ai_will_do = { modifier = { has_war = yes factor = 0 } }
-
         relative_position_id = XXX_extend
         x = -2 y = 1
         cost = 10
 
         completion_reward = {
-            add_war_support = 0.05
-            state_claims_effect = yes
+            custom_effect_tooltip = tt_to_do
         }
     }
 
@@ -96,15 +85,12 @@
             civil_war_government_lock = yes
         }
 
-        ai_will_do = { modifier = { has_war = yes factor = 0 } }
-
         relative_position_id = XXX_men
         x = 0 y = 1
         cost = 10
 
         completion_reward = {
-            add_war_support = 0.05
-            state_take_ours_effect = yes
+            custom_effect_tooltip = tt_to_do
         }
     }
 
@@ -113,12 +99,6 @@
         icon = GFX_focus_XXX_deterrence
         prerequisite = { focus = XXX_government }
         mutually_exclusive = { focus = XXX_extend }
-
-        allow_branch = { has_dominion_focuses = no has_unification_focuses = no }
-        ai_will_do = { 
-            modifier = { has_war_support > 0.5 factor = 0.5 } 
-            modifier = { is_aggressive = yes factor = 0 }
-        }
 
         available = {
             civil_war_government_lock = yes
@@ -129,7 +109,8 @@
         cost = 10
 
         completion_reward = {
-            state_deterrence_effect = yes
+            add_political_power = 50
+            add_timed_idea = { idea = idea_deterrence years = 1 }
         }
     }
 
@@ -143,10 +124,6 @@
             civil_war_government_lock = yes
         }
 
-        ai_will_do = {
-            modifier = { has_government = monarchism factor = 0.5 }
-        }
-
         relative_position_id = XXX_government
         x = 0 y = 2
         cost = 10
@@ -158,7 +135,7 @@
 
     shared_focus = {
         id = XXX_stability
-        icon = GFX_focus_generic_stability
+        icon = GFX_focus_XXX_stability
         prerequisite = { focus = XXX_government }
 
         available = {
@@ -207,8 +184,11 @@
         cost = 10
 
         completion_reward = {
-            add_political_power = 50
-            state_agrarianism_effect = yes
+            add_timed_idea = { idea = idea_agrarians years = 2 }
+            random_owned_controlled_state = {
+                limit = { is_core_of = ROOT infrastructure > 1 }
+                add_resource = { type = tungsten amount = 8 }       add_extra_state_shared_building_slots = 1
+            }
         }
     }
 
@@ -226,7 +206,7 @@
         cost = 10
 
         completion_reward = {
-            state_unity_effect = yes
+            add_ideas = idea_strength_in_unity
         }
     }
 
@@ -245,6 +225,18 @@
 
         completion_reward = {
             add_stability = 0.05
-            state_administration_effect = yes
+            if = {
+                limit = { always = yes }
+                if = {
+                    limit = { any_controlled_state = { is_claimed_by = ROOT not = { is_core_of = ROOT } } }
+                    every_controlled_state = {
+                        limit = { is_claimed_by = ROOT not = { is_core_of = ROOT } }
+                        add_core_of = ROOT
+                    }
+                }
+                else = {
+                    custom_effect_tooltip = tt_administration
+                }
+            }
         }
     }

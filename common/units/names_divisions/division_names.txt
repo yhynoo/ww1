@@ -190,7 +190,7 @@
     XXX_INF_6 = {
         name = "Firqat al-Mushāt"
 
-        for_countries = { EGY MOR OMA SAU TUN YEM }
+        for_countries = { EGY MOR OMA SAU SYR TUN YEM }
         can_use = { always = yes }      fallback_name = "Firqat al-Mushāt al-%da"      
         division_types = { "infantry" "mountaineers" "marines" }
 
@@ -202,7 +202,7 @@
     XXX_GAR_6 = {
         name = "Quwwāt al-Hāmiyah"
 
-        for_countries = { EGY MOR OMA SAU TUN YEM }
+        for_countries = { EGY MOR OMA SAU SYR TUN YEM }
         can_use = { always = yes }      fallback_name = "Quwwāt al-Hāmiyah al-%da"    link_numbering_with = { XXX_INF_6 }
         division_types = { "infantry" }
 
@@ -214,7 +214,7 @@
     XXX_CAV_6 = {
         name = "Firqat al-Fursān"
 
-        for_countries = { EGY MOR OMA SAU TUN YEM }
+        for_countries = { EGY MOR OMA SAU SYR TUN YEM }
         can_use = { always = yes }      fallback_name = "Firqat al-Fursān al-%da"
         division_types = { "cavalry" "camelry" }
 
@@ -571,6 +571,43 @@
         }
     }
 
+# Poland
+    POL_INF_1 = {
+        name = "Dywizja Piechoty"
+
+        for_countries = { POL }
+        can_use = { always = yes }      fallback_name = "%d. Dywizja Piechoty"
+        division_types = { "infantry" "mountaineers" "marines" }
+
+        ordered = {
+            1 = { "%d. Dyw. Piech. Legionów" }         2 = { "%d. Dyw. Legionów ‘Lwowska’" }     3 = { "%d. Dywizja Piechoty" }
+        }
+    }
+
+    POL_GAR_1 = {
+        name = "Garnizon"
+
+        for_countries = { POL }
+        can_use = { always = yes }      fallback_name = "%d. Dywizja Garnizonowa"
+        division_types = { "infantry" }
+
+        ordered = {
+            1 = { "Garnizon ‘Cytadela’" }         2 = { "Garnizon ‘Warszawa II’" }     3 = { "Garnizon ‘Lublin’" }
+        }
+    }
+
+    POL_CAV_1 = {
+        name = "Dywizja Strzelców Konnych"
+
+        for_countries = { POL }
+        can_use = { always = yes }      fallback_name = "%d. Dyw. Strzelców Konnych"
+        division_types = { "cavalry" }
+
+        ordered = {
+            1 = { "%d. Małopolska Dyw. Strz. Kon." }         2 = { "%d. Dyw. Strzelców Konnych" }     3 = { "%d. Dyw. Strz. Kon. (Kadetów)" }
+        }
+    }
+
 # Russia
     RUS_INF_1 = {
         name = "Pekhotnaya Diviziya"
@@ -630,6 +667,43 @@
 
         ordered = {
             1 = { "%d. Konjička Divizija" }         2 = { "%d. Konjička Divizija" }     3 = { "%d. Konjička Divizija" }
+        }
+    }
+
+# Ukraine 
+    UKR_INF_1 = {
+        name = "Dyviziia Striltsiv"
+
+        for_countries = { UKR }
+        can_use = { always = yes }      fallback_name = "%d. Dyviziia Striltsiv"
+        division_types = { "infantry" "mountaineers" "marines" }
+
+        ordered = {
+            1 = { "%d. Sichova Dyv. Striltsiv" }         2 = { "%d. Dyviziia Striltsiv" }     3 = { "%d. Odeska Dyv. Striltsiv" }
+        }
+    }
+
+    UKR_GAR_1 = {
+        name = "Harnizon"
+
+        for_countries = { UKR }
+        can_use = { always = yes }      fallback_name = "%d. Harnizonova Dyviziia"
+        division_types = { "infantry" }
+
+        ordered = {
+            1 = { "%d. Harnizonova Dyviziia" }         2 = { "Harnizon ‘Khortytsia’" }     3 = { "Harnizon ‘Tavriya’" }
+        }
+    }
+
+    UKR_CAV_1 = {
+        name = "Konnnyi Kosh"
+
+        for_countries = { UKR }
+        can_use = { always = yes }      fallback_name = "%d. Konnnyi Kosh"
+        division_types = { "cavalry" }
+
+        ordered = {
+            1 = { "%d. Konnnyi Kosh ‘Khmelnytskyi’" }         2 = { "%d. Konnnyi Kosh" }     3 = { "%d. Kosh Konnoyi Varty" }
         }
     }
 

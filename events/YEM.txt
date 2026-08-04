@@ -1,0 +1,26 @@
+add_namespace = yem_uprising
+
+# uprising
+    news_event = {
+        id = yem_uprising.1
+        title = "Uprising in Arabia!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            YEM = {
+                every_core_state = { PREV = { set_state_owner = PREV } }
+                load_oob = YEM
+
+                set_province_controller = 12758
+                set_province_controller = 5037
+
+                declare_war_on = { target = PREV type = independence_wargoal }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

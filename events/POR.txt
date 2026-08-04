@@ -1,0 +1,18 @@
+add_namespace = por_entente
+
+# entente
+    news_event = {
+        id = por_entente.1
+        title = "[POR.GetName] Joins the Entente"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            FRA = { add_to_faction = POR }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

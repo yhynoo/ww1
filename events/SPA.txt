@@ -1,0 +1,98 @@
+add_namespace = spa_civil_war
+add_namespace = spa_entente
+add_namespace = spa_morocco
+add_namespace = spa_semana
+
+# civil war
+    country_event = {
+        id = spa_civil_war.1
+        title = "Communists Demand an Armistice"
+
+        is_triggered_only = yes
+        fire_only_once = yes
+
+        option = {
+            name = "Traitors."
+            add_war_support = -0.05
+
+            # event
+            news_event = { id = spa_civil_war.2 days = 7 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = spa_civil_war.2
+        title = "Spanish Civil War!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            start_civil_war = { ideology = communism states = { 169 167 166 165 } army_ratio = 0.45 navy_ratio = 0.6 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# entente
+    news_event = {
+        id = spa_entente.1
+        title = "[SPA.GetName] Joins the Entente"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            FRA = { add_to_faction = SPA }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# morocco
+    news_event = {
+        id = spa_morocco.1
+        title = "Spain Asserts Claims to Morocco"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            every_state = {
+                limit = { is_core_of = MOR }
+                add_claim_by = SPA
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# semana
+    news_event = {
+        id = spa_semana.1
+        title = "Memories of Semana Tragica"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_ideas = idea_memories_of_semana_tragica
+            set_country_flag = had_semana
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

@@ -1,208 +1,265 @@
-add_namespace = FRA_agadir
-add_namespace = FRA_atlas
-add_namespace = FRA_driant
-add_namespace = FRA_entente
-add_namespace = FRA_intervention
-add_namespace = FRA_invitation
-add_namespace = FRA_oil
+add_namespace = fra_agadir
+add_namespace = fra_entente
+add_namespace = fra_fox
+add_namespace = fra_intervene
+add_namespace = fra_oil
+add_namespace = fra_war
+add_namespace = fra_wilson
+add_namespace = fra_with_you
 
-    # agadir
-        news_event = {
-            id = FRA_agadir.1
-            title = "Agadir Trials Commence in Algiers"
-            desc = FRA_agadir.1.d
+# agadir
+    news_event = {
+        id = fra_agadir.1
+        title = "Agadir Trials Commence in Algiers"
 
-            is_triggered_only = yes
-            major = yes
+        is_triggered_only = yes
+        major = yes
 
-            option = {
-                name = "Interesting."
-                if = { 
-                    limit = { tag = FRA }    
-                    country_event = { id = FRA_agadir.2 days = 28 } 
+        immediate = {
+            add_timed_idea = { idea = idea_agadir_trials months = 3 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# entente
+    news_event = {
+        id = fra_entente.1
+        title = "The Entente Established Again"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            create_faction = "Entente"
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# fox
+    country_event = {
+        id = fra_fox.1
+        title = "Fox Awakes in the Desert"
+
+        is_triggered_only = yes
+
+        immediate = {
+            hidden_effect = { country_event = { id = fra_fox.2 days = 7 } }
+            every_state = {
+                limit = { or = { state = 459 state = 460 state = 514 } }
+                add_core_of = ALG
+            }
+        }
+
+        option = {
+            name = "Ok."
+            add_stability = -0.025
+        }
+    }
+
+    country_event = {
+        id = fra_fox.2
+        title = "Abbas Speaks in Oran"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Arrest him."
+
+            # event
+            news_event = { id = fra_fox.3 hours = 6 }
+        }
+        option = {
+            name = "Wait it out."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = fra_fox.3
+        title = "Uprising in Algeria!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            ALG = {
+                # Constantine + Batna
+                set_province_controller = 12051      set_province_controller = 10078      set_province_controller = 9976        
+                set_province_controller = 7065       set_province_controller = 12034                
+                
+                # Oran
+                set_province_controller = 7132       set_province_controller = 4150       set_province_controller = 4116
+                
+                set_state_owner = 459       set_state_owner = 460       set_state_owner = 514
+                459 = { setup_uprising_state = yes }
+                460 = { setup_uprising_state = yes setup_camelry_state = yes }
+
+                declare_war_on = { target = FRA type = independence_wargoal }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# intervene 
+    country_event = {
+        id = fra_intervene.1
+        title = "Offer Aid to the Atlas Tribes?"
+
+        is_triggered_only = yes
+        fire_only_once = yes
+
+        option = {
+            name = "Yes."
+            random_country = {
+                limit = { original_tag = MOR has_government = democratic }
+                FRA = { add_to_faction = PREV }
+            }
+
+            # event
+            news_event = { id = fra_intervene.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = fra_intervene.2
+        title = "France Encourages the Atlas Tribes"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            GER = { create_wargoal = { target = FRA type = topple_government } }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# oil
+    news_event = {
+        id = fra_oil.1
+        title = "French Investments in [TUR.GetName]"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_opinion_modifier = { target = FRA modifier = opinion_french_oil }
+            TUR = { 
+                give_resource_rights = { receiver = FRA state = 414 } 
+                add_ideas = idea_french_oil_investments
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# war
+    news_event = {
+        id = fra_war.1
+        title = "War Erupts in Europe!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            set_global_flag = great_war
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+    news_event = {
+        id = fra_war.2
+        title = "End of the Great War"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            BEL = {
+                set_state_owner = 34
+                34 = {
+                    remove_core_of = GER        remove_claim_by = GER
                 }
             }
-        }
-
-        country_event = {
-            id = FRA_agadir.2
-            title = "Dubious Evidence"
-            desc = FRA_agadir.2.d
-
-            is_triggered_only = yes
-            immediate = {
-                hidden_effect = { remove_ideas = idea_echoes_of_agadir }
+            FRA = {
+                set_state_owner = 28
+                28 = { 
+                    set_demilitarized_zone = yes 
+                    remove_core_of = GER        remove_claim_by = GER
+                }
             }
-
-            option = {
-                name = "Justice is justice."
-                add_stability = 0.05
-
-                # consequence event; full commitment option
-                random = { chance = 50 news_event = { id = FRA_agadir.3 days = 2 } }
+            GER = { 
+                dismantle_faction = yes
+                release = LUX 
             }
-            option = {
-                name = "It is the message that matters."
-                add_popularity = { ideology = monarchism popularity = 0.05 }
-            }
-        }
-
-        news_event = {
-            id = FRA_agadir.3
-            title = "Action Française Questions Trial Outcomes"
-            desc = FRA_agadir.3.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "Interesting."
-                add_popularity = { ideology = democratic popularity = -0.05 }
-            }
-        }
-
-    # atlas
-        news_event = {
-            id = FRA_atlas.1
-            title = "France to Ignite the Atlas?"
-            desc = FRA_atlas.1.d
-
-            is_triggered_only = yes
-            major = yes
-
-            option = {
-                name = "Worrying."
-            }
-        }
-
-    # driant
-        news_event = {
-            id = FRA_driant.1
-            title = "Émile Driant Appointed to Lead France"
-            desc = FRA_driant.1.d
-
-            is_triggered_only = yes
-            major = yes
-
-            option = {
-                name = "Interesting."
-            }
-        }
-
-    # entente
-        news_event = {
-            id = FRA_entente.1
-            title = "France Establishes the Entente"
-            desc = FRA_entente.1.d
-
-            is_triggered_only = yes
-            major = yes
-
-            option = {
-                name = "Interesting."
-            }
-        }
-
-    # intervene
-        country_event = {
-            id = FRA_intervention.1
-            title = "France to Intervene in the Atlas?"
-            desc = FRA_intervention.1.d
-
-            trigger = {
-                tag = GER
-                FRA = { focus_progress = { focus = FRA_take_ours    progress > 0.2 } }
-            }
-            fire_only_once = yes
-
-            option = {
-                name = "We must offer them all we can."
-                give_guarantee = MOR
-            }
-            option = {
-                name = "This is not in our interest."
-                add_war_support = -0.05
-
-                # ai
-                ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
-            }
-        }
-
-    # invite
-        country_event = {
-            id = FRA_invitation.1
-            title = "France Invites Us to the Entente"
-            desc = FRA_invitation.1.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "Great."
-                FRA = { add_to_faction = ROOT }
-
-                # event
-                hidden_effect = { news_event = { id = FRA_invitation.2 hours = 6 } }
-
-                # ai
-                ai_chance = { modifier = { and = { is_historical_focus_on = yes tag = ENG } } factor = 0 }
-                ai_chance = { modifier = { and = { is_historical_focus_on = yes tag = RUS } } factor = 0 }
-            }
-            option = {
-                name = "We are not interested."
-
-                # ai
-                ai_chance = { modifier = { and = { is_historical_focus_on = yes tag = SPA } } factor = 0 }
-            }
-        }
-
-        news_event = {
-            id = FRA_invitation.2
-            title = "[ROOT.GetName] Joins the Entente"
-            desc = FRA_invitation.2.d
-
-            is_triggered_only = yes
-            major = yes
-
-            option = {
-                name = "Ok."
-            }
-        }
-
-    # oil
-        country_event = {
-            id = FRA_oil.1
-            title = "France Seeks Access to Arabian Oil"
-            desc = FRA_oil.1.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "Yes."
+            TUR = {
+                release = LEB
                 414 = {
-                    give_resource_rights = { receiver = FRA state = 414 }
-                    add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                    set_demilitarized_zone = yes
+                    transfer_state_to = ENG
                 }
-
-                # event
-                hidden_effect = { news_event = { id = FRA_oil.2 hours = 6 } }
-            }
-            option = {
-                name = "We are not interested."
-                add_political_power = -10
-
-                # historical ai
-                ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+                454 = {
+                    set_demilitarized_zone = yes
+                    transfer_state_to = ENG
+                }
             }
         }
 
-        news_event = {
-            id = FRA_oil.2
-            title = "[FRA.GetName] Accesses Oil in [TUR.GetNameDef]"
-            desc = FRA_oil.2.d
-
-            is_triggered_only = yes
-            major = yes
-
-            option = {
-                name = "Ok."
-            }
+        option = {
+            name = "Ok."
         }
+    }
+
+# wilson
+    news_event = {
+        id = fra_wilson.1
+        title = "France Endorses the Twelve Points"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# with you
+    news_event = {
+        id = fra_with_you.1
+        title = "“With You in Times of Danger”"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_popularity = { ideology = ROOT popularity = 0.05 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

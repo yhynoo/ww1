@@ -1,0 +1,51 @@
+add_namespace = aus_streik
+
+# streik
+    country_event = {
+        id = aus_streik.1
+        title = "Jännerstreik"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Ok."
+            set_politics = { ruling_party = democratic elections_allowed = yes }
+            set_popularities = { democratic = 60 monarchism = 25 communism = 15 }
+
+            # event
+            news_event = { id = aus_streik.2 days = 14 }
+        }
+    }
+
+    news_event = {
+        id = aus_streik.2
+        title = "Austria-Hungary Disintegrates"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            leave_faction = yes
+            drop_cosmetic_tag = yes
+
+            white_peace = FRA
+            white_peace = MOR
+            white_peace = SER
+
+            39 = { set_demilitarized_zone = yes }
+
+            every_state = {
+                limit = { or = { state = 80 state = 89 state = 91 } }
+                transfer_state_to = POL
+            }
+
+            every_possible_country = {
+                limit = { or = { tag = CZE tag = CRO tag = HUN } }
+                AUS = { release_on_controlled = PREV }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

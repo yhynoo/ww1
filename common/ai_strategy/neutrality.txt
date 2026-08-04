@@ -1,0 +1,37 @@
+USA_neutrality = {
+    allowed = { or = { original_tag = POL original_tag = USA } }
+    enable = { is_historical_focus = yes not = { has_global_flag = twelve_points } }
+
+    reversed = yes
+    ai_strategy = { type = alliance id = USA value = -100 }
+}
+
+# others
+    AUS_neutrality = {
+        allowed = { original_tag = AUS }
+        enable = { not = { has_government = monarchism } }
+
+        reversed = yes
+        ai_strategy = { type = alliance id = AUS value = -100 }
+    }
+
+    POL_neutrality = {
+        allowed = { original_tag = POL }
+        enable = { not = { controls_state = 80 } }      # until we have Kraków, we just wait for our chance.
+
+        reversed = yes
+        ai_strategy = { type = alliance id = POL value = -100 }
+    }
+
+    historical_neutrality = {
+        allowed = { or = { original_tag = ITA original_tag = QAJ original_tag = SIA original_tag = UKR } }
+        enable = { is_historical_focus = yes }
+
+        reversed = yes
+
+        # countries
+        ai_strategy = { type = alliance id = ITA value = -100 }
+        ai_strategy = { type = alliance id = QAJ value = -100 }
+        ai_strategy = { type = alliance id = SIA value = -100 }
+        ai_strategy = { type = alliance id = UKR value = -100 }
+    }

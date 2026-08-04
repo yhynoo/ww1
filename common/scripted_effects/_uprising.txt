@@ -1,6 +1,6 @@
 trigger_uprising = {
     setup_uprising_country = yes 
-    uprising_reaction_event = yes
+    # uprising_reaction_event = yes
 }
 
 setup_uprising_country = {
@@ -12,11 +12,11 @@ setup_uprising_country = {
         # manage states
         if = {
             limit = { is_capital = no }
-            random = { chance = 25 set_state_controller_to = ROOT }
+            random = { chance = 40 set_state_controller_to = ROOT }
 
             if = {
                 limit = { not = { any_neighbor_state = { is_capital = yes } } }
-                random = { chance = 75 set_state_controller_to = ROOT }
+                random = { chance = 80 set_state_controller_to = ROOT }
             }
         }
     }
@@ -32,6 +32,8 @@ setup_uprising_country = {
         
         add_timed_idea = { idea = idea_uprising months = 6 }
     }
+
+    declare_war_on = { target = PREV type = independence_wargoal }
 }
 
 uprising_reaction_event = {
@@ -56,7 +58,7 @@ uprising_reaction_event = {
 
 setup_uprising_state = {
     owner = { setup_uprising_troops = yes }
-    create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\"" count = 1 owner = PREV }
+    create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\"" count = 2 owner = PREV }
 
     random = {
         chance = 60
@@ -91,6 +93,25 @@ setup_guards_units = {
     }
 }
 
+setup_camelry_units = {
+    if = {
+        limit = { not = { has_template = "Indigenous Troops" } }
+        division_template = {
+            name = "Indigenous Troops"
+            is_locked = yes
+            regiments = {
+                camelry = { x = 0 y = 0 }      camelry = { x = 1 y = 0 }
+                camelry = { x = 0 y = 1 }      camelry = { x = 1 y = 1 }
+            }
+        }
+    }
+}
+
+setup_camelry_state = {
+    owner = { setup_camelry_units = yes }
+    create_unit = { division = "name = \"Indigenous Troops\" division_template = \"Indigenous Troops\"" count = 1 owner = PREV }
+}
+
 setup_local_militias = {
     if = {
         limit = { not = { has_template = "Local Militias" } }
@@ -101,9 +122,4 @@ setup_local_militias = {
             }
         }
     }
-}
-
-setup_colonialist_militias = {
-    PREV = { setup_local_militias = yes }
-    create_unit = { division = "name = \"Local Militias\" division_template = \"Local Militias\"" count = 3 owner = PREV }
 }

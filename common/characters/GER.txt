@@ -11,13 +11,14 @@ characters = {
             traits = { trait_uncompromising_imperialist trait_navalist }
         }
     }
+    GER_georg_von_hertling = {
+        name = "Georg von Hertling"
+        country_leader = {  ideology = constitutional_monarchy traits = { trait_moderate } }
+    }
 
     GER_friedrich_ebert = {
         name = "Friedrich Ebert"
-        country_leader = {
-            ideology = liberalism
-            traits = { trait_labor_advocate trait_moderate }
-        }
+        country_leader = { ideology = liberalism traits = { trait_labor_advocate } }
     }
 
     GER_karl_liebknecht = {
@@ -269,10 +270,10 @@ characters = {
     GER_erich_ludendorff = {
         name = "Erich Ludendorff"
         portraits = {
-            army = {
-                large = "GFX_Portrait_Europe_Generic_land_3"
-            }
+            army = { large = "GFX_Portrait_Europe_Generic_land_3" }
+            civilian = { large = "GFX_Portrait_Europe_Generic_land_3" }
         }
+        country_leader = { ideology = state_autocracy traits = { trait_staunch_militarist } } } }
         corps_commander = {
             traits = { harsh_leader }
             skill = 3
