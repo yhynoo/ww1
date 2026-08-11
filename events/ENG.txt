@@ -1,4 +1,5 @@
 add_namespace = eng_danger
+add_namespace = eng_halifax
 
 # danger
     country_event = {
@@ -30,8 +31,21 @@ add_namespace = eng_danger
         is_triggered_only = yes
         major = yes
 
+        option = {
+            name = "Ok."
+        }
+    }
+
+# halifax
+    news_event = {
+        id = eng_halifax.1
+        title = "The Halifax Explosion"
+
+        is_triggered_only = yes
+        major = yes
+
         immediate = {
-            news_event = { id = por_entente.1 days = 5 }
+            damage_building = { type = infrastructure state = 464 damage = 1 }
         }
 
         option = {

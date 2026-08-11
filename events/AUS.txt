@@ -1,4 +1,22 @@
+add_namespace = aus_emperor
 add_namespace = aus_streik
+
+# emperor
+    news_event = {
+        id = aus_emperor.1
+        title = "The [AUS.GetAdjective] Emperor Dies"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            retire_character = AUS_franz_joseph
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
 
 # streik
     country_event = {

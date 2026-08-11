@@ -1,0 +1,62 @@
+add_namespace = mex_agrarianists
+add_namespace = mex_americans
+
+# agrarianists
+    news_event = {
+        id = mex_agrarianists.1
+        title = "Agrarianist Uprising in Mexico"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            start_civil_war = { ideology = communism size = 0.4 army_ratio = 0.2 }
+            USA = {
+                news_event = { id = usa_agrarian_volunteers.1 days = 6 }
+                country_event = { id = usa_aid.1 days = 21 }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# americans
+    country_event = {
+        id = mex_americans.1
+        title = "Ask for American Intervention?"
+
+        is_triggered_only = yes
+        fire_only_once = yes
+
+        option = {
+            name = "Yes."
+
+            # event
+            news_event = { id = mex_americans.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = mex_americans.2
+        title = "United States Intervene in Mexico"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            USA = { set_autonomy = { target = MEX   autonomous_state = autonomy_dominion    end_wars = no   end_civil_wars = no } }
+            every_enemy_country = { USA = { declare_war_on = { target = PREV type = take_claimed_state } } }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

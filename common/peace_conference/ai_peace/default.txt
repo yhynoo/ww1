@@ -1,10 +1,10 @@
 peace_ai_desires = {
-
     # taking
         take_your_cores_and_claims = {                           # highest imperative
             peace_action_type = { take_states }
-            enable = { ROOT.FROM.FROM.FROM = { or = { is_core_of = ROOT is_claimed_by = ROOT } } }
-
+            enable = { 
+                ROOT.FROM.FROM.FROM = { or = { is_core_of = ROOT is_claimed_by = ROOT } } 
+            }
             ai_desire = 100
         }
 
@@ -24,7 +24,10 @@ peace_ai_desires = {
         costa_del_sol = {
             peace_action_type = { take_states }
             enable = { 
-                ROOT.FROM.FROM.FROM = { is_coastal = yes }
+                ROOT.FROM.FROM.FROM = {
+                    not = { is_core_of = ROOT.FROM } 
+                    is_coastal = yes 
+                }
             }
             ai_desire = 5
         }
@@ -33,16 +36,8 @@ peace_ai_desires = {
             peace_action_type = { take_states }
             enable = {
                 ROOT.FROM.FROM.FROM = { 
-                    and = {
-                        not = { or = { is_core_of = ROOT is_claimed_by = ROOT } }
-                        or = {
-                            is_on_continent = europe
-                            and = {
-                                is_coastal = no
-                                not = { any_neighbor_state = { or = { is_owned_by = ROOT is_core_of = ROOT } } }
-                            }
-                        }
-                    }
+                    not = { or = { is_core_of = ROOT is_claimed_by = ROOT } }
+                    is_core_of = ROOT.FROM
                 }
             }
             ai_desire = -300

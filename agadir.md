@@ -27,6 +27,7 @@
 - 1915
     - [flavor] Gas! (when a warring side researches gas shells)
     - French Investments in Turkey [idea]
+    - End of the Moroccan Campaign
 - 1916
     - Demonstrations in Constantinople, Turkey Joins the Entente
         - German Influence in the Middle East
@@ -37,18 +38,60 @@
             - Thrace Asserts its Autonomy > Thrace Slips Away from the Turks
             - Ha'il Expels the Turkish Officials
     - *Serbia to Jump at the Opportunity?* > Serbia Joins the Entente
-    - End of the Moroccan Campaign
+    - Austrian Emperor Dies
 - 1917
     - Wassmuss Disappears in Khuzestan
     - The Harvest of 1917 [idea]
 - 1918
     - Wheat Shortages Throughout Europe [idea]; *Kadets Oppose Wheat Exports* > Milyukov Denounces the Tsarist Government!
         - Ukraine Independent!, *The OHL Debates an Intervention* > German Intervention in Ukraine (doesn't happen), Uprising in Warsaw!
-    - Wilson Announces the Twelve Points, France Endorses Wilson's Idea, United States Join the Entente
 - 1919
     - *Jännerstreik* > Austria-Hungary Disintegrates
     - Poland Joins the Entente, The Appointment of von Hertling
         - End of the Great War
+
+# america
+- 1912
+    - Agrarianist Uprising in Mexico; American Volunteers Arrive in Mexico
+        - *Senate Debates Aid for Mexico* > American Aid for Mexican Democrats
+            - Colombia Expels American Enterprise
+            - *Ask for American Intervention?* > United States Intervene in Mexico
+    - *Tensions on Cuba* > Uprising in Havana
+        - United States Accept Cuban Independence
+- 1913
+    - Colombia Asks for an Armistice
+- 1915
+    - Controversial Movie Screens in the White House
+        - Tensions in the South > *The Atlanta Convention* > Second Klan Established
+        - The 'Land of Liberty' Address
+- 1916
+    - Escadrille Lafayette Arrives in France
+- 1917
+    - Halifax Explosion
+- 1918
+    - Wilson Announces the Twelve Points, France Endorses Wilson's Idea, United States Join the Entente
+        - Espionage Act
+
+# asia
+- 1912
+    - *End of the Transition Government* > Yuan Shikai to Lead China
+    - *Dalai Lama Announces Independence* > Tibet Independent
+    - Emperor Mutsuhito Dies
+- 1913
+    - The Emperor's Address
+        - *Democrats to Sideline the Sickly Emperor?* > Imperial Court to Withdraw?
+            - *Imperial Navy Threatens Intervention*
+    - The Assassination of Song Jiaoren
+        - Sun in Exile
+- 1914
+    - *Japan Demands Our Asian Colonies* > German Empire Withdraws from Asia (unused)
+- 1915
+    - Twenty-One Demands
+        - Opposition to Japanese Demands, *Textile Workers on Strike* > Linens Dyed Red
+        - Yuan Shikai Declares the Empire of China
+- 1916
+    - Yuan Shikai Dies
+    - Sun Yat-Sen Arrives in Shanghai
 
 # atmosphere
     news_event = {

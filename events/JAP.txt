@@ -1,0 +1,67 @@
+add_namespace = jap_entente
+add_namespace = jap_emperor_dies
+
+# entente
+    country_event = {
+        id = jap_entente.1
+        title = "Tokyo Demands Our Asian Colonies"
+
+        is_triggered_only = yes
+
+        immediate = {
+            every_state = {
+                limit = { or = { state = 431 state = 74 state = 352 state = 523 state = 567 state = 634 state = 633 } }
+                add_claim_by = JAP
+            }
+        }
+
+        option = {
+            name = "Yes."
+
+            # event
+            news_event = { id = jap_entente.2 hours = 6 }
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+        option = {
+            name = "No."
+            JAP = { declare_war_on = { target = GER type = take_claimed_state } }            
+        }
+    }
+
+    news_event = {
+        id = jap_entente.2
+        title = "[GER.GetNameDef] Withdraws from Asia"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            every_state = {
+                limit = { is_claimed_by = JAP is_owned_by = GER }
+                JAP = { set_state_owner = PREV }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# emperor
+    news_event = {
+        id = jap_emperor_dies.1
+        title = "Emperor Mutsuhito Dies"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            retire_character = JAP_meiji
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

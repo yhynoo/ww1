@@ -1,5 +1,142 @@
+add_namespace = usa_agrarian_volunteers
+add_namespace = usa_aid
+add_namespace = usa_cuba
+add_namespace = usa_cuba_accept
+add_namespace = usa_direct
 add_namespace = usa_entente
+add_namespace = usa_espionage
+add_namespace = usa_klan
+add_namespace = usa_lafayette
+add_namespace = usa_land_of_liberty
+add_namespace = usa_movie
 add_namespace = usa_wilson
+
+# agrarians
+    news_event = {
+        id = usa_agrarian_volunteers.1
+        title = "American Volunteers Arrive in Mexico"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_popularity = { ideology = communism popularity = 0.025 }
+            random_country = { 
+                limit = { original_tag = MEX has_government = communism }
+                random_controlled_state = { setup_uprising_state = yes }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# aid
+    country_event = {
+        id = usa_aid.1
+        title = "Senate Debates Aid for Mexico"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+
+            # event
+            news_event = { id = usa_aid.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = usa_aid.2
+        title = "American Aid for Mexican Democrats"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            MEX = { add_ideas = idea_american_aid_for_mexico }
+            COL = { country_event = { id = col_americans.1 days = 3 } }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# cuba
+    country_event = {
+        id = usa_cuba.1
+        title = "Tensions on Cuba"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Arrest them."
+            add_stability = 0.025
+
+            # event
+            news_event = { id = usa_cuba.2 days = 5 }
+        }
+        option = {
+            name = "No."
+            add_popularity = { ideology = communism popularity = 0.025 }
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = usa_cuba.2
+        title = "Uprising in Havana!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            USA = {
+                division_template = { name = "Cuban Loyalists" is_locked = yes regiments = { infantry = { x = 0 y = 0 } infantry = { x = 0 y = 1 } } }
+                315 = { create_unit = { division = "name = \"Cuban Loyalists\" division_template = \"Cuban Loyalists\" start_experience_factor = 0.3" count = 2 owner = USA } }
+            }
+            CUB = {
+                every_core_state = { PREV = { set_state_owner = PREV } }
+                load_oob = CUB
+
+                set_province_controller = 7622
+                set_province_controller = 4600
+
+                declare_war_on = { target = PREV type = independence_wargoal }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# accept
+    news_event = {
+        id = usa_cuba_accept.1
+        title = "United States Accept Cuban Independence"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            white_peace = CUB
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
 
 # entente
     news_event = {
@@ -11,6 +148,130 @@ add_namespace = usa_wilson
 
         immediate = {
             FRA = { add_to_faction = USA }
+            USA = { country_event = { id = usa_espionage.1 days = 7 } }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# espionage
+    country_event = {
+        id = usa_espionage.1
+        title = "Espionage Act of [GetYear]"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Ok."
+            add_war_support = 0.05
+        }
+    }
+
+# klan
+    country_event = {
+        id = usa_klan.1
+        title = "Tensions in the South"
+
+        is_triggered_only = yes
+
+        immediate = {
+            country_event = { id = usa_klan.2 days = 7 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+    country_event = {
+        id = usa_klan.2
+        title = "The Atlanta Convention"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            add_popularity = { ideology = monarchism popularity = 0.025 }
+
+            # event
+            news_event = { id = usa_klan.3 hours = 6 }
+        }
+        option = {
+            name = "Arrest them all."
+            add_stability = -0.05
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = usa_klan.3
+        title = "Second Klan Established"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_ideas = idea_second_klan
+            news_event = { id = usa_land_of_liberty.1 days = 28 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# lafayette
+    news_event = {
+        id = usa_lafayette.1
+        title = "The Lafayette Escadrille Arrives in France"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            FRA = { 
+                add_equipment_to_stockpile = { type = fighter_equipment_1   amount = 24     producer = USA }
+                add_manpower = 60
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# land of liberty
+    news_event = {
+        id = usa_land_of_liberty.1
+        title = "The ‘Land of Liberty’ Address"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_popularity = { ideology = democratic popularity = 0.05 }
+            add_political_power = 50
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# movie
+    news_event = {
+        id = usa_movie.1
+        title = "Controversial Movie in the White House"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            country_event = { id = usa_klan.1 days = 14 }
         }
 
         option = {
@@ -31,7 +292,8 @@ add_namespace = usa_wilson
             every_country = { limit = { original_tag = RUS }    white_peace = POL }
 
             # france endorses
-            news_event = { id = fra_wilson.1 days = 7 }
+            FRA = { news_event = { id = fra_wilson.1 days = 7 } }
+            news_event = { id = usa_entente.1 months = 80 days = 14 }
         }
 
         option = {

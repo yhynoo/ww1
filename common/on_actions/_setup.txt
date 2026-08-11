@@ -20,14 +20,16 @@ on_actions = {
 
         # events
             AUS = {
+                country_event = { id = aus_emperor.1 months = 58 days = 26 }
                 country_event = { id = aus_streik.1 months = 85 days = 4 }
+            }
+
+            ENG = {
+                news_event = { id = eng_halifax.1 months = 71 days = 6 }
             }
 
             FRA = {
                 news_event = { id = fra_agadir.1 days = 12 }
-                news_event = { id = fra_with_you.1 days = 16 }
-                news_event = { id = fra_fox.1 days = 24 }
-
                 news_event = { id = fra_entente.1 months = 26 days = 6 }
                 news_event = { id = fra_oil.1 months = 39 days = 10 }
             }
@@ -41,6 +43,20 @@ on_actions = {
                 news_event = { id = ger_harvest.2 months = 72 days = 14 }
 
                 country_event = { id = ger_armistice.1 months = 86 days = 7 }
+            }
+
+            JAP = {
+                news_event = { id = jap_emperor_dies.1 months = 6 days = 30 }
+            }
+
+            MAN = {
+                country_event = { id = man_transition.1 months = 2 days = 14 }
+                country_event = { id = man_tibet.1 months = 3 days = 4 }
+                country_event = { id = man_empire.1 months = 47 days = 12 }
+            }
+
+            MEX = {
+                news_event = { id = mex_agrarianists.1 months = 1 days = 6 }
             }
 
             MOR = {
@@ -67,8 +83,9 @@ on_actions = {
             }
 
             USA = {
+                country_event = { id = usa_cuba.1 months = 4 days = 21 }
+                news_event = { id = usa_lafayette.1 months = 51 days = 7 }
                 news_event = { id = usa_wilson.1 months = 80 }
-                news_event = { id = usa_entente.1 months = 80 days = 14 }
             }
         }
     }
@@ -98,6 +115,17 @@ on_actions = {
         }
 
     # reactions - countries
+        on_weekly_COL = {
+            effect = {
+                if = {
+                    limit = {
+                        and = { has_war_with = USA MEX = { is_subject_of = USA } }
+                        surrender_progress > 0.05
+                    }
+                    USA = { country_event = col_armistice.1 }
+                }
+            }
+        }
         on_weekly_ENG = {
             effect = {
                 if = {
@@ -152,6 +180,15 @@ on_actions = {
                 if = {
                     limit = { war_length_with = { tag = TUR months = 2 } not = { has_country_flag = middle_east_influence } }
                     news_event = ger_middle_east.1
+                }
+            }
+        }
+
+        on_weekly_MEX = {
+            effect = {
+                if = {
+                    limit = { has_civil_war = yes surrender_progress > 0.4 }
+                    news_event = mex_americans.1
                 }
             }
         }
@@ -264,6 +301,20 @@ on_actions = {
 
                     # entente
                     news_event = { id = tur_entente.1 months = 2 }
+                }
+            }
+        }
+
+        on_weekly_USA = {
+            effect = {
+                if = {
+                    limit = { 
+                        and = {
+                            has_war_with = CUB 
+                            315 = { is_fully_controlled_by = CUB } 
+                        }
+                    }
+                    news_event = usa_cuba_accept.1
                 }
             }
         }

@@ -17,6 +17,10 @@ add_namespace = fra_with_you
 
         immediate = {
             add_timed_idea = { idea = idea_agadir_trials months = 3 }
+
+            # events
+            news_event = { id = fra_with_you.1 days = 7 }
+            news_event = { id = fra_fox.1 days = 21 }
         }
 
         option = {
@@ -91,18 +95,14 @@ add_namespace = fra_with_you
 
         immediate = {
             ALG = {
-                # Constantine + Batna
-                set_province_controller = 12051      set_province_controller = 10078      set_province_controller = 9976        
-                set_province_controller = 7065       set_province_controller = 12034                
-                
-                # Oran
-                set_province_controller = 7132       set_province_controller = 4150       set_province_controller = 4116
-                
-                set_state_owner = 459       set_state_owner = 460       set_state_owner = 514
-                459 = { setup_uprising_state = yes }
-                460 = { setup_uprising_state = yes setup_camelry_state = yes }
+                every_core_state = { PREV = { set_state_owner = PREV } }
+                load_oob = ALG
 
-                declare_war_on = { target = FRA type = independence_wargoal }
+                set_province_controller = 7132
+                set_province_controller = 12051
+                set_province_controller = 12034
+
+                declare_war_on = { target = PREV type = independence_wargoal }
             }
         }
 
@@ -184,6 +184,7 @@ add_namespace = fra_with_you
 
         immediate = {
             set_global_flag = great_war
+            JAP = { news_event = { id = jap_entente.1 days = 22 } }
         }
 
         option = {

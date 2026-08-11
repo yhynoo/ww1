@@ -1,0 +1,91 @@
+add_namespace = man_empire
+add_namespace = man_tibet
+add_namespace = man_transition
+
+# empire
+    news_event = {
+        id = man_empire.1
+        title = "Yuan Announces the Chinese Empire"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            set_cosmetic_tag = MAN_empire
+
+            set_popularities = { monarchism = 60 democratic = 30 communism = 10 }
+            set_politics = { ruling_party = monarchism elections_allowed = no }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# tibet
+    country_event = {
+        id = man_tibet.1
+        title = "Dalai Lama Announces Independence"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            release = TIB
+
+            # event
+            news_event = { id = man_tibet.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = man_tibet.2
+        title = "Tibet Independent"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# transition
+    country_event = {
+        id = man_transition.1
+        title = "End of the Transition Government?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            promote_character = { character = MAN_yuan_shikai ideology = conservatism }
+
+            # event
+            news_event = { id = man_transition.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = man_transition.2
+        title = "Yuan Shikai to Lead China"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
