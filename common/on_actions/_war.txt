@@ -6,7 +6,7 @@ on_actions = {
                 # news_event = { id = civil_war.4 hours = 6 }
 
                 every_country = {
-                    limit = { is_diplomatically_able = yes has_offensive_war_with = FROM }
+                    limit = { is_diplomatically_able = yes has_offensive_war_with = FROM not = { original_tag = FROM } }
                     country_event = { id = civil_war.1 hours = 6 }
                 }
                 

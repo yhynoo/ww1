@@ -34,7 +34,19 @@ add_namespace = spa_semana
         major = yes
 
         immediate = {
-            start_civil_war = { ideology = communism states = { 169 167 166 165 } army_ratio = 0.45 navy_ratio = 0.6 }
+            ITA = { news_event = { id = ita_spain.1 days = 14 } }
+            SPA = {
+                start_civil_war = { 
+                    ideology = communism states = { 169 167 166 165 } army_ratio = 0.25 navy_ratio = 0.2
+
+                    # extra stuff
+                    division_template = { name = "Anarchist Militias" is_locked = yes regiments = { infantry = { x = 0 y = 0 } infantry = { x = 0 y = 1 } } }
+                    every_owned_state = { create_unit = { division = "name = \"Anarchist Militias\" division_template = \"Anarchist Militias\" start_experience_factor = 0.2" count = 2 owner = PREV } }
+
+                    # control
+                    every_owned_state = { ROOT = { set_state_controller = PREV } }
+                }
+            }
             POR = { news_event = { id = por_entente.1 days = 7 } }
         }
 

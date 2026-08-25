@@ -37,13 +37,25 @@ set_technology = {
 
 set_popularities = {
     communism = 15
-    democratic = 30
-    monarchism = 55
+    democratic = 40
+    monarchism = 45
 }
 
 set_politics = {
-    ruling_party = monarchism
+    ruling_party = democratic
     last_election = "1910.1.12"
     election_frequency = 48
-    elections_allowed = no
+    elections_allowed = yes
+}
+
+# dynamics
+create_dynamic_country = {
+    original_tag = UKR
+
+    set_politics = { ruling_party = communism elections_allowed = no }
+    set_popularities = { communism = 75 democratic = 20 monarchism = 5 }
+
+    reserve_dynamic_country = yes
+    set_country_flag = UKR_soviet_state
+    set_cosmetic_tag = generic_communism
 }

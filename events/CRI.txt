@@ -1,0 +1,39 @@
+add_namespace = cri_uprising
+
+# uprising
+    news_event = {
+        id = cri_uprising.1
+        title = "Uprising in Crimea!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            CRI = {
+                # states
+                every_core_state = {
+                    limit = { controller = { original_tag = RUS } }
+                    set_variable = { original_controller = controller }     transfer_state_to = PREV
+                }
+
+                # war
+                every_country = { 
+                    limit = { or = { and = { original_tag = RUS not = { has_government = communism } } } }
+                    declare_war_on = { target = PREV type = annex_everything } 
+                }
+
+                load_oob = CRI
+
+                # control
+                every_owned_state = { 
+                    var:original_controller = { set_state_controller = PREV }
+                }
+
+                set_province_controller = 3686
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

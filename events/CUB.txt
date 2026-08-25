@@ -1,0 +1,70 @@
+add_namespace = cub_armistice
+add_namespace = cub_uprising
+
+# armistice
+    news_event = {
+        id = cub_armistice.1
+        title = "United States Accept Cuban Independence"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            white_peace = CUB
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# cuba
+    country_event = {
+        id = cub_uprising.1
+        title = "Tensions on Cuba"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Arrest them."
+            add_stability = 0.025
+
+            # event
+            news_event = { id = cub_uprising.2 days = 5 }
+        }
+        option = {
+            name = "No."
+            add_popularity = { ideology = communism popularity = 0.025 }
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = cub_uprising.2
+        title = "Uprising in Havana!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            USA = {
+                division_template = { name = "Cuban Loyalists" is_locked = yes regiments = { infantry = { x = 0 y = 0 } infantry = { x = 0 y = 1 } } }
+                315 = { create_unit = { division = "name = \"Cuban Loyalists\" division_template = \"Cuban Loyalists\" start_experience_factor = 0.3" count = 2 owner = USA } }
+            }
+            CUB = {
+                every_core_state = { PREV = { set_state_owner = PREV } }
+                load_oob = CUB
+
+                set_province_controller = 7622
+                set_province_controller = 4600
+
+                declare_war_on = { target = PREV type = independence_wargoal }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

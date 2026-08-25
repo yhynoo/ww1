@@ -1,4 +1,139 @@
+add_namespace = ukr_coup
+add_namespace = ukr_endorse
+add_namespace = ukr_soviet
+add_namespace = ukr_unification
 add_namespace = ukr_uprising
+
+# coup
+    country_event = {
+        id = ukr_coup.1
+        title = "Army Coup?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+
+            set_politics = { ruling_party = monarchism elections_allowed = no }
+            add_popularity = { ideology = monarchism popularity = 0.05 }
+
+            # event
+            news_event = { id = ukr_coup.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = ukr_coup.2
+        title = "Ukrainian Supreme Council Dissolved"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# endorse
+    country_event = {
+        id = ukr_endorse.1
+        title = "Endorse Western Ukraine?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            declare_war_on = { target = POL type = take_claimed_state }
+
+            # event
+            news_event = { id = ukr_endorse.2 hours = 6 }
+            news_event = { id = ukr_unification.1 days = 14 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = ukr_endorse.2
+        title = "Hetmanate Endorses Western Ukraine"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# soviet
+    news_event = {
+        id = ukr_soviet.1
+        title = "Ukrainian Soviet State Established!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            SOU = {
+                # states
+                every_state = {
+                    limit = { or = { state = 221 state = 227 } }
+                    set_variable = { original_controller = controller }     transfer_state_to = PREV
+                }
+
+                # war
+                every_country = { 
+                    limit = { original_tag = UKR }
+                    declare_war_on = { target = PREV type = civil_war } 
+                }
+                every_country = { 
+                    limit = { or = { and = { original_tag = RUS not = { has_government = communism } } } }
+                    declare_war_on = { target = PREV type = annex_everything } 
+                }
+
+                # other
+                division_template = { name = "Worker Militias" is_locked = yes regiments = { infantry = { x = 0 y = 0 } infantry = { x = 0 y = 1 } infantry = { x = 1 y = 0 } infantry = { x = 1 y = 1 } } }
+                every_owned_state = { 
+                    create_unit = { division = "name = \"Worker Militias\" division_template = \"Worker Militias\" start_experience_factor = 0.2" count = 3 owner = PREV } 
+                    var:original_controller = { set_state_controller = PREV }
+                }
+            }
+            UKR = {
+                country_event = { id = ukr_coup.1 days = 2 }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# unification
+    news_event = {
+        id = ukr_unification.1
+        title = "Western Ukraine Aligns with Kyiv"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            UKR = { annex_country = { target = WUK transfer_troops = yes } }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
 
 # uprising
     news_event = {
@@ -10,14 +145,24 @@ add_namespace = ukr_uprising
 
         immediate = {
             UKR = {
-                every_core_state = { 
-                    limit = { controller = { original_tag = ROOT } } 
-                    PREV = { 
-                        set_state_owner = PREV
-                        declare_war_on = { target = PREV.controller type = independence_wargoal }
-                    } 
+                # states
+                every_core_state = {
+                    limit = { controller = { original_tag = RUS } }
+                    set_variable = { original_controller = controller }     transfer_state_to = PREV
                 }
+
+                # war
+                every_country = { 
+                    limit = { or = { and = { original_tag = RUS not = { has_government = communism } } } }
+                    declare_war_on = { target = PREV type = annex_everything } 
+                }
+
                 load_oob = UKR
+
+                # control
+                every_owned_state = { 
+                    var:original_controller = { set_state_controller = PREV }
+                }
 
                 set_province_controller = 525
                 set_province_controller = 572

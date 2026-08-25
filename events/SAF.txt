@@ -1,0 +1,36 @@
+add_namespace = saf_maritz
+
+# maritz
+    news_event = {
+        id = saf_maritz.1
+        title = "Maritz Uprising in South Africa"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            start_civil_war = { 
+                ideology = monarchism states = { 275 } army_ratio = 0.2 
+
+                # alliance
+                GER = { add_to_faction = PREV }
+
+                # extra stuff
+                division_template = { name = "Transvaal Militias" is_locked = yes regiments = { infantry = { x = 0 y = 0 } infantry = { x = 0 y = 1 } } }
+                275 = { create_unit = { division = "name = \"Transvaal Militias\" division_template = \"Transvaal Militias\" start_experience_factor = 0.2" count = 4 owner = PREV } }
+
+                # claims 
+                every_state = { 
+                    limit = { or = { state = 542 state = 42 state = 53 } } 
+                    add_claim_by = PREV
+                }
+
+                # control
+                ROOT = { set_state_controller = 275 }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

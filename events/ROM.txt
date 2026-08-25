@@ -76,16 +76,14 @@ add_namespace = rom_war
             TUR = { 
                 country_event = { id = sms_turks.1 days = 21 } 
                 news_event = { id = arm_uprising.1 months = 2 random_days = 14 }
+
+                set_autonomy = { target = ROM autonomy_state = autonomy_free }
+                declare_war_on = { target = ROM type = annex_everything }
             }
         }
 
         option = {
             name = "Ok."
-            if = {
-                limit = { tag = TUR }
-                set_autonomy = { target = ROM autonomy_state = autonomy_free }
-                declare_war_on = { target = ROM type = annex_everything }
-            }
         }
     }
 

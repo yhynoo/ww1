@@ -20,11 +20,27 @@ characters = {
             traits = { trait_agrarianist }
         }
     }
+
     MEX_victoriano_huerta = {
         name = "Victoriano Huerta"
-        country_leader = {
-            ideology = state_autocracy
-            traits = { trait_hardliner }
+        country_leader = { ideology = state_autocracy   traits = { trait_hardliner } }
+    }
+    MEX_jose_doroteo_arango_arambula = {
+        name = "José Doroteo Arango Arámbula"
+        portraits = { army = { large = "GFX_Portrait_South_America_Generic_land_3" } }
+
+        corps_commander = {
+            traits = {}
+            skill = 2       attack_skill = 1        defense_skill = 2       planning_skill = 2      logistics_skill = 1
+        }
+    }
+    MEX_alvaro_obregon = {
+        name = "Álvaro Obregón"
+        portraits = { army = { large = "GFX_Portrait_South_America_Generic_land_2" } }
+
+        corps_commander = {
+            traits = { cavalry_leader }
+            skill = 2       attack_skill = 2        defense_skill = 1       planning_skill = 2      logistics_skill = 2
         }
     }
 }

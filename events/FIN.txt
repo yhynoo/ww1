@@ -1,0 +1,24 @@
+add_namespace = fin_autonomy
+
+# autonomy
+    country_event = {
+        id = fin_autonomy.1
+        title = "The Helsinki Declaration"
+
+        is_triggered_only = yes
+        immediate = {
+            set_autonomy = { target = FIN autonomous_state = autonomy_free }
+            FIN = { every_enemy_country = { limit = { not = { has_government = communism } } white_peace = FIN } }
+        }
+
+        option = {
+            name = "Whatever."
+        }
+        option = {
+            name = "No."
+            declare_war_on = { target = FIN type = annex_everything }
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }

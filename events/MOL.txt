@@ -1,0 +1,124 @@
+add_namespace = mol_guarantees
+add_namespace = mol_uprising
+add_namespace = mol_ukraine
+
+# guarantees
+    country_event = {
+        id = mol_guarantees.1
+        title = "Guarantees to Moldova"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            give_guarantee = MOL
+
+            # event
+            news_event = { id = mol_guarantees.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = mol_guarantees.2
+        title = "[ROOT.GetLeader] Extends Guarantees to Moldova"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# uprising
+    news_event = {
+        id = mol_uprising.1
+        title = "Uprising in Moldova!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            MOL = {
+                # states
+                every_core_state = {
+                    set_variable = { original_controller = controller }     transfer_state_to = PREV
+                }
+
+                # war
+                every_country = {
+                    limit = { original_tag = RUS }
+                    declare_war_on = { target = PREV type = annex_everything } 
+                }
+
+                load_oob = MOL
+
+                # control
+                every_owned_state = { 
+                    var:original_controller = { set_state_controller = PREV }
+                }
+
+                set_province_controller = 3707
+                set_province_controller = 3724
+            }
+            ROM = {
+                country_event = { id = mol_guarantees.1 days = 2 }
+            }
+            UKR = {
+                country_event = { id = mol_ukraine.1 days = 7 }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# ukraine
+    country_event = {
+        id = mol_ukraine.1
+        title = "The Question of Kishinyev"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+
+            # event
+            news_event = { id = mol_ukraine.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            every_state = { limit = { is_core_of = MOL add_claim_by = UKR } }
+            declare_war_on = { target = MOL type = take_claimed_state }
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = mol_ukraine.2
+        title = "Ukraine Accepts Independent Moldova"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            every_controlled_state = {
+                limit = { is_core_of = MOL }
+                MOL = { set_state_controller = PREV }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

@@ -1,0 +1,43 @@
+add_namespace = fer_soviet
+
+# soviet
+    news_event = {
+        id = fer_soviet.1
+        title = "Harbin Soviet Established!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            JAP = {
+                country_event = { id = jap_manchurian_intervention.1 days = 2 }
+            }
+            SOH = {
+                # states
+                328 = {
+                    set_variable = { original_controller = controller }     transfer_state_to = PREV
+                }
+
+                # war
+                every_country = { 
+                    limit = { original_tag = FER }
+                    declare_war_on = { target = PREV type = civil_war } 
+                }
+                every_country = { 
+                    limit = { or = { and = { original_tag = RUS not = { has_government = communism } } } }
+                    declare_war_on = { target = PREV type = annex_everything } 
+                }
+
+                # other
+                division_template = { name = "Worker Militias" is_locked = yes regiments = { infantry = { x = 0 y = 0 } infantry = { x = 0 y = 1 } } }
+                every_owned_state = { 
+                    create_unit = { division = "name = \"Worker Militias\" division_template = \"Worker Militias\" start_experience_factor = 0.2" count = 4 owner = PREV } 
+                    var:original_controller = { set_state_controller = PREV }
+                }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

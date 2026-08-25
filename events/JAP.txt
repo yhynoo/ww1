@@ -1,5 +1,58 @@
+add_namespace = jap_address
 add_namespace = jap_entente
 add_namespace = jap_emperor_dies
+add_namespace = jap_manchurian_intervention
+add_namespace = jap_twenty_one_demands
+
+# address
+    country_event = {
+        id = jap_address.1
+        title = "The Emperor’s Address"
+
+        is_triggered_only = yes
+
+        immediate = {
+            country_event = { id = jap_address.2 days = 3 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+    country_event = {
+        id = jap_address.2
+        title = "Democrats to Sideline the Emperor?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            add_popularity = { ideology = democratic popularity = 0.025 }
+
+            # event
+            news_event = { id = jap_address.3 hours = 6 }
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+        option = {
+            name = "No."
+            add_stability = 0.05
+        }
+    }
+
+    news_event = {
+        id = jap_address.3
+        title = "Imperial Court to Withdraw?"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
 
 # entente
     country_event = {
@@ -59,6 +112,92 @@ add_namespace = jap_emperor_dies
 
         immediate = {
             retire_character = JAP_meiji
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# manchurian intervention
+    country_event = {
+        id = jap_manchurian_intervention.1
+        title = "Intervene in Manchuria?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+
+            leave_faction = yes
+            every_country = {
+                limit = { original_tag = FER }
+                JAP = { declare_war_on = { target = PREV type = annex_everything } }
+            }
+
+            # event
+            news_event = { id = jap_manchurian_intervention.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = jap_manchurian_intervention.2
+        title = "Japanese Army Enters Manchuria"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# twenty-one demands
+    country_event = {
+        id = jap_twenty_one_demands.1
+        title = "Japanese Demands Arrive at the Court"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+
+            296 = { transfer_state_to = JAP }
+            every_state = { limit = { is_core_of = FER } add_claim_by = JAP }
+
+            give_resource_rights = { receiver = JAP state = 599 } 
+            give_resource_rights = { receiver = JAP state = 594 } 
+            give_resource_rights = { receiver = JAP state = 592 } 
+
+            # event
+            news_event = { id = jap_twenty_one_demands.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = jap_twenty_one_demands.2
+        title = "Twenty-One Demands"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            MAN = {
+                country_event = { id = man_opposition_to_japan.1 days = 14 }
+                country_event = { id = man_empire.1 months = 2 days = 7 }
+            }
         }
 
         option = {

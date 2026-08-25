@@ -66,10 +66,7 @@ characters = {
                 large = "GFX_Portrait_Europe_Generic_navy_2"
             }
         }
-        country_leader = {
-            ideology = absolutism
-            traits = { trait_navalist trait_intellectual }
-        }
+        country_leader = { ideology = absolutism traits = { trait_navalist trait_intellectual } }
         navy_leader = {
             skill = 4
             attack_skill = 4
@@ -143,6 +140,18 @@ characters = {
         field_marshal = {
             traits = { old_guard }
             skill = 2       attack_skill = 2        defense_skill = 2       planning_skill = 1      logistics_skill = 1
+        }
+    }
+
+    # other leaders
+    RUS_grigory_semyonov = {
+        name = "Grigory Semyonov"
+        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_1" } }
+        country_leader = { ideology = absolutism traits = { trait_opportunist trait_ethnic_chauvinist } }
+
+        corps_commander = {
+            traits = { cavalry_leader }
+            skill = 1       attack_skill = 2        defense_skill = 1       planning_skill = 1      logistics_skill = 2
         }
     }
 }

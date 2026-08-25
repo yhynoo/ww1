@@ -1,0 +1,85 @@
+add_namespace = tms_delegations
+add_namespace = tms_union
+add_namespace = tms_uprising
+
+# delegations
+    news_event = {
+        id = tms_delegations.1
+        title = "Volgograd Accepts Central Asian Delegations"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            every_country = {
+                limit = { or = { tag = KAZ tag = TMS } }
+                random_country = {
+                    limit = { has_country_flag = RUS_democratic_state }
+                    white_peace = PREV
+                }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# union
+    news_event = {
+        id = tms_union.1
+        title = "A Turkic Union in Central Asia?"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            every_state = { 
+                limit = { or = { is_core_of = KHI is_core_of = BUK state = 584 } }
+                add_claim_by = TMS
+
+                ROOT = { create_wargoal = { target = PREV.owner type = take_claimed_state } }
+            }
+            
+            # access event
+            random_country = {
+                limit = { original_tag = BUK has_government = democratic }
+                country_event = { id = buk_union.1 days = 7 }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# uprising
+    news_event = {
+        id = tms_uprising.1
+        title = "Turkestan Autonomy Established!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            TMS = {
+                every_core_state = { PREV = { set_state_owner = PREV } }
+                load_oob = TMS
+
+                set_province_controller = 12581
+                set_province_controller = 1459
+
+                every_country = {
+                    limit = { original_tag = RUS } 
+                    declare_war_on = { target = PREV type = annex_everything }
+                }
+
+                # union event
+                news_event = { id = tms_union.1 days = 14 }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

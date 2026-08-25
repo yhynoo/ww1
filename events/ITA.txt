@@ -1,0 +1,24 @@
+add_namespace = ita_spain
+
+# spain
+    news_event = {
+        id = ita_spain.1
+        title = "Italian Socialists Arrive in Spain"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_war_support = 0.025
+            random_country = { 
+                limit = { original_tag = SPA has_government = communism }
+                
+                division_template = { name = "Italian Volunteers" is_locked = yes regiments = { infantry = { x = 0 y = 0 } infantry = { x = 0 y = 1 } } }
+                165 = { create_unit = { division = "name = \"Italian Volunteers\" division_template = \"Italian Volunteers\" start_experience_factor = 0.2" count = 4 owner = PREV } }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

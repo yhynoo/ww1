@@ -1,4 +1,5 @@
 add_namespace = pol_entente
+add_namespace = pol_lviv
 add_namespace = pol_uprising
 
 # entente
@@ -19,6 +20,83 @@ add_namespace = pol_uprising
         }
     }
 
+# lviv
+    country_event = {
+        id = pol_lviv.1
+        title = "Tensions in Lviv"
+
+        immediate = {
+            add_stability = -0.025
+            country_event = { id = pol_lviv.2 days = 14 }
+        }
+
+        is_triggered_only = yes
+        fire_only_once = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+    country_event = {
+        id = pol_lviv.2
+        title = ""
+
+        is_triggered_only = yes
+
+        immediate = {
+            create_dynamic_country = {
+                transfer_state = 89
+                original_tag = UKR
+
+                set_politics = { ruling_party = monarchism elections_allowed = no }
+                set_popularities = { monarchism = 50 democratic = 40 communism = 10 }
+                
+                set_cosmetic_tag = UKR_western_ukraine
+
+                # army
+                division_template = { name = "Uprising Troops" is_locked = yes regiments = { infantry = { x = 0 y = 0 } infantry = { x = 0 y = 1 } infantry = { x = 1 y = 0 } infantry = { x = 1 y = 1 } } }
+                89 = { 
+                    create_unit = { division = "name = \"Western Ukrainian Troops\" division_template = \"Uprising Troops\" start_experience_factor = 0.2" count = 2 owner = PREV } 
+                    create_unit = { division = "name = \"Western Ukrainian Troops\" division_template = \"Uprising Troops\" start_experience_factor = 0.2" province = 491 count = 1 owner = PREV } 
+                    create_unit = { division = "name = \"Western Ukrainian Troops\" division_template = \"Uprising Troops\" start_experience_factor = 0.2" province = 11427 count = 1 owner = PREV } 
+                }
+            }
+            UKR = {
+                news_event = { id = ukr_unification.1 months = 2 }
+            }
+        }
+
+        option = {
+            name = "To arms!"
+
+            declare_war_on = { target = WUK type = annex_everything }
+            set_state_controller = 89
+
+            # event
+            news_event = { id = pol_lviv.3 hours = 6 }
+            UKR = { country_event = { id = ukr_endorse.1 days = 2 } }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = pol_lviv.3
+        title = "War in Eastern Galicia!"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
 # uprising
     news_event = {
         id = pol_uprising.1
@@ -29,18 +107,34 @@ add_namespace = pol_uprising
 
         immediate = {
             POL = {
-                every_core_state = { 
-                    limit = { controller = { original_tag = ROOT } } 
-                    PREV = { 
-                        set_state_owner = PREV
-                        declare_war_on = { target = PREV.controller type = independence_wargoal }
-                    } 
+                # states
+                every_core_state = {
+                    limit = { controller = { original_tag = RUS } }
+                    set_variable = { original_controller = controller }     transfer_state_to = PREV
                 }
+
+                # war
+                every_country = {
+                    limit = { original_tag = RUS has_government = monarchism }
+                    declare_war_on = { target = PREV type = annex_everything } 
+                }
+
                 load_oob = POL
+
+                # control
+                every_owned_state = { 
+                    var:original_controller = { set_state_controller = PREV }
+                }
 
                 set_province_controller = 3544
                 set_province_controller = 9508
                 set_province_controller = 11399
+
+                # event
+                news_event = { id = pol_legions.1 days = 12 }
+            }
+            USA = {
+                news_event = { id = usa_warsaw.1 months = 1 }
             }
         }
 

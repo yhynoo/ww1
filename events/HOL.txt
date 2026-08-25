@@ -1,0 +1,35 @@
+add_namespace = hol_neutrality
+
+# neutrality
+    country_event = {
+        id = hol_neutrality.1
+        title = "The Question of Neutrality"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            add_ideas = idea_armed_neutrality
+
+            # event
+            news_event = { id = hol_neutrality.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = hol_neutrality.2
+        title = "The Hague Announces Neutrality"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }

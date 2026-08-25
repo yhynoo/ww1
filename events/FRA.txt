@@ -184,6 +184,7 @@ add_namespace = fra_with_you
 
         immediate = {
             set_global_flag = great_war
+            HOL = { country_event = { id = hol_neutrality.1 days = 4 } }
             JAP = { news_event = { id = jap_entente.1 days = 22 } }
         }
 
@@ -200,6 +201,11 @@ add_namespace = fra_with_you
         major = yes
 
         immediate = {
+            clr_global_flag = great_war
+
+            # threat
+            add_named_threat = { threat = -60 name = "End of the Great War" }
+
             BEL = {
                 set_state_owner = 34
                 34 = {

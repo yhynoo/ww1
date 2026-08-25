@@ -47,12 +47,15 @@ on_actions = {
 
             JAP = {
                 news_event = { id = jap_emperor_dies.1 months = 6 days = 30 }
+                country_event = { id = jap_address.1 months = 12 days = 6 }
+
+                MAN = { country_event = { id = jap_twenty_one_demands.1 months = 41 days = 7 } }
             }
 
             MAN = {
                 country_event = { id = man_transition.1 months = 2 days = 14 }
                 country_event = { id = man_tibet.1 months = 3 days = 4 }
-                country_event = { id = man_empire.1 months = 47 days = 12 }
+                news_event = { id = man_yuan.1 months = 53 days = 6 }
             }
 
             MEX = {
@@ -73,17 +76,13 @@ on_actions = {
                 news_event = { id = rom_war.1 months = 10 days = 14 }
             }
 
-            RUS = {
-                country_event = { id = rus_wheat.1 months = 72 days = 19 }
-            }
-
             SPA = {
                 news_event = { id = spa_morocco.1 months = 16 }
                 news_event = { id = spa_entente.1 months = 26 days = 12 }
             }
 
             USA = {
-                country_event = { id = usa_cuba.1 months = 4 days = 21 }
+                country_event = { id = cub_uprising.1 months = 4 days = 21 }
                 news_event = { id = usa_lafayette.1 months = 51 days = 7 }
                 news_event = { id = usa_wilson.1 months = 80 }
             }
@@ -120,7 +119,10 @@ on_actions = {
                 if = {
                     limit = {
                         and = { has_war_with = USA MEX = { is_subject_of = USA } }
-                        surrender_progress > 0.05
+                        or = {
+                            not = { controls_state = 312 }  not = { controls_state = 317 }
+                            surrender_progress > 0.05
+                        }
                     }
                     USA = { country_event = col_armistice.1 }
                 }
@@ -210,6 +212,13 @@ on_actions = {
                         and = { has_war = no is_in_faction = no }
                     } 
                     news_event = pol_entente.1
+                }
+                if = {
+                    limit = {
+                        not = { has_global_flag = great_war }
+                        controls_state = 89
+                    }
+                    news_event = pol_lviv.1
                 }
             }
         }
@@ -314,7 +323,7 @@ on_actions = {
                             315 = { is_fully_controlled_by = CUB } 
                         }
                     }
-                    news_event = usa_cuba_accept.1
+                    news_event = cub_armistice.1
                 }
             }
         }

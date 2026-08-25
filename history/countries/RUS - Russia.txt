@@ -70,3 +70,26 @@ add_equipment_to_stockpile = {
 }
 
 145 = { set_demilitarized_zone = yes }
+
+# dynamics
+create_dynamic_country = {
+    original_tag = RUS
+
+    set_politics = { ruling_party = communism elections_allowed = no }
+    set_popularities = { communism = 85 democratic = 15 }
+
+    reserve_dynamic_country = yes
+    set_country_flag = RUS_soviet_state
+    set_cosmetic_tag = RUS_soviet_state
+}
+
+create_dynamic_country = {
+    original_tag = RUS
+
+    set_politics = { ruling_party = monarchism elections_allowed = no }
+    set_popularities = { monarchism = 95 democratic = 5 }
+
+    reserve_dynamic_country = yes
+    set_country_flag = RUS_transbaikal_army
+    set_cosmetic_tag = RUS_transbaikal_army
+}

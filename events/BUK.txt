@@ -1,0 +1,67 @@
+add_namespace = buk_liberals
+add_namespace = buk_union
+
+# liberals
+    news_event = {
+        id = buk_liberals.1
+        title = "Liberal Government Established in Qarshi"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            start_civil_war = { 
+                ideology = democratic states = { 437 } army_ratio = 0.4
+                set_cosmetic_tag = BUK_democratic_state
+
+                # extra stuff
+                division_template = { name = "Democratic Troops" is_locked = yes regiments = { infantry = { x = 0 y = 0 } infantry = { x = 0 y = 1 } } }
+                every_owned_state = { create_unit = { division = "name = \"Democratic Troops\" division_template = \"Democratic Troops\" start_experience_factor = 0.1" count = 2 owner = PREV } }
+
+                # control
+                every_owned_state = { ROOT = { set_state_controller = PREV } }
+            }
+            TMS = {
+                news_event = { id = tms_union.1 days = 7 }
+                news_event = { id = tms_delegations.1 months = 2 }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# union
+    country_event = {
+        id = buk_union.1
+        title = "Access to the Union?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            TMS = { annex_country = { target = ROOT transfer_troops = yes } }
+
+            # event
+            news_event = { id = buk_union.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = buk_union.2
+        title = "The Qarshi Government Joins the Turkic Union"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }

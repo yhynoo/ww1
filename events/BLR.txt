@@ -1,0 +1,47 @@
+add_namespace = blr_uprising
+
+# uprising
+    news_event = {
+        id = blr_uprising.1
+        title = "White Ruthenian Workers Take Arms!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            BLR = {
+                # states
+                every_state = {
+                    limit = { is_core_of = BLR owner = { original_tag = RUS } }
+                    set_variable = { original_controller = controller }     transfer_state_to = PREV
+                }
+
+                set_politics = { ruling_party = communism elections_allowed = no }
+                set_popularities = { communism = 65 democratic = 30 monarchism = 5 }
+
+                # war
+                every_country = { 
+                    limit = { and = { original_tag = RUS not = { has_government = communism } } }
+                    declare_war_on = { target = PREV type = civil_war } 
+                }
+
+                # army
+                division_template = { name = "Worker Militias" is_locked = yes regiments = { infantry = { x = 0 y = 0 } infantry = { x = 0 y = 1 } infantry = { x = 1 y = 0 } infantry = { x = 1 y = 1 } } }
+                every_owned_state = { 
+                    if = {
+                        limit = { or = { state = 95 state = 96 state = 206 } }
+                        create_unit = { division = "name = \"Worker Militias\" division_template = \"Worker Militias\" start_experience_factor = 0.2" count = 3 owner = PREV } 
+                    }
+                    var:original_controller = { set_state_controller = PREV }
+                }
+
+                # control
+                set_province_controller = 11370
+                set_province_controller = 3320
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

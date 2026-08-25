@@ -1,14 +1,14 @@
 add_namespace = usa_agrarian_volunteers
 add_namespace = usa_aid
-add_namespace = usa_cuba
-add_namespace = usa_cuba_accept
-add_namespace = usa_direct
+add_namespace = cub_uprising
+add_namespace = cub_armistice
 add_namespace = usa_entente
 add_namespace = usa_espionage
 add_namespace = usa_klan
 add_namespace = usa_lafayette
 add_namespace = usa_land_of_liberty
 add_namespace = usa_movie
+add_namespace = usa_warsaw
 add_namespace = usa_wilson
 
 # agrarians
@@ -63,74 +63,6 @@ add_namespace = usa_wilson
         immediate = {
             MEX = { add_ideas = idea_american_aid_for_mexico }
             COL = { country_event = { id = col_americans.1 days = 3 } }
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# cuba
-    country_event = {
-        id = usa_cuba.1
-        title = "Tensions on Cuba"
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Arrest them."
-            add_stability = 0.025
-
-            # event
-            news_event = { id = usa_cuba.2 days = 5 }
-        }
-        option = {
-            name = "No."
-            add_popularity = { ideology = communism popularity = 0.025 }
-
-            # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
-        }
-    }
-
-    news_event = {
-        id = usa_cuba.2
-        title = "Uprising in Havana!"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            USA = {
-                division_template = { name = "Cuban Loyalists" is_locked = yes regiments = { infantry = { x = 0 y = 0 } infantry = { x = 0 y = 1 } } }
-                315 = { create_unit = { division = "name = \"Cuban Loyalists\" division_template = \"Cuban Loyalists\" start_experience_factor = 0.3" count = 2 owner = USA } }
-            }
-            CUB = {
-                every_core_state = { PREV = { set_state_owner = PREV } }
-                load_oob = CUB
-
-                set_province_controller = 7622
-                set_province_controller = 4600
-
-                declare_war_on = { target = PREV type = independence_wargoal }
-            }
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# accept
-    news_event = {
-        id = usa_cuba_accept.1
-        title = "United States Accept Cuban Independence"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            white_peace = CUB
         }
 
         option = {
@@ -279,6 +211,27 @@ add_namespace = usa_wilson
         }
     }
 
+# warsaw
+    news_event = {
+        id = usa_warsaw.1
+        title = "Washington Embraces Warsaw"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            POL = { add_opinion_modifier = { target = USA modifier = medium_increase } }
+            USA = { add_opinion_modifier = { target = POL modifier = medium_increase } }
+
+            # event
+            RUS = { country_event = { id = rus_warsaw.1 days = 7 } }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
 # wilson
     news_event = {
         id = usa_wilson.1
@@ -293,7 +246,7 @@ add_namespace = usa_wilson
 
             # france endorses
             FRA = { news_event = { id = fra_wilson.1 days = 7 } }
-            news_event = { id = usa_entente.1 months = 80 days = 14 }
+            news_event = { id = usa_entente.1 days = 21 }
         }
 
         option = {
