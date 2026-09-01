@@ -210,15 +210,24 @@ on_actions = {
                     limit = { 
                         owns_state = 80
                         and = { has_war = no is_in_faction = no }
+                        FRA = { has_war_with = GER }
                     } 
                     news_event = pol_entente.1
                 }
                 if = {
                     limit = {
                         not = { has_global_flag = great_war }
+                        UKR = { exists = yes }
                         controls_state = 89
                     }
                     news_event = pol_lviv.1
+                }
+                if = {
+                    limit = {
+                        not = { has_global_flag = great_war }
+                        and = { has_war_with = UKR SOD = { exists = yes } }
+                    }
+                    country_event = pol_kerensky.1
                 }
             }
         }
@@ -233,6 +242,15 @@ on_actions = {
 
                     clr_global_flag = southeastern_europe_war
                     news_event = rom_war.2
+                }
+            }
+        }
+
+        on_weekly_RUS = {
+            effect = {
+                if = {
+                    limit = { has_idea = idea_opposition_in_the_countryside communism > 0.3 }
+                    news_event = rus_soviet.1
                 }
             }
         }

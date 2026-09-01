@@ -1,0 +1,24 @@
+add_namespace = lat_uprising
+
+# uprising
+    news_event = {
+        id = lat_uprising.1
+        title = "Uprising in Latvia!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            LAT = {
+                set_variable = { desertion_rate = 0.01 }
+                start_local_uprising = yes 
+
+                # special targets
+                set_province_controller = 9340           set_province_controller = 10493
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

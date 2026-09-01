@@ -15,7 +15,7 @@ technologies = {
         categories = { air_equipment_tech light_aircraft_tech }
 
         category_fighter = {
-            air_attack = 0.15
+            air_attack = 0.1
         }
 
         research_cost = 1
@@ -55,7 +55,7 @@ technologies = {
         start_year = 1904
 
         path = {
-            leads_to_tech = fabric_airframes
+            leads_to_tech = ailerons
             research_cost_coeff = 1
         }
 
@@ -64,7 +64,7 @@ technologies = {
             position = { x = 0 y = 0 }
         }
     }
-    fabric_airframes = {
+    ailerons = {
         categories = { air_equipment_tech light_aircraft_tech }
 
         category_fighter = {
@@ -146,60 +146,20 @@ technologies = {
         }
     }
 
-    nav_1914 = {
-        enable_equipments = { nav_bomber_equipment_1  }
-        categories = { air_equipment_tech light_aircraft_tech }
-
-        research_cost = 1.5
-        start_year = 1914
-
-        ai_will_do = {
-            base = 1
-            modifier = { num_of_military_factories > 10 factor = 2 }
-        }
-
-        path = {
-            leads_to_tech = nav_1917
-            research_cost_coeff = 1
-        }
-
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1914 }
-        }
-    }
-    nav_1917 = {
-        enable_equipments = { nav_bomber_equipment_2 }
-        categories = { air_equipment_tech light_aircraft_tech }
-
-        research_cost = 1.5
-        start_year = 1917
-
-        ai_will_do = {
-            base = 1
-            modifier = { num_of_military_factories > 10 factor = 2 }
-        }
-
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1917 }
-        }
-    }
-
     # attack aicraft
-    low_altitude_sights = {
+    aerial_explosives = {
         categories = { air_equipment_tech attack_aircraft_tech }
 
         category_cas = {
-            air_defence = 0.05
-            air_ground_attack = 0.05
+            air_ground_attack = 0.25
+            naval_strike_targetting = 0.15
         }
 
         research_cost = 1
         start_year = 1914
 
         path = {
-            leads_to_tech = tracer_rounds
+            leads_to_tech = electric_drop_mechanism
             research_cost_coeff = 1
         }
 
@@ -208,7 +168,7 @@ technologies = {
             position = { x = 0 y = @1914 }
         }
     }
-    tracer_rounds = {
+    electric_drop_mechanism = {
         categories = { air_equipment_tech attack_aircraft_tech }
 
         category_cas = {
@@ -246,23 +206,6 @@ technologies = {
         }
     }
 
-    aerial_photography = {
-        categories = { air_equipment_tech attack_aircraft_tech }
-        experience_gain_air = 0.05
-
-        research_cost = 1
-        start_year = 1912
-
-        path = {
-            leads_to_tech = cas_bomber_1914
-            research_cost_coeff = 1
-        }
-
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1912 }
-        }
-    }
     cas_bomber_1914 = {
         enable_equipments = { CAS_equipment_1 }
         categories = { air_equipment_tech attack_aircraft_tech }
@@ -298,30 +241,9 @@ technologies = {
             modifier = { num_of_military_factories > 10 factor = 2 }
         }
 
-        path = {
-            leads_to_tech = armored_airframe
-            research_cost_coeff = 1
-        }
-
         folder = {
             name = air_techs_folder
             position = { x = 0 y = @1917 }
-        }
-    }
-    armored_airframe = {
-        categories = { air_equipment_tech attack_aircraft_tech }
-
-        research_cost = 1
-        start_year = 1920
-
-        category_cas = {
-            air_defence = 0.1
-            reliability = 0.05
-        }
-
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1920 }
         }
     }
 

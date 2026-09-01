@@ -20,13 +20,11 @@
     - Atlas on Fire
         - Empower the Loyal Government > German Empire Aligns Morocco; France Encourages the Atlas Tribes
         - War Erupts in Europe!
-            - The Question of Neutrality > The Hague Announces Neutrality
     - [flavor:] Airships Over [country] (when a state is bombed for the first time), Knights of the Air (when first ace is promoted)
     - Memories of Semana Tragica [idea], Communists Demand an Armistice > Spanish Civil War
-        - Italian Socialists Arrive in Spain
+        - Portugal Joins the Entente
         - *Danger to the Mediterranean?* > The UK Joins the Entente
             - Maritz Uprising in South Africa
-        - Portugal Joins the Entente
 - 1915
     - [flavor] Gas! (when a warring side researches gas shells)
     - French Investments in Turkey [idea]
@@ -36,7 +34,6 @@
         - German Influence in the Middle East
             - *Use the Tsar's Leverage?* > Armenia and Afghanistan Join the German Alliance
             - Anti-Turkish Uprising in Arabia, Uprising in Syria
-            - Clashes in Mesopotamia
         - (Romania) Thrace Asks for Guarantees
             - Thrace Asserts its Autonomy > Thrace Slips Away from the Turks
             - Ha'il Expels the Turkish Officials
@@ -46,16 +43,11 @@
     - Wassmuss Disappears in Khuzestan
     - The Harvest of 1917 [idea]
 - 1918
-    - Wheat Shortages Throughout Europe [idea]; 
-        - Grand Duchy of Finland Seeks Autonomy
+    - Wheat Shortages Throughout Europe [idea]; Grand Duchy of Finland Seeks Autonomy
     - *Kadets Oppose Wheat Exports* > Milyukov Denounces the Tsarist Government!
-        - Ukraine Independent!, *The OHL Debates an Intervention* > German Intervention in Ukraine (doesn't happen)
-        - Uprising in Warsaw!
-            - Washington Embraces Warsaw
-            - *Accept Warsaw's Defiance?*, Tsar's Government Accepts Warsaw's Independence
 - 1919
     - *Jännerstreik* > Austria-Hungary Disintegrates
-    - Poland Joins the Entente, The Appointment of von Hertling
+    - The Appointment of von Hertling
         - End of the Great War
 
 # america
@@ -99,46 +91,30 @@
     - Yuan Shikai Dies
     - Sun Yat-Sen Arrives in Shanghai
 
-# 1919-1922
-- 1919
-    - Uprising in Crimea
-    - Uprising in Moldova
-        - *Guarantees to Moldova?* > [] Supports Moldova
-        - *The Question of Kishinyev* > Ukraine Supports Independent Moldova
-
+# eastern europe
+- 1918
     - Helsinki Declaration
-    
-    - Alash Autonomy Independent!
-        - The Turkestan Autonomy Established,
-        - Liberal Government Established in Qarshi
-            - A Turkic Union in Central Asia?, *Access to the Union?* > The Qarshi Government Joins the Turkic Union
-            - Volgograd Accepts Central Asian Delegations
-
+    - Ukraine Independent!, *The OHL Debates an Intervention* > German Intervention in Ukraine (doesn't happen)
+        - Uprising in Warsaw!, Washington Embraces Warsaw
+            - Uprising in Lithuania
+            - Uprising in Latvia
     - The Town on Volga
-        - *Troubles with Supply* > The Hunger Committee Established, Trotsky Sighted in Volgograd
-        - Arctic Garrisons Assaulted
-
-        - Tula Armory in the Communists' Hands!
-            - Communism in the Urals, Unrest in Western Governorates, Strikes in Siberian Coal Towns
-                - The Eastern Volunteer Army Organizes, *Support for the Wild Ataman?* > Japanese Arms for the Eastern Army
-                - Harbin Soviet Established!
-                    - *Intervene in Manchuria?* > Japanese Army Enters Manchuria
-
-            - White Ruthenian Workers Take Arms!
-            - Ukrainian Soviet Established
-                - *Army Coup?* > Ukrainian Supreme Council Dissolved
-                - Tensions in Lviv, *Ukrainian Uprising in Eastern Galicia* > War in Eastern Galicia!
-                    - *Endorse Western Ukraine?* > Hetmanate Endorses Western Ukraine
-                    - Western Ukraine Aligns with Kyiv
-
-        - *Tsar's Authority to Collapse?* > Admiral Kolchak Takes Lead
-            - Tragedy in Omsk
+        - *Troubles with Supply* > The Hunger Committee Established
+        - Admiral Kolchak Takes Lead > Tragedy in Omsk
+            - Trotsky Seen in Orenburg, *Strikes in the Ural Mines* > Massacre in the Ural Mining District
+            - Communist Agitation in the Army
+  
+- 1919
+    - Communists Seize the Tula Armoury!
+        - White Ruthenian Workers Take Arms!, Ukrainian Soviet Established
+        - Alash Autonomy Independent!
+  
+    - Tensions in Lviv, *Ukrainian Uprising in Eastern Galicia* > War in Eastern Galicia!
+        - *Deal with Kerensky?* > The Haller-Kerensky Agreement
 
 - 1920
-    - 'Why Saddle a Dead Horse?', *Wrangel's Trial* > 'The Atonement Debt'
-    - *Anti-Tsarist Coalition?* > Anti-Tsarist Coalition Established
-        - Kamenev to Lead the Anti-Tsarist Government
-        - Ukrainian Soviet Aligns with Kamenev Government, The Union of Soviets Established
+    - *Anti-Tsarist Coalition?* > Chernov to Lead the Anti-Tsarist Government, The Union of Soviets Established
+        - White Armies Surrender
 
 # atmosphere
     news_event = {

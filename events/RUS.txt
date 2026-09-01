@@ -1,39 +1,17 @@
 add_namespace = rus_admiral
-add_namespace = rus_arctic
-add_namespace = rus_communism_extension
-add_namespace = rus_duchy
-add_namespace = rus_omsk
+add_namespace = rus_agitation
+add_namespace = rus_coalition
+add_namespace = rus_hunger
 add_namespace = rus_soviet
-add_namespace = rus_transbaikal
+add_namespace = rus_trotsky
 add_namespace = rus_volga
 add_namespace = rus_warsaw
 add_namespace = rus_wheat
 
 
-# admiral
-    country_event = {
-        id = rus_admiral.1
-        title = "Tsar's Authority to Collapse?"
-
-        is_triggered_only = yes
-
-        option = {
-            name = "We must save the country."
-            add_political_power = 50
-
-            # event
-            news_event = { id = rus_admiral.2 hours = 6 }
-        }
-        option = {
-            name = "We stand with the Tsar."
-
-            # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
-        }
-    }
-
+# admiral kolchak
     news_event = {
-        id = rus_admiral.2
+        id = rus_admiral.1
         title = "Admiral Kolchak Takes the Lead"
 
         immediate = {
@@ -41,7 +19,7 @@ add_namespace = rus_wheat
             set_cosmetic_tag = RUS_authoritarian
 
             # omsk
-            news_event = { id = rus_omsk.1 days = 14 }
+            RUS = { country_event = { id = rus_admiral.2 days = 14 } }
         }
 
         is_triggered_only = yes
@@ -51,148 +29,103 @@ add_namespace = rus_wheat
             name = "Ok."
         }
     }
-
-
-# arctic
-    news_event = {
-        id = rus_arctic.1
-        title = "Arctic Garrisons Assaulted"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            random_country = {
-                limit = { has_cosmetic_tag = RUS_democratic_state }
-                every_state = { 
-                    limit = { or = { state = 213 state = 214 state = 215 state = 351 } } 
-                    
-                    set_variable = { original_controller = controller }     transfer_state_to = PREV
-                    create_unit = { division = "name = \"Volunteer Troops\" division_template = \"Volunteer Troops\" start_experience_factor = 0.2" count = 2 owner = PREV }
-                
-                    # control
-                    var:original_controller = { set_state_controller = PREV }
-                }
-            }
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# communism_extension
-    news_event = {
-        id = rus_communism_extension.1
-        title = "Communist Uprising in the Urals"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            SOV = {
-                every_state = { 
-                    limit = { or = { state = 251 state = 589 state = 615 } } 
-                    
-                    set_variable = { original_controller = controller }     transfer_state_to = PREV
-                    create_unit = { division = "name = \"Worker Militias\" division_template = \"Worker Militias\" start_experience_factor = 0.2" count = 2 owner = PREV }
-                
-                    # control
-                    var:original_controller = { set_state_controller = PREV }
-                }
-            }
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-    news_event = {
-        id = rus_communism_extension.2
-        title = "Unrest in Western Governorates"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            SOV = {
-                # states
-                every_state = { 
-                    limit = { or = { state = 209 state = 210 } } 
-                    
-                    set_variable = { original_controller = controller }     transfer_state_to = PREV
-                    create_unit = { division = "name = \"Worker Militias\" division_template = \"Worker Militias\" start_experience_factor = 0.2" count = 2 owner = PREV }
-                
-                    # control
-                    var:original_controller = { set_state_controller = PREV }
-                }
-            }
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-    news_event = {
-        id = rus_communism_extension.3
-        title = "Strikes in Siberian Coal Towns"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            RUS = {
-                news_event = { id = rus_transbaikal.1 days = 21 }
-            }
-            SOV = {
-                # states
-                every_state = { 
-                    limit = { or = { state = 561 state = 40 } } 
-                    
-                    set_variable = { original_controller = controller }     transfer_state_to = PREV
-                    create_unit = { division = "name = \"Worker Militias\" division_template = \"Worker Militias\" start_experience_factor = 0.2" count = 2 owner = PREV }
-                
-                    # control
-                    var:original_controller = { set_state_controller = PREV }
-                }
-            }
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# duchy
-    news_event = {
-        id = rus_duchy.1
-        title = "The Duchy of Finland Announces Autonomy"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            release_puppet = FIN
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# omsk
-    news_event = {
-        id = rus_omsk.1
+    country_event = {
+        id = rus_admiral.2
         title = "The Tragedy in Omsk"
 
         is_triggered_only = yes
-        major = yes
 
         immediate = {
             add_stability = -0.025
+            add_ideas = idea_opposition_in_the_countryside
+
+            # trotsky chain
+            country_event = { id = rus_trotsky.1 months = 1 random_days = 7 }
         }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# agitation
+    country_event = {
+        id = rus_agitation.1
+        title = "Communist Agitation in the Army"
+
+        is_triggered_only = yes
+
+        immediate = {
+            add_ideas = idea_communist_agitation
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# coalition
+    country_event = {
+        id = rus_coalition.1
+        title = "Anti-Tsarist Coalition?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            SOV = { annex_country = { target = SOD transfer_troops = yes } }
+
+            # event
+            news_event = { id = rus_coalition.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = rus_coalition.2
+        title = "Chernov to Lead the United Anti-Tsarist Government"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# hunger
+    country_event = {
+        id = rus_hunger.1
+        title = "Supply Shortages"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            add_ideas = idea_hunger_committee
+
+            # event
+            news_event = { id = rus_hunger.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = rus_hunger.2
+        title = "Hunger Committee Established"
+
+        is_triggered_only = yes
+        major = yes
 
         option = {
             name = "Ok."
@@ -208,21 +141,23 @@ add_namespace = rus_wheat
         major = yes
 
         immediate = {
-            FER = {
-                news_event = { id = fer_soviet.1 months = 2 days = 25 }
-            }
             RUS = { 
-                news_event = { id = rus_communism_extension.1 days = 6 } 
-                news_event = { id = rus_communism_extension.2 days = 21 } 
-                news_event = { id = rus_communism_extension.3 months = 2 days = 12 }
-
-                # uprising in white ruthenia
+                # other soviets
+                news_event = { id = ukr_soviet.1 days = 12 } 
                 news_event = { id = blr_uprising.1 days = 26 }
+
+                # alash
+                news_event = { id = kaz_uprising.1 months = 1 random_days = 14 }
+            }
+            SOD = {
+                country_event = { id = rus_coalition.1 months = 6 }
             }
             SOV = {
+                set_capital = { state = 223 }
+
                 # states
                 every_state = {
-                    limit = { or = { state = 205 state = 223 state = 254 } }
+                    limit = { or = { state = 40 state = 205 state = 223 state = 224 state = 242 state = 254 state = 402 state = 561 state = 568 state = 589 state = 615 } }
                     set_variable = { original_controller = controller }     transfer_state_to = PREV
                 }
 
@@ -235,12 +170,19 @@ add_namespace = rus_wheat
                 # other
                 division_template = { name = "Worker Militias" is_locked = yes regiments = { infantry = { x = 0 y = 0 } infantry = { x = 0 y = 1 } infantry = { x = 1 y = 0 } infantry = { x = 1 y = 1 } } }
                 every_owned_state = { 
-                    create_unit = { division = "name = \"Worker Militias\" division_template = \"Worker Militias\" start_experience_factor = 0.2" count = 3 owner = PREV } 
+                    create_unit = { division = "name = \"Worker Militias\" division_template = \"Worker Militias\" start_experience_factor = 0.2" count = 4 owner = PREV } 
                     var:original_controller = { set_state_controller = PREV }
                 }
+
+                create_faction = "Communist Internationale"
             }
-            UKR = {
-                news_event = { id = ukr_soviet.1 days = 12 } 
+
+            # troops
+            RUS = {
+                transfer_units_fraction = {
+                    target = SOV
+                    size = 0.25      navy_ratio = 0.05      stockpile_ratio = 0.1
+                }
             }
         }
 
@@ -249,48 +191,56 @@ add_namespace = rus_wheat
         }
     }
 
-# transbaikal
+# trotsky
+    country_event = {
+        id = rus_trotsky.1
+        title = "Trotsky Seen in Orenburg"
+
+        is_triggered_only = yes 
+        immediate = {
+            country_event = { id = rus_agitation.1 days = 7 }
+            country_event = { id = rus_trotsky.2 days = 14 }
+        }
+
+        option = {
+            name = "Ok."
+            add_popularity = { ideology = communism popularity = 0.025 }
+        }
+    }
+
+    country_event = {
+        id = rus_trotsky.2
+        title = "Unrest in the Ural Mines"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            add_political_power = -25
+
+            # event
+            news_event = { id = rus_trotsky.3 hours = 6 }
+        }
+        option = {
+            name = "No."
+            add_stability = -0.025
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
     news_event = {
-        id = rus_transbaikal.1
-        title = "The Transbaikal Volunteer Army Organizes"
+        id = rus_trotsky.3
+        title = "Massacre in the Ural Mining District"
 
         is_triggered_only = yes
         major = yes
 
         immediate = {
-            SOT = {
-                # states
-                every_state = {
-                    limit = { or = { state = 566 state = 563 state = 644 } }
-                    set_variable = { original_controller = controller }     transfer_state_to = PREV
-                }
-
-                # war
-                every_country = { 
-                    limit = { original_tag = RUS }
-                    declare_war_on = { target = PREV type = civil_war } 
-                }
-                every_country = {
-                    limit = { original_tag = FER }
-                    SOT = { declare_war_on = { target = PREV type = annex_everything } }
-                }
-
-                # other
-                division_template = { name = "Transbaikal Army" is_locked = yes regiments = { cavalry = { x = 0 y = 0 } cavalry = { x = 0 y = 1 } } }
-                every_owned_state = { 
-                    if = {
-                        limit = { or = { state = 566 state = 563 } }
-                        create_unit = { division = "name = \"Transbaikal Volunteers\" division_template = \"Transbaikal Army\" start_experience_factor = 0.2" count = 2 owner = PREV } 
-                    }
-                    var:original_controller = { set_state_controller = PREV }
-                }
-
-                recruit_character = RUS_grigory_semyonov
-                promote_character = RUS_grigory_semyonov
-
-                # events
-                JAP = { country_event = { id = rut_japan.1 days = 7 } }
-                news_event = { id = rut_denounce_mongolia.1 months = 2 }
+            RUS = { 
+                add_stability = -0.05 
+                add_popularity = { ideology = communism popularity = 0.025 }
             }
         }
 
@@ -308,52 +258,16 @@ add_namespace = rus_wheat
         major = yes
 
         immediate = {
-            set_province_name = { id = 3529 name = "Volgograd" }
-            set_capital = { state = 217 }
+            set_capital = { state = 236 }
 
             # events
-                # hunger
-            news_event = { id = rus_arctic.1 days = 28 }
-
-            RUS = { 
-                country_event = { id = rus_admiral.1 months = 2 } 
-                news_event = { id = rus_soviet.1 months = 5 random_days = 14 }
+            RUS = {
+                news_event = { id = rus_admiral.1 months = 2 } 
+            }
+            SOD = {
+                country_event = { id = rus_hunger.1 days = 14 }
             }
         }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# warsaw
-    country_event = {
-        id = rus_warsaw.1
-        title = "Accept Warsaw's Defiance?"
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Yes."
-            white_peace = POL
-
-            # event
-            news_event = { id = rus_warsaw.2 hours = 6 }
-        }
-        option = {
-            name = "No."
-
-            # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
-        }
-    }
-
-    news_event = {
-        id = rus_warsaw.2
-        title = "Tsar's Government Accepts Warsaw's Autonomy"
-
-        is_triggered_only = yes
-        major = yes
 
         option = {
             name = "Ok."
@@ -384,78 +298,26 @@ add_namespace = rus_wheat
             GER = { remove_ideas = idea_wheat_deal }
             RUS = {
                 start_civil_war = { 
-                    ideology = democratic states = { 217 218 232 234 235 236 238 239 245 } army_ratio = 0.4 navy_ratio = 0.6
+                    ideology = democratic states = { 137 217 218 236 260 } army_ratio = 0.45 navy_ratio = 0.25
                     set_cosmetic_tag = RUS_democratic_state
 
                     # extra stuff
                     division_template = { name = "Volunteer Troops" is_locked = yes regiments = { infantry = { x = 0 y = 0 } infantry = { x = 0 y = 1 } } }
-                    every_owned_state = { create_unit = { division = "name = \"Volunteer Troops\" division_template = \"Volunteer Troops\"" count = 1 owner = PREV } }
+                    every_owned_state = { create_unit = { division = "name = \"Volunteer Troops\" division_template = \"Volunteer Troops\"" count = 2 owner = PREV } }
 
                     # control
                     every_owned_state = { ROOT = { set_state_controller = PREV } }
 
                     # event 
                     news_event = { id = rus_volga.1 days = 7 }
+                    set_popularities = { democratic = 75 communism = 20 monarchism = 5 }
                 }
+
+                set_popularities = { monarchism = 80 communism = 15 democratic = 5 }
             }
 
             # countries
-            news_event = { id = ukr_uprising.1 days = 2 }
-            news_event = { id = cri_uprising.1 days = 8 }
-            news_event = { id = mol_uprising.1 days = 14 }
-
-            country_event = { id = fin_autonomy.1 months = 1 days = 6 }
-            news_event = { id = kaz_uprising.1 months = 3 days = 5 }
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-## -- TRANSBAIKAL EVENTS -- ##
-add_namespace = rut_japan
-
-# japan
-    country_event = {
-        id = rut_japan.1
-        title = "Support for the Wild Ataman?"
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Yes."
-
-            # event
-            news_event = { id = rut_japan.2 hours = 6 }
-        }
-        option = {
-            name = "No."
-
-            # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
-        }
-    }
-
-    news_event = {
-        id = rut_japan.2
-        title = "[JAP.GetName] Sends Aid to the Transbaikal Army"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            JAP = {
-                give_guarantee = SOT
-            }
-            SOT = {
-                random_owned_controlled_state = {
-                    add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-
-                    add_equipment_to_stockpile = { type = infantry_equipment    amount = 600    producer = JAP }
-                    add_equipment_to_stockpile = { type = support_equipment    amount = 60    producer = JAP }
-                }
-            }
+            news_event = { id = ukr_uprising.1 months = 1 random_days = 14 }
         }
 
         option = {

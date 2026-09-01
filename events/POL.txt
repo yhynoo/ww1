@@ -1,4 +1,5 @@
 add_namespace = pol_entente
+add_namespace = pol_kerensky
 add_namespace = pol_lviv
 add_namespace = pol_uprising
 
@@ -13,6 +14,50 @@ add_namespace = pol_uprising
         immediate = {
             POL = { declare_war_on = { target = GER type = take_claimed_state } }
             FRA = { add_to_faction = POL }
+        }
+        
+        option = {
+            name = "Ok."
+        }
+    }
+
+# kerensky
+    country_event = {
+        id = pol_kerensky.1
+        title = "Deal with Kerensky?"
+
+        is_triggered_only = yes
+        fire_only_once = yes
+
+        option = {
+            name = "Yes."
+
+            # event
+            news_event = { id = pol_kerensky.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = pol_kerensky.2
+        title = "The Haller-Kerensky Agreement"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            declare_war_on = { target = RUS type = take_claimed_state }
+            declare_war_on = { target = SOV type = take_claimed_state }
+
+            every_state = {
+                limit = { or = { state = 96 state = 95 state = 94 state = 93 state = 89 } }
+                remove_core_of = SOD
+            }
         }
 
         option = {
@@ -40,42 +85,28 @@ add_namespace = pol_uprising
 
     country_event = {
         id = pol_lviv.2
-        title = ""
+        title = "Ukrainian Uprising in Eastern Galicia"
 
         is_triggered_only = yes
 
         immediate = {
-            create_dynamic_country = {
+            UKR = {
                 transfer_state = 89
-                original_tag = UKR
-
-                set_politics = { ruling_party = monarchism elections_allowed = no }
-                set_popularities = { monarchism = 50 democratic = 40 communism = 10 }
-                
-                set_cosmetic_tag = UKR_western_ukraine
 
                 # army
                 division_template = { name = "Uprising Troops" is_locked = yes regiments = { infantry = { x = 0 y = 0 } infantry = { x = 0 y = 1 } infantry = { x = 1 y = 0 } infantry = { x = 1 y = 1 } } }
-                89 = { 
-                    create_unit = { division = "name = \"Western Ukrainian Troops\" division_template = \"Uprising Troops\" start_experience_factor = 0.2" count = 2 owner = PREV } 
-                    create_unit = { division = "name = \"Western Ukrainian Troops\" division_template = \"Uprising Troops\" start_experience_factor = 0.2" province = 491 count = 1 owner = PREV } 
-                    create_unit = { division = "name = \"Western Ukrainian Troops\" division_template = \"Uprising Troops\" start_experience_factor = 0.2" province = 11427 count = 1 owner = PREV } 
-                }
-            }
-            UKR = {
-                news_event = { id = ukr_unification.1 months = 2 }
+                89 = { create_unit = { division = "name = \"Western Ukrainian Troops\" division_template = \"Uprising Troops\" start_experience_factor = 0.2" count = 2 owner = PREV } }
             }
         }
 
         option = {
             name = "To arms!"
 
-            declare_war_on = { target = WUK type = annex_everything }
+            declare_war_on = { target = UKR type = take_claimed_state }
             set_state_controller = 89
 
             # event
             news_event = { id = pol_lviv.3 hours = 6 }
-            UKR = { country_event = { id = ukr_endorse.1 days = 2 } }
         }
         option = {
             name = "No."
@@ -107,34 +138,15 @@ add_namespace = pol_uprising
 
         immediate = {
             POL = {
-                # states
-                every_core_state = {
-                    limit = { controller = { original_tag = RUS } }
-                    set_variable = { original_controller = controller }     transfer_state_to = PREV
-                }
+                set_variable = { desertion_rate = 0.05 }
+                start_local_uprising = yes 
 
-                # war
-                every_country = {
-                    limit = { original_tag = RUS has_government = monarchism }
-                    declare_war_on = { target = PREV type = annex_everything } 
-                }
-
+                # special targets
                 load_oob = POL
-
-                # control
-                every_owned_state = { 
-                    var:original_controller = { set_state_controller = PREV }
-                }
-
-                set_province_controller = 3544
-                set_province_controller = 9508
-                set_province_controller = 11399
-
-                # event
-                news_event = { id = pol_legions.1 days = 12 }
+                set_province_controller = 3544           set_province_controller = 9508         set_province_controller = 11399
             }
             USA = {
-                news_event = { id = usa_warsaw.1 months = 1 }
+                news_event = { id = usa_warsaw.1 months = 6 }
             }
         }
 

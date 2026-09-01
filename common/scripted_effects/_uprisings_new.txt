@@ -1,0 +1,31 @@
+start_local_uprising = {
+    every_core_state = {
+        limit = { controller = { original_tag = PREV } }
+        set_variable = { original_controller = controller }     transfer_state_to = PREV
+
+        # set up
+        if = { limit = { is_capital = yes } setup_uprising_volunteers = yes }
+        if = { limit = { any_neighbor_state = { is_capital = yes } } random = { chance = 50 setup_uprising_volunteers = yes } }
+    }
+
+    every_country = { 
+        limit = { or = { and = { original_tag = PREV.PREV not = { has_government = communism } } } }
+        declare_war_on = { target = PREV type = annex_everything } 
+        
+        transfer_units_fraction = {
+            target = PREV
+            size = var:PREV.desertion_rate     stockpile_ratio = var:PREV.desertion_rate      keep_unit_leaders_trigger = { always = no }
+        }
+    }
+
+    # control
+    every_owned_state = { var:original_controller = { set_state_controller = PREV } }
+}
+
+setup_uprising_volunteers = {
+    owner = { division_template = { name = "Uprising Troops" regiments = { infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 } } } }
+    random_list = {
+        1 = { create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\"" count = 2 owner = PREV } }
+        1 = { create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\"" count = 1 owner = PREV } }
+    }
+}

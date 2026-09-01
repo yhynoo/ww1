@@ -1,14 +1,19 @@
 add_namespace = fin_autonomy
+add_namespace = fin_duchy
 
 # autonomy
     country_event = {
         id = fin_autonomy.1
-        title = "The Helsinki Declaration"
+        title = "Finns Demand Autonomy"
 
         is_triggered_only = yes
         immediate = {
             set_autonomy = { target = FIN autonomous_state = autonomy_free }
-            FIN = { every_enemy_country = { limit = { not = { has_government = communism } } white_peace = FIN } }
+
+            FIN = { 
+                drop_cosmetic_tag = FIN_grand_duchy
+                every_enemy_country = { limit = { not = { has_government = communism } } white_peace = FIN } 
+            }
         }
 
         option = {
@@ -20,5 +25,24 @@ add_namespace = fin_autonomy
 
             # ai
             ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+
+# duchy
+    news_event = {
+        id = fin_duchy.1
+        title = "Grand Duchy of Finland Established"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            release_puppet = FIN
+            RUS = { transfer_units_fraction = { target = FIN    size = 0.05      stockpile_ratio = 0.1 } }
+        }
+
+        option = {
+            name = "Ok."
         }
     }

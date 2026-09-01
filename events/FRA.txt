@@ -184,7 +184,6 @@ add_namespace = fra_with_you
 
         immediate = {
             set_global_flag = great_war
-            HOL = { country_event = { id = hol_neutrality.1 days = 4 } }
             JAP = { news_event = { id = jap_entente.1 days = 22 } }
         }
 
@@ -218,10 +217,21 @@ add_namespace = fra_with_you
                     set_demilitarized_zone = yes 
                     remove_core_of = GER        remove_claim_by = GER
                 }
+                puppet = SYR
             }
             GER = { 
                 dismantle_faction = yes
                 release = LUX 
+            }
+            POL = {
+                leave_faction = yes
+                85 = { set_demilitarized_zone = yes }
+                86 = { set_demilitarized_zone = yes }
+
+                every_state = {
+                    limit = { or = { state = 80 state = 91 state = 89 } }
+                    add_core_of = POL
+                }
             }
             TUR = {
                 release = LEB

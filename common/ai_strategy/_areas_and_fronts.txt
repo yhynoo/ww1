@@ -20,6 +20,16 @@ european_area_priority = {
 
 
 # FRONTS
+avoid_africa = {
+	enable = { 
+		is_historical_focus = yes 
+		or = { original_tag = AUS original_tag = GER }
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = front_unit_request	area = southern_front	value = 60	}
+	ai_strategy = { type = front_unit_request	area = western_front	value = 100	}
+}
 
 defend_allies = {
 	enable = { always = yes }

@@ -1,79 +1,5 @@
-add_namespace = ukr_coup
-add_namespace = ukr_endorse
 add_namespace = ukr_soviet
-add_namespace = ukr_unification
 add_namespace = ukr_uprising
-
-# coup
-    country_event = {
-        id = ukr_coup.1
-        title = "Army Coup?"
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Yes."
-
-            set_politics = { ruling_party = monarchism elections_allowed = no }
-            add_popularity = { ideology = monarchism popularity = 0.05 }
-
-            # event
-            news_event = { id = ukr_coup.2 hours = 6 }
-        }
-        option = {
-            name = "No."
-
-            # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
-        }
-    }
-
-    news_event = {
-        id = ukr_coup.2
-        title = "Ukrainian Supreme Council Dissolved"
-
-        is_triggered_only = yes
-        major = yes
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# endorse
-    country_event = {
-        id = ukr_endorse.1
-        title = "Endorse Western Ukraine?"
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Yes."
-            declare_war_on = { target = POL type = take_claimed_state }
-
-            # event
-            news_event = { id = ukr_endorse.2 hours = 6 }
-            news_event = { id = ukr_unification.1 days = 14 }
-        }
-        option = {
-            name = "No."
-
-            # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
-        }
-    }
-
-    news_event = {
-        id = ukr_endorse.2
-        title = "Hetmanate Endorses Western Ukraine"
-
-        is_triggered_only = yes
-        major = yes
-
-        option = {
-            name = "Ok."
-        }
-    }
 
 # soviet
     news_event = {
@@ -108,26 +34,22 @@ add_namespace = ukr_uprising
                     var:original_controller = { set_state_controller = PREV }
                 }
             }
+            RUS = {
+                transfer_units_fraction = {
+                    target = SOU
+                    size = 0.05      stockpile_ratio = 0.05
+                }
+            }
+            SOV = {
+                add_to_faction = SOU
+            }
             UKR = {
                 country_event = { id = ukr_coup.1 days = 2 }
+                transfer_units_fraction = {
+                    target = SOU
+                    size = 0.25      stockpile_ratio = 0.25
+                }
             }
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# unification
-    news_event = {
-        id = ukr_unification.1
-        title = "Western Ukraine Aligns with Kyiv"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            UKR = { annex_country = { target = WUK transfer_troops = yes } }
         }
 
         option = {
@@ -144,29 +66,13 @@ add_namespace = ukr_uprising
         major = yes
 
         immediate = {
-            UKR = {
-                # states
-                every_core_state = {
-                    limit = { controller = { original_tag = RUS } }
-                    set_variable = { original_controller = controller }     transfer_state_to = PREV
-                }
+            UKR = { 
+                set_variable = { desertion_rate = 0.1 }
+                start_local_uprising = yes 
 
-                # war
-                every_country = { 
-                    limit = { or = { and = { original_tag = RUS not = { has_government = communism } } } }
-                    declare_war_on = { target = PREV type = annex_everything } 
-                }
-
+                # special targets
                 load_oob = UKR
-
-                # control
-                every_owned_state = { 
-                    var:original_controller = { set_state_controller = PREV }
-                }
-
-                set_province_controller = 525
-                set_province_controller = 572
-                set_province_controller = 11670
+                set_province_controller = 525           set_province_controller = 11670
             }
 
             # german reaction

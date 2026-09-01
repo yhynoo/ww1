@@ -224,7 +224,19 @@ add_namespace = usa_wilson
             USA = { add_opinion_modifier = { target = POL modifier = medium_increase } }
 
             # event
-            RUS = { country_event = { id = rus_warsaw.1 days = 7 } }
+            every_country = {
+                limit = { original_tag = RUS } 
+                white_peace = POL
+            }
+
+            # other uprisings
+            FIN = {
+                RUS = { country_event = { id = fin_autonomy.1 months = 2 days = 6 } }
+            }
+            RUS = {
+                news_event = { id = lit_uprising.1 days = 7 random_days = 14 }
+                news_event = { id = lat_uprising.1 days = 14 random_days = 14 }
+            }
         }
 
         option = {
@@ -242,7 +254,6 @@ add_namespace = usa_wilson
 
         immediate = {
             set_global_flag = twelve_points
-            every_country = { limit = { original_tag = RUS }    white_peace = POL }
 
             # france endorses
             FRA = { news_event = { id = fra_wilson.1 days = 7 } }

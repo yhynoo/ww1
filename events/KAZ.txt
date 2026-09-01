@@ -14,11 +14,17 @@ add_namespace = kaz_uprising
             }
             KAZ = {
                 every_core_state = { PREV = { set_state_owner = PREV } }
+
                 load_oob = KAZ
+                RUS = {
+                    transfer_units_fraction = {
+                        target = KAZ
+                        size = 0.02      stockpile_ratio = 0.02
+                    }
+                }
 
                 set_province_controller = 12594
                 set_province_controller = 1591  set_province_controller = 13148
-
                 set_province_controller = 4867  set_province_controller = 4595 set_province_controller = 1840  
                 set_province_controller = 4651  set_province_controller = 7711 set_province_controller = 4224 
 
@@ -28,9 +34,6 @@ add_namespace = kaz_uprising
                     limit = { original_tag = RUS } 
                     declare_war_on = { target = PREV type = annex_everything }
                 }
-            }
-            RUS = {
-                news_event = { id = tms_uprising.1 days = 7 }
             }
         }
 
