@@ -205,6 +205,15 @@ add_namespace = fra_with_you
             # threat
             add_named_threat = { threat = -60 name = "End of the Great War" }
 
+            AUS = {
+                # czechia
+                every_state = {
+                    limit = { is_core_of = CZE }
+                    transfer_state_to = CZE     remove_core_of = AUS
+                }
+
+                transfer_units_fraction = { target = CZE    size = 0.15    stockpile_ratio = 0.25 }
+            }
             BEL = {
                 set_state_owner = 34
                 34 = {

@@ -1,4 +1,5 @@
 add_namespace = pol_entente
+add_namespace = pol_galicia
 add_namespace = pol_kerensky
 add_namespace = pol_lviv
 add_namespace = pol_uprising
@@ -13,9 +14,56 @@ add_namespace = pol_uprising
 
         immediate = {
             POL = { declare_war_on = { target = GER type = take_claimed_state } }
+
             FRA = { add_to_faction = POL }
+            GER = { country_event = { id = ger_armistice.1 days = 7 } }
         }
         
+        option = {
+            name = "Ok."
+        }
+    }
+
+# galicia
+    news_event = {
+        id = pol_galicia.1
+        title = "Liquidation Committee Established in Galicia-Lodomeria"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            every_state = {
+                limit = { or = { state = 80 state = 89 state = 91 } }
+                POG = { set_state_owner = PREV }
+            }
+
+            AUS = {
+                transfer_units_fraction = { target = POG    size = 0.1    stockpile_ratio = 0.15 }
+            }
+
+            POL = {
+                news_event = { id = pol_galicia.2 days = 14 }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+    news_event = {
+        id = pol_galicia.2
+        title = "Galicia and Lodomeria Joins Warsaw"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            every_owned_state = { add_core_of = POL }
+            POL = { annex_country = { target = POG transfer_troops = yes } }
+        }
+
         option = {
             name = "Ok."
         }

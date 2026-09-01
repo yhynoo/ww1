@@ -1,0 +1,41 @@
+add_namespace = cro_uprising
+
+# uprising
+    news_event = {
+        id = cro_uprising.1
+        title = "Uprising in Illyria!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            CRO = {
+                every_core_state = {
+                    limit = { controller = { or = { original_tag = AUS original_tag = HUN } } }
+                    set_variable = { original_controller = controller }     transfer_state_to = PREV
+
+                    if = { limit = { is_capital = yes } setup_uprising_volunteers = yes }
+                    if = { limit = { any_neighbor_state = { is_capital = yes } } random = { chance = 50 setup_uprising_volunteers = yes } }
+                }
+
+                every_country = {
+                    limit = { or = { tag = AUS tag = HUN } }
+
+                    transfer_units_fraction = { target = PREV    size = 0.1    stockpile_ratio = 0.1 }
+                    declare_war_on = { target = PREV type = annex_everything }
+                }
+
+                # control
+                every_owned_state = { var:original_controller = { set_state_controller = PREV } }
+
+                # special targets
+                set_province_controller = 11581           set_province_controller = 3924         set_province_controller = 3943
+            }
+
+            
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

@@ -46,7 +46,10 @@
     - Wheat Shortages Throughout Europe [idea]; Grand Duchy of Finland Seeks Autonomy
     - *Kadets Oppose Wheat Exports* > Milyukov Denounces the Tsarist Government!
 - 1919
-    - *Jännerstreik* > Austria-Hungary Disintegrates
+    - *Jännerstreik* > End of the Dual Monarchy
+        - Liquidation Committee Established in Galicia-Lodomeria, Galicia and Lodomeria Joins Warsaw
+        - Uprising in Illyria
+        - Hungary Signs Armistice with the Entente
     - The Appointment of von Hertling
         - End of the Great War
 

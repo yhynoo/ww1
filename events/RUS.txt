@@ -73,7 +73,13 @@ add_namespace = rus_wheat
 
         option = {
             name = "Yes."
-            SOV = { annex_country = { target = SOD transfer_troops = yes } }
+            SOV = { 
+                annex_country = { target = SOD transfer_troops = yes } 
+                every_country = {
+                    limit = { or = { tag = EST tag = LAT tag = LIT tag = POL } }
+                    white_peace = SOV
+                }
+            }
 
             # event
             news_event = { id = rus_coalition.2 hours = 6 }
@@ -138,6 +144,7 @@ add_namespace = rus_wheat
         title = "Communists Seize the Tula Armoury!"
 
         is_triggered_only = yes
+        fire_only_once = yes
         major = yes
 
         immediate = {
@@ -298,7 +305,7 @@ add_namespace = rus_wheat
             GER = { remove_ideas = idea_wheat_deal }
             RUS = {
                 start_civil_war = { 
-                    ideology = democratic states = { 137 217 218 236 260 } army_ratio = 0.45 navy_ratio = 0.25
+                    ideology = democratic states = { 137 213 214 215 217 218 236 260 } army_ratio = 0.55 navy_ratio = 0.65
                     set_cosmetic_tag = RUS_democratic_state
 
                     # extra stuff
@@ -313,7 +320,7 @@ add_namespace = rus_wheat
                     set_popularities = { democratic = 75 communism = 20 monarchism = 5 }
                 }
 
-                set_popularities = { monarchism = 80 communism = 15 democratic = 5 }
+                set_popularities = { monarchism = 70 communism = 25 democratic = 5 }
             }
 
             # countries

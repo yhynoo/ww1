@@ -1,0 +1,60 @@
+add_namespace = hun_armistice
+add_namespace = hun_independence
+
+# armistice
+    news_event = {
+        id = hun_armistice.1
+        title = "Hungary Signs an Armistice with the Entente"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            leave_faction = yes
+            white_peace = FRA
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# independence
+    news_event = {
+        id = hun_independence.1
+        title = "End of the Dual Monarchy"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            every_state = {
+                limit = { 
+                    or = { is_core_of = HUN state = 109 }
+                    is_owned_by = AUS 
+                }
+
+                HUN = { set_state_owner = PREV }    remove_core_of = AUS
+                if = { limit = { is_fully_controlled_by = AUS } HUN = { set_state_controller = PREV } }
+            }
+
+            AUS = {
+                transfer_units_fraction = { target = HUN    size = 0.4    stockpile_ratio = 0.25 }
+                faction_leader = { add_to_faction = HUN }
+
+                drop_cosmetic_tag = yes
+            }
+
+            HUN = {
+                news_event = { id = hun_armistice.1 days = 14 }
+
+                # uprisings
+                news_event = { id = pol_galicia.1 days = 6 }
+                news_event = { id = cro_uprising.1 days = 11 }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
