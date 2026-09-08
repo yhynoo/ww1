@@ -49,7 +49,7 @@
     - *Jännerstreik* > End of the Dual Monarchy
         - Liquidation Committee Established in Galicia-Lodomeria, Galicia and Lodomeria Joins Warsaw
         - Uprising in Illyria
-        - Hungary Signs Armistice with the Entente
+        - Hungary Signs Armistice with the Entente, Communist Uprising in Hungary!
     - The Appointment of von Hertling
         - End of the Great War
 
@@ -110,6 +110,7 @@
 - 1919
     - Communists Seize the Tula Armoury!
         - White Ruthenian Workers Take Arms!, Ukrainian Soviet Established
+            - Szamuely Arrives in Hungary
         - Alash Autonomy Independent!
   
     - Tensions in Lviv, *Ukrainian Uprising in Eastern Galicia* > War in Eastern Galicia!

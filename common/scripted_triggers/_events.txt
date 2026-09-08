@@ -24,15 +24,12 @@ can_have_unrest_event = {
     has_stability < 0.4
 }
 
-can_have_ideology_event = {
-    not = { has_country_flag = during_uprising }
-    not = { has_idea = idea_ideology_timeout }
-
-    has_civil_war = no
-    or = {
-        and = { check_variable = { highest_party_popularity@exclude_ruling_party > 0.25 } stability < 0.4 }
-        check_variable = { highest_party_popularity@exclude_ruling_party > 0.4 }
-    }
+can_have_agitation_event = {
+    not = { has_idea = idea_unrest_timeout }
+    has_stability < 0.4
+    
+    communism > 0.2
+    not = { has_idea = idea_civilian_economy }
 }
 
 can_have_government_change_event = {
@@ -41,77 +38,95 @@ can_have_government_change_event = {
     has_civil_war = no
 }
 
-can_have_wheat_affair = {
+can_have_war_exhaustion = {
     longest_war_length > 24
     or = { has_idea = partial_economic_mobilisation has_idea = war_economy }
     not = { has_idea = idea_war_exhaustion }
 }
 
-can_have_opposition_event = {
+can_have_wheat_affair = {
+    has_idea = idea_wheat_shortages
+    has_stability < 0.4
+    not = { has_country_flag = had_wheat_affair }
+}
+
+can_have_armistice_event = {
     is_subject = no
-    longest_war_length > 5
+    has_civil_war = no
     any_enemy_country = { is_armistice_target = yes }
 
     or = {
-        has_war_support < 0.25
-        surrender_progress > 0.15
+        and = { longest_war_length > 24     has_war_support < 0.25 }
+        and = { longest_war_length > 6      or = { has_war_support < 0.15 surrender_progress > 0.15 } }
     }
 
-    check_variable = { highest_party_popularity@exclude_ruling_party > 0.25 }
     not = { has_idea = idea_armistice_timeout }
 }
 
-can_fall_apart = {
-    or = { 
-        has_civil_war = yes 
+# unused
+
+    can_have_ideology_event = {
+        not = { has_country_flag = during_uprising }
+        not = { has_idea = idea_ideology_timeout }
+
+        has_civil_war = no
         or = {
-            and = { surrender_progress > 0.1 has_stability < 0.6 }
-            and = { surrender_progress > 0.25 has_stability < 0.8 }
-        }
-        and = { has_idea = idea_war_loser has_stability < 0.8 }
-        has_stability < 0.2 
-    }
-}
-
-can_trigger_uprising = {
-    exists = no 
-    has_capitulated = no
-    is_dynamic_country = no
-    
-    not = { has_country_flag = country_defeated has_idea = idea_war_loser }
-    capital_scope = { is_fully_controlled_by = ROOT }
-
-    not = {
-        and = {                                 # germany won't fall apart unless in civil war.
-            is_german_state = yes
-            GER = { has_civil_war = no }
+            and = { check_variable = { highest_party_popularity@exclude_ruling_party > 0.25 } stability < 0.4 }
+            check_variable = { highest_party_popularity@exclude_ruling_party > 0.4 }
         }
     }
-}
 
-is_armistice_target = {
-    and = { has_war_with = ROOT not = { original_tag = ROOT } }     # not our civil war enemies.
-    is_diplomatically_able = yes
-
-    # block chinese warlords
-    is_chinese_state = no
-}
-
-is_diplomatically_able = {
-    or = { is_faction_leader = yes is_in_faction = no }
-    is_subject = no
-}
-
-is_guaranteeable = {
-    is_diplomatically_able = yes
-    and = {
-         not = { is_guaranteed_by = FROM }
-         not = { has_war_with = FROM }
+    can_fall_apart = {
+        or = { 
+            has_civil_war = yes 
+            or = {
+                and = { surrender_progress > 0.1 has_stability < 0.6 }
+                and = { surrender_progress > 0.25 has_stability < 0.8 }
+            }
+            and = { has_idea = idea_war_loser has_stability < 0.8 }
+            has_stability < 0.2 
+        }
     }
-}
 
-has_custom_events = {
-    or = { 
-        or = { }    # list of tags.
-    }       
-}
+    can_trigger_uprising = {
+        exists = no 
+        has_capitulated = no
+        is_dynamic_country = no
+        
+        not = { has_country_flag = country_defeated has_idea = idea_war_loser }
+        capital_scope = { is_fully_controlled_by = ROOT }
+
+        not = {
+            and = {                                 # germany won't fall apart unless in civil war.
+                is_german_state = yes
+                GER = { has_civil_war = no }
+            }
+        }
+    }
+
+    is_armistice_target = {
+        and = { has_war_with = ROOT not = { original_tag = ROOT } }     # not our civil war enemies.
+        is_diplomatically_able = yes
+
+        # block chinese warlords
+        is_chinese_state = no
+    }
+
+    is_diplomatically_able = {
+        or = { is_faction_leader = yes is_in_faction = no }
+        is_subject = no
+    }
+
+    is_guaranteeable = {
+        is_diplomatically_able = yes
+        and = {
+            not = { is_guaranteed_by = FROM }
+            not = { has_war_with = FROM }
+        }
+    }
+
+    has_custom_events = {
+        or = { 
+            or = { }    # list of tags.
+        }       
+    }

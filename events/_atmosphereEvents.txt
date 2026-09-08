@@ -1,0 +1,58 @@
+add_namespace = aces
+add_namespace = airships
+add_namespace = gas
+
+# aces
+    news_event = {
+        id = aces.1
+        title = "Knights of the Air"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            set_global_flag = aces_used
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# airships
+    news_event = {
+        id = airships.1
+        title = "Airships Over [ROOT.GetNameDef]"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            set_global_flag = airships_used
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# gas
+    news_event = {
+        id = gas.1
+        title = "Gas!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            set_global_flag = gas_used
+        }
+
+        option = {
+            name = "Ok."
+            if = {
+                limit = { has_war_with = ROOT }
+                add_timed_idea = { idea = idea_gas_shock months = 3 }
+            }
+        }
+    }

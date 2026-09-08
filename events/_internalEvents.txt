@@ -1,6 +1,45 @@
+add_namespace = armistice_demands
+add_namespace = elections
 add_namespace = exhaustion
 add_namespace = government
 add_namespace = unrest
+
+# armistice
+    country_event = {
+        id = armistice_demands.1
+        title = "Opposition Demands an Armistice"
+
+        is_triggered_only = yes
+        immediate = { hidden_effect = { add_timed_idea = { idea = idea_armistice_timeout months = 2 } } }
+
+        option = {
+            name = "We must agree."
+            every_country = { limit = { is_armistice_target = yes } country_event = armistice.1 }
+        }
+        option = {
+            name = "Traitors!"
+            change_government_opposed = yes
+        }
+    }
+
+    country_event = {
+        id = armistice_demands.2
+        title = "Time for an Armistice?"
+
+        is_triggered_only = yes
+        immediate = { hidden_effect = { add_timed_idea = { idea = idea_armistice_timeout months = 3 } } }
+
+        option = {
+            name = "Enough."
+            every_country = { limit = { is_armistice_target = yes } country_event = armistice.1 }
+        }
+        option = {
+            name = "We shall fight until victory."
+            add_popularity = { ideology = ROOT popularity = -0.05 }
+        }
+    }
+
+# elections
 
 # exhaustion
     country_event = {
@@ -8,11 +47,24 @@ add_namespace = unrest
         title = "War Exhaustion"
         desc = exhaustion.1.d
 
-        trigger = { can_have_wheat_affair = yes not = { has_idea = idea_war_exhaustion } }
+        trigger = { can_have_war_exhaustion = yes not = { has_idea = idea_war_exhaustion } }
 
         option = {
             name = "We must hold on."
             add_ideas = idea_war_exhaustion
+        }
+    }
+
+    country_event = {
+        id = exhaustion.2
+        title = "The Wheat Affair of [GetYear]"
+
+        trigger = { can_have_wheat_affair = yes }
+        immediate = { set_country_flag = had_wheat_affair }
+
+        option = {
+            name = "Outrageous."
+            add_popularity = { ideology = ROOT popularity = -0.05 }     add_war_support = -0.05
         }
     }
 
@@ -42,11 +94,25 @@ add_namespace = unrest
 
         is_triggered_only = yes
         trigger = { can_have_unrest_event = yes }
-        immediate = { hidden_effect = { add_timed_idea = { idea = idea_unrest_timeout months = 6 } } }
+        immediate = { hidden_effect = { add_timed_idea = { idea = idea_unrest_timeout months = 4 } } }
 
         option = {
             name = "Awful."
             add_popularity = { ideology = ROOT popularity = -0.05 }        add_timed_idea = { idea = idea_strikes months = 2 }
+        }
+    }
+
+    country_event = {
+        id = unrest.2
+        title = "Socialist Agitation in [event_target.GetName]"
+
+        is_triggered_only = yes
+        trigger = { can_have_agitation_event = yes }
+        immediate = { hidden_effect = { add_timed_idea = { idea = idea_unrest_timeout months = 4 } } }
+
+        option = {
+            name = "Always discontent."
+            add_popularity = { ideology = communism popularity = 0.025 }
         }
     }
 

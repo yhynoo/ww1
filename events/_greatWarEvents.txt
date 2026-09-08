@@ -1,0 +1,180 @@
+add_namespace = atlas
+add_namespace = atlas_intervene
+add_namespace = gibraltar
+add_namespace = great_war
+add_namespace = harvest
+add_namespace = ottoman_investments
+add_namespace = wheat_deal
+add_namespace = wilson
+
+# atlas
+    news_event = {
+        id = atlas.1
+        title = "Unrest Among the Atlas Tribes"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = { news_event = { id = atlas.2 days = 180 } }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+    news_event = {
+        id = atlas.2
+        title = "Atlas on Fire!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            GER = { puppet = MOR }
+            MOR = {
+                start_civil_war = { 
+                    ideology = democratic states = { 462 } army_ratio = 0.25
+                    set_cosmetic_tag = MOR_democratic_state
+
+                    # extra stuff
+                    division_template = { name = "Tribal Militias" is_locked = yes regiments = { infantry = { x = 0 y = 0 } infantry = { x = 0 y = 1 } } }
+                    462 = { create_unit = { division = "name = \"Tribal Militias\" division_template = \"Tribal Militias\" start_experience_factor = 0.2" count = 4 owner = PREV } }
+
+
+                    # control
+                    ROOT = { set_state_controller = 462 }
+                }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# atlas_intervene
+    country_event = {
+        id = atlas_intervene.1
+        title = "Offer Aid to the Atlas Tribes?"
+
+        is_triggered_only = yes
+        fire_only_once = yes
+
+        option = {
+            name = "Yes."
+            random_country = {
+                limit = { original_tag = MOR has_government = democratic }
+                FRA = { add_to_faction = PREV }
+            }
+
+            # event
+            news_event = { id = fra_intervene.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = fra_intervene.2
+        title = "France Encourages the Atlas Tribes"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# gibraltar
+    country_event = {
+        id = gibraltar.1
+        title = "Gibraltar in Danger?"
+
+        is_triggered_only = yes
+        fire_only_once = yes
+
+        option = {
+            name = "Join the Entente."
+            FRA = { add_to_faction = ENG }
+
+            # event
+            news_event = { id = gibraltar.2 hours = 6 }
+        }
+        option = {
+            name = "It is not that serious."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = gibraltar.2
+        title = "[ENG.GetName] Joins the Entente"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+    
+# great_war
+    news_event = {
+        id = great_war.1
+        title = "War Erupts in Europe!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            set_global_flag = great_war
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# wheat_deal
+    news_event = {
+        id = wheat_deal.1
+        title = "Germany Accesses Ukrainian Wheat"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_ideas = idea_wheat_deal
+
+            FRA = { news_event = { id = wheat_deal.2 days = 14 } }
+            RUS = { give_resource_rights = { receiver = GER state = 232 } }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+    news_event = {
+        id = wheat_deal.2
+        title = "The Entente Established Again"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            create_faction = "Entente"
+            add_to_faction = SPA
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

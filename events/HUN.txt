@@ -1,4 +1,5 @@
 add_namespace = hun_armistice
+add_namespace = hun_communism
 add_namespace = hun_independence
 
 # armistice
@@ -12,6 +13,37 @@ add_namespace = hun_independence
         immediate = {
             leave_faction = yes
             white_peace = FRA
+
+            # communism
+            news_event = { id = hun_communism.1 days = 28 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# communism
+    news_event = {
+        id = hun_communism.1
+        title = "Communist Uprising in Hungary!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            HUN = {
+                start_civil_war = { 
+                    ideology = communism states = { 43 70 } army_ratio = 0.4
+
+                    # extra stuff
+                    division_template = { name = "Worker Militias" is_locked = yes regiments = { infantry = { x = 0 y = 0 } infantry = { x = 0 y = 1 } } }
+                    every_owned_state = { create_unit = { division = "name = \"Worker Militias\" division_template = \"Worker Militias\" start_experience_factor = 0.2" count = 1 owner = PREV } }
+
+                    # control
+                    every_owned_state = { ROOT = { set_state_controller = PREV } }
+                }
+            }
         }
 
         option = {

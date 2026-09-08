@@ -1,0 +1,386 @@
+focus_tree = {
+    id = FRA_focus_tree
+    country = { factor = 0  modifier = { add = 20   original_tag = FRA } }
+    continuous_focus_position = { x = 718 y = 770 }
+
+    # shared
+    # shared_focus = XXX_general_staff
+    # shared_focus = XXX_infrastructure
+
+    # shared_focus = XXX_civil_war
+
+    # agadir
+        focus = {
+            id = FRA_echoes
+            icon = GFX_focus_generic_government
+
+            available = {
+                uprising_government_lock = yes
+                civil_war_government_lock = yes
+            }
+
+            x = 0 y = 0
+            cost = 10
+
+            completion_reward = {
+                remove_ideas = idea_echoes_of_agadir
+            }
+        }
+
+        focus = {
+            id = FRA_algerians
+            icon = GFX_focus_FRA_algerians
+
+            prerequisite = { focus = FRA_echoes }   mutually_exclusive = { focus = FRA_trials }
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = FRA_echoes
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_stability = 0.025
+                news_event = fra_with_you.1
+            }
+        }
+
+        focus = {
+            id = FRA_trials
+            icon = GFX_focus_FRA_trials
+
+            prerequisite = { focus = FRA_echoes }   mutually_exclusive = { focus = FRA_algerians }
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = FRA_echoes
+            x = 1 y = 1
+            cost = 6
+
+            completion_reward = {
+                add_political_power = 50
+                news_event = fra_agadir.1
+            }
+        }
+
+        focus = {
+            id = FRA_tribal
+            icon = GFX_focus_FRA_tribal
+
+            prerequisite = { focus = FRA_algerians }
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = FRA_algerians
+            x = -2 y = 1
+            cost = 10
+
+            completion_reward = {
+            }
+        }
+
+        focus = {
+            id = FRA_toulon
+            icon = GFX_focus_FRA_toulon
+
+            prerequisite = { focus = FRA_algerians focus = FRA_trials }
+            available = { civil_war_government_lock = yes controls_state = 32 }
+
+            relative_position_id = FRA_algerians
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                32 = { 
+                    add_building_construction = { type = dockyard level = 2 instant_build = yes } 
+                    add_extra_state_shared_building_slots = 2
+                }
+            }
+        }
+
+        focus = {
+            id = FRA_driant
+            icon = GFX_focus_FRA_driant
+
+            prerequisite = { focus = FRA_trials focus = FRA_spain }
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = FRA_trials
+            x = 2 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_stability = 0.05
+            }
+        }
+
+        focus = {
+            id = FRA_cotton
+            icon = GFX_focus_FRA_cotton
+
+            prerequisite = { focus = FRA_toulon }
+            available = { civil_war_government_lock = yes controls_state = 459 controls_state = 460 }
+
+            relative_position_id = FRA_toulon
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+                459 = {
+                    add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                    add_core_of = FRA
+                }
+                460 = {
+                    add_resource = { type = tungsten amount = 8 }
+                    add_core_of = FRA
+                }
+            }
+        }
+
+        focus = {
+            id = FRA_indigenat
+            icon = GFX_focus_FRA_indigenat
+
+            prerequisite = { focus = FRA_cotton }   mutually_exclusive = { focus = FRA_oran }
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = FRA_cotton
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+            }
+        }
+
+        focus = {
+            id = FRA_oran
+            icon = GFX_focus_FRA_oran
+
+            prerequisite = { focus = FRA_cotton }   mutually_exclusive = { focus = FRA_indigenat }
+            available = { civil_war_government_lock = yes controls_state = 459 }
+
+            relative_position_id = FRA_cotton
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_war_support = 0.025
+                459 = {
+                    add_building_construction = { type = naval_base level = 2 province = 7132 instant_build = yes }
+                    add_extra_state_shared_building_slots = 2
+                }
+            }
+        }
+
+        focus = {
+            id = FRA_atlas
+            icon = GFX_focus_FRA_atlas
+
+            prerequisite = { focus = FRA_indigenat focus = FRA_oran }
+            available = { civil_war_government_lock = yes MOR = { has_civil_war = yes } }
+
+            relative_position_id = FRA_indigenat
+            x = 1 y = 1
+            cost = 6
+
+            completion_reward = {
+                add_war_support = 0.025
+                news_event = fra_intervene.2
+            }
+        }
+
+        focus = {
+            id = FRA_morocco
+            icon = GFX_focus_FRA_morocco
+
+            prerequisite = { focus = FRA_atlas }
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = FRA_atlas
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+            }
+        }
+
+    # entente
+        focus = {
+            id = FRA_entente
+            icon = GFX_focus_FRA_entente
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = FRA_echoes
+            x = 8 y = 0
+            cost = 10
+
+            completion_reward = {
+                create_faction = "Entente"
+            }
+        }
+
+        focus = {
+            id = FRA_spain
+            icon = GFX_focus_FRA_spain
+
+            prerequisite = { focus = FRA_entente }
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = FRA_entente
+            x = -3 y = 1
+            cost = 10
+
+            completion_reward = {
+            }
+        }
+
+        focus = {
+            id = FRA_align_spain
+            icon = GFX_focus_FRA_align_spain
+
+            prerequisite = { focus = FRA_driant }
+            available = { civil_war_government_lock = yes has_government = monarchism }
+
+            relative_position_id = FRA_driant
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+            }
+        }
+
+        focus = {
+            id = FRA_chromium
+            icon = GFX_focus_FRA_chromium
+
+            prerequisite = { focus = FRA_spain }
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = FRA_spain
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+            }
+        }
+
+        focus = {
+            id = FRA_london
+            icon = GFX_focus_FRA_london
+
+            prerequisite = { focus = FRA_entente }
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = FRA_entente
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+            }
+        }
+
+        focus = {
+            id = FRA_twelve_points
+            icon = GFX_focus_FRA_twelve_points
+
+            prerequisite = { focus = FRA_london }
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = FRA_london
+            x = 0 y = 2
+            cost = 6
+
+            completion_reward = {
+            }
+        }
+
+        focus = {
+            id = FRA_east
+            icon = GFX_focus_FRA_east
+
+            prerequisite = { focus = FRA_entente }
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = FRA_entente
+            x = 3 y = 1
+            cost = 10
+
+            completion_reward = {
+            }
+        }
+
+        focus = {
+            id = FRA_tsar
+            icon = GFX_focus_FRA_tsar
+
+            prerequisite = { focus = FRA_east }  
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = FRA_east
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+            }
+        }
+
+        focus = {
+            id = FRA_ottoman_investments
+            icon = GFX_focus_FRA_ottoman_investments
+
+            prerequisite = { focus = FRA_east } 
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = FRA_east
+            x = 2 y = 1
+            cost = 10
+
+            completion_reward = {
+            }
+        }
+
+        focus = {
+            id = FRA_coup
+            icon = GFX_focus_FRA_coup
+
+            prerequisite = { focus = FRA_ottoman_investments } 
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = FRA_ottoman_investments
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+            }
+        }
+
+        focus = {
+            id = FRA_egypt
+            icon = GFX_focus_FRA_egypt
+
+            prerequisite = { focus = FRA_coup } 
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = FRA_coup
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+            }
+        }
+
+        focus = {
+            id = FRA_ally_turks
+            icon = GFX_focus_FRA_ally_turks
+
+            prerequisite = { focus = FRA_ottoman_investments } 
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = FRA_ottoman_investments
+            x = 2 y = 1
+            cost = 10
+
+            completion_reward = {
+            }
+        }
+
+        
+}
