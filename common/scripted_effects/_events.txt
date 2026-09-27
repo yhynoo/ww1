@@ -13,7 +13,7 @@ independence_war_events = {
     news_event = { id = dominion.6 hours = 6 }
 }
 
-change_government = {
+opposition_change_accepted = {
     if = {
         limit = { communism > 0.5 }
         set_politics = { ruling_party = communism elections_allowed = no }
@@ -28,7 +28,7 @@ change_government = {
     }
 }
 
-change_government_opposed = {
+opposition_change_accepted_opposed = {
     if = {
         limit = { communism > 0.5 }
         start_civil_war = { ideology = communism size = 0.5 }

@@ -33,28 +33,8 @@ add_namespace = usa_wilson
     }
 
 # aid
-    country_event = {
-        id = usa_aid.1
-        title = "Senate Debates Aid for Mexico"
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Yes."
-
-            # event
-            news_event = { id = usa_aid.2 hours = 6 }
-        }
-        option = {
-            name = "No."
-
-            # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
-        }
-    }
-
     news_event = {
-        id = usa_aid.2
+        id = usa_aid.1
         title = "American Aid for Mexican Democrats"
 
         is_triggered_only = yes
@@ -71,17 +51,33 @@ add_namespace = usa_wilson
     }
 
 # entente
-    news_event = {
+    country_event = {
         id = usa_entente.1
+        title = "[USA.GetName] to Join the Entente?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            add_to_faction = USA
+
+            # event
+            news_event = { id = usa_entente.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = usa_entente.2
         title = "[USA.GetName] Joins the Entente"
 
         is_triggered_only = yes
         major = yes
-
-        immediate = {
-            FRA = { add_to_faction = USA }
-            USA = { country_event = { id = usa_espionage.1 days = 7 } }
-        }
 
         option = {
             name = "Ok."
@@ -91,7 +87,7 @@ add_namespace = usa_wilson
 # espionage
     country_event = {
         id = usa_espionage.1
-        title = "Espionage Act of [GetYear]"
+        title = "The Espionage Act"
 
         is_triggered_only = yes
 
@@ -135,7 +131,7 @@ add_namespace = usa_wilson
             add_stability = -0.05
 
             # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
         }
     }
 
@@ -254,10 +250,6 @@ add_namespace = usa_wilson
 
         immediate = {
             set_global_flag = twelve_points
-
-            # france endorses
-            FRA = { news_event = { id = fra_wilson.1 days = 7 } }
-            news_event = { id = usa_entente.1 days = 21 }
         }
 
         option = {

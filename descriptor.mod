@@ -2,7 +2,7 @@ version="0.22"
 tags={
 	"Alternative History"
 }
-name="agadir_dev"
+name="ww1"
 replace_path="common/ai_equipment"
 replace_path="common/ai_focuses"
 replace_path="common/ai_strategy"

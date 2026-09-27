@@ -13,16 +13,30 @@ ideas = {
             }
         }
 
+    # tree
+        idea_adapted_schlieffen = {
+            targeted_modifier = {
+                tag = FRA
+                attack_bonus_against = 0.15
+            }
+        }
+        idea_askari = {
+            modifier = {
+                weekly_manpower = 400
+                heat_attrition_factor = -0.05
+            }
+        }
         idea_wheat_deal = {
             modifier = {
-                consumer_goods_factor = -0.2
+                consumer_goods_factor = -0.25
                 supply_factor = 0.05
-                conscription = 0.025
             }
             on_add = {
                 add_opinion_modifier = { target = RUS modifier = opinion_wheat_deal }
             }
         }
+
+    # events
         idea_harvest_1917 = {
             modifier = {
                 consumer_goods_factor = 0.05

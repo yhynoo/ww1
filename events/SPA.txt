@@ -1,7 +1,54 @@
+add_namespace = spa_atlas
+add_namespace = spa_canalejas
 add_namespace = spa_civil_war
+add_namespace = spa_communists_oppose
 add_namespace = spa_entente
-add_namespace = spa_morocco
 add_namespace = spa_semana
+
+# atlas
+    news_event = {
+        id = spa_atlas.1
+        title = "Spain Asserts Claims to Morocco"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            if = {
+                limit = { communism > 0.2 }
+                country_event = { id = spa_atlas.2 days = 7 }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+    country_event = {
+        id = spa_atlas.2
+        title = "Socialists Oppose Atlas Claims"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Ok."
+            add_popularity = { ideology = communism popularity = 0.025 }
+        }
+    }
+
+# canalejas
+    country_event = {
+        id = spa_canalejas.1
+        title = "José Canalejas Assassinated!"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Ok."
+            add_stability = -0.05       retire_character = SPA_jose_canalejas
+        }
+    }
 
 # civil war
     country_event = {
@@ -22,7 +69,7 @@ add_namespace = spa_semana
             name = "No."
 
             # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
         }
     }
 
@@ -36,7 +83,7 @@ add_namespace = spa_semana
         immediate = {
             SPA = {
                 start_civil_war = { 
-                    ideology = communism states = { 169 167 166 165 } army_ratio = 0.25 navy_ratio = 0.2
+                    ideology = communism states = { 169 167 166 165 172 176 } army_ratio = 0.25 navy_ratio = 0.2
 
                     # extra stuff
                     division_template = { name = "Anarchist Militias" is_locked = yes regiments = { infantry = { x = 0 y = 0 } infantry = { x = 0 y = 1 } } }
@@ -55,36 +102,33 @@ add_namespace = spa_semana
     }
 
 # entente
-    news_event = {
+    country_event = {
         id = spa_entente.1
-        title = "[SPA.GetName] Joins the Entente"
+        title = "[SPA.GetName] to Join the Entente?"
 
         is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            FRA = { add_to_faction = SPA }
-        }
 
         option = {
-            name = "Ok."
+            name = "Yes."
+            add_to_faction = SPA
+
+            # event
+            news_event = { id = spa_entente.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
         }
     }
 
-# morocco
     news_event = {
-        id = spa_morocco.1
-        title = "Spain Asserts Claims to Morocco"
+        id = spa_entente.2
+        title = "Spain Joins the Entente"
 
         is_triggered_only = yes
         major = yes
-
-        immediate = {
-            every_state = {
-                limit = { is_core_of = MOR }
-                add_claim_by = SPA
-            }
-        }
 
         option = {
             name = "Ok."

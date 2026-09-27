@@ -9,17 +9,41 @@ ideas = {
             #
         }
 
-    # IDEOLOGY
-        idea_strikes = {
-            modifier = { production_factory_max_efficiency_factor = -0.1 }
+    # unrest
+        idea_anti_war_demonstrations = {
+            modifier = {
+                stability_weekly = -0.005
+                war_support_weekly = -0.01
+            }
+            cancel = {
+                has_war = no
+            }
+        }
+        idea_looting = {
+            modifier = {
+                supply_factor = -0.25
+            }
+        }
+        idea_widespread_hunger = {
+            modifier = {
+                stability_weekly = -0.01
+                monthly_population = -0.15
+            }
+            allowed_civil_war = {
+                always = yes
+            }
         }
         idea_wheat_affair = {
             modifier = {
-                consumer_goods_factor = 0.15
-                war_support_weekly = -0.01
-                attrition = 0.25
+                political_power_factor = -0.1
+                supply_factor = -0.05
             }
         }
+        idea_strikes = {
+            modifier = { production_factory_max_efficiency_factor = -0.1 }
+        }
+
+    # war
         idea_gas_shock = {
             modifier = {
                 army_defence_factor = -0.15

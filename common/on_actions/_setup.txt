@@ -21,24 +21,15 @@ on_actions = {
         # events
             AUS = {
                 country_event = { id = aus_emperor.1 months = 58 days = 26 }
-                country_event = { id = aus_streik.1 months = 85 days = 4 }
             }
 
             ENG = {
                 news_event = { id = eng_halifax.1 months = 71 days = 6 }
             }
 
-            FRA = {
-                news_event = { id = fra_agadir.1 days = 12 }
-                news_event = { id = fra_entente.1 months = 26 days = 6 }
-                news_event = { id = fra_oil.1 months = 39 days = 10 }
-            }
-
             GER = {
-                news_event = { id = ger_occupation.1 months = 1 days = 10 }
-                news_event = { id = ger_deal.1 months = 25 }
+                news_event = { id = ger_equestrian_monument.1 days = 12 }
 
-                news_event = { id = ger_wassmuss.1 months = 65 }
                 news_event = { id = ger_harvest.1 months = 68 }
                 news_event = { id = ger_harvest.2 months = 72 days = 14 }
             }
@@ -64,25 +55,13 @@ on_actions = {
                 news_event = { id = mor_atlas.1 months = 29 days = 7 }
             }
 
-            ROM = {
-                every_country = {
-                    limit = { or = { tag = GRE tag = SER } }
-                    country_event = { id = rom_alliance.1 months = 10 }
-                }
-
-                # war
-                news_event = { id = rom_war.1 months = 10 days = 14 }
-            }
-
             SPA = {
-                news_event = { id = spa_morocco.1 months = 16 }
-                news_event = { id = spa_entente.1 months = 26 days = 12 }
+                country_event = { id = spa_canalejas.1 months = 10 days = 12 }
             }
 
             USA = {
                 country_event = { id = cub_uprising.1 months = 4 days = 21 }
-                news_event = { id = usa_lafayette.1 months = 51 days = 7 }
-                news_event = { id = usa_wilson.1 months = 80 }
+                news_event = { id = usa_movie.1 months = 37 days = 8 }
             }
         }
     }
@@ -176,18 +155,13 @@ on_actions = {
                         drop_cosmetic_tag = yes
                     }
                 }
-
-                if = {
-                    limit = { war_length_with = { tag = TUR months = 2 } not = { has_country_flag = middle_east_influence } }
-                    news_event = ger_middle_east.1
-                }
             }
         }
 
         on_weekly_MEX = {
             effect = {
                 if = {
-                    limit = { has_civil_war = yes surrender_progress > 0.4 }
+                    limit = { has_civil_war = yes surrender_progress > 0.4 has_idea = idea_american_aid_for_mexico }
                     news_event = mex_americans.1
                 }
             }
@@ -347,11 +321,63 @@ on_actions = {
     # generic events
         on_monthly = {
             effect = {
-                # exhaustion
-                random = { chance = 10 country_event = { id = exhaustion.1 random_days = 28 } }
-
-                # unrest
-                random = { chance = 50 country_event = { id = unrest.1 random_days = 28 } }
+                if = {
+                    limit = {
+                        not = { has_idea = idea_anti_war_demonstrations }
+                        or = {
+                            longest_war_length > 2      has_war_support < 0.25
+                            longest_war_length > 24     has_war_support < 0.4
+                        }
+                    }
+                    random = { chance = 20      country_event = { id = anti_war.1    random_days = 28 } }
+                }
+                if = {
+                    limit = {
+                        has_war = no
+                        or = {
+                            has_idea = partial_economic_mobilisation
+                            has_idea = war_economy
+                        }
+                        not = {
+                            or = {
+                                has_idea = volunteer_only
+                                has_idea = limited_conscription
+                            }
+                        }
+                    }
+                    random = { chance = 40      country_event = { id = demobilization.1    random_days = 28 } }
+                }
+                if = {
+                    limit = {
+                        not = { has_idea = idea_widespread_hunger }
+                        or = {
+                            has_idea = partial_economic_mobilisation
+                            has_idea = war_economy
+                        }
+                        or = {
+                            longest_war_length > 6      has_stability < 0.25
+                            longest_war_length > 12     has_stability < 0.4
+                        }
+                    }
+                    random = { chance = 25      country_event = { id = hunger.1    random_days = 28 } }
+                }
+                if = {
+                    limit = {
+                        has_civil_war = no
+                        and = {
+                            not = { has_country_flag = during_uprising }
+                            check_variable = { highest_party_popularity@exclude_ruling_party > 0.5 }
+                        }
+                    }
+                    random = { chance = 40      country_event = { id = strikes.1    random_days = 28 } }
+                }
+                if = {
+                    limit = {
+                        not = { has_idea = idea_strikes }
+                        has_stability < 0.45
+                    }
+                    random = { chance = 40      country_event = { id = strikes.1    random_days = 28 } }
+                }
             }
         }
 }

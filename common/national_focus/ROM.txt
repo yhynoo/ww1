@@ -1,0 +1,248 @@
+focus_tree = {
+    id = ROM_focus
+    country = { factor = 0 modifier = { original_tag = ROM add = 40 } }
+    continuous_focus_position = { x = 708 y = 1050 }
+
+    # state
+        focus = {
+            id = ROM_liberate
+            icon = GFX_focus_generic_extend
+
+            available = {
+                uprising_government_lock = yes
+                civil_war_government_lock = yes
+            }
+
+            x = 0 y = 0
+            cost = 10
+
+            completion_reward = {
+                add_war_support = 0.05
+            }
+        }
+
+        focus = {
+            id = ROM_french_arms
+            icon = GFX_focus_ROM_french_arms
+            prerequisite = { focus = ROM_liberate }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = ROM_liberate
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+                FRA = { country_event = { id = rom_french_arms.1 hours = 6 } }
+                add_political_power = 50
+            }
+        }
+
+        focus = {
+            id = ROM_greeks
+            icon = GFX_focus_GER_greece
+            prerequisite = { focus = ROM_liberate }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = ROM_liberate
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                GRE = { country_event = { id = rom_alliance.1 hours = 6 } }
+                add_political_power = 50
+            }
+        }
+
+        focus = {
+            id = ROM_awake
+            icon = GFX_focus_ROM_awake
+            prerequisite = { focus = ROM_french_arms focus = ROM_greeks }
+
+            available = { 
+                civil_war_government_lock = yes 
+                is_subject = yes
+            }
+
+            relative_position_id = ROM_french_arms
+            x = 1 y = 1
+            cost = 6
+
+            completion_reward = {
+                add_war_support = 0.05
+                news_event = { id = rom_war.1 hours = 6 }
+            }
+        }
+
+        focus = {
+            id = ROM_south
+            icon = GFX_focus_ROM_south
+            prerequisite = { focus = ROM_awake }
+
+            available = { 
+                civil_war_government_lock = yes
+                has_country_flag = won_romanian_independence_war
+            }
+
+            relative_position_id = ROM_awake
+            x = 0 y = 1
+            cost = 6
+
+            ai_will_do = { modifier = { always = yes factor = 6 } }
+
+            completion_reward = {
+                TUR = { country_event = { id = rom_thrace.1 hours = 6 } }
+            }
+        }
+
+        focus = {
+            id = ROM_entente
+            icon = GFX_focus_ROM_entente
+            prerequisite = { focus = ROM_south }
+
+            available = { civil_war_government_lock = yes }
+            mutually_exclusive = { focus = ROM_consolidate }
+
+            relative_position_id = ROM_south
+            x = -1 y = 1
+            cost = 10
+
+            ai_will_do = { modifier = { is_historical_focus_on = yes factor = 0 } }
+
+            completion_reward = {
+                FRA = { country_event = spa_entente.1 }
+            }
+        }
+
+        focus = {
+            id = ROM_consolidate
+            icon = GFX_focus_ROM_consolidate
+            prerequisite = { focus = ROM_south }
+
+            available = { civil_war_government_lock = yes }
+            mutually_exclusive = { focus = ROM_entente }
+
+            relative_position_id = ROM_south
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_stability = 0.05
+            }
+        }
+
+        focus = {
+            id = ROM_align_thrace
+            icon = GFX_focus_ROM_align_thrace
+            prerequisite = { focus = ROM_entente }
+
+            available = { 
+                civil_war_government_lock = yes 
+                THR = { exists = yes is_subject = no }
+            }
+
+            relative_position_id = ROM_entente
+            x = -2 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_war_support = 0.05
+                THR = {
+                    country_event = { id = demands.3 hours = 6 }
+                    effect_overlord_warning_country = yes
+                }
+            }
+        }
+
+        focus = {
+            id = ROM_oil_investments
+            icon = GFX_focus_ROM_oil_investments
+            prerequisite = { focus = ROM_entente focus = ROM_consolidate }
+
+            available = { 
+                civil_war_government_lock = yes 
+
+                controls_state = 46
+                controls_state = 77
+            }
+
+            relative_position_id = ROM_entente
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                46 = {
+                    add_resource = { type = oil amount = 12 }
+                    add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                }
+                77 = {
+                    add_resource = { type = oil amount = 4 }
+                    add_extra_state_shared_building_slots = 1
+                }
+            }
+        }
+
+        focus = {
+            id = ROM_agrarists
+            icon = GFX_focus_ROM_agrarists
+            prerequisite = { focus = ROM_consolidate }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = ROM_consolidate
+            x = 2 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_timed_idea = { idea = idea_agrarians years = 2 }
+                random_owned_controlled_state = {
+                    limit = { is_core_of = ROOT infrastructure > 1 }
+                    add_resource = { type = tungsten amount = 8 }       add_extra_state_shared_building_slots = 1
+                }
+            }
+        }
+        
+        focus = {
+            id = ROM_chances
+            icon = GFX_focus_ROM_chances
+            prerequisite = { focus = ROM_oil_investments }
+
+            available = { 
+                civil_war_government_lock = yes 
+                has_global_flag = twelve_points
+            }
+
+            relative_position_id = ROM_oil_investments
+            x = 0 y = 1
+            cost = 6
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = ROM_unification
+            icon = GFX_focus_generic_administration
+            prerequisite = { focus = ROM_chances }
+
+            available = { 
+                civil_war_government_lock = yes 
+            }
+
+            relative_position_id = ROM_chances
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+    # other trees
+    shared_focus = XXX_general_staff
+    shared_focus = XXX_infrastructure
+
+    shared_focus = XXX_civil_war
+}

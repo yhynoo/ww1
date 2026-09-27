@@ -1,4 +1,6 @@
 add_namespace = ser_albania
+add_namespace = ser_entente
+add_namespace = ser_support
 add_namespace = ser_war
 
 # albania
@@ -16,6 +18,69 @@ add_namespace = ser_war
 
         option = {
             name = "Ok."
+        }
+    }
+
+# entente
+    country_event = {
+        id = ser_entente.1
+        title = "[SER.GetName] to Join the Entente?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            add_to_faction = SER
+
+            # event
+            news_event = { id = ser_entente.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = ser_entente.2
+        title = "Spain Joins the Entente"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# seek support
+    country_event = {
+        id = ser_support.1
+        title = "The Austrian Threat"
+
+        trigger = { 
+            tag = SER
+            AUS = { focus_progress = { focus = AUS_slavs     progress > 0.6 } }
+
+            and = {
+                not = { or = { is_in_faction = yes is_guaranteed_by = RUS } }
+                FRA = { is_faction_leader = yes } 
+            }
+        }
+        is_triggered_only = yes
+
+        option = {
+            name = "Seek the Entente's aid."
+            FRA = { country_event = ser_entente.1 }
+        }
+
+        option = {
+            name = "We will manage ourselves."
+
+            # ai
+            ai_chance = { modifier = { always = yes } factor = 0 }
         }
     }
 
@@ -37,7 +102,7 @@ add_namespace = ser_war
             name = "No."
 
             # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
         }
     }
 

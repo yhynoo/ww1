@@ -1,0 +1,283 @@
+focus_tree = {
+    id = USA_focus
+    country = { factor = 0 modifier = { original_tag = USA add = 40 } }
+    continuous_focus_position = { x = 708 y = 1050 }
+
+    # state
+        focus = {
+            id = USA_hemisphere
+            icon = GFX_focus_generic_extend
+
+            available = {
+                uprising_government_lock = yes
+                civil_war_government_lock = yes
+            }
+
+            x = 0 y = 0
+            cost = 10
+
+            completion_reward = {
+                add_war_support = 0.05
+            }
+        }
+
+        focus = {
+            id = USA_aid
+            icon = GFX_focus_USA_aid
+            prerequisite = { focus = USA_hemisphere }
+
+            available = { 
+                civil_war_government_lock = yes 
+                MEX = { has_civil_war = yes }
+            }
+            bypass = {
+                MEX = { is_subject_of = USA }
+            }
+            mutually_exclusive = { focus = USA_isolation }
+
+            relative_position_id = USA_hemisphere
+            x = -1 y = 1
+            cost = 6
+
+            completion_reward = {
+                add_political_power = 50
+                MEX = { news_event = { id = usa_aid.1 hours = 6 } }
+            }
+        }
+
+        focus = {
+            id = USA_isolation
+            icon = GFX_focus_USA_isolation
+            prerequisite = { focus = USA_hemisphere }
+
+            available = { civil_war_government_lock = yes }
+            mutually_exclusive = { focus = USA_aid }
+
+            relative_position_id = USA_hemisphere
+            x = 1 y = 1
+            cost = 6
+
+            ai_will_do = { modifier = { is_historical_focus_on = yes factor = 0 } }
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = USA_engagement
+            icon = GFX_focus_USA_engagement
+            prerequisite = { focus = USA_aid }
+
+            available = { 
+                civil_war_government_lock = yes 
+                MEX = { has_civil_war = yes }
+            }
+            bypass = {
+                MEX = { is_subject_of = USA }
+            }
+
+            relative_position_id = USA_aid
+            x = -2 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_war_support = 0.05
+                every_country = {
+                    limit = { or = { and = { original_tag = MEX is_dynamic_country = yes } original_tag = COL } }
+                    USA = { declare_war_on = { target = PREV type = topple_government } }
+                }
+            }
+        }
+
+        focus = {
+            id = USA_domestic
+            icon = GFX_focus_USA_domestic
+            prerequisite = { focus = USA_aid focus = USA_isolation }
+
+            available = { 
+                civil_war_government_lock = yes 
+            }
+
+            relative_position_id = USA_aid
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_stability = 0.05
+            }
+        }
+
+
+        focus = {
+            id = USA_chromium
+            icon = GFX_focus_USA_chromium
+            prerequisite = { focus = USA_isolation }
+
+            available = { 
+                civil_war_government_lock = yes 
+            }
+
+            relative_position_id = USA_isolation
+            x = 2 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = USA_clayton
+            icon = GFX_focus_USA_clayton
+            prerequisite = { focus = USA_domestic }
+
+            available = { 
+                civil_war_government_lock = yes 
+            }
+
+            relative_position_id = USA_domestic
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+                remove_ideas = idea_unionized_labor
+            }
+        }
+
+        focus = {
+            id = USA_klan
+            icon = GFX_focus_USA_klan
+            prerequisite = { focus = USA_domestic }
+
+            available = { 
+                civil_war_government_lock = yes 
+                has_idea = idea_second_klan
+            }
+
+            relative_position_id = USA_domestic
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                remove_ideas = idea_second_klan
+            }
+        }
+
+        focus = {
+            id = USA_arms
+            icon = GFX_focus_USA_arms
+            prerequisite = { focus = USA_clayton focus = USA_klan }
+
+            available = { 
+                civil_war_government_lock = yes
+                threat > 0.6
+            }
+
+            relative_position_id = USA_clayton
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                remove_ideas = idea_isolationism
+            }
+        }
+
+        focus = {
+            id = USA_lafayette
+            icon = GFX_focus_USA_lafayette
+            prerequisite = { focus = USA_arms }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = USA_arms
+            x = -2 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_ideas = idea_american_volunteers
+
+                # news
+                hidden_effect = { FRA = { news_event = { id = usa_lafayette.1 days = 7 } } }
+            }
+        }
+
+        focus = {
+            id = USA_wilsonianism
+            icon = GFX_focus_generic_administration
+            prerequisite = { focus = USA_arms }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = USA_arms
+            x = 0 y = 1
+            cost = 10
+
+            ai_will_do = { modifier = { is_historical_focus_on = yes factor = 0 } }
+
+            completion_reward = {
+                news_event = { id = usa_wilson.1 hours = 6 }
+            }
+        }
+
+        focus = {
+            id = USA_four_minute_men
+            icon = GFX_focus_USA_four_minute_men
+            prerequisite = { focus = USA_arms }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = USA_arms
+            x = 2 y = 1
+            cost = 10
+
+            ai_will_do = { modifier = { is_historical_focus_on = yes factor = 0 } }
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = USA_entente
+            icon = GFX_focus_USA_entente
+            prerequisite = { focus = USA_wilsonianism }
+
+            available = { 
+                civil_war_government_lock = yes 
+                has_war_support > 0.5
+            }
+
+            relative_position_id = USA_wilsonianism
+            x = 0 y = 1
+            cost = 6
+
+            completion_reward = {
+                FRA = { country_event = { id = usa_entente.1 hours = 6 } }
+            }
+        }
+
+        focus = {
+            id = USA_war_acts
+            icon = GFX_focus_USA_war_acts
+            prerequisite = { focus = USA_entente }
+
+            available = { 
+                civil_war_government_lock = yes 
+            }
+
+            relative_position_id = USA_entente
+            x = 0 y = 1
+            cost = 6
+
+            completion_reward = {
+                add_war_support = 0.05
+            }
+        }
+
+    # other trees
+    shared_focus = XXX_general_staff
+    shared_focus = XXX_infrastructure
+
+    shared_focus = XXX_civil_war
+}

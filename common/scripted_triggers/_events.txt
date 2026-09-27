@@ -10,44 +10,12 @@ ai_wants_alliance = {
 
 ai_wants_armistice = {
     or = {
-        has_idea = idea_war_exhaustion
         surrender_progress > 0.15
         has_war_support < 0.4
         has_stability < 0.25
 
         FROM = { or = { is_major = yes is_faction_leader = yes } }
     }
-}
-
-can_have_unrest_event = {
-    not = { has_idea = idea_unrest_timeout }
-    has_stability < 0.4
-}
-
-can_have_agitation_event = {
-    not = { has_idea = idea_unrest_timeout }
-    has_stability < 0.4
-    
-    communism > 0.2
-    not = { has_idea = idea_civilian_economy }
-}
-
-can_have_government_change_event = {
-    check_variable = { highest_party_popularity@exclude_ruling_party > 0.5 }
-    not = { has_country_flag = during_uprising }
-    has_civil_war = no
-}
-
-can_have_war_exhaustion = {
-    longest_war_length > 24
-    or = { has_idea = partial_economic_mobilisation has_idea = war_economy }
-    not = { has_idea = idea_war_exhaustion }
-}
-
-can_have_wheat_affair = {
-    has_idea = idea_wheat_shortages
-    has_stability < 0.4
-    not = { has_country_flag = had_wheat_affair }
 }
 
 can_have_armistice_event = {
@@ -63,8 +31,15 @@ can_have_armistice_event = {
     not = { has_idea = idea_armistice_timeout }
 }
 
-# unused
+is_armistice_target = {
+    and = { has_war_with = ROOT not = { original_tag = ROOT } }     # not our civil war enemies.
+    is_diplomatically_able = yes
 
+    # block chinese warlords
+    is_chinese_state = no
+}
+
+# unused
     can_have_ideology_event = {
         not = { has_country_flag = during_uprising }
         not = { has_idea = idea_ideology_timeout }
@@ -102,14 +77,6 @@ can_have_armistice_event = {
                 GER = { has_civil_war = no }
             }
         }
-    }
-
-    is_armistice_target = {
-        and = { has_war_with = ROOT not = { original_tag = ROOT } }     # not our civil war enemies.
-        is_diplomatically_able = yes
-
-        # block chinese warlords
-        is_chinese_state = no
     }
 
     is_diplomatically_able = {

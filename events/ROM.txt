@@ -1,13 +1,14 @@
 add_namespace = rom_alliance
-add_namespace = rom_anti_ottoman
-add_namespace = rom_disband_alliance
+add_namespace = rom_entente
+add_namespace = rom_french_arms
+add_namespace = rom_orientalism
 add_namespace = rom_thrace
 add_namespace = rom_war
 
 # alliance    
     country_event = {
         id = rom_alliance.1
-        title = "[ROM.GetName] Offers a Defence Agreement"
+        title = "A Defence Agreement with Bucharest?"
 
         is_triggered_only = yes
 
@@ -21,7 +22,112 @@ add_namespace = rom_war
             name = "No."
 
             # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+# entente
+    country_event = {
+        id = rom_entente.1
+        title = "[ROM.GetName] to Join the Entente?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            add_to_faction = ROM
+
+            # event
+            news_event = { id = rom_entente.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = rom_entente.2
+        title = "[ROM.GetName] Joins the Entente"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# french arms
+    country_event = {
+        id = rom_french_arms.1
+        title = "[ROM.GetName] Asks for Arms"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+
+            add_equipment_to_stockpile = { type = infantry_equipment    amount = -600       producer = FRA }
+            add_equipment_to_stockpile = { type = artillery_equipment    amount = -24       producer = FRA }
+
+            # event
+            country_event = { id = rom_french_arms.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+    country_event = {
+        id = rom_french_arms.2
+        title = "French Equipment Arrives"
+
+        is_triggered_only = yes
+        option = {
+            name = "Ok."
+
+            add_equipment_to_stockpile = { type = infantry_equipment    amount = 600       producer = FRA }
+            add_equipment_to_stockpile = { type = artillery_equipment    amount = 24       producer = FRA }
+        }
+    }
+
+# garrison
+    country_event = {
+        id = rom_orientalism.1
+        title = "‘Constanta Garrison Assaulted"
+
+        trigger = {
+            tag = ROM
+            focus_progress = { focus = ROM_awake     progress > 0.6 }
+        }
+        fire_only_once = yes
+
+        option = {
+            name = "Ok."
+            add_equipment_to_stockpile = { type = infantry_equipment amount = 200 producer = TUR }
+        }
+    }
+
+# orientalism
+    country_event = {
+        id = rom_orientalism.1
+        title = "‘Against Orientalism’"
+
+        trigger = {
+            tag = ROM
+            focus_progress = { focus = ROM_liberate     progress > 0.4 }
+        }
+        fire_only_once = yes
+
+        option = {
+            name = "Ok."
+            add_political_power = 15
         }
     }
 
@@ -43,7 +149,7 @@ add_namespace = rom_war
             name = "No."
 
             # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
         }
     }
 
@@ -105,15 +211,11 @@ add_namespace = rom_war
                     set_state_owner = 27
                 }
             }
-            SER = {
-                set_state_owner = 404
-                country_event = { id = ser_albania.1 months = 2 }
+            ROM = {
+                set_country_flag = won_romanian_independence_war
             }
             RUS = {
                 country_event = { id = arm_guarantees.1 days = 7 }
-            }
-            TUR = {
-                country_event = { id = rom_thrace.1 months = 2 days = 12 }
             }
         }
 

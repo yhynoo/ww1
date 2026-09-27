@@ -2,29 +2,23 @@ ideas = {
     country = {
         idea_aristocratic_officers = {
             modifier = {
-                army_morale_factor = -0.1
-                initiative_factor = -0.2
+                initiative_factor = -0.1
+                command_power_gain_factor = -0.15
             }
             cancel = {
                 not = { has_government = monarchism }
             }
         }
-        idea_ausgleich = {
+        idea_complaints_committee = {
             modifier = {
-                economy_cost_factor = 0.25
-                trade_laws_cost_factor = 0.25
-                mobilization_laws_cost_factor = 0.4
-            }
-            cancel = {
-                or = { 
-                    not = { has_government = monarchism }
-                    HUN = { exists = yes } 
-                }
+                stability_factor = 0.05
+                democratic_drift = 0.05
             }
         }
         idea_ethnic_tensions = {
             modifier = {
                 political_power_factor = -0.15
+                stability_factor = -0.1
             }
             cancel = {
                 or = { 
@@ -34,6 +28,28 @@ ideas = {
             }
             allowed_civil_war = {
                 always = yes
+            }
+        }
+        idea_legiony = {
+            modifier = {
+                conscription_factor = 0.05
+                war_support_factor = 0.025
+            }
+            cancel = {
+                not = {
+                    any_controlled_state = { is_claimed_by = POL }
+                }
+            }
+        }
+        idea_sichovi_striltsy = {
+            modifier = {
+                conscription_factor = 0.05
+                stability_factor = 0.025
+            }
+            cancel = {
+                not = {
+                    any_controlled_state = { is_claimed_by = UKR }
+                }
             }
         }
     }

@@ -32,14 +32,14 @@ ARM_support = {
 
 minors_stay_allied = {
     allowed = { or = { original_tag = AFG original_tag = ARM } }
-    enable = { GER = { has_war_with = TUR } is_historical_focus = yes }
+    enable = { GER = { has_war_with = TUR } is_historical_focus_on = yes }
 
     ai_strategy = { type = alliance id = GER value = 300 }
 }
 
 GER_army_expansion = {
     allowed = { original_tag = GER }
-    enable = { is_historical_focus = yes }
+    enable = { is_historical_focus_on = yes }
 
     # extra boosts
     ai_strategy = {	type = role_ratio	id = infantry		value = 50 }

@@ -162,7 +162,7 @@
             name = "No."
 
             # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
         }
     }
 

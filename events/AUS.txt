@@ -1,5 +1,29 @@
+add_namespace = aus_annexation
 add_namespace = aus_emperor
-add_namespace = aus_streik
+add_namespace = aus_evidenzbureau
+add_namespace = aus_serbia
+add_namespace = aus_volker
+add_namespace = aus_wheat_strike
+
+# annexation
+    news_event = {
+        id = aus_annexation.1
+        title = "Annexation of Sarajevo"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            104 = {
+                add_core_of = AUS
+                set_demilitarized_zone = no
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
 
 # emperor
     news_event = {
@@ -18,12 +42,129 @@ add_namespace = aus_streik
         }
     }
 
-# streik
+# evidenzbureau
     country_event = {
-        id = aus_streik.1
-        title = "Jännerstreik"
+        id = aus_evidenzbureau.1
+        title = "Scandal in the Evidenzbureau"
+
+        trigger = {
+            tag = AUS
+            focus_progress = { focus = AUS_evidenzbureau     progress > 0.4 }
+        }
+        fire_only_once = yes
+
+        immediate = {
+            country_event = { id = aus_evidenzbureau.2 days = 14 }
+        }
+
+        option = {
+            name = "Worrying."
+            add_stability = -0.02
+        }
+    }
+
+    country_event = {
+        id = aus_evidenzbureau.2
+        title = "Treason Among the Intelligence"
 
         is_triggered_only = yes
+
+        option = {
+            name = "Cover it up."
+            add_stability = 0.025
+
+            # event
+            random = { chance = 50 news_event = { id = aus_evidenzbureau.3 hours = 6 } }
+        }
+        option = {
+            name = "Arrest him immediately."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = aus_evidenzbureau.3
+        title = "Spying Affair in the Evidenzbureau"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+            add_war_support = -0.025
+        }
+    }
+
+# serbia
+    country_event = {
+        id = aus_serbia.1
+        title = "The Serbian Question"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Serbien muss sterbien!"
+            create_wargoal = { target = SER     type = annex_everything }
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+
+            # event
+            news_event = { id = aus_serbia.2 hours = 6 }
+        }
+        option = {
+            name = "This is an invitation to tragedy."
+            add_popularity = { ideology = democratic    popularity = 0.05 }
+        }
+    }
+
+    news_event = {
+        id = aus_serbia.2
+        title = "Vienna to Act Against Serbia?"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_named_threat = { name = "Vienna to Act Against Serbia" threat = 4 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# volker
+    news_event = {
+        id = aus_volker.1
+        title = "‘An Meine Völker’"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_war_support = 0.05
+            add_popularity = { ideology = monarchism popularity = 0.05 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# wheat strike
+    country_event = {
+        id = aus_wheat_strike.1
+        title = "Wheat Strikes"
+
+        trigger = {
+            tag = AUS
+            and = { has_idea = idea_wheat_shortages has_stability < 0.6 }
+        }
+        fire_only_once = yes
+        mean_time_to_happen = { days = 28 }
 
         option = {
             name = "Ok."
@@ -31,40 +172,6 @@ add_namespace = aus_streik
             set_popularities = { democratic = 60 monarchism = 25 communism = 15 }
 
             # event
-            # news_event = { id = aus_streik.2 days = 14 }
             news_event = { id = hun_independence.1 days = 4 }
-        }
-    }
-
-    news_event = {
-        id = aus_streik.2
-        title = "Austria-Hungary Disintegrates"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            leave_faction = yes
-            drop_cosmetic_tag = yes
-
-            white_peace = FRA
-            white_peace = MOR
-            white_peace = SER
-
-            39 = { set_demilitarized_zone = yes }
-
-            every_state = {
-                limit = { or = { state = 80 state = 89 state = 91 } }
-                transfer_state_to = POL
-            }
-
-            every_possible_country = {
-                limit = { or = { tag = CZE tag = CRO tag = HUN } }
-                AUS = { release_on_controlled = PREV }
-            }
-        }
-
-        option = {
-            name = "Ok."
         }
     }

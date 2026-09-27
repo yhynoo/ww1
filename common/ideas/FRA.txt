@@ -6,6 +6,12 @@ ideas = {
                 air_training_xp_gain_factor = 0.15
             }
         }
+        idea_elan = {
+            modifier = {
+                army_attack_factor = 0.1
+                initiative_factor = 0.15
+            }
+        }
 
         idea_echoes_of_agadir = {
             modifier = {
@@ -23,6 +29,22 @@ ideas = {
             }
             on_add = {
                 remove_ideas = idea_echoes_of_agadir
+            }
+        }
+
+        idea_indigenat = {
+            modifier = {
+                conscription_factor = 0.05
+                heat_attrition_factor = -0.05
+            }
+            on_add = {
+                set_technology = { hidden_camelry = 1 }
+            }
+        }
+        idea_union_sacree = {
+            modifier = {
+                stability_factor = 0.05
+                army_core_defence_factor = 0.1
             }
         }
     }

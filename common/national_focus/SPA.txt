@@ -1,0 +1,250 @@
+focus_tree = {
+    id = SPA_focus
+    country = { factor = 0 modifier = { original_tag = SPA add = 40 } }
+    continuous_focus_position = { x = 708 y = 1050 }
+
+    # state
+        focus = {
+            id = SPA_end
+            icon = GFX_focus_generic_government
+
+            available = {
+                uprising_government_lock = yes
+                civil_war_government_lock = yes
+            }
+
+            x = 0 y = 0
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = SPA_stability
+            icon = GFX_focus_SPA_stability
+            prerequisite = { focus = SPA_end }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = SPA_end
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+                remove_ideas = idea_anarchists_in_the_countryside
+            }
+        }
+
+        focus = {
+            id = SPA_liberalization
+            icon = GFX_focus_SPA_liberalization
+            prerequisite = { focus = SPA_stability }
+
+            available = { civil_war_government_lock = yes }
+            mutually_exclusive = { focus = SPA_tradition }
+
+            relative_position_id = SPA_stability
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_popularity = { ideology = democratic popularity = 0.05 }
+            }
+        }
+
+        focus = {
+            id = SPA_tradition
+            icon = GFX_focus_SPA_tradition
+            prerequisite = { focus = SPA_stability }
+
+            available = { civil_war_government_lock = yes }
+            mutually_exclusive = { focus = SPA_liberalization }
+
+            relative_position_id = SPA_stability
+            x = 1 y = 1
+            cost = 10
+
+            ai_will_do = { modifier = { is_historical_focus_on = yes factor = 0 } }
+
+            completion_reward = {
+                add_stability = 0.05
+            }
+        }
+
+        focus = {
+            id = SPA_agrarists
+            icon = GFX_focus_SPA_agrarists
+            prerequisite = { focus = SPA_liberalization }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = SPA_liberalization
+            x = -2 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_timed_idea = { idea = idea_agrarians years = 2 }
+                random_owned_controlled_state = {
+                    limit = { is_core_of = ROOT infrastructure > 1 }
+                    add_resource = { type = tungsten amount = 8 }       add_extra_state_shared_building_slots = 1
+                }
+            }
+        }
+
+        focus = {
+            id = SPA_ceuta
+            icon = GFX_focus_SPA_ceuta
+            prerequisite = { focus = SPA_liberalization focus = SPA_tradition }
+
+            available = { 
+                civil_war_government_lock = yes 
+                controls_state = 290
+            }
+
+            relative_position_id = SPA_liberalization
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_political_power = 50
+                290 = {
+                    add_resource = { type = steel amount = 4 }
+                    add_core_of = SPA
+                }
+            }
+        }
+
+        focus = {
+            id = SPA_weyler
+            icon = GFX_focus_SPA_weyler
+            prerequisite = { focus = SPA_tradition }
+
+            available = { 
+                civil_war_government_lock = yes 
+                has_government = monarchism
+            }
+
+            relative_position_id = SPA_tradition
+            x = 2 y = 1
+            cost = 10
+
+            completion_reward = {
+                promote_character = SPA_valeriano_weyler
+            }
+        }
+
+        focus = {
+            id = SPA_atlas
+            icon = GFX_focus_SPA_atlas
+            prerequisite = { focus = SPA_ceuta }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = SPA_ceuta
+            x = 0 y = 1
+            cost = 6
+
+            completion_reward = {
+                add_war_support = 0.05
+                every_state = {
+                    limit = { is_core_of = MOR }
+                    add_claim_by = SPA
+                }
+
+                # news
+                hidden_effect = { news_event = { id = spa_atlas.1 hours = 6 } }
+            }
+        }
+
+        focus = {
+            id = SPA_entente
+            icon = GFX_focus_SPA_entente
+            prerequisite = { focus = SPA_atlas }
+
+            available = { 
+                civil_war_government_lock = yes 
+                FRA = { can_join_their_faction = yes }
+            }
+            mutually_exclusive = { focus = SPA_on_our_own }
+
+            relative_position_id = SPA_atlas
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+                FRA = { country_event = spa_entente.1 }
+            }
+        }
+
+        focus = {
+            id = SPA_on_our_own
+            icon = GFX_focus_generic_extend
+            prerequisite = { focus = SPA_atlas }
+
+            available = { civil_war_government_lock = yes }
+            mutually_exclusive = { focus = SPA_entente }
+
+            relative_position_id = SPA_atlas
+            x = 1 y = 1
+            cost = 10
+
+            ai_will_do = { modifier = { is_historical_focus_on = yes factor = 0 } }
+
+            completion_reward = {
+                add_political_power = 100
+            }
+        }
+
+        focus = {
+            id = SPA_touareg
+            icon = GFX_focus_generic_administration
+            prerequisite = { focus = SPA_entente focus = SPA_on_our_own }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = SPA_entente
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_ideas = idea_touareg_alliance
+                470 = {
+                    add_core_of = SPA
+                    add_resource = { type = tungsten amount = 4 }
+                }
+            }
+        }
+
+        focus = {
+            id = SPA_annex_morocco
+            icon = GFX_focus_SPA_annex_morocco
+            prerequisite = { focus = SPA_touareg }
+
+            available = { 
+                civil_war_government_lock = yes 
+
+                controls_state = 461
+                controls_state = 462
+            }
+
+            relative_position_id = SPA_touareg
+            x = 0 y = 1
+            cost = 6
+
+            completion_reward = {
+                add_political_power = 50
+                every_state = {
+                    limit = { is_core_of = MOR }
+                    add_core_of = SPA
+                }
+            }
+        }
+
+    # other trees
+    shared_focus = XXX_general_staff
+    shared_focus = XXX_infrastructure
+
+    shared_focus = XXX_civil_war
+}

@@ -2,9 +2,11 @@ add_namespace = rus_admiral
 add_namespace = rus_agitation
 add_namespace = rus_coalition
 add_namespace = rus_hunger
+add_namespace = rus_influence
 add_namespace = rus_soviet
 add_namespace = rus_trotsky
 add_namespace = rus_volga
+add_namespace = rus_uriankhai
 add_namespace = rus_warsaw
 add_namespace = rus_wheat
 
@@ -88,7 +90,7 @@ add_namespace = rus_wheat
             name = "No."
 
             # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
         }
     }
 
@@ -122,13 +124,53 @@ add_namespace = rus_wheat
             name = "No."
 
             # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
         }
     }
 
     news_event = {
         id = rus_hunger.2
         title = "Hunger Committee Established"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# influence
+    country_event = {
+        id = rus_influence.1
+        title = "The Tsar's Leverage"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+
+            if = {
+                limit = { tag = AFG }
+                declare_war_on = { target = RAJ type = topple_government }
+            }
+            if = {
+                limit = { tag = ARM }
+                355 = { add_claim_by = ARM }        declare_war_on = { target = TUR type = take_claimed_state } 
+            }
+
+            # event
+            news_event = { id = rus_influence.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = rus_influence.2
+        title = "[ROOT.GetName] Joins the War on Germany's Side"
 
         is_triggered_only = yes
         major = yes
@@ -233,7 +275,7 @@ add_namespace = rus_wheat
             add_stability = -0.025
 
             # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
         }
     }
 
@@ -256,6 +298,66 @@ add_namespace = rus_wheat
         }
     }
 
+# uriankhai
+    country_event = {
+        id = rus_uriankhai.1
+        title = "The Uriankhai Question"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Demand their autonomy."
+
+            # event
+            MON = { country_event = { id = rus_uriankhai.2 hours = 6 } }
+        }
+        option = {
+            name = "Demand all of Mongolia's alignment."
+            MON = { country_event = { id = demands.3 hours = 6 } }
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+    country_event = {
+        id = rus_uriankhai.2
+        title = "Surrender Uriankhai?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            release = URI
+            RUS = { puppet = URI }
+
+            # event
+            news_event = { id = rus_uriankhai.3 hours = 6 }
+        }
+        option = {
+            name = "No."
+            RUS = { 
+                329 = { add_claim_by = RUS }
+                create_wargoal = { target = MON type = take_claimed_state }
+            }
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = rus_uriankhai.3
+        title = "Uriankhai Independent"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
 # volga
     news_event = {
         id = rus_volga.1
@@ -268,9 +370,6 @@ add_namespace = rus_wheat
             set_capital = { state = 236 }
 
             # events
-            RUS = {
-                news_event = { id = rus_admiral.1 months = 2 } 
-            }
             SOD = {
                 country_event = { id = rus_hunger.1 days = 14 }
             }

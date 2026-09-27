@@ -2,10 +2,20 @@ ideas = {
     country = {
         idea_anarchists_in_the_countryside = {
             modifier = {
-                communism_drift = 0.05
+                communism_drift = 0.1
+                consumer_goods_factor = 0.15
             }
             cancel = {
                 has_government = communism
+            }
+        }
+        idea_touareg_alliance = {
+            modifier = {
+                war_support_factor = 0.05
+                weekly_manpower = 250
+            }
+            on_add = {
+                set_technology = { hidden_camelry = 1 }
             }
         }
 

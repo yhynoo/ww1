@@ -5,6 +5,18 @@ allied_control = {
     }
 }
 
+can_join_their_faction = {
+    custom_trigger_tooltip = {
+        tooltip = tt_can_join_faction
+
+        ROOT = { is_in_faction = no }
+        and = {
+            is_faction_leader = yes
+            not = { has_war_with = ROOT }
+        }
+    }
+}
+
 enemy_control = {
     custom_trigger_tooltip = {
         tooltip = tt_enemy_control

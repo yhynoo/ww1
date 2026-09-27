@@ -2,7 +2,7 @@ ideas = {
     country = {
         idea_anti_authoritarian_intelligentsia = {
             modifier = {
-                monarchism_drift = -0.03
+                monarchism_drift = -0.05
             }
             cancel = {
                 not = { has_government = monarchism }
@@ -24,6 +24,19 @@ ideas = {
             }
             cancel = {
                 has_war = yes
+            }
+        }
+
+        idea_limited_autonomy_of_subjects = {
+            modifier = {
+                local_non_core_manpower = 0.15
+                research_speed_factor = 0.05
+            }
+        }
+        idea_okhrana = {
+            modifier = {
+                political_power_factor = 0.05
+                monarchism_drift = 0.05
             }
         }
 

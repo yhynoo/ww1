@@ -1,0 +1,250 @@
+focus_tree = {
+    id = GER_focus
+    country = { factor = 0 modifier = { original_tag = GER add = 40 } }
+    continuous_focus_position = { x = 708 y = 1050 }
+
+    # state
+        focus = {
+            id = GER_aachen
+            icon = GFX_focus_generic_government
+
+            available = {
+                uprising_government_lock = yes
+                civil_war_government_lock = yes
+            }
+
+            x = 0 y = 0
+            cost = 10
+
+            completion_reward = {
+                country_event = { id = ger_aachen.1 hours = 6 }
+                add_political_power = 50
+            }
+        }
+
+        focus = {
+            id = GER_alsace
+            icon = GFX_focus_generic_extend
+            prerequisite = { focus = GER_aachen }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = GER_aachen
+            x = 0 y = 1
+            cost = 6
+
+            completion_reward = {
+                add_political_power = 50
+                28 = { 
+                    add_resource = { type = aluminium amount = 4 }
+                    add_core_of = GER
+                }
+                
+                # news
+                hidden_effect = { news_event = { id = ger_alsace.1 hours = 6 } }
+            }
+        }
+
+        focus = {
+            id = GER_tsar
+            icon = GFX_focus_GER_tsar
+            prerequisite = { focus = GER_alsace }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = GER_alsace
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = GER_east_africa
+            icon = GFX_focus_GER_east_africa
+            prerequisite = { focus = GER_alsace }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = GER_alsace
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                546 = {
+                    add_resource = { type = tungsten amount = 8 }
+                    add_building_construction = { type = naval_base level = 1 province = 8183 instant_build = yes }
+                }
+            }
+        }
+
+        focus = {
+            id = GER_grain_deal
+            icon = GFX_focus_GER_grain_deal
+            prerequisite = { focus = GER_tsar }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = GER_tsar
+            x = -2 y = 1
+            cost = 10
+
+            completion_reward = {
+                news_event = { id = ger_deal.1 hours = 6 }
+            }
+        }
+
+        focus = {
+            id = GER_adapt_schlieffen
+            icon = GFX_focus_GER_adapt_schlieffen
+            prerequisite = { focus = GER_tsar focus = GER_east_africa }
+
+            available = { 
+                civil_war_government_lock = yes 
+                has_war_with = FRA
+            }
+
+            relative_position_id = GER_tsar
+            x = 1 y = 1
+            cost = 6
+
+            ai_will_do = {
+                modifier = { has_war_with = FRA factor = 10 }
+            }
+
+            completion_reward = {
+                add_war_support = 0.05
+                add_timed_idea = { idea = idea_adapted_schlieffen months = 3 }
+            }
+        }
+
+        focus = {
+            id = GER_askari
+            icon = GFX_focus_GER_askari
+            prerequisite = { focus = GER_east_africa }
+
+            available = { 
+                civil_war_government_lock = yes 
+                controls_state = 546
+            }
+
+            relative_position_id = GER_east_africa
+            x = 2 y = 1
+            cost = 10
+
+            completion_reward = {
+                recruit_character = GER_paul_von_lettow_vorbeck
+                add_ideas = idea_askari
+            }
+        }
+
+        focus = {
+            id = GER_middle_east
+            icon = GFX_focus_GER_middle_east
+            prerequisite = { focus = GER_adapt_schlieffen }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = GER_adapt_schlieffen
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_political_power = 50
+                custom_effect_tooltip = tt_ger_middle_east
+                
+                hidden_effect = {
+                    news_event = { id = ger_middle_east.1 hours = 6 }
+                }
+            }
+        }
+
+        focus = {
+            id = GER_greece
+            icon = GFX_focus_GER_greece
+            prerequisite = { focus = GER_middle_east }
+
+            available = { civil_war_government_lock = yes }
+            mutually_exclusive = { focus = GER_arabs }
+
+            ai_will_do = { modifier = { is_historical_focus_on = yes factor = 0 } }
+
+            relative_position_id = GER_middle_east
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_war_support = 0.05
+                GRE = {
+                    country_event = { id = demands.3 hours = 6 }
+                    effect_overlord_warning_country = yes
+                }
+            }
+        }
+
+        focus = {
+            id = GER_arabs
+            icon = GFX_focus_GER_arabs
+            prerequisite = { focus = GER_middle_east }
+
+            available = { 
+                civil_war_government_lock = yes 
+                has_war_with = TUR
+            }
+            mutually_exclusive = { focus = GER_greece }
+
+            relative_position_id = GER_middle_east
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_ger_arabs
+            }
+        }
+
+        focus = {
+            id = GER_strasburg
+            icon = GFX_focus_GER_strasburg
+            prerequisite = { focus = GER_greece focus = GER_arabs }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = GER_greece
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_war_support = 0.05
+                every_state = {
+                    limit = { or = { state = 6 state = 17 state = 25 } }
+                    add_claim_by = GER
+                }
+            }
+        }
+
+        focus = {
+            id = GER_agadir
+            icon = GFX_focus_generic_administration
+            prerequisite = { focus = GER_strasburg }
+
+            available = { 
+                civil_war_government_lock = yes 
+            }
+
+            relative_position_id = GER_strasburg
+            x = 0 y = 1
+            cost = 6
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+    # other trees
+    shared_focus = XXX_general_staff
+    shared_focus = XXX_infrastructure
+
+    shared_focus = XXX_civil_war
+}

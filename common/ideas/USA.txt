@@ -1,9 +1,34 @@
 ideas = {
     country = {
+        idea_isolationism = {
+            modifier = {
+                consumer_goods_factor = 0.65
+                industrial_capacity_dockyard = -0.8
+            }
+        }
+        idea_unionized_labor = {
+            modifier = {
+                local_resources_factor = -0.1
+                production_factory_max_efficiency_factor = -0.15
+            }
+            cancel = {
+                has_government = communism
+            }
+        }
+
         idea_second_klan = {
             modifier = {
                 political_power_factor = -0.15
-                democratic_drift = -0.025
+                democratic_drift = -0.05
+            }
+            cancel = {
+                has_government = monarchism
+            }
+        }
+        idea_american_volunteers = {
+            modifier = {
+                send_volunteer_factor = 0.5
+                send_volunteers_tension = -0.25
             }
         }
     }

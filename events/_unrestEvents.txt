@@ -1,0 +1,173 @@
+add_namespace = anti_war
+add_namespace = demobilization
+add_namespace = hunger
+add_namespace = looting
+add_namespace = opposition
+add_namespace = strikes
+add_namespace = wheat
+
+# anti-war events
+    country_event = {
+        id = anti_war.1
+        title = "Demonstrations Against the War"
+
+        is_triggered_only = yes
+        immediate = {
+            random = { chance = 50      country_event = { id = anti_war.2 days = 14 } }
+        }
+
+        option = {
+            name = "Ok."
+            add_timed_idea = { idea = idea_anti_war_demonstrations  months = 3 }
+        }
+    }
+
+    country_event = {
+        id = anti_war.2
+        title = "Opposition Demands an Armistice"
+
+        is_triggered_only = yes
+        trigger = { is_subject = no }       # subjects can't negotiate armistice on their own.
+
+        option = {
+            name = "It is time to end this war."
+
+            # armistice
+            every_country = { limit = { is_armistice_target = yes } country_event = armistice.1 }
+        }
+        option = {
+            name = "We must fight on!"
+        }
+    }
+
+# demobilization
+    country_event = {
+        id = demobilization.1
+        title = "Demobilization"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We must do it."
+            custom_effect_tooltip = tt_demobilization
+            hidden_effect = { add_ideas = civilian_economy      add_ideas = volunteer_only }
+        }
+        option = {
+            name = "This is not the time yet."
+            add_stability = -0.05
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+# hunger
+    country_event = {
+        id = hunger.1
+        title = "Widespread Hunger"
+
+        is_triggered_only = yes
+
+        immediate = {
+            random = { chance = 50  news_event = { id = wheat.1 days = 28 } }
+            random_list = {
+                1 = { country_event = { id = looting.1  days = 14 } }
+                1 = { random_owned_controlled_state = { save_as_event_target = looting_state    country_event = { id = looting.2 days = 7 } } }
+                1 = { }
+            }
+        }
+
+        option = {
+            name = "Ok."
+            add_timed_idea = { idea = idea_widespread_hunger    months = 6 }
+        }
+    }
+
+    # looting
+        country_event = {
+            id = looting.1
+            title = "Looting in the Army"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Ok."
+                add_timed_idea = { idea = idea_looting      months = 3 }
+            }
+        }
+
+        country_event = {
+            id = looting.2
+            title = "Army Depots Attacked in [looting_state.GetName]"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Ok."
+                add_stability = -0.025
+            }
+        }
+
+    # wheat
+        news_event = {
+            id = wheat.1
+            title = "The Wheat Affair of [GetYear]"
+
+            is_triggered_only = yes         trigger = { not = { has_country_flag = had_wheat_affair } }
+            immediate = { set_country_flag = had_wheat_affair }
+
+            option = {
+                name = "Outrageous."
+                
+                add_war_support = -0.025
+                add_timed_idea = { idea = idea_wheat_affair     months = 3 }
+            }
+        }
+
+# opposition
+    country_event = {
+        id = opposition.1
+        title = "Opposition Demands Change"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We must agree."
+            opposition_change_accepted = yes
+        }
+        option = {
+            name = "Unacceptable!"
+            
+            # looming civil war
+        }
+    }
+
+# strikes
+    country_event = {
+        id = strikes.1
+        title = "Strikes!"
+
+        is_triggered_only = yes
+        immediate = {
+            random = { chance = 25      random_owned_controlled_state = { save_as_event_target = unrest_state    country_event = { id = strikes.2 days = 7 } } }
+        }
+
+        option = {
+            name = "Ok."
+            add_timed_idea = { idea = idea_strikes months = 3 }
+        }
+    }
+
+    country_event = {
+        id = strikes.2
+        title = "Unrest in [unrest_state.GetName]"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Ok."
+            add_popularity = { ideology = ROOT popularity = -0.025 }
+        }
+    }
+
+#

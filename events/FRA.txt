@@ -1,4 +1,5 @@
 add_namespace = fra_agadir
+add_namespace = fra_echoes
 add_namespace = fra_entente
 add_namespace = fra_fox
 add_namespace = fra_intervene
@@ -19,9 +20,43 @@ add_namespace = fra_with_you
             add_timed_idea = { idea = idea_agadir_trials months = 3 }
 
             # events
-            news_event = { id = fra_with_you.1 days = 7 }
             news_event = { id = fra_fox.1 days = 21 }
         }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# echoes
+    country_event = {
+        id = fra_echoes.1
+        title = "Echoes of Agadir"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Appoint Driant."
+            promote_character = FRA_emile_driant
+
+            # event
+            news_event = { id = fra_echoes.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+            add_stability = -0.05
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = fra_echoes.2
+        title = "Émile Driant to Lead the French Government"
+
+        is_triggered_only = yes
+        major = yes
 
         option = {
             name = "Ok."
@@ -82,7 +117,7 @@ add_namespace = fra_with_you
             name = "Wait it out."
 
             # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
         }
     }
 
@@ -133,7 +168,7 @@ add_namespace = fra_with_you
             name = "No."
 
             # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
         }
     }
 
@@ -268,6 +303,10 @@ add_namespace = fra_with_you
         is_triggered_only = yes
         major = yes
 
+        immediate = {
+            USA = { news_event = { id = usa_entente.1 days = 21 } }
+        }
+
         option = {
             name = "Ok."
         }
@@ -276,7 +315,7 @@ add_namespace = fra_with_you
 # with you
     news_event = {
         id = fra_with_you.1
-        title = "“With You in Times of Danger”"
+        title = "‘With You in Times of Danger’"
 
         is_triggered_only = yes
         major = yes

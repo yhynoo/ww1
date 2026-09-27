@@ -2,9 +2,11 @@ add_namespace = ger_aces
 add_namespace = ger_airships
 add_namespace = ger_gas
 
+add_namespace = ger_aachen
+add_namespace = ger_alsace
 add_namespace = ger_armistice
-add_namespace = ger_armenia_and_afghanistan
 add_namespace = ger_deal
+add_namespace = ger_equestrian_monument
 add_namespace = ger_harvest
 add_namespace = ger_middle_east
 add_namespace = ger_occupation
@@ -68,6 +70,102 @@ add_namespace = ger_wassmuss
 
 ## - other evwnts - ## 
 
+# aachen
+    country_event = {
+        id = ger_aachen.1
+        title = "The Treaty of Aachen"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            add_war_support = 0.05
+
+            # event
+            news_event = { id = ger_aachen.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+            add_popularity = { ideology = democratic popularity = 0.05 }
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = ger_aachen.2
+        title = "German Occupation of Wallonia"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            34 = { set_demilitarized_zone = no }
+            add_named_threat = { name = "German Occupation of Wallonia" threat = 2 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# alsace
+    news_event = {
+        id = ger_alsace.1
+        title = "Annexation of Alsace-Lorraine"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_named_threat = { name = "Annexation of Alsace-Lorraine" threat = 5 }
+            country_event = { id = ger_alsace.2 days = 14 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+    country_event = {
+        id = ger_alsace.2
+        title = "Misconduct in the Garrisons"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "The army must maintain its authority."
+            add_war_support = 0.025
+
+            # event
+            news_event = { id = ger_alsace.3 hours = 6 }
+        }
+        option = {
+            name = "No."
+            add_political_power = 50
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = ger_alsace.3
+        title = "The Saverne Affair"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_named_threat = { name = "Saverne Affair" threat = 2 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
 # armistice
     country_event = {
         id = ger_armistice.1
@@ -86,51 +184,7 @@ add_namespace = ger_wassmuss
             name = "No."
 
             # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
-        }
-    }
-
-# armenia and afghanistan
-    country_event = {
-        id = ger_armenia_and_afghanistan.1
-        title = "Use the Tsar's Leverage?"
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Yes."
-
-            # event
-            news_event = { id = ger_armenia_and_afghanistan.2 hours = 6 }
-        }
-        option = {
-            name = "No."
-
-            # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
-        }
-    }
-
-    news_event = {
-        id = ger_armenia_and_afghanistan.2
-        title = "Armenia and Afghanistan Join the German Alliance"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            ARM = { 
-                355 = { add_claim_by = ARM }
-                declare_war_on = { target = TUR type = take_claimed_state } 
-            }
-            GER = { 
-                add_to_faction = AFG 
-                add_to_faction = ARM 
-            }
-        }
-
-        option = {
-            name = "Ok."
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
         }
     }
 
@@ -148,6 +202,23 @@ add_namespace = ger_wassmuss
                 give_resource_rights = { receiver = GER state = 232 } 
                 add_opinion_modifier = { target = GER modifier = opinion_wheat_deal }
             }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# equestrian
+    news_event = {
+        id = ger_equestrian_monument.1
+        title = "The ‘Equestrian Monument’ Unveiled in Windhoek"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_political_power = 10
         }
 
         option = {
@@ -206,31 +277,6 @@ add_namespace = ger_wassmuss
         is_triggered_only = yes
         major = yes
 
-        immediate = {
-            set_country_flag = middle_east_influence
-            TUR = {
-                news_event = { id = syr_uprising.1 months = 3 }
-                news_event = { id = yem_uprising.1 months = 3 days = 3 }
-            }
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# occupation
-    news_event = {
-        id = ger_occupation.1
-        title = "The Occupation of Wallonia"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            34 = { set_demilitarized_zone = no }
-        }
-
         option = {
             name = "Ok."
         }
@@ -251,7 +297,7 @@ add_namespace = ger_wassmuss
             news_event = { id = ger_ukraine.2 hours = 6 }
     
             # ai
-            ai_chance = { modifier = { is_historical_focus = yes } factor = 0 }
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
         }
         option = {
             name = "No."
