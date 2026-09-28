@@ -11,13 +11,12 @@ add_namespace = arm_uprising
 
         immediate = {
             ARM = {
-                every_core_state = { limit = { is_controlled_by = PREV.PREV } PREV = { set_state_owner = PREV } }
+                set_variable = { desertion_rate = 0.05 }
+                start_local_uprising = yes 
+
+                # special targets
                 load_oob = ARM
-
-                set_province_controller = 10472
-                set_province_controller = 6935
-
-                declare_war_on = { target = PREV type = independence_wargoal }
+                set_province_controller = 10472           set_province_controller = 11853         set_province_controller = 7470
             }
         }
 
@@ -32,6 +31,7 @@ add_namespace = arm_uprising
         title = "Armenia Seeks Guarantees"
 
         is_triggered_only = yes
+        trigger = { ARM = { exists = yes } }
 
         option = {
             name = "Yes."

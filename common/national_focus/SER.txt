@@ -1,0 +1,274 @@
+focus_tree = {
+    id = SER_focus
+    country = { factor = 0 modifier = { original_tag = SER add = 40 } }
+    continuous_focus_position = { x = 708 y = 1050 }
+
+    # state
+        focus = {
+            id = SER_cetinje
+            icon = GFX_focus_SER_cetinje
+
+            available = { civil_war_government_lock = yes }
+
+            x = 0 y = 0
+            cost = 10
+
+            completion_reward = {
+                add_political_power = 50
+            }
+        }
+
+        focus = {
+            id = SER_southern_claims
+            icon = GFX_focus_generic_extend
+            prerequisite = { focus = SER_cetinje }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = SER_cetinje
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+                every_state = {
+                    limit = { or = { state = 106 state = 404 } }
+                    add_claim_by = SER
+                }
+
+                # event
+                hidden_effect = { news_event = ser_south.1 }
+            }
+        }
+
+        focus = {
+            id = SER_orthodoxy
+            icon = GFX_focus_SER_orthodoxy
+            prerequisite = { focus = SER_cetinje }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = SER_cetinje
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = SER_albania
+            icon = GFX_focus_SER_albania
+            prerequisite = { focus = SER_southern_claims }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = SER_southern_claims
+            x = -2 y = 1
+            cost = 8
+
+            completion_reward = {
+                country_event = ser_albania.1
+            }
+        }
+
+        focus = {
+            id = SER_identity
+            icon = GFX_focus_SER_identity
+            prerequisite = { focus = SER_southern_claims focus = SER_orthodoxy }
+
+            available = { 
+                civil_war_government_lock = yes 
+            }
+
+            relative_position_id = SER_southern_claims
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_stability = 0.05
+            }
+        }
+
+        focus = {
+            id = SER_agrarians
+            icon = GFX_focus_SER_young_turks
+            prerequisite = { focus = SER_orthodoxy }
+
+            available = { 
+                civil_war_government_lock = yes 
+                has_idea = idea_hostile_officer_corps
+            }
+
+            relative_position_id = SER_orthodoxy
+            x = 2 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_timed_idea = { idea = idea_agrarians years = 2 }
+                random_owned_controlled_state = {
+                    limit = { is_core_of = ROOT infrastructure > 1 }
+                    add_resource = { type = tungsten amount = 8 }       add_extra_state_shared_building_slots = 1
+                }
+            }
+        }
+
+        focus = {
+            id = SER_stability
+            icon = GFX_focus_SER_stability
+            prerequisite = { focus = SER_identity }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = SER_identity
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_stability = 0.05
+            }
+        }
+
+        focus = {
+            id = SER_arrest_apis
+            icon = GFX_focus_SER_arrest_apis
+            prerequisite = { focus = SER_stability }
+
+            available = { civil_war_government_lock = yes }
+            mutually_exclusive = { focus = SER_intelligence }
+
+            relative_position_id = SER_stability
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = SER_intelligence
+            icon = GFX_focus_SER_intelligence
+            prerequisite = { focus = SER_stability }
+
+            available = { civil_war_government_lock = yes }
+            mutually_exclusive = { focus = SER_arrest_apis }
+
+            ai_will_do = { modifier = { is_historical_focus_on = yes factor = 0 } }
+
+            relative_position_id = SER_stability
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_war_support = 0.05
+            }
+        }
+
+        focus = {
+            id = SER_entente
+            icon = GFX_focus_SER_entente
+            prerequisite = { focus = SER_arrest_apis }
+
+            available = { 
+                civil_war_government_lock = yes
+
+                has_war_support > 0.5
+                FRA = { can_join_their_faction = yes }
+            }
+
+            relative_position_id = SER_arrest_apis
+            x = -2 y = 1
+            cost = 8
+
+            completion_reward = {
+                FRA = { country_event = ser_entente.1 }
+            }
+        }
+
+        focus = {
+            id = SER_arms
+            icon = GFX_focus_SER_arms
+            prerequisite = { focus = SER_arrest_apis focus = SER_intelligence }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = SER_arrest_apis
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = SER_sarajevo
+            icon = GFX_focus_SER_sarajevo
+            prerequisite = { focus = SER_intelligence }
+
+            available = { 
+                civil_war_government_lock = yes 
+                
+                has_war_support > 0.5
+                104 = { not = { allied_control = yes } }
+            }
+
+            relative_position_id = SER_intelligence
+            x = 2 y = 1
+            cost = 8
+
+            completion_reward = {
+                104 = {
+                    owner = {
+                        SER = { create_wargoal = { target = PREV type = take_claimed_state } }
+                    }
+                }
+            }
+        }
+
+        focus = {
+            id = SER_unite
+            icon = GFX_focus_SER_unite
+            prerequisite = { focus = SER_arms }
+
+            available = { 
+                civil_war_government_lock = yes 
+            }
+
+            relative_position_id = SER_arms
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+                every_state = {
+                    limit = { or = { is_core_of = BOS is_core_of = CRO } }
+                    add_claim_by = SER
+                }
+            }
+        }
+
+        focus = {
+            id = SER_yugoslavia
+            icon = GFX_focus_SER_yugoslavia
+            prerequisite = { focus = SER_unite }
+
+            available = { 
+                civil_war_government_lock = yes 
+            }
+
+            relative_position_id = SER_unite
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+    # other trees
+    shared_focus = XXX_general_staff
+    shared_focus = XXX_infrastructure
+
+    shared_focus = XXX_civil_war
+}

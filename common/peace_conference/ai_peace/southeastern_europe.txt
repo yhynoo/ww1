@@ -1,0 +1,56 @@
+peace_ai_desires = {
+    greeks_win = {
+        peace_action_type = { take_states }
+        enable = {
+            is_historical_focus_on = yes
+            has_global_flag = southeastern_europe_war
+
+            and = {
+                ROOT.FROM = { original_tag = GRE }
+                ROOT.FROM.FROM.FROM = { 
+                    not = { 
+                        or = { state = 27 state = 164 state = 182 state = 187 } 
+                    } 
+                }
+            }
+        }
+        ai_desire = -400
+    }
+
+    serbs_win = {
+        peace_action_type = { take_states }
+        enable = {
+            is_historical_focus_on = yes
+            has_global_flag = southeastern_europe_war
+
+            and = {
+                ROOT.FROM = { original_tag = SER }
+                ROOT.FROM.FROM.FROM = { 
+                    not = { 
+                        or = { state = 404 } 
+                    } 
+                }
+            }
+        }
+        ai_desire = -400
+    }
+
+    armenia_romania_win = {
+        peace_action_type = { take_states }
+        enable = {
+            is_historical_focus_on = yes
+            has_global_flag = southeastern_europe_war
+
+            or = {
+                ROOT.FROM = { or = { original_tag = ARM original_tag = ROM original_tag = SMS } }
+            }
+        }
+        ai_desire = -400
+    }
+
+    any_winner = {
+        peace_action_type = { puppet liberate }
+        enable = { is_historical_focus_on = yes }
+        ai_desire = -600
+    }
+}

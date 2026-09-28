@@ -56,7 +56,15 @@ on_actions = {
             }
 
             SPA = {
-                country_event = { id = spa_canalejas.1 months = 10 days = 12 }
+                news_event = { id = spa_canalejas.1 months = 10 days = 12 }
+            }
+
+            SMS = {
+                news_event = { id = sms_assassination.1 months = 2 days = 3 }
+            }
+
+            TUR = {
+                country_event = { id = tur_aviators.1 months = 3 days = 2 }
             }
 
             USA = {
@@ -155,6 +163,11 @@ on_actions = {
                         drop_cosmetic_tag = yes
                     }
                 }
+
+                if = {
+                    limit = { 454 = { is_core_of = ISR    enemy_control = yes } }
+                    news_event = { id = ger_yishuv.1    days = 14       random_days = 14 }
+                }
             }
         }
 
@@ -236,15 +249,6 @@ on_actions = {
             }
         }
 
-        on_weekly_SER = {
-            effect = {
-                if = {
-                    limit = { has_war = no TUR = { has_war_with = AUS } }
-                    country_event = ser_war.1
-                }
-            }
-        }
-
         on_weekly_SPA = {
             effect = {
                 if = {
@@ -297,9 +301,6 @@ on_actions = {
                         and = { has_government = monarchism democratic > 0.35 }
                     }
                     country_event = tur_demonstrations.1
-
-                    # entente
-                    news_event = { id = tur_entente.1 months = 2 }
                 }
             }
         }
@@ -325,8 +326,8 @@ on_actions = {
                     limit = {
                         not = { has_idea = idea_anti_war_demonstrations }
                         or = {
-                            longest_war_length > 2      has_war_support < 0.25
-                            longest_war_length > 24     has_war_support < 0.4
+                            and = { longest_war_length > 2      has_war_support < 0.25 }
+                            and = { longest_war_length > 24     has_war_support < 0.4 }
                         }
                     }
                     random = { chance = 20      country_event = { id = anti_war.1    random_days = 28 } }

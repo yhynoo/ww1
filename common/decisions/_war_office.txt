@@ -22,65 +22,75 @@ _war_office = {
 
         cancel_trigger = { has_war = no }
     }
-# mobilization
-    extend_defenses = {
-        icon = ger_military_buildup
-        days_remove = 90
-        cost = 75
 
-        available = {
-            custom_trigger_tooltip = {
-                tooltip = tt_mobilization_decision
-                has_country_flag = mobilization_decisions_allowed
+    # mobilization
+        extend_defenses = {
+            icon = ger_military_buildup
+            days_remove = 90
+            cost = 75
+
+            available = {
+                custom_trigger_tooltip = {
+                    tooltip = tt_mobilization_decision
+                    has_country_flag = mobilization_decisions_allowed
+                }
+            }
+
+            modifier = {
+                production_speed_bunker_factor = 0.25
+                max_dig_in_factor = 0.2
+            }
+        }
+        organize_timetables = {
+            icon = generic_prepare_civil_war
+            days_remove = 90
+            cost = 50
+
+            available = {
+                has_tech = basic_train
+                custom_trigger_tooltip = {
+                    tooltip = tt_mobilization_decision
+                    has_country_flag = mobilization_decisions_allowed
+                }
+            }
+
+            ai_will_do = { modifier = { has_war = yes add = 6 } }
+
+            modifier = {
+                supply_factor = 0.15
+                army_org_factor = 0.1
             }
         }
 
-        modifier = {
-            production_speed_bunker_factor = 0.25
-            max_dig_in_factor = 0.2
-        }
-    }
-    organize_timetables = {
-        icon = generic_prepare_civil_war
-        days_remove = 90
-        cost = 50
+    # armistice
+        withdraw_from_war = {                   # if the war has lasted long enough (at least 3 months)
+            visible = { has_war = yes       is_subject = no         war_length_with = { tag = FROM months > 2 } }
 
-        available = {
-            has_tech = basic_train
-            custom_trigger_tooltip = {
-                tooltip = tt_mobilization_decision
-                has_country_flag = mobilization_decisions_allowed
+            icon = generic_form_nation
+            days_re_enable = 60
+            cost = 25
+
+            targets_dynamic = yes
+            target_trigger = { FROM = { is_armistice_target = yes } }
+
+            ai_will_do = {
+                modifier = {
+                    and = {
+                        or = { surrender_progress > 0.1     has_war_support < 0.15                      }
+                        or = { has_stability < 0.25         has_idea = idea_anti_war_demonstrations     }
+                    }
+                    add = 6
+                }
+                modifier = {
+                    or = { is_faction_leader = yes     is_in_faction = no }
+                    factor = 1.5
+                }
+            }
+
+            days_remove = 7
+            remove_effect = { 
+                FROM = { country_event = { id = armistice.1 hours = 6 } } 
             }
         }
-
-        ai_will_do = { modifier = { has_war = yes add = 6 } }
-
-        modifier = {
-            supply_factor = 0.15
-            army_org_factor = 0.1
-        }
-    }
-
-# armistice
-    withdraw_from_war = {                   # if the war has lasted long enough (at least 6 months)
-        visible = { 
-            has_war = yes 
-            is_subject = no
-            war_length_with = { tag = FROM months > 5 }
-        }
-
-        icon = generic_form_nation
-        days_re_enable = 90
-        cost = 50
-
-        targets_dynamic = yes
-        target_trigger = { 
-            FROM = { is_armistice_target = yes }
-        }
-
-        days_remove = 14
-        remove_effect = { 
-            FROM = { country_event = { id = armistice.1 hours = 6 random_hours = 6 } } 
-        }
-    }
+    #
 }

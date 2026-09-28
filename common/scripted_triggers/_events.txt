@@ -10,26 +10,22 @@ ai_wants_alliance = {
 
 ai_wants_armistice = {
     or = {
-        surrender_progress > 0.15
-        has_war_support < 0.4
-        has_stability < 0.25
+        # main condition
+            and = {
+                or = { surrender_progress > 0.1     has_war_support < 0.15                      }
+                or = { has_stability < 0.25         has_idea = idea_anti_war_demonstrations     }
+            }
 
-        FROM = { or = { is_major = yes is_faction_leader = yes } }
+        # southeastern_europe_war
+            and = {
+                is_historical_focus_on = yes
+                has_global_flag = southeastern_europe_war
+                
+                or = { original_tag = ARM original_tag = GRE original_tag = ROM original_tag = SER original_tag = TUR }
+            }
     }
 }
 
-can_have_armistice_event = {
-    is_subject = no
-    has_civil_war = no
-    any_enemy_country = { is_armistice_target = yes }
-
-    or = {
-        and = { longest_war_length > 24     has_war_support < 0.25 }
-        and = { longest_war_length > 6      or = { has_war_support < 0.15 surrender_progress > 0.15 } }
-    }
-
-    not = { has_idea = idea_armistice_timeout }
-}
 
 is_armistice_target = {
     and = { has_war_with = ROOT not = { original_tag = ROOT } }     # not our civil war enemies.

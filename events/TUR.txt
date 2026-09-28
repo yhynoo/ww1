@@ -1,7 +1,12 @@
 add_namespace = tur_albania
+add_namespace = tur_atrocities
+add_namespace = tur_aviators
 add_namespace = tur_coup
 add_namespace = tur_demonstrations
+add_namespace = tur_egypt
 add_namespace = tur_entente
+add_namespace = tur_minorities
+add_namespace = tur_officers
 
 # albania
     country_event = {
@@ -38,21 +43,91 @@ add_namespace = tur_entente
         }
     }
 
+# atrocities
+    country_event = {
+        id = tur_atrocities.1
+        title = "Testimonies from Adana"
+
+        is_triggered_only = yes
+        immediate = { country_event = { id = tur_atrocities.2 days = 14 } }
+
+        option = {
+            name = "Awful."
+            add_stability = -0.025
+        }
+    }
+
+    country_event = {
+        id = tur_atrocities.2
+        title = "Atrocities in Armenia and Syria"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Announce the findings."
+            add_stability = -0.025
+
+            # event
+            news_event = { id = tur_atrocities.3 hours = 6 }
+        }
+        option = {
+            name = "Deny everything."
+            add_popularity = { ideology = monarchism popularity = 0.05 }
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = tur_atrocities.3
+        title = "Turkish Gov’t Investigates Atrocities in the East"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_popularity = { ideology = democratic popularity = 0.025 }
+            add_political_power = 25
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# aviators
+    country_event = {
+        id = tur_aviators.1
+        title = "Turkish Airmen Arrive from France"
+
+        is_triggered_only = yes
+
+        immediate = {
+            341 = { add_building_construction = { type = air_base level = 1 instant_build = yes } }
+            add_equipment_to_stockpile = { type = fighter_equipment_0   amount = 4     producer = FRA }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
 # coup
     country_event = {
         id = tur_coup.1
         title = "Another Young Turk Coup?"
 
         is_triggered_only = yes
+        trigger = { not = { has_country_flag = had_young_turk_coup } }
 
         option = {
             name = "Offer armistice."
-            every_enemy_country = {
-                white_peace = TUR
-            }
+            every_enemy_country = { country_event = armistice.1 }
         }
         option = {
             name = "No."
+            young_turk_coup = yes
 
             # ai
             ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
@@ -94,20 +169,120 @@ add_namespace = tur_entente
         }
     }
 
-# entente
+# egypt
+    country_event = {
+        id = tur_egypt.1
+        title = "Constantinople Offers the Sale of Egypt"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            set_autonomy = { target = EGY autonomous_state = autonomy_dominion }
+
+            # event
+            news_event = { id = tur_egypt.2 hours = 6 }
+        }
+        option = {
+            name = "We are not interested."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
     news_event = {
-        id = tur_entente.1
-        title = "[TUR.GetName] Joins the Entente"
+        id = tur_egypt.2
+        title = "United Kingdom Acquires Egypt"
 
         is_triggered_only = yes
         major = yes
 
         immediate = {
-            FRA = { add_to_faction = TUR }
-            GER = { country_event = { id = ger_armenia_and_afghanistan.1 days = 6 } }
+            TUR = { manage_turkish_debt = yes }
         }
 
         option = {
             name = "Ok."
+        }
+    }
+
+# entente
+    country_event = {
+        id = tur_entente.1
+        title = "[TUR.GetName] to Join the Entente?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            add_to_faction = TUR
+
+            # event
+            news_event = { id = tur_entente.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = tur_entente.2
+        title = "Turks Join the Entente"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# minorities
+    country_event = {
+        id = tur_minorities.1
+        title = "The Status of Ethnic Minorities"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Allow local autonomies."
+            add_ideas = idea_local_autonomies
+        }
+        option = {
+            name = "Avoid concessions."
+            add_stability = 0.05
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+# officers
+    country_event = {
+        id = tur_officers.1
+        title = "Unrest in the Ankara Military Academy"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Close the military academy."
+            remove_ideas = idea_disobedient_officer_corps
+
+            # coup threat
+            random = {
+                chance = 50
+                young_turk_coup = yes
+            }
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+        option = {
+            name = "This is too much."
+            add_popularity = { ideology = communism popularity = 0.025 }
         }
     }

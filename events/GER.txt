@@ -1,7 +1,3 @@
-add_namespace = ger_aces
-add_namespace = ger_airships
-add_namespace = ger_gas
-
 add_namespace = ger_aachen
 add_namespace = ger_alsace
 add_namespace = ger_armistice
@@ -12,63 +8,7 @@ add_namespace = ger_middle_east
 add_namespace = ger_occupation
 add_namespace = ger_ukraine
 add_namespace = ger_wassmuss
-
-# aces
-    news_event = {
-        id = ger_aces.1
-        title = "Knights of the Air"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            set_global_flag = aces_used
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# airships
-    news_event = {
-        id = ger_airships.1
-        title = "Airships Over [ROOT.GetNameDef]"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            set_global_flag = airships_used
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# gas
-    news_event = {
-        id = ger_gas.1
-        title = "Gas!"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            set_global_flag = gas_used
-        }
-
-        option = {
-            name = "Ok."
-            if = {
-                limit = { has_war_with = ROOT }
-                add_timed_idea = { idea = idea_gas_shock months = 3 }
-            }
-        }
-    }
-
-## - other evwnts - ## 
+add_namespace = ger_weizmann
 
 # aachen
     country_event = {
@@ -326,6 +266,44 @@ add_namespace = ger_wassmuss
 
         is_triggered_only = yes
         major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# weizmann
+    news_event = {
+        id = ger_weizmann.1
+        title = "[GER.GetLeader] Endorses Jewish Settlement"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            454 = { add_core_of = ISR }
+            news_event = { id = ger_weizmann.2 months = 6 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+    news_event = {
+        id = ger_weizmann.2
+        title = "‘Altneuland’"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            set_province_name = { id = 4206    name = "Tel-Aviv" }
+            454 = {
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                add_resource = { type = tungsten amount = 4 }
+            }
+        }
 
         option = {
             name = "Ok."

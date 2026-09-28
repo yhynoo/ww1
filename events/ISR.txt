@@ -1,0 +1,25 @@
+add_namespace = isr_uprising
+
+# uprising
+    news_event = {
+        id = isr_uprising.1
+        title = "Uprising in the Land of Israel!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            ISR = { 
+                set_variable = { desertion_rate = 0 }
+                start_local_uprising = yes 
+
+                # special targets
+                load_oob = ISR
+                set_province_controller = 1086           set_province_controller = 4206         set_province_controller = 1201
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

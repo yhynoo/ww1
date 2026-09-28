@@ -108,7 +108,10 @@ focus_tree = {
             cost = 10
 
             completion_reward = {
-                custom_effect_tooltip = tt_to_do
+                add_timed_idea = {
+                    idea = idea_expropriation_act
+                    years = 1
+                }
             }
         }
 
@@ -141,6 +144,10 @@ focus_tree = {
 
             available = { 
                 civil_war_government_lock = yes
+            }
+
+            bypass = {
+                not = { can_declare_war_on = SER }
             }
 
             relative_position_id = AUS_expropriation_act

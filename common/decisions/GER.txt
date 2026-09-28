@@ -1,24 +1,71 @@
 GER_influence_middle_east = {
-    arab_uprising = {
+    send_wassmuss = {
+        icon = generic_political_discourse
+        cost = 25
+
+        fire_only_once = yes
+        ai_will_do = { modifier = { always = yes add = 6 } }
+
+        complete_effect = {
+            custom_effect_tooltip = tt_to_do
+        }
+    }
+    endorse_weizmann = {
+        icon = generic_civil_support
+        cost = 25
+
+        fire_only_once = yes
+        ai_will_do = { modifier = { always = yes add = 12 } }
+
+        complete_effect = {
+            news_event = ger_weizmann.1
+        }
+    }
+    jewish_uprising = {
         icon = generic_ignite_civil_war
         cost = 50
 
         available = {
-            has_war_with = TUR
+            454 = {
+                is_core_of = ISR
+                enemy_control = yes
+            }
+        }
+
+        fire_only_once = yes
+        ai_will_do = { modifier = { or = { SYR = { exists = yes } YEM = { exists = yes } } add = 12 } }
+
+        targets = { ISR }
+        target_non_existing = yes
+        days_remove = 14
+
+        remove_effect = {
+            454 = { controller = { news_event = isr_uprising.1 } }
+        }
+    }
+    arab_uprisings = {
+        icon = generic_ignite_civil_war
+        cost = 50
+
+        available = {
             has_completed_focus = GER_arabs
+            or = { 83 = { enemy_control = yes}  554 = { enemy_control = yes } }
         }
         fire_only_once = yes
 
-        targets = { SYR YEM }
-        target_non_existing = yes
-
+        targets = { TUR }
+        days_remove = 14
         ai_will_do = { modifier = { always = yes add = 9 } }
 
-        complete_effect = {
-            TUR = {
-                FROM = { 
-                    set_variable = { desertion_rate = 0.05 }
-                    start_local_uprising = yes 
+        remove_effect = {
+            FROM = {
+                if = {
+                    limit = { 83 = { enemy_control = yes } }
+                    YEM = { set_variable = { desertion_rate = 0.05 }    start_local_uprising = yes }
+                }
+                if = {
+                    limit = { 554 = { enemy_control = yes } }
+                    SYR = { set_variable = { desertion_rate = 0.05 }    start_local_uprising = yes }
                 }
             }
         }

@@ -1,6 +1,7 @@
 add_namespace = rom_alliance
 add_namespace = rom_entente
 add_namespace = rom_french_arms
+add_namespace = rom_militias
 add_namespace = rom_orientalism
 add_namespace = rom_thrace
 add_namespace = rom_war
@@ -114,6 +115,26 @@ add_namespace = rom_war
         }
     }
 
+# militias
+    country_event = {
+        id = rom_militias.1
+        title = "Armed Militias Join the Army"
+
+        is_triggered_only = yes
+
+        immediate = {
+            division_template = { name = "Volunteer Troops" regiments = { infantry = { x = 0 y = 0 } infantry = { x = 1 y = 0 } } }
+            every_controlled_state = {
+                limit = { or = { state = 46 state = 77 } }
+                create_unit = { division = "name = \"Volunteer Troops\" division_template = \"Volunteer Troops\"" count = 2 owner = PREV }
+            }
+        }
+
+        option = {
+            name = "Great!"
+        }
+    }
+
 # orientalism
     country_event = {
         id = rom_orientalism.1
@@ -176,6 +197,9 @@ add_namespace = rom_war
         immediate = {
             drop_cosmetic_tag = yes
             set_global_flag = southeastern_europe_war
+
+            # militias
+            country_event = { id = rom_militias.1 days = 7 }
             
             # more issues
             CRE = { country_event = { id = cre_enosis.1 days = 14 } }
@@ -201,14 +225,12 @@ add_namespace = rom_war
         major = yes
 
         immediate = {
+            clr_global_flag = southeastern_europe_war
+            
             GRE = {
-                set_state_owner = 187
                 if = {
                     limit = { SMS = { exists = yes } }
                     SMS = { news_event = { id = sms_unite.1 days = 14 } }
-                }
-                else = {
-                    set_state_owner = 27
                 }
             }
             ROM = {

@@ -54,7 +54,7 @@ add_namespace = warning
 
         option = {
             name = "Great."
-            start_peace_conference = { tag = FROM score_factor = 0.25 }
+            start_peace_conference = { tag = FROM score_factor = 0.1 }
 
             # AI + event
             ai_chance = { 
@@ -71,7 +71,7 @@ add_namespace = warning
 # civil war
     country_event = {
         id = civil_war.1
-        title = "Declare War on [FROM.GetNameDef]"
+        title = "Declare War on [FROM.GetNameDef]?"
         desc = civil_war.1.d
 
         is_triggered_only = yes
@@ -331,7 +331,7 @@ add_namespace = warning
             trigger = { has_opinion = { target = FROM value < 0 } }  # only if we hate them.
 
             name = "This is an open act of aggression!"
-            create_wargoal = { target = FROM type = puppet_wargoal_focus }
+            create_wargoal = { target = FROM type = topple_government }
         }
     }
 

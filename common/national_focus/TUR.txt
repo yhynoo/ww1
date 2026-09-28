@@ -1,0 +1,292 @@
+focus_tree = {
+    id = TUR_focus
+    country = { factor = 0 modifier = { original_tag = TUR add = 40 } }
+    continuous_focus_position = { x = 708 y = 1050 }
+
+    # state
+        focus = {
+            id = TUR_healing
+            icon = GFX_focus_TUR_healing
+
+            available = { civil_war_government_lock = yes }
+
+            x = 0 y = 0
+            cost = 10
+
+            completion_reward = {
+                add_political_power = 50
+            }
+        }
+
+        focus = {
+            id = TUR_debt
+            icon = GFX_focus_TUR_debt
+            prerequisite = { focus = TUR_healing }
+
+            available = { 
+                civil_war_government_lock = yes
+                or = {
+                    has_idea = idea_amassed_foreign_debt
+                    has_idea = idea_limited_foreign_debt
+                } 
+            }
+
+            relative_position_id = TUR_healing
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_tur_debt
+            }
+        }
+
+        focus = {
+            id = TUR_aegean
+            icon = GFX_focus_TUR_aegean
+            prerequisite = { focus = TUR_healing }
+
+            available = { 
+                civil_war_government_lock = yes 
+                controls_state = 339
+                controls_state = 586
+            }
+
+            relative_position_id = TUR_healing
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                339 = {
+                    add_building_construction = { type = dockyard   level = 1   instant_build = yes }
+                    add_extra_state_shared_building_slots = 1
+                }
+                586 = {
+                    add_resource = { type = tungsten amount = 6 }
+                    add_building_construction = { type = industrial_complex     level = 1       instant_build = yes }
+                }
+            }
+        }
+
+        focus = {
+            id = TUR_sell_egypt
+            icon = GFX_focus_TUR_sell_egypt
+            prerequisite = { focus = TUR_debt }
+
+            available = { 
+                civil_war_government_lock = yes 
+                EGY = { is_subject_of = ROOT }
+            }
+
+            relative_position_id = TUR_debt
+            x = -2 y = 1
+            cost = 8
+
+            completion_reward = {
+                ENG = { country_event = tur_egypt.1 }
+            }
+        }
+
+        focus = {
+            id = TUR_ottomanism
+            icon = GFX_focus_TUR_ottomanism
+            prerequisite = { focus = TUR_debt focus = TUR_aegean }
+
+            available = { 
+                civil_war_government_lock = yes 
+            }
+
+            relative_position_id = TUR_debt
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_stability = 0.05
+            }
+        }
+
+        focus = {
+            id = TUR_young_turks
+            icon = GFX_focus_TUR_young_turks
+            prerequisite = { focus = TUR_aegean }
+
+            available = { 
+                civil_war_government_lock = yes 
+                has_idea = idea_hostile_officer_corps
+            }
+
+            relative_position_id = TUR_aegean
+            x = 2 y = 1
+            cost = 10
+
+            completion_reward = {
+                swap_ideas = {
+                    remove_idea = idea_hostile_officer_corps
+                    add_idea = idea_disobedient_officer_corps
+                }
+                retire_character = TUR_mustafa_kemal
+                retire_character = TUR_enver
+
+                # hidden news
+                hidden_effect = { country_event = { id = tur_officers.1 days = 7 } }
+            }
+        }
+
+        focus = {
+            id = TUR_minorities
+            icon = GFX_focus_TUR_minorities
+            prerequisite = { focus = TUR_ottomanism }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = TUR_ottomanism
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_political_power = 50
+                country_event = tur_minorities.1
+
+                # hidden news
+                hidden_effect = { country_event = { id = tur_atrocities.1 days = 14 random_days = 28 } }
+            }
+        }
+
+        focus = {
+            id = TUR_liberals
+            icon = GFX_focus_TUR_liberals
+            prerequisite = { focus = TUR_minorities }
+
+            available = { civil_war_government_lock = yes }
+            mutually_exclusive = { focus = TUR_wilayets }
+
+            relative_position_id = TUR_minorities
+            x = -1 y = 1
+            cost = 10
+
+            ai_will_do = { modifier = { has_idea = idea_french_oil_investments factor = 6 } }
+
+            completion_reward = {
+                add_popularity = { ideology = democratic popularity = 0.05 }
+                add_political_power = 50
+            }
+        }
+
+        focus = {
+            id = TUR_wilayets
+            icon = GFX_focus_TUR_wilayets
+            prerequisite = { focus = TUR_minorities }
+
+            available = { civil_war_government_lock = yes }
+            mutually_exclusive = { focus = TUR_liberals }
+
+            ai_will_do = { modifier = { is_historical_focus_on = yes factor = 0 } }
+
+            relative_position_id = TUR_minorities
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_stability = 0.05
+            }
+        }
+
+        focus = {
+            id = TUR_entente
+            icon = GFX_focus_TUR_entente
+            prerequisite = { focus = TUR_liberals focus = TUR_wilayets }
+
+            available = { 
+                civil_war_government_lock = yes 
+
+                has_war_support > 0.5
+                FRA = { can_join_their_faction = yes }
+            }
+
+            relative_position_id = TUR_liberals
+            x = 1 y = 1
+            cost = 8
+
+            ai_will_do = { modifier = { has_government = monarchism factor = 0 } }
+
+            completion_reward = {
+                FRA = { country_event = tur_entente.1 }
+            }
+        }
+
+        focus = {
+            id = TUR_caucasus
+            icon = GFX_focus_generic_extend
+            prerequisite = { focus = TUR_entente }
+
+            available = { 
+                civil_war_government_lock = yes
+                can_declare_war_on = RUS
+            }
+
+            relative_position_id = TUR_entente
+            x = -2 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_war_support = 0.05
+                create_wargoal = { target = RUS type = take_claimed_state }
+            }
+        }
+
+        focus = {
+            id = TUR_arabs
+            icon = GFX_focus_TUR_arabs
+            prerequisite = { focus = TUR_entente }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = TUR_entente
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = TUR_hamidiye
+            icon = GFX_focus_TUR_hamidiye
+            prerequisite = { focus = TUR_entente }
+
+            available = { civil_war_government_lock = yes }
+
+            relative_position_id = TUR_entente
+            x = 2 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_ideas = idea_hamidiye_troops
+            }
+        }
+
+        focus = {
+            id = TUR_who
+            icon = GFX_focus_TUR_hamidiye
+            prerequisite = { focus = TUR_arabs }
+
+            available = { 
+                civil_war_government_lock = yes 
+                has_country_flag = winner_of_the_great_war
+            }
+
+            relative_position_id = TUR_arabs
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+    # other trees
+    shared_focus = XXX_general_staff
+    shared_focus = XXX_infrastructure
+
+    shared_focus = XXX_civil_war
+}

@@ -1,26 +1,69 @@
 add_namespace = ser_albania
 add_namespace = ser_entente
-add_namespace = ser_support
-add_namespace = ser_war
+add_namespace = ser_help
+add_namespace = ser_join
+add_namespace = ser_south
 
 # albania
-    news_event = {
+    country_event = {
         id = ser_albania.1
-        title = "Serbia Eyes Albania"
+        title = "The Question of Albania"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Demilitarization."
+
+            # event
+            news_event = { id = ser_albania.2 hours = 6 }
+        }
+        option = {
+            name = "Demand territories."
+            44 = { 
+                save_as_event_target = demand_target 
+                owner = { country_event = demands.1 }
+            }
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+    country_event = {
+        id = ser_albania.2
+        title = "Serbia Demands Our Withdrawal from Albania"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            44 = { set_demilitarized_zone = yes }
+
+            # event
+            news_event = { id = ser_albania.3 hours = 6 }
+        }
+        option = {
+            name = "No."
+            44 = { add_claim_by = FROM }
+            FROM = { create_wargoal = { target = ROOT type = take_claimed_state } }
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = ser_albania.3
+        title = "Albania Demilitarized"
 
         is_triggered_only = yes
         major = yes
-
-        immediate = {
-            44 = { add_claim_by = SER }
-            TUR = { country_event = { id = tur_albania.1 days = 14 } }
-        }
 
         option = {
             name = "Ok."
         }
     }
-
+    
 # entente
     country_event = {
         id = ser_entente.1
@@ -45,7 +88,7 @@ add_namespace = ser_war
 
     news_event = {
         id = ser_entente.2
-        title = "Spain Joins the Entente"
+        title = "Serbia Joins the Entente"
 
         is_triggered_only = yes
         major = yes
@@ -55,51 +98,59 @@ add_namespace = ser_war
         }
     }
 
-# seek support
+# help
     country_event = {
-        id = ser_support.1
-        title = "The Austrian Threat"
+        id = ser_help.1
+        title = "Threat from Austria"
 
-        trigger = { 
+        trigger = {
             tag = SER
-            AUS = { focus_progress = { focus = AUS_slavs     progress > 0.6 } }
+            AUS = { focus_progress = { focus = SER_slavs     progress > 0.6 } }
+        }
+        fire_only_once = yes
 
-            and = {
-                not = { or = { is_in_faction = yes is_guaranteed_by = RUS } }
-                FRA = { is_faction_leader = yes } 
+        option = {
+            name = "Appeal to the Tsar."
+
+            # event
+            RUS = { country_event = guarantees.1 }
+        }
+        option = {
+            name = "Seek English and French aid."
+
+            # event
+            every_country = {
+                limit = { or = { tag = ENG tag = FRA } }
+                country_event = guarantees.1
             }
         }
-        is_triggered_only = yes
-
         option = {
-            name = "Seek the Entente's aid."
-            FRA = { country_event = ser_entente.1 }
-        }
-
-        option = {
-            name = "We will manage ourselves."
-
-            # ai
-            ai_chance = { modifier = { always = yes } factor = 0 }
+            name = "We will manage ourselves!"
+            add_war_support = 0.05
         }
     }
 
-# war
+# join
     country_event = {
-        id = ser_war.1
-        title = "A Unique Opportunity"
+        id = ser_join.1
+        title = "Opportunity to Strike South?"
 
-        is_triggered_only = yes
+        trigger = {
+            has_completed_focus = SER_southern_claims
+            TUR = { has_war_with = GRE }
+        }
+        fire_only_once = yes
 
         option = {
-            name = "We must strike now."
-            declare_war_on = { target = AUS type = take_claimed_state }
+            name = "This is the time."
+            declare_war_on = { target = TUR type = take_claimed_state }
 
             # event
-            news_event = { id = ser_war.2 hours = 6 }
+            news_event = { id = ser_join.2 hours = 6 }
         }
         option = {
             name = "No."
+            add_war_support = -0.05
 
             # ai
             ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
@@ -107,11 +158,28 @@ add_namespace = ser_war
     }
 
     news_event = {
-        id = ser_war.2
-        title = "Serbian Offensive Against Austria!"
+        id = ser_join.2
+        title = "Serbia Attacks [TUR.GetNameDef]!"
 
         is_triggered_only = yes
         major = yes
+
+        option = {
+            name = "Terrible."
+        }
+    }
+
+# south
+    news_event = {
+        id = ser_south.1
+        title = "Serbia Annouces Southern Claims"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_named_threat = { name = "Serbia Annouces Southern Claims" threat = 2 }
+        }
 
         option = {
             name = "Ok."

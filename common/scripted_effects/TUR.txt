@@ -1,0 +1,32 @@
+manage_turkish_debt = {
+    custom_effect_tooltip = tt_manage_turkish_debt
+    hidden_effect = {
+        if = {
+            limit = { has_idea = idea_amassed_foreign_debt }
+            swap_ideas = {
+                remove_idea = idea_amassed_foreign_debt
+                add_idea = idea_limited_foreign_debt
+            }
+        }
+        else = {
+            remove_ideas = idea_limited_foreign_debt
+        }
+    }
+}
+
+young_turk_coup = {
+    start_civil_war = { 
+        ideology = communism    states = { 44 49 345 356 586 }     army_ratio = 0.4        navy_ratio = 0.2
+        set_cosmetic_tag = TUR_kemalist
+
+        # extra stuff
+        division_template = { name = "Cadet Troops" is_locked = yes regiments = { infantry = { x = 0 y = 0 } infantry = { x = 0 y = 1 } } }
+        every_owned_state = { create_unit = { division = "name = \"Cadet Troops\" division_template = \"Cadet Troops\" start_experience_factor = 0.2" count = 1 owner = PREV } }
+
+        # control
+        every_owned_state = { ROOT = { set_state_controller = PREV } }
+    }
+
+    # country flag
+    set_country_flag = had_young_turk_coup
+}

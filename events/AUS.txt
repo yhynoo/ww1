@@ -18,6 +18,7 @@ add_namespace = aus_wheat_strike
                 add_core_of = AUS
                 set_demilitarized_zone = no
             }
+            add_named_threat = { name = "Annexation of Sarajevo" threat = 4 }
         }
 
         option = {
@@ -91,9 +92,12 @@ add_namespace = aus_wheat_strike
         is_triggered_only = yes
         major = yes
 
+        immediate = {
+            add_war_support = -0.025
+        }
+
         option = {
             name = "Ok."
-            add_war_support = -0.025
         }
     }
 

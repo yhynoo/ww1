@@ -1,7 +1,26 @@
+add_namespace = sms_assassination
 add_namespace = sms_turks
 add_namespace = sms_unite
 
-# atmosphere
+# assassination
+    news_event = {
+        id = sms_assassination.1
+        title = "Hegemon of Samos Assassinated!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            retire_character = SMS_andreas_kopasis
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+
+# turks
     news_event = {
         id = sms_turks.1
         title = "Samos Turns Against the Turks"
@@ -20,7 +39,7 @@ add_namespace = sms_unite
         }
     }
 
-# atmosphere
+# unite
     news_event = {
         id = sms_unite.1
         title = "Samos Unites with Greece!"

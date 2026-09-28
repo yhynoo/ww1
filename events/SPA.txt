@@ -38,15 +38,17 @@ add_namespace = spa_semana
     }
 
 # canalejas
-    country_event = {
+    news_event = {
         id = spa_canalejas.1
         title = "José Canalejas Assassinated!"
 
         is_triggered_only = yes
+        immediate = {
+            add_stability = -0.05       retire_character = SPA_jose_canalejas
+        }
 
         option = {
-            name = "Ok."
-            add_stability = -0.05       retire_character = SPA_jose_canalejas
+            name = "What a tragedy."
         }
     }
 

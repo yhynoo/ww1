@@ -13,9 +13,24 @@ POL_entente = {
     ai_strategy = { type = prepare_for_war id = GER value = 200 }
 }
 
+
+SER_entente = {
+    allowed = { original_tag = SER }
+    enable = { is_historical_focus_on = yes has_completed_focus = SER_entente }
+
+    ai_strategy = { type = alliance id = FRA value = 200 }
+}
+
 SPA_entente = {
     allowed = { original_tag = SPA }
-    enable = { is_historical_focus_on = yes }
+    enable = { is_historical_focus_on = yes has_completed_focus = SPA_entente }
 
-    ai_strategy = { type = alliance id = FRA value = 300 }
+    ai_strategy = { type = alliance id = FRA value = 200 }
+}
+
+TUR_entente = {
+    allowed = { original_tag = TUR }
+    enable = { is_historical_focus_on = yes has_completed_focus = TUR_entente }
+
+    ai_strategy = { type = alliance id = FRA value = 200 }
 }

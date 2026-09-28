@@ -22,24 +22,6 @@ add_namespace = wheat
         }
     }
 
-    country_event = {
-        id = anti_war.2
-        title = "Opposition Demands an Armistice"
-
-        is_triggered_only = yes
-        trigger = { is_subject = no }       # subjects can't negotiate armistice on their own.
-
-        option = {
-            name = "It is time to end this war."
-
-            # armistice
-            every_country = { limit = { is_armistice_target = yes } country_event = armistice.1 }
-        }
-        option = {
-            name = "We must fight on!"
-        }
-    }
-
 # demobilization
     country_event = {
         id = demobilization.1
