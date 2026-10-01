@@ -62,37 +62,28 @@ _war_office = {
     }
 
 # armistice
-    withdraw_from_war = {                   # if the war has lasted long enough (at least 6 months)
-        visible = { 
-            has_war = yes 
-            is_subject = no
-            war_length_with = { tag = FROM months > 5 }
-        }
+    withdraw_from_war = {                   # if the war has lasted long enough (at least 3 months)
+        visible = { has_war = yes       is_subject = no         war_length_with = { tag = FROM months > 2 } }
 
         icon = generic_form_nation
-        days_re_enable = 90
-        cost = 50
+        days_re_enable = 60
+        cost = 25
 
         targets_dynamic = yes
-        target_trigger = { 
-            FROM = { is_armistice_target = yes }
-        }
+        target_trigger = { FROM = { is_armistice_target = yes } }
 
         ai_will_do = {
-            modifier = { or = { has_war_support < 0.4 has_stability < 0.25 surrender_progress > 0.4 } add = 2 }    # entry condition: if we have more war support, we won't even think about it.
-            modifier = { or = { has_idea = idea_war_exhaustion has_stability < 0.2 } factor = 2 }
-            modifier = { surrender_progress > 0.15 factor = 1.5 }
-            modifier = { surrender_progress > 0.25 factor = 2 }
-
-            modifier = { has_idea = service_by_requirement add = 1 }
-            modifier = { or = { has_idea = all_adults_serve has_idea = scraping_the_barrel } add = 2 }
-
-            # if we're done, we're done.
-            modifier = { has_capitulated = yes add = 100 }
-
-            # if we're winning or are major, don't do it.
-            modifier = { FROM = { is_major = yes factor = 0.75 } }
-            modifier = { FROM = { surrender_progress > 0.2 factor = 0.5 } }
+            modifier = {
+                and = {
+                    or = { surrender_progress > 0.1     has_war_support < 0.15                      }
+                    or = { has_stability < 0.25         has_idea = idea_anti_war_demonstrations     }
+                }
+                add = 6
+            }
+            modifier = {
+                or = { is_faction_leader = yes     is_in_faction = no }
+                factor = 1.5
+            }
         }
 
         days_remove = 14

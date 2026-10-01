@@ -10,5 +10,14 @@ ideas = {
                 not = { has_country_leader = MAN_puyi }
             }
         }
+        idea_transition_government = {
+            modifier = {
+                political_power_factor = -0.2
+                stability_factor = -0.05
+            }
+            allowed_civil_war = {
+                has_country_leader = { character = MAN_sun_yat_sen  ruling_only = yes }
+            }
+        }
     }
 }

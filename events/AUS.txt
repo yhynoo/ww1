@@ -1,0 +1,90 @@
+add_namespace = legiony
+
+add_namespace = sarajevo
+add_namespace = serbia
+
+# legiony
+    country_event = {
+        id = legiony.1
+        title = "‘Dywizja Legionów’ Established in Galicia"
+
+        trigger = {
+            tag = AUS   has_completed_focus = AUS_take_ours     controls_state = 80
+            has_war = yes
+        }
+
+        fire_only_once = yes
+        mean_time_to_happen = { days = 14 }
+
+        option = {
+            name = "Good."
+
+            add_war_support = 0.025
+            every_state = { limit = { state = 80 } create_unit = { division = "name = \"Dywizja Legionów\" division_template = \"Landsturm\"" count = 1 owner = PREV } }
+        }
+    }
+
+# sarajevo
+    news_event = {
+        id = sarajevo.1
+        title = "[AUS.GetName] Annexes Sarajevo"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_named_threat = { name = "Annexation of Sarajevo" threat = 2 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# serbia
+    country_event = {
+        id = serbia.1
+        title = "Discussions Among the Generals"
+
+        is_triggered_only = yes
+
+        immediate = {
+            country_event = { id = serbia.2   days = 7 }
+        }
+
+        option = {
+            name = "They sound convincing..."
+            add_war_support = 0.05
+        }
+    }
+
+    country_event = {
+        id = serbia.2
+        title = "Conrad’s Demands"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            declare_war_on = { target = SER type = annex_everything }
+
+            # event
+            news_event = { id = serbia.3 hours = 6 }
+        }
+        option = {
+            name = "We must try to align them with us."
+            SER = { send_ultimatum_alignment = yes }
+        }
+    }
+
+    news_event = {
+        id = serbia.3
+        title = "[AUS.GetName] at War with Serbia!"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Awful."
+        }
+    }

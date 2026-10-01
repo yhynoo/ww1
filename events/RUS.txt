@@ -1,0 +1,55 @@
+add_namespace = uriankhai
+
+# uriankhai
+    country_event = {
+        id = uriankhai.1
+        title = "The Question of Uriankhai"
+
+        trigger = {
+            and = { tag = RUS   has_completed_focus = XXX_stability }
+            329 = { is_owned_and_controlled_by = MON }
+        }
+
+        option = {
+            name = "Establish an dominion state."
+
+            # event
+            MON = { country_event = { id = uriankhai.2 hours = 6 } }
+        }
+        option = {
+            name = "Leave it alone."
+            add_war_support = -0.05
+        }
+    }
+
+    country_event = {
+        id = uriankhai.2
+        title = "The Independence of Uriankhai"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Accept this idea."
+            release = URI
+            RUS = { set_autonomy = { target = URI autonomous_state = autonomy_dominion } }
+
+            # event
+            news_event = { id = uriankhai.3 hours = 6 }
+        }
+        option = {
+            name = "We must oppose this."
+            RUS = { create_wargoal = { target = MON type = puppet_wargoal_focus } }
+        }
+    }
+
+    news_event = {
+        id = uriankhai.3
+        title = "Uriankhai State Established in Southern Siberia"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }

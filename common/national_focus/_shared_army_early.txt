@@ -4,7 +4,7 @@ shared_focus {
 
     allow_branch = { 
         has_country_flag = early_military 
-        not = { has_country_flag = during_uprising }
+        not = { has_idea = idea_uprising }
     }
 
     available = {
@@ -146,12 +146,7 @@ shared_focus = {
     cost = 10
 
     completion_reward = {
-        setup_local_militias = yes
         add_timed_idea = { idea = idea_local_militias months = 6 }
-        random_owned_controlled_state = { 
-            limit = { is_capital = yes }
-            create_unit = { division = "name = \"Local Militia\" division_template = \"Local Militias\"" count = 2 owner = ROOT } 
-        }
     }
 }
 
@@ -169,13 +164,9 @@ shared_focus = {
     cost = 10
 
     completion_reward = {
-        setup_local_militias = yes
-        random_owned_controlled_state = { 
-            limit = { is_in_home_area = yes impassable = no }
-            create_unit = { division = "name = \"Local Militia\" division_template = \"Local Militias\"" count = 2 owner = ROOT } 
-        }
+        add_war_support = 0.05
 
         custom_effect_tooltip = tt_unified_army
-        hidden_effect = { news_event = other.4 }
+        hidden_effect = { news_event = other.1 }
     }
 }

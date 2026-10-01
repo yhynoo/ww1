@@ -19,107 +19,139 @@ on_actions = {
             }
 
         # events
+            GER = {
+                country_event = { id = equestrian.1 days = 26 }
+            }
+
+            JAP = {
+                news_event = { id = meiji.1 months = 6 days = 30 }
+                country_event = { id = diet.1 months = 12 days = 7 }
+            }
+
+            MAN = {
+                country_event = { id = tibet.1 months = 3 days = 4 }
+            }
+
+            USA = {
+                news_event = { id = atmosphere.1 months = 2 days = 5 }
+                news_event = { id = atmosphere.2 months = 3 days = 14 }
+
+                news_event = { id = atmosphere.3 months = 20 days = 3 }
+                news_event = { id = atmosphere.4 months = 21 days = 17 }
+            }
             
+        }
+    }
+
+    on_daily = {
+        effect = {
+            # clean uprising tags
+                if = {
+                    limit = { 
+                        has_idea = idea_uprising
+                        or = { has_completed_focus = XXX_interim_government has_war = no }
+                    }
+                    country_event = other.3
+                }       
+
+            # autonomy loss
+                if = {
+                    limit = { is_subject = yes has_elections = yes }
+                    set_politics = { ruling_party = ROOT elections_allowed = no }
+                }
+            
+            #
         }
     }
 
     on_weekly = {
         effect = {
             if = {
-                limit = { has_country_flag = southeastern_europe_war has_war = no }
-                clr_country_flag = southeastern_europe_war
-                
-                # event
-                news_event = TUR_end.1
-            }
-        }
-    }
-
-    on_daily = {
-        effect = {
-        # uprisings  
-            # clean uprising tags
-            if = {
-                limit = { has_country_flag = during_uprising has_war = no }
-                country_event = uprising.4
+                limit = { can_have_an_uprising = yes }
+                every_possible_country = { limit = { can_start_uprising = yes } random = { chance = 5 trigger_uprising = yes } }
             }
 
-            # set up the uprising
             if = {
-                limit = { can_fall_apart = yes }
-                every_possible_country = {
-                    limit = { 
-                        is_chinese_state = no
-                        is_german_state = no
-                        can_trigger_uprising = yes
-                    }
-                    random = {
-                        chance = 2
-                        trigger_uprising = yes
-                    }
-                }
-            }       
+                limit = { 
+                    has_civil_war = no
+                    check_variable = { highest_party_popularity@exclude_ruling_party > 0.2 }
 
-        # autonomy loss
-            if = {
-                limit = { is_subject = yes has_elections = yes }
-                set_politics = { ruling_party = ROOT elections_allowed = no }
-            }
-
-        # tags 
-            manage_client_state_tags = yes
-
-        # austria
-            if = {
-                limit = { original_tag = AUS }
-                if = {
-                    limit = { country_exists = HUN }
-                    drop_cosmetic_tag = yes
-                }
-            }
-
-        # china
-            if = {
-                limit = { original_tag = MAN }
-                if = {
-                    limit = {
-                        can_fall_apart = yes
-                        has_idea = idea_warlordism_in_the_countryside
-                    }
-
-                    # trigger random warlord states
-                    every_possible_country = {
-                        limit = { 
-                            is_chinese_state = yes
-                            can_trigger_uprising = yes
+                    or = {
+                        has_stability < 0.2
+                        and = {
+                            has_stability < 0.4
+                            or = {
+                                and = { surrender_progress > 0.1        has_war_support < 0.25 }
+                                and = { surrender_progress > 0.2        has_war_support < 0.4 }
+                            }
                         }
-                        random = {
-                            chance = 3
-                            trigger_warlord = yes
-                        }
-                    }
+                    }   
                 }
+                random = { chance = 10 trigger_civil_war = yes }
             }
-        }
-    }
-
-# - elections }
-    on_new_term_election = {
-        random_events = {
-            100 = FRA_elections.1
-            100 = HOL_elections.1
         }
     }
 
 # - generic event launcher
     on_monthly = {
         effect = {
-            # exhaustion
-            random = { chance = 10 country_event = { id = exhaustion.1 random_days = 28 } }
-            random = { chance = 10 country_event = { id = exhaustion.3 random_days = 28 } }
-
-            # unrest
-            random = { chance = 50 country_event = { id = unrest.1 random_days = 28 } }
+            if = {
+                limit = {
+                    not = { has_idea = idea_anti_war_demonstrations }
+                    or = {
+                        and = { longest_war_length > 2      has_war_support < 0.25 }
+                        and = { longest_war_length > 24     has_war_support < 0.4 }
+                    }
+                }
+                random = { chance = 20      country_event = { id = anti_war.1    random_days = 28 } }
+            }
+            if = {
+                limit = {
+                    has_war = no
+                    or = {
+                        has_idea = partial_economic_mobilisation
+                        has_idea = war_economy
+                    }
+                    not = {
+                        or = {
+                            has_idea = volunteer_only
+                            has_idea = limited_conscription
+                        }
+                    }
+                }
+                random = { chance = 40      country_event = { id = demobilization.1    random_days = 28 } }
+            }
+            if = {
+                limit = {
+                    not = { has_idea = idea_widespread_hunger }
+                    or = {
+                        has_idea = partial_economic_mobilisation
+                        has_idea = war_economy
+                    }
+                    or = {
+                        longest_war_length > 6      has_stability < 0.25
+                        longest_war_length > 12     has_stability < 0.4
+                    }
+                }
+                random = { chance = 25      country_event = { id = hunger.1    random_days = 28 } }
+            }
+            if = {
+                limit = {
+                    has_civil_war = no
+                    and = {
+                        not = { has_idea = idea_uprising }
+                        check_variable = { highest_party_popularity@exclude_ruling_party > 0.5 }
+                    }
+                }
+                random = { chance = 40      country_event = { id = opposition.1    random_days = 28 } }
+            }
+            if = {
+                limit = {
+                    not = { has_idea = idea_strikes }
+                    has_stability < 0.45
+                }
+                random = { chance = 40      country_event = { id = strikes.1    random_days = 28 } }
+            }
         }
     }
 }

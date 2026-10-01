@@ -1,0 +1,108 @@
+add_namespace = assert_pacific
+add_namespace = diet
+add_namespace = meiji
+add_namespace = tsingtao
+
+# assert
+    news_event = {
+        id = assert_pacific.1
+        title = "Japanese Aspirations in the Pacific Ocean"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_named_tension = { name = "Japanese Aspirations in the Pacific Ocean" threat = 2 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# diet
+    country_event = {
+        id = diet.1
+        title = "The Emperor’s Odd Audience in the Diet"
+
+        is_triggered_only = yes
+
+        immediate = {
+            country_event = { id = diet.2   days = 7 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+    country_event = {
+        id = diet.2
+        title = "Liberals Question His Majesty’s Abilities"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            add_popularity = { ideology = monarchism popularity = -0.05 }
+
+            # event
+            if = {
+                limit = { check_variable = { highest_party_ideology@exclude_ruling_party = token:monarchism } }
+                random = { chance = 50 news_event = { id = diet.3 hours = 6 } }
+            }
+        }
+        option = {
+            name = "This is treason."
+            add_stability = -0.025
+        }
+    }
+
+    news_event = {
+        id = diet.3
+        title = "Navy Officers Assault the Imperial Diet"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            trigger_civil_war = yes
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# meiji
+    news_event = {
+        id = meiji.1
+        title = "The Death of Meiji"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# tsingtao
+    country_event = {
+        id = tsingtao.1
+        title = "Demand Tsingtao?"
+
+        trigger = {
+            and = { tag = JAP has_completed_focus = XXX_extend }
+            431 = { is_owned_and_controlled_by = GER }  GER = { has_war = yes }
+        }
+
+        option = {
+            name = "Yes."
+            GER = { 431 = { send_ultimatum_one_state = yes } }
+        }
+        option = {
+            name = "No."
+            add_war_support = -0.05
+        }
+    }

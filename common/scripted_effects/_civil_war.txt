@@ -1,21 +1,59 @@
+trigger_civil_war = {
+    if = {
+        limit = { check_variable = { highest_party_ideology@exclude_ruling_party = token:communism } }
+        start_civil_war = { 
+            ideology = communism 
+            size = 0.4   army_ratio = 0.25   troops_and_control = yes 
+        }
+    }
+
+    if = {
+        limit = { check_variable = { highest_party_ideology@exclude_ruling_party = token:democratic } }
+        start_civil_war = { 
+            ideology = democratic 
+            size = 0.4   army_ratio = 0.25   troops_and_control = yes 
+        }
+    }
+
+    if = {
+        limit = { check_variable = { highest_party_ideology@exclude_ruling_party = token:monarchism } }
+        start_civil_war = { 
+            ideology = monarchism 
+            size = 0.4   army_ratio = 0.25   troops_and_control = yes 
+        }
+    }
+}
+
+troops_and_control = {
+    every_owned_state = {
+        setup_uprising_volunteers = yes
+        ROOT = { set_state_controller = PREV }
+    }
+}
+
 setup_civil_war = {
     set_country_flag = during_civil_war
     _manage_advisors = yes
 
     # can't join factions
     set_rule = { can_join_factions = no }
-
-    # if we're subjects
-    every_country = {
-        limit = { has_subject = PREV }
-        country_event = { id = dominion.21 days = 2 }
-    }
-
+    
     if = {
-        limit = { any_country = { original_tag = ROOT has_country_flag = after_civil_war } }
-        country_event = { id = civil_war.3 hours = 6 }   # total collapse
+        limit = { not = { any_country = { original_tag = ROOT has_country_flag = after_civil_war } } }
+        country_event = civil_war.1
     }
     else = {
-        country_event = { id = civil_war.2 hours = 6 }
+        country_event = civil_war.2
     }
 }
+
+# special cases
+    yuan_shikai_army_uprising = {
+        set_capital = { state = 613 }       # move capital out of beijing
+
+        # war
+        start_civil_war = { 
+            ideology = monarchism 
+            states = { 296 610 608 }   army_ratio = 0.4   troops_and_control = yes 
+        }
+    }

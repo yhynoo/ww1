@@ -1,210 +1,128 @@
-add_namespace = GER_altneuland
-add_namespace = GER_approach_the_tsar
-add_namespace = GER_caspian
-add_namespace = GER_dagestan
-add_namespace = GER_deal
-add_namespace = GER_wallonia
-add_namespace = GER_weizmann
+add_namespace = aachen
+add_namespace = alsace
 
-    # altneuland
-        news_event = {
-            id = GER_altneuland.1
-            title = "“Altneuland”"
-            desc = GER_altneuland.1.d
+add_namespace = equestrian
 
-            is_triggered_only = yes
-            major = yes
+add_namespace = trotha
 
-            option = {
-                name = "Will the settlers fulfill their ambitions?"
+# aachen
+    country_event = {
+        id = aachen.1
+        title = "Administration of Wallonia"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            34 = {
+                add_core_of = ROOT
+                set_delimitarized_zone = no
             }
+
+            # event
+            news_event = { id = aachen.2 hours = 6 }
+        }
+        option = {
+            name = "Keep the status quo."
+        }
+    }
+
+    news_event = {
+        id = aachen.2
+        title = "[GER.GetLeader]: ‘Wallonia is Ours’"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_named_threat = { name = "Annexation of Wallonia" threat = 2 }
         }
 
-    # approach_the_tsar
-        news_event = {
-            id = GER_approach_the_tsar.1
-            title = "Germany to Honor the Tsar’s Ambitions?"
-            desc = GER_approach_the_tsar.1.d
+        option = {
+            name = "Ok."
+        }
+    }
 
-            is_triggered_only = yes
-            major = yes
+# alsace
+    news_event = {
+        id = alsace.1
+        title = "[GER.GetName] Annexes Alsace-Lorraine"
 
-            option = {
-                name = "A change of alliances?"
-            }
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_named_threat = { name = "Annexation of Alsace-Lorraine" threat = 4 }
         }
 
-    # caspian
-        news_event = {
-            id = GER_caspian.1
-            title = "[GER.GetAdjective] Investments in the Caspian Area"
-            desc = GER_caspian.1.d
+        option = {
+            name = "Ok."
+        }
+    }
 
-            is_triggered_only = yes
+# equestrian
+    country_event = {
+        id = equestrian.1
+        title = "‘The Equestrian Monument’ in Windhoek"
 
-            option = {
-                name = "Wonderful."
-                add_opinion_modifier = { target = GER modifier = large_increase }
-            }
+        is_triggered_only = yes
+
+        option = {
+            name = "Ok."
+            add_political_power = 5
+        }
+    }
+
+# trotha
+    country_event = {
+        id = trotha.1
+        title = "Another Scandal in South-West Africa"
+
+        trigger = {
+            tag = GER
+            and = { controls_state = 541 has_completed_focus = XXX_stability }
         }
 
-    # dagestan
-        country_event = {
-            id = GER_dagestan.1
-            title = "Germany Seeks Access to Dagestan Oil"
-            desc = GER_dagestan.1.d
+        fire_only_once = yes
+        mean_time_to_happen = { months = 2 }
 
-            is_triggered_only = yes
-
-            option = {
-                name = "Yes."
-                232 = {
-                    controller = { give_resource_rights = { receiver = GER state = 232 } }
-                    add_building_construction = { type = infrastructure level = 1 instant_build = yes }
-                }
-
-                # event
-                hidden_effect = { news_event = { id = GER_dagestan.2 hours = 6 } }
-            }
-            option = {
-                name = "We are not interested."
-                add_political_power = -10
-
-                # historical ai
-                ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
-            }
+        immediate = {
+            country_event = { id = trotha.2   days = 14 }
         }
 
-        news_event = {
-            id = GER_dagestan.2
-            title = "[GER.GetName] Accesses Oil in Dagestan"
-            desc = GER_dagestan.2.d
-
-            is_triggered_only = yes
-            major = yes
-
-            option = {
-                name = "Ok."
-            }
+        option = {
+            name = "Awful."
+            add_political_power = -10
         }
+    }
 
-    # deal
-        country_event = {
-            id = GER_deal.1
-            title = "[GER.GetName] Offers a Grain Deal"
-            desc = GER_deal.1.d
+    country_event = {
+        id = trotha.2
+        title = "Lothar von Trotha to Stand Trial?"
 
-            is_triggered_only = yes
+        is_triggered_only = yes
 
-            option = {
-                name = "This is a great opportunity."
+        option = {
+            name = "This is the correct thing."
+            add_popularity = { ideology = democratic popularity = 0.05 }
 
-                add_ideas = idea_grain_deal_with_germany
-                FROM = { give_guarantee = RUS }
-
-                # event
-                hidden_effect = { news_event = { id = GER_deal.2 hours = 6 } }
-            }
-            option = {
-                name = "We are not interested."
-                FROM = { add_opinion_modifier = { target = ROOT modifier = large_decrease } }
-
-                # historical ai
-                ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
-            }
+            # event
+            news_event = { id = trotha.3 hours = 6 }
         }
-
-        news_event = {
-            id = GER_deal.2
-            title = "[GER.GetName] Secures Grain from the East!"
-            desc = GER_deal.2.d
-
-            is_triggered_only = yes
-            major = yes
-
-            option = {
-                name = "Alright."
-                if = {
-                    limit = { tag = GER }
-                    add_ideas = idea_grain_deal_with_russia
-                }
-            }
+        option = {
+            name = "Why?"
+            add_stability = 0.025
         }
+    }
 
-    # wallonia
-        news_event = {
-            id = GER_wallonia.1
-            title = "German Troops Enter Wallonia"
-            desc = GER_wallonia.1.d
+    news_event = {
+        id = trotha.3
+        title = "General von Trotha Accused of War Atrocities"
 
-            is_triggered_only = yes
-            major = yes
+        is_triggered_only = yes
+        major = yes
 
-            option = {
-                name = "Worrying."
-                if = { 
-                    limit = { controls_state = 34 } 
-                    34 = { set_demilitarized_zone = no } 
-                }
-            }
+        option = {
+            name = "Interesting."
         }
-
-    # weizmann
-        news_event = {
-            id = GER_weizmann.1
-            title = "Weizmann’s Appeal"
-            desc = GER_weizmann.1.d
-
-            trigger = { 
-                has_completed_focus = GER_stability     # we did Orientalism
-                454 = { enemy_control = yes }           # if we're at war with whoever controls Israel
-            }     
-            fire_only_once = yes
-
-            option = {
-                name = "We might use this..."
-                hidden_effect = { country_event = { id = GER_weizmann.2 days = 14 } }
-            }
-        }
-
-        country_event = {
-            id = GER_weizmann.2
-            title = "Jewish War Effort"
-            desc = GER_weizmann.2.d
-
-            is_triggered_only = yes
-
-            option = {
-                name = "Support their ambitions."
-
-                454 = { add_core_of = ISR }
-                add_equipment_to_stockpile = { type = infantry_equipment    amount = -600 }
-
-                # event
-                hidden_effect = { news_event = { id = GER_weizmann.3 hours = 6 } }
-            }
-            option = {
-                name = "How can we trust them?"
-                add_political_power = -10
-
-                # historical ai
-                ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
-            }
-        }
-
-        news_event = {
-            id = GER_weizmann.3
-            title = "[GER.GetName] to Aid the Yishuv?"
-            desc = GER_weizmann.3.d
-
-            is_triggered_only = yes
-            major = yes
-
-            option = {
-                name = "Interesting."
-                if = { 
-                    limit = { 454 = { is_controlled_by = ROOT is_claimed_by = ROOT is_core_of = ROOT } not = { tag = ISR } }
-                    add_opinion_modifier = { target = GER modifier = medium_decrease }
-                }
-            }
-        }
+    }

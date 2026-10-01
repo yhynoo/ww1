@@ -2,26 +2,30 @@ add_namespace = other
 
 # army
     news_event = {
-        id = other.4
+        id = other.1
         hidden = yes
 
         is_triggered_only = yes
-
-        option = {
-            clr_country_flag = early_military
-            mark_focus_tree_layout_dirty = yes
-        }
+        immediate = { clr_country_flag = early_military mark_focus_tree_layout_dirty = yes }
     }
 
 # industrialization
     news_event = {
-        id = other.6
+        id = other.2
         hidden = yes
 
         is_triggered_only = yes
+        immediate = { clr_country_flag = pre_industrial_state mark_focus_tree_layout_dirty = yes }
+    }
 
-        option = {
-            clr_country_flag = pre_industrial_state
-            mark_focus_tree_layout_dirty = yes
+# uprising ended
+    news_event = {
+        id = other.3
+        hidden = yes
+
+        is_triggered_only = yes
+        immediate = { 
+            remove_ideas = idea_uprising mark_focus_tree_layout_dirty = yes 
+            uncomplete_national_focus = { focus = XXX_uprising uncomplete_children = yes }
         }
     }

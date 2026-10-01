@@ -74,9 +74,22 @@ peace_ai_desires = {
                 or = {
                     and = { ROOT = { has_government = democratic } ROOT.FROM = { has_government = democratic } }
                     ROOT.FROM = { is_puppeted = yes }
+
+                    # don't puppet what is our allies' land
+                    any_allied_country = {
+                        ROOT.FROM.FROM.FROM = { or = { is_core_of = PREV is_claimed_by = PREV } }
+                    }
                 }
             }
             ai_desire = -60
+        }
+
+        minors_dont_puppet = {
+            peace_action_type = { puppet }
+            enable = {
+                is_major = no
+            }
+            ai_desire = -200
         }
 
     # liberate

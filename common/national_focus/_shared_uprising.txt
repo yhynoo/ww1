@@ -2,10 +2,10 @@
         id = XXX_uprising
         icon = GFX_focus_generic_general_staff
 
-        allow_branch = { has_country_flag = during_uprising }
+        allow_branch = { has_idea = idea_uprising }
 
         x = 12 y = 0
-        cost = 5
+        cost = 6
 
         completion_reward = {
             add_war_support = 0.05
@@ -31,7 +31,7 @@
 
         relative_position_id = XXX_uprising
         x = 0 y = 1
-        cost = 5
+        cost = 6
 
         completion_reward = {
             random_owned_controlled_state = {
@@ -50,7 +50,7 @@
 
         relative_position_id = XXX_improvised
         x = -1 y = 1
-        cost = 5
+        cost = 6
 
         completion_reward = {
             add_popularity = { ideology = communism popularity = 0.05 }
@@ -66,7 +66,7 @@
 
         relative_position_id = XXX_improvised
         x = 1 y = 1
-        cost = 5
+        cost = 6
 
         completion_reward = {
             add_popularity = { ideology = monarchism popularity = 0.05 }
@@ -81,7 +81,7 @@
 
         relative_position_id = XXX_worker_troops
         x = -2 y = 1
-        cost = 5
+        cost = 6
 
         completion_reward = {
             random_owned_controlled_state = {
@@ -98,7 +98,7 @@
 
         relative_position_id = XXX_worker_troops
         x = 1 y = 1
-        cost = 5
+        cost = 6
 
         completion_reward = {
             add_ideas = idea_uprising_administration
@@ -116,15 +116,10 @@
 
         relative_position_id = XXX_aristocratic_officers
         x = 2 y = 1
-        cost = 5
+        cost = 6
 
         completion_reward = {
-            # setup
-            setup_guards_units = yes
-            random_owned_controlled_state = { 
-                limit = { is_capital = yes }
-                create_unit = { division = "name = \"Guards Division\" division_template = \"Guards Division\" start_experience_factor = 0.6" count = 2 owner = ROOT } 
-            }
+            custom_effect_tooltip = tt_to_do
         }
     }
 
@@ -135,7 +130,7 @@
 
         relative_position_id = XXX_uprising_administration
         x = 0 y = 1
-        cost = 5
+        cost = 6
 
         completion_reward = {
             add_political_power = 100
@@ -151,9 +146,10 @@
 
         relative_position_id = XXX_telegraph
         x = -1 y = 1
-        cost = 5
+        cost = 6
 
         completion_reward = {
+            add_ideas = idea_extended_draft
         }
     }
 
@@ -165,7 +161,7 @@
 
         relative_position_id = XXX_telegraph
         x = 1 y = 1
-        cost = 5
+        cost = 6
 
         completion_reward = {
             random_owned_controlled_state = {
@@ -182,12 +178,12 @@
 
         relative_position_id = XXX_extend_draft
         x = 1 y = 1
-        cost = 5
+        cost = 6
+
+        available = { at_war = no }
 
         completion_reward = {
             add_political_power = 100
             custom_effect_tooltip = tt_interim_government
-            
-            hidden_effect = { news_event = uprising.4 }
         }
     }

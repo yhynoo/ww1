@@ -5,90 +5,46 @@ ideas = {
                 political_power_factor = -0.25
             }
         }
-        idea_great_war = {
-            #
-        }
 
-    # IDEOLOGY
-        idea_strikes = {
-            modifier = { production_factory_max_efficiency_factor = -0.1 }
+    # unrest
+        idea_anti_war_demonstrations = {
+            modifier = {
+                stability_weekly = -0.005
+                war_support_weekly = -0.01
+            }
+            cancel = {
+                has_war = no
+            }
+        }
+        idea_looting = {
+            modifier = {
+                supply_factor = -0.25
+            }
+        }
+        idea_widespread_hunger = {
+            modifier = {
+                stability_weekly = -0.01
+                monthly_population = -0.15
+            }
+            allowed_civil_war = {
+                always = yes
+            }
         }
         idea_wheat_affair = {
             modifier = {
-                consumer_goods_factor = 0.15
-                war_support_weekly = -0.01
-                attrition = 0.25
+                political_power_factor = -0.1
+                supply_factor = -0.05
             }
         }
-        idea_war_exhaustion = {
-            modifier = {
-                war_support_weekly = -0.005
-                drift_defence_factor = -0.15
-            }
-            allowed_civil_war = { 
-                always = yes 
-            }
-        }
-        idea_war_winner = {
-            modifier = {
-                # nothing.
-            }
-        }
-        idea_war_loser = {
-            on_add = {
-                add_war_support = -0.5
-                add_popularity = { ideology = ROOT popularity = -0.25 }
-                
-                # update the focus tree - maybe some puppets were released? or we were partitioned?
-                mark_focus_tree_layout_dirty = yes
-
-                if = {
-                    limit = { is_faction_leader = yes }
-                    dismantle_faction = yes
-                }
-                else = {
-                    if = {
-                        limit = { is_in_faction = yes }
-                        leave_faction = yes
-                    }
-                }
-
-                set_rule = {
-                    can_create_factions = no
-                }
-            }
-            allowed_civil_war = { 
-                always = yes 
-            }
-            rule = {
-                can_join_factions = no
-            }
-        }
-
-        idea_communists_organize = {
-            modifier = { communism_drift = 0.05 }
-            cancel = { has_government = communism }
-        }
-        idea_democrats_organize = {
-            modifier = { democratic_drift = 0.05 }
-            cancel = { has_government = democratic }
-        }
-        idea_monarchists_organize = {
-            modifier = { monarchism_drift = 0.05 }
-            cancel = { has_government = monarchism }
-        }        
+        idea_strikes = {
+            modifier = { production_factory_max_efficiency_factor = -0.1 }
+        }      
         
-    # UPRISING
+    # uprising
         idea_uprising = {
             modifier = {
                 war_support_factor = 0.25
-                conscription_factor = 0.15
-            }
-            cancel = {
-                or = {
-                    has_war = no
-                    not = { has_country_flag = during_uprising }
-                }
+                army_core_defence_factor = 0.15
             }
         }
         idea_uprising_administration = {
@@ -98,21 +54,21 @@ ideas = {
             }
             cancel = {
                 has_war = no
-                not = { has_country_flag = during_uprising }
+                not = { has_idea = idea_uprising }
             }
         }
         idea_extended_draft = {
             modifier = {
-                conscription = 0.025
+                conscription_factor = 0.1
                 training_time_factor = -0.25
             }
             cancel = {
                 has_war = no
-                not = { has_country_flag = during_uprising }
+                not = { has_idea = idea_uprising }
             }
         }
 
-    # CIVIL WAR
+    # civil war
         idea_collapsed_administration = {
             modifier = { 
                 political_power_factor = -0.45 
@@ -187,10 +143,11 @@ ideas = {
             }
         }
 
-    # STATE IDEAS
+    # state
         idea_manpower_act = {
             modifier = {
                 conscription_factor = 0.1
+                training_time_factor = -0.15
             }
         }
         idea_deterrence = {
@@ -200,8 +157,7 @@ ideas = {
         }
         idea_idealism = {
             modifier = {
-                guarantee_tension = -0.25
-                lend_lease_tension = -0.15
+                send_volunteer_factor = 0.25
                 send_volunteers_tension = -0.15
             }
         }
@@ -218,13 +174,14 @@ ideas = {
         }
         idea_strength_in_unity = {
             modifier = {
-                army_core_defence_factor = 0.2
+                army_core_defence_factor = 0.1
                 war_support_factor = 0.05
             }
         }
         idea_hidden_mobilization = {
             modifier = {
                 conscription_factor = 0.05
+                training_time_factor = -0.1
             }
             cancel = {
                 is_subject = no

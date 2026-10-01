@@ -3,15 +3,12 @@ add_namespace = armistice
 add_namespace = civil_war
 add_namespace = defiant
 add_namespace = demands
-add_namespace = exchange
 add_namespace = guarantees
-add_namespace = warning
 
 # alliance
     country_event = {
         id = alliance.1
         title = "[FROM.GetName] Offers Alliance"
-        desc = alliance.1.d
 
         is_triggered_only = yes
 
@@ -24,23 +21,9 @@ add_namespace = warning
 
             # ai
             ai_chance = { modifier = { ai_wants_alliance = yes factor = 2 } }
-            add_ai_strategy = { type = alliance id = FROM value = 20 }
         }
         option = {
             name = "This is too dangerous."
-            add_war_support = -0.025
-        }
-    }
-
-    country_event = {
-        id = alliance.2
-        title = "[FROM.GetName] Dismisses Alliance Offer"
-        desc = alliance.2.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Their loss."
         }
     }
 
@@ -48,7 +31,6 @@ add_namespace = warning
     country_event = {
         id = armistice.1
         title = "[FROM.GetName] Offers an Armistice"
-        desc = armistice.1.d
 
         is_triggered_only = yes
 
@@ -71,25 +53,8 @@ add_namespace = warning
 # civil war
     country_event = {
         id = civil_war.1
-        title = "Declare War on [FROM.GetNameDef]"
-        desc = civil_war.1.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "We do not care about their internal divisions."
-            declare_war_on = { target = FROM type = annex_everything }
-        }
-        option = {
-            name = "The sooner this ends, the better."
-            add_political_power = -10
-        }
-    }
-
-    country_event = {
-        id = civil_war.2
         title = "Collapse of the Administration"
-        desc = civil_war.2.d
+        desc = civil_war.1.d
 
         is_triggered_only = yes
 
@@ -100,9 +65,9 @@ add_namespace = warning
     }
 
     country_event = {
-        id = civil_war.3
+        id = civil_war.2
         title = "Total Erosion of the [ROOT.GetAdjective] State"
-        desc = civil_war.3.d
+        desc = civil_war.2.d
 
         is_triggered_only = yes
 
@@ -113,20 +78,7 @@ add_namespace = warning
     }
 
     news_event = {
-        id = civil_war.4
-        title = "[ROOT.GetAdjective] Civil War Erupts"
-        desc = civil_war.4.d
-
-        is_triggered_only = yes
-        major = yes
-
-        option = {
-            name = "Awful."
-        }
-    }
-
-    news_event = {
-        id = civil_war.5
+        id = civil_war.3
         hidden = yes
 
         is_triggered_only = yes
@@ -220,48 +172,6 @@ add_namespace = warning
         }
     }
 
-# exchange
-    country_event = {
-        id = exchange.1
-        title = "Organize an Exchange of Territories?"
-        desc = exchange.1.d
-
-        trigger = {
-            any_allied_country = {
-                any_state = {
-                    or = { is_core_of = PREV is_claimed_by = PREV } 
-                    and = { is_fully_controlled_by = ROOT not = { or = { is_core_of = ROOT is_owned_by = ROOT is_claimed_by = ROOT } } }
-                }
-            }
-        }
-
-        option = {
-            name = "Let them take care of it."
-            every_allied_country = {
-                limit = {
-                    any_state = {
-                        or = { is_core_of = PREV is_claimed_by = PREV } 
-                        and = { is_fully_controlled_by = ROOT not = { or = { is_core_of = ROOT is_claimed_by = ROOT } } }
-                    }
-                }
-                every_state = {
-                    limit = {
-                        or = { is_core_of = PREV is_claimed_by = PREV } 
-                        and = { is_fully_controlled_by = ROOT not = { or = { is_core_of = ROOT is_claimed_by = ROOT } } }
-                    }
-                    set_state_controller_to = PREV
-                }
-            }
-        }
-        option = {
-            name = "We will stick to our administration."
-            add_political_power = -10
-
-            # ai chance
-            ai_chance = { factor = 0 }
-        }
-    }
-
 # guarantees
     country_event = {
         id = guarantees.1
@@ -277,9 +187,6 @@ add_namespace = warning
             FROM = { give_guarantee = ROOT }
 
             # ai
-            add_ai_strategy = { type = support id = FROM value = 20 }
-            FROM = { add_ai_strategy = { type = support id = ROOT value = 20 } }
-
             ai_chance = { modifier = { has_opinion = { target = FROM value > 25 } factor = 2 } }
             
         }
@@ -300,49 +207,3 @@ add_namespace = warning
             name = "Unfortunate."
         }
     }
-
-# warning
-    country_event = {
-        id = warning.1
-        title = "Answer the [FROM.GetAdjective] Aggression?"
-        desc = warning.1.d
-
-        is_triggered_only = yes
-        trigger = { not = { has_war_with = FROM } }
-
-        option = {
-            name = "This does not concern us."
-            add_stability = 0.025
-        }
-        option = {
-            name = "We shall issue a warning."
-            add_war_support = 0.05
-
-            FROM = { country_event = { id = warning.2 hours = 6 } }
-            add_opinion_modifier = { target = FROM modifier = diplomatic_warning }
-
-            # ai
-            ai_chance = { modifier = { has_opinion = { target = FROM value > 0 } factor = 0.5 } }
-        }
-        option = {
-            trigger = { has_opinion = { target = FROM value < 0 } }  # only if we hate them.
-
-            name = "This is an open act of aggression!"
-            create_wargoal = { target = FROM type = puppet_wargoal_focus }
-        }
-    }
-
-    country_event = {
-        id = warning.2
-        title = "[FROM.GetName] Sends a Diplomatic Warning"
-        desc = warning.2.d
-
-        is_triggered_only = yes
-
-        option = {
-            name = "So what?"
-            add_opinion_modifier = { target = FROM modifier = diplomatic_warning }
-        }
-    }
-
-#

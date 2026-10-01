@@ -1,0 +1,74 @@
+add_namespace = tibet
+add_namespace = transfer
+
+# tibet
+    country_event = {
+        id = tibet.1
+        title = "Dalai Lama Announces Tibet’s Independence"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            release = TIB
+
+            # event
+            news_event = { id = tibet.2 hours = 6 }
+        }
+        option = {
+            name = "He can announce whatever he likes."
+            TIB = { tibet_uprising = yes }
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = tibet.2
+        title = "Tibet Independent!"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# transfer
+    country_event = {
+        id = transfer.1
+        title = "Dismiss the Transition Government?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            promote_character = { character = MAN_yuan_shikai ideology = conservatism }
+
+            # event
+            news_event = { id = transfer.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+            add_stability = -0.05
+
+            if = {
+                limit = { check_variable = { highest_party_ideology@exclude_ruling_party = token:monarchism } }
+                yuan_shikai_army_uprising = yes
+            }
+        }
+    }
+
+    news_event = {
+        id = transfer.2
+        title = "Yuan Shikai to Lead China"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }

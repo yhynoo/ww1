@@ -6,40 +6,32 @@ ideas = {
                 air_training_xp_gain_factor = 0.15
             }
         }
-
         idea_echoes_of_agadir = {
             modifier = {
                 political_power_factor = -0.15
-                democratic_drift = -0.02
-            }
-            cancel = {
-                or = {
-                    has_decision = agadir_trials_mission
-                    not = { has_government = democratic }
-                }
+                democratic_drift = -0.05
             }
         }
-
         idea_elan = {
             modifier = {
                 army_attack_factor = 0.05
                 initiative_factor = 0.1
             }
         }
-        idea_on_les_aura = {
-            modifier = {
-                army_core_defense_factor = 0.1
-            }
-        }
 
-        idea_extended_citizenship = {
+        idea_indigenat = {
             modifier = {
-                non_core_manpower = 0.1
-                compliance_growth_on_our_occupied_states = 0.05
-                required_garrison_factor = -0.05
+                conscription_factor = 0.05
+                heat_attrition_factor = -0.05
             }
             on_add = {
                 set_technology = { hidden_camelry = 1 }
+            }
+        }
+        idea_union_sacree = {
+            modifier = {
+                stability_factor = 0.05
+                army_core_defence_factor = 0.1
             }
         }
     }

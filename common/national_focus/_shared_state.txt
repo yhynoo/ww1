@@ -9,9 +9,7 @@
         }
 
         x = 0 y = 0
-        cost = 10
-
-        ai_will_do = { factor = 1.5 }
+        cost = 8
 
         completion_reward = {
             state_government_effect = yes
@@ -24,11 +22,8 @@
         prerequisite = { focus = XXX_government }
         mutually_exclusive = { focus = XXX_deterrence }
 
-        allow_branch = { has_dominion_focuses = no has_unification_focuses = no }
-        ai_will_do = { 
-            modifier = { has_war_support < 0.5 factor = 0.5 }
-            modifier = { is_defensive = yes factor = 0 }
-        } 
+        allow_branch = { has_dominion_focuses = no }
+        ai_will_do = { modifier = { has_war_support < 0.5 factor = 0.5 } } 
 
         available = {
             civil_war_government_lock = yes
@@ -39,10 +34,6 @@
         cost = 10
 
         completion_reward = {
-            # factions
-            if = { limit = { is_faction_leader = no } custom_effect_tooltip = tt_extend }
-            hidden_effect = { set_rule = { can_create_factions = yes } }
-
             state_extend_effect = yes
         }
     }
@@ -63,7 +54,6 @@
         cost = 10
 
         completion_reward = {
-            add_war_support = 0.05
             state_claims_effect = yes
         }
     }
@@ -103,7 +93,6 @@
         cost = 10
 
         completion_reward = {
-            add_war_support = 0.05
             state_take_ours_effect = yes
         }
     }
@@ -114,11 +103,8 @@
         prerequisite = { focus = XXX_government }
         mutually_exclusive = { focus = XXX_extend }
 
-        allow_branch = { has_dominion_focuses = no has_unification_focuses = no }
-        ai_will_do = { 
-            modifier = { has_war_support > 0.5 factor = 0.5 } 
-            modifier = { is_aggressive = yes factor = 0 }
-        }
+        allow_branch = { has_dominion_focuses = no }
+        ai_will_do = { modifier = { has_war_support > 0.5 factor = 0.5 } }
 
         available = {
             civil_war_government_lock = yes
@@ -170,7 +156,7 @@
         cost = 10
 
         completion_reward = {
-            add_popularity = { ideology = ROOT popularity = 0.05 }
+            add_stability = 0.05
         }
     }
 
@@ -189,7 +175,7 @@
         cost = 10
 
         completion_reward = {
-            add_ideas = idea_ethnocentrism
+            state_ethnocentrism_effect = yes
         }
     }
 
@@ -207,7 +193,6 @@
         cost = 10
 
         completion_reward = {
-            add_political_power = 50
             state_agrarianism_effect = yes
         }
     }
@@ -219,11 +204,12 @@
 
         available = {
             civil_war_government_lock = yes
+            state_unity_trigger = yes
         }
 
         relative_position_id = XXX_ethnocentrism
         x = -1 y = 1
-        cost = 10
+        cost = 8
 
         completion_reward = {
             state_unity_effect = yes
@@ -244,7 +230,6 @@
         cost = 10
 
         completion_reward = {
-            add_stability = 0.05
             state_administration_effect = yes
         }
     }
