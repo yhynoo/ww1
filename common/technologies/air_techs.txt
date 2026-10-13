@@ -11,344 +11,413 @@ technologies = {
     @1920 = 20
 
     # fighters
-    synchronization_gear = {
-        categories = { air_equipment_tech light_aircraft_tech }
+        synchronization_gear = {
+            categories = { air_equipment_tech light_aircraft_tech }
 
-        category_fighter = {
-            air_attack = 0.1
+            category_fighter = {
+                air_attack = 0.1
+            }
+
+            research_cost = 1
+            start_year = 1914
+
+            path = {
+                leads_to_tech = air_cannon
+                research_cost_coeff = 1
+            }
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1914 }
+            }
+        }
+        air_cannon = {
+            categories = { air_equipment_tech light_aircraft_tech }
+
+            category_fighter = {
+                air_attack = 0.1
+            }
+
+            research_cost = 1
+            start_year = 1917
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1917 }
+            }
         }
 
-        research_cost = 1
-        start_year = 1914
+        fighter_1914 = {
+            enable_equipments = { fighter_equipment_1 light_aircraft_tech }
+            categories = { air_equipment_tech }
 
-        path = {
-            leads_to_tech = air_cannon
-            research_cost_coeff = 1
+            research_cost = 1.5
+            start_year = 1914
+
+            path = {
+                leads_to_tech = fighter_1917
+                research_cost_coeff = 1
+            }
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1914 }
+            }
         }
+        fighter_1917 = {
+            enable_equipments = { fighter_equipment_2 }
+            categories = { air_equipment_tech light_aircraft_tech }
 
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1914 }
+            research_cost = 1.5
+            start_year = 1917
+
+            path = {
+                leads_to_tech = improved_engines
+                research_cost_coeff = 1
+            }
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1917 }
+            }
         }
-    }
-    air_cannon = {
-        categories = { air_equipment_tech light_aircraft_tech }
+        improved_engines = {
+            categories = { air_equipment_tech light_aircraft_tech }
 
-        category_fighter = {
-            air_attack = 0.1
+            category_fighter = {
+                reliability = 0.05
+                maximum_speed = 0.1
+            }
+
+            research_cost = 2
+            start_year = 1919
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1919 }
+            }
         }
-
-        research_cost = 1
-        start_year = 1917
-
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1917 }
-        }
-    }
-
-    early_aircraft = {
-        enable_equipments = { fighter_equipment_0 }
-        categories = { air_equipment_tech light_aircraft_tech }
-
-        research_cost = 1
-        start_year = 1904
-
-        path = {
-            leads_to_tech = ailerons
-            research_cost_coeff = 1
-        }
-
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = 0 }
-        }
-    }
-    ailerons = {
-        categories = { air_equipment_tech light_aircraft_tech }
-
-        category_fighter = {
-            air_agility = 0.1
-            reliability = 0.1
-        }
-
-        research_cost = 1
-        start_year = 1912
-
-        path = {
-            leads_to_tech = fighter_1914
-            research_cost_coeff = 1
-        }
-
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1912 }
-        }
-    }
-    fighter_1914 = {
-        enable_equipments = { fighter_equipment_1 light_aircraft_tech }
-        categories = { air_equipment_tech }
-
-        research_cost = 1.5
-        start_year = 1914
-
-        ai_will_do = {
-            base = 1
-            modifier = { num_of_military_factories > 10 factor = 2 }
-        }
-
-        path = {
-            leads_to_tech = fighter_1917
-            research_cost_coeff = 1
-        }
-
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1914 }
-        }
-    }
-    fighter_1917 = {
-        enable_equipments = { fighter_equipment_2 }
-        categories = { air_equipment_tech light_aircraft_tech }
-
-        research_cost = 1.5
-        start_year = 1917
-
-        ai_will_do = {
-            base = 1
-            modifier = { num_of_military_factories > 10 factor = 2 }
-        }
-
-        path = {
-            leads_to_tech = welded_airframes
-            research_cost_coeff = 1
-        }
-
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1917 }
-        }
-    }
-    welded_airframes = {
-        categories = { air_equipment_tech light_aircraft_tech }
-
-        category_fighter = {
-            air_defence = 0.1
-            maximum_speed = 0.1
-        }
-
-        research_cost = 2
-        start_year = 1919
-
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1919 }
-        }
-    }
 
     # attack aicraft
-    aerial_explosives = {
-        categories = { air_equipment_tech attack_aircraft_tech }
+        aerial_explosives = {
+            categories = { air_equipment_tech attack_aircraft_tech }
 
-        category_cas = {
-            air_ground_attack = 0.25
-            naval_strike_targetting = 0.15
+            category_cas = {
+                air_ground_attack = 0.25
+                naval_strike_targetting = 0.15
+            }
+
+            research_cost = 1
+            start_year = 1914
+
+            path = {
+                leads_to_tech = electric_drop_mechanism
+                research_cost_coeff = 1
+            }
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1914 }
+            }
+        }
+        electric_drop_mechanism = {
+            categories = { air_equipment_tech attack_aircraft_tech }
+
+            category_cas = {
+                air_ground_attack = 0.05
+                naval_strike_targetting = 0.1
+            }
+
+            path = {
+                leads_to_tech = improved_sights
+                research_cost_coeff = 1
+            }
+
+            research_cost = 1
+            start_year = 1917
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1917 }
+            }
+        }
+        improved_sights = {
+            categories = { air_equipment_tech attack_aircraft_tech }
+
+            research_cost = 1
+            start_year = 1919
+
+            category_cas = {
+                air_ground_attack = 0.1
+                naval_strike_targetting = 0.1
+            }
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1919 }
+            }
         }
 
-        research_cost = 1
-        start_year = 1914
+        early_aircraft = {
+            enable_equipments = { CAS_equipment_0 }
+            categories = { air_equipment_tech attack_aircraft_tech }
 
-        path = {
-            leads_to_tech = electric_drop_mechanism
-            research_cost_coeff = 1
+            research_cost = 1
+            start_year = 1904
+
+            path = {
+                leads_to_tech = ailerons
+                research_cost_coeff = 1
+            }
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = 0 }
+            }
+        }
+        ailerons = {
+            categories = { air_equipment_tech attack_aircraft_tech }
+
+            category_cas = {
+                air_agility = 0.1
+                reliability = 0.1
+            }
+
+            research_cost = 1
+            start_year = 1912
+
+            path = {
+                leads_to_tech = cas_bomber_1914
+                research_cost_coeff = 1
+            }
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1912 }
+            }
+        }
+        cas_bomber_1914 = {
+            enable_equipments = { CAS_equipment_1 }
+            categories = { air_equipment_tech attack_aircraft_tech }
+
+            research_cost = 2
+            start_year = 1914
+
+            path = {
+                leads_to_tech = cas_bomber_1917
+                research_cost_coeff = 1
+            }
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1914 }
+            }
+        }
+        cas_bomber_1917 = {
+            enable_equipments = { CAS_equipment_2 }
+            categories = { air_equipment_tech attack_aircraft_tech }
+
+            research_cost = 2
+            start_year = 1917
+
+            path = {
+                leads_to_tech = welded_airframes
+                research_cost_coeff = 1
+            }
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1917 }
+            }
+        }
+        welded_airframes = {
+            categories = { air_equipment_tech light_aircraft_tech }
+
+            category_cas = {
+                air_defence = 0.1
+                maximum_speed = 0.1
+            }
+
+            research_cost = 2
+            start_year = 1920
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1920 }
+            }
         }
 
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1914 }
+    # seaplanes
+        seaplane_1914 = {
+            enable_equipments = { nav_bomber_equipment_1 }
+            categories = { air_equipment_tech attack_aircraft_tech }
+
+            research_cost = 2
+            start_year = 1914
+
+            path = {
+                leads_to_tech = seaplane_1917
+                research_cost_coeff = 1
+            }
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1914 }
+            }
         }
-    }
-    electric_drop_mechanism = {
-        categories = { air_equipment_tech attack_aircraft_tech }
+        seaplane_1917 = {
+            enable_equipments = { nav_bomber_equipment_2 }
+            categories = { air_equipment_tech attack_aircraft_tech }
 
-        category_cas = {
-            air_ground_attack = 0.05
-            naval_strike_targetting = 0.1
+            research_cost = 2
+            start_year = 1917
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1917 }
+            }
         }
-
-        path = {
-            leads_to_tech = improved_sights
-            research_cost_coeff = 1
-        }
-
-        research_cost = 1
-        start_year = 1917
-
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1917 }
-        }
-    }
-    improved_sights = {
-        categories = { air_equipment_tech attack_aircraft_tech }
-
-        research_cost = 1
-        start_year = 1919
-
-        category_cas = {
-            air_ground_attack = 0.1
-            naval_strike_targetting = 0.1
-        }
-
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1919 }
-        }
-    }
-
-    cas_bomber_1914 = {
-        enable_equipments = { CAS_equipment_1 }
-        categories = { air_equipment_tech attack_aircraft_tech }
-
-        research_cost = 2
-        start_year = 1914
-
-        ai_will_do = {
-            base = 1
-            modifier = { num_of_military_factories > 10 factor = 2 }
-        }
-
-        path = {
-            leads_to_tech = cas_bomber_1917
-            research_cost_coeff = 1
-        }
-
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1914 }
-        }
-    }
-
-    cas_bomber_1917 = {
-        enable_equipments = { CAS_equipment_2 }
-        categories = { air_equipment_tech attack_aircraft_tech }
-
-        research_cost = 2
-        start_year = 1917
-
-        ai_will_do = {
-            base = 1
-            modifier = { num_of_military_factories > 10 factor = 2 }
-        }
-
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1917 }
-        }
-    }
 
     # airships
-    airship_1904 = {
-        enable_equipments = { airship_1904 }
-        categories = { airship_tech }
+        airship_1904 = {
+            enable_equipments = { airship_1904 }
+            categories = { airship_tech }
 
-        research_cost = 2
-        start_year = 1904
+            research_cost = 2
+            start_year = 1904
 
-        ai_will_do = {
-            base = 0.5
-            modifier = { original_tag = GER factor = 3 }
+            ai_will_do = {
+                base = 0.5
+                modifier = { original_tag = GER factor = 3 }
+            }
+
+            path = {
+                leads_to_tech = alu_frames
+                research_cost_coeff = 1
+            }
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1904 }
+            }
+        }
+        alu_frames = {
+            categories = { airship_tech }
+
+            research_cost = 1
+            start_year = 1912
+
+            path = {
+                leads_to_tech = airship_1914
+                research_cost_coeff = 1
+            }
+
+            category_airship = {
+                reliability = 0.15
+                air_range = 0.05
+            }
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1912 }
+            }
         }
 
-        path = {
-            leads_to_tech = alu_frames
-            research_cost_coeff = 1
+        airship_1914 = {
+            enable_equipments = { airship_1914 }
+            categories = { airship_tech }
+
+            research_cost = 2.5
+            start_year = 1914
+
+            ai_will_do = {
+                base = 0.5
+                modifier = { original_tag = GER factor = 6 }
+            }
+
+            path = {
+                leads_to_tech = airship_1917
+                research_cost_coeff = 1
+            }
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1914 }
+            }
+        }
+        airship_1917 = {
+            enable_equipments = { airship_1917 }
+            categories = { airship_tech }
+
+            research_cost = 2.5
+            start_year = 1917
+
+            ai_will_do = {
+                base = 0.5
+                modifier = { original_tag = GER factor = 6 }
+            }
+
+            path = {
+                leads_to_tech = self_sealing_gas_cells
+                research_cost_coeff = 1
+            }
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1917 }
+            }
+        }
+        self_sealing_gas_cells = {
+            categories = { airship_tech }
+
+            category_airship = {
+                reliability = 0.1
+                air_defence = 0.05
+            }
+
+            research_cost = 1
+            start_year = 1919
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1919 }
+            }
         }
 
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1904 }
+        suspended_gondolas = {
+            categories = { air_equipment_tech airship_tech }
+
+            category_airship = {
+                naval_strike_targetting = 0.15
+                surface_detection = 0.1
+		        sub_detection = 0.1
+            }
+
+            path = {
+                leads_to_tech = heavy_aerial_explosives
+                research_cost_coeff = 1
+            }
+
+            research_cost = 1
+            start_year = 1914
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1914 }
+            }
         }
-    }
-    alu_frames = {
-        categories = { airship_tech }
+        heavy_aerial_explosives = {
+            categories = { air_equipment_tech airship_tech }
 
-        research_cost = 1
-        start_year = 1912
+            research_cost = 1
+            start_year = 1917
 
-        path = {
-            leads_to_tech = airship_1914
-            research_cost_coeff = 1
+            category_airship = {
+                air_bombing = 0.15
+            }
+
+            folder = {
+                name = air_techs_folder
+                position = { x = 0 y = @1917 }
+            }
         }
-
-        category_airship = {
-            reliability = 0.15
-            air_range = 0.05
-        }
-
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1912 }
-        }
-    }
-
-    airship_1914 = {
-        enable_equipments = { airship_1914 }
-        categories = { airship_tech }
-
-        research_cost = 2.5
-        start_year = 1914
-
-        ai_will_do = {
-            base = 0.5
-            modifier = { original_tag = GER factor = 6 }
-        }
-
-        path = {
-            leads_to_tech = airship_1917
-            research_cost_coeff = 1
-        }
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1914 }
-        }
-    }
-    airship_1917 = {
-        enable_equipments = { airship_1917 }
-        categories = { airship_tech }
-
-        research_cost = 2.5
-        start_year = 1917
-
-        ai_will_do = {
-            base = 0.5
-            modifier = { original_tag = GER factor = 6 }
-        }
-
-        path = {
-            leads_to_tech = self_sealing_gas_cells
-            research_cost_coeff = 1
-        }
-
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1917 }
-        }
-    }
-    self_sealing_gas_cells = {
-        categories = { airship_tech }
-
-        category_airship = {
-            reliability = 0.1
-            air_defence = 0.05
-        }
-
-        research_cost = 1
-        start_year = 1919
-
-        folder = {
-            name = air_techs_folder
-            position = { x = 0 y = @1919 }
-        }
-    }
 }

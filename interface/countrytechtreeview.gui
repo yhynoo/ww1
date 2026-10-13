@@ -716,7 +716,7 @@ guiTypes = {
 				textureFile = ""
 				font = "hoi_33"
 				borderSize = { x = 0 y = 0}
-				text = "CAPITAL SHIPS"
+				text = "LINE SHIPS"
 				maxWidth = 600
 				maxHeight = 62
 				format = left
@@ -725,11 +725,24 @@ guiTypes = {
 
 			instantTextBoxType = {
 				name = "naval_subtitle_lighter_vessels"
-				position = { x = 30 y = 450 }
+				position = { x = 30 y = 550 }
 				textureFile = ""
 				font = "hoi_33"
 				borderSize = { x = 0 y = 0}
-				text = "LIGHT VESSELS"
+				text = "AUXILLIARY SHIPS"
+				maxWidth = 600
+				maxHeight = 62
+				format = left
+				Orientation = "UPPER_LEFT"
+			}
+
+			instantTextBoxType = {
+				name = "naval_submarines"
+				position = { x = 30 y = 975 }
+				textureFile = ""
+				font = "hoi_33"
+				borderSize = { x = 0 y = 0}
+				text = "SUBMARINES"
 				maxWidth = 600
 				maxHeight = 62
 				format = left
@@ -738,7 +751,7 @@ guiTypes = {
 
 			instantTextBoxType = {
 				name = "naval_subtitle_carriers"
-				position = { x = 30 y = 875 }
+				position = { x = 30 y = 1400 }
 				textureFile = ""
 				font = "hoi_33"
 				borderSize = { x = 0 y = 0}
@@ -753,7 +766,7 @@ guiTypes = {
 				name = "techtree_stripes"
 				position = { x= 0 y= 0 }
 				size = {
-					width = 1700 height = 1100
+					width = 1700 height = 1650
 					min = { width = 100%% height = 100%% }
 				}
 				clipping = no
@@ -816,36 +829,68 @@ guiTypes = {
 
 			# capital ships
 			gridboxtype = {
-				name = "capital_ship_1904_tree"
+				name = "dreadnought_1912_tree"
 				position = { x = 140 y = 225 }
 				slotsize = { width = 70 height = 70 }
 				format = "LEFT"
 			}
-
-			# light vessels
 			gridboxtype = {
-				name = "destroyer_1904_tree"
-				position = { x = 140 y = 550 }
+				name = "line_ship_1904_tree"
+				position = { x = 140 y = 325 }
 				slotsize = { width = 70 height = 70 }
 				format = "LEFT"
 			}
 			gridboxtype = {
-				name = "submarine_1904_tree"
+				name = "wireless_telegraphy_tree"
+				position = { x = 140 y = 425 }
+				slotsize = { width = 70 height = 70 }
+				format = "LEFT"
+			}
+
+			# auxilliary ships
+			gridboxtype = {
+				name = "destroyer_1904_tree"
 				position = { x = 140 y = 650 }
 				slotsize = { width = 70 height = 70 }
 				format = "LEFT"
 			}
 			gridboxtype = {
-				name = "landing_craft_tree"
+				name = "anti_sub_nets_tree"
 				position = { x = 140 y = 750 }
 				slotsize = { width = 70 height = 70 }
 				format = "LEFT"
 			}
+			gridboxtype = {
+				name = "landing_craft_tree"
+				position = { x = 140 y = 850 }
+				slotsize = { width = 70 height = 70 }
+				format = "LEFT"
+			}
 
+			# subs
+			gridboxtype = {
+				name = "submarine_1904_tree"
+				position = { x = 140 y = 1075 }
+				slotsize = { width = 70 height = 70 }
+				format = "LEFT"
+			}
+			gridboxtype = {
+				name = "torpedo_gyroscopes_tree"
+				position = { x = 140 y = 1175 }
+				slotsize = { width = 70 height = 70 }
+				format = "LEFT"
+			}
+			gridboxtype = {
+				name = "emergency_oxygen_devices_tree"
+				position = { x = 140 y = 1275 }
+				slotsize = { width = 70 height = 70 }
+				format = "LEFT"
+			}
+	
 			# carriers
 			gridboxtype = {
 				name = "carrier_1912_tree"
-				position = { x = 140 y = 975 }
+				position = { x = 140 y = 1500 }
 				slotsize = { width = 70 height = 70 }
 				format = "LEFT"
 			}
@@ -883,7 +928,7 @@ guiTypes = {
 				position = { x = 30 y = 425 }
 				textureFile = ""
 				font = "hoi_33"
-				borderSize = { x = 0 y = 0}
+				borderSize = { x = 0 y = 0 }
 				text = "ATTACK AIRCRAFT"
 				maxWidth = 600
 				maxHeight = 62
@@ -892,7 +937,7 @@ guiTypes = {
 			}
 			instantTextBoxType = {
 				name = "air_tech_airships"
-				position = { x = 30 y = 780 }
+				position = { x = 30 y = 875 }
 				textureFile = ""
 				font = "hoi_33"
 				borderSize = { x = 0 y = 0}
@@ -996,27 +1041,40 @@ guiTypes = {
 				format = "LEFT"
 			}
 			gridboxtype = {
-				name = "early_aircraft_tree"
-				position = { x = 140 y = 325 }
+				name = "fighter_1914_tree"
+				position = { x = 140 y = 320 }
 				slotsize = { width = 70 height = 70 }
 				format = "LEFT"
 			}
 
 			gridboxtype = {
-				name = "cas_bomber_1914_tree"
+				name = "aerial_explosives_tree"
 				position = { x = 140 y = 525 }
 				slotsize = { width = 70 height = 70 }
 				format = "LEFT"
 			}
 			gridboxtype = {
-				name = "aerial_explosives_tree"
-				position = { x = 140 y = 650 }
+				name = "early_aircraft_tree"
+				position = { x = 140 y = 620 }
 				slotsize = { width = 70 height = 70 }
 				format = "LEFT"
 			}
 			gridboxtype = {
+				name = "seaplane_1914_tree"
+				position = { x = 140 y = 730 }
+				slotsize = { width = 70 height = 70 }
+				format = "LEFT"
+			}
+			
+			gridboxtype = {
 				name = "airship_1904_tree"
-				position = { x = 140 y = 880 }
+				position = { x = 140 y = 975 }
+				slotsize = { width = 70 height = 70 }
+				format = "LEFT"
+			}
+			gridboxtype = {
+				name = "suspended_gondolas_tree"
+				position = { x = 140 y = 1085 }
 				slotsize = { width = 70 height = 70 }
 				format = "LEFT"
 			}

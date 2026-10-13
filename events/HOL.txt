@@ -1,0 +1,155 @@
+add_namespace = armed_neutrality
+
+add_namespace = east_indies
+add_namespace = elections_holland
+
+add_namespace = german_alliance
+
+add_namespace = soesterberg
+add_namespace = support_maritz
+
+# armed_neutrality
+    news_event = {
+        id = armed_neutrality.1
+        title = "The Dutch Announce ‘Armed Neutrality’"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# east indies
+    news_event = {
+        id = east_indies.1
+        title = "[INS.GetName] Established"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# elections
+    country_event = {
+        id = elections_holland.1
+        title = "The Elections of [GetYear]"
+
+        trigger = { original_tag = HOL }
+        is_triggered_only = yes
+
+        option = {
+            name = "[ROOT.GetLeader]."
+            add_stability = 0.025
+        }
+
+        # candidates
+        option = {
+            name = "Theo Heemskerk."
+            trigger = { not = { has_country_leader = { character = HOL_theo_heemskerk ruling_only = yes } } }
+
+            promote_character = HOL_theo_heemskerk
+        }
+        option = {
+            name = "Pieter Cort van der Linden."
+            trigger = { not = { has_country_leader = { character = HOL_pieter_cort_van_der_linden ruling_only = yes } } }
+
+            promote_character = HOL_pieter_cort_van_der_linden
+        }
+    }
+
+# german alliance
+    country_event = {
+        id = german_alliance.1
+        title = "Align Ourselves with [GER.GetName]"
+
+        trigger = {
+            tag = HOL   has_government = monarchism     has_war_support > 0.45
+            GER = { can_join_their_faction = yes }
+        }
+        fire_only_once = yes
+
+        option = {
+            name = "Yes."
+
+            # event
+            GER = { country_event = alliance.1 }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_ai = yes } factor = 0 }
+        }
+    }
+
+# soesterberg
+    country_event = {
+        id = soesterberg.1
+        title = "Airfield in Soesterberg Opens"
+
+        trigger = { 35 = { not = { air_base > 0 } } }
+        is_triggered_only = yes
+
+        immediate = {
+            35 = { add_building_construction = { type = air_base level = 1 instant_build = yes } }
+            add_equipment_to_stockpile = { type = CAS_equipment_0   amount = 6     producer = FRA }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# support_maritz
+    country_event = {
+        id = support_maritz.1
+        title = "Support for the Transvaal Uprising"
+
+        trigger = {
+            tag = HOL
+            and = {
+                is_in_faction = no      has_war_support > 0.4
+                not = { has_completed_focus = XXX_deterrence }      SAF = { has_civil_war = yes }       any_country = { original_tag = SAF has_government = monarchism }
+            }
+        }
+        fire_only_once = yes
+
+        option = {
+            name = "Send arms."
+            random_country = {
+                limit = { original_tag = SAF has_government = monarchism }
+                HOL = { send_equipment = { equipment = infantry_equipment amount = 600 target = PREV } }
+            }
+
+            # event
+            news_event = { id = support_maritz.2 hours = 6 }
+        }
+        option = {
+            name = "We must not involve ourselves."
+        }
+    }
+
+    news_event = {
+        id = support_maritz.2
+        title = "The Dutch Send Arms to Maritz’ Troops"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            ENG = { create_wargoal = { target = HOL type = topple_government } }
+            random_country = {
+                limit = { original_tag = SAF has_government = monarchism }
+                add_opinion_modifier = { target = HOL modifier = sent_arms }
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

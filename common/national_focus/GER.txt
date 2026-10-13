@@ -1,0 +1,405 @@
+focus_tree = {
+    id = GER_focus
+    country = { factor = 0  modifier = { add = 20   original_tag = GER } }
+    continuous_focus_position = { x = 88 y = 650 }
+    
+    # colonies
+        focus = {
+            id = GER_colonial_ambitions
+            icon = GFX_focus_GER_colonial_ambitions
+
+            available = {
+            }
+
+            x = 4 y = 0
+            cost = 10
+
+            completion_reward = {
+                recruit_character = GER_paul_von_lettow_vorbeck
+            }
+        }
+
+        focus = {
+            id = GER_east_asia
+            icon = GFX_focus_generic_dreadnoughts
+            prerequisite = { focus = GER_colonial_ambitions }
+
+            available = {
+                controls_state = 431
+            }
+
+            relative_position_id = GER_colonial_ambitions
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_political_power = 50
+                431 = {
+                    add_building_construction = { type = dockyard level = 2 instant_build = yes }
+                    add_core_of = GER
+                }
+            }
+        }
+
+        focus = {
+            id = GER_develop_africa
+            icon = GFX_focus_generic_infrastructure
+            prerequisite = { focus = GER_colonial_ambitions }
+
+            available = {
+                controls_state = 541
+                controls_state = 546
+            }
+
+            relative_position_id = GER_colonial_ambitions
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                541 = {
+                    add_resource = { type = aluminium amount = 4 }
+                    add_extra_state_shared_building_slots = 1
+                }
+                546 = {
+                    add_resource = { type = tungsten amount = 8 }
+                    add_building_construction = { type = naval_base level = 1 province = 8183 instant_build = yes }
+                }
+            }
+        }
+
+        focus = {
+            id = GER_align_yuan
+            icon = GFX_focus_GER_align_yuan
+            prerequisite = { focus = GER_east_asia }
+
+            available = {
+                MAN = { has_country_leader = { ruling_only = yes character = MAN_yuan_shikai } }
+            }
+
+            relative_position_id = GER_east_asia
+            x = -2 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_war_support = 0.025
+                every_country = { limit = { tag = MAN } send_ultimatum_alignment = yes }
+            }
+        }
+
+        focus = {
+            id = GER_askari
+            icon = GFX_focus_GER_askari
+            prerequisite = { focus = GER_east_asia focus = GER_develop_africa }
+
+            available = {
+            }
+
+            relative_position_id = GER_east_asia
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_ideas = idea_askari
+            }
+        }
+
+        focus = {
+            id = GER_east_africa
+            icon = GFX_focus_generic_state
+            prerequisite = { focus = GER_askari }
+
+            available = {
+                has_war_support = 0.6
+            }
+
+            relative_position_id = GER_askari
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+                every_state = { limit = { or = { state = 196 state = 542 state = 545 } } send_ultimatum_multiple_states = yes }
+            }
+        }
+
+    # echoes
+        focus = {
+            id = GER_agadir_system
+            icon = GFX_focus_GER_agadir_system
+
+            available = {
+            }
+
+            x = 10 y = 0
+            cost = 10
+
+            completion_reward = {
+                add_political_power = 50
+                country_event = aachen.1
+            }
+        }
+
+        focus = {
+            id = GER_approach_tsar
+            icon = GFX_focus_GER_approach_tsar
+            prerequisite = { focus = GER_agadir_system }
+
+            mutually_exclusive = { focus = GER_aufmarsch_ost }
+
+            available = {
+            }
+
+            relative_position_id = GER_agadir_system
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_political_power = 50
+                news_event = volga.1
+            }
+        }
+
+        focus = {
+            id = GER_aufmarsch_ost
+            icon = GFX_focus_GER_aufmarsch_ost
+            prerequisite = { focus = GER_agadir_system }
+
+            mutually_exclusive = { focus = GER_approach_tsar }
+
+            available = {
+                has_war_support > 0.65
+            }
+
+            relative_position_id = GER_agadir_system
+            x = 1 y = 1
+            cost = 10
+
+            will_lead_to_war_with = RUS
+
+            completion_reward = {
+                add_war_support = 0.05
+                create_wargoal = { target = RUS type = liberate_wargoal }
+            }
+        }
+
+        focus = {
+            id = GER_grain_deal
+            icon = GFX_focus_generic_austerity_measures
+            prerequisite = { focus = GER_approach_tsar }
+
+            available = {
+            }
+
+            relative_position_id = GER_approach_tsar
+            x = -2 y = 1
+            cost = 10
+
+            completion_reward = {
+                every_country = { limit = { tag = RUS } country_event = grain_deal.1 }
+            }
+        }
+
+        focus = {
+            id = GER_alsace
+            icon = GFX_focus_GER_alsace
+            prerequisite = { focus = GER_approach_tsar focus = GER_aufmarsch_ost }
+
+            available = {
+                controls_state = 28
+            }
+
+            relative_position_id = GER_approach_tsar
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                every_state = { limit = { state = 28 } add_core_of = GER add_building_construction = { type = supply_node level = 1 province = 9503 instant_build = yes }}
+            }
+        }
+
+        focus = {
+            id = GER_wassmuss
+            icon = GFX_focus_GER_wassmuss
+            prerequisite = { focus = GER_approach_tsar focus = GER_aufmarsch_ost }
+
+            available = {
+            }
+
+            relative_position_id = GER_aufmarsch_ost
+            x = 3 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_political_power = 50
+                news_event = middle_east_interests.1
+            }
+        }
+
+        focus = {
+            id = GER_east_indies
+            icon = GFX_focus_generic_state
+            prerequisite = { focus = GER_alsace }
+
+            mutually_exclusive = { focus = GER_align_dutch }
+
+            available = {
+            }
+
+            relative_position_id = GER_alsace
+            x = -1 y = 1
+            cost = 10
+
+            will_lead_to_war_with = HOL
+
+            completion_reward = {
+                every_state = { limit = { is_core_of = INS } send_ultimatum_multiple_states = yes }
+            }
+        }
+
+        focus = {
+            id = GER_align_dutch
+            icon = GFX_focus_GER_align_dutch
+            prerequisite = { focus = GER_alsace }
+
+            mutually_exclusive = { focus = GER_east_indies }
+
+            available = {
+                can_declare_war_on = HOL
+            }
+
+            relative_position_id = GER_alsace
+            x = 1 y = 1
+            cost = 10
+
+            will_lead_to_war_with = HOL
+
+            completion_reward = {
+                add_war_support = 0.025
+                every_country = { limit = { tag = HOL } send_ultimatum_alignment = yes }
+            }
+        }
+
+        focus = {
+            id = GER_attack_france
+            icon = GFX_focus_GER_attack_france
+            prerequisite = { focus = GER_east_indies focus = GER_align_dutch }
+
+            available = {
+                has_war_support > 0.5
+            }
+
+            relative_position_id = GER_east_indies
+            x = 1 y = 1
+            cost = 10
+
+            will_lead_to_war_with = FRA
+
+            completion_reward = {
+                create_wargoal = { target = FRA type = take_claimed_state }
+            }
+        }
+
+        focus = {
+            id = GER_war_aims
+            icon = GFX_focus_GER_war_aims
+            prerequisite = { focus = GER_attack_france }
+
+            available = {
+            }
+
+            relative_position_id = GER_attack_france
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+               country_event = war_aims.1
+            }
+        }
+
+        focus = {
+            id = GER_arabs
+            icon = GFX_focus_generic_all_for_the_front
+            prerequisite = { focus = GER_wassmuss }
+
+            mutually_exclusive = { focus = GER_altneuland }
+
+            available = {
+                or = {
+                    416 = { enemy_control = yes }
+                    554 = { enemy_control = yes }
+                }
+            }
+
+            relative_position_id = GER_wassmuss
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_arab_uprisings
+                hidden_effect = {
+                    country_event = { id = middle_east_interests.2 days = 2 random_days = 14 }
+                    country_event = { id = middle_east_interests.3 days = 4 random_days = 14 }
+                }
+            }
+        }
+
+        focus = {
+            id = GER_altneuland
+            icon = GFX_focus_GER_altneuland
+            prerequisite = { focus = GER_wassmuss }
+
+            mutually_exclusive = { focus = GER_arabs }
+
+            available = {
+            }
+
+            relative_position_id = GER_wassmuss
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_political_power = 50
+                every_state = { limit = { or = { state = 454 } } add_resource = { type = tungsten amount = 8 } add_core_of = ISR }
+            }
+        }
+
+        focus = {
+            id = GER_iraq
+            icon = GFX_focus_GER_iraq
+            prerequisite = { focus = GER_altneuland }
+
+            available = {
+            }
+
+            relative_position_id = GER_altneuland
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+                every_state = { limit = { or = { state = 414 } } add_claim_by = GER }
+            }
+        }
+
+        focus = {
+            id = GER_afghans
+            icon = GFX_focus_GER_afghans
+            prerequisite = { focus = GER_wassmuss }
+
+            available = {
+            }
+
+            relative_position_id = GER_wassmuss
+            x = 3 y = 1
+            cost = 10
+
+            completion_reward = {
+                every_country = { limit = { tag = AFG }   send_ultimatum_alignment = yes }
+            }
+        }
+
+    # army
+        shared_focus = generic_army
+
+    # economy
+        shared_focus = generic_infrastructure
+
+}

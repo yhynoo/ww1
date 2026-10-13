@@ -1,0 +1,249 @@
+add_namespace = albania
+add_namespace = apis
+add_namespace = attack_south
+
+add_namespace = cetinje
+
+add_namespace = entente_helps_serbia
+
+add_namespace = kosovo_je_srbija
+
+add_namespace = sarajevo_attack
+
+# albania
+    country_event = {
+        id = albania.1
+        title = "The Albanian Question"
+
+        trigger = {
+            tag = SER
+            and = { controls_state = 404 controls_state = 106 } 
+            44 = { 
+                allied_control = no 
+                owner = { not = { has_war_with = SER } }
+            }
+        }
+        fire_only_once = yes
+
+        option = {
+            name = "Demand demilitarization."
+            44.owner = { country_event = albania.2 }
+        }
+        option = {
+            name = "Leave it."
+
+            # ai
+            ai_chance = { modifier = { is_ai = yes } factor = 0 }
+        }
+    }
+
+    country_event = {
+        id = albania.2
+        title = "Withdraw Troops from Albania?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We can do that."
+            44 = { set_demilitarized_zone = yes }
+
+            # event
+            news_event = { id = albania.3 hours = 6 }
+        }
+        option = {
+            name = "Whatever."
+            FROM = { 
+                44 = { add_claim_by = FROM }
+                create_wargoal = { target = ROOT type = take_claimed_state } 
+            }
+        }
+    }
+
+    news_event = {
+        id = albania.3
+        title = "[ROOT.GetName] Withdraws from Albania"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# apis
+    country_event = {
+        id = apis.1
+        title = "The Arrest of ‘Apis’"
+
+        trigger = {
+            tag = SER
+            has_completed_focus = XXX_deterrence
+        }
+
+        fire_only_once = yes
+        mean_time_to_happen = { months = 3 }
+
+        option = {
+            name = "Execute him."
+            add_war_support = -0.025
+
+            # event
+            news_event = { id = template.2 hours = 6 }
+        }
+        option = {
+            name = "Let him go."
+            add_political_power = -25
+
+            # ai
+            ai_chance = { modifier = { is_ai = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = template.2
+        title = "‘Apis’ Executed in Serbia!"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Interesting."
+        }
+    }
+
+# attack south
+    country_event = {
+        id = attack_south.1
+        title = "Opportunity to Attack South?"
+
+        trigger = {
+            tag = SER       has_completed_focus = XXX_extend
+            or = {
+                106 = { allied_control = no owner = { has_war = yes not = { has_war_with = ROOT } } }
+                404 = { allied_control = no owner = { has_war = yes not = { has_war_with = ROOT } } }
+            }
+        }
+        fire_only_once = yes
+
+        option = {
+            name = "Yes."
+            every_country = {
+                limit = {
+                    or = {
+                        controls_state = 106 controls_state = 404
+                    }
+                    has_war = yes
+                    not = { has_war_with = ROOT }
+                }
+                SER = { declare_war_on = PREV type = take_claimed_state }
+            }
+
+            # event
+            news_event = { id = attack_south.2 hours = 6 }
+        }
+        option = {
+            name = "This is too dangerous."
+        }
+    }
+
+    news_event = {
+        id = attack_south.2
+        title = "[SER.GetName] Attacks South!"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Awful."
+        }
+    }
+
+# cetinje
+    news_event = {
+        id = cetinje.1
+        title = "Edict of Cetinje"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# entente helps serbia
+    country_event = {
+        id = entente_helps_serbia.1
+        title = "Appeal to the Entente?"
+
+        trigger = {
+            tag = SER
+            AUS = { focus_progress = { focus = XXX_take_ours progress > 0.6 } }
+            FRA = { can_join_their_faction = yes }
+        }
+
+        option = {
+            name = "Yes."
+            FRA = { country_event = guarantees.1 }
+        }
+        option = {
+            name = "We will manage on our own."
+            add_war_support = 0.05
+        }
+    }
+
+# kosovo
+    news_event = {
+        id = kosovo_je_srbija.1
+        title = "Serbia Asserts Claims in the South"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_named_threat = { name = "Serbia Asserts Claims in the South" threat = 2 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# sarajevo_attack
+    country_event = {
+        id = sarajevo_attack.1
+        title = "Attack in Sarajevo"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Stage apis terrorist strike."
+
+            # event
+            news_event = { id = sarajevo_attack.2 hours = 6 }
+        }
+        option = {
+            name = "Attack directly."
+
+            add_war_support = 0.05
+            declare_war_on = { target = AUS type = take_claimed_state }
+        }
+    }
+
+    news_event = {
+        id = sarajevo_attack.2
+        title = "Terrorist Attack in Sarajevo!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_named_threat = { name = "Terrorist Attack in Sarajevo!" threat = 4 }
+            AUS = { create_wargoal = { target = SER type = topple_government } }
+        }
+
+        option = {
+            name = "Horrible."
+        }
+    }

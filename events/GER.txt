@@ -3,21 +3,28 @@ add_namespace = alsace
 
 add_namespace = equestrian
 
-add_namespace = trotha
+add_namespace = german_atlas
+add_namespace = grain_deal
+
+add_namespace = johannisthal
+
+add_namespace = middle_east_interests
+
+add_namespace = saverne
+
+add_namespace = volga
+add_namespace = warsaw
 
 # aachen
     country_event = {
         id = aachen.1
-        title = "Administration of Wallonia"
+        title = "The Administration of Wallonia?"
 
         is_triggered_only = yes
 
         option = {
-            name = "Yes."
-            34 = {
-                add_core_of = ROOT
-                set_delimitarized_zone = no
-            }
+            name = "Annex it."
+            34 = { add_core_of = ROOT   set_demilitarized_zone = no }
 
             # event
             news_event = { id = aachen.2 hours = 6 }
@@ -29,7 +36,7 @@ add_namespace = trotha
 
     news_event = {
         id = aachen.2
-        title = "[GER.GetLeader]: ‘Wallonia is Ours’"
+        title = "[GER.GetLeader]: ‘Wallonia is Ours’"       picture = GFX_report_aachen
 
         is_triggered_only = yes
         major = yes
@@ -46,7 +53,7 @@ add_namespace = trotha
 # alsace
     news_event = {
         id = alsace.1
-        title = "[GER.GetName] Annexes Alsace-Lorraine"
+        title = "[GER.GetName] Annexes Alsace-Lorraine"     picture = GFX_report_alsace
 
         is_triggered_only = yes
         major = yes
@@ -61,68 +68,304 @@ add_namespace = trotha
     }
 
 # equestrian
-    country_event = {
-        id = equestrian.1
-        title = "‘The Equestrian Monument’ in Windhoek"
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Ok."
-            add_political_power = 5
-        }
-    }
-
-# trotha
-    country_event = {
-        id = trotha.1
-        title = "Another Scandal in South-West Africa"
-
-        trigger = {
-            tag = GER
-            and = { controls_state = 541 has_completed_focus = XXX_stability }
-        }
-
-        fire_only_once = yes
-        mean_time_to_happen = { months = 2 }
-
-        immediate = {
-            country_event = { id = trotha.2   days = 14 }
-        }
-
-        option = {
-            name = "Awful."
-            add_political_power = -10
-        }
-    }
-
-    country_event = {
-        id = trotha.2
-        title = "Lothar von Trotha to Stand Trial?"
-
-        is_triggered_only = yes
-
-        option = {
-            name = "This is the correct thing."
-            add_popularity = { ideology = democratic popularity = 0.05 }
-
-            # event
-            news_event = { id = trotha.3 hours = 6 }
-        }
-        option = {
-            name = "Why?"
-            add_stability = 0.025
-        }
-    }
-
     news_event = {
-        id = trotha.3
-        title = "General von Trotha Accused of War Atrocities"
+        id = equestrian.1
+        title = "The ‘Equestrian Monument’ in Windhoek"     picture = GFX_report_equestrian
 
         is_triggered_only = yes
         major = yes
 
         option = {
-            name = "Interesting."
+            name = "Ok."
         }
     }
+
+# german_atlas
+    country_event = {
+        id = german_atlas.1
+        title = "Coup the Moroccan Government?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "We must do it."
+            set_autonomy = { target = MOR autonomous_state = autonomy_puppet end_civil_wars = no end_wars = no }
+            random_country = { limit = { has_cosmetic_tag = MOR_democratic } GER = { create_wargoal = { target = PREV type = annex_everything } } }
+
+            # event
+            news_event = { id = german_atlas.2 hours = 6 }
+        }
+        option = {
+            name = "This is too much."
+            add_war_support = -0.05
+        }
+    }
+
+    news_event = {
+        id = german_atlas.2
+        title = "[GER.GetAdjective] Coup in the Atlas!"         picture = GFX_report_german_atlas
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_named_threat = { name = "[GER.GetAdjective] Coup in the Atlas" threat = 4 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# grain deal
+    country_event = {
+        id = grain_deal.1
+        title = "[GER.GetName]: Grain and Oil for Investments?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "This is great."
+            give_resource_rights = { receiver = GER  state = 200 }      give_resource_rights = { receiver = GER  state = 232 }      add_ideas = idea_grain_investments
+
+            # event
+            news_event = { id = grain_deal.2 hours = 6 }
+        }
+        option = {
+            name = "We are not interested."
+
+            # ai
+            ai_chance = { modifier = { is_ai = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = grain_deal.2
+        title = "Germany Accesses Ukrainian Grain"          picture = GFX_report_grain_deal
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            GER = { 
+                give_guarantee = RUS
+                add_ideas = idea_grain_deal 
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# johannisthal
+    news_event = {
+        id = johannisthal.1
+        title = "Airship Explodes Over Johannisthal"        picture = GFX_report_johannisthal
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            GER = { add_equipment_to_stockpile = { type = airship    amount = -1    producer = GER } }
+        }
+
+        option = {
+            name = "Terrible."
+        }
+    }
+
+# middle east
+    news_event = {
+        id = middle_east_interests.1
+        title = "Germany Eyes the Middle East?"         picture = GFX_report_middle_east
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_named_threat = { name = "Germany Eyes the Middle East" threat = 1 }
+            TUR = { add_stability = -0.025 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+    country_event = {
+        id = middle_east_interests.2
+
+        is_triggered_only = yes
+        hidden = yes
+
+        immediate = {
+            SYR = { 
+                trigger_uprising = yes 
+                set_province_controller = 4111  set_province_controller = 12473
+            }
+        }
+    }
+
+    country_event = {
+        id = middle_east_interests.3
+
+        is_triggered_only = yes
+        hidden = yes
+
+        immediate = {
+            YEM = { 
+                trigger_uprising = yes 
+                set_province_controller = 12758  set_province_controller = 5037
+            }
+        }
+    }
+
+# saverne
+    country_event = {
+        id = saverne.1
+        title = "Unrest in Alsatian Garrisons"
+
+        trigger = {
+            tag = GER
+            has_completed_focus = XXX_extend
+        }
+
+        fire_only_once = yes
+        mean_time_to_happen = { months = 4 }
+
+        option = {
+            name = "The army must maintain its authority."
+            add_stability = 0.025
+
+            # event
+            news_event = { id = saverne.2 hours = 6 }
+        }
+        option = {
+            name = "This is too much."
+            add_popularity = { ideology = democratic popularity = 0.05 }
+        }
+    }
+
+    news_event = {
+        id = saverne.2
+        title = "Saverne Affair"        picture = GFX_report_saverne
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_named_threat = { name = "Saverne Affair" threat = 4 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# volga
+    news_event = {
+        id = volga.1
+        title = "German Investments in the Volga Area"      picture = GFX_report_volga
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            RUS = {
+                add_opinion_modifier = { target = GER modifier = investments_in_the_volga }
+            }
+            239 = {
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                add_extra_state_shared_building_slots = 1
+            }
+            251 = {
+                add_resource = { type = steel amount = 8 }
+                add_extra_state_shared_building_slots = 2
+            }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# war aims
+    country_event = {
+        id = war_aims.1
+        title = "War Aims in the West?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Announce claims in the Ardennes and Flanders."
+            every_state = { limit = { or = { state = 29 state = 25 state = 17 } add_claim_by = GER } }
+
+            # event
+            news_event = { id = war_aims.2 hours = 6 }
+        }
+        option = {
+            name = "We are only defending ourselves."
+            add_war_support = 0.05
+        }
+    }
+
+    news_event = {
+        id = war_aims.2
+        title = "German War Aims in the West"       picture = GFX_report_war_aims
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_named_threat = { name = "German War Aims in the West" threat = 2 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# warsaw
+    country_event = {
+        id = warsaw.1
+        title = "The Warsaw Act"
+
+        trigger = {
+            tag = GER       
+            and = { has_war_with = RUS RUS = { owns_state = 10 } }
+            
+            not = {
+                POL = { any_core_state = { controller = { not = { tag = GER is_ally_with = GER } } } }
+            }
+        }
+
+        option = {
+            name = "Establish a client state."
+
+            POL = {
+                every_core_state = { transfer_state_to = POL }      GER = { puppet = POL }      add_to_war = { targeted_alliance = GER enemy = RUS }
+                set_cosmetic_tag = german_client_state
+            }
+
+            # event
+            news_event = { id = warsaw.2 hours = 6 }
+        }
+        option = {
+            name = "We will manage it ourselves."
+        }
+    }
+
+    news_event = {
+        id = warsaw.2
+        title = "[POL.GetName] Established!"        picture = GFX_report_warsaw
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+#

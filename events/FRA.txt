@@ -1,20 +1,27 @@
-add_namespace = agadir
-add_namespace = algerian_youth
+add_namespace = algiers
+add_namespace = approach_usa
+
+add_namespace = caillaux
 
 add_namespace = entente
 
-add_namespace = young_algerians
+add_namespace = french_atlas
 
-# agadir
+add_namespace = join_entente
+
+add_namespace = oil_investments
+
+# algiers
     news_event = {
-        id = agadir.1
-        title = "Agadir Trials Organized in Algiers"
+        id = algiers.1
+        title = "Agadir Trials Commence in Algiers"             picture = GFX_report_algiers
 
         is_triggered_only = yes
         major = yes
 
         immediate = {
-            country_event = { id = algerian_youth.1 days = 14 }
+            add_named_threat = { name = "Agadir Trials" threat = 1 }
+            country_event = { id = algiers.2 days = 14 }
         }
 
         option = {
@@ -22,61 +29,52 @@ add_namespace = young_algerians
         }
     }
 
-# algeria
     country_event = {
-        id = algerian_youth.1
-        title = "Unrest Among Algerian Youth"
+        id = algiers.2
 
         is_triggered_only = yes
+        hidden = yes
 
         immediate = {
-            country_event = { id = algerian_youth.2   days = 7 }
-        }
-
-        option = {
-            name = "Ok."
+            ALG = { 
+                trigger_uprising = yes 
+                set_province_controller = 1145  set_province_controller = 12051
+            }
         }
     }
 
+# caillaux
     country_event = {
-        id = algerian_youth.2
-        title = "Demonstrations in Oran"
+        id = caillaux.1
+        title = "The Scapegoat of Agadir?"
 
         is_triggered_only = yes
 
         option = {
-            name = "Send in the troops."
-            add_political_power = -25
+            name = "Dismiss him."
+            promote_character = FRA_edouard_herriot
 
             # event
-            random = { chance = 50 news_event = { id = algerian_youth.3 hours = 6 } }
+            news_event = { id = caillaux.2 hours = 6 }
         }
         option = {
-            name = "This will dissipate."
+            name = "No."
             add_stability = -0.025
-
-            # ai
-            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
         }
     }
 
     news_event = {
-        id = algerian_youth.3
-        title = "Tragedy in Oran"
+        id = caillaux.2
+        title = "Caillaux Dismissed!"       picture = GFX_report_caillaux
 
         is_triggered_only = yes
         major = yes
 
-        immediate = {
-            add_named_threat = { name = "Tragedy in Oran" threat = 1 }
-            random = { chance = 50 ALG = { trigger_uprising = yes } }
-        }
-
         option = {
-            name = "Awful."
+            name = "Ok."
         }
     }
-
+    
 # entente
     news_event = {
         id = entente.1
@@ -90,15 +88,129 @@ add_namespace = young_algerians
         }
     }
 
-# young algerian_youthns
+# french atlas
     country_event = {
-        id = young_algerians.1
-        title = "‘With You in Times of Danger’"
+        id = french_atlas.1
+        title = "Support the Anti-German Tribes in the Atlas?"
+
+        trigger = {
+            tag = FRA   is_faction_leader = yes
+            MOR = { has_civil_war = yes }
+        }
+        fire_only_once = yes
+
+        option = {
+            name = "Yes."
+
+            random_country = {
+                limit = { original_tag = MOR has_cosmetic_tag = MOR_democratic }
+                country_event = invite.1
+            }
+
+            # event
+            news_event = { id = french_atlas.2 hours = 6 }
+        }
+        option = {
+            name = "No."
+            add_war_support = -0.05
+        }
+    }
+
+    news_event = {
+        id = french_atlas.2
+        title = "France Encourages the Atlas Tribes"        picture = GFX_report_french_atlas
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_named_threat = { name = "France Encourages the Atlas Tribes" threat = 2 }
+            GER = { country_event = { id = german_atlas.1 days = 2 } }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# garros
+    news_event = {
+        id = garros.1
+        title = "Aviator Flies Across the Mediterranean"        picture = GFX_report_garros
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Great."
+        }
+    }
+
+# join_entente
+    country_event = {
+        id = join_entente.1
+        title = "[FROM.GetName] Asks to Join the Entente"
 
         is_triggered_only = yes
 
         option = {
+            name = "Yes."
+            add_to_faction = FROM
+
+            # event
+            FROM = { news_event = { id = join_entente.2 hours = 6 } }
+        }
+        option = {
+            name = "We are not interested."
+        }
+    }
+
+    news_event = {
+        id = join_entente.2
+        title = "[ROOT.GetName] Joins the Entente"      picture = GFX_report_join_entente
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
             name = "Ok."
-            add_political_power = 50
+        }
+    }
+
+# oil_investments
+    country_event = {
+        id = oil_investments.1
+        title = "France Offers Oil Investments"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Wonderful."
+            give_resource_rights = { receiver = FRA  state = 414 }      add_ideas = idea_oil_investments
+
+            # event
+            FRA = { news_event = { id = oil_investments.2 hours = 6 } }
+        }
+        option = {
+            name = "This is not worth it."
+
+            # ai
+            ai_chance = { modifier = { is_ai = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = oil_investments.2
+        title = "French Investments in Arabian Oil"             picture = GFX_report_oil
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            FRA = { give_guarantee = FROM }
+        }
+
+        option = {
+            name = "Ok."
         }
     }

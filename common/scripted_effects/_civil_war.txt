@@ -45,9 +45,34 @@ setup_civil_war = {
     else = {
         country_event = civil_war.2
     }
+
+    if = { limit = { is_dynamic_country = no } news_event = civil_war.4 }
 }
 
 # special cases
+    atlas_war = {
+        start_civil_war = { 
+            ideology = democratic 
+            set_cosmetic_tag = MOR_democratic
+
+            states = { 462 }   army_ratio = 0.25   troops_and_control = yes 
+        }
+    }
+
+    maritz_uprising = {
+        start_civil_war = { 
+            ideology = monarchism 
+            states = { 275 }   army_ratio = 0.4   troops_and_control = yes 
+        }
+    }
+
+    young_turk_coup = {
+        start_civil_war = { 
+            ideology = communism 
+            states = { 44 48 49 356 586 }   army_ratio = 0.4   troops_and_control = yes 
+        }
+    }
+
     yuan_shikai_army_uprising = {
         set_capital = { state = 613 }       # move capital out of beijing
 

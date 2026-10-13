@@ -19,8 +19,30 @@ on_actions = {
             }
 
         # events
+            AUS = {
+                news_event = { id = emperor_austria.1 months = 46 days = 27 }
+            }
+
+            ENG = {
+                news_event = { id = titanic.1 months = 3 days = 14 }
+            }
+
+            FRA = {
+                country_event = { id = caillaux.1 days = 12}
+                news_event = { id = garros.2 months = 20 days = 3 }
+            }
+
             GER = {
-                country_event = { id = equestrian.1 days = 26 }
+                news_event = { id = equestrian.1 days = 26 }
+                news_event = { id = johannisthal.3 months = 21 days = 17 }
+            }
+
+            GRE = {
+                news_event = { id = konstantinos.1 months = 14 days = 7 }
+            }
+
+            HOL = {
+                news_event = { id = soesterberg.1 months = 7 days = 14 }
             }
 
             JAP = {
@@ -32,14 +54,22 @@ on_actions = {
                 country_event = { id = tibet.1 months = 3 days = 4 }
             }
 
-            USA = {
-                news_event = { id = atmosphere.1 months = 2 days = 5 }
-                news_event = { id = atmosphere.2 months = 3 days = 14 }
-
-                news_event = { id = atmosphere.3 months = 20 days = 3 }
-                news_event = { id = atmosphere.4 months = 21 days = 17 }
+            MOR = {
+                news_event = { id = atlas.1 months = 28 days = 6 }
             }
-            
+
+            RUS = {
+                news_event = { id = muromets.1 months = 21 days = 17 }
+            }
+
+            TUR = {
+                news_event = { id = aviators.1 months = 2 days = 20 }
+            }
+
+            USA = {
+                news_event = { id = harvest.1 months = 68 }
+                news_event = { id = wheat_shortage.1 months = 72 days = 14 }
+            }
         }
     }
 
@@ -53,6 +83,16 @@ on_actions = {
                     }
                     country_event = other.3
                 }       
+
+            # warlord colors
+                if = {
+                    limit = { or = { is_chinese_warlord = yes original_tag = MAN } has_war_with = MAN }
+                    set_cosmetic_tag = MAN_enemy_warlord
+                }
+                if = {
+                    limit = { has_cosmetic_tag = MAN_enemy_warlord not = { has_war_with = MAN } }
+                    drop_cosmetic_tag = yes
+                }
 
             # autonomy loss
                 if = {
@@ -89,6 +129,43 @@ on_actions = {
                 }
                 random = { chance = 10 trigger_civil_war = yes }
             }
+
+            if = {
+                limit = { any_owned_state = { and = { days_since_last_strategic_bombing < 7 not = { has_global_flag = airships_used } } } }
+                news_event = airships.1
+            }
+
+            if = {
+                limit = { has_war = yes has_tech = gas_shells not = { has_global_flag = gas_used } }
+                news_event = gas.1
+            }
+
+            # country specifics
+                if = {
+                    limit = { 
+                        tag = RUS 
+                        and = { communism > 0.25     has_stability < 0.4 } 
+                    }
+                    country_event = astrakhan.1
+                }
+        }
+    }
+
+    on_ace_promoted = {
+        effect = {
+            if = { 
+                limit = { not = { has_global_flag = aces_used } }
+                ROOT = { news_event = aces.1 }
+            }
+        }
+    }
+
+    on_new_term_election = {
+        random_events = {
+            100 = elections_england.1
+            100 = elections_france.1
+            100 = elections_holland.1
+            100 = elections_italy.1
         }
     }
 
@@ -129,11 +206,11 @@ on_actions = {
                         has_idea = war_economy
                     }
                     or = {
-                        longest_war_length > 6      has_stability < 0.25
-                        longest_war_length > 12     has_stability < 0.4
+                        and = { longest_war_length > 6      has_stability < 0.25 }
+                        and = { longest_war_length > 12     has_stability < 0.4 }
                     }
                 }
-                random = { chance = 25      country_event = { id = hunger.1    random_days = 28 } }
+                random = { chance = 10      country_event = { id = hunger.1    random_days = 28 } }
             }
             if = {
                 limit = {

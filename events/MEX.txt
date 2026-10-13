@@ -1,0 +1,61 @@
+add_namespace = american_intervention
+
+# american_intervention
+    country_event = {
+        id = american_intervention.1
+        title = "Invite American Intervention?"
+
+        trigger = {
+            and = { tag = MEX is_subject = no not = { has_war_with = USA } USA = { has_completed_focus = XXX_extend } }
+            has_civil_war = yes surrender_progress > 0.4
+        }
+
+        option = {
+            name = "Yes."
+
+            # event
+            USA = { country_event = { id = american_intervention.2 hours = 6 } }
+        }
+        option = {
+            name = "We don't need this."
+            add_war_support = 0.05
+
+            # ai
+            ai_chance = { modifier = { is_ai = yes } factor = 0 }
+        }
+    }
+
+    country_event = {
+        id = american_intervention.2
+        title = "Intervene in Mexico?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Let's do this."
+            set_autonomy = { target = MEX autonomous_state = autonomy_dominion }
+            
+            random_country = {
+                limit = { original_tag = MEX has_government = communism }
+                USA = { declare_war_on = { target = PREV type = topple_government } }
+            }
+
+            # event
+            news_event = { id = american_intervention.3 hours = 6 }
+        }
+        option = {
+            name = "We are not a side in this."
+        }
+    }
+
+    news_event = {
+        id = american_intervention.3
+        title = "United States Intervene in Mexico"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }

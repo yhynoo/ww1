@@ -1,0 +1,110 @@
+add_namespace = ancient_traditions
+
+add_namespace = defend_ionia
+add_namespace = divide
+
+add_namespace = konstantinos
+
+# ancient_traditions
+    country_event = {
+        id = ancient_traditions.1
+        title = "Modern State or Ancient Glory?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "To the future."
+            add_popularity = { ideology = democratic popularity = 0.025 }
+        }
+        option = {
+            name = "Europe was created in Greece."
+            add_political_power = 50
+        }
+    }
+
+# divide
+    country_event = {
+        id = divide.1
+        title = "Opposition Sabotages our Alliance Commitments!"
+
+        trigger = {
+            has_idea = idea_great_divide
+            or = { is_ally_with = FRA is_ally_with = GER }
+            not = { check_variable = { highest_party_ideology@exclude_ruling_party = token:communism } }
+        }
+        fire_only_once = yes
+
+        option = {
+            name = "Traitors!"
+            trigger_civil_war = yes
+        }
+    }
+
+# defend_ionia
+    country_event = {
+        id = defend_ionia.1
+        title = "Answer to the Attacks on Ionian Greeks?"
+
+        is_triggered_only = yes
+        trigger = { has_completed_focus = GRE_take_ours }
+
+        option = {
+            name = "Yes."
+            declare_war_on = { target = TUR type = take_claimed_state }
+
+            # event
+            news_event = { id = defend_ionia.2 hours = 6 }
+        }
+        option = {
+            name = "We must not act in haste."
+            add_war_support = -0.05
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = defend_ionia.2
+        title = "Greece Attacks Ionia!"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# konstantinos
+    news_event = {
+        id = konstantinos.1
+        title = "Assassination of King George of Greece"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            GRE = { 
+                retire_character = GRE_georgios_i
+                country_event = konstantinos.2 
+            }
+        }
+
+        option = {
+            name = "Tragic."
+        }
+    }
+
+    country_event = {
+        id = konstantinos.2
+        title = "The Great Divide"
+
+        is_triggered_only = yes
+        trigger = { is_in_faction = no }
+
+        option = {
+            name = "Ok."
+            add_ideas = idea_great_divide
+        }
+    }

@@ -1,55 +1,313 @@
-add_namespace = uriankhai
+add_namespace = afghans
+add_namespace = anti_austrian_sentiments
+add_namespace = astrakhan
+add_namespace = orthodox
+add_namespace = muromets
 
-# uriankhai
-    country_event = {
-        id = uriankhai.1
-        title = "The Question of Uriankhai"
+# tree events
+    add_namespace = assault_on_church
+    add_namespace = caucasus
+    add_namespace = duma
+    add_namespace = quiet
+    add_namespace = urals
 
-        trigger = {
-            and = { tag = RUS   has_completed_focus = XXX_stability }
-            329 = { is_owned_and_controlled_by = MON }
+    # assault on church
+        country_event = {
+            id = assault_on_church.1
+            title = "An Assault on the Orthodox Church"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Silence them."
+                add_political_power = -25
+
+                # event
+                hidden_effect = {
+                    if = {
+                        limit = { } # condition
+                        news_event = { id = assault_on_church.2 hours = 6 }
+                    }
+                }
+            }
+            option = {
+                name = "They are free to speak their mind."
+                add_popularity = { ideology = monarchism popularity = -0.05 }
+            }
         }
 
-        option = {
-            name = "Establish an dominion state."
+        news_event = {
+            id = assault_on_church.2
+            title = "Anti-Semitic Unrest Along the Don"
 
-            # event
-            MON = { country_event = { id = uriankhai.2 hours = 6 } }
+            is_triggered_only = yes
+
+            immediate = { add_stability = -0.025 }
+
+            option = {
+                name = "Ok."
+            }
         }
-        option = {
-            name = "Leave it alone."
-            add_war_support = -0.05
+
+    # caucasus
+        news_event = {
+            id = caucasus.1
+            title = "The Caucasus to Awake?"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = { add_war_support = 0.025 }
+
+            option = {
+                name = "Ok."
+            }
         }
-    }
 
-    country_event = {
-        id = uriankhai.2
-        title = "The Independence of Uriankhai"
+    # duma
+        country_event = {
+            id = duma.1
+            title = "‘Kadets’ Question the Tsar’s Authority"
 
-        is_triggered_only = yes
+            is_triggered_only = yes
 
-        option = {
-            name = "Accept this idea."
-            release = URI
-            RUS = { set_autonomy = { target = URI autonomous_state = autonomy_dominion } }
+            option = {
+                name = "Arrest the Duma’s speaker."
+                add_stability = 0.025
 
-            # event
-            news_event = { id = uriankhai.3 hours = 6 }
+                # event
+                hidden_effect = {
+                    if = {
+                        limit = { } # condition
+                        news_event = { id = duma.2 hours = 6 }
+                    }
+                }
+            }
+            option = {
+                name = "Who are they to think they know anything?"
+                add_popularity = { ideology = democratic popularity = 0.025 }
+            }
         }
-        option = {
-            name = "We must oppose this."
-            RUS = { create_wargoal = { target = MON type = puppet_wargoal_focus } }
+
+        news_event = {
+            id = duma.2
+            title = "Anti-Tsarist Opposition Unites"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Ok."
+                add_popularity = { ideology = democratic popularity = 0.05 }
+            }
         }
-    }
 
-    news_event = {
-        id = uriankhai.3
-        title = "Uriankhai State Established in Southern Siberia"
+    # quiet
+        country_event = {
+            id = quiet.1
+            title = "Legacy of Agrarian Modernity"
 
-        is_triggered_only = yes
-        major = yes
+            is_triggered_only = yes
 
-        option = {
-            name = "Ok."
+            option = {
+                name = "It is time to work."
+                add_ideas = idea_twenty_years_of_quiet
+
+                # event
+                news_event = { id = quiet.2 hours = 6 }
+            }
+            option = {
+                name = "His assassination was the shout of those set aside."
+                add_popularity = { ideology = communism popularity = 0.05 }
+            }
         }
-    }
+
+        news_event = {
+            id = quiet.2
+            title = "‘Twenty Years of Quiet’"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+
+    # urals
+        country_event = {
+            id = urals.1
+            title = "Call of the Eastern Lands"
+
+            is_triggered_only = yes
+
+            immediate = {
+                country_event = { id = urals.2   days = 14 }
+            }
+
+            option = {
+                name = "Ok."
+                add_political_power = 25
+            }
+        }
+
+        country_event = {
+            id = urals.2
+            title = "Where the Empire Thins"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Organize settlement campaigns."
+                add_timed_idea = { idea = idea_ural_settlements years = 2 }
+
+                # event
+                news_event = { id = urals.3 hours = 6 }
+            }
+            option = {
+                name = "We have other things to do."
+                add_stability = 0.05
+            }
+        }
+
+        news_event = {
+            id = urals.3
+            title = "Development Efforts Across the Urals"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Interesting."
+            }
+        }
+
+# flavor
+    # afghans
+        country_event = {
+            id = afghans.1
+            title = "Send Aid to the Afghans?"
+
+            trigger = {
+                has_idea = idea_grain_investments
+                not = { has_war_with = AFG }    AFG = { has_war_with = RAJ }
+            }
+
+            option = {
+                name = "They are fighting for our cause."
+                send_equipment = { equipment = infantry_equipment amount = 600 target = AFG }
+
+                # event
+                AFG = { country_event = aid_arrives.1 }
+            }
+            option = {
+                name = "Why would we?"
+            }
+        }
+
+    # anti_austrian_sentiments
+        country_event = {
+            id = anti_austrian_sentiments.1
+            title = "Anti-Austrian Sentiments in Western Ukraine?"
+
+            trigger = { tag = RUS       UKR = { exists = no }       AUS = { has_idea = idea_oil_strike } }
+            fire_only_once = yes
+
+            option = {
+                name = "Stoke the unrest."
+                every_state = { limit = { is_core_of = GAL }    add_claim_by = RUS }
+
+                # event
+                news_event = { id = anti_austrian_sentiments.2 hours = 6 }
+            }
+            option = {
+                name = "There is nothing for us in it."
+                add_war_support = -0.01
+            }
+        }
+
+        news_event = {
+            id = anti_austrian_sentiments.2
+            title = "Anti-Austrian Sentiments Spread in Western Ukraine"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                add_named_threat = { name = "Anti-Austrian Sentiments in Ukraine" threat = 1 }
+                AUS = { add_stability = -0.05 }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+
+    # astrakhan
+        news_event = {
+            id = astrakhan.1
+            title = "Trotsky Seen in Astrakhan"         picture = GFX_report_trotsky
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                country_event = { id = astrakhan.2   days = 14 }
+            }
+
+            option = {
+                name = "Interesting."
+            }
+        }
+
+        country_event = {
+            id = astrakhan.2
+            title = "Socialist Unrest in the Saratov Area"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Send in the troops."
+                add_political_power = -25
+
+                # event
+                random = { chance = 50 country_event = { id = astrakhan.3 hours = 14 } }
+            }
+            option = {
+                name = "Doesn't matter."
+                add_popularity = { ideology = communism popularity = 0.05 }
+            }
+        }
+
+        country_event = {
+            id = astrakhan.3
+            title = "Tragedy on the Volga"
+
+            is_triggered_only = yes
+
+            immediate = {
+                add_stability = -0.025
+            }
+
+            option = {
+                name = "Awful."
+            }
+        }
+
+    # muromets
+        news_event = {
+            id = muromets.1
+            title = "Sikorsky’s ‘Ilya Muromets’ Takes to the Air!"          picture = GFX_report_muromets
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                add_political_power = 15
+                add_tech_bonus = { bonus = 1  uses = 1    category = air_equipment_tech }
+            }
+
+            option = {
+                name = "It’s so huge!"
+            }
+        }
+
+#

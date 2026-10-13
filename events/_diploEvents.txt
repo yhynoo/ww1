@@ -1,9 +1,26 @@
+add_namespace = aid_arrives
 add_namespace = alliance
 add_namespace = armistice
 add_namespace = civil_war
 add_namespace = defiant
 add_namespace = demands
 add_namespace = guarantees
+add_namespace = invite
+
+# aid_arrives
+    country_event = {
+        id = aid_arrives.1
+        title = "[FROM.GetAdjective] Arms Arrive in the Country"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Ok."
+            add_opinion_modifier = {
+                target = FROM   modifier = sent_arms
+            }
+        }
+    }
 
 # alliance
     country_event = {
@@ -85,6 +102,18 @@ add_namespace = guarantees
         immediate = { clr_country_flag = during_civil_war }
     }
 
+    news_event = {
+        id = civil_war.4
+        title = "Civil War in [ROOT.GetNameDef]"        picture = GFX_report_civil_war
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
 # defiant
     country_event = {
         id = defiant.1
@@ -152,7 +181,7 @@ add_namespace = guarantees
 
     country_event = {
         id = demands.3
-        title = "[FROM.GetName] Demands Alignment!"
+        title = "[FROM.GetName] Demands We Align with Them"
         desc = demands.3.d
 
         is_triggered_only = yes
@@ -205,5 +234,36 @@ add_namespace = guarantees
 
         option = {
             name = "Unfortunate."
+        }
+    }
+
+# invite
+    country_event = {
+        id = invite.1
+        title = "[FROM.GetName] Offers an Alliance"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            FROM = { add_to_faction = ROOT news_event = { id = invite.2 hours = 6 } }
+        }
+        option = {
+            name = "We are not interested."
+
+            # ai
+            ai_chance = { modifier = { is_ai = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = invite.2
+        title = "[FROM.GetName] Join the [ROOT.GetFactionName]"     picture = GFX_report_alliance
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
         }
     }

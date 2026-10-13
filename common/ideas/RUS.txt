@@ -2,7 +2,7 @@ ideas = {
     country = {
         idea_anti_authoritarian_intelligentsia = {
             modifier = {
-                monarchism_drift = -0.03
+                monarchism_drift = -0.05
             }
             cancel = {
                 not = { has_government = monarchism }
@@ -18,6 +18,18 @@ ideas = {
             }
         }
 
+        idea_grain_investments = {
+            modifier = {
+                production_speed_infrastructure_factor = 0.1
+                stability_factor = 0.05
+            }
+            cancel = {
+                or = {
+                    has_civil_war = yes
+                    has_war_with = GER
+                }
+            }
+        }
         idea_twenty_years_of_quiet = {
             modifier = {
                 production_speed_industrial_complex_factor = 0.1
@@ -27,5 +39,12 @@ ideas = {
                 has_war = yes
             }
         }
+        idea_ural_settlements = {
+            modifier = {
+                production_speed_rail_way_factor = 0.05
+                monthly_population = 0.05
+            }
+        }
+        
     }
 }

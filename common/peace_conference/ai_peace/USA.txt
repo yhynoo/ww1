@@ -1,0 +1,11 @@
+peace_ai_desires = {
+    # don't take MEX
+        usa_leave_mex_alone = {
+            peace_action_type = { take_states }
+            enable = { 
+                original_tag = USA
+                ROOT.FROM.FROM.FROM = { is_core_of = MEX } 
+            }
+            ai_desire = -600
+        }
+}

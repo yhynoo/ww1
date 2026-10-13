@@ -1,14 +1,41 @@
 ideas = {
     country = {
-        idea_admiralty_office = {
+        idea_after_the_debacle = {
             modifier = {
-                experience_gain_navy_factor = 0.1
-                naval_doctrine_cost_factor = -0.1
+                war_support_factor = -0.25
             }
         }
-        idea_debacle_of_mansion_house = {
+        idea_great_unrest = {
             modifier = {
-                war_support_factor = -0.15
+                local_resources_factor = -0.15
+                stability_factor = -0.1
+            }
+        }
+
+        idea_terms_of_engagement = {
+            modifier = {
+                guarantee_tension = -0.25
+            }
+        }
+        idea_admiralty_office = {
+            modifier = {
+                defensive_war_stability_factor = 0.05
+                production_speed_dockyard_factor = 0.05
+            }
+        }
+        idea_coal_and_steel = {
+            modifier = {
+                local_resources_factor = 0.05
+                industrial_capacity_dockyard = 0.1
+            }
+        }
+        idea_imperial_war_cabinet = {
+            modifier = {
+                war_stability_factor = 0.05
+                war_support_factor = 0.05
+            }
+            cancel = {
+                has_war = no
             }
         }
     }

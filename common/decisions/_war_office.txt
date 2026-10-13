@@ -91,4 +91,49 @@ _war_office = {
             FROM = { country_event = { id = armistice.1 hours = 6 random_hours = 6 } } 
         }
     }
+
+# instructors
+    invite_army_instructors = {
+        visible = { is_ally_with = FROM }
+
+        icon = generic_military
+        cost = 25
+
+        targets = { GER }
+        ai_will_do = { modifier = { always = yes add = 6 } }
+        days_remove = 90    days_re_enable = 180
+
+        modifier = {
+            experience_gain_army_factor = 0.05
+        }
+    }
+    invite_air_instructors = {
+        visible = { is_ally_with = FROM }
+
+        icon = generic_air
+        cost = 25
+
+        targets = { FRA }
+        ai_will_do = { modifier = { always = yes add = 6 } }
+        days_remove = 90    days_re_enable = 180
+
+        modifier = {
+            experience_gain_air_factor = 0.05
+        }
+    }
+    invite_navy_instructors = {
+        visible = { is_ally_with = FROM }
+
+        icon = generic_navy
+        cost = 25
+
+        targets = { ENG }
+        ai_will_do = { modifier = { always = yes add = 6 } }
+        days_remove = 90    days_re_enable = 180
+
+        modifier = {
+            experience_gain_navy_factor = 0.05
+        }
+    }
+
 }

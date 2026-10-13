@@ -11,6 +11,8 @@
         x = 0 y = 0
         cost = 8
 
+        ai_will_do = { base = 1.5 }
+
         completion_reward = {
             state_government_effect = yes
         }
@@ -23,10 +25,11 @@
         mutually_exclusive = { focus = XXX_deterrence }
 
         allow_branch = { has_dominion_focuses = no }
-        ai_will_do = { modifier = { has_war_support < 0.5 factor = 0.5 } } 
+        ai_will_do = { modifier = { or = { original_tag = AUS original_tag = ENG original_tag = FRA original_tag = GER original_tag = ITA original_tag = SPA original_tag = USA } } factor = 1.5 } 
 
         available = {
             civil_war_government_lock = yes
+            state_extend_trigger = yes
         }
 
         relative_position_id = XXX_government
@@ -45,6 +48,7 @@
 
         available = {
             civil_war_government_lock = yes
+            state_claims_trigger = yes
         }
 
         ai_will_do = { modifier = { has_war = yes factor = 0 } }
@@ -84,6 +88,7 @@
 
         available = {
             civil_war_government_lock = yes
+            state_take_ours_trigger = yes
         }
 
         ai_will_do = { modifier = { has_war = yes factor = 0 } }
@@ -104,7 +109,7 @@
         mutually_exclusive = { focus = XXX_extend }
 
         allow_branch = { has_dominion_focuses = no }
-        ai_will_do = { modifier = { has_war_support > 0.5 factor = 0.5 } }
+        # ai_will_do = { modifier = { has_war_support > 0.5 factor = 0.5 } }
 
         available = {
             civil_war_government_lock = yes
@@ -156,7 +161,7 @@
         cost = 10
 
         completion_reward = {
-            add_stability = 0.05
+            state_stability_effect = yes
         }
     }
 
@@ -168,6 +173,11 @@
 
         available = {
             civil_war_government_lock = yes
+            state_ethnocentrism_trigger = yes
+        }
+
+        bypass = {
+            state_ethnocentrism_bypass = yes
         }
 
         relative_position_id = XXX_stability
@@ -186,6 +196,7 @@
 
         available = {
             civil_war_government_lock = yes
+            state_agrarianism_trigger = yes
         }
 
         relative_position_id = XXX_stability
@@ -223,6 +234,7 @@
 
         available = {
             civil_war_government_lock = yes
+            state_administration_trigger = yes
         }
 
         relative_position_id = XXX_unity

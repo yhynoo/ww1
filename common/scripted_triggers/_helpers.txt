@@ -16,6 +16,13 @@ has_dominion_focuses = {
     is_subject = yes
 }
 
+can_join_their_faction = {
+    custom_trigger_tooltip = {
+        tooltip = tt_can_join_their_faction
+        is_faction_leader = yes     PREV = { is_in_faction = no is_subject = no }
+    }
+}
+
 warlord_states_destroyed = {
     custom_trigger_tooltip = {
         tooltip = tt_warlord_states_destroyed

@@ -15,12 +15,14 @@ trigger_uprising = {
     }
 
     save_event_target_as = uprising_country 
+    news_event = uprising.1
+
     every_country = {
         limit = { 
             not = { tag = PREV } 
             and = { any_state = { is_owned_by = PREV.PREV or = { is_core_of = PREV is_claimed_by = PREV } } }
         }
-        country_event = uprising.1
+        country_event = uprising.2
     }
 
     # control

@@ -1,0 +1,61 @@
+aus_army_reforms = {
+    democratize_the_officer_corps = {
+        icon = generic_civil_support
+        cost = 100
+
+        fire_only_once = yes
+        available = { has_idea = idea_aristocratic_officers }
+        days_remove = 120
+
+        modifier = {
+            democratic_drift = 0.05
+        }
+
+        remove_effect = {
+            remove_ideas = idea_aristocratic_officers
+        }
+    }
+    organize_the_einjahrige_officers = {
+        icon = generic_military
+        cost = 50
+
+        days_remove = 180
+
+        available = {
+            has_war_support > 0.4
+        }
+
+        modifier = {
+            training_time_factor = -0.1
+            weekly_manpower = 200
+        }
+    }
+    establish_the_luftfahrtruppe_schools = {
+        icon = generic_air
+        cost = 25
+
+        fire_only_once = yes
+
+        complete_effect = {
+            add_ideas = idea_luftfahrtruppe_schools
+        }
+    }
+    subsidies_to_the_oeffag = {
+        icon = generic_research
+        cost = 25
+
+        days_remove = 120
+
+        available = {
+            has_completed_focus = XXX_aircraft
+        }
+
+        modifier = {
+            consumer_goods_factor = 0.05
+        }
+
+        remove_effect = {
+            add_tech_bonus = { bonus = 0.5  uses = 2    category = air_equipment_tech }
+        }
+    }
+}

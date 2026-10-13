@@ -1,36 +1,15 @@
 technologies = {
 
+    @1910 = 4
     @1912 = 7
     @1914 = 10
-    @1915 = 11.5
     @1916 = 13
     @1918 = 16
     @1920 = 19
 
     # capital ships
-    capital_ship_1904 = {
-        enable_equipments = { heavy_cruiser_1 }
-        categories = { naval_equipment_tech capital_ship_tech }
-
-        research_cost = 1.5
-        start_year = 1904
-
-        path = {
-            leads_to_tech = dreadnought_1912
-            research_cost_coeff = 1
-        }
-        path = {
-            leads_to_tech = light_cruiser_1912
-            research_cost_coeff = 1
-        }
-
-        folder = {
-            name = naval_folder
-            position = { x = 1 y = 1 }
-        }
-    }
     dreadnought_1912 = {
-        enable_equipments = { heavy_cruiser_2 }
+        enable_equipments = { heavy_cruiser_1 }
         categories = { naval_equipment_tech capital_ship_tech }
 
         research_cost = 2.5
@@ -52,7 +31,7 @@ technologies = {
         }
     }
     dreadnought_1916 = {
-        enable_equipments = { heavy_cruiser_3 }
+        enable_equipments = { heavy_cruiser_2 }
         categories = { naval_equipment_tech capital_ship_tech }
 
         research_cost = 2.5
@@ -74,7 +53,7 @@ technologies = {
         }
     }
     dreadnought_1920 = {
-        enable_equipments = { heavy_cruiser_4 }
+        enable_equipments = { heavy_cruiser_3 }
         categories = { naval_equipment_tech capital_ship_tech }
 
         research_cost = 2.5
@@ -91,8 +70,25 @@ technologies = {
         }
     }
 
-    light_cruiser_1912 = {
+    line_ship_1904 = {
         enable_equipments = { light_cruiser_1 }
+        categories = { naval_equipment_tech screen_tech }
+
+        research_cost = 1.5
+        start_year = 1904
+
+        path = {
+            leads_to_tech = light_cruiser_1912
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = naval_folder
+            position = { x = 0 y = 1 }
+        }
+    }
+    light_cruiser_1912 = {
+        enable_equipments = { light_cruiser_2 }
         categories = { naval_equipment_tech screen_tech }
 
         research_cost = 2.5
@@ -105,11 +101,11 @@ technologies = {
 
         folder = {
             name = naval_folder
-            position = { x = 2 y = @1912 }
+            position = { x = 0 y = @1912 }
         }
     }
     light_cruiser_1916 = {
-        enable_equipments = { light_cruiser_2 }
+        enable_equipments = { light_cruiser_3 }
         categories = { naval_equipment_tech screen_tech }
 
         research_cost = 2.5
@@ -122,11 +118,11 @@ technologies = {
 
         folder = {
             name = naval_folder
-            position = { x = 2 y = @1916 }
+            position = { x = 0 y = @1916 }
         }
     }
     light_cruiser_1920 = {
-        enable_equipments = { light_cruiser_3 }
+        enable_equipments = { light_cruiser_4 }
         categories = { naval_equipment_tech screen_tech }
 
         research_cost = 2.5
@@ -134,7 +130,84 @@ technologies = {
 
         folder = {
             name = naval_folder
-            position = { x = 2 y = @1920 }
+            position = { x = 0 y = @1920 }
+        }
+    }
+
+    wireless_telegraphy = {
+        categories = { naval_equipment_tech }
+
+        heavy_cruiser = {
+            surface_detection = 0.15
+        }
+        light_cruiser = {
+            surface_detection = 0.1
+        }
+
+        research_cost = 1
+        start_year = 1910
+
+        path = {
+            leads_to_tech = centralized_director
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = naval_folder
+            position = { x = 0 y = @1910 }
+        }
+    }
+    centralized_director = {
+        categories = { naval_equipment_tech }
+
+        heavy_cruiser = {
+            hg_attack = 0.1
+            lg_attack = 0.15
+        }
+        light_cruiser = {
+            hg_attack = 0.1
+            lg_attack = 0.15
+        }
+        destroyer = {
+            hg_attack = 0.1
+            lg_attack = 0.15
+        }
+
+        research_cost = 1
+        start_year = 1914
+
+        path = {
+            leads_to_tech = over_the_horizon
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = naval_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+    over_the_horizon = {
+        categories = { naval_equipment_tech }
+
+        heavy_cruiser = {
+            hg_attack = 0.2
+            lg_attack = 0.1
+        }
+        light_cruiser = {
+            hg_attack = 0.2
+            lg_attack = 0.1
+        }
+        destroyer = {
+            hg_attack = 0.2
+            lg_attack = 0.1
+        }
+
+        research_cost = 1
+        start_year = 1918
+
+        folder = {
+            name = naval_folder
+            position = { x = 0 y = @1918 }
         }
     }
 
@@ -203,6 +276,111 @@ technologies = {
         }
     }
 
+    anti_sub_nets = {
+        categories = { naval_equipment_tech }
+
+        heavy_cruiser = {
+            sub_detection = 0.05
+            armor_value = 0.05
+        }
+        light_cruiser = {
+            sub_detection = 0.05
+            armor_value = 0.05
+        }
+        destroyer = {
+            sub_detection = 0.05
+            armor_value = 0.05
+        }
+
+        research_cost = 1
+        start_year = 1912
+
+        path = {
+            leads_to_tech = depth_charges
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = naval_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+    depth_charges = {
+        categories = { naval_equipment_tech }
+
+        light_cruiser = {
+            sub_detection = 0.1
+            sub_attack = 0.1
+        }
+        destroyer = {
+            sub_detection = 0.1
+            sub_attack = 0.1
+        }
+
+        research_cost = 1
+        start_year = 1916
+
+        path = {
+            leads_to_tech = active_echo
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = naval_folder
+            position = { x = 0 y = @1916 }
+        }
+    }
+    active_echo = {
+        categories = { naval_equipment_tech }
+
+        light_cruiser = {
+            sub_detection = 0.15
+            sub_attack = 0.1
+        }
+        destroyer = {
+            sub_detection = 0.1
+            sub_attack = 0.1
+        }
+
+        research_cost = 1
+        start_year = 1920
+
+        folder = {
+            name = naval_folder
+            position = { x = 0 y = @1920 }
+        }
+    }
+
+    landing_craft = {
+        naval_invasion_capacity = 6
+        categories = { marines_tech }
+
+        research_cost = 1
+        start_year = 1912
+
+        path = {
+            leads_to_tech = landing_craft_2
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = naval_folder
+            position = { x = 0 y = @1912 }
+        }
+    }
+    landing_craft_2 = {
+        naval_invasion_capacity = 6
+        categories = { marines_tech }
+
+        research_cost = 1
+        start_year = 1918
+
+        folder = {
+            name = naval_folder
+            position = { x = 0 y = @1918 }
+        }
+    }
+
     # submarines
     submarine_1904 = {
         enable_equipments = { submarine_1 }
@@ -267,16 +445,22 @@ technologies = {
             position = { x = 0 y = @1920 }
         }
     }
-    
-    landing_craft = {
-        naval_invasion_capacity = 6
-        categories = { marines_tech }
+
+    torpedo_gyroscopes = {
+        categories = { naval_equipment_tech }
+
+        submarine = {
+            torpedo_attack = 0.1
+        }
+        destroyer = {
+            torpedo_attack = 0.1
+        }
 
         research_cost = 1
         start_year = 1912
 
         path = {
-            leads_to_tech = landing_craft_2
+            leads_to_tech = diesel_torpedo_engines
             research_cost_coeff = 1
         }
 
@@ -285,12 +469,56 @@ technologies = {
             position = { x = 0 y = @1912 }
         }
     }
-    landing_craft_2 = {
-        naval_invasion_capacity = 6
-        categories = { marines_tech }
+    diesel_torpedo_engines = {
+        categories = { naval_equipment_tech }
+
+        submarine = {
+            torpedo_attack = 0.1
+        }
+        destroyer = {
+            torpedo_attack = 0.1
+        }
 
         research_cost = 1
-        start_year = 1915
+        start_year = 1918
+
+        folder = {
+            name = naval_folder
+            position = { x = 0 y = @1918 }
+        }
+    }
+
+    emergency_oxygen_devices = {
+        categories = { naval_equipment_tech }
+
+        submarine = {
+            reliability = 0.05
+            sub_visibility = -0.05
+        }
+
+        research_cost = 1
+        start_year = 1914
+
+        path = {
+            leads_to_tech = silent_electric_motors
+            research_cost_coeff = 1
+        }
+
+        folder = {
+            name = naval_folder
+            position = { x = 0 y = @1914 }
+        }
+    }
+    silent_electric_motors = {
+        categories = { naval_equipment_tech }
+
+        submarine = {
+            reliability = 0.05
+            sub_visibility = -0.15
+        }
+
+        research_cost = 1
+        start_year = 1918
 
         folder = {
             name = naval_folder
@@ -306,13 +534,8 @@ technologies = {
         research_cost = 1
         start_year = 1912
 
-        ai_will_do = {
-            base = 0
-            modifier = { or = { original_tag = ENG original_tag = JAP original_tag = USA } add = 1 }
-        }
-
         path = {
-            leads_to_tech = carrier_1916
+            leads_to_tech = carrier_1918
             research_cost_coeff = 1
         }
 
@@ -321,43 +544,16 @@ technologies = {
             position = { x = 0 y = @1912 }
         }
     }
-    carrier_1916 = {
+    carrier_1918 = {
         enable_equipments = { carrier_2 }
         categories = { naval_equipment_tech aircraft_carrier_tech }
 
         research_cost = 1
-        start_year = 1916
-
-        ai_will_do = {
-            base = 0
-            modifier = { or = { original_tag = ENG original_tag = JAP original_tag = USA } add = 1 }
-        }
-
-        path = {
-            leads_to_tech = carrier_1920
-            research_cost_coeff = 1
-        }
+        start_year = 1918
 
         folder = {
             name = naval_folder
-            position = { x = 0 y = @1916 }
-        }
-    }
-    carrier_1920 = {
-        enable_equipments = { carrier_3 }
-        categories = { naval_equipment_tech aircraft_carrier_tech }
-
-        research_cost = 1
-        start_year = 1920
-
-        ai_will_do = {
-            base = 0
-            modifier = { or = { original_tag = ENG original_tag = JAP original_tag = USA } add = 1 }
-        }
-
-        folder = {
-            name = naval_folder
-            position = { x = 0 y = @1920 }
+            position = { x = 0 y = @1918 }
         }
     }
 }

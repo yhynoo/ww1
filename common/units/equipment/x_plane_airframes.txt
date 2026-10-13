@@ -162,62 +162,12 @@ duplicate_archetypes = {
 }
 
 equipments = {
-	fighter_equipment_0 = {
-		year = 1910
-
-		archetype = small_plane_airframe
-		priority = 5
-
-		allow_mission_type = {
-			recon
-			air_superiority
-			interception
-		}
-
-		air_range = 200
-		maximum_speed = 180
-		air_agility = 45
-		air_attack = 2
-		air_defence = 1.2
-
-		naval_strike_attack = 1
-		naval_strike_targetting = 10
-
-		upgrades = {
-			plane_gun_upgrade
-			plane_range_upgrade
-			plane_engine_upgrade
-			plane_reliability_upgrade
-		}
-
-		air_superiority = 1
-		reliability = 0.6
-
-		# Air vs Navy - low damage / high hit chance / easy to hurt
-		naval_strike_attack = 1
-		naval_strike_targetting = 10
-		surface_detection = 10 # For airwing of 100 planes (Destroyer I: 20 surface detection)
-		sub_detection = 2.5 # For airwing of 100 planes (Destroyer I: 5 sub detection )
-
-		#Space taken in convoy
-		lend_lease_cost = 8
-
-		build_cost_ic = 6.4
-		resources = {
-			tungsten = 1
-			rubber = 1
-		}
-
-		manpower = 20
-		fuel_consumption = 0.21
-	}
-
 	# Basic Fighter
 	fighter_equipment_1 = {
 		year = 1914
 
 		archetype = small_plane_airframe
-		parent = fighter_equipment_0
+		parent = CAS_equipment_0
 		priority = 10
 
 		air_range = 260
@@ -416,7 +366,7 @@ equipments = {
 	 ##    #       #   ###  ##  #  #  #  ### #  # 
 
 	# Early Carrier Fighter
-	cv_fighter_equipment_0 = {
+	cv_CAS_equipment_0 = {
 		year = 1933
 
 		archetype = cv_small_plane_airframe
@@ -469,7 +419,7 @@ equipments = {
 		year = 1936
 
 		archetype = cv_small_plane_airframe
-		parent = cv_fighter_equipment_0
+		parent = cv_CAS_equipment_0
 		carrier_capable = yes
 		priority = 30
 
@@ -569,6 +519,57 @@ equipments = {
 	 ##  #  # ##  
 
 	# Basic CAS
+	CAS_equipment_0 = {
+		year = 1910
+
+		archetype = small_plane_cas_airframe
+		priority = 5
+
+		allow_mission_type = {
+			cas
+			attack_logistics
+			naval_bomber
+			port_strike
+		}
+
+		air_range = 200
+		maximum_speed = 180
+		air_agility = 45
+		air_attack = 2
+		air_defence = 1.2
+
+		naval_strike_attack = 1
+		naval_strike_targetting = 10
+
+		upgrades = {
+			plane_gun_upgrade
+			plane_range_upgrade
+			plane_engine_upgrade
+			plane_reliability_upgrade
+		}
+
+		air_superiority = 1
+		reliability = 0.6
+
+		# Air vs Navy - low damage / high hit chance / easy to hurt
+		naval_strike_attack = 1
+		naval_strike_targetting = 10
+		surface_detection = 10 # For airwing of 100 planes (Destroyer I: 20 surface detection)
+		sub_detection = 2.5 # For airwing of 100 planes (Destroyer I: 5 sub detection )
+
+		#Space taken in convoy
+		lend_lease_cost = 8
+
+		build_cost_ic = 6.4
+		resources = {
+			tungsten = 1
+			rubber = 1
+		}
+
+		manpower = 20
+		fuel_consumption = 0.21
+	}
+
 	CAS_equipment_1 = {
 		year = 1914
 

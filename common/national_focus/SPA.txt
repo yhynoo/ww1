@@ -1,0 +1,397 @@
+focus_tree = {
+    id = SPA_focus
+    country = { factor = 0  modifier = { add = 20   original_tag = SPA } }
+    continuous_focus_position = { x = 88 y = 650 }
+    
+    # algeria
+        focus = {
+            id = SPA_anarchists
+            icon = GFX_focus_SPA_anarchists
+
+            available = {
+                has_stability > 0.4
+            }
+
+            x = 4 y = 0
+            cost = 10
+
+            completion_reward = {
+                add_popularity = { ideology = ROOT popularity = 0.025 }
+            }
+        }
+
+        focus = {
+            id = SPA_garrisons
+            icon = GFX_focus_SPA_garrisons
+            prerequisite = { focus = SPA_anarchists }
+
+            mutually_exclusive = { focus = SPA_agrarians }
+
+            available = {
+            }
+
+            relative_position_id = SPA_anarchists
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_timed_idea = { idea = idea_strengthened_garrisons years = 1 }
+            }
+        }
+
+        focus = {
+            id = SPA_agrarians
+            icon = GFX_focus_SPA_agrarians
+            prerequisite = { focus = SPA_anarchists }
+
+            mutually_exclusive = { focus = SPA_garrisons }
+
+            available = {
+            }
+
+            relative_position_id = SPA_anarchists
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_timed_idea = { idea = idea_agrarians years = 2 }
+                random_owned_controlled_state = { add_resource = { type = tungsten amount = 4 } add_extra_state_shared_building_slots = 1 }
+            }
+        }
+
+        focus = {
+            id = SPA_touareg
+            icon = GFX_focus_SPA_touareg
+            prerequisite = { focus = SPA_garrisons }
+
+            available = {
+            }
+
+            relative_position_id = SPA_garrisons
+            x = -2 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_ideas = idea_touareg_alliance
+            }
+        }
+
+        focus = {
+            id = SPA_quash_unrest
+            icon = GFX_focus_SPA_quash_unrest
+            prerequisite = { focus = SPA_garrisons focus = SPA_agrarians }
+
+            available = {
+                has_stability > 0.6
+            }
+
+            relative_position_id = SPA_garrisons
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                remove_ideas = idea_anarchists_in_the_countryside
+
+                custom_effect_tooltip = tt_spanish_civil_war
+            }
+        }
+
+        focus = {
+            id = SPA_mandatory_works
+            icon = GFX_focus_generic_infrastructure
+            prerequisite = { focus = SPA_quash_unrest }
+
+            available = {
+            }
+
+            relative_position_id = SPA_quash_unrest
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_timed_idea = { idea = idea_mandatory_works years = 1 }
+                174 = { add_resource = { type = chromium amount = 4 } add_extra_state_shared_building_slots = 1 }
+            }
+        }
+
+    # echoes
+        focus = {
+            id = SPA_ashes
+            icon = GFX_focus_SPA_ashes
+
+            available = {
+            }
+
+            x = 10 y = 0
+            cost = 10
+
+            completion_reward = {
+                add_stability = 0.05
+            }
+        }
+
+        focus = {
+            id = SPA_liberals
+            icon = GFX_focus_SPA_liberals
+            prerequisite = { focus = SPA_ashes }
+
+            mutually_exclusive = { focus = SPA_weyler }
+
+            available = {
+            }
+
+            relative_position_id = SPA_ashes
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_timed_idea = { idea = idea_spain_liberal_cabinet years = 2 }
+            }
+        }
+
+        focus = {
+            id = SPA_weyler
+            icon = GFX_focus_SPA_weyler
+            prerequisite = { focus = SPA_ashes }
+
+            mutually_exclusive = { focus = SPA_liberals }
+
+            available = {
+                has_government = monarchism
+            }
+
+            relative_position_id = SPA_ashes
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                promote_character = SPA_valeriano_weyler
+            }
+        }
+
+        focus = {
+            id = SPA_central_america
+            icon = GFX_focus_SPA_central_america
+            prerequisite = { focus = SPA_liberals }
+
+            available = {
+                
+            }
+
+            relative_position_id = SPA_liberals
+            x = -2 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_timed_idea = { idea = idea_idealism years = 2 }
+            }
+        }
+
+        focus = {
+            id = SPA_harbors
+            icon = GFX_focus_generic_dreadnoughts
+            prerequisite = { focus = SPA_liberals focus = SPA_weyler }
+
+            available = {
+                controls_state = 171
+                controls_state = 178
+            }
+
+            relative_position_id = SPA_liberals
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                171 = {
+                    add_building_construction = { type = dockyard level = 2 instant_build = yes }
+                    add_extra_state_shared_building_slots = 1
+                }
+                178 = {
+                    add_building_construction = { type = dockyard level = 1 instant_build = yes }
+                    add_resource = { type = chromium amount = 4 }
+                    hidden_effect = { add_extra_state_shared_building_slots = 1 }
+                }
+            }
+        }
+
+        focus = {
+            id = SPA_ambitions
+            icon = GFX_focus_generic_all_for_the_front
+            prerequisite = { focus = SPA_weyler }
+
+            available = {
+                has_war_support > 0.5
+            }
+
+            relative_position_id = SPA_weyler
+            x = 3 y = 1
+            cost = 10
+
+            completion_reward = {
+                custom_effect_tooltip = tt_to_do
+            }
+        }
+
+        focus = {
+            id = SPA_entente
+            icon = GFX_focus_SPA_entente
+            prerequisite = { focus = SPA_harbors }
+
+            mutually_exclusive = { focus = SPA_our_own }
+
+            available = {
+                FRA = { can_join_their_faction = yes }
+            }
+
+            relative_position_id = SPA_harbors
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+                every_country = { limit = { tag = FRA } country_event = join_entente.1 }
+            }
+        }
+
+        focus = {
+            id = SPA_our_own
+            icon = GFX_focus_generic_state
+            prerequisite = { focus = SPA_harbors }
+
+            mutually_exclusive = { focus = SPA_entente }
+
+            available = {
+            }
+
+            relative_position_id = SPA_harbors
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                add_war_support = 0.025
+                if = { limit = { is_faction_leader = no } custom_effect_tooltip = tt_extend }
+                hidden_effect = { set_rule = { can_create_factions = yes } }
+            }
+        }
+
+        focus = {
+            id = SPA_atlas_demands
+            icon = GFX_focus_SPA_atlas_demands
+            prerequisite = { focus = SPA_entente focus = SPA_our_own }
+
+            available = {
+                has_war_support > 0.4
+            }
+
+            relative_position_id = SPA_entente
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                every_state = { limit = { is_core_of = MOR } add_claim_by = SPA }
+                hidden_effect = { news_event = atlas_claims.1 }
+            }
+        }
+
+        focus = {
+            id = SPA_annex_morocco
+            icon = GFX_focus_SPA_annex_morocco
+            prerequisite = { focus = SPA_atlas_demands }
+
+            available = {
+                controls_state = 461
+                controls_state = 462
+            }
+
+            relative_position_id = SPA_atlas_demands
+            x = 0 y = 1
+            cost = 10
+
+            completion_reward = {
+                every_state = { limit = { is_core_of = MOR } add_core_of = SPA }
+            }
+        }
+
+        focus = {
+            id = SPA_colombia
+            icon = GFX_focus_SPA_colombia
+            prerequisite = { focus = SPA_ambitions }
+
+            mutually_exclusive = { focus = SPA_cuba }
+
+            available = {
+                is_faction_leader = yes
+            }
+
+            relative_position_id = SPA_ambitions
+            x = -1 y = 1
+            cost = 10
+
+            completion_reward = {
+                give_guarantee = COL
+            }
+        }
+
+        focus = {
+            id = SPA_cuba
+            icon = GFX_focus_SPA_cuba
+            prerequisite = { focus = SPA_ambitions }
+
+            mutually_exclusive = { focus = SPA_colombia }
+
+            available = {
+            }
+
+            relative_position_id = SPA_ambitions
+            x = 1 y = 1
+            cost = 10
+
+            completion_reward = {
+                every_state = { limit = { or = { state = 348 state = 315 state = 319 } } add_claim_by = SPA }
+            }
+        }
+
+        focus = {
+            id = SPA_usa
+            icon = GFX_focus_SPA_usa
+            prerequisite = { focus = SPA_cuba }
+
+            available = {
+                can_declare_war_on = USA
+            }
+
+            relative_position_id = SPA_cuba
+            x = 0 y = 1
+            cost = 10
+
+            will_lead_to_war_with = USA
+
+            completion_reward = {
+                create_wargoal = { target = USA type = take_claimed_state }
+            }
+        }
+
+        focus = {
+            id = SPA_argentina
+            icon = GFX_focus_SPA_argentina
+            prerequisite = { focus = SPA_ambitions }
+
+            available = {
+                is_faction_leader = yes
+            }
+
+            relative_position_id = SPA_ambitions
+            x = 3 y = 1
+            cost = 10
+
+            completion_reward = {
+                every_country = { limit = { tag = ARG }   country_event = invite.1 }
+            }
+        }
+
+    # army
+        shared_focus = generic_army
+
+    # economy
+        shared_focus = generic_infrastructure
+
+}

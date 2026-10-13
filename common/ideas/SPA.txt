@@ -3,9 +3,40 @@ ideas = {
         idea_anarchists_in_the_countryside = {
             modifier = {
                 communism_drift = 0.05
+                consumer_goods_factor = 0.15
             }
             cancel = {
                 has_government = communism
+            }
+        }
+        idea_spain_liberal_cabinet = {
+            modifier = {
+                democratic_drift = 0.05
+                economy_cost_factor = -0.25
+                trade_laws = -0.25
+            }
+        }
+
+        idea_strengthened_garrisons = {
+            modifier = {
+                stability_weekly = 0.05
+                training_time_factor = -0.1
+                production_speed_bunker_factor = 0.1
+            }
+        }
+        idea_mandatory_works = {
+            modifier = {
+                production_speed_infrastructure_factor = 0.1
+                consumer_goods_factor = -0.05
+            }
+        }
+        idea_touareg_alliance = {
+            modifier = {
+                war_support_factor = 0.05
+                weekly_manpower = 250
+            }
+            on_add = {
+                set_technology = { hidden_camelry = 1 }
             }
         }
     }

@@ -1,50 +1,101 @@
-add_namespace = atmosphere
+add_namespace = aces
+add_namespace = airships
+add_namespace = gas
+add_namespace = harvest
+add_namespace = wheat_shortage
 
-# atmosphere
+# aces
     news_event = {
-        id = atmosphere.1
-        title = "Antarctic Explorers Arrive in Hobart"
+        id = aces.1
+        title = "Knights of the Air"        picture = GFX_report_aces
 
         is_triggered_only = yes
         major = yes
 
+        immediate = {
+            set_global_flag = aces_used
+        }
+
         option = {
-            name = "Wonderful."
+            name = "Ok."
         }
     }
 
+# airships
     news_event = {
-        id = atmosphere.2
-        title = "HMS Titanic Lost at Sea!"
+        id = airships.1
+        title = "Airships Over [ROOT.GetNameDef]"       picture = GFX_report_airships
 
         is_triggered_only = yes
         major = yes
 
+        immediate = {
+            set_global_flag = airships_used
+        }
+
         option = {
-            name = "What a tragedy!"
+            name = "Ok."
         }
     }
 
+# gas
     news_event = {
-        id = atmosphere.3
-        title = "Aviator Flies Across the Mediterranean"
+        id = gas.1
+        title = "Gas!"      picture = GFX_report_gas
 
         is_triggered_only = yes
         major = yes
 
+        immediate = {
+            set_global_flag = gas_used
+        }
+
         option = {
-            name = "Great."
+            name = "Ok."
+            if = {
+                limit = { has_war_with = ROOT }
+                add_timed_idea = { idea = idea_gas_shock months = 3 }
+            }
         }
     }
 
+# harvest
     news_event = {
-        id = atmosphere.4
-        title = "Johannisthal Air Disaster"
+        id = harvest.1
+        title = "The Harvest of 1917"       picture = GFX_harvest
 
         is_triggered_only = yes
         major = yes
 
         option = {
-            name = "Stunning."
+            name = "Ok."
+            if = {
+                limit = { 
+                    or = { not = { has_idea = civilian_economy } has_idea = idea_grain_investments }
+                    capital_scope = { is_on_continent = europe }
+                }
+                add_timed_idea = { idea = idea_harvest_1917 months = 6 }
+            }
+        }
+    }   
+
+# wheat_shortage
+    news_event = {
+        id = wheat_shortage.1
+        title = "Wheat Shortages Throughout Europe"      picture = GFX_wheat_shortage
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            set_global_flag = wheat_shortages
+        }
+
+        option = {
+            name = "Ok."
+            if = {
+                limit = { has_idea = idea_harvest_1917 }
+                add_timed_idea = { idea = idea_wheat_shortages months = 6 }
+            }
         }
     }

@@ -181,9 +181,21 @@ add_namespace = uprising
     }
 
 # uprising
-    country_event = {
+    news_event = {
         id = uprising.1
-        title = "[uprising_country.GetAdjective] Uprising!"
+        title = "Uprising in [uprising_country.GetName]"    picture = GFX_report_uprising
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+    country_event = {
+        id = uprising.2
+        title = "Answer to the [uprising_country.GetAdjective] Uprising"
 
         is_triggered_only = yes
 

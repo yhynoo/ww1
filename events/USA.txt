@@ -1,0 +1,132 @@
+add_namespace = agrarians_in_mexico
+add_namespace = aid
+
+add_namespace = chromium_andes
+add_namespace = colombian_intervention
+
+add_namespace = wilsonianism
+
+# agrarians_in_mexico
+    country_event = {
+        id = agrarians_in_mexico.1
+        title = "American Volunteers in Mexico"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Ok."
+            add_popularity = { ideology = communism popularity = 0.02 }
+        }
+    }
+
+# aid
+    news_event = {
+        id = aid.1
+        title = "American Aid for Mexican Democrats"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            MEX = { add_ideas = idea_american_aid_for_mexico add_opinion_modifier = { target = USA modifier = sent_arms } }
+            COL = { country_event = { id = expel_americans.1 days = 7 } }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# chromium_andes
+    country_event = {
+        id = chromium_andes.1
+        title = "Americans Seek Access to Chromium"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Alright."
+            give_resource_rights = { receiver = USA  state = 506 }      give_resource_rights = { receiver = USA  state = 279 } 
+            
+            add_ideas = idea_chromium_andes
+
+            # event
+            USA = { news_event = { id = chromium_andes.2 hours = 6 } }
+        }
+        option = {
+            name = "This is not worth it."
+
+            # ai
+            ai_chance = { modifier = { is_ai = yes } factor = 0 }
+        }
+    }
+
+    news_event = {
+        id = chromium_andes.2
+        title = "American Investments in Andean Chromium"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            USA = { give_guarantee = FROM }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# colombian_intervention
+    country_event = {
+        id = colombian_intervention.1
+        title = "Help Overthrow the Colombian Dictatorship?"
+
+        trigger = {
+            original_tag = USA      not = { has_completed_focus = XXX_deterrence }
+            COL = { has_civil_war = yes     not = { has_idea = idea_american_investments } }
+
+            any_country = { original_tag = COL has_government = democratic }
+            any_country = { original_tag = COL has_government = monarchism }
+        }
+        fire_only_once = yes
+
+        option = {
+            name = "This is a good opportunity."
+            random_country = {
+                limit = { original_tag = COL has_government = monarchism }
+                USA = { declare_war_on = { target = PREV type = topple_government } }
+            }
+
+            # event
+            news_event = { id = colombian_intervention.2 hours = 6 }
+        }
+        option = {
+            name = "We must stay out of this."
+        }
+    }
+
+    news_event = {
+        id = colombian_intervention.2
+        title = "United States Engage in Colombian Civil War"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# wilsonianism
+    news_event = {
+        id = wilsonianism.1
+        title = "United States Announce the Doctrine of Wilsonianism"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }

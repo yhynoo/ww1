@@ -3,6 +3,7 @@ ideas = {
         idea_aristocratic_officers = {
             modifier = {
                 initiative_factor = -0.1
+                air_training_xp_gain_factor = -0.15
             }
             cancel = {
                 not = { has_government = monarchism }
@@ -23,11 +24,33 @@ ideas = {
                 always = yes
             }
         }
+        idea_gargantuan_administration = {
+            modifier = {
+                consumer_goods_factor = 0.15
+                conscription_factor = -0.1
+                supply_factor = -0.1
+            }
+            allowed_civil_war = {
+                always = yes
+            }
+        }
 
         idea_evidenzbureau = {
             modifier = {
                 army_core_defence_factor = 0.1
                 drift_defence_factor = 0.05
+            }
+        }
+        idea_oil_strike = {
+            modifier = {
+                production_factory_max_efficiency_factor = -0.05
+                local_resources_factor = -0.1
+            }
+        }
+        idea_luftfahrtruppe_schools = {
+            modifier = {
+                air_training_xp_gain_factor = 0.1
+                air_ace_generation_chance_factor = 0.05
             }
         }
     }

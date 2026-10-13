@@ -1,0 +1,10 @@
+peace_ai_desires = {
+    warlords_dont_annex = {
+        peace_action_type = { take_states }
+        enable = { 
+            is_chinese_warlord = yes
+            ROOT.FROM.FROM.FROM = { not = { is_core_of = ROOT.FROM } } 
+        }
+        ai_desire = -600
+    }
+}

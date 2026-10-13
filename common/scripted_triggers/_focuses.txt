@@ -1,6 +1,163 @@
+state_extend_trigger = {
+    if = {
+        limit = { original_tag = AUS }
+        controls_state = 104
+    }
+    
+    if = {
+        limit = { original_tag = GER }
+        controls_state = 28
+    }
+
+    if = {
+        limit = { original_tag = ITA }
+        is_in_faction = no
+    }
+
+    if = {
+        limit = { original_tag = USA }
+        MEX = { has_civil_war = yes }
+    }
+}
+
+state_claims_trigger = {
+    if = {
+        limit = { original_tag = COL }
+        CUB = { exists = no }
+    }
+
+    if = {
+        limit = { original_tag = FRA }
+        controls_state = 459
+        controls_state = 460
+    }
+
+    if = {
+        limit = { original_tag = GER }
+    }
+
+    if = {
+        limit = { original_tag = ITA }
+        44 = { allied_control = no }
+    }
+
+    if = {
+        limit = { original_tag = JAP }
+        controls_state = 524
+    }
+
+    if = {
+        limit = { original_tag = SPA }
+        FRA = { can_join_their_faction = yes }
+    }
+
+    if = {
+        limit = { original_tag = USA }
+        279 = { enemy_control = no }
+        506 = { enemy_control = no }
+    }
+}
+
+state_take_ours_trigger = {
+    if = {
+        limit = { original_tag = AUS }
+        can_declare_war_on = SER
+    }
+    
+    if = {
+        limit = { original_tag = COL }
+        can_declare_war_on = USA
+    }
+
+    if = {
+        limit = { original_tag = FRA }
+        414 = { enemy_control = no }
+    }
+
+    if = {
+        limit = { original_tag = HOL }
+        6 = { allied_control = no }     not = { has_government = democratic }
+    }
+
+    if = {
+        limit = { original_tag = ITA }
+        any_state = { is_claimed_by = ITA is_owned_by = AUS }
+    }
+
+    if = {
+        limit = { original_tag = SER }
+        AUS = { controls_state = 104 } can_declare_war_on = AUS
+    }
+
+    if = {
+        limit = { original_tag = USA }
+        can_declare_war_on = COL
+    }
+}
+
+state_ethnocentrism_trigger = {
+    if = {
+        limit = { original_tag = TUR }
+        FRA = { can_join_their_faction = yes }
+    }
+}
+
+state_ethnocentrism_bypass = {
+    if = {
+        limit = { original_tag = TUR }
+        FRA = { has_completed_focus = XXX_deterrence }
+    }
+
+    if = {
+        limit = { not = { or = { original_tag = TUR } } }
+        always = no
+    }
+}
+
+state_agrarianism_trigger = {
+    if = {
+        limit = { original_tag = FRA }
+        has_war = yes
+    }
+
+    if = {
+        limit = { original_tag = GER }
+        controls_state = 546
+    }
+
+    if = {
+        limit = { original_tag = TUR }
+        controls_state = 586    controls_state = 339
+    }
+}
+
 state_unity_trigger = {
     if = {
         limit = { original_tag = FRA }
+        has_war_support > 0.5
+    }
+
+    if = {
+        limit = { original_tag = HOL }
+        controls_state = 309
+        any_state = { is_core_of = INS allied_control = yes }
+    }
+
+    if = {
+        limit = { original_tag = GER }
+        
+    }
+
+    if = {
+        limit = { original_tag = GRE }
+        and = {
+            has_stability > 0.6 
+            has_idea = idea_great_divide
+        }
+    }
+
+    if = {
+        limit = { original_tag = ITA }
         has_war_support > 0.5
     }
 
@@ -9,6 +166,38 @@ state_unity_trigger = {
         and = {
             has_stability > 0.6
             warlord_states_destroyed = yes
+        }
+    }
+
+    if = {
+        limit = { original_tag = RUS }
+        monarchism > 0.7
+    }
+
+    if = {
+        limit = { original_tag = TUR }
+        has_stability > 0.6     has_idea = idea_arab_opposition
+    }
+
+    if = {
+        limit = { original_tag = USA }
+        has_war_support > 0.6
+    }
+
+    if = {
+        limit = { not = { or = { original_tag = FRA original_tag = GER original_tag = GRE original_tag = HOL original_tag = ITA original_tag = MAN original_tag = RUS original_tag = TUR original_tag = USA } } }
+        has_war = yes
+    }
+}
+
+state_administration_trigger = {
+    if = {
+        limit = { original_tag = FRA }
+
+        USA = { has_completed_focus = XXX_administration }
+        or = {
+            is_faction_leader = yes USA = { is_in_faction = no }
+            USA = { can_join_their_faction = yes }
         }
     }
 }

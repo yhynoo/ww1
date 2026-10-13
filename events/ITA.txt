@@ -1,0 +1,199 @@
+add_namespace = albania_italy
+add_namespace = anti_ottoman
+
+add_namespace = elections_italy
+
+add_namespace = triple_alliance
+add_namespace = tunisia
+
+# albania_italy
+    news_event = {
+        id = albania_italy.1
+        title = "Italy Aims at Albania?"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_named_threat = { name = "Italy Aims at Albania" threat = 1 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# anti_ottoman
+    country_event = {
+        id = anti_ottoman.1
+        title = "An Opportunity to Demand Albania?"
+
+        trigger = {
+            tag = ITA
+            44.owner = { has_war = yes not = { has_war_with = ITA } }
+        }
+
+        option = {
+            name = "Yes."
+            44 = { send_ultimatum_one_state = yes }
+        }
+        option = {
+            name = "This is not the time."
+            add_war_support = 0.05
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        }
+    }
+
+# elections
+    country_event = {
+        id = elections_italy.1
+        title = "The Elections of [GetYear]"
+
+        trigger = { original_tag = ITA }
+        is_triggered_only = yes
+
+        option = {
+            name = "[ROOT.GetLeader]."
+            trigger = { 
+                if = { 
+                    limit = { has_country_leader = { character = ITA_giovanni_giolitti ruling_only = yes } } 
+                    date < 1915.1.1
+                }
+            }
+
+            add_stability = 0.025
+        }
+
+        # candidates
+        option = {
+            name = "Giovanni Giolitti."
+            trigger = { 
+                date < 1915.1.1
+                not = { has_country_leader = { character = ITA_giovanni_giolitti ruling_only = yes } } 
+            }
+
+            promote_character = ITA_giovanni_giolitti
+        }
+        option = {
+            name = "Antonio Salandra."
+            trigger = { not = { has_country_leader = { character = ITA_antonio_salandra ruling_only = yes } } }
+
+            promote_character = ITA_antonio_salandra
+        }
+        option = {
+            name = "Vittorio Orlando."
+            trigger = { 
+                not = { date < 1915.1.1 }
+                not = { has_country_leader = { character = ITA_vittorio_orlando ruling_only = yes } } 
+            }
+
+            promote_character = ITA_vittorio_orlando
+        }
+    }
+
+# triple alliance
+    country_event = {
+        id = triple_alliance.1
+        title = "Our Alliance Commitments"
+
+        trigger = {
+            tag = ITA not = { has_completed_focus = XXX_extend } has_war = no
+            GER = { has_war_with = FRA }
+        }
+        fire_only_once = yes
+        mean_time_to_happen = { months = 2 }
+
+        option = {
+            name = "Honor old agreements."
+
+            32 = { add_claim_by = ITA }
+            declare_war_on = { target = FRA type = take_claimed_state }
+        }
+        option = {
+            name = "Demand Alps and Trieste."
+            trigger = { AUS = { is_ally_with = GER } }
+
+            # event
+            add_war_support = 0.05
+            AUS = { news_event = { id = triple_alliance.2 hours = 6 } }
+        }
+        option = {
+            name = "Ignore it."
+        }
+    }
+
+    country_event = {
+        id = triple_alliance.2
+        title = "Alps and Triest: A Harlot’s Deal"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+
+            every_owned_state = { limit = { is_claimed_by = ITA } transfer_state_to = ITA }
+            ITA = { declare_war_on = { target = FRA type = topple_government } }
+
+            # event
+            news_event = { id = triple_alliance.3 hours = 6 }
+        }
+        option = {
+            name = "This is disgusting."
+            add_war_support = 0.025
+        }
+    }
+
+    news_event = {
+        id = triple_alliance.3
+        title = "Alps and Triest for Italian Honor?"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Despicable."
+        }
+    }
+
+# tunisia
+    country_event = {
+        id = tunisia.1
+        title = "Italian Claims to Tunisia"
+
+        trigger = {
+            tag = ITA
+            any_country = {
+                or = { owns_state = 458 owns_state = 256 }
+                has_war_with = ITA
+            }
+        }
+        fire_only_once = yes
+
+        option = {
+            name = "Yes."
+            every_state = {
+                limit = { or = { state = 458 state = 265 } }
+                add_claim_by = ITA
+            }
+
+            # event
+            news_event = { id = tunisia.2 hours = 6 }
+        }
+        option = {
+            name = "We must focus on what matters."
+        }
+    }
+
+    news_event = {
+        id = tunisia.2
+        title = "Italy Asserts Claims to Tunisia"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }

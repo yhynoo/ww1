@@ -10,7 +10,7 @@ on_actions = {
                 }
 
                 every_country = {
-                    limit = { original_tag = ROOT has_civil_war = yes }
+                    limit = { original_tag = ROOT has_civil_war = yes not = { has_country_flag = during_civil_war } }
                     setup_civil_war = yes
                 }
             }

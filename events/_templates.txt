@@ -1,105 +1,134 @@
-# atmosphere
-    news_event = {
-        id = template.1
-        title = ""
+    # atmosphere
+        news_event = {
+            id = placeholder.1
+            title = ""
 
-        is_triggered_only = yes
-        major = yes
+            is_triggered_only = yes
+            major = yes
 
-        option = {
-            name = "Ok."
-        }
-    }
-
-# report
-    country_event = {
-        id = template.1
-        title = ""
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# decision
-    country_event = {
-        id = template.1
-        title = ""
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Yes."
-
-            # event
-            news_event = { id = template.2 hours = 6 }
-        }
-        option = {
-            name = "No."
-
-            # ai
-            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
-        }
-    }
-
-    news_event = {
-        id = template.2
-        title = ""
-
-        is_triggered_only = yes
-        major = yes
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# long
-    country_event = {
-        id = template.1
-        title = ""
-
-        is_triggered_only = yes
-
-        immediate = {
-            country_event = { id = template.2   days = 7 }
+            option = {
+                name = "Ok."
+            }
         }
 
-        option = {
-            name = "Ok."
+    # report
+        country_event = {
+            id = placeholder.1
+            title = ""
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Ok."
+            }
         }
-    }
 
-    country_event = {
-        id = template.2
-        title = ""
+    # decision
+        country_event = {
+            id = placeholder.1
+            title = ""
 
-        is_triggered_only = yes
+            is_triggered_only = yes
 
-        option = {
-            name = "Yes."
+            option = {
+                name = "Yes."
 
-            # event
-            news_event = { id = template.3 hours = 6 }
+                # event
+                news_event = { id = placeholder.2 hours = 6 }
+            }
+            option = {
+                name = "No."
+            }
         }
-        option = {
-            name = "No."
 
-            # ai
-            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
+        news_event = {
+            id = placeholder.2
+            title = ""
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
         }
-    }
 
-    news_event = {
-        id = template.3
-        title = ""
+    # internal gamble
+        country_event = {
+            id = placeholder.1
+            title = ""
 
-        is_triggered_only = yes
-        major = yes
+            is_triggered_only = yes
 
-        option = {
-            name = "Ok."
+            option = {
+                name = "Yes."
+
+                # event
+                hidden_effect = {
+                    if = {
+                        limit = { } # condition
+                        news_event = { id = placeholder.2 hours = 6 }
+                    }
+                }
+            }
+            option = {
+                name = "No."
+            }
         }
-    }
+
+        news_event = {
+            id = placeholder.2
+            title = ""
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+
+    # long
+        country_event = {
+            id = placeholder.1
+            title = ""
+
+            is_triggered_only = yes
+
+            immediate = {
+                country_event = { id = placeholder.2   days = 14 }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+
+        country_event = {
+            id = placeholder.2
+            title = ""
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Yes."
+
+                # event
+                news_event = { id = placeholder.3 hours = 6 }
+            }
+            option = {
+                name = "No."
+            }
+        }
+
+        news_event = {
+            id = placeholder.3
+            title = ""
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }

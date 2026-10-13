@@ -1,0 +1,255 @@
+add_namespace = arab_opposition
+add_namespace = atrocities_in_assyria
+add_namespace = aviators
+
+add_namespace = demonstrations
+
+add_namespace = ionia
+
+add_namespace = oil_oligarchs
+
+add_namespace = young_turks
+
+# arab_opposition
+    country_event = {
+        id = arab_opposition.1
+        title = "Arabs Oppose the Ottoman Government"
+
+        trigger = {
+            tag = TUR       has_government = monarchism
+            or = { date > 1917.1.1     has_idea = idea_oil_investments     GER = { has_completed_focus = XXX_take_ours } }
+        }
+
+        fire_only_once = yes
+        mean_time_to_happen = { months = 1 }
+
+        option = {
+            name = "Ok."
+            add_ideas = idea_arab_opposition
+        }
+    }
+
+# atrocities_in_assyria
+    country_event = {
+        id = atrocities_in_assyria.1
+        title = "Testimonies from Assyria"
+
+        trigger = {
+            tag = TUR
+            has_completed_focus = XXX_ethnocentrism
+        }
+
+        fire_only_once = yes
+        mean_time_to_happen = { months = 2 }
+
+        immediate = {
+            country_event = { id = atrocities_in_assyria.2   days = 7 }
+        }
+
+        option = {
+            name = "Horrible."
+            add_popularity = { ideology = ROOT popularity = -0.05 }
+        }
+    }
+
+    country_event = {
+        id = atrocities_in_assyria.2
+        title = "Investigate the Atrocities?"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Yes."
+            add_political_power = -25
+
+            # event
+            news_event = { id = atrocities_in_assyria.3 hours = 6 }
+        }
+        option = {
+            name = "Slander is treason."
+            add_popularity = { ideology = communism popularity = 0.05 }
+        }
+    }
+
+    news_event = {
+        id = atrocities_in_assyria.3
+        title = "Turkey Investigates Atrocities in the East"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_stability = 0.025
+            add_popularity = { ideology = democratic popularity = 0.025 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# aviators
+    country_event = {
+        id = aviators.1
+        title = "Turkish Airmen Arrive from France"
+
+        is_triggered_only = yes
+
+        immediate = {
+            341 = { add_building_construction = { type = air_base level = 1 instant_build = yes } }
+            add_equipment_to_stockpile = { type = CAS_equipment_0   amount = 4     producer = FRA }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# demonstrations
+    country_event = {
+        id = demonstrations.1
+        title = "Liberals Demonstrate in Constantinople"
+
+        trigger = {
+            tag = TUR
+            has_idea = idea_oil_investments     monarchism < 0.5      has_government = monarchism  
+            democratic > 0.25      
+        }
+        fire_only_once = yes
+
+        option = {
+            name = "We must consider abdication."
+            set_politics = { ruling_party = democratic elections_allowed = yes }
+
+            # event
+            news_event = { id = demonstrations.2 hours = 6 }
+        }
+        option = {
+            name = "Disperse them."
+            add_stability = -0.05
+        }
+    }
+
+    news_event = {
+        id = demonstrations.2
+        title = "Turkish Sultan Abdicates!"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# ionia
+    country_event = {
+        id = ionia.1
+        title = "Attacks on Ionian Greeks"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Investigate the matter."
+            add_popularity = { ideology = democratic popularity = 0.025 }
+
+            # event
+            news_event = { id = ionia.2 hours = 6 }
+        }
+        option = {
+            name = "Cover it up."
+            add_stability = 0.025
+
+            hidden_effect = { GRE = { country_event = { id = defend_ionia.1 days = 7 } } }
+        }
+    }
+
+    news_event = {
+        id = ionia.2
+        title = "[TUR.GetAdjective] Gov’t Investigates the Smyrna Events"
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Interesting."
+        }
+    }
+
+# oil oligarchs
+    country_event = {
+        id = oil_oligarchs.1
+        title = "French Enterpreneurs Invest in Iraqi Schools"
+
+        trigger = {
+            tag = TUR       controls_state = 414
+            has_idea = idea_oil_investments
+        }
+
+        fire_only_once = yes
+        mean_time_to_happen = { months = 2 }
+
+        option = {
+            name = "Ok."
+            add_popularity = { ideology = democratic popularity = 0.025 }
+        }
+    }
+
+# young_turks
+    country_event = {
+        id = young_turks.1
+        title = "Opposition in the Army Continues"
+
+        trigger = {
+            tag = TUR
+            has_civil_war = no
+            or = { has_idea = idea_hostile_officer_corps has_idea = idea_disobedient_officer_corps }
+            or = { 
+                has_completed_focus = XXX_extend  
+                and = { not = { has_government = communism } communism > 0.2 }   
+                and = { has_war = yes   has_war_support < 0.25 }
+            }
+        }
+
+        fire_only_once = yes
+        mean_time_to_happen = { months = 2 }
+
+        option = {
+            name = "Arrest them."
+
+            retire_character = tur_mustafa_kemal
+            retire_character = tur_enver
+
+            if = {
+                limit = { has_idea = idea_hostile_officer_corps }
+                remove_ideas = idea_hostile_officer_corps
+            }
+            if = {
+                limit = { has_idea = idea_disobedient_officer_corps }
+                remove_ideas = idea_disobedient_officer_corps
+            }
+
+            # event
+            random = { chance = 50 news_event = { id = young_turks.2 hours = 6 } }
+        }
+        option = {
+            name = "We must deal with this with caution."
+            add_popularity = { ideology = communism popularity = 0.05 }
+        }
+    }
+
+    news_event = {
+        id = young_turks.2
+        title = "Another Young Turk Coup!"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            TUR = { young_turk_coup = yes }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }

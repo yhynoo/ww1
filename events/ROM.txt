@@ -1,6 +1,62 @@
+add_namespace = armory_constanta
+
+add_namespace = chisinau
+
 add_namespace = french_arms
 
 add_namespace = greeks
+
+add_namespace = orientalism
+
+# armory_constanta
+    country_event = {
+        id = armory_constanta.1
+        title = "Turkish Armory in Constanta Assaulted"
+
+        trigger = {
+            tag = ROM
+            has_completed_focus = XXX_autonomy
+        }
+
+        fire_only_once = yes
+        mean_time_to_happen = { months = 1 }
+
+        option = {
+            name = "Ok."
+
+            add_equipment_to_stockpile = { equipment = infantry_equipment amount = 100 producer = TUR }
+            add_equipment_to_stockpile = { equipment = artillery_equipment amount = 4 producer = TUR }
+        }
+    }
+
+# chisinau
+    country_event = {
+        id = chisinau.1
+        title = "Demand Chisinau?"
+
+        trigger = {
+            tag = ROM       is_subject = no
+            any_country = {
+                original_tag = RUS      has_civil_war = yes
+                controls_state = 78     controls_state = 442
+            }
+        }
+        fire_only_once = yes
+
+        option = {
+            name = "Yes."
+            every_state = {
+                limit = { or = { state = 78 state = 442 } }
+                send_ultimatum_multiple_states = yes
+            }
+
+            # event
+            news_event = { id = template.2 hours = 6 }
+        }
+        option = {
+            name = "This is too dangerous."
+        }
+    }
 
 # french arms
     country_event = {
@@ -14,7 +70,7 @@ add_namespace = greeks
             send_equipment = { equipment = infantry_equipment amount = 600 target = ROM }
 
             # event
-            country_event = { id = french_arms.2 hours = 6 }
+            ROM = { country_event = { id = sent_arms.1 hours = 24 } }
         }
         option = {
             name = "No."
@@ -24,63 +80,44 @@ add_namespace = greeks
         }
     }
 
+# greeks
     country_event = {
-        id = french_arms.2
-        title = "France Sends Equipment"
+        id = greeks.1
+        title = "Seek Cooperation with the Greeks?"
+
+        trigger = {
+            tag = ROM
+            focus_progress = { focus = ROM_awake    progress > 0.2 }
+        }
+
+        option = {
+            name = "Let us ask."
+            add_political_power = -10
+
+            # event
+            every_country = { limit = { tag = GRE } news_event = { id = guarantees.1 hours = 6 } }
+        }
+        option = {
+            name = "No."
+
+            # ai
+            ai_chance = { modifier = { is_ai = yes } factor = 0 }
+        }
+    }
+
+# orientalism
+    news_event = {
+        id = orientalism.1
+        title = "‘Against Orientalism’"
 
         is_triggered_only = yes
-        option = {
-            name = "Great!"
-            add_war_support = 0.025
-        }
-    }
+        major = yes
 
-# greeks
-    country_event = {
-        id = greeks.1
-        title = "Seek Cooperation with the Greeks?"
-
-        trigger = {
-            tag = ROM
-            focus_progress = { focus = ROM_awake    progress > 0.2 }
+        immediate = {
+            ROM = { add_popularity = { ideology = ROOT popularity = -0.05 } }
         }
 
         option = {
-            name = "Let us ask."
-            add_political_power = -10
-
-            # event
-            every_country = { limit = { tag = GRE } news_event = { id = guarantees.1 hours = 6 } }
-        }
-        option = {
-            name = "No."
-
-            # ai
-            ai_chance = { modifier = { is_ai = yes } factor = 0 }
-        }
-    }
-
-# greeks
-    country_event = {
-        id = greeks.1
-        title = "Seek Cooperation with the Greeks?"
-
-        trigger = {
-            tag = ROM
-            focus_progress = { focus = ROM_awake    progress > 0.2 }
-        }
-
-        option = {
-            name = "Let us ask."
-            add_political_power = -10
-
-            # event
-            every_country = { limit = { tag = GRE } news_event = { id = guarantees.1 hours = 6 } }
-        }
-        option = {
-            name = "No."
-
-            # ai
-            ai_chance = { modifier = { is_ai = yes } factor = 0 }
+            name = "Ok."
         }
     }

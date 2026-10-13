@@ -1,90 +1,160 @@
+add_namespace = evidenzbureau_scandal
+add_namespace = emperor_austria
+add_namespace = galician_oil
 add_namespace = legiony
 
-add_namespace = sarajevo
-add_namespace = serbia
+# tree events
+    add_namespace = address
+    add_namespace = attack_serbia
+    add_namespace = council
+    add_namespace = exhibition
+    add_namespace = galicia
+    add_namespace = sarajevo
 
-# legiony
-    country_event = {
-        id = legiony.1
-        title = "‘Dywizja Legionów’ Established in Galicia"
+    # address
+        news_event = {
+            id = address.1
+            title = "Army: Change, or More of the Old?"
 
-        trigger = {
-            tag = AUS   has_completed_focus = AUS_take_ours     controls_state = 80
-            has_war = yes
+            is_triggered_only = yes
+
+            option = {
+                name = "Interesting."
+            }
+        }
+    
+    # attack serbia
+        country_event = {
+            id = attack_serbia.1
+            title = "The Serbian Question"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Demand their alignment."
+
+                # event
+                SER = { send_ultimatum_alignment = yes }
+            }
+            option = {
+                name = "War!"
+                declare_war_on = { target = SER type = annex_everything }
+            }
         }
 
-        fire_only_once = yes
-        mean_time_to_happen = { days = 14 }
+    # council
+        country_event = {
+            id = council.1
+            title = "Magyar Aristocrats Obstruct Elections"
 
-        option = {
-            name = "Good."
+            is_triggered_only = yes
 
-            add_war_support = 0.025
-            every_state = { limit = { state = 80 } create_unit = { division = "name = \"Dywizja Legionów\" division_template = \"Landsturm\"" count = 1 owner = PREV } }
-        }
-    }
+            option = {
+                name = "Exclude them."
+                add_stability = 0.025
 
-# sarajevo
-    news_event = {
-        id = sarajevo.1
-        title = "[AUS.GetName] Annexes Sarajevo"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            add_named_threat = { name = "Annexation of Sarajevo" threat = 2 }
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# serbia
-    country_event = {
-        id = serbia.1
-        title = "Discussions Among the Generals"
-
-        is_triggered_only = yes
-
-        immediate = {
-            country_event = { id = serbia.2   days = 7 }
+                # event
+                hidden_effect = {
+                    if = {
+                        limit = { has_stability < 0.4 }
+                        random = { chance = 20 every_possible_country = { limit = { tag = HUN } trigger_uprising = yes } }
+                    }
+                }
+            }
+            option = {
+                name = "Extend the vote."
+                add_popularity = { ideology = democratic popularity = 0.025 }
+            }
         }
 
-        option = {
-            name = "They sound convincing..."
-            add_war_support = 0.05
+    # sarajevo
+        news_event = {
+            id = sarajevo.1
+            title = "Annexation of Sarajevo"        picture = GFX_report_sarajevo
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                add_named_threat = { name = "Annexation of Sarajevo" threat = 2 }
+            }
+
+            option = {
+                name = "Ok."
+            }
         }
-    }
 
-    country_event = {
-        id = serbia.2
-        title = "Conrad’s Demands"
+# extra events
+    # emperor dies
+        news_event = {
+            id = emperor_austria.1
+            title = "Emperor Franz Joseph Dies"
 
-        is_triggered_only = yes
+            is_triggered_only = yes
+            major = yes
 
-        option = {
-            name = "Yes."
-            declare_war_on = { target = SER type = annex_everything }
+            immediate = {
+                retire_character = aus_emperor_austria
+            }
 
-            # event
-            news_event = { id = serbia.3 hours = 6 }
+            option = {
+                name = "Ok."
+            }
         }
-        option = {
-            name = "We must try to align them with us."
-            SER = { send_ultimatum_alignment = yes }
+
+    # galician_oil
+        country_event = {
+            id = galician_oil.1
+            title = "Clashes in Eastern Galicia"
+
+            trigger = { tag = AUS       controls_state = 89         has_completed_focus = XXX_oil }
+
+            fire_only_once = yes
+            mean_time_to_happen = { months = 2 }
+
+            option = {
+                name = "Trust our administration."
+                add_stability = 0.025
+
+                # event
+                news_event = { id = galician_oil.2 hours = 6 }
+            }
+            option = {
+                name = "Assure equal access."
+                add_popularity = { ideology = democratic  popularity = 0.025 }
+            }
         }
-    }
 
-    news_event = {
-        id = serbia.3
-        title = "[AUS.GetName] at War with Serbia!"
+        news_event = {
+            id = galician_oil.2
+            title = "Ukrainian Oil Engineers on Strike"
 
-        is_triggered_only = yes
-        major = yes
+            is_triggered_only = yes
 
-        option = {
-            name = "Awful."
+            option = {
+                name = "Whatever."
+                add_timed_idea = { idea = idea_oil_strike       months = 3 }
+            }
         }
-    }
+
+    # legiony
+        country_event = {
+            id = legiony.1
+            title = "The ‘Dywizja Legionów’ Organizes in Krakau"
+
+            trigger = {
+                tag = AUS   has_completed_focus = XXX_take_ours     controls_state = 80
+                has_war = yes
+            }
+
+            fire_only_once = yes
+            mean_time_to_happen = { days = 14 }
+
+            option = {
+                name = "Good."
+
+                add_war_support = 0.025
+                every_state = { limit = { state = 80 } create_unit = { division = "name = \"Dywizja Legionów\" division_template = \"Landsturm\"" count = 1 owner = PREV } }
+            }
+        }
+#

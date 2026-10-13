@@ -7,7 +7,7 @@ leader_traits = {
 
         ai_will_do = {
             factor = 0
-            modifier = { is_going_democrat = yes add = 1.5 }
+            modifier = { and = { not = { has_government = democratic } democratic > 0.2 has_stability < 0.4 } add = 1.5 }
         }
     }
 
@@ -17,7 +17,7 @@ leader_traits = {
 
         ai_will_do = {
             factor = 0
-            modifier = { is_going_monarchist = yes add = 1.5 }
+            modifier = { and = { not = { has_government = monarchism } monarchism > 0.2 has_stability < 0.4 } add = 1.5 }
         }
     }
 
@@ -27,7 +27,7 @@ leader_traits = {
 
         ai_will_do = {
             factor = 0
-            modifier = { is_going_communist = yes add = 1.5 }
+            modifier = { and = { not = { has_government = communism } communism > 0.2 has_stability < 0.4 } add = 1.5 }
         }
     }
 

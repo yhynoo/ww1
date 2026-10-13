@@ -1,0 +1,297 @@
+# army
+    shared_focus {
+        id = generic_army
+        icon = GFX_focus_generic_general_staff
+
+        x = 22 y = 0
+        cost = 10
+
+        completion_reward = {
+            add_doctrine_cost_reduction = { cost_reduction = 0.5    uses = 1    category = land_doctrine }
+            add_tech_bonus = { bonus = 0.5    uses = 2    category = infantry_weapons_tech }
+        }
+    }
+
+    shared_focus = {
+        id = generic_airfields
+        icon = GFX_focus_generic_airfields
+
+        prerequisite = { focus = generic_army }
+        mutually_exclusive = { focus = generic_harbors }
+
+        relative_position_id = generic_army
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_capital = yes }
+                add_building_construction = { type = air_base level = 2 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = generic_harbors
+        icon = GFX_focus_generic_harbors
+
+        prerequisite = { focus = generic_army }
+        mutually_exclusive = { focus = generic_airfields }
+
+        relative_position_id = generic_army
+        x = 1 y = 1
+        cost = 10
+
+        available = {
+            any_controlled_state = { is_in_home_area = yes is_coastal = yes }
+        }
+
+        completion_reward = {
+            random_controlled_state = {
+                limit = { is_coastal = yes is_in_home_area = yes }
+                add_building_construction = { type = naval_base level = 2 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = generic_aircraft
+        icon = GFX_focus_generic_aircraft
+        prerequisite = { focus = generic_airfields }
+
+        relative_position_id = generic_airfields
+        x = -2 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes }
+                hidden_effect = { add_extra_state_shared_building_slots = 1 }
+                add_building_construction = { type = air_base level = 2 instant_build = yes }   add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+                
+            }
+        }
+    }
+
+    shared_focus = {
+        id = generic_armaments
+        icon = GFX_focus_generic_heavy_industry
+        prerequisite = { focus = generic_airfields focus = generic_harbors }
+
+        relative_position_id = generic_airfields
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes infrastructure > 1 }
+                add_resource = { type = aluminium amount = 6 } add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+            }
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes infrastructure > 1 }
+                add_building_construction = { type = arms_factory level = 1 instant_build = yes }       add_extra_state_shared_building_slots = 1
+            }
+        }
+    }
+
+    shared_focus = {
+        id = generic_navy
+        icon = GFX_focus_generic_navy
+        prerequisite = { focus = generic_harbors }
+
+        relative_position_id = generic_harbors
+        x = 2 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_coastal = yes is_in_home_area = yes }
+                add_building_construction = { type = dockyard level = 2 instant_build = yes }       add_extra_state_shared_building_slots = 2
+            }
+        }
+    }
+
+    shared_focus = {
+        id = generic_mobilization
+        icon = GFX_focus_generic_mobilization
+        prerequisite = { focus = generic_armaments }
+
+        relative_position_id = generic_armaments
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+            set_country_flag = mobilization_decisions_allowed
+            custom_effect_tooltip = tt_mobilization
+        }
+    }
+
+    shared_focus = {
+        id = generic_equipment
+        icon = GFX_focus_generic_equipment
+        prerequisite = { focus = generic_armaments }
+
+        relative_position_id = generic_armaments
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_tech_bonus = { bonus = 0.5    uses = 1    category = mechanized_tech }
+            add_tech_bonus = { bonus = 0.5    uses = 1    category = artillery_tech }
+        }
+    }
+
+    shared_focus = {
+        id = generic_capacity_strikes
+        icon = GFX_focus_generic_capacity_strikes
+        prerequisite = { focus = generic_mobilization focus = generic_equipment}
+
+        relative_position_id = generic_mobilization
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_tech_bonus = { bonus = 0.5    uses = 1    category = airship_tech }
+            add_tech_bonus = { bonus = 0.5    uses = 1    category = submarines_tech }
+        }
+    }
+
+    shared_focus = {
+        id = generic_all_for_the_front
+        icon = GFX_focus_generic_all_for_the_front
+        prerequisite = { focus = generic_capacity_strikes }
+
+        available = {
+            has_war = yes
+        }
+
+        relative_position_id = generic_capacity_strikes
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            set_country_flag = desperate_measures_allowed
+            add_war_support = 0.05      custom_effect_tooltip = tt_all_for_the_front
+        }
+    }
+
+# economy
+    shared_focus = {
+        id = generic_infrastructure
+        icon = GFX_focus_generic_infrastructure
+        
+        relative_position_id = generic_army
+        x = 6 y = 0
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes }
+                add_building_construction = { type = infrastructure level = 2 instant_build = yes }
+            }
+            if = {
+                limit = { num_of_controlled_states > 3 }
+                random_owned_controlled_state = {
+                    limit = { is_in_home_area = yes }
+                    add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = generic_civs_1
+        icon = GFX_focus_generic_light_industry
+        prerequisite = { focus = generic_infrastructure }
+
+        relative_position_id = generic_infrastructure
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes }
+                add_building_construction = { type = industrial_complex level = 2 instant_build = yes }     add_extra_state_shared_building_slots = 2
+            }
+        }
+    }
+
+    shared_focus = {
+        id = generic_steel
+        icon = GFX_focus_generic_steel
+        prerequisite = { focus = generic_infrastructure }
+
+        relative_position_id = generic_infrastructure
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes impassable = no }
+                add_resource = { type = steel amount = 8 }      add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+            }
+        }
+    }
+
+    shared_focus = {
+        id = generic_state
+        icon = GFX_focus_generic_state
+        prerequisite = { focus = generic_civs_1 focus = generic_steel }
+
+        relative_position_id = generic_civs_1
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_tech_bonus = { bonus = 0.5  uses = 2  category = industry_tech }
+            add_timed_idea = { idea = idea_state_subsidies years = 2 }
+        }
+    }
+
+    shared_focus = {
+        id = generic_synthetics
+        icon = GFX_focus_generic_synthetics
+        prerequisite = { focus = generic_state }
+
+        relative_position_id = generic_state
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_tech_bonus = { bonus = 1  uses = 1  category = synth_resources_tech }
+        }
+    }
+
+    shared_focus = {
+        id = generic_research
+        icon = GFX_focus_generic_research
+        prerequisite = { focus = generic_synthetics }
+
+        relative_position_id = generic_synthetics
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_research_slot = 1
+        }
+    }
+
+    shared_focus = {
+        id = generic_civs_2
+        icon = GFX_focus_generic_heavy_industry
+        prerequisite = { focus = generic_state }
+
+        relative_position_id = generic_state
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_controlled_state = {
+                limit = { is_in_home_area = yes }
+                add_building_construction = { type = industrial_complex level = 2 instant_build = yes }     add_extra_state_shared_building_slots = 2
+            }
+        }
+    }
+
+
+#
