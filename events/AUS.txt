@@ -1,160 +1,278 @@
-add_namespace = evidenzbureau_scandal
-add_namespace = emperor_austria
-add_namespace = galician_oil
-add_namespace = legiony
+add_namespace = galician_oil_escalate
+add_namespace = galician_oil_okhrana
+add_namespace = galician_oil_tensions
+add_namespace = galician_oil_war
 
-# tree events
-    add_namespace = address
-    add_namespace = attack_serbia
-    add_namespace = council
-    add_namespace = exhibition
-    add_namespace = galicia
-    add_namespace = sarajevo
+add_namespace = attack_serbia
 
-    # address
-        news_event = {
-            id = address.1
-            title = "Army: Change, or More of the Old?"
+add_namespace = emperor
 
-            is_triggered_only = yes
+add_namespace = sarajevo
 
-            option = {
-                name = "Interesting."
-            }
-        }
-    
-    # attack serbia
+# Act I: GALICIAN OIL
+    # galician_oil_escalate
         country_event = {
-            id = attack_serbia.1
-            title = "The Serbian Question"
+            id = galician_oil_escalate.1
+            title = "Escalate Tensions in Eastern Galicia?"
 
             is_triggered_only = yes
+            trigger = { not = { has_war_with = AUS } }
 
             option = {
-                name = "Demand their alignment."
+                name = "Let us see what we can do."
 
                 # event
-                SER = { send_ultimatum_alignment = yes }
-            }
-            option = {
-                name = "War!"
-                declare_war_on = { target = SER type = annex_everything }
-            }
-        }
+                news_event = { id = galician_oil_escalate.2 days = 4 }
 
-    # council
-        country_event = {
-            id = council.1
-            title = "Magyar Aristocrats Obstruct Elections"
-
-            is_triggered_only = yes
-
-            option = {
-                name = "Exclude them."
-                add_stability = 0.025
-
-                # event
-                hidden_effect = {
-                    if = {
-                        limit = { has_stability < 0.4 }
-                        random = { chance = 20 every_possible_country = { limit = { tag = HUN } trigger_uprising = yes } }
-                    }
+                # ai
+                ai_chance = {
+                    modifier = { has_idea = idea_grain_investments factor = 0 }
+                    modifier = { not = { is_guaranteed_by = FRA } factor = 0.5 }
                 }
             }
             option = {
-                name = "Extend the vote."
-                add_popularity = { ideology = democratic popularity = 0.025 }
+                name = "Why would we do that?"
+                add_stability = 0.025
             }
         }
-
-    # sarajevo
         news_event = {
-            id = sarajevo.1
-            title = "Annexation of Sarajevo"        picture = GFX_report_sarajevo
+            id = galician_oil_escalate.2
+            title = "‘Halychanyn’: Appeal to the Tsar!"
 
             is_triggered_only = yes
             major = yes
 
             immediate = {
-                add_named_threat = { name = "Annexation of Sarajevo" threat = 2 }
+                every_state = { or = { state = 80 state = 89 state = 91 } add_claim_by = RUS }
+                add_named_threat = { name = "Galician Ukrainians Appeal to the Tsar" threat = 2 }
+
+                # event
+                AUS = { country_event = { id = galician_oil_okhrana.1 days = 12 } }
             }
 
             option = {
                 name = "Ok."
             }
         }
-
-# extra events
-    # emperor dies
+    # galician_oil_okhrana
         news_event = {
-            id = emperor_austria.1
-            title = "Emperor Franz Joseph Dies"
+            id = galician_oil_okhrana.1
+            title = "Supply Train Attacked in Lemberg"
 
-            is_triggered_only = yes
+            is_triggered_only = yes     trigger = { AUS = { controls_state = 89 } }
             major = yes
 
             immediate = {
-                retire_character = aus_emperor_austria
+                RUS = { add_named_threat = { name = "Supply Train Attacked in Lemberg" threat = 2 } }
+                if = {
+                    limit = { AUS = { has_idea = idea_evidenzbureau } }
+                    country_event = { id = galician_oil_okhrana.2 days = 4 }
+                }
             }
 
             option = {
-                name = "Ok."
+                name = "Awful."
+                add_stability = -0.025
             }
         }
-
-    # galician_oil
         country_event = {
-            id = galician_oil.1
-            title = "Clashes in Eastern Galicia"
+            id = galician_oil_okhrana.2
+            title = "Okhrana Agents Arrested in Lemberg"
 
-            trigger = { tag = AUS       controls_state = 89         has_completed_focus = XXX_oil }
-
-            fire_only_once = yes
-            mean_time_to_happen = { months = 2 }
+            is_triggered_only = yes
 
             option = {
-                name = "Trust our administration."
+                name = "Execute them."
+                add_war_support = 0.05
+
+                # event
+                news_event = { id = galician_oil_okhrana.3 hours = 6 }
+            }
+            option = {
+                name = "Send them home."
+                add_political_power = 15
+            }
+        }
+        news_event = {
+            id = galician_oil_okhrana.3
+            title = "Austria Executes Captured Okhrana Agents!"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                add_named_threat = { name = "Austria Executes Captured Okhrana Agents!" threat = 4 }
+                RUS = { country_event = { id = galician_oil_war.1 } }
+            }
+
+            option = {
+                name = "Maybe they deserved it."
+            }
+        }
+    # galician_oil_tensions
+        country_event = {
+            id = galician_oil_tensions.1
+            title = "Unrest in the Oil Fields"
+
+            is_triggered_only = yes
+            fire_only_once = yes
+
+            option = {
+                name = "Trust our administrators."
                 add_stability = 0.025
 
                 # event
-                news_event = { id = galician_oil.2 hours = 6 }
+                random = { chance = 50 news_event = { id = galician_oil_tensions.2 days = 6 } }
             }
             option = {
-                name = "Assure equal access."
-                add_popularity = { ideology = democratic  popularity = 0.025 }
+                name = "Ensure equal access."
+                add_popularity = { ideology = democratic    popularity = 0.05 }
             }
         }
+        country_event = {
+            id = galician_oil_tensions.2
+            title = "Ukrainian Engineers Leave the Oil Fields"
 
+            is_triggered_only = yes
+
+            immediate = { news_event = { id = galician_oil_tensions.3 hours = 6 } }
+
+            option = {
+                name = "Ok."
+                add_timed_idea = { idea = idea_oil_strike months = 2 }
+            }
+        }
         news_event = {
-            id = galician_oil.2
-            title = "Ukrainian Oil Engineers on Strike"
+            id = galician_oil_tensions.3
+            title = "Tensions in Eastern Galicia"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                add_named_threat = { name = "Tensions in Eastern Galicia" threat = 1 }
+                RUS = { country_event = { id = galician_oil_escalate.1 days = 2 } }
+            }
+
+            option = {
+                name = "Worrying."
+            }
+        }
+    # galician_oil_war
+        country_event = {
+            id = galician_oil_war.1
+            title = "Avenge the Dishonor?"
 
             is_triggered_only = yes
 
             option = {
-                name = "Whatever."
-                add_timed_idea = { idea = idea_oil_strike       months = 3 }
+                name = "God save the Tsar!"
+                create_wargoal = { target = AUS type = take_claimed_state }
+
+                # event
+                news_event = { id = galician_oil_war.2 days = 2 }
+            }
+            option = {
+                name = "This is too much."
+                add_war_support = -0.05
             }
         }
+        news_event = {
+            id = galician_oil_war.2
+            title = "War Demonstrations in Odesa and Sevastopol"
 
-    # legiony
-        country_event = {
-            id = legiony.1
-            title = "The ‘Dywizja Legionów’ Organizes in Krakau"
-
-            trigger = {
-                tag = AUS   has_completed_focus = XXX_take_ours     controls_state = 80
-                has_war = yes
-            }
-
-            fire_only_once = yes
-            mean_time_to_happen = { days = 14 }
+            is_triggered_only = yes
+            major = yes
 
             option = {
-                name = "Good."
-
-                add_war_support = 0.025
-                every_state = { limit = { state = 80 } create_unit = { division = "name = \"Dywizja Legionów\" division_template = \"Landsturm\"" count = 1 owner = PREV } }
+                name = "Awful."
             }
         }
+
+# atmosphere
+    news_event = {
+        id = attack_serbia.1
+        title = "Austria to Invade Serbia?"         picture = GFX_report_attack_serbia
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_war_support = 0.025
+            SER = { add_war_support = 0.05 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# emperor
+    news_event = {
+        id = emperor.1
+        title = "Austrian Emperor Dies"
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            retire_character = aus_franz_joseph
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+# galicia
+    country_event = {
+        id = galicia.1
+        title = "Clashes in Eastern Galicia"
+
+        trigger = { tag = AUS       controls_state = 89         has_completed_focus = XXX_oil }
+
+        fire_only_once = yes
+        mean_time_to_happen = { months = 2 }
+
+        option = {
+            name = "Trust our administration."
+            add_stability = 0.025
+
+            # event
+            news_event = { id = galicia.2 hours = 6 }
+        }
+        option = {
+            name = "Assure equal access."
+            add_popularity = { ideology = democratic  popularity = 0.025 }
+        }
+    }
+
+    news_event = {
+        id = galicia.2
+        title = "Ukrainian Oil Engineers on Strike"
+
+        is_triggered_only = yes
+
+        option = {
+            name = "Whatever."
+            add_timed_idea = { idea = idea_oil_strike       months = 3 }
+        }
+    }
+
+# sarajevo
+    news_event = {
+        id = sarajevo.1
+        title = "Annexation of Sarajevo"        picture = GFX_report_sarajevo
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_named_threat = { name = "Annexation of Sarajevo" threat = 2 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
 #

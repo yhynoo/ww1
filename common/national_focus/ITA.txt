@@ -1,0 +1,138 @@
+shared_focus = {
+    id = ITA_colonies
+    icon = GFX_focus_ITA_colonies
+
+    available = {
+        uprising_government_lock = yes
+        civil_war_lock = yes
+        colonies_lock = yes
+    }
+
+    x = 0 y = 0
+    cost = 10
+
+    completion_reward = {
+        add_political_power = 50
+        add_war_support = 0.05
+    }
+}
+
+shared_focus = {
+    id = ITA_sardegna
+    icon = GFX_focus_generic_dreadnoughts
+    prerequisite = { focus = ITA_colonies }
+
+    available = {
+        uprising_government_lock = yes      civil_war_lock = yes
+        controls_state = 114
+    }
+
+    relative_position_id = ITA_colonies
+    x = -1 y = 1
+    cost = 10
+
+    completion_reward = {
+        114 = {
+            add_building_construction = { type = dockyard level = 2 instant_build = yes }
+            add_extra_state_shared_building_slots = 2
+        }
+    }
+}
+
+shared_focus = {
+    id = ITA_eritrea
+    icon = GFX_focus_generic_infrastructure
+    prerequisite = { focus = ITA_colonies }
+
+    available = {
+        uprising_government_lock = yes      civil_war_lock = yes
+        controls_state = 550
+    }
+
+    relative_position_id = ITA_colonies
+    x = 1 y = 1
+    cost = 10
+
+    completion_reward = {
+        550 = {
+            add_building_construction = { type = naval_base level = 2 province = 12766 instant_build = yes }
+            add_resource = { type = tungsten amount = 6 }
+        }
+    }
+}
+
+shared_focus = {
+    id = ITA_libya
+    icon = GFX_focus_generic_state
+    prerequisite = { focus = ITA_sardegna }
+
+    available = {
+        uprising_government_lock = yes
+        civil_war_lock = yes
+
+        has_war_support > 0.4
+    }
+
+    relative_position_id = ITA_sardegna
+    x = -2 y = 1
+    cost = 10
+
+    ai_will_do = { limit = { is_historical_focus_on = yes factor = 0 } }
+
+    completion_reward = {
+        every_state = {
+            limit = { or = { state = 204 state = 208 state = 273 } }
+            send_ultimatum_multiple_states = yes
+        }
+    }
+}
+
+shared_focus = {
+    id = ITA_draft
+    icon = GFX_focus_ITA_draft
+    prerequisite = { focus = ITA_eritrea focus = ITA_sardegna }
+
+    available = {
+        uprising_government_lock = yes
+        civil_war_lock = yes
+
+        controls_state = 269    controls_state = 550
+    }
+
+    relative_position_id = ITA_eritrea
+    x = -1 y = 1
+    cost = 10
+
+    completion_reward = {
+        every_state = {
+            limit = { or = { state = 269 state = 550 } }
+
+            create_unit = { division = "name = \"Truppe Coloniali\" division_template = \"Truppe Coloniali\"" count = 2 owner = ROOT } 
+            add_building_construction = { type = air_base level = 1 instant_build = yes }
+        } 
+    }
+}
+
+shared_focus = {
+    id = ITA_ethiopia
+    icon = GFX_focus_ITA_ethiopia
+    prerequisite = { focus = ITA_draft }
+
+    available = {
+        uprising_government_lock = yes
+        civil_war_lock = yes
+
+        has_war_support > 0.5
+        can_declare_war_on = ETH
+    }
+
+    relative_position_id = ITA_draft
+    x = 0 y = 1
+    cost = 10
+
+    ai_will_do = { limit = { is_historical_focus_on = yes factor = 0 } }
+
+    completion_reward = {
+        create_wargoal = { target = ETH type = annex_everything }
+    }
+}

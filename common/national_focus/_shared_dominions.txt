@@ -17,6 +17,8 @@
         x = -4 y = 1
         cost = 10
 
+        select_effect = { autonomy_select_effect = yes }
+
         completion_reward = {
             add_war_support = 0.05
         }
@@ -72,11 +74,17 @@
         x = 0 y = 1
         cost = 10
 
+        select_effect = { awake_select_effect = yes }
+
         completion_reward = {
             hidden_effect = { leave_faction = yes }
-            random_country = { 
-                limit = { has_subject = ROOT } 
-                country_event = independence.1 hidden_effect = { set_autonomy = { target = ROOT autonomy_state = autonomy_free } }
+            state_awake_effect = yes
+
+            hidden_effect = {
+                random_country = { 
+                    limit = { has_subject = ROOT } 
+                    set_autonomy = { target = ROOT autonomy_state = autonomy_free }
+                }
             }
         }
     }

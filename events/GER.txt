@@ -1,69 +1,326 @@
-add_namespace = aachen
-add_namespace = alsace
+add_namespace = aachen_announce
+add_namespace = aachen_unrest
+
+add_namespace = arab_uprisings
 
 add_namespace = equestrian
 
-add_namespace = german_atlas
-add_namespace = grain_deal
-
 add_namespace = johannisthal
 
-add_namespace = middle_east_interests
+add_namespace = metz
 
-add_namespace = saverne
+add_namespace = saverne_avricourt
+add_namespace = saverne_escalate
+add_namespace = saverne_unrest
 
-add_namespace = volga
+add_namespace = wheat_deal
+add_namespace = wheat_volga
+
 add_namespace = warsaw
+add_namespace = war_aims
+add_namespace = wassmuss_in_arabia
 
-# aachen
+# Act I: AACHEN
+    # aachen_announce
+        news_event = {
+            id = aachen_announce.1
+            title = "[GER.GetLeader]: ‘Wallonia is Ours’"       picture = GFX_report_aachen
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                add_named_threat = { name = "Annexation of Wallonia" threat = 2 }
+                country_event = { id = aachen_unrest.1 days = 6 }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+
+    # aachen_unrest
+        country_event = {
+            id = aachen_unrest.1
+            title = "Unrest in Lüttich"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Execute those in charge."
+                add_stability = 0.02
+
+                news_event = { id = aachen_unrest.2 hours = 6 }
+            }
+            option = {
+                name = "Let them go."
+                add_popularity = { ideology = democratic popularity = 0.025 }
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+
+        news_event = {
+            id = aachen_unrest.2
+            title = "Germans Execute Civilians in Lüttich"      picture = GFX_report_aachen_unrest
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                add_named_threat = { name = "Germans Execute Civilians in Lüttich" threat = 1 }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+
+    #
+
+# Act I: WHEAT
+    # wheat_deal
+        country_event = {
+            id = wheat_deal.1
+            title = "[GER.GetName]: Wheat and Oil for Investments?"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "This is great."
+                give_resource_rights = { receiver = GER  state = 200 }      give_resource_rights = { receiver = GER  state = 232 }      add_ideas = idea_wheat_investments
+
+                # event
+                news_event = { id = wheat_deal.2 hours = 6 }
+            }
+            option = {
+                name = "We are not interested."
+
+                # ai
+                ai_chance = { 
+                    modifier = { is_historical_focus_on = yes factor = 0 }                      # historical tsar will always agree
+                    modifier = { GER = { has_completed_focus = XXX_deterrence } factor = 0 }    # unless germans are already messing with the ottomans
+                } 
+            }
+        }
+
+        news_event = {
+            id = wheat_deal.2
+            title = "Germany Accesses Ukrainian Wheat"          picture = GFX_report_wheat_deal
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                GER = { 
+                    give_guarantee = RUS
+                    add_ideas = idea_wheat_deal 
+                }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+
+    # wheat_volga
+        news_event = {
+            id = wheat_volga.1
+            title = "German Investments in the Volga Area"      picture = GFX_report_volga
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                RUS = { add_opinion_modifier = { target = GER modifier = investments_in_the_volga } }
+                239 = {
+                    add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+                    add_extra_state_shared_building_slots = 1
+                }
+                251 = {
+                    add_resource = { type = steel amount = 8 }
+                    add_extra_state_shared_building_slots = 2
+                }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+    #
+
+# Act II: SAVERNE AFFAIR
+    # saverne_avricourt
+        news_event = {
+            id = saverne_avricourt.1
+            title = "Arson in Avricourt"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                add_named_threat = { name = "Arson in Avricourt" threat = 1 }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+
+    # saverne_escalate
+        country_event = {
+            id = saverne_escalate.1
+            title = "Escalate the Tensions?"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "We can use this."
+                add_war_support = 0.05
+
+                # added effects
+                hidden_effect = { 
+                    news_event = { id = saverne_avricourt.1 days = 6 } 
+                    news_event = { id = saverne_war.1 days = 21 } 
+                }
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+            option = {
+                name = "We should act with caution."
+                add_popularity = { ideology = democratic popularity = 0.025 }
+            }
+        }
+
+    # saverne_unrest
+        country_event = {
+            id = saverne_unrest.1
+            title = "Unrest in Alsatian Garrisons"
+
+            trigger = {
+                tag = GER
+                has_completed_focus = XXX_government        date > 1913.10.1         not = { has_war_with = FRA }
+            }
+            fire_only_once = yes
+
+            option = {
+                name = "The army must maintain its authority."
+                news_event = { id = saverne_unrest.2 hours = 6 }
+            }
+            option = {
+                name = "This is too much."
+                add_popularity = { ideology = democratic popularity = 0.05 }
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+
+        news_event = {
+            id = saverne_unrest.2
+            title = "Saverne Affair"        picture = GFX_report_saverne
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                add_named_threat = { name = "Saverne Affair" threat = 4 }
+                FRA = { country_event = { id = saverne_escalate.1 days = 2 } }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+
+    # saverne_war
+        country_event = {
+            id = saverne_war.1
+            title = "Action Française: ‘To War!’"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "‘On les aura!’"
+                create_wargoal = { target = GER type = take_claimed_state }
+
+                # event
+                news_event = { id = saverne_war.2 hours = 6 }
+            }
+            option = {
+                name = "This is too dangerous."
+                add_war_support = -0.025
+
+                # ai
+                ai_chance = {
+                    modifier = { has_war = yes factor = 0 }         # if we're still in algeria, don't add issues
+                }
+            }
+        }
+
+        news_event = {
+            id = saverne_war.2
+            title = "France to Attack Alsace-Lorraine?"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Awful."
+            }
+        }
+
+    #
+
+
+
+# arab uprisings
+    news_event = {
+        id = arab_uprisings.1
+        title = "Wassmuss Appears in Damascus"         picture = GFX_report_middle_east
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            554.controller = { add_stability = -0.025 }
+
+            554.owner = { country_event = { id = arab_uprisings.2 days = 6 } }
+            416.owner = { country_event = { id = arab_uprisings.3 days = 9 } }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
+
     country_event = {
-        id = aachen.1
-        title = "The Administration of Wallonia?"
+        id = arab_uprisings.2
 
-        is_triggered_only = yes
+        is_triggered_only = yes     trigger = { SYR = { exists = no } }
+        hidden = yes
 
-        option = {
-            name = "Annex it."
-            34 = { add_core_of = ROOT   set_demilitarized_zone = no }
-
-            # event
-            news_event = { id = aachen.2 hours = 6 }
-        }
-        option = {
-            name = "Keep the status quo."
+        immediate = {
+            SYR = { 
+                trigger_uprising = yes 
+                set_province_controller = 4111  set_province_controller = 12473
+            }
         }
     }
 
-    news_event = {
-        id = aachen.2
-        title = "[GER.GetLeader]: ‘Wallonia is Ours’"       picture = GFX_report_aachen
+    country_event = {
+        id = arab_uprisings.3
 
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            add_named_threat = { name = "Annexation of Wallonia" threat = 2 }
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# alsace
-    news_event = {
-        id = alsace.1
-        title = "[GER.GetName] Annexes Alsace-Lorraine"     picture = GFX_report_alsace
-
-        is_triggered_only = yes
-        major = yes
+        is_triggered_only = yes     trigger = { YEM = { exists = no } }
+        hidden = yes
 
         immediate = {
-            add_named_threat = { name = "Annexation of Alsace-Lorraine" threat = 4 }
-        }
-
-        option = {
-            name = "Ok."
+            YEM = { 
+                trigger_uprising = yes 
+                set_province_controller = 12758  set_province_controller = 5037
+            }
         }
     }
 
@@ -80,83 +337,6 @@ add_namespace = warsaw
         }
     }
 
-# german_atlas
-    country_event = {
-        id = german_atlas.1
-        title = "Coup the Moroccan Government?"
-
-        is_triggered_only = yes
-
-        option = {
-            name = "We must do it."
-            set_autonomy = { target = MOR autonomous_state = autonomy_puppet end_civil_wars = no end_wars = no }
-            random_country = { limit = { has_cosmetic_tag = MOR_democratic } GER = { create_wargoal = { target = PREV type = annex_everything } } }
-
-            # event
-            news_event = { id = german_atlas.2 hours = 6 }
-        }
-        option = {
-            name = "This is too much."
-            add_war_support = -0.05
-        }
-    }
-
-    news_event = {
-        id = german_atlas.2
-        title = "[GER.GetAdjective] Coup in the Atlas!"         picture = GFX_report_german_atlas
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            add_named_threat = { name = "[GER.GetAdjective] Coup in the Atlas" threat = 4 }
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# grain deal
-    country_event = {
-        id = grain_deal.1
-        title = "[GER.GetName]: Grain and Oil for Investments?"
-
-        is_triggered_only = yes
-
-        option = {
-            name = "This is great."
-            give_resource_rights = { receiver = GER  state = 200 }      give_resource_rights = { receiver = GER  state = 232 }      add_ideas = idea_grain_investments
-
-            # event
-            news_event = { id = grain_deal.2 hours = 6 }
-        }
-        option = {
-            name = "We are not interested."
-
-            # ai
-            ai_chance = { modifier = { is_ai = yes } factor = 0 }
-        }
-    }
-
-    news_event = {
-        id = grain_deal.2
-        title = "Germany Accesses Ukrainian Grain"          picture = GFX_report_grain_deal
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            GER = { 
-                give_guarantee = RUS
-                add_ideas = idea_grain_deal 
-            }
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
 
 # johannisthal
     news_event = {
@@ -175,114 +355,16 @@ add_namespace = warsaw
         }
     }
 
-# middle east
+# metz
     news_event = {
-        id = middle_east_interests.1
-        title = "Germany Eyes the Middle East?"         picture = GFX_report_middle_east
+        id = metz.1
+        title = "Through Metz — to Paris!"              picture = GFX_report_metz
 
         is_triggered_only = yes
         major = yes
 
         immediate = {
-            add_named_threat = { name = "Germany Eyes the Middle East" threat = 1 }
-            TUR = { add_stability = -0.025 }
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-    country_event = {
-        id = middle_east_interests.2
-
-        is_triggered_only = yes
-        hidden = yes
-
-        immediate = {
-            SYR = { 
-                trigger_uprising = yes 
-                set_province_controller = 4111  set_province_controller = 12473
-            }
-        }
-    }
-
-    country_event = {
-        id = middle_east_interests.3
-
-        is_triggered_only = yes
-        hidden = yes
-
-        immediate = {
-            YEM = { 
-                trigger_uprising = yes 
-                set_province_controller = 12758  set_province_controller = 5037
-            }
-        }
-    }
-
-# saverne
-    country_event = {
-        id = saverne.1
-        title = "Unrest in Alsatian Garrisons"
-
-        trigger = {
-            tag = GER
-            has_completed_focus = XXX_extend
-        }
-
-        fire_only_once = yes
-        mean_time_to_happen = { months = 4 }
-
-        option = {
-            name = "The army must maintain its authority."
-            add_stability = 0.025
-
-            # event
-            news_event = { id = saverne.2 hours = 6 }
-        }
-        option = {
-            name = "This is too much."
-            add_popularity = { ideology = democratic popularity = 0.05 }
-        }
-    }
-
-    news_event = {
-        id = saverne.2
-        title = "Saverne Affair"        picture = GFX_report_saverne
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            add_named_threat = { name = "Saverne Affair" threat = 4 }
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# volga
-    news_event = {
-        id = volga.1
-        title = "German Investments in the Volga Area"      picture = GFX_report_volga
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            RUS = {
-                add_opinion_modifier = { target = GER modifier = investments_in_the_volga }
-            }
-            239 = {
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-                add_extra_state_shared_building_slots = 1
-            }
-            251 = {
-                add_resource = { type = steel amount = 8 }
-                add_extra_state_shared_building_slots = 2
-            }
+            add_war_support = 0.025
         }
 
         option = {
@@ -295,18 +377,20 @@ add_namespace = warsaw
         id = war_aims.1
         title = "War Aims in the West?"
 
-        is_triggered_only = yes
+        trigger = { tag = GER has_war_with = FRA }
+        fire_only_once = yes
 
         option = {
             name = "Announce claims in the Ardennes and Flanders."
             every_state = { limit = { or = { state = 29 state = 25 state = 17 } add_claim_by = GER } }
-
-            # event
             news_event = { id = war_aims.2 hours = 6 }
         }
         option = {
             name = "We are only defending ourselves."
             add_war_support = 0.05
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
         }
     }
 
@@ -368,4 +452,20 @@ add_namespace = warsaw
         }
     }
 
+# wassmuss
+    news_event = {
+        id = wassmuss_in_arabia.1
+        title = "Germany Eyes the Middle East?"         picture = GFX_report_wassmuss
+
+        is_triggered_only = yes
+        major = yes
+
+        immediate = {
+            add_named_threat = { name = "German Interest in the Middle East" threat = 2 }
+        }
+
+        option = {
+            name = "Ok."
+        }
+    }
 #

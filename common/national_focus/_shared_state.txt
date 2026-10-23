@@ -5,13 +5,13 @@
 
         available = {
             uprising_government_lock = yes
-            civil_war_government_lock = yes
+            civil_war_lock = yes
         }
 
-        x = 0 y = 0
+        x = 9 y = 0
         cost = 8
 
-        ai_will_do = { base = 1.5 }
+        select_effect = { government_select_effect = yes }
 
         completion_reward = {
             state_government_effect = yes
@@ -25,10 +25,9 @@
         mutually_exclusive = { focus = XXX_deterrence }
 
         allow_branch = { has_dominion_focuses = no }
-        ai_will_do = { modifier = { or = { original_tag = AUS original_tag = ENG original_tag = FRA original_tag = GER original_tag = ITA original_tag = SPA original_tag = USA } } factor = 1.5 } 
 
         available = {
-            civil_war_government_lock = yes
+            civil_war_lock = yes
             state_extend_trigger = yes
         }
 
@@ -47,7 +46,7 @@
         prerequisite = { focus = XXX_extend }
 
         available = {
-            civil_war_government_lock = yes
+            civil_war_lock = yes
             state_claims_trigger = yes
         }
 
@@ -56,6 +55,8 @@
         relative_position_id = XXX_extend
         x = -2 y = 1
         cost = 10
+
+        select_effect = { claims_select_effect = yes }
 
         completion_reward = {
             state_claims_effect = yes
@@ -68,8 +69,7 @@
         prerequisite = { focus = XXX_extend }
 
         available = {
-            has_war_support > 0.4
-            civil_war_government_lock = yes
+            civil_war_lock = yes
         }
 
         relative_position_id = XXX_extend
@@ -87,11 +87,24 @@
         prerequisite = { focus = XXX_men }
 
         available = {
-            civil_war_government_lock = yes
+            civil_war_lock = yes
             state_take_ours_trigger = yes
         }
 
-        ai_will_do = { modifier = { has_war = yes factor = 0 } }
+        ai_will_do = { 
+            modifier = { has_war = yes factor = 0 }
+            modifier = { 
+                and = { original_tag = ITA AUS = { has_war = no } }  
+                factor = 0
+            }
+            modifier = { 
+                and = { 
+                    is_historical_focus_on = yes
+                    and = { original_tag = SER not = { TUR = { has_war_with = AUS } } }
+                } 
+                factor = 0 
+            }
+        }
 
         relative_position_id = XXX_men
         x = 0 y = 1
@@ -109,10 +122,10 @@
         mutually_exclusive = { focus = XXX_extend }
 
         allow_branch = { has_dominion_focuses = no }
-        # ai_will_do = { modifier = { has_war_support > 0.5 factor = 0.5 } }
 
         available = {
-            civil_war_government_lock = yes
+            civil_war_lock = yes
+            state_deterrence_trigger = yes
         }
 
         relative_position_id = XXX_government
@@ -131,11 +144,7 @@
         mutually_exclusive = { focus = XXX_ethnocentrism }
 
         available = {
-            civil_war_government_lock = yes
-        }
-
-        ai_will_do = {
-            modifier = { has_government = monarchism factor = 0.5 }
+            civil_war_lock = yes
         }
 
         relative_position_id = XXX_government
@@ -153,7 +162,7 @@
         prerequisite = { focus = XXX_government }
 
         available = {
-            civil_war_government_lock = yes
+            civil_war_lock = yes
         }
 
         relative_position_id = XXX_government
@@ -172,13 +181,12 @@
         mutually_exclusive = { focus = XXX_idealism }
 
         available = {
-            civil_war_government_lock = yes
+            civil_war_lock = yes
             state_ethnocentrism_trigger = yes
         }
 
-        bypass = {
-            state_ethnocentrism_bypass = yes
-        }
+        bypass = { state_ethnocentrism_bypass = yes }
+        enable_automatic_bypass = no
 
         relative_position_id = XXX_stability
         x = -1 y = 1
@@ -190,21 +198,25 @@
     }
 
     shared_focus = {
-        id = XXX_agrarianism
-        icon = GFX_focus_XXX_agrarian
+        id = XXX_economy
+        icon = GFX_focus_XXX_economy
         prerequisite = { focus = XXX_stability }
 
         available = {
-            civil_war_government_lock = yes
-            state_agrarianism_trigger = yes
+            civil_war_lock = yes
+            state_economy_trigger = yes
         }
 
         relative_position_id = XXX_stability
         x = 2 y = 1
         cost = 10
 
+        select_effect = {
+            economy_select_effect = yes
+        }
+
         completion_reward = {
-            state_agrarianism_effect = yes
+            state_economy_effect = yes
         }
     }
 
@@ -214,13 +226,30 @@
         prerequisite = { focus = XXX_idealism   focus = XXX_ethnocentrism   focus = XXX_colonial_investments    focus = XXX_old_elites }
 
         available = {
-            civil_war_government_lock = yes
+            civil_war_lock = yes
             state_unity_trigger = yes
         }
+
+        bypass = { state_unity_bypass = yes }
+        enable_automatic_bypass = no
 
         relative_position_id = XXX_ethnocentrism
         x = -1 y = 1
         cost = 8
+
+        ai_will_do = {
+            modifier = { 
+                and = { 
+                    is_historical_focus_on = yes
+                    original_tag = AUS not = { has_war_with = SER } 
+                } 
+                factor = 0 
+            }
+        }
+
+        select_effect = {
+            unity_select_effect = yes
+        }
 
         completion_reward = {
             state_unity_effect = yes
@@ -233,7 +262,7 @@
         prerequisite = { focus = XXX_unity }
 
         available = {
-            civil_war_government_lock = yes
+            civil_war_lock = yes
             state_administration_trigger = yes
         }
 

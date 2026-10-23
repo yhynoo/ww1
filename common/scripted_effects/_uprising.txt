@@ -8,8 +8,8 @@ trigger_uprising = {
         if = { 
             limit = { is_capital = no }  
             random_list = {
-                1 = { random = { chance = 50 setup_uprising_volunteers = yes } }
-                1 = { random = { chance = 50 every_country = { limit = { original_tag = ROOT } transfer_units_fraction = { target = PREV.PREV      size = 0.025     stockpile_ratio = 0.05     keep_unit_leaders_trigger = { always = no } } } } }
+                2 = { random = { chance = 80 setup_uprising_volunteers = yes } }
+                1 = { random = { chance = 40 every_country = { limit = { original_tag = ROOT } transfer_units_fraction = { target = PREV.PREV      size = 0.01     stockpile_ratio = 0.05     keep_unit_leaders_trigger = { always = no } } } } }
             }
         }
     }
@@ -20,7 +20,12 @@ trigger_uprising = {
     every_country = {
         limit = { 
             not = { tag = PREV } 
-            and = { any_state = { is_owned_by = PREV.PREV or = { is_core_of = PREV is_claimed_by = PREV } } }
+            and = { 
+                any_state = { 
+                    is_owned_by = PREV.PREV 
+                    or = { is_core_of = PREV is_claimed_by = PREV check_variable = { original_controller = PREV } } 
+                } 
+            }
         }
         country_event = uprising.2
     }
@@ -29,6 +34,32 @@ trigger_uprising = {
     every_owned_state = { var:original_controller = { set_state_controller = PREV } }
 
     # flags and focuses
+    add_ideas = idea_uprising
+}
+
+trigger_uprising_easy = {
+    every_core_state = {
+        limit = { controller = { original_tag = ROOT } }
+        set_variable = { original_controller = controller }     transfer_state_to = PREV
+
+        # set up
+        if = { limit = { is_capital = yes } setup_uprising_volunteers = yes setup_uprising_volunteers = yes }       # twice to make sure there is more
+        if = { 
+            limit = { is_capital = no }  
+            random_list = {
+                2 = { random = { chance = 80 setup_uprising_volunteers = yes } }
+                1 = { random = { chance = 40 every_country = { limit = { original_tag = ROOT } transfer_units_fraction = { target = PREV.PREV      size = 0.02     stockpile_ratio = 0.05     keep_unit_leaders_trigger = { always = no } } } } }
+            }
+        }
+    }
+
+    # event and war
+    save_event_target_as = uprising_country
+    news_event = uprising.1
+    every_country = { limit = { original_tag = ROOT } PREV = { declare_war_on = { target = PREV type = independence_wargoal } } }
+
+    # control and focuses
+    every_owned_state = { var:original_controller = { set_state_controller = PREV } }
     add_ideas = idea_uprising
 }
 

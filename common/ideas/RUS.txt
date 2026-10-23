@@ -3,6 +3,8 @@ ideas = {
         idea_anti_authoritarian_intelligentsia = {
             modifier = {
                 monarchism_drift = -0.05
+                political_power_factor -0.15
+                stability_factor = -0.05
             }
             cancel = {
                 not = { has_government = monarchism }
@@ -18,7 +20,7 @@ ideas = {
             }
         }
 
-        idea_grain_investments = {
+        idea_wheat_investments = {
             modifier = {
                 production_speed_infrastructure_factor = 0.1
                 stability_factor = 0.05
@@ -39,12 +41,24 @@ ideas = {
                 has_war = yes
             }
         }
-        idea_ural_settlements = {
+
+        idea_aid_to_armenia = {
             modifier = {
-                production_speed_rail_way_factor = 0.05
-                monthly_population = 0.05
+                send_volunteers_tension = -0.2
+                lend_lease_tension = -0.25
+            }
+            cancel = {
+                ARM = { not = { has_war_with = TUR } }
             }
         }
-        
+        idea_aid_to_serbia = {
+            modifier = {
+                send_volunteers_tension = -0.2
+                lend_lease_tension = -0.25
+            }
+            cancel = {
+                SER = { not = { has_war_with = TUR } }
+            }
+        }
     }
 }

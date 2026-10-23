@@ -20,21 +20,20 @@ on_actions = {
 
         # events
             AUS = {
-                news_event = { id = emperor_austria.1 months = 46 days = 27 }
+                news_event = { id = emperor.1 months = 46 days = 27 }
             }
-
+            
             ENG = {
                 news_event = { id = titanic.1 months = 3 days = 14 }
             }
 
             FRA = {
-                country_event = { id = caillaux.1 days = 12}
-                news_event = { id = garros.2 months = 20 days = 3 }
+                news_event = { id = garros.1 months = 20 days = 3 }
             }
 
             GER = {
                 news_event = { id = equestrian.1 days = 26 }
-                news_event = { id = johannisthal.3 months = 21 days = 17 }
+                news_event = { id = johannisthal.1 months = 21 days = 17 }
             }
 
             GRE = {
@@ -54,12 +53,8 @@ on_actions = {
                 country_event = { id = tibet.1 months = 3 days = 4 }
             }
 
-            MOR = {
-                news_event = { id = atlas.1 months = 28 days = 6 }
-            }
-
             RUS = {
-                news_event = { id = muromets.1 months = 21 days = 17 }
+                news_event = { id = muromets.1 months = 22 days = 6 }
             }
 
             TUR = {
@@ -99,6 +94,15 @@ on_actions = {
                     limit = { is_subject = yes has_elections = yes }
                     set_politics = { ruling_party = ROOT elections_allowed = no }
                 }
+
+                if = {
+                    limit = { has_cosmetic_tag = AUH    HUN = { exists = yes } }
+                    drop_cosmetic_tag = yes
+                }
+                if = {
+                    limit = { or = { original_tag = HUN original_tag = CRO } is_subject_of = AUS not = { has_cosmetic_tag = austrian_client_state } }
+                    set_cosmetic_tag = austrian_client_state
+                }
             
             #
         }
@@ -117,7 +121,7 @@ on_actions = {
                     check_variable = { highest_party_popularity@exclude_ruling_party > 0.2 }
 
                     or = {
-                        has_stability < 0.2
+                        has_stability < 0.1
                         and = {
                             has_stability < 0.4
                             or = {
@@ -151,6 +155,92 @@ on_actions = {
         }
     }
 
+    on_weekly_AUS = {
+        effect = {
+            if = {
+                limit = { has_completed_focus = generic_oil has_stability < 0.8 }
+                country_event = galician_oil_tensions.1
+            }
+        }
+    }
+
+    on_weekly_SER = {
+        effect = {
+            if = {
+                limit = { has_completed_focus = XXX_extend    can_declare_war_on = TUR   has_global_flag = southeastern_war }
+                country_event = { id = ottoman_opportunity.1  days = 2 random_days = 4 }
+            }
+
+            if = {
+                limit = { has_country_flag = ottoman_war_winner     has_completed_focus = XXX_claims }
+                country_event = albania_demilitarize.1
+            }
+
+            if = {
+                limit = { has_global_flag = second_southeastern_war }
+                if = {
+                    limit = { 
+                        war_length_with = { tag = TUR length < 3 }
+                        every_owned_state = { is_controlled_by = ROOT }     controls_state = 44
+                    }
+                    country_event = albania_ending_serbia.1
+                }
+                if = {
+                    limit = { war_length_with = { tag = TUR length > 4 }      TUR = { surrender_progress < 0.1 } }
+                    country_event = albania_ending_turkey.1
+                }
+
+                if = {
+                    limit = { not = { has_war_with = TUR } }
+                    clr_global_flag = second_southeastern_war
+                }
+            }
+
+            if = {
+                limit = {
+                    has_war_with = AUS      is_in_faction = no      AUS = { is_in_faction = no }
+                    has_completed_focus = XXX_unity
+
+                    controls_state = 103    controls_state = 104    controls_state = 109
+                    not = { any_state = { is_owned_by = SER not = { is_controlled_by = SER } } }
+                }
+                country_event = savoie_ending_yugoslavia.1
+            }
+        }
+    }
+
+    on_weekly_SMS = {
+        effect = {
+            if = {
+                limit = {
+                    is_subject_of = TUR     TUR = { has_war = yes }
+                    not = { or = { has_completed_focus = XXX_autonomy has_completed_focus = XXX_allegiance } }
+                }
+                country_event = ottoman_samian_autonomy.1
+            }
+        }
+    }
+
+    on_weekly_TUR = {
+        effect = {
+            if = {
+                limit = {
+                    has_global_flag = southeastern_war
+                    or = {
+                        war_length_with = { tag = ROM length > 4 }
+                        and = { war_length_with = { tag = ROM length > 2 surrender_progress > 0.2 } }
+                    }
+                }
+                country_event = ottoman_young_turks.1 
+            }
+
+            if = {
+                limit = { has_global_flag = southeastern_war      has_war = no }
+                news_event = ottoman_armistice.2
+            }
+        }
+    }
+
     on_ace_promoted = {
         effect = {
             if = { 
@@ -162,6 +252,7 @@ on_actions = {
 
     on_new_term_election = {
         random_events = {
+            100 = elections_belgium.1
             100 = elections_england.1
             100 = elections_france.1
             100 = elections_holland.1

@@ -14,9 +14,11 @@ equipments = {
 		allow_mission_type = {
 			training
             air_supply
+			attack_logistics
 			strategic_bomber
 			naval_bomber
 			port_strike
+			naval_patrol
 		}
 
 		sprite = medium_plane
@@ -29,41 +31,42 @@ equipments = {
     airship_1904 = {
         year = 1904
         active = no
+		priority = 10
         archetype = airship_equipment
 
         air_range = 850
 		maximum_speed = 40
 
-		air_agility = 5
-		air_attack = 0
-		air_defence = 0
+		air_agility = 6
+		air_attack = 2.2
+		air_defence = 2.4
         air_superiority = 1
 
-		air_bombing = 6
+		air_bombing = 6.2
 		air_ground_attack = 2.2
 
-		naval_strike_attack = 2.0
-		naval_strike_targetting = 12
-        surface_detection = 20
-		sub_detection = 2.5
+		naval_strike_attack = 2.6
+		naval_strike_targetting = 8.2
+        surface_detection = 22
+		sub_detection = 5.2
 
 		reliability = 0.6
 
         lend_lease_cost = 40
-		build_cost_ic = 120
+		build_cost_ic = 108
 
 		resources = {
 			tungsten = 4
 			rubber = 1
 		}
 
-		manpower = 50
+		manpower = 100
 		fuel_consumption = 0.2
     }
     airship_1914 = {
         year = 1914
         active = no
-
+		priority = 20
         archetype = airship_equipment
 
 		allow_mission_type = {
@@ -74,25 +77,25 @@ equipments = {
 		}
 
         air_range = 1650
-		maximum_speed = 75
+		maximum_speed = 80
 
 		air_agility = 8
 		air_attack = 4
-		air_defence = 42
-        air_superiority = 8
+		air_defence = 12
+        air_superiority = 1
 
         air_bombing = 20
-		air_ground_attack = 6.8
+		air_ground_attack = 4.0
 
 		naval_strike_attack = 5.2
 		naval_strike_targetting = 12
-        surface_detection = 25
-		sub_detection = 2.5
+        surface_detection = 28
+		sub_detection = 6
 
-		reliability = 0.8
+		reliability = 0.7
 
         lend_lease_cost = 45
-		build_cost_ic = 146
+		build_cost_ic = 120
 
 		resources = {
 			tungsten = 6
@@ -100,13 +103,13 @@ equipments = {
 			rubber = 1
 		}
 
-		manpower = 60
+		manpower = 120
 		fuel_consumption = 0.24
     }
     airship_1917 = {
         year = 1917
         active = no
-
+		priority = 20
         parent = airship_1914
         archetype = airship_equipment
 
@@ -121,23 +124,23 @@ equipments = {
         air_bombing = 36
 		air_ground_attack = 16.8
 
-		naval_strike_attack = 6.4
-		naval_strike_targetting = 16
-        surface_detection = 28
-		sub_detection = 4
+		naval_strike_attack = 7.4
+		naval_strike_targetting = 14.2
+        surface_detection = 36
+		sub_detection = 7.8
 
-		reliability = 0.85
+		reliability = 0.8
 
         lend_lease_cost = 55
 
-		build_cost_ic = 158
+		build_cost_ic = 128
 		resources = {
 			tungsten = 6
             aluminium = 2
 			rubber = 1
 		}
 
-		manpower = 60
+		manpower = 120
 		fuel_consumption = 0.26
     }
 }

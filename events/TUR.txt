@@ -8,7 +8,407 @@ add_namespace = ionia
 
 add_namespace = oil_oligarchs
 
+add_namespace = ottoman_aid_to_armenia
+add_namespace = ottoman_armenia
+add_namespace = ottoman_armistice
+add_namespace = ottoman_arrests
+add_namespace = ottoman_assassination
+add_namespace = ottoman_dead
+add_namespace = ottoman_defense
+add_namespace = ottoman_enosis
+add_namespace = ottoman_opportunity
+add_namespace = ottoman_samian_autonomy
+add_namespace = ottoman_sophoulis
+add_namespace = ottoman_war
+add_namespace = ottoman_young_turks
+
 add_namespace = young_turks
+
+# Act I: OTTOMAN WARS
+    # ottoman_aid_to_armenia
+        country_event = {
+            id = ottoman_aid_to_armenia.1
+            title = "Aid to Armenia?"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Organize arms and volunteers."
+                add_ideas = idea_aid_to_armenia
+
+                # event
+                news_event = { id = ottoman_aid_to_armenia.2 hours = 6 }
+            }
+            option = {
+                name = "We will stay out of this."
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+
+        news_event = {
+            id = ottoman_aid_to_armenia.2
+            title = "Tsar Organizes Aid to the Armenians"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Interesting."
+            }
+        }
+
+    # ottoman_armenia
+        country_event = {
+            id = ottoman_armenia.1
+            hidden = yes
+
+            is_triggered_only = yes
+
+            immediate = {
+                ARM = {
+                    trigger_uprising_easy = yes
+
+                    set_province_controller = 10472      set_province_controller = 11853      set_province_controller = 6935
+                    load_oob = ARM
+                }
+
+                RUS = { country_event = { id = ottoman_aid_to_armenia.1 days = 7 } }
+            }
+        }
+    # ottoman_armistice
+        country_event = {
+            id = ottoman_armistice.1
+            title = "[TUR.GetName] Offers an Armistice"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Great."
+                white_peace = TUR
+
+                # gains
+                if = { limit = { original_tag = GRE } every_state = { limit = { or = { state = 164 state = 187 } } transfer_state_to = GRE } }
+                if = { limit = { original_tag = SER } every_state = { limit = { or = { state = 106 state = 404 } } transfer_state_to = SER } }
+
+                # flag
+                set_country_flag = ottoman_war_winner
+            }
+            option = {
+                name = "We are not interested."
+                add_political_power = -50
+
+                # ai
+                ai_chance = { modifier = { is_ai = yes factor = 0 } }
+            }
+        }
+
+        news_event = {
+            id = ottoman_armistice.2
+            title = "War in Southeastern Europe Ends"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                clr_global_flag = southeastern_war
+
+                SMS = { country_event = { id = ottoman_enosis.1 days = 14 } }
+                TUR = { country_event = { id = ottoman_arrests.1 days = 21 random_days = 14 } }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # ottoman_arrests
+        country_event = {
+            id = ottoman_arrests.1
+            title = "The Traitors’ Arrests"
+
+            is_triggered_only = yes     trigger = { has_country_flag = agreed_to_young_turks }
+
+            option = {
+                name = "Arrest the officers."
+
+                retire_character = tur_mustafa_kemal        retire_character = tur_enver
+                remove_ideas = idea_hostile_officer_corps
+
+                # event
+                news_event = { id = ottoman_arrests.2 hours = 6 }
+            }
+            option = {
+                name = "We depend on them."
+                add_popularity = { ideology = communism popularity = 0.05 }
+            }
+        }
+
+        news_event = {
+            id = ottoman_arrests.2
+            title = "Young Turk Officers Arrested in Ankara"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # ottoman_assassination
+        news_event = {
+            id = ottoman_assassination.1
+            title = "Hegemon of Samos Assassinated!"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                SMS = { retire_character = SMS_andreas_kopasis }
+                add_named_threat = { name = "Hegemon of Samos Assassinated" threat = 1 }
+            }
+
+            option = {
+                name = "Awful."
+            }
+        }
+
+    # ottoman_dead
+        news_event = {
+            id = ottoman_dead.1
+            title = "Another Ottoman Appointee Dead?"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                ROM = { retire_character = ROM_alexandru_marghiloman }
+                add_named_threat = { name = "Duke of Wallachia-Moldova Assassinated" threat = 1 }
+            }
+
+            option = {
+                name = "Terrible."
+            }
+        }
+
+    # ottoman_defense
+        country_event = {
+            id = ottoman_defense.1
+            title = "Anti-Ottoman Defense Agreement?"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Let's do it."
+                give_guarantee = ROM
+
+                # event
+                news_event = { id = ottoman_defense.2 hours = 6 }
+            }
+            option = {
+                name = "We are not interested."
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+            }
+        }
+
+        news_event = {
+            id = ottoman_defense.2
+            title = "Anti-Ottoman Defense Talks in Athens"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                ROM = { give_guarantee = GRE }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # ottoman_enosis
+        country_event = {
+            id = ottoman_enosis.1
+            title = "Enosis with Greece?"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Yes."
+                GRE = { 
+                    annex_country = { target = SMS transfer_troops = yes }
+                    news_event = { id = ottoman_enosis.2 hours = 6 } 
+                }
+            }
+            option = {
+                name = "We shall stand on our own."
+                add_political_power = 50
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+            }
+        }
+        news_event = {
+            id = ottoman_enosis.2
+            title = "Samos Announces Enosis with Greece"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # ottoman_opportunity
+        country_event = {
+            id = ottoman_opportunity.1
+            title = "Opportunity to Attack the Turks"
+
+            is_triggered_only = yes
+            fire_only_once = yes
+
+            option = {
+                name = "This is the time."
+                declare_war_on = { target = TUR type = take_claimed_state }
+
+                # event
+                news_event = { id = ottoman_opportunity.2 hours = 6 }
+            }
+            option = {
+                name = "We must act with caution."
+                add_war_support = -0.025
+            }
+        }
+
+        news_event = {
+            id = ottoman_opportunity.2
+            title = "Serbia Attacks [TUR.GetNameDef]!"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # ottoman_samian_autonomy
+        country_event = {
+            id = ottoman_samian_autonomy.1
+            title = "The Question of Samian Autonomy"
+
+            is_triggered_only = yes
+            fire_only_once = yes
+
+            option = {
+                name = "Declare war on Turks."
+                hidden_effect = {
+                    TUR = { set_autonomy = { target = SMS autonomous_state = autonomy_free } }
+                    every_enemy_country = { white_peace = SMS }
+                }
+                declare_war_on = TUR
+
+                # event
+                news_event = { id = ottoman_samian_autonomy.2 hours = 6 }
+            }
+            option = {
+                name = "Seek a Turkish intervention."
+            }
+        }
+
+        news_event = {
+            id = ottoman_samian_autonomy.2
+            title = "Samos Turns Against the Ottomans!"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                SMS = { 
+                    set_politics = { ruling_party = democratic elections_allowed = yes } 
+                    set_popularities = { democratic = 65 monarchism = 30 communism = 5 }
+                }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # ottoman_sophoulis
+        country_event = {
+            id = ottoman_sophoulis.1
+            title = "Themistoklis Sophoulis Arrives in Samos"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Interesting."
+                hidden_effect = { recruit_character = SMS_themistoklis_sophoulis } promote_character = SMS_themistoklis_sophoulis
+            }
+        }
+    # ottoman_war
+        country_event = {
+            id = ottoman_war.1
+            title = "Duchy of Wallachia and Moldova Declares Autonomy"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "This means war!"
+                declare_war_on = { target = ROM     type = puppet_wargoal_focus }       set_global_flag = southeastern_war
+
+                # event
+                news_event = { id = ottoman_war.2 hours = 6 }
+            }
+            option = {
+                name = "What can we do?"
+                add_war_support = -0.05
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+
+        news_event = {
+            id = ottoman_war.2
+            title = "War in Southeastern Europe!"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                ROM = { retire_character = ROM_constantin_harjeu }
+                TUR = { country_event = { id = ottoman_armenia.1 days = 14 random_days = 21 } }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # ottoman_young_turks
+        country_event = {
+            id = ottoman_young_turks.1
+            title = "Army Officers Demand an Armistice"
+
+            is_triggered_only = yes
+            fire_only_once = yes
+
+            option = {
+                name = "We must do it."
+                every_enemy_country = { country_event = { id = ottoman_armistice.1 hours = 6 random_days = 4 } }
+
+                set_country_flag = agreed_to_young_turks
+            }
+            option = {
+                name = "It is not up to them."
+                young_turk_coup = yes
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+            }
+        }
+    #
 
 # arab_opposition
     country_event = {
@@ -195,61 +595,3 @@ add_namespace = young_turks
         }
     }
 
-# young_turks
-    country_event = {
-        id = young_turks.1
-        title = "Opposition in the Army Continues"
-
-        trigger = {
-            tag = TUR
-            has_civil_war = no
-            or = { has_idea = idea_hostile_officer_corps has_idea = idea_disobedient_officer_corps }
-            or = { 
-                has_completed_focus = XXX_extend  
-                and = { not = { has_government = communism } communism > 0.2 }   
-                and = { has_war = yes   has_war_support < 0.25 }
-            }
-        }
-
-        fire_only_once = yes
-        mean_time_to_happen = { months = 2 }
-
-        option = {
-            name = "Arrest them."
-
-            retire_character = tur_mustafa_kemal
-            retire_character = tur_enver
-
-            if = {
-                limit = { has_idea = idea_hostile_officer_corps }
-                remove_ideas = idea_hostile_officer_corps
-            }
-            if = {
-                limit = { has_idea = idea_disobedient_officer_corps }
-                remove_ideas = idea_disobedient_officer_corps
-            }
-
-            # event
-            random = { chance = 50 news_event = { id = young_turks.2 hours = 6 } }
-        }
-        option = {
-            name = "We must deal with this with caution."
-            add_popularity = { ideology = communism popularity = 0.05 }
-        }
-    }
-
-    news_event = {
-        id = young_turks.2
-        title = "Another Young Turk Coup!"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            TUR = { young_turk_coup = yes }
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }

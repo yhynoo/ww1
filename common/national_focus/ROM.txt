@@ -1,0 +1,128 @@
+shared_focus = {
+    id = ROM_limits
+    icon = GFX_focus_ROM_limits
+
+    available = {
+        uprising_government_lock = yes
+        civil_war_lock = yes
+
+        is_subject = no
+    }
+
+    x = 0 y = 0
+    cost = 10
+
+    completion_reward = {
+        add_political_power = 50
+        add_war_support = 0.05
+    }
+}
+
+shared_focus = {
+    id = ROM_constanta
+    icon = GFX_focus_ROM_constanta
+    prerequisite = { focus = ROM_limits }
+
+    available = {
+        uprising_government_lock = yes      civil_war_lock = yes        is_subject = no
+        controls_state = 77
+    }
+
+    relative_position_id = ROM_limits
+    x = -1 y = 1
+    cost = 10
+
+    completion_reward = {
+        77 = {
+            add_building_construction = { type = bunker level = 2 province = 657 instant_build = yes }
+            add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+        }
+    }
+}
+
+shared_focus = {
+    id = ROM_defenses
+    icon = GFX_focus_generic_infrastructure
+    prerequisite = { focus = ROM_limits }
+
+    available = {
+        uprising_government_lock = yes      civil_war_lock = yes        is_subject = no
+        controls_state = 79
+    }
+
+    relative_position_id = ROM_limits
+    x = 1 y = 1
+    cost = 10
+
+    completion_reward = {
+        add_war_support = 0.025
+        79 = {
+            add_building_construction = { type = supply_node level = 1 province = 6706 instant_build = yes }
+            add_building_construction = { type = air_base level = 1 instant_build = yes }
+        }
+    }
+}
+
+shared_focus = {
+    id = ROM_thrace
+    icon = GFX_focus_generic_state
+    prerequisite = { focus = ROM_constanta }
+
+    available = {
+        uprising_government_lock = yes      civil_war_lock = yes        is_subject = no
+        has_war_support > 0.4
+    }
+
+    relative_position_id = ROM_constanta
+    x = -2 y = 1
+    cost = 10
+
+    completion_reward = {
+        custom_effect_tooltip = tt_to_do
+    }
+}
+
+shared_focus = {
+    id = ROM_dniester
+    icon = GFX_focus_ROM_dniester
+    prerequisite = { focus = ROM_defenses focus = ROM_constanta }
+
+    available = {
+        uprising_government_lock = yes      civil_war_lock = yes        is_subject = no
+        has_war_support > 0.5
+    }
+
+    ai_will_do = { modifier = { 78.owner = { has_civil_war = no } factor = 0 } }     # only go for chisinau if the owner is in civil war.
+
+    relative_position_id = ROM_defenses
+    x = -1 y = 1
+    cost = 10
+
+    completion_reward = {
+        every_state = {
+            limit = { or = { state = 78 state = 442 } }
+            send_ultimatum_multiple_states = yes
+        } 
+    }
+}
+
+shared_focus = {
+    id = ROM_ukraine
+    icon = GFX_focus_ROM_ukraine
+    prerequisite = { focus = ROM_dniester }
+
+    available = {
+        uprising_government_lock = yes      civil_war_lock = yes        is_subject = no
+        has_war_support > 0.6
+    }
+
+    ai_will_do = { modifier = { is_historical_focus_on = yes factor = 0 } }
+
+    relative_position_id = ROM_dniester
+    x = 0 y = 1
+    cost = 10
+
+    completion_reward = {
+        create_wargoal = { target = 192.owner type = take_claimed_state }
+    }
+}

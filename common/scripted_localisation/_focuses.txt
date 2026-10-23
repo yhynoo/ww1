@@ -4,6 +4,7 @@
 
         # countries
             text = { trigger = { original_tag = AUS } localization_key = AUS_government }
+            text = { trigger = { original_tag = BEL } localization_key = BEL_government }
             text = { trigger = { original_tag = COL } localization_key = COL_government }
             text = { trigger = { original_tag = ENG } localization_key = ENG_government }
             text = { trigger = { original_tag = FRA } localization_key = FRA_government }
@@ -29,6 +30,7 @@
         # countries
             text = { trigger = { original_tag = ARM } localization_key = ARM_extend }
             text = { trigger = { original_tag = AUS } localization_key = AUS_extend }
+            text = { trigger = { original_tag = BEL } localization_key = BEL_extend }
             text = { trigger = { original_tag = COL } localization_key = COL_extend }
             text = { trigger = { original_tag = ENG } localization_key = ENG_extend }
             text = { trigger = { original_tag = FRA } localization_key = FRA_extend }
@@ -56,6 +58,7 @@
         # countries
             text = { trigger = { original_tag = ARM } localization_key = ARM_claims }
             text = { trigger = { original_tag = AUS } localization_key = AUS_claims }
+            text = { trigger = { original_tag = BEL } localization_key = BEL_claims }
             text = { trigger = { original_tag = COL } localization_key = COL_claims }
             text = { trigger = { original_tag = ENG } localization_key = ENG_claims }
             text = { trigger = { original_tag = FRA } localization_key = FRA_claims }
@@ -82,6 +85,7 @@
         # countries
             text = { trigger = { original_tag = ARM } localization_key = ARM_take_ours }
             text = { trigger = { original_tag = AUS } localization_key = AUS_take_ours }
+            text = { trigger = { original_tag = BEL } localization_key = BEL_take_ours }
             text = { trigger = { original_tag = COL } localization_key = COL_take_ours }
             text = { trigger = { original_tag = ENG } localization_key = ENG_take_ours }
             text = { trigger = { original_tag = FRA } localization_key = FRA_take_ours }
@@ -106,7 +110,6 @@
         name = state_deterrence_text
 
         # countries
-            text = { trigger = { original_tag = AUS } localization_key = AUS_deterrence }
             text = { trigger = { original_tag = COL } localization_key = COL_deterrence }
             text = { trigger = { original_tag = ENG } localization_key = ENG_deterrence }
             text = { trigger = { original_tag = FRA } localization_key = FRA_deterrence }
@@ -125,8 +128,6 @@
 
         # countries
             text = { trigger = { original_tag = ENG } localization_key = ENG_stability }
-            text = { trigger = { original_tag = FRA } localization_key = FRA_stability }
-            text = { trigger = { original_tag = GER } localization_key = GER_stability }
             text = { trigger = { original_tag = RUS } localization_key = RUS_stability }
             text = { trigger = { original_tag = TUR } localization_key = TUR_stability }
 
@@ -138,30 +139,28 @@
         name = state_ethnocentrism_text
 
         # countries
-            text = { trigger = { original_tag = FRA } localization_key = FRA_ethnocentrism }
-            text = { trigger = { original_tag = GER } localization_key = GER_ethnocentrism }
             text = { trigger = { original_tag = TUR } localization_key = TUR_ethnocentrism }
 
         # default
         text = { localization_key = default_ethnocentrism }
     }
 
-    state_agrarianism_text = {
-        name = state_agrarianism_text
+    state_economy_text = {
+        name = state_economy_text
 
         # countries
-            text = { trigger = { original_tag = AUS } localization_key = AUS_agrarianism }
-            text = { trigger = { original_tag = ENG } localization_key = ENG_agrarianism }
-            text = { trigger = { original_tag = FRA } localization_key = FRA_agrarianism }
-            text = { trigger = { original_tag = GER } localization_key = GER_agrarianism }
-            text = { trigger = { original_tag = GRE } localization_key = GRE_agrarianism }
-            text = { trigger = { original_tag = HOL } localization_key = HOL_agrarianism }
-            text = { trigger = { original_tag = ITA } localization_key = ITA_agrarianism }
-            text = { trigger = { original_tag = ROM } localization_key = ROM_agrarianism }
-            text = { trigger = { original_tag = TUR } localization_key = TUR_agrarianism }
+            text = { trigger = { original_tag = AUS } localization_key = AUS_economy }
+            text = { trigger = { original_tag = FRA } localization_key = FRA_economy }
+            text = { trigger = { original_tag = GER } localization_key = GER_economy }
+            text = { trigger = { original_tag = GRE } localization_key = GRE_economy }
+            text = { trigger = { original_tag = HOL } localization_key = HOL_economy }
+            text = { trigger = { original_tag = ITA } localization_key = ITA_economy }
+            text = { trigger = { original_tag = ROM } localization_key = ROM_economy }
+            text = { trigger = { original_tag = SPA } localization_key = SPA_economy }
+            text = { trigger = { original_tag = TUR } localization_key = TUR_economy }
 
         # default
-        text = { localization_key = default_agrarianism }
+        text = { localization_key = default_economy }
     }
 
     state_unity_text = {
@@ -177,6 +176,7 @@
             text = { trigger = { original_tag = ITA } localization_key = ITA_unity }
             text = { trigger = { original_tag = JAP } localization_key = JAP_unity }
             text = { trigger = { original_tag = MAN } localization_key = MAN_unity }
+            text = { trigger = { original_tag = ROM } localization_key = ROM_unity }
             text = { trigger = { original_tag = RUS } localization_key = RUS_unity }
             text = { trigger = { original_tag = SER } localization_key = SER_unity }
             text = { trigger = { original_tag = TUR } localization_key = TUR_unity }
@@ -194,8 +194,10 @@
             text = { trigger = { original_tag = ENG } localization_key = ENG_administration }
             text = { trigger = { original_tag = FRA } localization_key = FRA_administration }
             text = { trigger = { original_tag = GER } localization_key = GER_administration }
+            text = { trigger = { original_tag = ITA } localization_key = ITA_administration }
             text = { trigger = { original_tag = JAP } localization_key = JAP_administration }
             text = { trigger = { original_tag = MAN } localization_key = MAN_administration }
+            text = { trigger = { original_tag = ROM } localization_key = ROM_administration }
             text = { trigger = { original_tag = USA } localization_key = USA_administration }
 
         # default

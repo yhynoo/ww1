@@ -1,132 +1,323 @@
-add_namespace = algiers
-add_namespace = approach_usa
+add_namespace = atlas_encourage
+add_namespace = atlas_germany
+add_namespace = atlas_intervene
+add_namespace = atlas_war
 
-add_namespace = caillaux
+add_namespace = agadir_caillaux
+add_namespace = agadir_inconclusive
+add_namespace = agadir_indigenat
+add_namespace = agadir_tensions
+add_namespace = agadir_trials
 
 add_namespace = entente
 
-add_namespace = french_atlas
-
-add_namespace = join_entente
+add_namespace = garros
 
 add_namespace = oil_investments
 
-# algiers
-    news_event = {
-        id = algiers.1
-        title = "Agadir Trials Commence in Algiers"             picture = GFX_report_algiers
+# Act I: AGADIR TRIALS
+    # agadir_caillaux
+        country_event = {
+            id = agadir_caillaux.1
+            title = "Dismiss Caillaux?"
 
-        is_triggered_only = yes
-        major = yes
+            is_triggered_only = yes
 
-        immediate = {
-            add_named_threat = { name = "Agadir Trials" threat = 1 }
-            country_event = { id = algiers.2 days = 14 }
-        }
+            option = {
+                name = "He should go."
+                promote_character = FRA_edouard_herriot
 
-        option = {
-            name = "Ok."
-        }
-    }
-
-    country_event = {
-        id = algiers.2
-
-        is_triggered_only = yes
-        hidden = yes
-
-        immediate = {
-            ALG = { 
-                trigger_uprising = yes 
-                set_province_controller = 1145  set_province_controller = 12051
+                # event
+                news_event = { id = agadir_caillaux.2 hours = 6 }
+            }
+            option = {
+                name = "We must act with caution."
+                
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
             }
         }
-    }
 
-# caillaux
-    country_event = {
-        id = caillaux.1
-        title = "The Scapegoat of Agadir?"
+        news_event = {
+            id = agadir_caillaux.2
+            title = "The Scapegoat of Agadir"       picture = GFX_report_caillaux
 
-        is_triggered_only = yes
+            is_triggered_only = yes
+            major = yes
 
-        option = {
-            name = "Dismiss him."
-            promote_character = FRA_edouard_herriot
-
-            # event
-            news_event = { id = caillaux.2 hours = 6 }
+            option = {
+                name = "Ok."
+            }
         }
-        option = {
-            name = "No."
-            add_stability = -0.025
+
+    # agadir_inconclusive
+        country_event = {
+            id = agadir_inconclusive.1
+            title = "Trials Inconclusive?"
+
+            is_triggered_only = yes         trigger = { has_government = democratic }
+
+            option = {
+                name = "Justice is justice."
+                add_stability = 0.025
+            }
+            option = {
+                name = "Side with Action Française."
+                add_popularity = { ideology = monarchism popularity = 0.025 }
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+            }
         }
-    }
 
-    news_event = {
-        id = caillaux.2
-        title = "Caillaux Dismissed!"       picture = GFX_report_caillaux
+    # agadir_indigenat
+        news_event = {
+            id = agadir_indigenat.1
+            title = "End of Indigénat in French Algeria!"
 
-        is_triggered_only = yes
-        major = yes
+            is_triggered_only = yes
+            major = yes
 
-        option = {
-            name = "Ok."
+            option = {
+                name = "Ok."
+            }
         }
-    }
-    
+
+    # agadir_tensions
+        country_event = {
+            id = agadir_tensions.1
+            title = "Tensions in the Desert"
+
+            is_triggered_only = yes
+
+            immediate = {
+                country_event = { id = agadir_tensions.2 days = 4 }
+            }
+
+            option = {
+                name = "Ok."
+                add_stability = -0.025
+                every_state = { limit = { or = { state = 459 state = 460 state = 514 } } add_core_of = ALG }
+            }
+        }
+
+        country_event = {
+            id = agadir_tensions.2
+            hidden = yes
+
+            is_triggered_only = yes
+
+            immediate = {
+                ALG = {
+                    trigger_uprising_easy = yes
+                    set_province_controller = 7132      set_province_controller = 1145      set_province_controller = 12034
+                }
+            }
+        }
+
+    # agadir_trials
+        country_event = {
+            id = agadir_trials.1
+            title = "The Agadir Trials"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Stage the trials."
+                every_state = { limit = { or = { state = 459 state = 460 } } add_core_of = FRA }
+
+                # event
+                news_event = { id = agadir_trials.2 hours = 6 }
+            }
+            option = {
+                name = "Empower the Young Algerians."
+                add_ideas = idea_indigenat
+
+                # event
+                hidden_effect = { news_event = agadir_indigenat.1 }
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+            }
+        }
+
+        news_event = {
+            id = agadir_trials.2
+            title = "Agadir Trials Commence in Algiers"             picture = GFX_report_algiers
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                add_named_threat = { name = "Agadir Trials" threat = 1 }
+                
+                # events
+                country_event = { id = agadir_tensions.1 days = 14 }
+                country_event = { id = agadir_inconclusive.1 days = 28 }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+
+    #
+
+# Act II: ATLAS
+    # atlas_encourage
+        news_event = {
+            id = atlas_encourage.1
+            title = "Unrest Among Atlas Tribes"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                MOR = { 
+                    add_ideas = idea_unrest_in_the_atlas
+                    news_event = { id = atlas_war.1     months = 6 }        # starts the civil war
+                }
+            }
+
+            option = {
+                name = "Worrying."
+            }
+        }
+
+    # atlas_germany
+        country_event = {
+            id = atlas_germany.1
+            title = "Another Diplomatic Crisis in the Atlas?"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Coup the Moroccan sultan."
+                set_autonomy = { target = MOR autonomous_state = autonomy_puppet end_civil_wars = no end_wars = no }
+                
+                # additional effect
+                hidden_effect = { random_country = { limit = { has_cosmetic_tag = MOR_democratic } GER = { create_wargoal = { target = PREV type = annex_everything } } } }
+
+                # event
+                news_event = { id = atlas_germany.2 hours = 6 }
+            }
+            option = {
+                name = "Leave him alone."
+                add_political_power = -50
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+
+        news_event = {
+            id = atlas_germany.2
+            title = "[GER.GetAdjective] Coup in the Atlas!"         picture = GFX_report_atlas_germany
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                add_named_threat = { name = "[GER.GetAdjective] Coup in the Atlas" threat = 4 }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+
+    # atlas_intervene
+        country_event = {
+            id = atlas_intervene.1
+            title = "Support for the Atlas Tribes"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Invite them to the Entente."
+                random_country = { limit = { original_tag = MOR has_government = democratic }   country_event = invite.1 }
+
+                # event
+                news_event = { id = atlas_intervene.2 hours = 6 }
+            }
+            option = {
+                name = "We are not a side in this."
+                add_war_support = -0.025
+                
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+            }
+        }
+
+        news_event = {
+            id = atlas_intervene.2
+            title = "Entente Support for Atlas Uprising!"          picture = GFX_report_atlas_intervene
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                add_named_threat = { name = "Entente Support for Atlas Uprising!" threat = 6 }
+                GER = { country_event = { id = atlas_germany.1 days = 3 } }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+
+    # atlas_war
+        news_event = {
+            id = atlas_war.1
+            title = "Atlas on Fire!"        picture = GFX_report_atlas
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = { 
+                atlas_war = yes
+
+                FRA = { country_event = { id = atlas_intervene.1    days = 4 } }
+                GER = { country_event = { id = atlas_germany.1       days = 6 } }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+    #
+
 # entente
-    news_event = {
+    country_event = {
         id = entente.1
-        title = "France Establishes the Entente"
+        title = "France: Join the Entente?"
 
         is_triggered_only = yes
-        major = yes
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# french atlas
-    country_event = {
-        id = french_atlas.1
-        title = "Support the Anti-German Tribes in the Atlas?"
-
-        trigger = {
-            tag = FRA   is_faction_leader = yes
-            MOR = { has_civil_war = yes }
-        }
-        fire_only_once = yes
 
         option = {
             name = "Yes."
-
-            random_country = {
-                limit = { original_tag = MOR has_cosmetic_tag = MOR_democratic }
-                country_event = invite.1
-            }
+            FRA = { add_to_faction = ROOT }
 
             # event
-            news_event = { id = french_atlas.2 hours = 6 }
+            news_event = { id = entente.2 hours = 6 }
         }
         option = {
-            name = "No."
-            add_war_support = -0.05
+            name = "We are not interested."
+
+            # ai
+            ai_chance = { 
+                modifier = { has_idea = idea_wheat_investments factor = 0 }                     # we won't join the entente if we have german investments
+                modifier = { and = { is_historical_focus_on = yes tag = SPA } factor = 0 }      # historical spain always joins
+            }
         }
     }
 
     news_event = {
-        id = french_atlas.2
-        title = "France Encourages the Atlas Tribes"        picture = GFX_report_french_atlas
+        id = entente.2
+        title = "[ROOT.GetName] Allies with France"      picture = GFX_report_entente
 
         is_triggered_only = yes
         major = yes
-
-        immediate = {
-            add_named_threat = { name = "France Encourages the Atlas Tribes" threat = 2 }
-            GER = { country_event = { id = german_atlas.1 days = 2 } }
-        }
 
         option = {
             name = "Ok."
@@ -138,42 +329,11 @@ add_namespace = oil_investments
         id = garros.1
         title = "Aviator Flies Across the Mediterranean"        picture = GFX_report_garros
 
-        is_triggered_only = yes
+        is_triggered_only = yes     trigger = { FRA = { has_war = no } }
         major = yes
 
         option = {
             name = "Great."
-        }
-    }
-
-# join_entente
-    country_event = {
-        id = join_entente.1
-        title = "[FROM.GetName] Asks to Join the Entente"
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Yes."
-            add_to_faction = FROM
-
-            # event
-            FROM = { news_event = { id = join_entente.2 hours = 6 } }
-        }
-        option = {
-            name = "We are not interested."
-        }
-    }
-
-    news_event = {
-        id = join_entente.2
-        title = "[ROOT.GetName] Joins the Entente"      picture = GFX_report_join_entente
-
-        is_triggered_only = yes
-        major = yes
-
-        option = {
-            name = "Ok."
         }
     }
 
@@ -192,10 +352,10 @@ add_namespace = oil_investments
             FRA = { news_event = { id = oil_investments.2 hours = 6 } }
         }
         option = {
-            name = "This is not worth it."
+            name = "We are not interested."
 
             # ai
-            ai_chance = { modifier = { is_ai = yes } factor = 0 }
+            ai_chance = { modifier = { or = { is_historical_focus_on = yes is_guaranteed_by = GER } factor = 0 } }
         }
     }
 
@@ -214,3 +374,4 @@ add_namespace = oil_investments
             name = "Ok."
         }
     }
+    

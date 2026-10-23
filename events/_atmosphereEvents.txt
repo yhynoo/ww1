@@ -71,7 +71,7 @@ add_namespace = wheat_shortage
             name = "Ok."
             if = {
                 limit = { 
-                    or = { not = { has_idea = civilian_economy } has_idea = idea_grain_investments }
+                    or = { not = { has_idea = civilian_economy } has_idea = idea_wheat_investments }
                     capital_scope = { is_on_continent = europe }
                 }
                 add_timed_idea = { idea = idea_harvest_1917 months = 6 }
@@ -95,7 +95,7 @@ add_namespace = wheat_shortage
             name = "Ok."
             if = {
                 limit = { has_idea = idea_harvest_1917 }
-                add_timed_idea = { idea = idea_wheat_shortages months = 6 }
+                add_timed_idea = { idea = idea_wheat_shortages years = 1 }
             }
         }
     }

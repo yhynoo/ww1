@@ -1,24 +1,40 @@
 characters = {
     ROM_ion_bratianu = {
         name = "Ion C. Brătianu"
-        country_leader = {
-            ideology = liberalism
-            traits = { trait_effective_diplomat }
+        country_leader = { ideology = conservatism    traits = { trait_accountant } }
+    }
+    ROM_take_ionescu = {
+        name = "Take Ionescu"
+        country_leader = { ideology = liberalism    traits = { trait_effective_diplomat } }
+    }
+
+    ROM_alexandru_marghiloman = {
+        name = "Alexandru Marghiloman"
+        country_leader = { ideology = state_autocracy    traits = { trait_moderate } }
+    }
+    ROM_constantin_harjeu = {
+        name = "Constantin Hârjeu"
+        country_leader = { ideology = state_autocracy    traits = { trait_moderate } }
+        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_4" } }
+
+        corps_commander = {
+            traits = { }
+            skill = 2       attack_skill = 2        defense_skill = 2       planning_skill = 1      logistics_skill = 1
+        }
+    }
+    ROM_alexandru_averescu = {
+        name = "Alexandru Averescu"
+        country_leader = { ideology = state_autocracy    traits = { trait_one_of_us } }
+        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_3" } }
+
+        corps_commander = {
+            traits = { }
+            skill = 2       attack_skill = 1        defense_skill = 1       planning_skill = 2      logistics_skill = 2
         }
     }
 
-    ROM_nicolae_filipescu = {
-        name = "Nicolae Filipescu"
-        country_leader = {
-            ideology = absolutism
-            traits = { trait_weakling }
-        }
-    }
     ROM_ferdinand_i = {
         name = "Ferdinand I"
-        country_leader = {
-            ideology = absolutism
-            traits = { trait_moderate }
-        }
+        country_leader = { ideology = constitutional_monarchy        traits = { trait_moderate } }
     }
 }

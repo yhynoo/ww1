@@ -1,5 +1,7 @@
 add_namespace = atlas_claims
 
+add_namespace = weyler
+
 # atlas
     news_event = {
         id = atlas_claims.1
@@ -10,5 +12,28 @@ add_namespace = atlas_claims
 
         option = {
             name = "Ok."
+        }
+    }
+
+# weyler
+    news_event = {
+        id = weyler.1
+        title = "General Weyler Appointed to Lead Spain"        picture = GFX_report_weyler
+
+        is_triggered_only = yes
+        major = yes
+
+        option = {
+            name = "Ok."
+        }
+    }
+
+    country_event = {
+        id = weyler.2
+        hidden = yes
+
+        is_triggered_only = yes
+        immediate = {
+            spain_civil_war = yes
         }
     }

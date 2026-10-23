@@ -24,6 +24,21 @@ ideas = {
                 always = yes
             }
         }
+        idea_ethnic_tensions_1 = {
+            modifier = {
+                political_power_factor = -0.1
+            }
+            cancel = {
+                or = { 
+                    not = { has_government = monarchism }
+                    HUN = { exists = yes } 
+                }
+            }
+            allowed_civil_war = {
+                always = yes
+            }
+        }
+
         idea_gargantuan_administration = {
             modifier = {
                 consumer_goods_factor = 0.15
@@ -32,6 +47,23 @@ ideas = {
             }
             allowed_civil_war = {
                 always = yes
+            }
+        }
+        idea_gargantuan_administration_1 = {
+            modifier = {
+                consumer_goods_factor = 0.15
+                conscription_factor = -0.05
+                supply_factor = -0.05
+            }
+            allowed_civil_war = {
+                always = yes
+            }
+        }
+
+        idea_local_autonomies = {
+            modifier = {
+                party_popularity_stability_factor = 0.1
+                army_core_defence_factor = 0.05
             }
         }
 
@@ -45,12 +77,6 @@ ideas = {
             modifier = {
                 production_factory_max_efficiency_factor = -0.05
                 local_resources_factor = -0.1
-            }
-        }
-        idea_luftfahrtruppe_schools = {
-            modifier = {
-                air_training_xp_gain_factor = 0.1
-                air_ace_generation_chance_factor = 0.05
             }
         }
     }

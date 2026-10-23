@@ -1,249 +1,441 @@
-add_namespace = albania
-add_namespace = apis
-add_namespace = attack_south
+add_namespace = aircraft_serbia
 
-add_namespace = cetinje
+add_namespace = albania_aid
+add_namespace = albania_armenia
+add_namespace = albania_attacks
+add_namespace = albania_demilitarize
+add_namespace = albania_ending_serbia
+add_namespace = albania_ending_turkey
+add_namespace = albania_ultimatum
 
-add_namespace = entente_helps_serbia
+add_namespace = savoie_decision
+add_namespace = savoie_direct_attack
+add_namespace = savoie_ending_yugoslavia
+add_namespace = savoie_hotzendorf
+add_namespace = savoie_illyria
 
-add_namespace = kosovo_je_srbija
+# Act I: AIRCRAFT
+    # aircraft_serbia (after doing the "airfields" focus)
+        country_event = {
+            id = aircraft_serbia.1
+            title = "Government to Acquire French Aircraft"
 
-add_namespace = sarajevo_attack
+            trigger = { tag = SER has_completed_focus = XXX_airfields }
+            fire_only_once = yes
 
-# albania
-    country_event = {
-        id = albania.1
-        title = "The Albanian Question"
+            option = {
+                name = "Alright."
 
-        trigger = {
-            tag = SER
-            and = { controls_state = 404 controls_state = 106 } 
-            44 = { 
-                allied_control = no 
-                owner = { not = { has_war_with = SER } }
+                add_political_power = -50
+                add_equipment_to_stockpile = { type = CAS_equipment_0   amount = 4     producer = FRA }
+            }
+            option = {
+                name = "This is too much."
             }
         }
-        fire_only_once = yes
+    #
 
-        option = {
-            name = "Demand demilitarization."
-            44.owner = { country_event = albania.2 }
-        }
-        option = {
-            name = "Leave it."
+# Act I: ALBANIA
+    # albania_aid
+        country_event = {
+            id = albania_aid.1
+            title = "Aid to Serbia?"
 
-            # ai
-            ai_chance = { modifier = { is_ai = yes } factor = 0 }
-        }
-    }
+            is_triggered_only = yes
 
-    country_event = {
-        id = albania.2
-        title = "Withdraw Troops from Albania?"
+            option = {
+                name = "Organize volunteers."
+                add_ideas = idea_aid_to_serbia
 
-        is_triggered_only = yes
+                # event
+                news_event = { id = albania_aid.2 hours = 6 }
+            }
+            option = {
+                name = "Send arms."
+                send_equipment = { equipment = infantry_equipment amount = 600 target = SER }
 
-        option = {
-            name = "We can do that."
-            44 = { set_demilitarized_zone = yes }
-
-            # event
-            news_event = { id = albania.3 hours = 6 }
-        }
-        option = {
-            name = "Whatever."
-            FROM = { 
-                44 = { add_claim_by = FROM }
-                create_wargoal = { target = ROOT type = take_claimed_state } 
+                # event
+                news_event = { id = albania_aid.3 hours = 6 }
+            }
+            option = {
+                name = "We will stay out of this."
+                add_war_support = -0.025
             }
         }
-    }
+        news_event = {
+            id = albania_aid.2
+            title = "[ROOT.GetName] to Send Troops to Serbia?"
 
-    news_event = {
-        id = albania.3
-        title = "[ROOT.GetName] Withdraws from Albania"
+            is_triggered_only = yes
+            major = yes
 
-        is_triggered_only = yes
-        major = yes
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# apis
-    country_event = {
-        id = apis.1
-        title = "The Arrest of ‘Apis’"
-
-        trigger = {
-            tag = SER
-            has_completed_focus = XXX_deterrence
-        }
-
-        fire_only_once = yes
-        mean_time_to_happen = { months = 3 }
-
-        option = {
-            name = "Execute him."
-            add_war_support = -0.025
-
-            # event
-            news_event = { id = template.2 hours = 6 }
-        }
-        option = {
-            name = "Let him go."
-            add_political_power = -25
-
-            # ai
-            ai_chance = { modifier = { is_ai = yes } factor = 0 }
-        }
-    }
-
-    news_event = {
-        id = template.2
-        title = "‘Apis’ Executed in Serbia!"
-
-        is_triggered_only = yes
-        major = yes
-
-        option = {
-            name = "Interesting."
-        }
-    }
-
-# attack south
-    country_event = {
-        id = attack_south.1
-        title = "Opportunity to Attack South?"
-
-        trigger = {
-            tag = SER       has_completed_focus = XXX_extend
-            or = {
-                106 = { allied_control = no owner = { has_war = yes not = { has_war_with = ROOT } } }
-                404 = { allied_control = no owner = { has_war = yes not = { has_war_with = ROOT } } }
+            option = {
+                name = "Interesting."
             }
         }
-        fire_only_once = yes
+        news_event = {
+            id = albania_aid.2
+            title = "[ROOT.GetAdjective] Arms as Aid to the Serbs"
 
-        option = {
-            name = "Yes."
-            every_country = {
-                limit = {
-                    or = {
-                        controls_state = 106 controls_state = 404
-                    }
-                    has_war = yes
-                    not = { has_war_with = ROOT }
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # albania_armenia
+        country_event = {
+            id = albania_armenia.1
+            title = "Another Thrust?"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Strangle the Ottoman hydra."
+                declare_war_on = { tag = TUR type = annex_everything }
+            }
+            option = {
+                name = "This is too dangerous."
+                add_stability = 0.025
+            }
+        }
+    # albania_attacks
+        news_event = {
+            id = albania_attacks.1
+            title = "Anti-Serb Attacks in Shkodër"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = { add_named_threat = { name = "Anti-Serb Attacks in Shkodër" threat = 1 } }
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # albania_demilitarize
+        country_event = {
+            id = albania_demilitarize.1
+            title = "Demilitarize Albania?"
+
+            is_triggered_only = yes
+            fire_only_once = yes
+
+            option = {
+                name = "Send ultimatum."
+                TUR = { country_event = { id = albania_ultimatum.1 hours = 12 } }
+            }
+            option = {
+                name = "Withdraw from the idea."
+                add_war_support = -0.05
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+    # albania_ending_serbia (if SER has all its lands and Albania within 90 days)
+        country_event = {
+            id = albania_ending_serbia.1
+            title = "Offer a Settlement?"
+
+            is_triggered_only = yes
+            fire_only_once = yes
+
+            option = {
+                name = "We have what we wanted."
+                news_event = { id = albania_ending_serbia.2 hours = 6 }
+            }
+            option = {
+                name = "Keep going."
+                add_war_support = 0.025
+
+                # ai
+                ai_chance = { modifier = { is_ai = yes factor = 0 } } 
+            }
+        }
+        country_event = {
+            id = albania_ending_serbia.2
+            title = "The Last Concession?"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Agree to their conditions."
+                white_peace = SER       44 = { transfer_state_to = SER }        news_event = { id = albania_ending_serbia.3 hours = 6 }
+            }
+            option = {
+                name = "This is a humiliation."
+                add_political_power = -50
+
+                # ai
+                ai_chance = { modifier = { is_ai = yes factor = 0 } } 
+            }
+        }
+        news_event = {
+            id = albania_ending_serbia.3
+            title = "The Ottomans Humiliated in Albania"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Interesting."
+            }
+        }
+    # albania_ending_turkey (if after 120 days there is no winner)
+        country_event = {
+            id = albania_ending_turkey.1
+            title = "One Step Too Much?"
+
+            is_triggered_only = yes
+            fire_only_once = yes
+
+            option = {
+                name = "Offer an armistice."
+                news_event = { id = albania_ending_turkey.2 hours = 6 }
+            }
+            option = {
+                name = "We must continue."
+                add_political_power = -50
+
+                # ai
+                ai_chance = { modifier = { is_ai = yes factor = 0 } } 
+            }
+        }
+        country_event = {
+            id = albania_ending_turkey.2
+            title = "Serbia Offers an Armistice"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Great."
+                white_peace = SER       every_state = { limit = { or = { state = 404 state = 106 } is_owned_by = SER } transfer_state_to = TUR }
+
+                # event
+                news_event = { id = albania_ending_turkey.3 hours = 6 }
+            }
+            option = {
+                name = "We are not done yet."
+                add_war_support = 0.025
+
+                # ai
+                ai_chance = { modifier = { is_ai = yes factor = 0 } } 
+            }
+        }
+        news_event = {
+            id = albania_ending_turkey.3
+            title = "Second Ottoman War Ends; Serbia at 1912 Lines"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Alright."
+            }
+        }
+    # albania_ultimatum
+        country_event = {
+            id = albania_ultimatum.1
+            title = "Serbia Demands Our Withdrawal from Albania"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Accept the ultimatum."
+                44 = { set_demilitarized_zone = yes }
+
+                # event
+                news_event = { id = albania_ultimatum.2 hours = 6 }
+            }
+            option = {
+                name = "No."
+                SER = { declare_war_on = { target = TUR type = take_claimed_state } }
+
+                # event
+                news_event = { id = albania_ultimatum.3 hours = 6 }
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+        news_event = {
+            id = albania_ultimatum.2
+            title = "Ottomans Withdraw from Albania"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+
+        news_event = {
+            id = albania_ultimatum.3
+            title = "Second War Against the Ottomans!"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = { 
+                set_country_flag = second_southeastern_war 
+                
+                ARM = { country_event = { id = albania_armenia.1 days = 6 } }
+                every_country = {
+                    limit = { or = { tag = GRE tag = ROM tag = RUS } }
+                    country_event = { id = albania_aid.1 days = 4 random_days = 10 }
                 }
-                SER = { declare_war_on = PREV type = take_claimed_state }
             }
 
-            # event
-            news_event = { id = attack_south.2 hours = 6 }
+            option = {
+                name = "Horrible."
+            }
         }
-        option = {
-            name = "This is too dangerous."
+    #
+
+# Act II: OPERATION SAVOIE
+    # savoie_decision
+        country_event = {
+            id = savoie_decision.1
+            title = "Operation Savoie"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Organize terrorist attacks."
+
+                # event
+                news_event = { id = savoie_illyria.1 hours = 6 }
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+            option = {
+                name = "Attack directly."
+                add_war_support = 0.05      declare_war_on = { target = AUS type = take_claimed_state }
+
+                # event
+                news_event = { id = savoie_direct_attack.1 hours = 6 }
+            }
         }
-    }
+    # savoie_direct_attack
+        news_event = {
+            id = savoie_direct_attack.1
+            title = "Serbia Attacks [AUS.GetName]!"
 
-    news_event = {
-        id = attack_south.2
-        title = "[SER.GetName] Attacks South!"
+            is_triggered_only = yes
+            major = yes
 
-        is_triggered_only = yes
-        major = yes
-
-        option = {
-            name = "Awful."
+            option = {
+                name = "What have they done."
+            }
         }
-    }
+    # savoie_ending_yugoslavia
+        country_event = {
+            id = savoie_ending_yugoslavia.1
+            title = "The Union of South Slavs"
 
-# cetinje
-    news_event = {
-        id = cetinje.1
-        title = "Edict of Cetinje"
+            is_triggered_only = yes
+            fire_only_once = yes
 
-        is_triggered_only = yes
-        major = yes
+            option = {
+                name = "Offer an armistice."
 
-        option = {
-            name = "Ok."
+                # event
+                news_event = { id = savoie_ending_yugoslavia.2 hours = 6 }
+            }
+            option = {
+                name = "This is not the end."
+                add_war_support = 0.025
+
+                # ai
+                ai_chance = { modifier = { is_ai = yes factor = 0 } } 
+            }
         }
-    }
+        country_event = {
+            id = savoie_ending_yugoslavia.2
+            title = "[SER.GetName] Offers an Armistice"
 
-# entente helps serbia
-    country_event = {
-        id = entente_helps_serbia.1
-        title = "Appeal to the Entente?"
+            is_triggered_only = yes
 
-        trigger = {
-            tag = SER
-            AUS = { focus_progress = { focus = XXX_take_ours progress > 0.6 } }
-            FRA = { can_join_their_faction = yes }
+            option = {
+                name = "Alright."
+
+                white_peace = SER
+                every_state = { limit = { or = { state = 103 state = 104 state = 109 } } transfer_state_to = SER }
+
+                # event
+                news_event = { id = savoie_ending_yugoslavia.3 hours = 6 }
+            }
+            option = {
+                name = "This is humiliating."
+                add_political_power = -50
+
+                # ai
+                ai_chance = { modifier = { is_ai = yes factor = 0 } } 
+            }
         }
+        news_event = {
+            id = savoie_ending_yugoslavia.3
+            title = "Serbia and Austria Sign an Armistice"
 
-        option = {
-            name = "Yes."
-            FRA = { country_event = guarantees.1 }
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                SER = { set_cosmetic_tag = SER_YUG }
+            }
+
+            option = {
+                name = "Ok."
+            }
         }
-        option = {
-            name = "We will manage on our own."
-            add_war_support = 0.05
+    # savoie_hotzendorf
+        country_event = {
+            id = savoie_hotzendorf.1
+            title = "‘Serbia Must Die!’"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "We must defend our honor."
+                declare_war_on = { target = SER type = annex_everything }
+
+                # event
+                news_event = { id = savoie_hotzendorf.2 hours = 6 }
+            }
+            option = {
+                name = "This is too dangerous."
+                add_popularity = { ideology = ROOT popularity = -0.075 }
+            }
         }
-    }
+        news_event = {
+            id = savoie_hotzendorf.2
+            title = "[AUS.GetName] Answers with a Declaration of War"
 
-# kosovo
-    news_event = {
-        id = kosovo_je_srbija.1
-        title = "Serbia Asserts Claims in the South"
+            is_triggered_only = yes
+            major = yes
 
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            add_named_threat = { name = "Serbia Asserts Claims in the South" threat = 2 }
+            option = {
+                name = "What a tragedy."
+            }
         }
+    # savoie_illyria
+        news_event = {
+            id = savoie_illyria.1
+            title = "Terrorist Attacks Across Illyria; Vienna Outraged"
 
-        option = {
-            name = "Ok."
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                add_named_threat = { name = "Terrorist Attacks Across Illyria" threat = 2 }
+                AUS = { country_event = { id = savoie_hotzendorf.1 days = 2 } }
+            }
+
+            option = {
+                name = "Horrible."
+            }
         }
-    }
-
-# sarajevo_attack
-    country_event = {
-        id = sarajevo_attack.1
-        title = "Attack in Sarajevo"
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Stage apis terrorist strike."
-
-            # event
-            news_event = { id = sarajevo_attack.2 hours = 6 }
-        }
-        option = {
-            name = "Attack directly."
-
-            add_war_support = 0.05
-            declare_war_on = { target = AUS type = take_claimed_state }
-        }
-    }
-
-    news_event = {
-        id = sarajevo_attack.2
-        title = "Terrorist Attack in Sarajevo!"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            add_named_threat = { name = "Terrorist Attack in Sarajevo!" threat = 4 }
-            AUS = { create_wargoal = { target = SER type = topple_government } }
-        }
-
-        option = {
-            name = "Horrible."
-        }
-    }

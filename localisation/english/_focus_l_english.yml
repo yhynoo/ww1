@@ -5,11 +5,24 @@
   tt_enemy_control: "Is controlled by our enemies."
   tt_enemy_control_NOT: "Is not controlled by our enemies."
   tt_can_join_their_faction: "We can join their faction."
+  tt_can_join_our_faction: "They can join our faction."
   tt_warlord_states_destroyed: "Local warlords have §Hnot established their own states§!, or they were §Odefeated§!."
   tt_to_do: "§LTo do.§!"
 
-# state - generic
+# colonies
+  XXX_colonies: "Colonial Ambitions"
 
+  XXX_develop_colonies: "Develop the Colonies"
+  XXX_subdue_colonies: "Extractive Approach"
+
+  XXX_colonial_expansion: "Extend Our Claims"
+  XXX_draft: "Draft Locals"
+  XXX_colonial_aim: "Direct Attack"
+
+  tt_colonies_lock: "Has §Hcolonies§!."
+  tt_no_colonies_effect: "§LIf we had any colonies, this focus would have an effect.§!"
+
+# state - generic
   XXX_government: "[state_government_text]"
   tt_interim_government_lock: "We must first from an §Ointerim government§! or §Hsucceed in our uprising§!."
 
@@ -20,8 +33,8 @@
   XXX_take_ours: "[state_take_ours_text]"
   tt_overlord_wargoal: "\n§OAttention!§! Among the targeted countries, some are §Hdominions§!. If they submit to us, their original overlords will get a §Owargoal§! against us."
   
-  tt_one_state_ultimatum: "We will present an §Hultimatum§! concerning this state to §Y[THIS.owner.GetNameWithFlag]§!. If they decline, we will get a §Owargoal§! against them."
-  tt_many_states_ultimatum: "We will present an §Hultimatum§! concerning these states to their owners. If they decline, we will get a §Owargoal§! against them."
+  tt_one_state_ultimatum: "We will send an §Hultimatum§! concerning this state to §Y[THIS.owner.GetNameWithFlag]§!."
+  tt_many_states_ultimatum: "We will send an §Hultimatum§! concerning these states to their owners."
   tt_wargoal_against_owner: "We will get a §Owargoal§! against the owners of these states."
 
   XXX_deterrence: "[state_deterrence_text]"  
@@ -29,7 +42,7 @@
 
   XXX_stability: "[state_stability_text]"
   XXX_ethnocentrism: "[state_ethnocentrism_text]"
-  XXX_agrarianism: "[state_agrarianism_text]"
+  XXX_economy: "[state_economy_text]"
 
   XXX_unity: "[state_unity_text]"
   XXX_administration: "[state_administration_text]"
@@ -72,94 +85,33 @@
   XXX_state_apparatus: "State Apparatus"
   XXX_world_state: "World State"
 
-# army - tribal
-  XXX_address_troops: "Address the Troops"
-
-  XXX_arms_abroad: "Arms from Abroad"
-  XXX_local_designs: "Local Designs"
-  XXX_officers: "Officer Training"
-
-  XXX_militias: "Organize Local Militias"
-
-  XXX_unified_army: "Unified Army"
-  tt_unified_army: "Unlocks the modern §Harmy focus tree§! with more improvements."
-
-  XXX_depots: "Armament Depots"
-
-  XXX_coastal: "Coastal Defenses"
-
 # army - generic
-  XXX_general_staff: "General Staff"
+  XXX_army: "General Staff"
 
-  XXX_army_expansion: "Army Expansion"
-
-  XXX_shock_ability: "Decisive Strike"
-
-  XXX_expand_defenses: "Modernize the Defenses"
-
+  XXX_airfields: "Airfields"
+  XXX_harbors: "Develop the Harbors"
+  XXX_aircraft: "Aircraft Workshops"
+  XXX_navy: "Naval Dockyards"
+  
   XXX_armaments: "Armaments"
 
-  XXX_dreadnoughts: "Dreadnoughts"
-
+  XXX_equipment: "Equipment Effort"
   XXX_mobilization: "Mobilization Effort"
   tt_mobilization: "Unlocks §HMobilization§! decisions."
 
-  XXX_women_at_work: "Women at Work"
-
-  XXX_austerity_measures: "Austerity Measures"
+  XXX_capacity_strikes: "Attacks on Capacity"
 
   XXX_all_for_the_front: "All for the Front"
   tt_all_for_the_front: "Unlocks §HEmergency Measures§! decisions."
-
-  XXX_economic_warfare: "Economic Warfare"
-
-  XXX_capacity_strikes: "Attacks on Capacity"
-
-  XXX_total_war: "Total War"
-
-# industry - tribal
-  XXX_land_use: "Land Use Act"
-
-  XXX_agriculture: "Agriculture Developments"
-
-  XXX_cotton: "Cotton Industry"
-
-  XXX_mines: "Mines"
-
-  XXX_textiles: "Textile Mills"
-
-  XXX_railways: "State Transport Company"
-
-  XXX_armory: "[ROOT.capital.GetCapitalVictoryPointName] Arms Factory"
-
-  XXX_energy: "Electrification"
-
-  XXX_university: "Technical Schools"
-  tt_university: "Unlocks the modern §Hindustry focus tree§! with more improvements."
 
 # industry - generic
   XXX_infrastructure: "Infrastructure Effort"
 
   XXX_steel: "Steelworks"
-
-  XXX_civs_1: "Expand Light Industry"
-
+  XXX_cotton: "Expand Light Industry"
   XXX_oil: "Access to Oil"
 
-  XXX_capacity: "Industrial Capacity"
-
-  XXX_airfields: "Airfields"
-
-  XXX_harbors: "Develop the Harbors"
-
-  XXX_aircraft: "Aircraft Workshops"
-
-  XXX_civs_2: "Expand Heavy Industry"
-
-  XXX_navy: "Naval Dockyards"
-
   XXX_state: "State Subsidies"
-
   XXX_research: "University of [ROOT.capital.GetCapitalVictoryPointName]"
 
 # uprising
@@ -213,126 +165,3 @@
 
   XXX_united_again: "United Again"
   tt_united_again: "Unlocks the §Hgovernment focus tree§!."
-
-# -- new generic focuses --
-  generic_army: "General Staff"
-
-  generic_airfields: "Airfields"
-  generic_harbors: "Harbors"
-
-  generic_aircraft: "Aircraft Workshops"
-  generic_equipment: "Equipment"
-  generic_navy: "Naval Dockyards"
-
-  generic_mobilization: "Mobilization"
-  generic_armaments: "Armaments"
-
-  generic_capacity_strikes: "Strikes on Capacity"
-  generic_all_for_the_front: "All for the Front"
-
-  generic_infrastructure: "Infrastructure Effort"
-
-  generic_civs_1: "Expand Light Industry"
-  generic_steel: "Steelworks"
-
-  generic_state: "State Subsidies"
-  generic_synthetics: "Advances in Chemistry"
-  generic_research: "University of [ROOT.capital.GetCapitalVictoryPointName]"
-
-  generic_civs_2: "Develop Heavy Industry"
-
-# -- FRA --
-  FRA_algeria: "Unrest in Algeria"
-
-  FRA_trials: "Agadir Trials"
-  FRA_young_algerians: "Young Algerians"
-
-  FRA_action_francaise: "Action Française"
-  FRA_oran: "Oran Harbor"
-  FRA_algerian_investments: "Algerian Investments"
-
-  FRA_echoes: "Undo the Humiliation"
-  FRA_align_spain: "Align Spain"
-  FRA_guarantee_spain: "Defense Agreement with Spain"
-
-  FRA_invade_atlas: "Invade the Atlas"
-
-  FRA_entente: "Entente"
-  FRA_defenses: "Expand Our Defenses"
-  FRA_war_with_germany: "War with Germany"
-
-  FRA_union_sacree: "Union Sacrée"
-  FRA_approach_usa: "Approach the USA"
-
-  FRA_east: "Allies in the East"
-  FRA_arabian_oil: "Access Arabian Oil"
-
-  FRA_greeks: "Support the Greeks"
-  FRA_egypt: "Claim Egypt"
-  tt_claim_egypt: "Gets §Hclaims§! to states which are cores of §H[EGY.GetNameWithFlag]§!."
-
-  FRA_teheran: "Alliance with Teheran"
-
-# -- GER --
-  GER_colonial_ambitions: "Colonial Ambitions"
-
-  GER_east_asia: "East Asia Squadron"
-  GER_align_yuan: "Align Yuan’s China"
-
-  GER_develop_africa: "Developments in Africa"
-  GER_askari: "Askari"
-  GER_east_africa: "Demands in East Africa"
-
-  GER_agadir_system: "Treaty of Aachen"
-
-  GER_approach_tsar: "Approach the Tsar"
-  GER_aufmarsch_ost: "Aufmarsch Ost"
-
-  GER_grain_deal: "Grain Deal"
-  GER_alsace: "Annex Alsace"
-  GER_wassmuss: "Wassmuss in Arabia"
-
-  GER_attack_france: "War with France"
-
-  GER_east_indies: "Demand East Indies"
-  GER_align_dutch: "Align the Dutch"
-  GER_war_aims: "War Aims"
-
-  GER_altneuland: "Altneuland"
-  GER_arabs: "Arab Uprisings"
-  tt_arab_uprisings: "We will organize and support uprisings in §H[SYR.GetNameWithFlag]§! and §H[YEM.GetNameWithFlag]§!."
-
-  GER_iraq: "Claim Iraq"
-  GER_afghans: "Align the Afghans"
-
-# -- SPA -- 
-
-  SPA_anarchists: "Deal with the Anarchists"
-  SPA_garrisons: "Strengthen Garrisons"
-  SPA_touareg: "Alliance with the Touareg"
-
-  SPA_agrarians: "Agrarian Committees"
-
-  SPA_quash_unrest: "Quash the Unrest"
-  tt_spanish_civil_war: "\n\n§OWarning!§! If support for §HCommunism§! is higher than §H20%§!, this may end in a §Ocivil war§!."
-  SPA_mandatory_works: "Mandatory Works"
-
-  SPA_ashes: "Ashes of the Empire"
-  SPA_liberals: "Liberal Cabinet"
-  SPA_weyler: "Appoint Weyler"
-
-  SPA_central_america: "Aid to Central America"
-  SPA_harbors: "Expand Atlantic Harbors"
-  SPA_entente: "Entente"
-  SPA_our_own: "On Our Own"
-
-  SPA_atlas_demands: "Claims in the Atlas"
-  SPA_annex_morocco: "Annex Morocco"
-
-  SPA_ambitions: "Imperial Ambitions"
-
-  SPA_colombia: "Support Colombia"
-  SPA_cuba: "Claims in the Carribean"
-  SPA_argentina: "Alliance with Argentina"
-
-  SPA_usa: "Challenge the United States"

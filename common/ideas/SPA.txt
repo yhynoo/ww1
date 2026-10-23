@@ -9,34 +9,35 @@ ideas = {
                 has_government = communism
             }
         }
-        idea_spain_liberal_cabinet = {
+        idea_anarchists_in_the_countryside_1 = {
             modifier = {
-                democratic_drift = 0.05
-                economy_cost_factor = -0.25
-                trade_laws = -0.25
+                communism_drift = 0.05
+                consumer_goods_factor = 0.05
+            }
+            cancel = {
+                has_government = communism
+            }
+        }
+        idea_semana_tragica = {
+            modifier = {
+                conscription_factor = -0.4
+                war_support_factor = -0.15
+            }
+            cancel = {
+                communism < 0.1
             }
         }
 
-        idea_strengthened_garrisons = {
+        idea_adjusted_labor_code = {
             modifier = {
-                stability_weekly = 0.05
-                training_time_factor = -0.1
-                production_speed_bunker_factor = 0.1
+                production_factory_max_efficiency_factor = 0.1
+                production_speed_buildings_factor = 0.05
             }
         }
         idea_mandatory_works = {
             modifier = {
                 production_speed_infrastructure_factor = 0.1
                 consumer_goods_factor = -0.05
-            }
-        }
-        idea_touareg_alliance = {
-            modifier = {
-                war_support_factor = 0.05
-                weekly_manpower = 250
-            }
-            on_add = {
-                set_technology = { hidden_camelry = 1 }
             }
         }
     }

@@ -3,11 +3,6 @@ state_extend_trigger = {
         limit = { original_tag = AUS }
         controls_state = 104
     }
-    
-    if = {
-        limit = { original_tag = GER }
-        controls_state = 28
-    }
 
     if = {
         limit = { original_tag = ITA }
@@ -27,13 +22,8 @@ state_claims_trigger = {
     }
 
     if = {
-        limit = { original_tag = FRA }
-        controls_state = 459
-        controls_state = 460
-    }
-
-    if = {
         limit = { original_tag = GER }
+        is_faction_leader = yes AFG = { can_join_our_faction = yes }
     }
 
     if = {
@@ -47,11 +37,6 @@ state_claims_trigger = {
     }
 
     if = {
-        limit = { original_tag = SPA }
-        FRA = { can_join_their_faction = yes }
-    }
-
-    if = {
         limit = { original_tag = USA }
         279 = { enemy_control = no }
         506 = { enemy_control = no }
@@ -61,7 +46,12 @@ state_claims_trigger = {
 state_take_ours_trigger = {
     if = {
         limit = { original_tag = AUS }
-        can_declare_war_on = SER
+        can_declare_war_on = ITA
+    }
+
+    if = {
+        limit = { original_tag = BEL }
+        has_war_support > 0.5       can_declare_war_on = 7.owner
     }
     
     if = {
@@ -75,13 +65,21 @@ state_take_ours_trigger = {
     }
 
     if = {
+        limit = { original_tag = GER }
+        or = {
+            554 = { enemy_control = yes }
+            416 = { enemy_control = yes }
+        }
+    }
+
+    if = {
         limit = { original_tag = HOL }
         6 = { allied_control = no }     not = { has_government = democratic }
     }
 
     if = {
         limit = { original_tag = ITA }
-        any_state = { is_claimed_by = ITA is_owned_by = AUS }
+        has_war_support > 0.5       can_declare_war_on = AUS
     }
 
     if = {
@@ -90,9 +88,18 @@ state_take_ours_trigger = {
     }
 
     if = {
+        limit = { original_tag = SPA }
+        can_declare_war_on = MOR
+    }
+
+    if = {
         limit = { original_tag = USA }
         can_declare_war_on = COL
     }
+}
+
+state_deterrence_trigger = {
+    # empty
 }
 
 state_ethnocentrism_trigger = {
@@ -114,7 +121,7 @@ state_ethnocentrism_bypass = {
     }
 }
 
-state_agrarianism_trigger = {
+state_economy_trigger = {
     if = {
         limit = { original_tag = FRA }
         has_war = yes
@@ -122,7 +129,12 @@ state_agrarianism_trigger = {
 
     if = {
         limit = { original_tag = GER }
-        controls_state = 546
+        not = { has_war_with = RUS }
+    }
+
+    if = {
+        limit = { original_tag = SPA }
+        controls_state = 171    controls_state = 178
     }
 
     if = {
@@ -133,8 +145,18 @@ state_agrarianism_trigger = {
 
 state_unity_trigger = {
     if = {
+        limit = { original_tag = AUS }
+        has_war_support > 0.5       can_declare_war_on = SER
+    }
+
+    if = {
+        limit = { original_tag = BEL }
+        has_war_support > 0.5       can_declare_war_on = 34.owner
+    }
+
+    if = {
         limit = { original_tag = FRA }
-        has_war_support > 0.5
+        28 = { not = { is_owned_by = FRA } }
     }
 
     if = {
@@ -145,7 +167,7 @@ state_unity_trigger = {
 
     if = {
         limit = { original_tag = GER }
-        
+        has_war_support > 0.5       can_declare_war_on = FRA
     }
 
     if = {
@@ -154,11 +176,6 @@ state_unity_trigger = {
             has_stability > 0.6 
             has_idea = idea_great_divide
         }
-    }
-
-    if = {
-        limit = { original_tag = ITA }
-        has_war_support > 0.5
     }
 
     if = {
@@ -185,19 +202,46 @@ state_unity_trigger = {
     }
 
     if = {
-        limit = { not = { or = { original_tag = FRA original_tag = GER original_tag = GRE original_tag = HOL original_tag = ITA original_tag = MAN original_tag = RUS original_tag = TUR original_tag = USA } } }
+        limit = { not = { or = { original_tag = AUS original_tag = BEL original_tag = FRA original_tag = GER original_tag = GRE original_tag = HOL original_tag = ITA original_tag = MAN original_tag = RUS original_tag = TUR original_tag = USA } } }
         has_war = yes
+    }
+}
+
+state_unity_bypass = {
+    if = {
+        limit = { original_tag = AUS }
+        not = { can_declare_war_on = SER }
+    }
+
+    if = {
+        limit = { original_tag = FRA }
+        28 = { is_owned_by = FRA }
+    }
+
+    if = {
+        limit = { original_tag = GER }
+        not = { can_declare_war_on = FRA }
     }
 }
 
 state_administration_trigger = {
     if = {
-        limit = { original_tag = FRA }
+        limit = { original_tag = AUS }
+        or = { has_idea = idea_wheat_shortages  has_idea = idea_widespread_hunger }
+    }
 
-        USA = { has_completed_focus = XXX_administration }
-        or = {
-            is_faction_leader = yes USA = { is_in_faction = no }
-            USA = { can_join_their_faction = yes }
-        }
+    if = {
+        limit = { original_tag = FRA }
+        RUS = { has_civil_war = yes }
+    }
+
+    if = {
+        limit = { original_tag = GER }
+        has_idea = idea_wheat_shortages
+    }
+
+    if = {
+        limit = { not = { or = { original_tag = AUS original_tag = FRA original_tag = GER } } }
+        any_owned_state = { not = { is_core_of = ROOT } }
     }
 }

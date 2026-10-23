@@ -1,0 +1,134 @@
+shared_focus = {
+    id = BEL_congo
+    icon = GFX_focus_BEL_congo
+
+    available = {
+        uprising_government_lock = yes
+        civil_war_lock = yes
+        colonies_lock = yes
+    }
+
+    x = 0 y = 0
+    cost = 10
+
+    completion_reward = {
+        add_political_power = 50
+        add_stability = 0.025
+    }
+}
+
+shared_focus = {
+    id = BEL_leopoldville
+    icon = GFX_focus_generic_infrastructure
+    prerequisite = { focus = BEL_congo }
+
+    available = {
+        uprising_government_lock = yes      civil_war_lock = yes
+        controls_state = 295
+    }
+
+    relative_position_id = BEL_congo
+    x = -1 y = 1
+    cost = 10
+
+    completion_reward = {
+        295 = {
+            add_building_construction = { type = naval_base level = 1 province = 10968 instant_build = yes }
+            add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+        }
+    }
+}
+
+shared_focus = {
+    id = BEL_security
+    icon = GFX_focus_BEL_security
+    prerequisite = { focus = BEL_congo }
+
+    available = {
+        uprising_government_lock = yes      civil_war_lock = yes
+        controls_state = 295 controls_state = 576
+    }
+
+    relative_position_id = BEL_congo
+    x = 1 y = 1
+    cost = 10
+
+    completion_reward = {
+        295 = {
+            add_resource = { type = tungsten amount = 4 }
+            add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+        }
+        576 = {
+            add_resource = { type = rubber amount = 2 }
+            add_building_construction = { type = bunker level = 2 province = 4941 instant_build = yes }
+        }
+    }
+}
+
+shared_focus = {
+    id = BEL_elizabethville
+    icon = GFX_focus_BEL_elizabethville
+    prerequisite = { focus = BEL_leopoldville }
+
+    available = {
+        uprising_government_lock = yes  civil_war_lock = yes
+        controls_state = 538
+    }
+
+    relative_position_id = BEL_leopoldville
+    x = -2 y = 1
+    cost = 10
+
+    completion_reward = {
+        538 = {
+            add_resource = { type = chromium amount = 4 }
+            add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+        }    
+    }
+}
+
+shared_focus = {
+    id = BEL_locals
+    icon = GFX_focus_GER_GER_askari
+    prerequisite = { focus = BEL_leopoldville focus = BEL_security }
+
+    available = {
+        uprising_government_lock = yes      civil_war_lock = yes
+        controls_state = 576
+    }
+
+    relative_position_id = BEL_leopoldville
+    x = 1 y = 1
+    cost = 10
+
+    completion_reward = {
+        576 = {
+            create_unit = { division = "name = \"Force Publique\" division_template = \"Force Publique\"" count = 4 owner = ROOT } 
+            add_building_construction = { type = air_base level = 1 instant_build = yes }
+        }
+    }
+}
+
+shared_focus = {
+    id = BEL_urundi
+    icon = GFX_focus_generic_state
+    prerequisite = { focus = BEL_locals }
+
+    available = {
+        uprising_government_lock = yes      civil_war_lock = yes        colonies_lock = yes
+    }
+
+    ai_will_do = { modifier = { not = { 638 = { enemy_control = yes } } factor = 0 } } 
+
+    relative_position_id = BEL_locals
+    x = 0 y = 1
+    cost = 10
+
+    completion_reward = {
+        add_war_support = 0.05
+        every_state = {
+            limit = { or = { state = 638 } }
+            add_claim_by = BEL
+        }
+    }
+}

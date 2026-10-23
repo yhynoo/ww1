@@ -1,0 +1,144 @@
+# colonies
+    shared_focus = {
+        id = XXX_colonies
+        icon = GFX_focus_XXX_colonies
+
+        available = {
+            uprising_government_lock = yes
+            civil_war_government_lock = yes
+            colonies_lock = yes
+        }
+
+        x = 0 y = 0
+        cost = 10
+
+        completion_reward = {
+            add_political_power = 50
+            add_war_support = 0.05
+        }
+    }
+
+    shared_focus = {
+        id = XXX_develop_colonies
+        icon = GFX_focus_generic_infrastructure
+        prerequisite = { focus = XXX_colonies }
+        mutually_exclusive = { focus = XXX_subdue_colonies }
+
+        available = {
+            uprising_government_lock = yes
+            civil_war_government_lock = yes
+            colonies_lock = yes
+        }
+
+        relative_position_id = XXX_colonies
+        x = -1 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_owned_state = {
+                limit = { is_colonial_state = yes }
+                add_resource = { type = tungsten amount = 6 }   add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
+            if = {
+                limit = { colonies_lock = no }
+                custom_effect_tooltip = tt_no_colonies_effect
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_subdue_colonies
+        icon = GFX_focus_XXX_subdue_colonies
+        prerequisite = { focus = XXX_colonies }
+        mutually_exclusive = { focus = XXX_develop_colonies }
+
+        available = {
+            uprising_government_lock = yes
+            civil_war_government_lock = yes
+            colonies_lock = yes
+        }
+
+        relative_position_id = XXX_colonies
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_timed_idea = { idea = idea_colonial_extraction years = 2 }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_colonial_expansion
+        icon = GFX_focus_XXX_colonial_expansion
+        prerequisite = { focus = XXX_develop_colonies }
+
+        available = {
+            uprising_government_lock = yes
+            civil_war_government_lock = yes
+            colonies_lock = yes
+        }
+
+        relative_position_id = XXX_develop_colonies
+        x = -2 y = 1
+        cost = 10
+
+        completion_reward = {
+            random_state = {
+                limit = { 
+                    not = { is_claimed_by = ROOT } any_neighbor_state = { is_owned_by = ROOT is_colonial_state = yes }
+                    ROOT = { can_declare_war_on = PREV.owner }
+                }
+                add_claim_by = ROOT
+            }
+            if = {
+                limit = { colonies_lock = no }
+                custom_effect_tooltip = tt_no_colonies_effect
+            }
+        }
+    }
+
+    shared_focus = {
+        id = XXX_draft
+        icon = GFX_focus_XXX_XXX_draft
+        prerequisite = { focus = XXX_develop_colonies focus = XXX_subdue_colonies }
+
+        available = {
+            uprising_government_lock = yes
+            civil_war_government_lock = yes
+            colonies_lock = yes
+        }
+
+        relative_position_id = XXX_develop_colonies
+        x = 1 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_ideas = idea_colonial_draft
+        }
+    }
+
+    shared_focus = {
+        id = XXX_colonial_aim
+        icon = GFX_focus_XXX_colonial_aim
+        prerequisite = { focus = XXX_draft }
+
+        available = {
+            uprising_government_lock = yes
+            civil_war_government_lock = yes
+            colonies_lock = yes
+
+            has_war_support > 0.5
+        }
+
+        relative_position_id = XXX_draft
+        x = 0 y = 1
+        cost = 10
+
+        completion_reward = {
+            add_war_support = 0.05
+            random_state = {
+                limit = { not = { is_claimed_by = ROOT } any_neighbor_state = { is_owned_by = ROOT is_colonial_state = yes } ROOT = { can_declare_war_on = PREV.owner } }
+                send_ultimatum_one_state = yes
+            }
+        }
+    }

@@ -98,19 +98,11 @@ ideas = {
     # civil war
         idea_collapsed_administration = {
             modifier = { 
-                political_power_factor = -0.45 
+                political_power_factor = -0.25 
             }
             cancel = {
-                has_idea = idea_eroded_state
+                has_civil_war = no
             }   
-        }
-        idea_unstable_administration = {
-            modifier = { 
-                political_power_factor = -0.2
-            }
-            cancel = {
-                has_idea = idea_eroded_state
-            }
         }
         idea_dysfunctional_supply = {
             modifier = {
@@ -119,13 +111,7 @@ ideas = {
                 consumer_goods_factor = 0.2
             }
             cancel = {
-                has_idea = idea_destroyed_industry
-            }
-        }
-        idea_terror = {
-            modifier = {
-                stability_factor = 0.05
-                political_power_factor = -0.15
+                has_civil_war = no
             }
         }
         idea_eroded_state = {
@@ -133,12 +119,18 @@ ideas = {
                 political_power_factor = -0.8
                 stability_weekly = -0.025
             }
+            allowed_civil_war = {
+                always = yes
+            }
         }
         idea_destroyed_industry = {
             modifier = {
                 production_factory_max_efficiency_factor = -0.65
                 supply_factor = -0.45
                 consumer_goods_factor = 0.25
+            }
+            allowed_civil_war = {
+                always = yes
             }
         }
 
@@ -171,6 +163,18 @@ ideas = {
         }
 
     # state
+        idea_colonial_extraction = {
+            modifier = {
+            }
+        }
+        idea_colonial_draft = {
+            modifier = {
+                local_non_core_manpower = 0.15
+                training_time_factor = -0.05
+            }
+
+            allowed_civil_war = { always = yes }
+        }
         idea_manpower_act = {
             modifier = {
                 conscription_factor = 0.1
@@ -186,13 +190,18 @@ ideas = {
             modifier = {
                 send_volunteer_factor = 0.25
                 send_volunteers_tension = -0.2
+                send_volunteer_divisions_required = -0.5
             }
+
+            allowed_civil_war = { always = yes }
         }
         idea_ethnocentrism = {
             modifier = {
                 mobilization_laws_cost_factor = -0.5
                 conscription_factor = 0.1
             }
+
+            allowed_civil_war = { always = yes }
         }
         idea_agrarians = {
             modifier = {
@@ -339,8 +348,8 @@ ideas = {
         }
         idea_industrial_capacity = {
             modifier = {
-                production_speed_infrastructure_factor = 0.15
-                global_building_slots_factor = 0.15
+                trade_opinion_factor = 0.15
+                production_speed_infrastructure_factor = 0.1
             }
         }
         idea_state_subsidies = {

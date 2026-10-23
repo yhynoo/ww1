@@ -2,7 +2,15 @@
     state_government_effect = {
         if = {
             limit = { original_tag = AUS }
-            add_political_power = 100    hidden_effect = { country_event = { id = council.1 days = 7 } }
+            news_event = sarajevo.1         104 = { set_demilitarized_zone = no      add_core_of = ROOT }
+        }
+
+        if = {
+            limit = { original_tag = BEL }
+            swap_ideas = {
+                remove_idea = idea_humiliated_and_abandoned
+                add_idea = idea_humiliated_and_abandoned_1
+            }
         }
 
         if = {
@@ -17,12 +25,12 @@
 
         if = {
             limit = { original_tag = FRA }
-            add_political_power = 50
+            remove_ideas = idea_echoes_of_agadir    hidden_effect = { news_event = agadir_trials.1 }
         }
 
         if = {
             limit = { original_tag = GER }
-            add_political_power = 50        country_event = aachen.1
+            country_event = aachen_announce.1       34 = { set_demilitarized_zone = no      add_core_of = ROOT }
         }
 
         if = {
@@ -55,12 +63,7 @@
 
         if = {
             limit = { original_tag = RUS }
-            add_political_power = 50        country_event = quiet.1
-        }
-
-        if = {
-            limit = { original_tag = SER }
-            add_political_power = 50        news_event = cetinje.1
+            add_ideas = idea_twenty_years_of_quiet
         }
 
         if = {
@@ -80,735 +83,685 @@
 
         # default
         if = {
-            limit = { not = { or = { original_tag = AUS original_tag = ENG original_tag = FRA original_tag = GER original_tag = GRE original_tag = JAP original_tag = MAN original_tag = RUS original_tag = SER original_tag = SPA original_tag = TUR original_tag = USA } } }
+            limit = { not = { or = { original_tag = AUS original_tag = BEL original_tag = COL original_tag = ENG original_tag = FRA original_tag = GER original_tag = GRE original_tag = JAP original_tag = MAN original_tag = RUS original_tag = SPA original_tag = TUR original_tag = USA } } }
             add_political_power = 100
         }
     }
 
     # external
-    state_extend_effect = {
-        # default
-        if = {
-            limit = { not = { or = { original_tag = FRA original_tag = GER original_tag = ITA original_tag = USA } } }
+        state_extend_effect = {
+            # default
+            if = {
+                limit = { not = { or = { original_tag = FRA original_tag = GER original_tag = SPA original_tag = USA } } }
 
-            # factions
-            if = { limit = { is_faction_leader = no } custom_effect_tooltip = tt_extend }
-            hidden_effect = { set_rule = { can_create_factions = yes } }
-        }
-
-        if = {
-            limit = { original_tag = ARM }
-            custom_effect_tooltip = tt_to_do
-        }
-
-        if = {
-            limit = { original_tag = AUS }
-            104 = { set_demilitarized_zone = no      add_core_of = ROOT }
-
-            # news
-            hidden_effect = { 
-                news_event = sarajevo.1 
-            }
-        }
-
-        if = {
-            limit = { original_tag = ENG }
-            add_ideas = idea_terms_of_engagement
-
-            hidden_effect = { news_event = engagement.1 }
-        }
-
-        if = {
-            limit = { original_tag = FRA }
-            remove_ideas = idea_echoes_of_agadir
-
-            hidden_effect = { news_event = agadir.1 }
-        }
-
-        if = {
-            limit = { original_tag = GER }
-            28 = { add_resource = { type = steel amount = 6 }      add_core_of = ROOT }
-            
-            # news
-            hidden_effect = { news_event = alsace.1 }
-        }
-
-        if = {
-            limit = { original_tag = GRE }
-            add_war_support = 0.05
-        }
-
-        if = {
-            limit = { original_tag = HOL }
-            add_ideas = idea_authoritarian_tendencies_in_the_army
-        }
-
-        if = {
-            limit = { original_tag = ITA }
-            custom_effect_tooltip = tt_to_do
-        } 
-
-        if = {
-            limit = { original_tag = JAP }
-            every_state = {
-                limit = { or = { state = 74 state = 352 state = 633 state = 634 state = 567 } }
-                add_claim_by = JAP
+                # factions
+                if = { limit = { is_faction_leader = no } custom_effect_tooltip = tt_extend }
+                hidden_effect = { set_rule = { can_create_factions = yes } }
             }
 
-            # news
-            hidden_effect = { news_event = assert_pacific.1 }
-        }
-
-        if = {
-            limit = { original_tag = MAN }
-            custom_effect_tooltip = tt_to_do
-        }
-
-        if = {
-            limit = { original_tag = RUS }
-            custom_effect_tooltip = tt_to_do
-
-            # event
-            hidden_effect = { news_event = caucasus.1 }
-        } 
-
-        if = {
-            limit = { original_tag = SER }
-            every_state = {
-                limit = { or = { state = 404 state = 106 } }
-                add_claim_by = SER
+            if = {
+                limit = { original_tag = ARM }
+                custom_effect_tooltip = tt_to_do
             }
 
-            # news
-            hidden_effect = { news_event = kosovo_je_srbija.1 }
-        }
-
-        if = {
-            limit = { original_tag = SPA }
-            every_state = { limit = { is_core_of = MOR } add_claim_by = SPA }
-
-            # news
-            hidden_effect = { news_event = atlas_claims.1 }
-        }
-
-        if = {
-            limit = { original_tag = TUR }
-            swap_ideas = {
-                remove_idea = idea_hostile_officer_corps
-                add_idea = idea_disobedient_officer_corps
+            if = {
+                limit = { original_tag = AUS }
+                leave_faction = yes
             }
-        } 
 
-        if = {
-            limit = { original_tag = USA }
-            add_political_power = 50        news_event = aid.1
-        }  
-    }
-
-    state_claims_effect = {
-        if = {
-            limit = { original_tag = ARM }
-            every_state = { limit = { state = 419 } send_ultimatum_one_state = yes }
-        }
-
-        if = {
-            limit = { original_tag = AUS }
-            add_ideas = idea_evidenzbureau
-        }
-
-        if = {
-            limit = { original_tag = COL }
-            CUB = { trigger_uprising = yes }
-        }
-
-        if = {
-            limit = { original_tag = ENG }
-            add_tech_bonus = { bonus = 0.5    uses = 2    category = naval_equipment_tech }
-            add_ideas = idea_admiralty_office
-        }
-
-        if = {
-            limit = { original_tag = FRA }
-            add_political_power = 50
-            459 = { 
-                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
-                add_core_of = FRA
+            if = {
+                limit = { original_tag = BEL }
+                add_timed_idea = { idea = idea_activist_movement years = 1 }
             }
-            460 = { 
-                add_resource = { type = tungsten amount = 6 }
-                add_core_of = FRA
+
+            if = {
+                limit = { original_tag = ENG }
+                add_ideas = idea_terms_of_engagement
+
+                hidden_effect = { news_event = engagement.1 }
             }
-        }  
 
-        if = {
-            limit = { original_tag = GER }
-            RUS = { country_event = grain_deal.1 }
-        }  
+            if = {
+                limit = { original_tag = FRA }
 
-        if = {
-            limit = { original_tag = GRE }
-            every_state = {
-                limit = { or = { state = 184 state = 187 } }
-                add_claim_by = GRE
+                add_political_power = 50
+                every_country = { limit = { tag = SPA } country_event = entente.1 }
             }
-        }
 
-        if = {
-            limit = { original_tag = HOL }
-            add_war_support = 0.05
-            7 = {
-                add_building_construction = { type = dockyard level = 2 instant_build = yes }
-                add_extra_state_shared_building_slots = 2
+            if = {
+                limit = { original_tag = GER }
+                add_political_power = 50        news_event = wassmuss_in_arabia.1
+            }  
+
+            if = {
+                limit = { original_tag = GRE }
+                add_war_support = 0.05
             }
-        } 
 
-        if = {
-            limit = { original_tag = ITA }
-            add_war_support = 0.05        every_state = { limit = { or = { state = 44 } } add_claim_by = ITA }
-
-            # news
-            hidden_effect = { news_event = albania_italy.1 }
-        }
-
-        if = {
-            limit = { original_tag = JAP }
-            add_political_power = 50
-            524 = { 
-                add_resource = { type = tungsten amount = 8 }
-                add_core_of = JAP
+            if = {
+                limit = { original_tag = HOL }
+                add_ideas = idea_authoritarian_tendencies_in_the_army
             }
-        } 
 
-        if = {
-            limit = { original_tag = MAN }
-            create_wargoal = { target = MON     type = puppet_wargoal_focus }
-        }    
+            if = {
+                limit = { original_tag = ITA }
+                add_war_support = 0.05
+            } 
 
-        if = {
-            limit = { original_tag = ROM }
-            add_war_support = 0.05          every_state = { limit = { or = { state = 78 state = 442 } } send_ultimatum_multiple_states = yes }
-        }
-
-        if = {
-            limit = { original_tag = RUS }
-            every_country = { limit = { tag = AFG } send_ultimatum_alignment = yes }
-        }   
-
-        if = {
-            limit = { original_tag = SER }
-            every_country = {
-                limit = { not = { has_war_with = SER } or = { tag = GRE tag = RUS } }
-                country_event = guarantees.1
-            }
-        }  
-
-        if = {
-            limit = { original_tag = SPA }
-            FRA = { country_event = alliance.1 }
-        }  
-
-        if = {
-            limit = { original_tag = TUR }
-            every_country = { limit = { tag = GRE } send_ultimatum_alignment = yes }
-        } 
-
-        if = {
-            limit = { original_tag = USA }
-            every_country = {
-                limit = { or = { controls_state = 279 controls_state = 506 } not = { has_war_with = USA } }
-                country_event = chromium_andes.1
-            }
-        }  
-
-        # default
-        if = {
-            limit = { not = { or = { original_tag = ARM original_tag = AUS original_tag = COL original_tag = ENG original_tag = FRA original_tag = GER original_tag = GRE original_tag = HOL original_tag = ITA original_tag = JAP original_tag = MAN original_tag = ROM original_tag = RUS original_tag = SER original_tag = SPA original_tag = TUR original_tag = USA } } }
-            add_war_support = 0.05
-            random_state = {
-                limit = { 
-                    not = { is_claimed_by = ROOT } any_neighbor_state = { is_owned_by = ROOT }
-                    ROOT = { can_declare_war_on = PREV.owner }
+            if = {
+                limit = { original_tag = JAP }
+                every_state = {
+                    limit = { or = { state = 74 state = 352 state = 633 state = 634 state = 567 } }
+                    add_claim_by = JAP
                 }
-                add_claim_by = ROOT
+
+                # news
+                hidden_effect = { news_event = assert_pacific.1 }
+            }
+
+            if = {
+                limit = { original_tag = MAN }
+                custom_effect_tooltip = tt_to_do
+            }
+
+            if = {
+                limit = { original_tag = ROM }
+                add_war_support = 0.05
+            }
+
+            if = {
+                limit = { original_tag = RUS }
+                custom_effect_tooltip = tt_to_do
+
+                # event
+                hidden_effect = { news_event = caucasus.1 }
+            } 
+
+            if = {
+                limit = { original_tag = SER }
+                every_state = {
+                    limit = { or = { state = 404 state = 106 } }
+                    add_claim_by = SER
+                }
+
+                # news
+                hidden_effect = { news_event = kosovo_je_srbija.1 }
+            }
+
+            if = {
+                limit = { original_tag = SPA }
+                every_state = { limit = { is_core_of = MOR } add_claim_by = SPA }
+
+                # news
+                hidden_effect = { news_event = atlas_claims.1 }
+            }
+
+            if = {
+                limit = { original_tag = TUR }
+                swap_ideas = {
+                    remove_idea = idea_hostile_officer_corps
+                    add_idea = idea_disobedient_officer_corps
+                }
+            } 
+
+            if = {
+                limit = { original_tag = USA }
+                add_political_power = 50        news_event = aid.1
+            }  
+        }
+
+    # claims
+        state_claims_effect = {
+            if = {
+                limit = { original_tag = ARM }
+                every_state = { limit = { state = 419 } send_ultimatum_one_state = yes }
+            }
+
+            if = {
+                limit = { original_tag = AUS }
+                every_country = { limit = { tag = FRA } country_event = guarantees.1 }
+            }
+
+            if = {
+                limit = { original_tag = BEL }
+                every_state = { limit = { or = { state = 29 } } add_claim_by = ROOT }
+            }
+
+            if = {
+                limit = { original_tag = COL }
+                CUB = { trigger_uprising = yes }
+            }
+
+            if = {
+                limit = { original_tag = ENG }
+                add_tech_bonus = { bonus = 0.5    uses = 2    category = naval_equipment_tech }
+                add_ideas = idea_admiralty_office
+            }
+
+            if = {
+                limit = { original_tag = FRA }
+                custom_effect_tooltip = tt_to_do
+            }  
+
+            if = {
+                limit = { original_tag = GER }
+                every_country = { limit = { original_tag = AFG } country_event = alliance.1 }
+            }   
+
+            if = {
+                limit = { original_tag = GRE }
+                every_state = {
+                    limit = { or = { state = 184 state = 187 } }
+                    add_claim_by = GRE
+                }
+            }
+
+            if = {
+                limit = { original_tag = HOL }
+                add_war_support = 0.05
+                7 = {
+                    add_building_construction = { type = dockyard level = 2 instant_build = yes }
+                    add_extra_state_shared_building_slots = 2
+                }
+            } 
+
+            if = {
+                limit = { original_tag = ITA }
+                add_war_support = 0.025     every_state = { limit = { or = { state = 44 } } add_claim_by = ITA }
+
+                # news
+                hidden_effect = { news_event = albania_italy.1 }
+            }
+
+            if = {
+                limit = { original_tag = JAP }
+                add_political_power = 50
+                524 = { 
+                    add_resource = { type = tungsten amount = 8 }
+                    add_core_of = JAP
+                }
+            } 
+
+            if = {
+                limit = { original_tag = MAN }
+                create_wargoal = { target = MON     type = puppet_wargoal_focus }
+            }    
+
+            if = {
+                limit = { original_tag = ROM }
+                custom_effect_tooltip = tt_to_do
+            }
+
+            if = {
+                limit = { original_tag = RUS }
+                every_country = { limit = { tag = AFG } send_ultimatum_alignment = yes }
+            }   
+
+            if = {
+                limit = { original_tag = SER }
+                add_war_support = 0.05      every_state = { limit = { state = 44 } add_claim_by = SER }
+            }  
+
+            if = {
+                limit = { original_tag = SPA }
+                custom_effect_tooltip = tt_to_do
+            }  
+
+            if = {
+                limit = { original_tag = TUR }
+                every_country = { limit = { tag = GRE } send_ultimatum_alignment = yes }
+            } 
+
+            if = {
+                limit = { original_tag = USA }
+                every_country = {
+                    limit = { or = { controls_state = 279 controls_state = 506 } not = { has_war_with = USA } }
+                    country_event = chromium_andes.1
+                }
+            }  
+
+            # default
+            if = {
+                limit = { not = { or = { original_tag = ARM original_tag = AUS original_tag = BEL original_tag = COL original_tag = ENG original_tag = FRA original_tag = GER original_tag = GRE original_tag = HOL original_tag = ITA original_tag = JAP original_tag = MAN original_tag = ROM original_tag = RUS original_tag = SER original_tag = SPA original_tag = TUR original_tag = USA } } }
+                add_war_support = 0.05
+                random_state = {
+                    limit = { 
+                        not = { is_claimed_by = ROOT } any_neighbor_state = { is_owned_by = ROOT }
+                        ROOT = { can_declare_war_on = PREV.owner }
+                    }
+                    add_claim_by = ROOT
+                }
             }
         }
-    }
 
-    state_take_ours_effect = {
-        if = {
-            limit = { original_tag = ARM }
-            every_state = { limit = { state = 355 } add_claim_by = ROOT }       declare_war_on = { target = TUR     type = take_claimed_state }
-        }
-
-        if = {
-            limit = { original_tag = AUS }
-            add_war_support = 0.05      country_event = attack_serbia.1
-        }
-
-        if = {
-            limit = { original_tag = COL }
-            add_war_support = 0.05      create_wargoal = { target = USA type = topple_government }
-        }
-
-        if = {
-            limit = { original_tag = ENG }
-            every_state = { limit = { or = { state = 454 state = 414 } } add_claim_by = ROOT }
-        }
-
-        if = {
-            limit = { original_tag = FRA }
-            414 = { owner = { country_event = oil_investments.1 } }
-        }
-
-        if = {
-            limit = { original_tag = GER }
-            every_state = {
-                limit = { or = { state = 25 state = 17 } }
-                add_claim_by = ROOT
-
-                send_ultimatum_multiple_states = yes
+    # take ours
+        state_take_ours_effect = {
+            if = {
+                limit = { original_tag = ARM }
+                every_state = { limit = { state = 355 } add_claim_by = ROOT }       declare_war_on = { target = TUR     type = take_claimed_state }
             }
-        }
 
-        if = {
-            limit = { original_tag = GRE }
-            add_war_support = 0.05
-            every_state = {
-                limit = { or = { state = 339 state = 340 state = 341 } }
-                add_claim_by = GRE
+            if = {
+                limit = { original_tag = AUS }
+                every_country = { limit = { tag = ROM } send_ultimatum_alignment = yes }
             }
-        }
 
-        if = {
-            limit = { original_tag = HOL }
-            every_state = { limit = { or = { state = 6 } } add_claim_by = ROOT ROOT = { declare_war_on = { target = PREV.owner type = take_claimed_state } } }
-        }
-
-        if = {
-            limit = { original_tag = ITA }
-            add_war_support = 0.05        create_wargoal = { target = AUS type = take_claimed_state }
-        }
-
-        if = {
-            limit = { original_tag = JAP }
-            every_country = { limit = { tag = MAN } send_ultimatum_alignment = yes }
-        } 
-
-        if = {
-            limit = { original_tag = MAN }
-            every_state = { limit = { state = 524 } send_ultimatum_one_state = yes }
-        }
-
-        if = {
-            limit = { original_tag = RUS }
-            add_war_support = 0.05          declare_war_on = { target = TUR     type = take_claimed_state }
-        }
-
-        if = {
-            limit = { original_tag = ROM }
-            add_war_support = 0.05          every_state = { limit = { or = { state = 76 state = 82 } } send_ultimatum_multiple_states = yes }
-        }
-
-        if = {
-            limit = { original_tag = SER }
-            country_event = sarajevo_attack.1
-        }
-
-        if = {
-            limit = { original_tag = SPA }
-            add_war_support = 0.05          declare_war_on = { target = MOR     type = take_claimed_state }
-        }
-
-        if = {
-            limit = { original_tag = TUR }
-            add_war_support = 0.05          declare_war_on = { target = RUS     type = take_claimed_state }
-        }
-
-        if = {
-            limit = { original_tag = USA }
-            add_war_support = 0.05          declare_war_on = { target = COL     type = topple_government }
-        }
-
-        # default
-        if = {
-            limit = { not = { or = { original_tag = ARM original_tag = AUS original_tag = COL original_tag = ENG original_tag = FRA original_tag = GER original_tag = GRE original_tag = HOL original_tag = ITA original_tag = JAP original_tag = MAN original_tag = ROM original_tag = RUS original_tag = SER original_tag = SPA original_tag = TUR original_tag = USA } } }
-            
-            add_war_support = 0.05
-            random_state = {
-                limit = { not = { is_claimed_by = ROOT } any_neighbor_state = { is_owned_by = ROOT } ROOT = { can_declare_war_on = PREV.owner } }
-                send_ultimatum_one_state = yes
+            if = {
+                limit = { original_tag = BEL }
+                create_wargoal = { target = 7.owner type = annex_everything }
             }
-        }        
-    }
+
+            if = {
+                limit = { original_tag = COL }
+                add_war_support = 0.05      create_wargoal = { target = USA type = topple_government }
+            }
+
+            if = {
+                limit = { original_tag = ENG }
+                every_state = { limit = { or = { state = 454 state = 414 } } add_claim_by = ROOT }
+            }
+
+            if = {
+                limit = { original_tag = FRA }
+                every_country = { limit = { tag = TUR } country_event = oil_investments.1 }
+            }  
+
+            if = {
+                limit = { original_tag = GER }
+                news_event = arab_uprisings.1
+            }  
+
+            if = {
+                limit = { original_tag = GRE }
+                add_war_support = 0.05
+                every_state = {
+                    limit = { or = { state = 339 state = 340 state = 341 } }
+                    add_claim_by = GRE
+                }
+            }
+
+            if = {
+                limit = { original_tag = HOL }
+                every_state = { limit = { or = { state = 6 } } add_claim_by = ROOT ROOT = { declare_war_on = { target = PREV.owner type = take_claimed_state } } }
+            }
+
+            if = {
+                limit = { original_tag = ITA }
+                create_wargoal = { target = AUS type = annex_everything }
+            }
+
+            if = {
+                limit = { original_tag = JAP }
+                every_country = { limit = { tag = MAN } send_ultimatum_alignment = yes }
+            } 
+
+            if = {
+                limit = { original_tag = MAN }
+                every_state = { limit = { state = 524 } send_ultimatum_one_state = yes }
+            }
+
+            if = {
+                limit = { original_tag = RUS }
+                add_war_support = 0.05          declare_war_on = { target = TUR     type = take_claimed_state }
+            }
+
+            if = {
+                limit = { original_tag = ROM }
+                create_wargoal = { target = TUR type = annex_everything }
+            }
+
+            if = {
+                limit = { original_tag = SER }
+                country_event = savoie_decision.1
+            }
+
+            if = {
+                limit = { original_tag = SPA }
+                create_wargoal = { target = MOR type = annex_everything }
+            }
+
+            if = {
+                limit = { original_tag = TUR }
+                add_war_support = 0.05          declare_war_on = { target = RUS     type = take_claimed_state }
+            }
+
+            if = {
+                limit = { original_tag = USA }
+                add_war_support = 0.05          declare_war_on = { target = COL     type = topple_government }
+            }
+
+            # default
+            if = {
+                limit = { not = { or = { original_tag = ARM original_tag = AUS original_tag = BEL original_tag = COL original_tag = ENG original_tag = FRA original_tag = GER original_tag = GRE original_tag = HOL original_tag = ITA original_tag = JAP original_tag = MAN original_tag = ROM original_tag = RUS original_tag = SER original_tag = SPA original_tag = TUR original_tag = USA } } }
+                
+                add_war_support = 0.05
+                random_state = {
+                    limit = { not = { is_claimed_by = ROOT } any_neighbor_state = { is_owned_by = ROOT } ROOT = { can_declare_war_on = PREV.owner } }
+                    send_ultimatum_one_state = yes
+                }
+            }        
+        }
 
     # deterrence
-    state_deterrence_effect = {
-        if = {
-            limit = { original_tag = AUS }
-            custom_effect_tooltip = tt_to_do
+        state_deterrence_effect = {
+            if = {
+                limit = { original_tag = COL }
+                custom_effect_tooltip = tt_to_do
+            }
+
+            if = {
+                limit = { original_tag = ENG }
+                add_stability = 0.05
+            }
+
+            if = {
+                limit = { original_tag = FRA }
+                every_country = { limit = { or = { tag = ENG tag = RUS } } country_event = guarantees.1 }
+            } 
+
+            if = {
+                limit = { original_tag = GER }
+                every_country = { limit = { original_tag = TUR }    country_event = guarantees.1 }
+            }
+
+            if = {
+                limit = { original_tag = HOL }
+                add_ideas = idea_armed_neutrality
+            }
+
+            if = {
+                limit = { original_tag = JAP }
+                custom_effect_tooltip = tt_to_do
+            } 
+
+            if = {
+                limit = { original_tag = SER }
+                custom_effect_tooltip = tt_to_do
+            }
+
+            if = {
+                limit = { original_tag = USA }
+                custom_effect_tooltip = tt_to_do
+            }
+
+            # default
+            if = {
+                limit = { not = { or = { original_tag = COL original_tag = ENG original_tag = FRA original_tag = GER original_tag = HOL original_tag = JAP original_tag = SER original_tag = USA } } }
+                add_political_power = 50        add_timed_idea = { idea = idea_deterrence years = 1 }
+            }
         }
-
-        if = {
-            limit = { original_tag = COL }
-            custom_effect_tooltip = tt_to_do
-        }
-
-        if = {
-            limit = { original_tag = ENG }
-            add_stability = 0.05
-        }
-
-        if = {
-            limit = { original_tag = FRA }
-            news_event = { id = young_algerians.1 hours = 6 }      add_ideas = idea_indigenat
-        } 
-
-        if = {
-            limit = { original_tag = GER }
-            custom_effect_tooltip = tt_to_do
-        } 
-
-        if = {
-            limit = { original_tag = HOL }
-            add_ideas = idea_armed_neutrality
-        }
-
-        if = {
-            limit = { original_tag = JAP }
-            custom_effect_tooltip = tt_to_do
-        } 
-
-        if = {
-            limit = { original_tag = SER }
-            custom_effect_tooltip = tt_to_do
-        }
-
-        if = {
-            limit = { original_tag = USA }
-            custom_effect_tooltip = tt_to_do
-        }
-
-        # default
-        if = {
-            limit = { not = { or = { original_tag = AUS original_tag = COL original_tag = ENG original_tag = FRA original_tag = GER original_tag = HOL original_tag = JAP original_tag = SER original_tag = USA } } }
-            add_political_power = 50        add_timed_idea = { idea = idea_deterrence years = 1 }
-        }
-    }
 
     # stability
-    state_stability_effect = {
-        if = {
-            limit = { original_tag = AUS }
+        state_stability_effect = {
+            if = {
+                limit = { original_tag = AUS }
+                hidden_effect = { country_event = { id = galicia.1    days = 28 } }
+            }
 
-            hidden_effect = {
-                country_event = { id = galicia.1    days = 28 }
-                country_event = { id = exhibition.1   days = 56 }
+            if = {
+                limit = { original_tag = ENG }
+                remove_ideas = idea_great_unrest
+            }
+
+            if = {
+                limit = { original_tag = RUS }
+                add_stability = 0.025   
+
+                random_owned_controlled_state = { limit = { or = { state = 561 state = 403 } } add_resource = { type = steel amount = 8 } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+                random_owned_controlled_state = { limit = { or = { state = 582 state = 585 state = 584 } } add_resource = { type = tungsten amount = 12 } add_extra_state_shared_building_slots = 2 }
+            }
+
+            if = {
+                limit = {
+                    not = { or = { original_tag = ENG original_tag = RUS } }
+                }
+                add_stability = 0.05
             }
         }
-
-        if = {
-            limit = { original_tag = ENG }
-            remove_ideas = idea_great_unrest
-        }
-
-        if = {
-            limit = { original_tag = GER }
-            custom_effect_tooltip = tt_to_do
-        } 
-
-        if = {
-            limit = { original_tag = RUS }
-            add_stability = 0.025   
-
-            random_owned_controlled_state = { limit = { or = { state = 561 state = 403 } } add_resource = { type = steel amount = 8 } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
-            random_owned_controlled_state = { limit = { or = { state = 582 state = 585 state = 584 } } add_resource = { type = tungsten amount = 12 } add_extra_state_shared_building_slots = 2 }
-
-            # events
-            hidden_effect = {
-                country_event = { id = duma.1   days = 60 }
-                country_event = { id = urals.1  days = 14 }
-            }
-        }
-
-        if = {
-            limit = {
-                not = { or = { original_tag = ENG original_tag = GER original_tag = RUS } }
-            }
-            add_stability = 0.05
-        }
-    }
 
     # ethnocentrism
-    state_ethnocentrism_effect = {
-        if = {
-            limit = { original_tag = FRA }
-            create_faction = "Entente"
+        state_ethnocentrism_effect = {
+            if = {
+                limit = { original_tag = RUS }
 
-            # set_rule
-            hidden_effect = { set_rule = { can_create_factions = yes } news_event = entente.1 }
-        }
-        if = {
-            limit = { original_tag = GER }
-            add_ideas = idea_askari
-        }
+                # event
+                hidden_effect = { country_event = { id = assault_on_church.1 days = 14 } }
+            }
 
-        if = {
-            limit = { original_tag = RUS }
+            if = {
+                limit = { original_tag = TUR }
+                every_country = { limit = { original_tag = FRA } country_event = alliance.1 }
+            }
 
-            # event
-            hidden_effect = { country_event = { id = assault_on_church.1 days = 14 } }
-        }
-
-        if = {
-            limit = { original_tag = TUR }
-            every_country = { limit = { original_tag = FRA } country_event = alliance.1 }
-        }
-
-        # default 
-        if = {
-            limit = { not = { or = { original_tag = FRA original_tag = GER original_tag = TUR } } }
-            add_ideas = idea_ethnocentrism
-        }
-    }
-
-    # agrarianism
-    state_agrarianism_effect = {
-        if = {
-            limit = { original_tag = AUS }
-            add_political_power = 50
-            random_owned_controlled_state = { limit = { is_core_of = HUN } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } add_extra_state_shared_building_slots = 2 }
-            random_owned_controlled_state = { limit = { is_core_of = HUN } add_resource = { type = tungsten amount = 8 } add_extra_state_shared_building_slots = 2 }
-        }
-
-        if = {
-            limit = { original_tag = ENG }
-            add_political_power = 50    add_timed_idea = { idea = idea_coal_and_steel years = 2 }
-        }
-
-        if = {
-            limit = { original_tag = FRA }
-            add_ideas = idea_union_sacree
-        }
-
-        if = {
-            limit = { original_tag = GER }
-            add_political_power = 50
-            546 = {
-                add_resource = { type = tungsten amount = 8 }
-                add_building_construction = { type = naval_base level = 1 province = 8183 instant_build = yes }
+            # default 
+            if = {
+                limit = { not = { or = { original_tag = TUR } } }
+                add_ideas = idea_ethnocentrism
             }
         }
 
-        if = {
-            limit = { original_tag = GRE }
-            add_war_support = 0.05
-            47 = {
-                add_building_construction = { type = dockyard   level = 2   instant_build = yes }
-                add_extra_state_shared_building_slots = 2
+    # economy
+        state_economy_effect = {
+            if = {
+                limit = { original_tag = AUS }
+                add_ideas = idea_evidenzbureau
             }
-            186 = {
-                add_resource = { type = steel amount = 8 }
-                add_extra_state_shared_building_slots = 1
+
+            if = {
+                limit = { original_tag = FRA }
+                add_ideas = idea_union_sacree
+            }
+
+            if = {
+                limit = { original_tag = GER }
+                every_country = { limit = { tag = RUS } country_event = wheat_deal.1 }
+            }
+
+            if = {
+                limit = { original_tag = GRE }
+                add_war_support = 0.05
+                47 = {
+                    add_building_construction = { type = dockyard   level = 2   instant_build = yes }
+                    add_extra_state_shared_building_slots = 2
+                }
+                186 = {
+                    add_resource = { type = steel amount = 8 }
+                    add_extra_state_shared_building_slots = 1
+                }
+            }
+
+            if = {
+                limit = { original_tag = ITA }
+                add_stability = 0.05
+                117 = {
+                    add_building_construction = { type = dockyard   level = 1   instant_build = yes }
+                    add_extra_state_shared_building_slots = 1
+                }   
+                156 = {
+                    add_resource = { type = aluminium amount = 6 }
+                    add_building_construction = { type = industrial_complex   level = 1   instant_build = yes }
+                }
+            }
+
+            if = {
+                limit = { original_tag = ROM }
+                46 = { add_resource = { type = oil amount = 12 } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+                77 = { add_resource = { type = oil amount = 4 } add_extra_state_shared_building_slots = 1 }
+            }
+
+            if = {
+                limit = { original_tag = SPA }
+                171 = {
+                    add_building_construction = { type = dockyard   level = 2   instant_build = yes }
+                    add_extra_state_shared_building_slots = 1
+                }
+                178 = {
+                    add_resource = { type = chromium amount = 4 }
+                    add_building_construction = { type = naval_base     level = 1       province = 13071     instant_build = yes }
+                }
+            }
+
+            if = {
+                limit = { original_tag = TUR }
+                add_stability = 0.05
+                339 = {
+                    add_building_construction = { type = dockyard   level = 2   instant_build = yes }
+                    add_extra_state_shared_building_slots = 1
+                }
+                586 = {
+                    add_resource = { type = tungsten amount = 6 }
+                    add_building_construction = { type = industrial_complex     level = 1       instant_build = yes }
+                }
+            }
+
+            # default
+            if = {
+                limit = { not = { or = { original_tag = AUS original_tag = FRA original_tag = GER original_tag = GRE original_tag = HOL original_tag = ITA original_tag = ROM original_tag = SPA original_tag = TUR } } }
+                custom_effect_tooltip = tt_to_do
             }
         }
-
-        if = {
-            limit = { original_tag = HOL }
-            hidden_effect = { release = INS news_event = east_indies.1 }      
-            
-            set_autonomy = { target = INS autonomous_state = autonomy_dominion }    remove_ideas = idea_unrest_in_east_indies
-        }
-
-        if = {
-            limit = { original_tag = ITA }
-            add_stability = 0.05
-            117 = {
-                add_building_construction = { type = dockyard   level = 1   instant_build = yes }
-                add_extra_state_shared_building_slots = 1
-            }   
-            156 = {
-                add_resource = { type = tungsten amount = 6 }
-                add_building_construction = { type = industrial_complex   level = 1   instant_build = yes }
-            }
-        }
-
-        if = {
-            limit = { original_tag = ROM }
-            46 = { add_resource = { type = oil amount = 12 } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
-            77 = { add_resource = { type = oil amount = 4 } add_extra_state_shared_building_slots = 1 }
-        }
-
-        if = {
-            limit = { original_tag = TUR }
-            add_stability = 0.05
-            339 = {
-                add_building_construction = { type = dockyard   level = 2   instant_build = yes }
-                add_extra_state_shared_building_slots = 1
-            }
-            586 = {
-                add_resource = { type = tungsten amount = 6 }
-                add_building_construction = { type = industrial_complex     level = 1       instant_build = yes }
-            }
-        }
-
-        # default
-        if = {
-            limit = { not = { or = { original_tag = AUS original_tag = ENG original_tag = FRA original_tag = GER original_tag = GRE original_tag = HOL original_tag = ITA original_tag = ROM original_tag = TUR } } }
-            add_timed_idea = { idea = idea_agrarians years = 2 }
-
-            # state
-            random_owned_controlled_state = { add_resource = { type = tungsten amount = 4 } add_extra_state_shared_building_slots = 1 }
-        }
-    }
 
     # unity
-    state_unity_effect = {
-        if = {
-            limit = { original_tag = AUS }
-            custom_effect_tooltip = tt_aus_army_reform
+        state_unity_effect = {
+            if = {
+                limit = { original_tag = AUS }
+                create_wargoal = { target = SER type = annex_everything }
+            }
 
-            # event
-            hidden_effect = { news_event = address.1 }
-        }
+            if = {
+                limit = { original_tag = ENG }
+                add_ideas = idea_imperial_war_cabinet
+            }
 
-        if = {
-            limit = { original_tag = ENG }
-            add_ideas = idea_imperial_war_cabinet
-        }
+            if = {
+                limit = { original_tag = FRA }
+                custom_effect_tooltip = tt_to_do
+            }
 
-        if = {
-            limit = { original_tag = FRA }
-            add_war_support = 0.05 create_wargoal = { target = GER type = take_claimed_state }
-        }
+            if = {
+                limit = { original_tag = GER }
+                create_wargoal = { target = FRA type = annex_everything }
+            }
 
-        if = {
-            limit = { original_tag = GER }
-            custom_effect_tooltip = tt_ger_middle_east
+            if = {
+                limit = { original_tag = GRE }
+                remove_ideas = idea_great_divide
+            }
 
-            # news 
-            hidden_effect = { news_event = middle_east_interests.1 }
-        }
+            if = {
+                limit = { original_tag = HOL }
+                add_political_power = 50
+                random_state = { limit = { is_core_of = INS allied_control = yes } add_resource = { type = tungsten amount = 6 } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+                309 = { add_resource = { type = rubber amount = 8 } add_extra_state_shared_building_slots = 1 }
+            }
 
-        if = {
-            limit = { original_tag = GRE }
-            remove_ideas = idea_great_divide
-        }
+            if = {
+                limit = { original_tag = ITA }
+                add_war_support = 0.05
+                every_state = { limit = { or = { state = 182 state = 164 } } add_claim_by = ITA }
+            }
 
-        if = {
-            limit = { original_tag = HOL }
-            add_political_power = 50
-            random_state = { limit = { is_core_of = INS allied_control = yes } add_resource = { type = tungsten amount = 6 } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
-            309 = { add_resource = { type = rubber amount = 8 } add_extra_state_shared_building_slots = 1 }
-        }
+            if = {
+                limit = { original_tag = JAP }
+                custom_effect_tooltip = tt_to_do
+            }
 
-        if = {
-            limit = { original_tag = ITA }
-            every_state = {
-                limit = { or = { state = 204 state = 208 state = 271 state = 273 } }
-                send_ultimatum_multiple_states = yes
+            if = {
+                limit = { original_tag = MAN }
+                remove_ideas = idea_warlordism_in_the_countryside
+            }    
+
+            if = {
+                limit = { original_tag = RUS }
+                remove_ideas = idea_anti_authoritarian_intelligentsia
+            }  
+
+            if = {
+                limit = { original_tag = SER }
+                every_state = {
+                    limit = { or = { state = 33   state = 84     state = 102      state = 103     state = 108 } }
+                    add_claim_by = SER
+                }
+            }  
+
+            if = {
+                limit = { original_tag = TUR }
+                remove_ideas = idea_arab_opposition
+            }
+
+            if = {
+                limit = { original_tag = USA }
+                custom_effect_tooltip = tt_to_do
+            }
+
+            # default
+            if = {
+                limit = { not = { or = { original_tag = AUS original_tag = ENG original_tag = FRA original_tag = GER original_tag = GRE original_tag = HOL original_tag = ITA original_tag = JAP original_tag = MAN original_tag = RUS original_tag = SER original_tag = TUR original_tag = USA } } }
+                add_ideas = idea_strength_in_unity
             }
         }
 
-        if = {
-            limit = { original_tag = JAP }
-            custom_effect_tooltip = tt_to_do
-        }
+    # administration
+        state_administration_effect = {
+            if = {
+                limit = { original_tag = AUS }
+                custom_effect_tooltip = tt_to_do
+            }
 
-        if = {
-            limit = { original_tag = MAN }
-            remove_ideas = idea_warlordism_in_the_countryside
-        }    
+            if = {
+                limit = { original_tag = ENG }
+                custom_effect_tooltip = tt_to_do
+            }
 
-        if = {
-            limit = { original_tag = RUS }
-            remove_ideas = idea_anti_authoritarian_intelligentsia
-        }  
+            if = {
+                limit = { original_tag = FRA }
+                custom_effect_tooltip = tt_to_do
+            }
 
-        if = {
-            limit = { original_tag = SER }
-            every_state = {
-                limit = { 
-                    or = {
-                        state = 84  state = 102
-                        and = { is_core_of = CRO not = { is_core_of = SER } } 
+            if = {
+                limit = { original_tag = GER }
+                custom_effect_tooltip = tt_to_do
+            }
+
+            if = {
+                limit = { original_tag = ITA }
+                every_country = { limit = { tag = GRE } send_ultimatum_alignment = yes }
+            }
+
+            if = {
+                limit = { original_tag = JAP }
+                custom_effect_tooltip = tt_to_do
+            }
+
+            if = {
+                limit = { original_tag = MAN }
+                custom_effect_tooltip = tt_to_do
+            }
+
+            if = {
+                limit = { original_tag = USA }
+                custom_effect_tooltip = tt_to_do
+
+                # news
+                news_event = wilsonianism.1
+            }
+
+            # default
+            if = {
+                limit = { not = { or = { original_tag = AUS original_tag = ENG original_tag = FRA original_tag = GER original_tag = ITA original_tag = JAP original_tag = MAN original_tag = USA } } }
+                if = {
+                    limit = { any_controlled_state = { is_claimed_by = ROOT not = { is_core_of = ROOT } } }
+                    add_political_power = 50
+                    every_controlled_state = {
+                        limit = { is_claimed_by = ROOT not = { is_core_of = ROOT } }
+                        add_core_of = ROOT
                     }
                 }
-                add_claim_by = SER
-            }
-        }  
-
-        if = {
-            limit = { original_tag = TUR }
-            remove_ideas = idea_arab_opposition
-        }
-
-        if = {
-            limit = { original_tag = USA }
-            custom_effect_tooltip = tt_to_do
-        }
-
-        # default
-        if = {
-            limit = { not = { or = { original_tag = AUS original_tag = ENG original_tag = FRA original_tag = GER original_tag = GRE original_tag = HOL original_tag = ITA original_tag = JAP original_tag = MAN original_tag = RUS original_tag = SER original_tag = TUR original_tag = USA } } }
-            add_ideas = idea_strength_in_unity
-        }
-    }
-
-    state_administration_effect = {
-        if = {
-            limit = { original_tag = AUS }
-            remove_ideas = idea_ethnic_tensions
-        }
-
-        if = {
-            limit = { original_tag = ENG }
-            custom_effect_tooltip = tt_to_do
-        }
-
-        if = {
-            limit = { original_tag = FRA }
-            USA = { country_event = approach_usa.1 }
-        }
-
-        if = {
-            limit = { original_tag = GER }
-            custom_effect_tooltip = tt_to_do
-        }
-
-        if = {
-            limit = { original_tag = JAP }
-            custom_effect_tooltip = tt_to_do
-        }
-
-        if = {
-            limit = { original_tag = MAN }
-            custom_effect_tooltip = tt_to_do
-        }
-
-        if = {
-            limit = { original_tag = USA }
-            custom_effect_tooltip = tt_to_do
-
-            # news
-            news_event = wilsonianism.1
-        }
-
-        # default
-        if = {
-            limit = { not = { or = { original_tag = AUS original_tag = ENG original_tag = FRA original_tag = GER original_tag = JAP original_tag = MAN original_tag = USA } } }
-            if = {
-                limit = { any_controlled_state = { is_claimed_by = ROOT not = { is_core_of = ROOT } } }
-                add_political_power = 50
-                every_controlled_state = {
-                    limit = { is_claimed_by = ROOT not = { is_core_of = ROOT } }
-                    add_core_of = ROOT
+                else = {
+                    custom_effect_tooltip = tt_integration
                 }
             }
-            else = {
-                custom_effect_tooltip = tt_integration
-            }
         }
-    }
 
 # autonomy tree
     state_autonomy_effect = {
@@ -826,13 +779,99 @@
 
         if = {
             limit = { original_tag = ROM }
-            every_country = { limit = { tag = FRA } country_event = french_arms.1 }
+            every_country = { limit = { tag = GRE } country_event = ottoman_defense.1 }
         }
 
         # default
         if = {
             limit = { not = { or = { original_tag = CRE original_tag = ROM } } }
             custom_effect_tooltip = tt_to_do
+        }
+    }
+
+    state_awake_effect = {
+        if = {
+            limit = { and = { original_tag = ROM is_subject_of = TUR } }
+            every_country = { limit = { tag = TUR } country_event = { id = ottoman_war.1 hours = 12 } }
+        }
+
+        if = {
+            limit = { and = { original_tag = SMS is_subject_of = TUR } }
+            hidden_effect = {
+                TUR = { set_autonomy = { target = SMS autonomous_state = autonomy_free } }
+                every_enemy_country = { white_peace = SMS }
+            }
+
+            declare_war_on = TUR
+            news_event = ottoman_samian_autonomy.2
+        }
+
+        # default
+        if = {
+            limit = {
+                not = {
+                    or = {
+                        and = { original_tag = ROM is_subject_of = TUR }
+                    }
+                }
+            }
+            random_country = { 
+                limit = { has_subject = ROOT } 
+                country_event = independence.1
+            }
+        }
+    }
+
+# select effects
+    government_select_effect = {
+        if = {
+            limit = { original_tag = FRA }
+            country_event = { id = agadir_caillaux.1 days = 12 }
+        }
+
+        if = {
+            limit = { original_tag = SMS }
+            news_event = { id = ottoman_assassination.1 days = 14 random_days = 21 }
+        }
+    }
+
+    claims_select_effect = {
+        if = {
+            limit = { original_tag = SER }
+            news_event = { id = albania_attacks.1 days = 42 random_days = 21 }
+        }
+    }
+    
+    economy_select_effect = {
+        if = {
+            limit = { original_tag = GER }
+            news_event = { id = wheat_volga.1      days = 21 }
+        }
+    }
+
+    unity_select_effect = {
+        if = {
+            limit = { original_tag = AUS }
+            news_event = { id = attack_serbia.1      days = 42 random_days = 7 }
+        }
+
+        if = {
+            limit = { original_tag = GER }
+            news_event = { id = metz.1      days = 42 random_days = 7 }
+        }
+    }
+
+    autonomy_select_effect = {
+        if = { 
+            limit = { original_tag = SMS not = { has_country_leader = { character = SMS_themistoklis_sophoulis } } }
+            country_event = { id = ottoman_sophoulis.1 days = 6 }
+        }
+    }
+
+    awake_select_effect = {
+        if = {
+            limit = { original_tag = ROM is_subject_of = TUR }
+            news_event = { id = ottoman_dead.1  days = 42 random_days = 14 }
         }
     }
 

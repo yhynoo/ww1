@@ -181,7 +181,7 @@ add_namespace = invite
 
     country_event = {
         id = demands.3
-        title = "[FROM.GetName] Demands We Align with Them"
+        title = "[FROM.GetName] Demands Alignment"
         desc = demands.3.d
 
         is_triggered_only = yes
@@ -216,7 +216,7 @@ add_namespace = invite
             FROM = { give_guarantee = ROOT }
 
             # ai
-            ai_chance = { modifier = { has_opinion = { target = FROM value > 25 } factor = 2 } }
+            ai_chance = { modifier = { has_opinion = { target = FROM value > 25 } factor = 2 } modifier = { is_ai = yes factor = 2 } }
             
         }
         option = {
