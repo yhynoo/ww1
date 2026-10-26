@@ -92,7 +92,7 @@
         state_extend_effect = {
             # default
             if = {
-                limit = { not = { or = { original_tag = FRA original_tag = GER original_tag = SPA original_tag = USA } } }
+                limit = { not = { or = { original_tag = ENG original_tag = FRA original_tag = GER original_tag = SPA original_tag = TUR original_tag = USA } } }
 
                 # factions
                 if = { limit = { is_faction_leader = no } custom_effect_tooltip = tt_extend }
@@ -116,16 +116,14 @@
 
             if = {
                 limit = { original_tag = ENG }
-                add_ideas = idea_terms_of_engagement
-
-                hidden_effect = { news_event = engagement.1 }
+                add_ideas = idea_admiralty_office
             }
 
             if = {
                 limit = { original_tag = FRA }
 
-                add_political_power = 50
-                every_country = { limit = { tag = SPA } country_event = entente.1 }
+                add_war_support = 0.05
+                every_country = { limit = { tag = MOR } news_event = atlas_encourage.1 }
             }
 
             if = {
@@ -200,7 +198,7 @@
                 limit = { original_tag = TUR }
                 swap_ideas = {
                     remove_idea = idea_hostile_officer_corps
-                    add_idea = idea_disobedient_officer_corps
+                    add_idea = idea_hostile_officer_corps_1
                 }
             } 
 
@@ -234,13 +232,17 @@
 
             if = {
                 limit = { original_tag = ENG }
-                add_tech_bonus = { bonus = 0.5    uses = 2    category = naval_equipment_tech }
-                add_ideas = idea_admiralty_office
+                add_war_support = 0.025
+                116 = {
+                    add_building_construction = { type = coastal_bunker level = 2 province = 12003 instant_build = yes }
+                    add_extra_state_shared_building_slots = 1
+                }
             }
 
             if = {
                 limit = { original_tag = FRA }
-                custom_effect_tooltip = tt_to_do
+                add_political_power = 50
+                every_country = { limit = { tag = SPA } country_event = entente.1 }
             }  
 
             if = {
@@ -358,7 +360,7 @@
 
             if = {
                 limit = { original_tag = ENG }
-                every_state = { limit = { or = { state = 454 state = 414 } } add_claim_by = ROOT }
+                custom_effect_tooltip = tt_to_do
             }
 
             if = {
@@ -522,20 +524,19 @@
     # ethnocentrism
         state_ethnocentrism_effect = {
             if = {
+                limit = { original_tag = ENG }
+                remove_ideas = idea_colonial_army
+            }
+            if = {
                 limit = { original_tag = RUS }
 
                 # event
                 hidden_effect = { country_event = { id = assault_on_church.1 days = 14 } }
             }
 
-            if = {
-                limit = { original_tag = TUR }
-                every_country = { limit = { original_tag = FRA } country_event = alliance.1 }
-            }
-
             # default 
             if = {
-                limit = { not = { or = { original_tag = TUR } } }
+                limit = { not = { or = { original_tag = ENG } } }
                 add_ideas = idea_ethnocentrism
             }
         }
@@ -545,6 +546,18 @@
             if = {
                 limit = { original_tag = AUS }
                 add_ideas = idea_evidenzbureau
+            }
+
+            if = {
+                limit = { original_tag = ENG }
+                123 = {
+                    add_building_construction = { type = dockyard level = 2 instant_build = yes }
+                    add_extra_state_shared_building_slots = 2
+                }
+                121 = {
+                    add_resource = { type = steel amount = 12 }
+                    add_building_construction = { type = dockyard level = 1 instant_build = yes }
+                }
             }
 
             if = {
@@ -616,7 +629,7 @@
 
             # default
             if = {
-                limit = { not = { or = { original_tag = AUS original_tag = FRA original_tag = GER original_tag = GRE original_tag = HOL original_tag = ITA original_tag = ROM original_tag = SPA original_tag = TUR } } }
+                limit = { not = { or = { original_tag = AUS original_tag = ENG original_tag = FRA original_tag = GER original_tag = GRE original_tag = HOL original_tag = ITA original_tag = ROM original_tag = SPA original_tag = TUR } } }
                 custom_effect_tooltip = tt_to_do
             }
         }
@@ -630,7 +643,7 @@
 
             if = {
                 limit = { original_tag = ENG }
-                add_ideas = idea_imperial_war_cabinet
+                custom_effect_tooltip = tt_to_do
             }
 
             if = {
@@ -710,7 +723,7 @@
 
             if = {
                 limit = { original_tag = ENG }
-                custom_effect_tooltip = tt_to_do
+                every_country = { limit = { tag = QAJ } send_ultimatum_alignment = yes }
             }
 
             if = {

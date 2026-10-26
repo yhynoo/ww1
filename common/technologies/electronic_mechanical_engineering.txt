@@ -12,7 +12,7 @@ technologies = {
     @1920 = 20
 
     # comms
-    tech_telegraph = {
+    tech_heliograph = {
         categories = { communications_tech }
 
         research_cost = 1
@@ -21,7 +21,7 @@ technologies = {
         coordination_bonus = 0.05
 
         path = {
-            leads_to_tech = army_signals_corps
+            leads_to_tech = army_telegraph
             research_cost_coeff = 1
         }
 
@@ -31,7 +31,7 @@ technologies = {
         }
     }
 
-    army_signals_corps = {
+    army_telegraph = {
         categories = { communications_tech }
 
         research_cost = 2
@@ -41,7 +41,7 @@ technologies = {
         coordination_bonus = 0.05
 
         path = {
-            leads_to_tech = division_signals_corps
+            leads_to_tech = army_telephones
             research_cost_coeff = 1
         }
         path = {
@@ -85,7 +85,7 @@ technologies = {
         }
     }
 
-    division_signals_corps = {
+    army_telephones = {
         categories = { communications_tech }
 
         research_cost = 2
@@ -95,7 +95,7 @@ technologies = {
         coordination_bonus = 0.05
 
         path = {
-            leads_to_tech = regiment_signals_corps
+            leads_to_tech = improved_telephones
             research_cost_coeff = 1
         }
         path = {
@@ -139,7 +139,7 @@ technologies = {
         }
     }
 
-    regiment_signals_corps = {
+    improved_telephones = {
         categories = { communications_tech }
 
         research_cost = 2
@@ -149,7 +149,7 @@ technologies = {
         coordination_bonus = 0.05
 
         path = {
-            leads_to_tech = division_signals_corps
+            leads_to_tech = army_telephones
             research_cost_coeff = 1
         }
         path = {

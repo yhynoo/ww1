@@ -1,24 +1,55 @@
 characters = {
     GRE_eleftherios_venizelos = {
         name = "Eleftherios Venizelos"
-        country_leader = {
-            ideology = liberalism
-            traits = { trait_war_enthusiast }
-        }
+        portraits = { civilian = { large = "GFX_portrait_venizelos" } }
+        country_leader = { ideology = liberalism traits = { trait_war_enthusiast } }
     }
 
     GRE_georgios_i = {
         name = "Geórgios I"
-        country_leader = {
-            ideology = absolutism
-            traits = { trait_distinguished_elder trait_navalist }
-        }
+        portraits = { civilian = { large = "GFX_portrait_georgios" } }
+        country_leader = { ideology = absolutism traits = { trait_distinguished_elder trait_navalist } }
     }
     GRE_konstantinos_i = {
         name = "Konstantínos I"
-        country_leader = {
-            ideology = absolutism
-            traits = { trait_hardliner }
+        portraits = { civilian = { large = "GFX_portrait_konstantinos" } }
+        country_leader = { ideology = absolutism traits = { trait_hardliner } }
+        field_marshal = {
+            traits = { offensive_doctrine }
+            skill = 3       attack_skill = 2        defense_skill = 2       planning_skill = 2          logistics_skill = 3
+        }
+    }
+
+    # navy
+    GRE_pavlos_kountouriotis = {
+        name = "Pavlos Kountouriotis"
+        portraits = { army = { large = "GFX_portrait_kountouriotis" } }
+        navy_leader = { skill = 3   attack_skill = 3    defense_skill = 2       maneuvering_skill = 3       coordination_skill = 2 }
+    }
+
+    # army
+    GRE_panagiotis_danglis = {
+        name = "Panagiotis Danglis"
+        portraits = { army = { large = "GFX_portrait_danglis" } }
+        corps_commander = {
+            traits = { }
+            skill = 2       attack_skill = 1        defense_skill = 1       planning_skill = 2      logistics_skill = 2
+        }
+    }
+    GRE_viktor_dousmanis = {
+        name = "Viktor Dousmanis"
+        portraits = { army = { large = "GFX_portrait_dousmanis" } }
+        corps_commander = {
+            traits = { }
+            skill = 1       attack_skill = 1        defense_skill = 2       planning_skill = 1      logistics_skill = 1
+        }
+    }
+    GRE_konstantinos_kallaris = {
+        name = "Konstantinos Kallaris"
+        portraits = { army = { large = "GFX_portrait_kallaris" } }
+        corps_commander = {
+            traits = { }
+            skill = 2       attack_skill = 2        defense_skill = 1       planning_skill = 2      logistics_skill = 1
         }
     }
 }

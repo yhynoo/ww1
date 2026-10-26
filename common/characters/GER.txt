@@ -1,7 +1,7 @@
 characters = {
     GER_wilhelm_ii = {
         name = GER_wilhelm_ii
-        portraits = { civilian = { large = "GFX_portrait_ger_wilhelm_ii" } }
+        portraits = { civilian = { large = "GFX_portrait_wilhelm" } }
         
         country_leader = {
             ideology = absolutism
@@ -27,17 +27,9 @@ characters = {
 
     GER_alfred_von_tirpitz = {
         name = "Alfred von Tirpitz"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_Europe_Generic_navy_2"
-            }
-        }
-        navy_leader = {
-            skill = 5
-            attack_skill = 3
-            defense_skill = 4
-            maneuvering_skill = 3
-            coordination_skill = 5
+        portraits = { army = { large = "GFX_portrait_tirpitz" } }
+        navy_leader = { 
+            skill = 2       attack_skill = 3        defense_skill = 2       maneuvering_skill = 2       coordination_skill = 2
         }
     }
 
@@ -110,181 +102,106 @@ characters = {
     }
 
     # navy
-    GER_dieter_graf_von_bothmer = {
-        name = "Dieter Graf von Bothmer"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_Europe_Generic_navy_3"
-            }
-        }
-        navy_leader = {
-            skill = 3
-            attack_skill = 2
-            defense_skill = 4
-            maneuvering_skill = 3
-            coordination_skill = 4
+    GER_reinhard_scheer = {
+        name = "Reinhard Scheer"
+        portraits = { army = { large = "GFX_portrait_scheer" } }
+        navy_leader = { 
+            skill = 3       attack_skill = 3        defense_skill = 2       maneuvering_skill = 3       coordination_skill = 3
         }
     }
-
     GER_franz_von_hipper = {
         name = "Franz von Hipper"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_Europe_Generic_navy_1"
-            }
+        portraits = { army = { large = "GFX_portrait_hipper" } }
+        navy_leader = { 
+            skill = 2       attack_skill = 2        defense_skill = 3       maneuvering_skill = 2       coordination_skill = 2
         }
-        navy_leader = {
-            skill = 4
-            attack_skill = 5
-            defense_skill = 3
-            maneuvering_skill = 4
-            coordination_skill = 4
+    }
+    GER_maximilian_von_spee = {
+        name = "Maximilian von Spee"
+        portraits = { army = { large = "GFX_portrait_spee" } }
+        navy_leader = { 
+            skill = 2       attack_skill = 2        defense_skill = 2       maneuvering_skill = 3       coordination_skill = 2
         }
     }
 }
 
 characters = {
-    GER_paul_von_lettow_vorbeck = {
-        name = "Paul von Lettow-Vorbeck"
-        portraits = { army = { large = "GFX_portrait_ger_von_lettow_vorbeck" } }
-        corps_commander = {
-            traits = { trickster }
-            skill = 3       attack_skill = 3        defense_skill = 2       planning_skill = 3      logistics_skill = 3
-        }
-    }
     GER_alexander_von_kluck = {
         name = "Alexander von Kluck"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_Europe_Generic_land_4"
-            }
-        }
+        portraits = { army = { large = "GFX_portrait_kluck" } }
         corps_commander = {
             traits = { trait_reckless }
-            skill = 3
-            attack_skill = 2
-            defense_skill = 4
-            planning_skill = 2
-            logistics_skill = 3
+            skill = 2   attack_skill = 2    defense_skill = 2   planning_skill = 1  logistics_skill = 2
         }
     }
 
     GER_rupprecht_von_bayern = {
-        name = "Rupprecht von Bayern"
-        portraits = {
-            army = {
-                large = "GFX_portrait_BAY_rupprecht_of_bavaria"
-            }
-        }
+        name = "Rupprecht von Wittelsbach"
+        portraits = { army = { large = "GFX_portrait_kronprinz" } }
         corps_commander = {
             traits = { infantry_officer }
-            skill = 3
-            attack_skill = 3
-            defense_skill = 3
-            planning_skill = 4
-            logistics_skill = 3
+            skill = 2       attack_skill = 2        defense_skill = 3       planning_skill = 2      logistics_skill = 2
         }
     }
 
     GER_albrecht_von_w_rttemberg = {
         name = "Albrecht von Württemberg"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_Europe_Generic_land_1"
-            }
-        }
+        portraits = { army = {  large = "GFX_portrait_albrecht" } }
         corps_commander = {
-            traits = { }
-            skill = 2
-            attack_skill = 1
-            defense_skill = 2
-            planning_skill = 2
-            logistics_skill = 3
+            skill = 2       attack_skill = 1      defense_skill = 2         planning_skill = 2      logistics_skill = 2
         }
     }
 
     GER_paul_von_hindenburg = {
         name = "Paul von Hindenburg"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_Europe_Generic_land_1"
-            }
-        }
+        portraits = { army = { large = "GFX_portrait_hindenburg" } }
         corps_commander = {
             traits = { }
-            skill = 3
-            attack_skill = 3
-            defense_skill = 2
-            planning_skill = 3
-            logistics_skill = 2
+            skill = 3       attack_skill = 3        defense_skill = 2           planning_skill = 3          logistics_skill = 2
         }
     }
 
     GER_helmuth_von_moltke = {
         name = "Helmuth von Moltke"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_Europe_Generic_land_2"
-            }
-        }
+        portraits = { army = { large = "GFX_portrait_moltke" } }
         field_marshal = {
             traits = { }
-            skill = 1
-            attack_skill = 2
-            defense_skill = 1
-            planning_skill = 1
-            logistics_skill = 1
+            skill = 1       attack_skill = 2        defense_skill = 1           planning_skill = 2          logistics_skill = 1
         }
     }
 
     GER_august_von_mackensen = {
         name = "August von Mackensen"
-        portraits = {
-            army = {
-                large = "GFX_portrait_ger_august_von_mackensen"
-            }
-        }
-        field_marshal = {
-            traits = { trait_reckless }
-            skill = 4
-            attack_skill = 3
-            defense_skill = 4
-            planning_skill = 3
-            logistics_skill = 5
+        portraits = { army = { large = "GFX_portrait_mackensen" } }
+        corps_commander = {
+            traits = { cavalry_leader }
+            skill = 2       attack_skill = 2        defense_skill = 2           planning_skill = 2          logistics_skill = 1
         }
     }
 
     GER_erich_von_falkenhayn = {
         name = "Erich von Falkenhayn"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_Europe_Generic_land_5"
-            }
-        }
+        portraits = { army = { large = "GFX_portrait_falkenhayn" } }
         corps_commander = {
-            traits = { trait_reckless }
-            skill = 3
-            attack_skill = 3
-            defense_skill = 2
-            planning_skill = 2
-            logistics_skill = 3
+            skill = 3       attack_skill = 3        defense_skill = 2       planning_skill = 2      logistics_skill = 2
         }
     }
 
     GER_erich_ludendorff = {
         name = "Erich Ludendorff"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_Europe_Generic_land_3"
-            }
-        }
+        portraits = { army = { large = "GFX_portrait_ludendorff" } }
         corps_commander = {
             traits = { harsh_leader }
-            skill = 3
-            attack_skill = 3
-            defense_skill = 2
-            planning_skill = 3
-            logistics_skill = 3
+            skill = 3       attack_skill = 2        defense_skill = 3       planning_skill = 2      logistics_skill = 3
+        }
+    }
+
+    GER_remus_von_woyrsch = {
+        name = "Remus von Woyrsch"
+        portraits = { army = { large = "GFX_portrait_woyrsch" } }
+        corps_commander = {
+            traits = {  }
+            skill = 1       attack_skill = 2        defense_skill = 1       planning_skill = 2      logistics_skill = 1
         }
     }
 }

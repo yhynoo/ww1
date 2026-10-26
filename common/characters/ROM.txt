@@ -1,22 +1,24 @@
 characters = {
     ROM_ion_bratianu = {
         name = "Ion C. Brătianu"
+        portraits = { civilian = { large = "GFX_portrait_bratianu" } }
         country_leader = { ideology = conservatism    traits = { trait_accountant } }
     }
     ROM_take_ionescu = {
         name = "Take Ionescu"
+        portraits = { civilian = { large = "GFX_portrait_ionescu" } }
         country_leader = { ideology = liberalism    traits = { trait_effective_diplomat } }
     }
 
     ROM_alexandru_marghiloman = {
         name = "Alexandru Marghiloman"
+        portraits = { civilian = { large = "GFX_portrait_marghiloman" } }
         country_leader = { ideology = state_autocracy    traits = { trait_moderate } }
     }
-    ROM_constantin_harjeu = {
-        name = "Constantin Hârjeu"
+    ROM_constantin_coanda = {
+        name = "Constantin Coandă"
         country_leader = { ideology = state_autocracy    traits = { trait_moderate } }
-        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_4" } }
-
+        portraits = { civilian = { large = "GFX_portrait_coanda" } }
         corps_commander = {
             traits = { }
             skill = 2       attack_skill = 2        defense_skill = 2       planning_skill = 1      logistics_skill = 1
@@ -25,16 +27,35 @@ characters = {
     ROM_alexandru_averescu = {
         name = "Alexandru Averescu"
         country_leader = { ideology = state_autocracy    traits = { trait_one_of_us } }
-        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_3" } }
-
+        portraits = { civilian = { large = "GFX_portrait_averescu" } }
         corps_commander = {
             traits = { }
             skill = 2       attack_skill = 1        defense_skill = 1       planning_skill = 2      logistics_skill = 2
         }
     }
 
-    ROM_ferdinand_i = {
-        name = "Ferdinand I"
-        country_leader = { ideology = constitutional_monarchy        traits = { trait_moderate } }
+    # navy
+    ROM_eustatiu_sebastian = {
+        name = "Eustațiu Sebastian"
+        portraits = { army = { large = "GFX_portrait_sebastian" } }
+        navy_leader = { skill = 1   attack_skill = 1    defense_skill = 1       maneuvering_skill = 1       coordination_skill = 2 }
+    }
+
+    # army
+    ROM_constantin_costescu = {
+        name = "Constantin Costescu"
+        portraits = { army = { large = "GFX_portrait_costescu" } }
+        corps_commander = {
+            traits = { }
+            skill = 1       attack_skill = 1        defense_skill = 2       planning_skill = 2      logistics_skill = 1
+        }
+    }
+    ROM_eremia_grigorescu = {
+        name = "Eremia Grigorescu"
+        portraits = { army = { large = "GFX_portrait_grigorescu" } }
+        corps_commander = {
+            traits = { infantry_leader }
+            skill = 1       attack_skill = 1        defense_skill = 2       planning_skill = 1      logistics_skill = 1
+        }
     }
 }

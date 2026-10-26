@@ -1,10 +1,8 @@
 characters = {
     TUR_abdulhamid_ii = {
         name = "Abdülhamid II"
-        country_leader = {
-            ideology = absolutism
-            traits = { trait_distant_autocrat trait_traditionalist }
-        }
+        portraits = { civilian = { large = "GFX_portrait_abdulhamid" } }
+        country_leader = { ideology = absolutism    traits = { trait_distant_autocrat trait_traditionalist } }
     }
     TUR_mehmed_v = {
         name = "Mehmed V Vahideddin"
@@ -15,18 +13,13 @@ characters = {
     }
     TUR_mehmed_adil_ferid = {
         name = "Mehmed Adil Ferid"
-        country_leader = {
-            ideology = liberalism
-            traits = { trait_weakling }
-        }
+        portraits = { civilian = { large = "GFX_portrait_adil_ferid" } }
+        country_leader = { ideology = liberalism traits = { trait_weakling } }
     }
     TUR_mustafa_kemal = {
         name = "Mustafa Kemal Paşa"
         country_leader = { ideology = agrarism traits = { trait_ethnic_chauvinist trait_intellectual } }
-        portraits = {
-            civilian = { large = "GFX_portrait_TUR_kemal_pasha"}
-            army = { large = "GFX_portrait_TUR_kemal_pasha" }
-        }
+        portraits = { army = { large = "GFX_portrait_mustafa_kemal" } }
         corps_commander = {
             traits = { infantry_expert }
             skill = 3       attack_skill = 2        defense_skill = 2       planning_skill = 3      logistics_skill = 2
@@ -36,52 +29,32 @@ characters = {
     # army
     TUR_enver = {
         name = "Enver Paşa"
-        portraits = { army = { large = "GFX_Portrait_South_America_Generic_land_1" } }
+        portraits = { army = { large = "GFX_portrait_enver" } }
         field_marshal = {
             traits = { }
             skill = 1       attack_skill = 2        defense_skill = 1       planning_skill = 1      logistics_skill = 1
         }
     }
-
     TUR_ahmet_izzet = {
         name = "Ahmet Izzet Paşa"
-        portraits = { army = { large = "GFX_Portrait_South_America_Generic_land_2" } }
+        portraits = { army = { large = "GFX_portrait_izzet" } }
         field_marshal = {
             traits = { organizer }
             skill = 2       attack_skill = 1        defense_skill = 1       planning_skill = 2      logistics_skill = 2
         }
     }
 
-    TUR_mehmet_esat = {
-        name = "Mehmet Esat Bülkat"
-        portraits = { army = { large = "GFX_Portrait_South_America_Generic_land_3" } }
-        corps_commander = {
-            traits = { }
-            skill = 2       attack_skill = 1        defense_skill = 3       planning_skill = 2      logistics_skill = 1
-        }
-    }
-
     TUR_halil_kut = {
         name = "Halil Kut"
-        portraits = { army = { large = "GFX_Portrait_South_America_Generic_land_2" } }
+        portraits = { army = { large = "GFX_portrait_kut" } }
         corps_commander = {
             traits = { }
             skill = 1       attack_skill = 1        defense_skill = 2       planning_skill = 1      logistics_skill = 1
         }
     }
-
-    TUR_hakim_bey = {
-        name = "Hakim Bey"
-        portraits = { army = { large = "GFX_Portrait_South_America_Generic_land_1" } }
-        corps_commander = {
-            traits = { cavalry_leader }
-            skill = 2       attack_skill = 2        defense_skill = 2       planning_skill = 1      logistics_skill = 2
-        }
-    }
-
     TUR_ahmet_cemal = {
         name = "Ahmet Cemal Paşa"
-        portraits = { army = { large = "GFX_Portrait_South_America_Generic_land_4" } }
+        portraits = { army = { large = "GFX_portrait_cemal" } }
         corps_commander = {
             traits = { cavalry_leader }
             skill = 1       attack_skill = 2        defense_skill = 1       planning_skill = 1      logistics_skill = 2
@@ -89,9 +62,9 @@ characters = {
     }
 
     # navy
-    TUR_arif_bey = {
-        name = "Arif Ahmed Bey"
-        portraits = { army = { large = "GFX_Portrait_South_America_Generic_navy_1" } }
+    TUR_rauf_orbay = {
+        name = "Hüseyin Rauf Orbay"
+        portraits = { army = { large = "GFX_portrait_orbay" } }
         navy_leader = {
             skill = 1       attack_skill = 1        defense_skill = 1       maneuvering_skill = 2       coordination_skill = 1
         }

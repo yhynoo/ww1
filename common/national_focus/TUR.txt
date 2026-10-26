@@ -1,0 +1,127 @@
+shared_focus = {
+    id = TUR_debt
+    icon = GFX_focus_TUR_debt
+
+    available = {
+        uprising_government_lock = yes
+        civil_war_lock = yes
+    }
+
+    x = 0 y = 0
+    cost = 10
+
+    completion_reward = {
+        add_stability = 0.025
+        add_political_power = 50
+    }
+}
+
+shared_focus = {
+    id = TUR_approach_germans
+    icon = GFX_focus_TUR_approach_germans
+    prerequisite = { focus = TUR_debt }        mutually_exclusive = { focus = TUR_organize_the_administration }
+
+    available = {
+        uprising_government_lock = yes      civil_war_lock = yes
+    }
+
+    relative_position_id = TUR_debt
+    x = -1 y = 1
+    cost = 10
+
+    completion_reward = {
+        custom_effect_tooltip = tt_to_do
+    }
+}
+
+shared_focus = {
+    id = TUR_organize_the_administration
+    icon = GFX_focus_TUR_organize_the_administration
+    prerequisite = { focus = TUR_debt }    mutually_exclusive = { focus = TUR_approach_germans }
+
+    available = {
+        uprising_government_lock = yes      civil_war_lock = yes
+    }
+
+    relative_position_id = TUR_debt
+    x = 1 y = 1
+    cost = 10
+
+    completion_reward = {
+        swap_ideas = {
+            remove_idea = idea_amassed_foreign_debt
+            add_idea = idea_amassed_foreign_debt_1
+        }
+    }
+}
+
+shared_focus = {
+    id = TUR_default_on_debt
+    icon = GFX_focus_generic_state
+    prerequisite = { focus = TUR_approach_germans }
+
+    available = {
+        uprising_government_lock = yes
+        civil_war_lock = yes
+    }
+
+    relative_position_id = TUR_approach_germans
+    x = -2 y = 1
+    cost = 10
+
+    completion_reward = {
+        every_country = { 
+            limit = { or = { tag = ENG tag = FRA tag = RUS } }
+            create_wargoal = { target = TUR type = puppet_wargoal_focus }
+        }
+    }
+}
+
+shared_focus = {
+    id = TUR_oil_extraction
+    icon = GFX_focus_generic_infrastructure
+    prerequisite = { focus = TUR_approach_germans focus = TUR_organize_the_administration }
+
+    available = {
+        uprising_government_lock = yes
+        civil_war_lock = yes
+
+        controls_state = 414
+        455 = { allied_control = yes }
+    }
+
+    relative_position_id = TUR_approach_germans
+    x = 1 y = 1
+    cost = 10
+
+    completion_reward = {
+        414 = {
+            add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+            add_resource = { type = oil amount = 16 }
+        }
+        455 = {
+            add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            add_extra_state_shared_building_slots = 1
+        }
+    }
+}
+
+shared_focus = {
+    id = TUR_end_debt
+    icon = GFX_focus_TUR_end_debt
+    prerequisite = { focus = TUR_oil_extraction }
+
+    available = {
+        uprising_government_lock = yes      civil_war_lock = yes
+        has_stability > 0.65
+    }
+
+    relative_position_id = TUR_oil_extraction
+    x = 0 y = 1
+    cost = 10
+
+    completion_reward = {
+        if = { limit = { has_idea = idea_amassed_foreign_debt } remove_ideas = idea_amassed_foreign_debt }
+        if = { limit = { has_idea = idea_amassed_foreign_debt_1 } remove_ideas = idea_amassed_foreign_debt_1 }
+    }
+}

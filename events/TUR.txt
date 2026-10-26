@@ -106,7 +106,7 @@ add_namespace = young_turks
 
         news_event = {
             id = ottoman_armistice.2
-            title = "War in Southeastern Europe Ends"
+            title = "War in Southeastern Europe Ends"       picture = GFX_report_southeast_war_end
 
             is_triggered_only = yes
             major = yes
@@ -158,7 +158,7 @@ add_namespace = young_turks
     # ottoman_assassination
         news_event = {
             id = ottoman_assassination.1
-            title = "Hegemon of Samos Assassinated!"
+            title = "Hegemon of Samos Assassinated!"        picture = GFX_report_samos
 
             is_triggered_only = yes
             major = yes
@@ -252,7 +252,7 @@ add_namespace = young_turks
         }
         news_event = {
             id = ottoman_enosis.2
-            title = "Samos Announces Enosis with Greece"
+            title = "Samos Announces Enosis with Greece"        picture = GFX_report_samos_enosis
 
             is_triggered_only = yes
             major = yes
@@ -279,12 +279,15 @@ add_namespace = young_turks
             option = {
                 name = "We must act with caution."
                 add_war_support = -0.025
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
             }
         }
 
         news_event = {
             id = ottoman_opportunity.2
-            title = "Serbia Attacks [TUR.GetNameDef]!"
+            title = "Serbia Attacks [TUR.GetNameDef]!"      picture = GFX_report_southeast_war_serbia
 
             is_triggered_only = yes
             major = yes
@@ -372,13 +375,13 @@ add_namespace = young_turks
 
         news_event = {
             id = ottoman_war.2
-            title = "War in Southeastern Europe!"
+            title = "War in Southeastern Europe!"       picture = GFX_report_southeast_war
 
             is_triggered_only = yes
             major = yes
 
             immediate = {
-                ROM = { retire_character = ROM_constantin_harjeu }
+                ROM = { retire_character = ROM_constantin_coanda }
                 TUR = { country_event = { id = ottoman_armenia.1 days = 14 random_days = 21 } }
             }
 

@@ -1,7 +1,7 @@
 state_extend_trigger = {
     if = {
-        limit = { original_tag = AUS }
-        controls_state = 104
+        limit = { original_tag = FRA }
+        MOR = { exists = yes }
     }
 
     if = {
@@ -19,6 +19,11 @@ state_claims_trigger = {
     if = {
         limit = { original_tag = COL }
         CUB = { exists = no }
+    }
+
+    if = {
+        limit = { original_tag = ENG }
+        controls_state = 116
     }
 
     if = {
@@ -57,6 +62,11 @@ state_take_ours_trigger = {
     if = {
         limit = { original_tag = COL }
         can_declare_war_on = USA
+    }
+
+    if = {
+        limit = { original_tag = ENG }
+        GRE = { not = { has_government = democratic } }
     }
 
     if = {
@@ -111,17 +121,17 @@ state_ethnocentrism_trigger = {
 
 state_ethnocentrism_bypass = {
     if = {
-        limit = { original_tag = TUR }
-        FRA = { has_completed_focus = XXX_deterrence }
-    }
-
-    if = {
         limit = { not = { or = { original_tag = TUR } } }
         always = no
     }
 }
 
 state_economy_trigger = {
+    if = {
+        limit = { original_tag = ENG }
+        controls_state = 123 controls_state = 121
+    }
+
     if = {
         limit = { original_tag = FRA }
         has_war = yes
@@ -202,7 +212,7 @@ state_unity_trigger = {
     }
 
     if = {
-        limit = { not = { or = { original_tag = AUS original_tag = BEL original_tag = FRA original_tag = GER original_tag = GRE original_tag = HOL original_tag = ITA original_tag = MAN original_tag = RUS original_tag = TUR original_tag = USA } } }
+        limit = { not = { or = { original_tag = AUS original_tag = BEL original_tag = ENG original_tag = FRA original_tag = GER original_tag = GRE original_tag = HOL original_tag = ITA original_tag = MAN original_tag = RUS original_tag = TUR original_tag = USA } } }
         has_war = yes
     }
 }
@@ -211,6 +221,14 @@ state_unity_bypass = {
     if = {
         limit = { original_tag = AUS }
         not = { can_declare_war_on = SER }
+    }
+
+    if = {
+        limit = { original_tag = ENG }
+        or = {
+            446 = { allied_control = no }
+            447 = { allied_control = no }
+        }
     }
 
     if = {
@@ -227,7 +245,12 @@ state_unity_bypass = {
 state_administration_trigger = {
     if = {
         limit = { original_tag = AUS }
-        or = { has_idea = idea_wheat_shortages  has_idea = idea_widespread_hunger }
+        or = { has_idea = idea_widespread_hunger has_idea = idea_wheat_shortages }
+    }
+
+    if = {
+        limit = { original_tag = ENG }
+        QAJ = { not = { is_subject_of = ENG } }
     }
 
     if = {
@@ -241,7 +264,7 @@ state_administration_trigger = {
     }
 
     if = {
-        limit = { not = { or = { original_tag = AUS original_tag = FRA original_tag = GER } } }
+        limit = { not = { or = { original_tag = AUS original_tag = ENG original_tag = FRA original_tag = GER } } }
         any_owned_state = { not = { is_core_of = ROOT } }
     }
 }
