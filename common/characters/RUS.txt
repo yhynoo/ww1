@@ -7,84 +7,52 @@ characters = {
     
     RUS_alexander_kerensky = {
         name = "Alexander Kerensky"
-        country_leader = {
-            ideology = liberalism
-            traits = { trait_moderate }
-        }
+        portraits = { civilian = { large = "GFX_portrait_kerensky" } }
+        country_leader = { ideology = liberalism traits = { trait_moderate } }
     }
     RUS_pavel_milyukov = {
         name = "Pavel Milyukov"
-        country_leader = {
-            ideology = liberalism
-            traits = { trait_anonymous_administrator }
-        }
+        portraits = { civilian = { large = "GFX_portrait_milyukov" } }
+        country_leader = { ideology = liberalism traits = { trait_anonymous_administrator } }
     }
 
     RUS_viktor_chernov = {
         name = "Viktor Chernov"
-        country_leader = {
-            ideology = agrarism
-            traits = { trait_agrarianist }
-        }
+        portraits = { civilian = { large = "GFX_portrait_chernov" } }
+        country_leader = { ideology = agrarism traits = { trait_agrarianist } }
     }
-    RUS_vladimir_lenin = {
-        name = "Vladimir I. Lenin"
-        country_leader = {
-            ideology = vanguardism
-            traits = { trait_theatrical_orator }
-        }
+    RUS_lev_kamenev = {
+        name = "Lev Kamenev"
+        portraits = { civilian = { large = "GFX_portrait_kamenev" } }
+        country_leader = { ideology = vanguardism traits = { trait_labor_advocate } }
+    }
+    RUS_leo_trotsky = {
+        name = "Leo Trotsky"
+        portraits = { civilian = { large = "GFX_portrait_trotsky" } }
+        country_leader = { ideology = vanguardism traits = { trait_theatrical_orator } }
     }
 
     # navy
-    RUS_ivan_gramenko = {
-        name = "Ivan Gramenko"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_Europe_Generic_navy_1"
-            }
-        }
-        navy_leader = {
-            skill = 3
-            attack_skill = 2
-            defense_skill = 3
-            maneuvering_skill = 3
-            coordination_skill = 3
+    RUS_nikolai_von_essen = {
+        name = "Nikolai von Essen"
+        portraits = { army = { large = "GFX_portrait_essen" } }
+        navy_leader = { 
+            skill = 2       attack_skill = 2        defense_skill = 1       maneuvering_skill = 2       coordination_skill = 2
         }
     }
-
     RUS_alexander_kolchak = {
         name = "Alexander Kolchak"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_Europe_Generic_navy_2"
-            }
-        }
-        country_leader = {
-            ideology = absolutism
-            traits = { trait_navalist trait_intellectual }
-        }
-        navy_leader = {
-            skill = 4
-            attack_skill = 4
-            defense_skill = 3
-            maneuvering_skill = 4
-            coordination_skill = 4
+        portraits = { army = { large = "GFX_portrait_kolchak" } }
+        navy_leader = { 
+            skill = 2       attack_skill = 2        defense_skill = 2       maneuvering_skill = 3       coordination_skill = 2
         }
     }
 }
 
 characters = {
-    RUS_aleksei_brusilov = {
-        name = "Aleksei Brusilov"
-        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_3" } }
-        corps_commander = {
-            traits = { infantry_leader }
-            skill = 2       attack_skill = 3        defense_skill = 1       planning_skill = 2      logistics_skill = 1
-        }
-    }
     RUS_aleksei_evert = {
         name = "Aleksei Evert"
-        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_5" } }
+        portraits = { army = { large = "GFX_portrait_evert" } }
         corps_commander = {
             traits = { }
             skill = 1       attack_skill = 2        defense_skill = 1       planning_skill = 1      logistics_skill = 1
@@ -92,23 +60,23 @@ characters = {
     }
     RUS_anton_denikin = {
         name = "Anton Denikin"
-        portraits = { army = { large = "GFX_portrait_RUS_anton_denikin" } }
+        portraits = { army = { large = "GFX_portrait_denikin" } }
         corps_commander = {
             traits = { }
             skill = 1       attack_skill = 2        defense_skill = 1       planning_skill = 1      logistics_skill = 2
         }
     }
-    RUS_anton_von_saltza = {
-        name = "Anton von Saltza"
-        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_4" } }
+    RUS_nikolai_yudenich = {
+        name = "Nikolai Yudenich"
+        portraits = { army = { large = "GFX_portrait_yudenich" } }
         corps_commander = {
             traits = { }
-            skill = 1       attack_skill = 1        defense_skill = 1       planning_skill = 2      logistics_skill = 2
+            skill = 3       attack_skill = 3        defense_skill = 2       planning_skill = 3      logistics_skill = 2
         }
     }
     RUS_lavr_kornilov = {
         name = "Lavr Kornilov"
-        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_4" } }
+        portraits = { army = { large = "GFX_portrait_kornilov" } }
         field_marshal = {
             traits = { reckless }
             skill = 2       attack_skill = 2        defense_skill = 1       planning_skill = 2      logistics_skill = 1
@@ -116,26 +84,26 @@ characters = {
     }
     RUS_mikhail_alekseyev = {
         name = "Mikhail Alekseyev"
-        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_2" } }
+        portraits = { army = { large = "GFX_portrait_alexeev" } }
         corps_commander = {
             traits = { }
             skill = 1       attack_skill = 1        defense_skill = 2       planning_skill = 1      logistics_skill = 1
         }
     }
-    RUS_nikolai_ivanov = {
-        name = "Nikolai Ivanov"
-        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_2" } }
+    RUS_alexander_samsonov = {
+        name = "Alexander Samsonov"
+        portraits = { army = { large = "GFX_portrait_samsonov" } }
         corps_commander = {
             traits = { }
-            skill = 2       attack_skill = 2        defense_skill = 1       planning_skill = 1      logistics_skill = 2
+            skill = 1       attack_skill = 2        defense_skill = 1       planning_skill = 1      logistics_skill = 1
         }
     }
-    RUS_nikolai_nikolayevich = {
-        name = "Grand Duke Nikolai Nikolayevich"
-        portraits = { army = { large = "GFX_Portrait_Europe_Generic_land_1" } }
-        field_marshal = {
-            traits = { old_guard }
-            skill = 2       attack_skill = 2        defense_skill = 2       planning_skill = 1      logistics_skill = 1
+    RUS_pyotr_wrangel = {
+        name = "Pyotr Wrangel"
+        portraits = { army = { large = "GFX_portrait_wrangel" } }
+        corps_commander = {
+            traits = { }
+            skill = 2       attack_skill = 2        defense_skill = 2       planning_skill = 1      logistics_skill = 2
         }
     }
 }

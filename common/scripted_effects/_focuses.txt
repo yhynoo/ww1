@@ -44,6 +44,11 @@
         }
 
         if = {
+            limit = { original_tag = ITA }
+            add_political_power = 50        country_event = manifesto_tripoli.1
+        }
+
+        if = {
             limit = { original_tag = JAP }
             add_political_power = 50
             525 = {
@@ -92,7 +97,7 @@
         state_extend_effect = {
             # default
             if = {
-                limit = { not = { or = { original_tag = ENG original_tag = FRA original_tag = GER original_tag = SPA original_tag = TUR original_tag = USA } } }
+                limit = { not = { or = { original_tag = ENG original_tag = FRA original_tag = GER original_tag = RUS original_tag = SPA original_tag = TUR original_tag = USA } } }
 
                 # factions
                 if = { limit = { is_faction_leader = no } custom_effect_tooltip = tt_extend }
@@ -169,10 +174,7 @@
 
             if = {
                 limit = { original_tag = RUS }
-                custom_effect_tooltip = tt_to_do
-
-                # event
-                hidden_effect = { news_event = caucasus.1 }
+                add_political_power = 50        add_war_support = 0.025
             } 
 
             if = {
@@ -204,7 +206,12 @@
 
             if = {
                 limit = { original_tag = USA }
-                add_political_power = 50        news_event = aid.1
+                
+                add_political_power = 50
+                every_controlled_state = { 
+                    limit = { or = { state = 327 state = 628 state = 627 state = 626 } } 
+                    add_core_of = USA
+                }     
             }  
         }
 
@@ -296,7 +303,13 @@
 
             if = {
                 limit = { original_tag = RUS }
-                every_country = { limit = { tag = AFG } send_ultimatum_alignment = yes }
+                every_country = {
+                    limit = {
+                        or = { tag = GRE tag = SER tag = ROM }
+                        is_subject = no
+                    }
+                    custom_effect_tooltip = tt_to_do
+                }
             }   
 
             if = {
@@ -316,10 +329,7 @@
 
             if = {
                 limit = { original_tag = USA }
-                every_country = {
-                    limit = { or = { controls_state = 279 controls_state = 506 } not = { has_war_with = USA } }
-                    country_event = chromium_andes.1
-                }
+                custom_effect_tooltip = tt_to_do
             }  
 
             # default
@@ -429,7 +439,7 @@
 
             if = {
                 limit = { original_tag = USA }
-                add_war_support = 0.05          declare_war_on = { target = COL     type = topple_government }
+                custom_effect_tooltip = tt_to_do
             }
 
             # default
@@ -496,26 +506,23 @@
     # stability
         state_stability_effect = {
             if = {
-                limit = { original_tag = AUS }
-                hidden_effect = { country_event = { id = galicia.1    days = 28 } }
-            }
-
-            if = {
                 limit = { original_tag = ENG }
                 remove_ideas = idea_great_unrest
             }
 
             if = {
                 limit = { original_tag = RUS }
-                add_stability = 0.025   
+                add_stability = 0.025       add_popularity = { ideology = democratic popularity = 0.05 }
+            }
 
-                random_owned_controlled_state = { limit = { or = { state = 561 state = 403 } } add_resource = { type = steel amount = 8 } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
-                random_owned_controlled_state = { limit = { or = { state = 582 state = 585 state = 584 } } add_resource = { type = tungsten amount = 12 } add_extra_state_shared_building_slots = 2 }
+            if = {
+                limit = { original_tag = USA }
+                remove_ideas = idea_union_unrest
             }
 
             if = {
                 limit = {
-                    not = { or = { original_tag = ENG original_tag = RUS } }
+                    not = { or = { original_tag = ENG original_tag = RUS original_tag = USA } }
                 }
                 add_stability = 0.05
             }
@@ -533,10 +540,14 @@
                 # event
                 hidden_effect = { country_event = { id = assault_on_church.1 days = 14 } }
             }
+            if = {
+                limit = { original_tag = USA }
+                custom_effect_tooltip = tt_to_do
+            }
 
             # default 
             if = {
-                limit = { not = { or = { original_tag = ENG } } }
+                limit = { not = { or = { original_tag = ENG original_tag = ENG } } }
                 add_ideas = idea_ethnocentrism
             }
         }
@@ -603,6 +614,11 @@
             }
 
             if = {
+                limit = { original_tag = RUS }
+                add_ideas = idea_limited_autonomy_of_subjects
+            }
+
+            if = {
                 limit = { original_tag = SPA }
                 171 = {
                     add_building_construction = { type = dockyard   level = 2   instant_build = yes }
@@ -627,9 +643,17 @@
                 }
             }
 
+            if = {
+                limit = { original_tag = USA }
+                382 = {
+                    add_resource = { type = steel amount = 8 }
+                    add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+                }
+            }
+
             # default
             if = {
-                limit = { not = { or = { original_tag = AUS original_tag = ENG original_tag = FRA original_tag = GER original_tag = GRE original_tag = HOL original_tag = ITA original_tag = ROM original_tag = SPA original_tag = TUR } } }
+                limit = { not = { or = { original_tag = AUS original_tag = ENG original_tag = FRA original_tag = GER original_tag = GRE original_tag = HOL original_tag = ITA original_tag = ROM original_tag = RUS original_tag = SPA original_tag = TUR original_tag = USA } } }
                 custom_effect_tooltip = tt_to_do
             }
         }
@@ -752,16 +776,21 @@
             }
 
             if = {
+                limit = { original_tag = RUS }
+                RUS_nikolai_ii = {
+                    remove_trait = trait_weakling
+                }
+                add_ideas = idea_one_and_indivisible
+            }
+
+            if = {
                 limit = { original_tag = USA }
                 custom_effect_tooltip = tt_to_do
-
-                # news
-                news_event = wilsonianism.1
             }
 
             # default
             if = {
-                limit = { not = { or = { original_tag = AUS original_tag = ENG original_tag = FRA original_tag = GER original_tag = ITA original_tag = JAP original_tag = MAN original_tag = USA } } }
+                limit = { not = { or = { original_tag = AUS original_tag = ENG original_tag = FRA original_tag = GER original_tag = ITA original_tag = JAP original_tag = MAN original_tag = RUS original_tag = USA } } }
                 if = {
                     limit = { any_controlled_state = { is_claimed_by = ROOT not = { is_core_of = ROOT } } }
                     add_political_power = 50

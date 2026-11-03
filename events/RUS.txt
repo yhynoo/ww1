@@ -1,95 +1,557 @@
-add_namespace = anti_austrian_sentiments
-add_namespace = astrakhan
+add_namespace = kadets_airmen
+add_namespace = kadets_communist_ukraine
+add_namespace = kadets_confiscations
+add_namespace = kadets_enforce
+add_namespace = kadets_helsinki
+add_namespace = kadets_ohl
+add_namespace = kadets_opposition       # sets the wheat_deal_collapse flag
+add_namespace = kadets_tula
+add_namespace = kadets_ukraine
+add_namespace = kadets_uprising         # clears the wheat_deal_collapse flag
+add_namespace = kadets_ural
+add_namespace = kadets_volga
+add_namespace = kadets_warsaw
+add_namespace = kadets_washington
+add_namespace = kadets_withdraw
+
+add_namespace = trotsky_astrakhan
+
 add_namespace = muromets
 
-# anti_austrian_sentiments
-    country_event = {
-        id = anti_austrian_sentiments.1
-        title = "Anti-Austrian Sentiments in Western Ukraine?"
+# Act II: Trotsky
+    # trotsky_astrakhan
+        news_event = {
+            id = trotsky_astrakhan.1
+            title = "Trotsky Seen in Astrakhan"         picture = GFX_report_trotsky
 
-        trigger = { tag = RUS       UKR = { exists = no }       AUS = { has_idea = idea_oil_strike } }
-        fire_only_once = yes
+            is_triggered_only = yes trigger = { not = { has_country_flag = trotsky_seen } }
+            major = yes
 
-        option = {
-            name = "Stoke the unrest."
-            every_state = { limit = { or = { state = 80 state = 89 state = 91 } }    add_claim_by = RUS }
+            immediate = {
+                country_event = { id = trotsky_astrakhan.2   days = 14 }        set_country_flag = trotsky_seen
+            }
 
-            # event
-            news_event = { id = anti_austrian_sentiments.2 hours = 6 }
-        }
-        option = {
-            name = "There is nothing for us in it."
-            add_war_support = -0.01
-        }
-    }
-
-    news_event = {
-        id = anti_austrian_sentiments.2
-        title = "Anti-Austrian Sentiments in Western Ukraine"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            add_named_threat = { name = "Anti-Austrian Sentiments in Ukraine" threat = 1 }
-            AUS = { add_stability = -0.05 }
+            option = {
+                name = "Interesting."
+            }
         }
 
-        option = {
-            name = "Ok."
-        }
-    }
+        country_event = {
+            id = trotsky_astrakhan.2
+            title = "Unrest in the Volga Area"
 
-# astrakhan
-    news_event = {
-        id = astrakhan.1
-        title = "Trotsky Seen in Astrakhan"         picture = GFX_report_trotsky
+            is_triggered_only = yes
 
-        is_triggered_only = yes trigger = { not = { has_country_flag = trotsky_seen }}
-        major = yes
+            immediate = {
+                add_timed_idea = { idea = idea_unrest_in_the_volga months = 6 }
+            }
 
-        immediate = {
-            country_event = { id = astrakhan.2   days = 14 }        set_country_flag = trotsky_seen
-        }
+            option = {
+                name = "Send in the troops."
+                add_stability = 0.025
 
-        option = {
-            name = "Interesting."
-        }
-    }
-
-    country_event = {
-        id = astrakhan.2
-        title = "Socialist Unrest in the Saratov Area"
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Send in the troops."
-            add_political_power = -25
-
-            # event
-            random = { chance = 50 country_event = { id = astrakhan.3 hours = 14 } }
-        }
-        option = {
-            name = "Doesn't matter."
-            add_popularity = { ideology = communism popularity = 0.05 }
-        }
-    }
-
-    country_event = {
-        id = astrakhan.3
-        title = "Tragedy on the Volga"
-
-        is_triggered_only = yes
-
-        immediate = {
-            add_stability = -0.025
+                # event
+                random = { chance = 50 country_event = { id = trotsky_astrakhan.3 hours = 14 } }
+            }
+            option = {
+                name = "Doesn't matter."
+                add_popularity = { ideology = communism popularity = 0.05 }
+            }
         }
 
-        option = {
-            name = "Awful."
+        country_event = {
+            id = trotsky_astrakhan.3
+            title = "Tragedy on the Volga"
+
+            is_triggered_only = yes
+
+            immediate = {
+                add_stability = -0.025
+            }
+
+            option = {
+                name = "Awful."
+            }
         }
-    }
+    #
+
+# Act III: Kadets
+    # kadets_airmen
+        country_event = {
+            id = kadets_airmen.1
+            title = "American Aviators Volunteer for Poland"
+
+            is_triggered_only = yes     fire_only_once = yes
+
+            immediate = {
+                POL = { 
+                    add_equipment_to_stockpile = { type = fighter_equipment_1   amount = 12     producer = USA }
+                    add_equipment_to_stockpile = { type = CAS_equipment_1       amount = 4      producer = USA } 
+                }
+            }
+
+            option = {
+                name = "Wonderful."
+            }
+        }
+    # kadets_communist_ukraine
+        news_event = {
+            id = kadets_communist_ukraine.1
+            title = "Communist Uprising in Ukraine!"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                ukrainian_communist_uprising = yes
+            }
+
+            option = {
+                name = "Awful."
+            }
+        }
+    # kadets_confiscations
+        country_event = {
+            id = kadets_confiscations.1
+            title = "Opposition to Wheat Contingents"
+
+            is_triggered_only = yes
+
+            immediate = {
+                news_event = { id = kadets_uprising.1           days = 40 }
+                news_event = { id = kadets_ural.1               days = 46 }
+                news_event = { id = kadets_tula.1               days = 48 }
+
+                news_event = { id = kadets_communist_ukraine.1               days = 56 }
+            }
+
+            option = {
+                name = "Arrest them."
+                add_stability = 0.025
+
+                # event
+                hidden_effect = {
+                    random = {
+                        chance = 50
+                        news_event = { id = kadets_confiscations.2 hours = 12 }
+                    }
+                }
+            }
+            option = {
+                name = "Withdraw."
+                add_popularity = { ideology = communism     popularity = 0.025 }
+            }
+        }
+        news_event = {
+            id = kadets_confiscations.2
+            title = "Massacres in the Omsk Governorate"         picture = GFX_report_omsk
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                RUS = { add_popularity = { ideology = communism popularity = 0.05 } }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # kadets_enforce
+        country_event = {
+            id = kadets_enforce.1
+            title = "Enforce the Wheat Transfers?"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "We must do it."
+
+                # event
+                news_event = { id = kadets_enforce.2 days = 2 }
+            }
+            option = {
+                name = "Our own good comes first."
+                GER = {
+                    news_event = { id = kadets_withdraw.1 hours = 6 }
+                    create_wargoal = { target = RUS     type = puppet_wargoal_focus }
+                }
+
+                remove_ideas = idea_wheat_investments
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+        news_event = {
+            id = kadets_enforce.2
+            title = "Milyukov: ‘Stupidity or Treason?’"         picture = GFX_report_duma
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                news_event = { id = kadets_enforce.3    days = 7 random_days = 7 }
+            }
+
+            option = {
+                name = "Worrying."
+            }
+        }
+        news_event = {
+            id = kadets_enforce.3
+            title = "Kadets Organize an Agrarian Uprising!"         picture = GFX_report_agrarians
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                RUS = { 
+                    kadets_uprising = yes
+                    set_popularities = { monarchism = 55 communism = 35 democratic = 10 }
+
+                    # uprisings
+                        news_event = { id = kadets_ukraine.1     days = 6 }
+                        news_event = { id = kadets_warsaw.1      days = 12 }
+
+                    # events
+                    country_event = { id = kadets_confiscations.1   days = 21 }
+
+                    RUD = { 
+                        country_event = { id = kadets_volga.1   days = 4 } 
+                        set_country_flag = wheat_deal_collapse      set_popularities = { democratic = 60 communism = 30 monarchism = 10 }
+                    }
+                }
+            }
+
+            option = {
+                name = "Awful."
+            }
+        }
+    # kadets_helsinki
+        country_event = {
+            id = kadets_helsinki.1
+            title = "Helsingfors Government Seeks Autonomy"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Ok."
+                release = FIN
+                set_autonomy = { target = FIN   autonomous_state = autonomy_dominion }
+
+                # event
+                news_event = { id = kadets_helsinki.2 hours = 6 }
+            }
+            option = {
+                name = "Quash the movement."
+                add_stability = -0.05
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+        news_event = {
+            id = kadets_helsinki.2
+            title = "Grand Duchy of Finland Autonomous"         picture = GFX_report_helsinki
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # kadets_ohl
+        country_event = {
+            id = kadets_ohl.1
+            title = "OHL Debates Intervention in the East"
+
+            is_triggered_only = yes     fire_only_once = yes
+
+            option = {
+                name = "Agree."
+                every_country = {
+                    limit = { or = { tag = POL tag = UKR tag = RUD } }
+                    GER = { create_wargoal = { target = PREV type = puppet_wargoal_focus } }
+                }
+
+                # event
+                news_event = { id = kadets_ohl.2 hours = 6 }
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+            option = {
+                name = "This is way too much."
+                add_war_support = -0.025
+            }
+        }
+        news_event = {
+            id = kadets_ohl.2
+            title = "Germany to Strike East?"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # kadets_opposition
+        country_event = {
+            id = kadets_opposition.1
+            title = "Opposition to Grain Exports"
+
+            is_triggered_only = yes
+
+            immediate = {
+                set_country_flag = wheat_deal_collapse
+
+                country_event = { id = kadets_helsinki.1    days = 12 }
+                country_event = { id = kadets_enforce.1     days = 21   random_days = 7 }
+            }
+
+            option = {
+                name = "Ok."
+                add_ideas = idea_opposition_to_exports
+            }
+        }
+    # kadets_tula
+        news_event = {
+            id = kadets_tula.1
+            title = "Comunists Seize the Tula Armory"           picture = GFX_report_tula
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                RUS = {
+                    every_controlled_state = { 
+                        limit = { or = { state = 223 state = 224 state = 257 } } 
+                        transfer_state_to = RUC
+                        
+                        random_list = {
+                            2 = { create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\"" count = 3 owner = RUC } }
+                            2 = { create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\"" count = 2 owner = RUC } }
+                        }
+                        RUS = { set_state_controller = PREV }
+                    }
+
+                    # deserters
+                    transfer_units_fraction = { target = RUC      size = 0.1     stockpile_ratio = 0.2     keep_unit_leaders_trigger = { always = no } }
+                }
+                
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # kadets_ukraine
+        news_event = {
+            id = kadets_ukraine.1
+            title = "Ukraine Stands on its Own!"            picture = GFX_report_ukraine
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                UKR = {
+                    trigger_uprising_easy = yes
+                    set_province_controller = 525      set_province_controller = 11670      set_province_controller = 6593
+                    load_oob = UKR
+                }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # kadets_uprising
+        news_event = {
+            id = kadets_uprising.1
+            title = "Communist Uprising in Siberia!"        picture = GFX_report_communist_uprising
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                siberian_communist_uprising = yes
+                clr_country_flag = wheat_deal_collapse
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # kadets_ural
+        news_event = {
+            id = kadets_ural.1
+            title = "Ural Towns Side with the Communists"           picture = GFX_report_urals
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                RUS = {
+                    every_controlled_state = { 
+                        limit = { or = { state = 589 state = 402 state = 615 } } 
+                        transfer_state_to = RUC
+                        
+                        create_unit = { division = "name = \"Uprising Troops\" division_template = \"Uprising Troops\"" count = 2 owner = RUC }
+                        RUS = { set_state_controller = PREV }
+                    }
+
+                    # deserters
+                    transfer_units_fraction = { target = RUC      size = 0.15     stockpile_ratio = 0.25     keep_unit_leaders_trigger = { always = no } }
+                }
+                
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # kadets_volga
+        news_event = {
+            id = kadets_volga.1
+            title = "Town on the Volga"         picture = GFX_report_volgograd
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                RUD = { 
+                    set_capital = { state = 217 }       set_province_name = { id = 3529 name = "Volgograd" }
+                    country_event = { id = kadets_volga.2   days = 6 }
+                }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+        country_event = {
+            id = kadets_volga.2
+            title = "Establish the Hunger Committee?"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Yes."
+                add_timed_idea = { idea = idea_hunger_committee years = 1 }
+
+                # event
+                news_event = { id = kadets_volga.3 hours = 6 }
+            }
+            option = {
+                name = "Avoid cooperating with the socialists."
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+        news_event = {
+            id = kadets_volga.3
+            title = "Hunger Committee Established in Volgograd"         picture = GFX_report_hunger
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # kadets_warsaw
+        news_event = {
+            id = kadets_warsaw.1
+            title = "Uprising in Warsaw!"       picture = GFX_report_warsaw_uprising
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                POL = {
+                    trigger_uprising_easy = yes
+                    set_province_controller = 3544      set_province_controller = 9508      set_province_controller = 11399
+                    load_oob = POL
+                }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # kadets_washington
+        country_event = {
+            id = kadets_washington.1
+            title = "Support Warsaw?"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Intervene."
+                give_guarantee = POL
+
+                # event
+                every_country = {
+                    limit = { original_tag = RUS has_war_with = POL }
+                    country_event = { id = kadets_washington.2 hours = 6 }
+                }
+            }
+            option = {
+                name = "Why engage in a lost cause?"
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+        country_event = {
+            id = kadets_washington.2
+            title = "Washington Supports Warsaw’s Independence"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Alright."
+                white_peace = POL
+            }
+            option = {
+                name = "What do they have to say?"
+                USA = { create_wargoal = { target = ROOT type = topple_government } }
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+        country_event = {
+            id = kadets_washington.3
+            title = "Warsaw Celebrates American Support"
+
+            is_triggered_only = yes     fire_only_once = yes
+
+            option = {
+                name = "Great."
+            }
+        }
+    # kadets_withdraw
+        news_event = {
+            id = kadets_withdraw.1
+            title = "Tsar Withdraws from the Wheat Deal"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                GER = { remove_ideas = idea_wheat_deal }
+            }
+
+            option = {
+                name = "Alright."
+            }
+        }
+    #
 
 # muromets
     news_event = {

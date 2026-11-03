@@ -1,12 +1,11 @@
 add_namespace = arab_opposition
-add_namespace = atrocities_in_assyria
-add_namespace = aviators
 
-add_namespace = demonstrations
+add_namespace = aircraft_ottomans
 
-add_namespace = ionia
-
-add_namespace = oil_oligarchs
+add_namespace = francophiles_assyria
+add_namespace = francophiles_demonstrations
+add_namespace = francophiles_entente
+add_namespace = francophiles_opposition
 
 add_namespace = ottoman_aid_to_armenia
 add_namespace = ottoman_armenia
@@ -22,7 +21,24 @@ add_namespace = ottoman_sophoulis
 add_namespace = ottoman_war
 add_namespace = ottoman_young_turks
 
-add_namespace = young_turks
+# Act I: AIRCRAFT OTTOMANS
+    # aircraft_ottomans
+        country_event = {
+            id = aircraft_ottomans.1
+            title = "Turkish Airmen Arrive from France"
+
+            is_triggered_only = yes
+
+            immediate = {
+                341 = { add_building_construction = { type = air_base level = 1 instant_build = yes } }
+                add_equipment_to_stockpile = { type = CAS_equipment_0   amount = 4     producer = FRA }
+            }
+
+            option = {
+                name = "Great!"
+            }
+        }
+    #
 
 # Act I: OTTOMAN WARS
     # ottoman_aid_to_armenia
@@ -69,11 +85,9 @@ add_namespace = young_turks
             immediate = {
                 ARM = {
                     trigger_uprising_easy = yes
-
                     set_province_controller = 10472      set_province_controller = 11853      set_province_controller = 6935
                     load_oob = ARM
                 }
-
                 RUS = { country_event = { id = ottoman_aid_to_armenia.1 days = 7 } }
             }
         }
@@ -310,13 +324,17 @@ add_namespace = young_turks
                     TUR = { set_autonomy = { target = SMS autonomous_state = autonomy_free } }
                     every_enemy_country = { white_peace = SMS }
                 }
-                declare_war_on = TUR
+                add_to_war = { targeted_alliance = GRE enemy = TUR }
 
                 # event
                 news_event = { id = ottoman_samian_autonomy.2 hours = 6 }
             }
             option = {
                 name = "Seek a Turkish intervention."
+                TUR = { annex_country = { target = SMS transfer_troops = yes } }
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
             }
         }
 
@@ -413,6 +431,166 @@ add_namespace = young_turks
         }
     #
 
+# Act II: FRANCOPHILES
+    # francophiles_assyria
+        country_event = {
+            id = francophiles_assyria.1
+            title = "Testimonies from Assyria"
+
+            is_triggered_only = yes
+            fire_only_once = yes
+
+            option = {
+                name = "Investigate them."
+                add_popularity = { ideology = democratic popularity = 0.05 }
+
+                # event
+                news_event = { id = francophiles_assyria.2 hours = 6 }
+
+                # other events:
+                hidden_effect = {
+                    news_event = { id = francophiles_assyria.3 days = 2 }
+                    news_event = { id = francophiles_assyria.4 days = 4 random_days = 4 }
+                }
+            }
+            option = {
+                name = "Cover it up."
+                add_stability = 0.025
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+            }
+        }
+        news_event = {
+            id = francophiles_assyria.2
+            title = "Ottoman Atrocities in Assyria Uncovered"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Horrible."
+            }
+        }
+        country_event = {
+            id = francophiles_assyria.3
+            title = "Outrage Among the Liberals"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Ok."
+                add_political_power = -25
+            }
+        }
+        country_event = {
+            id = francophiles_assyria.4
+            title = "Turkish Officers: ‘Slander is Treason!’"
+
+            is_triggered_only = yes
+            trigger = { or = { has_idea = idea_hostile_officer_corps has_idea = idea_hostile_officer_corps_1 } }
+
+            option = {
+                name = "Ok."
+                add_popularity = { ideology = communism popularity = 0.025 }
+            }
+        }
+    # francophiles_demonstrations
+        country_event = {
+            id = francophiles_demonstrations.1
+            title = "Anti-Sultanate Demonstrations in Constantinople"
+
+            is_triggered_only = yes
+            fire_only_once = yes
+
+            option = {
+                name = "Abdicate."
+                add_stability = 0.05    set_politics = { ruling_party = democratic elections_allowed = yes }
+
+                # event
+                news_event = { id = francophiles_demonstrations.2 hours = 6 }
+            }
+            option = {
+                name = "Appoint the Vizier."
+                promote_character = tur_taalat_pasha
+
+                # event
+                news_event = { id = francophiles_demonstrations.3 hours = 6 }
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+            }
+        }
+        news_event = {
+            id = francophiles_demonstrations.2
+            title = "Turkish Sultan Abdicates!"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Interesting."
+            }
+        }
+        news_event = {
+            id = francophiles_demonstrations.3
+            title = "Ta’alat Pasha to Lead the Ottoman State"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # francophiles_entente
+        country_event = {
+            id = francophiles_entente.1
+            title = "Align with the Entente?"
+
+            is_triggered_only = yes
+            trigger = { can_declare_war_on = GER }
+
+            option = {
+                name = "Declare war on Germany."
+                add_to_war = { targeted_alliance = FRA enemy = GER }
+
+                # event
+                news_event = { id = francophiles_entente.2 hours = 6 }
+            }
+            option = {
+                name = "We must stay out of this."
+                add_war_support = -0.025
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+            }
+        }
+        news_event = {
+            id = francophiles_entente.2
+            title = "The Ottoman State joins the Great War!"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # francophiles_opposition   
+        country_event = {
+            id = francophiles_opposition.1
+            title = "Democrats Oppose Wilayet Administrations"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Annoying."
+                add_stability = -0.025      add_popularity = { ideology = democratic popularity = 0.025 }
+            }
+        }
+    #
+
 # arab_opposition
     country_event = {
         id = arab_opposition.1
@@ -431,170 +609,3 @@ add_namespace = young_turks
             add_ideas = idea_arab_opposition
         }
     }
-
-# atrocities_in_assyria
-    country_event = {
-        id = atrocities_in_assyria.1
-        title = "Testimonies from Assyria"
-
-        trigger = {
-            tag = TUR
-            has_completed_focus = XXX_ethnocentrism
-        }
-
-        fire_only_once = yes
-        mean_time_to_happen = { months = 2 }
-
-        immediate = {
-            country_event = { id = atrocities_in_assyria.2   days = 7 }
-        }
-
-        option = {
-            name = "Horrible."
-            add_popularity = { ideology = ROOT popularity = -0.05 }
-        }
-    }
-
-    country_event = {
-        id = atrocities_in_assyria.2
-        title = "Investigate the Atrocities?"
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Yes."
-            add_political_power = -25
-
-            # event
-            news_event = { id = atrocities_in_assyria.3 hours = 6 }
-        }
-        option = {
-            name = "Slander is treason."
-            add_popularity = { ideology = communism popularity = 0.05 }
-        }
-    }
-
-    news_event = {
-        id = atrocities_in_assyria.3
-        title = "Turkey Investigates Atrocities in the East"
-
-        is_triggered_only = yes
-        major = yes
-
-        immediate = {
-            add_stability = 0.025
-            add_popularity = { ideology = democratic popularity = 0.025 }
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# aviators
-    country_event = {
-        id = aviators.1
-        title = "Turkish Airmen Arrive from France"
-
-        is_triggered_only = yes
-
-        immediate = {
-            341 = { add_building_construction = { type = air_base level = 1 instant_build = yes } }
-            add_equipment_to_stockpile = { type = CAS_equipment_0   amount = 4     producer = FRA }
-        }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# demonstrations
-    country_event = {
-        id = demonstrations.1
-        title = "Liberals Demonstrate in Constantinople"
-
-        trigger = {
-            tag = TUR
-            has_idea = idea_oil_investments     monarchism < 0.5      has_government = monarchism  
-            democratic > 0.25      
-        }
-        fire_only_once = yes
-
-        option = {
-            name = "We must consider abdication."
-            set_politics = { ruling_party = democratic elections_allowed = yes }
-
-            # event
-            news_event = { id = demonstrations.2 hours = 6 }
-        }
-        option = {
-            name = "Disperse them."
-            add_stability = -0.05
-        }
-    }
-
-    news_event = {
-        id = demonstrations.2
-        title = "Turkish Sultan Abdicates!"
-
-        is_triggered_only = yes
-        major = yes
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# ionia
-    country_event = {
-        id = ionia.1
-        title = "Attacks on Ionian Greeks"
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Investigate the matter."
-            add_popularity = { ideology = democratic popularity = 0.025 }
-
-            # event
-            news_event = { id = ionia.2 hours = 6 }
-        }
-        option = {
-            name = "Cover it up."
-            add_stability = 0.025
-
-            hidden_effect = { GRE = { country_event = { id = defend_ionia.1 days = 7 } } }
-        }
-    }
-
-    news_event = {
-        id = ionia.2
-        title = "[TUR.GetAdjective] Gov’t Investigates the Smyrna Events"
-
-        is_triggered_only = yes
-        major = yes
-
-        option = {
-            name = "Interesting."
-        }
-    }
-
-# oil oligarchs
-    country_event = {
-        id = oil_oligarchs.1
-        title = "French Enterpreneurs Invest in Iraqi Schools"
-
-        trigger = {
-            tag = TUR       controls_state = 414
-            has_idea = idea_oil_investments
-        }
-
-        fire_only_once = yes
-        mean_time_to_happen = { months = 2 }
-
-        option = {
-            name = "Ok."
-            add_popularity = { ideology = democratic popularity = 0.025 }
-        }
-    }
-

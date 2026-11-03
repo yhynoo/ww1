@@ -27,6 +27,7 @@ ai_wants_armistice = {
 }
 
 can_have_an_uprising = {
+    has_special_collapse_sequence = no
     or = { 
         has_civil_war = yes 
         or = {
@@ -36,9 +37,33 @@ can_have_an_uprising = {
     }
 }
 
+can_have_a_civil_war = {
+    has_special_collapse_sequence = no
+    has_civil_war = no
+    check_variable = { highest_party_popularity@exclude_ruling_party > 0.2 }
+
+    or = {
+        has_stability < 0.1
+        and = {
+            has_stability < 0.4
+            or = {
+                and = { surrender_progress > 0.1        has_war_support < 0.25 }
+                and = { surrender_progress > 0.2        has_war_support < 0.4 }
+            }
+        }
+    }
+}
+
 can_start_uprising = {
     exists = no     has_capitulated = no        is_dynamic_country = no 
     capital_scope = { is_controlled_by = ROOT }
+}
+
+has_special_collapse_sequence = {
+    or = {
+        has_country_flag = austria_house_collapse
+        has_country_flag = wheat_deal_collapse
+    }
 }
 
 is_armistice_target = {

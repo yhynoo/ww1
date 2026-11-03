@@ -1,5 +1,15 @@
 ideas = {
     country = {
+        idea_union_unrest = {
+            modifier = {
+                democratic_drift = -0.05
+                local_resources_factor = -0.15
+            }
+            cancel = {
+                not = { has_government = democratic }
+            }
+        }
+
         idea_chromium_andes = {
             modifier = {
                 production_speed_infrastructure_factor = 0.15

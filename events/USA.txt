@@ -1,41 +1,296 @@
-add_namespace = agrarians_in_mexico
-add_namespace = aid
-
 add_namespace = chromium_andes
-add_namespace = colombian_intervention
 
-add_namespace = wilsonianism
+add_namespace = mexico_aid
+add_namespace = mexico_armistice
+add_namespace = mexico_direct
+add_namespace = mexico_expel
+add_namespace = mexico_uprising
 
-# agrarians_in_mexico
-    country_event = {
-        id = agrarians_in_mexico.1
-        title = "American Volunteers in Mexico"
+add_namespace = unions_agrarians
+add_namespace = unions_appallachians
+add_namespace = unions_colorado
+add_namespace = unions_ludlow
+add_namespace = unions_senate
 
-        is_triggered_only = yes
+# Act I: MEXICO
+    # mexico_aid
+        news_event = {
+            id = mexico_aid.1
+            title = "American Aid for Mexican Democrats"        picture = GFX_report_american_aid
 
-        option = {
-            name = "Ok."
-            add_popularity = { ideology = communism popularity = 0.02 }
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                MEX = { add_ideas = idea_american_aid_for_mexico add_opinion_modifier = { target = USA modifier = sent_arms } }
+                COL = { country_event = { id = mexico_expel.1 days = 7 } }
+            }
+
+            option = {
+                name = "Ok."
+            }
         }
-    }
+    # mexico_armistice
+        country_event = {
+            id = mexico_armistice.1
+            title = "Offer Our Demands to Colombia?"
 
-# aid
-    news_event = {
-        id = aid.1
-        title = "American Aid for Mexican Democrats"
+            is_triggered_only = yes     fire_only_once = yes        trigger = { has_war_with = COL }
 
-        is_triggered_only = yes
-        major = yes
+            option = {
+                name = "Let us see."
 
-        immediate = {
-            MEX = { add_ideas = idea_american_aid_for_mexico add_opinion_modifier = { target = USA modifier = sent_arms } }
-            COL = { country_event = { id = expel_americans.1 days = 7 } }
+                # event
+                COL = { country_event = { id = mexico_armistice.2 hours = 6 } }
+            }
+            option = {
+                name = "We must continue the war."
+                add_war_support = 0.025
+
+                # ai
+                ai_chance = { modifier = { is_ai = yes factor = 0 } } 
+            }
+        }
+        country_event = {
+            id = mexico_armistice.2
+            title = "American Demands in Central America"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Let them have it."
+                every_country = {
+                    limit = { or = { original_tag = MEX original_tag = USA } }
+                    white_peace = COL
+                }
+
+                # event
+                news_event = { id = mexico_armistice.3 hours = 6 }
+            }
+            option = {
+                name = "Outrageous."
+                add_war_support = 0.05
+
+                # ai
+                ai_chance = { modifier = { is_ai = yes factor = 0 } } 
+            }
+        }
+        news_event = {
+            id = mexico_armistice.3
+            title = "End of War in Central America"         picture = GFX_report_central_america_end
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                MEX = { every_core_state = { transfer_state_to = MEX } }
+                every_state = {
+                    limit = { or = { state = 312 state = 313 state = 314 state = 317 } }
+                    set_demilitarized_zone = yes        owner = { give_resource_rights = { receiver = USA  state = PREV } }
+                }
+            }
+
+            option = {
+                name = "Good."
+            }
+        }
+    # mexico_direct
+        country_event = {
+            id = mexico_direct.1
+            title = "The U.S. Threaten Direct Intervention"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Agree to their demands."
+
+                USA = { 
+                    set_autonomy = { target = PREV autonomous_state = autonomy_dominion end_wars = no end_civil_wars = no } 
+                    add_to_war = { targeted_alliance = MEX }
+                }
+
+                # event
+                news_event = { id = mexico_direct.2 hours = 6 }
+            }
+            option = {
+                name = "We will defend ourselves."
+                USA = { create_wargoal = { target = MEX type = puppet_wargoal_focus } }
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+        news_event = {
+            id = mexico_direct.2
+            title = "U.S. Intervene in Mexico!"         picture = GFX_report_american_intervention
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # mexico_expel
+        country_event = {
+            id = mexico_expel.1
+            title = "Expel American Investors?"
+
+            is_triggered_only = yes
+            trigger = { not = { has_completed_focus = XXX_deterrence } }
+
+            option = {
+                name = "Yes."
+                
+                remove_ideas = idea_american_investments
+                USA = { remove_resource_rights = 312    remove_resource_rights = 317 }
+
+                # event
+                news_event = { id = mexico_expel.2 hours = 6 }
+            }
+            option = {
+                name = "No."
+
+                # ai
+                ai_chance = { 
+                    modifier = { is_historical_focus_on = yes   factor = 0 }
+                    modifier = { has_completed_focus = XXX_deterrence   factor = 0 }
+                }
+            }
+        }
+        news_event = {
+            id = mexico_expel.2
+            title = "[COL.GetName] Expels American Investors"           picture = GFX_report_expel_investors
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # mexico_uprising
+        news_event = {
+            id = mexico_uprising.1
+            title = "Agrarianists Organize an Uprising in the South"        picture = GFX_report_mexico_agrarianists
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                mexico_agrarianists_uprising = yes
+            }
+
+            option = {
+                name = "Awful."
+            }
+        }
+    #
+
+# Act I: UNIONS
+    # unions_agrarians
+        news_event = {
+            id = unions_agrarians.1
+            title = "American Volunteers Join the Agrarianists"         picture = GFX_report_american_volunteers
+
+            is_triggered_only = yes     trigger = { not = { has_country_flag = agrarians_joined } }
+            major = yes
+
+            immediate = {
+                USA = { 
+                    add_popularity = { ideology = communism popularity = 0.025 } 
+                    country_event = { id = unions_senate.1 days = 7 }
+                }
+                set_country_flag = agrarians_joined
+            }
+
+            option = {
+                name = "Ok."
+            }
         }
 
-        option = {
-            name = "Ok."
+    # unions_appallachians
+        country_event = {
+            id = unions_appallachians.1
+            title = "Miners on Strike in the Appallachians"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Ok."
+                add_stability = -0.01
+            }
         }
-    }
+
+    # unions_colorado
+        country_event = {
+            id = unions_colorado.1
+            title = "Labor Unrest in Colorado"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Ok."
+                add_stability = -0.02
+            }
+        }
+
+    # unions_ludlow
+        news_event = {
+            id = unions_ludlow.1
+            title = "The Ludlow Massacre"           picture = GFX_report_ludlow
+
+            is_triggered_only = yes     trigger = { not = { has_completed_focus = XXX_economy } }
+            major = yes
+
+            immediate = {
+                USA = { add_stability = -0.05 }
+            }
+
+            option = {
+                name = "Awful."
+            }
+        }
+
+    # unions_senate
+        country_event = {
+            id = unions_senate.1
+            title = "U.S. Senate to Condemn the Agrarianists?"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Yes."
+                add_stability = 0.02
+
+                # event
+                news_event = { id = unions_senate.2 hours = 6 }
+            }
+            option = {
+                name = "No."
+                add_popularity = { ideology = communism popularity = 0.02 }
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+        news_event = {
+            id = unions_senate.2
+            title = "U.S. Senate Condemns the Agrarianists"         picture = GFX_report_senate
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                country_event = { id = unions_appallachians.1   days = 7    random_days = 14 }
+                country_event = { id = unions_colorado.1        days = 14   random_days = 14 }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+    #
 
 # chromium_andes
     country_event = {
@@ -63,7 +318,7 @@ add_namespace = wilsonianism
 
     news_event = {
         id = chromium_andes.2
-        title = "American Investments in Andean Chromium"
+        title = "American Investments in Andean Chromium"           picture = GFX_report_andes
 
         is_triggered_only = yes
         major = yes
@@ -71,60 +326,6 @@ add_namespace = wilsonianism
         immediate = {
             USA = { give_guarantee = FROM }
         }
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# colombian_intervention
-    country_event = {
-        id = colombian_intervention.1
-        title = "Help Overthrow the Colombian Dictatorship?"
-
-        trigger = {
-            original_tag = USA      not = { has_completed_focus = XXX_deterrence }
-            COL = { has_civil_war = yes     not = { has_idea = idea_american_investments } }
-
-            any_country = { original_tag = COL has_government = democratic }
-            any_country = { original_tag = COL has_government = monarchism }
-        }
-        fire_only_once = yes
-
-        option = {
-            name = "This is a good opportunity."
-            random_country = {
-                limit = { original_tag = COL has_government = monarchism }
-                USA = { declare_war_on = { target = PREV type = topple_government } }
-            }
-
-            # event
-            news_event = { id = colombian_intervention.2 hours = 6 }
-        }
-        option = {
-            name = "We must stay out of this."
-        }
-    }
-
-    news_event = {
-        id = colombian_intervention.2
-        title = "United States Engage in Colombian Civil War"
-
-        is_triggered_only = yes
-        major = yes
-
-        option = {
-            name = "Ok."
-        }
-    }
-
-# wilsonianism
-    news_event = {
-        id = wilsonianism.1
-        title = "United States Announce the Doctrine of Wilsonianism"
-
-        is_triggered_only = yes
-        major = yes
 
         option = {
             name = "Ok."

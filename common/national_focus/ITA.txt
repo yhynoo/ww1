@@ -14,6 +14,10 @@ shared_focus = {
     completion_reward = {
         add_political_power = 50
         add_war_support = 0.05
+
+        hidden_effect = {
+            country_event = { id = manifesto_asmara.1 days = 6 }
+        }
     }
 }
 
@@ -77,7 +81,7 @@ shared_focus = {
     x = -2 y = 1
     cost = 10
 
-    ai_will_do = { limit = { is_historical_focus_on = yes factor = 0 } }
+    ai_will_do = { modifier = { is_historical_focus_on = yes factor = 0 } }
 
     completion_reward = {
         every_state = {
@@ -90,23 +94,20 @@ shared_focus = {
 shared_focus = {
     id = ITA_draft
     icon = GFX_focus_ITA_draft
-    prerequisite = { focus = ITA_eritrea focus = ITA_sardegna }
+    prerequisite = { focus = ITA_eritrea    focus = ITA_sardegna }
 
     available = {
-        uprising_government_lock = yes
-        civil_war_lock = yes
-
+        uprising_government_lock = yes      civil_war_lock = yes
         controls_state = 269    controls_state = 550
     }
 
-    relative_position_id = ITA_eritrea
-    x = -1 y = 1
+    relative_position_id = ITA_sardegna
+    x = 1 y = 1
     cost = 10
 
     completion_reward = {
         every_state = {
             limit = { or = { state = 269 state = 550 } }
-
             create_unit = { division = "name = \"Truppe Coloniali\" division_template = \"Truppe Coloniali\"" count = 2 owner = ROOT } 
             add_building_construction = { type = air_base level = 1 instant_build = yes }
         } 
@@ -119,8 +120,7 @@ shared_focus = {
     prerequisite = { focus = ITA_draft }
 
     available = {
-        uprising_government_lock = yes
-        civil_war_lock = yes
+        uprising_government_lock = yes      civil_war_lock = yes
 
         has_war_support > 0.5
         can_declare_war_on = ETH
@@ -130,7 +130,7 @@ shared_focus = {
     x = 0 y = 1
     cost = 10
 
-    ai_will_do = { limit = { is_historical_focus_on = yes factor = 0 } }
+    ai_will_do = { modifier = { is_historical_focus_on = yes factor = 0 } }
 
     completion_reward = {
         create_wargoal = { target = ETH type = annex_everything }

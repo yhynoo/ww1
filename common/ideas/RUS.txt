@@ -41,6 +41,44 @@ ideas = {
                 has_war = yes
             }
         }
+        idea_limited_autonomy_of_subjects = {
+            modifier = {
+                stability_factor = 0.05
+                local_resources_factor = 0.05
+            }
+            cancel = {
+                not = { has_govenment = monarchism }
+            }
+        }
+        idea_one_and_indivisible = {
+            modifier = {
+                war_support_factor = 0.05
+                army_core_attack_factor = 0.1
+            }
+        }
+
+        idea_opposition_to_exports = {
+            modifier = {
+                monarchism_drift = -0.05
+                stability_factor = -0.05
+                consumer_goods_factor = 0.15
+            }
+            cancel = {
+                not = { has_idea = idea_wheat_investments }
+            }
+        }
+        idea_hunger_committee = {
+            modifier = {
+                communism_drift = 0.025
+                supply_factor = 0.5
+            }
+        }
+        idea_unrest_in_the_volga = {
+            modifier = {
+                communism_drift = 0.05
+                consumer_goods_factor = 0.1
+            }
+        }
 
         idea_aid_to_armenia = {
             modifier = {

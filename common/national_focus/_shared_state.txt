@@ -100,7 +100,10 @@
             modifier = { 
                 and = { 
                     is_historical_focus_on = yes
-                    and = { original_tag = SER not = { TUR = { has_war_with = AUS } } }
+                    or = {
+                        original_tag = USA
+                        and = { original_tag = SER not = { TUR = { has_war_with = AUS } } }
+                    }
                 } 
                 factor = 0 
             }

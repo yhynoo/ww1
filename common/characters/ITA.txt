@@ -1,16 +1,9 @@
 characters = {
     ITA_vittorio_emanuele_iii = {
         name = ITA_vittorio_emanuele_iii
-        portraits = {
-            civilian = {
-                large = "GFX_portrait_ITA_vittorio_emanuele_III"
-                small = "GFX_portrait_ITA_vittorio_emanuele_III_small"
-            }
-        }
-        country_leader = {
-            ideology = constitutional_monarchy
-            traits = { trait_moderate }
-        }
+        portraits = { civilian = { large = "GFX_portrait_victor_emmanuel" } }
+
+        country_leader = { ideology = constitutional_monarchy traits = { trait_moderate } }
         field_marshal = {
             traits = { cautious }
             skill = 2       attack_skill = 1        defense_skill = 2       planning_skill = 2      logistics_skill = 1
@@ -19,74 +12,92 @@ characters = {
 
     ITA_giovanni_giolitti = {
         name = "Giovanni Giolitti"
-        country_leader = { ideology = liberalism    traits = { trait_effective_diplomat }
-        }
+        portraits = { civilian = { large = "GFX_portrait_giolitti" } }
+        country_leader = { ideology = liberalism    traits = { trait_effective_diplomat } }
     }
     ITA_antonio_salandra = {
         name = "Antonio Salandra"
-        country_leader = { ideology = conservatism  traits = { trait_aggressive_expansionist }
-        }
-    }
-    ITA_vittorio_orlando = {
-        name = "Vittorio Orlando"
-        country_leader = { ideology = liberalism    traits = { trait_theatrical_orator } }
+        portraits = { civilian = { large = "GFX_portrait_salandra" } }
+        country_leader = { ideology = conservatism  traits = { trait_aggressive_expansionist } }
     }
 
     ITA_alceste_de_ambris = {
         name = "Alceste de Ambris"
-        country_leader = {
-            ideology = anarchism
-            traits = { trait_labor_advocate trait_theatrical_orator }
-        }
-    }
-
-    ITA_gabriele_dannunzio = {
-        name = "Gabriele D'Annunzio"
-        country_leader = {
-            ideology = state_autocracy
-            traits = { trait_theatrical_orator trait_aviator }
-        }
+        portraits = { civilian = { large = "GFX_portrait_de_ambris" } }
+        country_leader = { ideology = anarchism traits = { trait_labor_advocate trait_theatrical_orator } }
     }
     ITA_filippo_tomasso_marinetti = {
         name = "Filippo Tomasso Marinetti"
-        country_leader = {
-            ideology = state_autocracy
-            traits = { trait_intellectual }
-        }
+        portraits = { civilian = { large = "GFX_portrait_marinetti" } }
+        country_leader = { ideology = vanguardism       traits = { trait_intellectual } }
     }
+
+    # advisors
+        ITA_enrico_corradini = {
+            name = "Enrico Corradini"
+            portraits = { civilian = { small = GFX_corradini_small } }
+            advisor = { slot = political_advisor    idea_token = ITA_enrico_corradini   traits = { aristocratic_thinker } }
+        }
+        ITA_sidney_sonnino = {
+            name = "Sidney Sonnino"
+            portraits = { civilian = { small = GFX_sonnino_small } }
+            advisor = { slot = political_advisor    idea_token = ITA_sidney_sonnino   traits = { communist_agitator } }
+        }
+        ITA_errico_malatesta = {
+            name = "Errico Malatesta"
+            portraits = { civilian = { small = GFX_malatesta_small } }
+            advisor = { slot = political_advisor    idea_token = ITA_errico_malatesta   traits = { democratic_advocate } }
+        }
+
+        ITA_antonio_di_san_giuliano = {
+            name = "Antonio di San Giuliano"
+            portraits = { civilian = { small = GFX_giuliano_small } }
+            advisor = { slot = political_advisor    idea_token = ITA_antonio_di_san_giuliano   traits = { ambitious_expansionist } }
+        }
+        ITA_tommaso_tittoni = {
+            name = "Tommaso Tittoni"
+            portraits = { civilian = { small = GFX_tittoni_small } }
+            advisor = { slot = political_advisor    idea_token = ITA_tommaso_tittoni   traits = { silent_workhorse } }
+        }
+        ITA_gabriele_dannunzio = {
+            name = "Gabriele D'Annunzio"
+            portraits = { civilian = { small = GFX_dannunzio_small } }
+            advisor = { slot = political_advisor    idea_token = ITA_gabriele_dannunzio   traits = { militant_orator } }
+        }
+
+        ITA_giovanni_agnelli = {
+            name = "Giovanni Agnelli"
+            portraits = { civilian = { small = GFX_agnelli_small } }
+            advisor = { slot = political_advisor    idea_token = ITA_giovanni_agnelli   traits = { armaments_tycoon } }
+        }
+        ITA_alfredo_dallolio = {
+            name = "Alfredo Dallolio"
+            portraits = { civilian = { small = GFX_dallolio_small } }
+            advisor = { slot = political_advisor    idea_token = ITA_alfredo_dallolio   traits = { home_front_organizer } }
+        }
 }
 
 characters = {
     # navy
-    ITA_bertrand_della_vittoria = {
-        name = "Bertrand Della Vittoria"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_Italy_Generic_navy_1"
-            }
-        }
-        navy_leader = {
-            skill = 4
-            attack_skill = 3
-            defense_skill = 4
-            maneuvering_skill = 3
-            coordination_skill = 3
+    ITA_paolo_thaon_di_revel = {
+        name = "Paolo Thaon di Revel"
+        portraits = { army = { large = "GFX_portrait_thaon" } }
+        navy_leader = { 
+            skill = 2       attack_skill = 3        defense_skill = 2       maneuvering_skill = 2       coordination_skill = 2
         }
     }
-
-    ITA_piero_liberati = {
-        name = "Piero Liberati"
-        portraits = {
-            army = {
-                large = "GFX_Portrait_Italy_Generic_navy_2"
-            }
+    ITA_luigi_di_savoia = {
+        name = "Luigi di Savoia"
+        portraits = { army = { large = "GFX_portrait_savoia" } }
+        navy_leader = { 
+            skill = 2       attack_skill = 2        defense_skill = 1       maneuvering_skill = 1       coordination_skill = 2
         }
-        navy_leader = {
-            skill = 3
-            attack_skill = 2
-            defense_skill = 3
-            maneuvering_skill = 3
-            coordination_skill = 3
+    }
+    ITA_umberto_cagni = {
+        name = "Umberto Cagni"
+        portraits = { army = { large = "GFX_portrait_cagni" } }
+        navy_leader = { 
+            skill = 1       attack_skill = 1        defense_skill = 2       maneuvering_skill = 2       coordination_skill = 1
         }
     }
 }

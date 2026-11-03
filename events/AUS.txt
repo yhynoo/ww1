@@ -3,7 +3,17 @@ add_namespace = galician_oil_okhrana
 add_namespace = galician_oil_tensions
 add_namespace = galician_oil_war
 
-add_namespace = attack_serbia
+add_namespace = house_anschluss
+add_namespace = house_armistice
+add_namespace = house_galicia
+add_namespace = house_guarantees
+add_namespace = house_liquidation
+add_namespace = house_magyars
+add_namespace = house_manifest      # sets the austria_house_collapse flag
+add_namespace = house_monarchy
+add_namespace = house_splits
+add_namespace = house_sudeten
+add_namespace = house_unity
 
 add_namespace = emperor
 
@@ -26,7 +36,7 @@ add_namespace = sarajevo
 
                 # ai
                 ai_chance = {
-                    modifier = { has_idea = idea_grain_investments factor = 0 }
+                    modifier = { has_idea = idea_wheat_investments factor = 0 }
                     modifier = { not = { is_guaranteed_by = FRA } factor = 0.5 }
                 }
             }
@@ -188,24 +198,535 @@ add_namespace = sarajevo
                 name = "Awful."
             }
         }
+    #
 
-# atmosphere
-    news_event = {
-        id = attack_serbia.1
-        title = "Austria to Invade Serbia?"         picture = GFX_report_attack_serbia
+# Act III: HOUSE COLLAPSES
+    # house_anschluss
+        country_event = {
+            id = house_anschluss.1
+            title = "Secure Austria and Czechia?"
 
-        is_triggered_only = yes
-        major = yes
+            is_triggered_only = yes     trigger = { has_war_with = FRA }
 
-        immediate = {
-            add_war_support = 0.025
-            SER = { add_war_support = 0.05 }
+            option = {
+                name = "Time for Anschluss."
+                every_country = { limit = { or = { tag = AUS tag = CZE } } GER = { create_wargoal = { target = PREV type = annex_everything } } }
+
+                # event
+                news_event = { id = house_anschluss.2 hours = 6 }
+            }
+            option = {
+                name = "We are stretched thin already."
+            }
         }
+        news_event = {
+            id = house_anschluss.2
+            title = "Germany to Invade Austria and Czechia?"
 
-        option = {
-            name = "Ok."
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
         }
-    }
+    # house_armistice
+        country_event = {
+            id = house_armistice.1
+            title = "The Collapsing House"
+
+            is_triggered_only = yes     trigger = { has_war_with = FRA }
+
+            option = {
+                name = "Seek an armistice."
+
+                # event
+                FRA = { country_event = { id = house_armistice.2 hours = 6 } }
+            }
+            option = {
+                name = "We must continue the war."
+
+                # ai
+                ai_chance = { modifier = { is_ai = yes factor = 0 } } 
+            }
+        }
+        country_event = {
+            id = house_armistice.2
+            title = "Austria Seeks an Armistice"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Great."
+                white_peace = AUS
+
+                # event
+                news_event = { id = house_armistice.3 hours = 6 }
+            }
+            option = {
+                name = "We will clean this mess ourselves."
+
+                # ai
+                ai_chance = { modifier = { is_ai = yes factor = 0 } } 
+            }
+        }
+        news_event = {
+            id = house_armistice.3
+            title = "Austria Withdraws from the Great War!"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Interesting."
+            }
+        }
+    # house_end_war
+    # house_galicia
+        country_event = {
+            id = house_galicia.1
+            title = "Enter Galicia?"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Do it."
+                declare_war_on = { target = AUS type = take_claimed_state }
+
+                # event
+                news_event = { id = house_galicia.2 hours = 6 }
+            }
+            option = {
+                name = "This is too dangerous."
+
+                # alternative event
+                AUS = { country_event = { id = house_liquidation.1 days = 2 } }
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+        news_event = {
+            id = house_galicia.2
+            title = "The Liberation of Galicia?"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # house_guarantees
+        country_event = {
+            id = house_guarantees.1
+            title = "Austria Seeks Guarantees"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Yes."
+                give_guarantee = AUS
+
+                # event
+                news_event = { id = house_guarantees.2 hours = 6 }
+            }
+            option = {
+                name = "No."
+
+                # ai
+                ai_chance = { modifier = { is_ai = yes factor = 0 } } 
+            }
+        }
+        news_event = {
+            id = house_guarantees.2
+            title = "Austria with French Guarantees!"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # house_liquidation
+        news_event = {
+            id = house_liquidation.1
+            title = "Liquidation Committee Established in Krakau"
+
+            is_triggered_only = yes     trigger = { 80 = { is_controlled_by = AUS } }
+            major = yes
+
+            immediate = {
+                every_state = { limit = { or = { state = 80 state = 89 state = 91 } } add_core_of = GAL }
+                GAL = {
+                    trigger_uprising_easy = yes
+                    set_province_controller = 9427      set_province_controller = 442      set_province_controller = 3434
+                    load_oob = GAL
+                }
+                AUS = { 
+                    # deserters
+                    transfer_units_fraction = { target = GAL      size = 0.05     stockpile_ratio = 0.1     keep_unit_leaders_trigger = { always = no } }
+
+                    country_event = house_liquidation.2 
+                }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+        country_event = {
+            id = house_liquidation.2
+            title = "Galicia-Lodomeria Autonomous?"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Yes."
+                white_peace = GAL
+
+                # event
+                news_event = { id = house_liquidation.3 hours = 6 }
+            }
+            option = {
+                name = "War!"
+                add_war_support = 0.025
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+        news_event = {
+            id = house_liquidation.3
+            title = "Galicia-Lodomeria Splits Away from Austria"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # house_magyars
+        country_event = {
+            id = house_magyars.1
+            title = "Accept Hungarian Secession?"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Enough wars."
+
+                # event
+                news_event = { id = house_magyars.2 hours = 6 }
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+            option = {
+                name = "We must restore our sovereignty."
+
+                # consequences
+                news_event = { id = house_splits.1 days = 2 }
+                news_event = { id = house_splits.2 days = 4 }
+
+                HUN = { country_event = { id = house_splits.3 days = 6 } }
+
+                country_event = { id = house_armistice.1    days = 14 }
+                country_event = { id = house_monarchy.1     days = 20 }
+            }
+        }
+        news_event = {
+            id = house_magyars.2
+            title = "Vienna Accepts Hungarian Withdrawal"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                AUS = {
+                    white_peace = HUN
+                    if = { 
+                        limit = { controls_state = 103 }
+                        103 = { transfer_state_to = CRO }      set_autonomy = { target = CRO autonomous_state = autonomy_puppet }
+
+                        CRO = { set_cosmetic_tag = CRO_dalmatia }
+                    }
+                    if = { 
+                        limit = { controls_state = 104 }
+                        104 = { transfer_state_to = BOS }        HUN = { set_autonomy = { target = BOS autonomous_state = autonomy_puppet } }
+                    }
+                    if = {
+                        limit = { controls_state = 109 }
+                        109 = { transfer_state_to = HUN }
+                    }
+                }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # house_manifest
+        country_event = {
+            id = house_manifest.1
+            title = "‘Völkermanifest’"
+
+            is_triggered_only = yes     fire_only_once = yes
+
+            immediate = {
+                news_event = { id = house_manifest.2 days = 7 }
+                set_country_flag = austria_house_collapse
+            }
+
+            option = {
+                name = "Great."
+            }
+        }
+        news_event = {
+            id = house_manifest.2
+            title = "Disintegration of Austria-Hungary!"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                HUN = {
+                    trigger_uprising_easy = yes
+                    set_province_controller = 9660      set_province_controller = 6573      set_province_controller = 9692
+                    load_oob = HUN
+                }
+                AUS = { 
+                    # deserters
+                    transfer_units_fraction = { target = HUN      size = 0.25     stockpile_ratio = 0.4     keep_unit_leaders_trigger = { always = no } }
+
+                    country_event = house_magyars.1 
+                    if = {
+                        limit = { POL = { exists = yes is_subject = no has_war = no } }
+                        POL = { country_event = { id = house_galicia.1 days = 4 } }
+                    }
+                    else = {
+                        news_event = { id = house_liquidation.1 days = 5 }
+                    }
+                }
+            }
+
+            option = {
+                name = "Worrying."
+            }
+        }
+    # house_monarchy
+        country_event = {
+            id = house_monarchy.1
+            title = "End of Austrian Monarchy?"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "We must abdicate."
+                leave_faction = yes
+                set_popularities = { democratic = 45 monarchism = 30 communism = 25 }   set_politics = { ruling_party = democratic elections_allowed = yes }
+
+                # event
+                news_event = { id = house_monarchy.2 hours = 6 }
+            }
+            option = {
+                name = "Absurd."
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+        news_event = {
+            id = house_monarchy.2
+            title = "Austria Democratizes!"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                release = CZE
+                FRA = { give_guarantee = CZE }
+                
+                if = {
+                    limit = { has_war_with = POL }
+                    every_owned_state = { limit = { or = { is_core_of = POL is_claimed_by = POL } } transfer_state_to = POL }
+                }
+
+                every_country = { limit = { or = { tag = BOS tag = CRO tag = GAL tag = HUN tag = POL } } white_peace = AUS }
+                every_state = { 
+                    limit = { 
+                        is_core_of = AUS 
+                        not = { or = { state = 4 state = 152 state = 153 state = 216 state = 102 state = 33 state = 39 } }
+                    }
+                    remove_core_of = AUS
+                }
+
+                AUS = { 
+                    news_event = { id = house_sudeten.1 days = 10 } 
+                    news_event = { id = house_unity.1 days = 14 } 
+                }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # house_splits
+        news_event = {
+            id = house_splits.1
+            title = "Uprising in Sarajevo!"
+
+            is_triggered_only = yes     trigger = { 104 = { is_controlled_by = AUS } }
+            major = yes
+
+            immediate = {
+                BOS = {
+                    trigger_uprising_easy = yes
+                    set_province_controller = 11899      set_province_controller = 11872      set_province_controller = 9922
+                    load_oob = BOS
+                }
+                AUS = {
+                    # deserters
+                    transfer_units_fraction = { target = BOS      size = 0.05     stockpile_ratio = 0.1     keep_unit_leaders_trigger = { always = no } }
+                }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+        news_event = {
+            id = house_splits.2
+            title = "Uprising in Illyria!"
+
+            is_triggered_only = yes     trigger = { 109 = { is_controlled_by = AUS } }
+            major = yes
+
+            immediate = {
+                CRO = {
+                    trigger_uprising_easy = yes
+                    set_province_controller = 11581      set_province_controller = 624      set_province_controller = 11564         set_province_controller = 3943
+                    load_oob = CRO
+                }
+                AUS = {
+                    # deserters
+                    transfer_units_fraction = { target = CRO      size = 0.1     stockpile_ratio = 0.1     keep_unit_leaders_trigger = { always = no } }
+                }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+        country_event = {
+            id = house_splits.3
+            title = "Assert Control in Illyria?"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Yes."
+                declare_war_on = { target = CRO type = annex_everything }
+            }
+            option = {
+                name = "No."
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+    # house_sudeten
+        news_event = {
+            id = house_sudeten.1
+            title = "Uncertain Allegiances of Sudeten Germans"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                69 = { add_claim_by = GER }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # house_ukraine
+    # house_unity
+        country_event = {
+            id = house_unity.1
+            title = "Austria to Seek German Unity?"
+
+            is_triggered_only = yes
+
+            immediate = {
+                country_event = { id = house_unity.2 days = 14 }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+        country_event = {
+            id = house_unity.2
+            title = "Threat or Solution?"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Appeal to the French."
+
+                # event
+                FRA = { news_event = { id = house_guarantees.1 hours = 6 } }
+
+                # consequences
+                GER = { country_event = { id = house_anschluss.1     days = 4 } }
+            }
+            option = {
+                name = "Seek Anschluss."
+
+                # event
+                GER = { country_event = house_unity.3 }
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+        country_event = {
+            id = house_unity.3
+            title = "German Austria Seeks Anschluss"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Alright."
+                annex_country = { target = AUS transfer_troops = yes }
+
+                # event
+                news_event = { id = house_unity.4 hours = 6 }
+            }
+            option = {
+                name = "We are not interested."
+
+                # ai
+                ai_chance = { modifier = { is_ai = yes factor = 0 } } 
+            }
+        }
+        news_event = {
+            id = house_unity.4
+            title = "The Anschluss of German Austria"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+        
+    # house_yugoslavia
 
 # emperor
     news_event = {
@@ -221,41 +742,6 @@ add_namespace = sarajevo
 
         option = {
             name = "Ok."
-        }
-    }
-
-# galicia
-    country_event = {
-        id = galicia.1
-        title = "Clashes in Eastern Galicia"
-
-        trigger = { tag = AUS       controls_state = 89         has_completed_focus = XXX_oil }
-
-        fire_only_once = yes
-        mean_time_to_happen = { months = 2 }
-
-        option = {
-            name = "Trust our administration."
-            add_stability = 0.025
-
-            # event
-            news_event = { id = galicia.2 hours = 6 }
-        }
-        option = {
-            name = "Assure equal access."
-            add_popularity = { ideology = democratic  popularity = 0.025 }
-        }
-    }
-
-    news_event = {
-        id = galicia.2
-        title = "Ukrainian Oil Engineers on Strike"
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Whatever."
-            add_timed_idea = { idea = idea_oil_strike       months = 3 }
         }
     }
 

@@ -23,4 +23,13 @@ on_actions = {
             if = { limit = { not = { has_country_flag = after_civil_war } } set_country_flag = after_civil_war }
         }
     }
+
+    on_state_control_changed = {
+        effect = {
+            if = {
+                limit = { FROM.FROM = { state = 290 } }
+                FROM = { country_event = admiralty_ceuta.1 }
+            }
+        }
+    }
 }

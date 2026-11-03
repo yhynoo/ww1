@@ -34,72 +34,48 @@ characters = {
     }
 
     # advisors
-    GER_hugo_haase = {
-        name = "Hugo Haase"
-        portraits = {
-            civilian = { small = GFX_hugo_haase_small }
+        GER_theobald_von_bethmann_hollweg = {
+            name = "Theobald von Bethmann Hollweg"
+            portraits = { civilian = { small = GFX_hollweg_small } }
+            advisor = { slot = political_advisor    idea_token = GER_theobald_von_bethmann_hollweg   traits = { aristocratic_thinker } }
         }
-        advisor = {
-            slot = political_advisor
-            idea_token = GER_hugo_haase
-            traits = { communist_agitator }
+        GER_hugo_haase = {
+            name = "Hugo Haase"
+            portraits = { civilian = { small = GFX_haase_small } }
+            advisor = { slot = political_advisor    idea_token = GER_hugo_haase   traits = { communist_agitator } }
         }
-    }
-    GER_matthias_erzberger = {
-        name = "Matthias Erzberger"
-        portraits = {
-            civilian = { small = GFX_matthias_erzberger_small }
+        GER_matthias_erzberger = {
+            name = "Matthias Erzberger"
+            portraits = { civilian = { small = GFX_erzberger_small } }
+            advisor = { slot = political_advisor    idea_token = GER_matthias_erzberger   traits = { democratic_advocate } }
         }
-        advisor = {
-            slot = political_advisor
-            idea_token = GER_matthias_erzberger
-            traits = { democratic_advocate }
+
+        GER_gustav_stresemann = {
+            name = "Gustav Stresemann"
+            portraits = { civilian = { small = GFX_stresemann_small } }
+            advisor = { slot = political_advisor    idea_token = GER_gustav_stresemann   traits = { ambitious_expansionist } }
         }
-    }
-    GER_heinrich_von_tschirschky = {
-        name = "Heinrich von Tschirschky"
-        portraits = {
-            civilian = { small = GFX_heinrich_von_tschirschky_small }
+        GER_wilhelm_solf = {
+            name = "Wilhelm Solf"
+            portraits = { civilian = { small = GFX_solf_small } }
+            advisor = { slot = political_advisor    idea_token = GER_wilhelm_solf   traits = { compassionate_gentleman } }
         }
-        advisor = {
-            slot = political_advisor
-            idea_token = GER_heinrich_von_tschirschky
-            traits = { aristocratic_thinker }
+        GER_wilhelm_dittmann = {
+            name = "Wilhelm Dittmann"
+            portraits = { civilian = { small = GFX_dittmann_small } }
+            advisor = { slot = political_advisor    idea_token = GER_wilhelm_dittmann   traits = { workers_activist } }
         }
-    }
-    GER_theobald_von_bethmann_hollweg = {
-        name = "Theobald von Bethmann Hollweg"
-        portraits = {
-            civilian = { small = GFX_theobald_von_bethmann_hollweg_small }
+
+        GER_georg_von_hertling = {
+            name = "Georg von Hertling"
+            portraits = { civilian = { small = GFX_hertling_small } }
+            advisor = { slot = political_advisor    idea_token = GER_georg_von_hertling   traits = { home_front_organizer } }
         }
-        advisor = {
-            slot = political_advisor
-            idea_token = GER_theobald_von_bethmann_hollweg
-            traits = { compassionate_gentleman }
+        GER_fritz_haber = {
+            name = "Fritz Haber"
+            portraits = { civilian = { small = GFX_haber_small } }
+            advisor = { slot = political_advisor    idea_token = GER_fritz_haber   traits = { technocrat } }
         }
-    }
-    GER_georg_michaelis = {
-        name = "Georg Michaelis"
-        portraits = {
-            civilian = { small = GFX_georg_michaelis_small }
-        }
-        advisor = {
-            slot = political_advisor
-            idea_token = GER_georg_michaelis
-            traits = { silent_workhorse }
-        }
-    }
-    GER_walther_rathenau = {
-        name = "Walther Rathenau"
-        portraits = {
-            civilian = { small = GFX_walther_rathenau_small }
-        }
-        advisor = {
-            slot = political_advisor
-            idea_token = GER_walther_rathenau
-            traits = { war_industrialist }
-        }
-    }
 
     # navy
     GER_reinhard_scheer = {
@@ -189,11 +165,15 @@ characters = {
 
     GER_erich_ludendorff = {
         name = "Erich Ludendorff"
-        portraits = { army = { large = "GFX_portrait_ludendorff" } }
+        portraits = { 
+            army = { large = "GFX_portrait_ludendorff" } 
+            civilian = { small = GFX_ludendorff_small }
+        }
         corps_commander = {
             traits = { harsh_leader }
             skill = 3       attack_skill = 2        defense_skill = 3       planning_skill = 2      logistics_skill = 3
         }
+        advisor = { slot = political_advisor    idea_token = GER_erich_ludendorff   traits = { authoritarian_overseer } }
     }
 
     GER_remus_von_woyrsch = {

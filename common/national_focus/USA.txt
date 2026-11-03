@@ -1,0 +1,132 @@
+shared_focus = {
+    id = USA_hemisphere
+    icon = GFX_focus_USA_hemisphere
+
+    available = {
+        uprising_government_lock = yes
+        civil_war_lock = yes
+    }
+
+    x = 0 y = 0
+    cost = 10
+
+    completion_reward = {
+        add_political_power = 50
+        add_war_support = 0.025
+    }
+}
+
+shared_focus = {
+    id = USA_aid
+    icon = GFX_focus_USA_aid
+    prerequisite = { focus = USA_hemisphere }
+
+    available = {
+        uprising_government_lock = yes      civil_war_lock = yes
+        MEX = { has_civil_war = yes }
+    }
+
+    relative_position_id = USA_hemisphere
+    x = -1 y = 1
+    cost = 8
+
+    completion_reward = {
+        add_political_power = 50    news_event = mexico_aid.1
+    }
+}
+
+shared_focus = {
+    id = USA_carribean
+    icon = GFX_focus_generic_dreadnoughts
+    prerequisite = { focus = USA_hemisphere }
+
+    available = {
+        uprising_government_lock = yes      civil_war_lock = yes
+        controls_state = 315    controls_state = 348
+    }
+
+    relative_position_id = USA_hemisphere
+    x = 1 y = 1
+    cost = 10
+
+    completion_reward = {
+        315 = {
+            add_building_construction = { type = dockyard level = 1 instant_build = yes }
+            add_extra_state_shared_building_slots = 2
+        }
+        348 = {
+            add_resource = { type = chromium amount = 2 }
+            add_building_construction = { type = naval_base level = 2 province = 1440 instant_build = yes }
+        }
+    }
+}
+
+shared_focus = {
+    id = USA_direct_intervention
+    icon = GFX_focus_generic_state
+    prerequisite = { focus = USA_aid }
+
+    available = {
+        uprising_government_lock = yes
+        civil_war_lock = yes
+        MEX = { has_civil_war = yes }
+    }
+
+    relative_position_id = USA_aid
+    x = -2 y = 1
+    cost = 8
+
+    completion_reward = {
+        every_country = { limit = { tag = MEX }   country_event = mexico_direct.1 }
+    }
+}
+
+shared_focus = {
+    id = USA_andes
+    icon = GFX_focus_USA_andes
+    prerequisite = { focus = USA_aid focus = USA_carribean }
+
+    available = {
+        uprising_government_lock = yes
+        civil_war_lock = yes
+
+        279 = { enemy_control = no } 
+        506 = { enemy_control = no } 
+    }
+
+    relative_position_id = USA_aid
+    x = 1 y = 1
+    cost = 10
+
+    completion_reward = {
+        every_country = {
+            limit = { or = { controls_state = 279 controls_state = 506 } enemy_control = no }
+            country_event = chromium_andes.1
+        }
+    }
+}
+
+shared_focus = {
+    id = USA_colombia
+    icon = GFX_focus_USA_colombia
+    prerequisite = { focus = USA_andes }
+
+    available = {
+        uprising_government_lock = yes
+        civil_war_lock = yes
+
+        has_war_support > 0.5       can_declare_war_on = COL
+    }
+
+    ai_will_do = {
+        modifier = { is_historical_focus_on = yes factor = 0 }
+    }
+
+    relative_position_id = USA_andes
+    x = 0 y = 1
+    cost = 10
+
+    completion_reward = {
+        declare_war_on = { target = COL    type = puppet_wargoal_focus }
+    }
+}

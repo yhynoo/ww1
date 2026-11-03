@@ -1,23 +1,39 @@
 ideas = {
     country = {
+        idea_aftermath_of_messina = {
+            modifier = {
+                production_speed_buildings_factor = -0.1
+                consumer_goods_factor = 0.1
+            }
+        }
         idea_trauma_of_tripoli = {
             modifier = {
-                war_support_factor = -0.1
+                join_faction_tension = 0.15
+                war_support_factor = -0.15
+                conscription_factor = -0.1
             }
         }
         idea_trasformismo = {
             modifier = {
                 political_power_factor = -0.1
-                drift_defence_factor = -0.15
+                political_advisor_cost_factor = 0.15
             }
             cancel = {
                 not = { has_government = democratic }
             }
         }
-        idea_unfinished_unification = {
+        
+        idea_italian_accelerationism = {
             modifier = {
-                offensive_war_stability_factor = 0.1
-                conscription_factor = 0.05
+                communism_drift = 0.05
+                war_support_weekly = 0.005
+            }
+        }
+        idea_general_strike = {
+            modifier = {
+                production_factory_max_efficiency_factor = -0.25
+                production_speed_buildings_factor = -0.2
+                stability_weekly = -0.005
             }
         }
     }

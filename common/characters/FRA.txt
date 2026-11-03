@@ -6,10 +6,12 @@ characters = {
     }
     FRA_edouard_herriot = {
         name = "Édouard Herriot"
+        portraits = { civilian = { large = "GFX_portrait_herriot" } }
         country_leader = { ideology = liberalism    traits = { trait_labor_advocate } }
     }
     FRA_georges_clemenceau = {
         name = "Georges Clemenceau"
+        portraits = { civilian = { large = "GFX_portrait_clemenceau" } }
         country_leader = {  ideology = conservatism     traits = { trait_the_tiger } }
     }
     FRA_emile_driant = {
@@ -23,10 +25,14 @@ characters = {
     }
     FRA_jean_jaures = {
         name = "Jean Jaurés"
-        country_leader = {
-            ideology = vanguardism
-            traits = { trait_labor_advocate }
-        }
+        country_leader = { ideology = vanguardism   traits = { trait_labor_advocate } }
+    }
+
+    # advisors
+    FRA_alexandre_millerand = {
+        name = "Alexandre Millerand"
+        portraits = { civilian = { small = GFX_portrait_millerand_small } }
+        advisor = { slot = political_advisor    idea_token = FRA_alexandre_millerand   traits = { quartermaster } }
     }
 
     # navy

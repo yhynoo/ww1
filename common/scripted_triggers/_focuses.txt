@@ -11,7 +11,7 @@ state_extend_trigger = {
 
     if = {
         limit = { original_tag = USA }
-        MEX = { has_civil_war = yes }
+        controls_state = 627
     }
 }
 
@@ -39,12 +39,6 @@ state_claims_trigger = {
     if = {
         limit = { original_tag = JAP }
         controls_state = 524
-    }
-
-    if = {
-        limit = { original_tag = USA }
-        279 = { enemy_control = no }
-        506 = { enemy_control = no }
     }
 }
 
@@ -101,11 +95,6 @@ state_take_ours_trigger = {
         limit = { original_tag = SPA }
         can_declare_war_on = MOR
     }
-
-    if = {
-        limit = { original_tag = USA }
-        can_declare_war_on = COL
-    }
 }
 
 state_deterrence_trigger = {
@@ -150,6 +139,11 @@ state_economy_trigger = {
     if = {
         limit = { original_tag = TUR }
         controls_state = 586    controls_state = 339
+    }
+
+    if = {
+        limit = { original_tag = USA }
+        controls_state = 382    communism < 0.2
     }
 }
 
@@ -239,6 +233,11 @@ state_unity_bypass = {
     if = {
         limit = { original_tag = GER }
         not = { can_declare_war_on = FRA }
+    }
+
+    if = {
+        limit = { not = { or = { original_tag = AUS original_tag = ENG original_tag = FRA original_tag = GER } } }
+        always = no 
     }
 }
 

@@ -1,73 +1,150 @@
-add_namespace = channel
-
-add_namespace = danger
-
-add_namespace = easter
 add_namespace = elections_england
-add_namespace = engagement
 
 add_namespace = titanic
 
-# channel
-    country_event = {
-        id = danger.1
-        title = "Danger on the Channel"
+add_namespace = admiralty_aid
+add_namespace = admiralty_ceuta
+add_namespace = admiralty_channel
+add_namespace = admiralty_gibraltar
 
-        trigger = {
-            tag = ENG       not = { has_completed_focus = XXX_deterrence }      can_declare_war_on = GER
-            and = { GER = { or = { controls_state = 6 controls_state = 29 controls_state = 228 controls_state = 14 controls_state = 15 } } }
-        }
-        fire_only_once = yes
+add_namespace = conscription_crisis
 
-        option = {
-            name = "Yes."
-            declare_war_on = { target = GER type = topple_government }
-        }
-        option = {
-            name = "This is alright."
-            add_war_support = -0.05
-        }
-    }
+# Act II: ADMIRALTY
+    # admiralty_aid
+        country_event = {
+            id = admiralty_aid.1
+            title = "Aid to France?"
 
-# danger
-    country_event = {
-        id = danger.1
-        title = "Danger in the Mediterranean"
+            is_triggered_only = yes
 
-        trigger = {
-            tag = ENG       has_completed_focus = XXX_extend
-            and = {
-                or = { SPA = { has_civil_war = yes } not = { SPA = { controls_state = 290 } } }
-                FRA = { can_join_their_faction = yes }
+            option = {
+                name = "We must stop the Huns."
+                add_to_war = { targeted_alliance = FRA enemy = GER }
+
+                # event
+                news_event = { id = admiralty_aid.2 hours = 6 }
+            }
+            option = {
+                name = "Why die for Calais?"
+                add_war_support = -0.05
+
+                # ai
+                ai_chance = { modifier = { has_war_support < 0.5 factor = 0 } }
             }
         }
+        news_event = {
+            id = admiralty_aid.2
+            title = "United Kingdom Declares War on Germany"
 
-        option = {
-            name = "Yes."
-            FRA = { country_event = alliance.1 }
-        }
-        option = {
-            name = "We must act cautiously."
-            add_war_support = -0.05
-        }
-    }
+            is_triggered_only = yes
+            major = yes
 
-# easter
-    country_event = {
-        id = easter.1
-        title = "Clashes in Dublin!"
-
-        trigger = {
-            tag = ENG       has_war = yes       has_war_support < 0.65
-            not = { or = { has_idea = volunteer_only has_idea = limited_conscription } }
+            option = {
+                name = "Horrible."
+            }
         }
-        fire_only_once = yes
+    # admiralty_ceuta
+        news_event = {
+            id = admiralty_ceuta.1
+            title = "[290.controller.GetAdjective] Troops Enter Ceuta"
 
-        option = {
-            name = "Ok."
-            IRL = { trigger_uprising = yes }
+            is_triggered_only = yes     trigger = { not = { has_global_flag = ceuta_lost } }
+            major = yes
+
+            immediate ={
+                ENG = { news_event = { id = admiralty_gibraltar.1 days = 2 } }
+                set_global_flag = ceuta_lost
+            }
+
+            option = {
+                name = "Ok."
+            }
         }
-    }
+    # admiralty_channel
+        country_event = {
+            id = admiralty_channel.1
+            title = "Admiralty Uneasy About German Advances"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate ={
+                ENG = { news_event = { id = admiralty_aid.1 days = 6 } }
+            }
+
+            option = {
+                name = "Alright."
+            }
+        }
+    # admiralty_gibraltar
+        country_event = {
+            id = admiralty_gibraltar.1
+            title = "Danger to Gibraltar?"
+
+            is_triggered_only = yes     trigger = { has_completed_focus = XXX_extend }
+            fire_only_once = yes
+
+            option = {
+                name = "We must intervene."
+                declare_war_on = { target = 290.controller type = topple_government }
+
+                # event
+                news_event = { id = admiralty_gibraltar.2 hours = 6 }
+            }
+            option = {
+                name = "Caution is more advised."
+                add_war_support = -0.05
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } }
+            }
+        }
+        news_event = {
+            id = admiralty_gibraltar.2
+            title = "United Kingdom Declares War on [290.controller.GetNameDef]"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    #
+
+# Act II: CONSCRIPTION
+    # conscription_crisis
+        country_event = {
+            id = conscription_crisis.1
+            title = "Opposition to Conscription in the Colonies"
+
+            is_triggered_only = yes
+            fire_only_once = yes
+
+            immediate = {
+                country_event = { id = conscription_crisis.2    months = 2 }
+            }
+
+            option = {
+                name = "Worrying."
+                add_ideas = idea_conscription_crisis
+            }
+        }
+        country_event = {
+            id = conscription_crisis.2
+            title = "Conscription Crisis Hits the United Kingdom"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Ok."
+                swap_ideas = {
+                    remove_idea = idea_conscription_crisis
+                    add_idea = idea_conscription_crisis_1
+                }
+            }
+        }
+    #
 
 # elections
     country_event = {
@@ -113,19 +190,6 @@ add_namespace = titanic
             trigger = { not = { has_country_leader = { character = ENG_arthur_balfour ruling_only = yes } } }
 
             promote_character = ENG_arthur_balfour
-        }
-    }
-
-# engagement
-    news_event = {
-        id = engagement.1
-        title = "London Announces ‘Terms of Engagement’"
-
-        is_triggered_only = yes
-        major = yes
-
-        option = {
-            name = "Interesting."
         }
     }
 

@@ -50,12 +50,45 @@ setup_civil_war = {
 }
 
 # special cases
+    accelerationist_italian_civil_war = {
+        start_civil_war = {
+            ideology = communism
+            states = { 157 158 159 160 161 550 }        army_ratio = 0.4        troops_and_control = yes
+
+            declare_war_on = { tag = AUS type = take_claimed_state }
+            news_event = manifesto_civil_war_accelerationists.1
+        }
+    }
+
     atlas_war = {
         start_civil_war = { 
             ideology = democratic 
             set_cosmetic_tag = MOR_democratic
-
             states = { 462 }   army_ratio = 0.25   troops_and_control = yes 
+        }
+    }
+
+    democratic_italian_civil_war = {
+        start_civil_war = {
+            ruling_party = monarchism
+            ideology = democratic
+            size = 0.5        army_ratio = 0.4        troops_and_control = yes
+
+            news_event = manifesto_civil_war_king.1
+        }
+    }
+
+    kadets_uprising = {
+        start_civil_war = {
+            ideology = democratic
+            states = { 213 214 215 217 218 230 231 232 234 235 236 239 255 584 }     army_ratio = 0.4    troops_and_control = yes
+        }
+    }
+
+    mexico_agrarianists_uprising = {
+        start_civil_war = { 
+            ideology = communism 
+            states = { 476 485 }   army_ratio = 0.25   troops_and_control = yes 
         }
     }
 
@@ -66,10 +99,51 @@ setup_civil_war = {
         }
     }
 
+    siberian_communist_uprising = {
+        create_dynamic_country = {
+            original_tag = RUS
+            set_cosmetic_tag = RUS_soviet
+
+            RUS = { 
+                transfer_units_fraction = { target = PREV      size = 0.1     stockpile_ratio = 0.15     keep_unit_leaders_trigger = { always = no } }
+                every_controlled_state = { limit = { or = { state = 40 state = 561 state = 568 state = 403 } } transfer_state_to = PREV.PREV } 
+
+                # decrease communism
+                hidden_effect = { add_popularity = { ideology = communism popularity = -0.4 } }
+            }
+            every_other_country = { limit = { original_tag = RUS } declare_war_on = { target = PREV type = civil_war } }
+            troops_and_control = yes
+
+            set_popularities = { communism = 70 democratic = 25 monarchism = 5 }
+            set_politics = { ruling_party = communism elections_allowed = no }
+        }
+    }
+
     spain_civil_war = {
         start_civil_war = { 
             ideology = communism 
             states = { 165 166 167 169 172 177 }   army_ratio = 0.3   troops_and_control = yes 
+        }
+    }
+
+    ukrainian_communist_uprising = {
+        create_dynamic_country = {
+            original_tag = UKR
+            set_cosmetic_tag = UKR_soviet
+
+            UKR = { 
+                transfer_units_fraction = { target = PREV     size = 0.25     stockpile_ratio = 0.25     keep_unit_leaders_trigger = { always = no } }
+                every_owned_state = { limit = { or = { state = 225 state = 221 state = 227 } } transfer_state_to = PREV.PREV } 
+
+                # decrease communism
+                hidden_effect = { add_popularity = { ideology = communism popularity = -0.2 } }
+            }
+            every_other_country = { limit = { original_tag = RUS not = { has_government = communism } } PREV = { declare_war_on = { target = PREV type = independence_wargoal } } }
+            every_other_country = { limit = { original_tag = UKR } declare_war_on = { target = PREV type = civil_war } }
+            troops_and_control = yes
+
+            set_popularities = { communism = 65 democratic = 20 monarchism = 15 }
+            set_politics = { ruling_party = communism elections_allowed = no }
         }
     }
 

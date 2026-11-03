@@ -1,10 +1,343 @@
 add_namespace = albania_italy
-add_namespace = anti_ottoman
 
 add_namespace = elections_italy
 
-add_namespace = triple_alliance
 add_namespace = tunisia
+
+add_namespace = manifesto_asmara
+add_namespace = manifesto_avanti
+add_namespace = manifesto_civil_war_accelerationists
+add_namespace = manifesto_civil_war_king
+add_namespace = manifesto_dannunzio
+add_namespace = manifesto_ethiopia
+add_namespace = manifesto_genoa
+add_namespace = manifesto_intonarumori
+add_namespace = manifesto_strike
+add_namespace = manifesto_tripoli
+
+# Act I: MANIFESTO
+    # manifesto_asmara
+        country_event = {
+            id = manifesto_asmara.1
+            title = "Marinetti Arrives in Asmara"
+
+            is_triggered_only = yes
+
+            immediate = {
+                promote_character = ITA_filippo_marinetti
+
+                news_event = { id = manifesto_asmara.2 days = 12 }
+                country_event = { id = manifesto_ethiopia.1 days = 16 }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+        news_event = {
+            id = manifesto_asmara.2
+            title = "‘The King's Aeroplane’"        picture = GFX_report_marinetti
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # manifesto_avanti
+        country_event = {
+            id = manifesto_avanti.1
+            title = "The ‘Avanti’ Editorial"
+
+            is_triggered_only = yes
+
+            immediate = {
+                news_event = { id = manifesto_dannunzio.1 days = 6 }
+                country_event = { id = manifesto_avanti.2 days = 12 }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+        country_event = {
+            id = manifesto_avanti.2
+            title = "War Enthusiasm Throughout the Country"
+
+            is_triggered_only = yes     trigger = { has_war_support > 0.5 can_declare_war_on = AUS }
+
+            option = {
+                name = "Declare war on Austria."
+                declare_war_on = { target = AUS type = take_claimed_state }     remove_ideas = idea_trauma_of_tripoli
+
+                # event
+                news_event = { id = manifesto_avanti.3 hours = 6 }
+            }
+            option = {
+                name = "Wait through."
+                add_war_support = -0.05
+
+                accelerationist_italian_civil_war = yes
+            }
+        }
+        news_event = {
+            id = manifesto_avanti.3
+            title = "Italy to Advance Through the Alps!"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # manifesto_civil_war_accelerationists
+        news_event = {
+            id = manifesto_civil_war_accelerationists.1
+            title = "Italian Accelerationists: Chaos in the Alps"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # manifesto_civil_war_king
+        news_event = {
+            id = manifesto_civil_war_king.1
+            title = "Italian Government Tears Up the King's Decree!"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # manifesto_dannunzio
+        news_event = {
+            id = manifesto_dannunzio.1
+            title = "Gabriele D'Annunzio Shot in Genoa!"
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                ITA = { retire_character = ITA_gabriele_dannunzio }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # manifesto_ethiopia
+        country_event = {
+            id = manifesto_ethiopia.1
+            title = "Claims in East Africa"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Assert our claims."
+                every_state = {
+                    limit = { is_core_of = ETH }
+                    add_claim_by = ITA
+                }
+
+                # event
+                news_event = { id = manifesto_ethiopia.2 hours = 6 }
+            }
+            option = {
+                name = "Leave them alone."
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+        news_event = {
+            id = manifesto_ethiopia.2
+            title = "Italian Accelerationists: ‘To War, to War!’"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # manifesto_genoa
+        country_event = {
+            id = manifesto_genoa.1
+            title = "Unrest Among Genoa Dockyard Workers"
+
+            is_triggered_only = yes
+
+            immediate = {
+                country_event = { id = manifesto_genoa.2  days = 7 }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+        country_event = {
+            id = manifesto_genoa.2
+            title = "‘Where Are Our Sons?’"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Dismiss the government."
+                promote_character = ITA_antonio_salandra
+
+                # event
+                news_event = { id = manifesto_genoa.3 hours = 6 }
+            }
+            option = {
+                name = "Stick it out."
+                add_stability = -0.025
+
+                # alt. event
+                news_event = { id = manifesto_strike.1 days = 3 }
+            }
+        }
+        news_event = {
+            id = manifesto_genoa.3
+            title = "Salandra Takes Over in Italy"                  picture = GFX_report_salandra
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # manifesto_intonarumori
+        news_event = {
+            id = manifesto_intonarumori.1
+            title = "‘Intonarumori’ on State in Calabria"           picture = GFX_report_intonarumori
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                country_event = { id = manifesto_intonarumori.2 }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+        country_event = {
+            id = manifesto_intonarumori.2
+            title = "Warlike Concert Antagonizes the Crowd"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "Send the constables."
+                add_popularity = { ideology = ROOT popularity = 0.025 }
+
+                # event
+                news_event = { id = manifesto_intonarumori.3 hours = 6 }
+            }
+            option = {
+                name = "Sit it out."
+                add_stability = -0.025
+
+                # ai
+                ai_chance = { modifier = { is_ai = yes factor = 0 } } 
+            }
+        }
+        news_event = {
+            id = manifesto_intonarumori.3
+            title = "Marinetti: Who Detests Our Joyous Energy?"         picture = GFX_report_joyful_energy
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "What a show."
+            }
+        }
+    # manifesto_strike
+        news_event = {
+            id = manifesto_strike.1
+            title = "De Ambris: General Strike in Italy!"                   picture = GFX_report_general_strike
+
+            is_triggered_only = yes
+            major = yes
+
+            immediate = {
+                ITA = { add_timed_idea = { idea = idea_general_strike months = 6 } }
+            }
+
+            option = {
+                name = "Ok."
+            }
+        }
+        country_event = {
+            id = manifesto_strike.2
+            title = "Answer to the Striking Workers?"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "We must wait it out."
+                add_popularity = { ideology = ROOT popularity = -0.05 }
+            }
+            option = {
+                trigger = { check_variable = { highest_party_ideology = token:monarchism } }
+
+                name = "Dismiss the government."
+                set_politics = { ruling_party = monarchism  elections_allowed = no }
+
+                # event
+                news_event = { id = manifesto_strike.3 hours = 6 }
+            }
+            option = {
+                trigger = { not = { check_variable = { highest_party_ideology = token:monarchism } } }
+
+                name = "Enact martial law."
+                democratic_italian_civil_war = yes
+            }
+        }
+        news_event = {
+            id = manifesto_strike.3
+            title = "Italian King Dismisses the Government"
+
+            is_triggered_only = yes
+            major = yes
+
+            option = {
+                name = "Ok."
+            }
+        }
+    # manifesto_tripoli
+        country_event = {
+            id = manifesto_tripoli.1
+            title = "The Shame of Tripoli"
+
+            is_triggered_only = yes
+
+            option = {
+                name = "A stupid adventure."
+                add_stability = 0.025
+
+                # event
+                news_event = { id = manifesto_genoa.2 days = 21 }
+            }
+            option = {
+                name = "We did not commit enough."
+                add_ideas = idea_italian_accelerationism
+
+                # ai
+                ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
+            }
+        }
+    #
 
 # albania_italy
     news_event = {
@@ -20,29 +353,6 @@ add_namespace = tunisia
 
         option = {
             name = "Ok."
-        }
-    }
-
-# anti_ottoman
-    country_event = {
-        id = anti_ottoman.1
-        title = "An Opportunity to Demand Albania?"
-
-        trigger = {
-            tag = ITA
-            44.owner = { has_war = yes not = { has_war_with = ITA } }
-        }
-
-        option = {
-            name = "Yes."
-            44 = { send_ultimatum_one_state = yes }
-        }
-        option = {
-            name = "This is not the time."
-            add_war_support = 0.05
-
-            # ai
-            ai_chance = { modifier = { is_historical_focus_on = yes } factor = 0 }
         }
     }
 
@@ -90,70 +400,6 @@ add_namespace = tunisia
             }
 
             promote_character = ITA_vittorio_orlando
-        }
-    }
-
-# triple alliance
-    country_event = {
-        id = triple_alliance.1
-        title = "Our Alliance Commitments"
-
-        trigger = {
-            tag = ITA not = { has_completed_focus = XXX_extend } has_war = no
-            GER = { has_war_with = FRA }
-        }
-        fire_only_once = yes
-        mean_time_to_happen = { months = 2 }
-
-        option = {
-            name = "Honor old agreements."
-
-            32 = { add_claim_by = ITA }
-            declare_war_on = { target = FRA type = take_claimed_state }
-        }
-        option = {
-            name = "Demand Alps and Trieste."
-            trigger = { AUS = { is_ally_with = GER } }
-
-            # event
-            add_war_support = 0.05
-            AUS = { news_event = { id = triple_alliance.2 hours = 6 } }
-        }
-        option = {
-            name = "Ignore it."
-        }
-    }
-
-    country_event = {
-        id = triple_alliance.2
-        title = "Alps and Triest: A Harlot’s Deal"
-
-        is_triggered_only = yes
-
-        option = {
-            name = "Yes."
-
-            every_owned_state = { limit = { is_claimed_by = ITA } transfer_state_to = ITA }
-            ITA = { declare_war_on = { target = FRA type = topple_government } }
-
-            # event
-            news_event = { id = triple_alliance.3 hours = 6 }
-        }
-        option = {
-            name = "This is disgusting."
-            add_war_support = 0.025
-        }
-    }
-
-    news_event = {
-        id = triple_alliance.3
-        title = "Alps and Triest for Italian Honor?"
-
-        is_triggered_only = yes
-        major = yes
-
-        option = {
-            name = "Despicable."
         }
     }
 

@@ -51,6 +51,9 @@ add_namespace = tsingtao
                 limit = { check_variable = { highest_party_ideology@exclude_ruling_party = token:monarchism } }
                 random = { chance = 50 news_event = { id = diet.3 hours = 6 } }
             }
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
         }
         option = {
             name = "This is treason."
@@ -104,5 +107,8 @@ add_namespace = tsingtao
         option = {
             name = "No."
             add_war_support = -0.05
+
+            # ai
+            ai_chance = { modifier = { is_historical_focus_on = yes factor = 0 } } 
         }
     }
